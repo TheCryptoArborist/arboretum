@@ -2079,11 +2079,11 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <div class="garden-next-growth-copy" id="garden-next-growth-copy">Each active Seed is one path to earn Growth Points during the 30-day cycle.</div>
         </div>
         <div class="garden-next-growth-status">
-          <div class="garden-next-growth-status-label">Race Status</div>
-          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more Growth Points to earn more of the Growth Pool.</div>
+          <div class="garden-next-growth-status-label">Coming Up</div>
+          <div class="garden-next-growth-score" id="garden-next-growth-score">Plant a Seed, then this panel will show what happens next and what to do before it levels up.</div>
           <div class="garden-next-growth-meta">
-            <span class="garden-next-growth-chip"><strong id="garden-next-stage">--</strong> next stage</span>
-            <span class="garden-next-growth-chip"><strong id="garden-next-days">--</strong> timing</span>
+            <span class="garden-next-growth-chip"><strong id="garden-next-stage">--</strong> next</span>
+            <span class="garden-next-growth-chip"><strong id="garden-next-days">--</strong> away</span>
             <span class="garden-next-growth-chip"><strong id="garden-next-gp">0</strong> Growth Points now</span>
           </div>
         </div>
@@ -4794,6 +4794,19 @@ function bestGrowthSeed(seeds=[]){
     return Number(b.seed.growthPoints||0)-Number(a.seed.growthPoints||0);
   })[0]||null;
 }
+function nextGrowthForecast(stage,seed,{ready=false,wilting=false,toolCount=0,crateCount=0}={}){
+  if(!stage)return 'Plant a Seed, then this panel will show what happens next and what to do before it levels up.';
+  if(stage.daysToNext<=0)return 'This Seed has reached the final growth milestone for the cycle. Keep it alive until the season ends.';
+  const days=stage.daysToNext;
+  const dayWord=days===1?'day':'days';
+  const waterLine=days===1?'Water it today to push into the next stage.':`Water daily and it should reach ${stage.nextStage} in ${days} ${dayWord}.`;
+  if(wilting)return `This Seed is close to trouble. Water or protect it now; missed care can stop the next stage from happening.`;
+  if(ready&&toolCount)return `${waterLine} Use a Growth Booster before watering if you want today's watering to add more Growth Points.`;
+  if(ready)return `${waterLine} Water now to keep the stage countdown moving.`;
+  if(toolCount)return `${waterLine} You have items ready; use boosts before watering or protection before missed time.`;
+  if(crateCount)return `${waterLine} Open crates before the next watering so you have tools ready.`;
+  return `${waterLine} Nothing special is needed yet; consistency is the advantage.`;
+}
 function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
   const wrap=$('garden-next-growth');
   if(!wrap)return;
@@ -4811,7 +4824,7 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
     if(nextStage)nextStage.textContent='Connect';
     if(nextDays)nextDays.textContent='--';
     if(nextGp)nextGp.textContent='0';
-    if(score)score.textContent='Goal: finish the 30-day cycle with as many Growth Points as possible.';
+    if(score)score.textContent='Connect your wallet to see the next Seed stage, when it can happen, and the best action before then.';
     setAction('Connect Wallet',handleWalletBtn);
     wrap.classList.add('show');
     return;
@@ -4822,7 +4835,7 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
     if(nextStage)nextStage.textContent='First Planting';
     if(nextDays)nextDays.textContent='Today';
     if(nextGp)nextGp.textContent='0';
-    if(score)score.textContent='Start now, then water daily through the 30-day cycle.';
+    if(score)score.textContent='Plant one NFTree Seed today. After that, watering daily moves it toward the next growth stage.';
     setAction('Plant Seed',doPlant);
     wrap.classList.add('show');
     return;
@@ -4839,7 +4852,7 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
     if(nextStage)nextStage.textContent='Recovery';
     if(nextDays)nextDays.textContent='Now';
     if(nextGp)nextGp.textContent=seeds.reduce((sum,s)=>sum+Number(s.growthPoints||0),0).toLocaleString();
-    if(score)score.textContent='Recovery comes before chasing more Growth Points.';
+    if(score)score.textContent='Revive or reset a Seed first. Once it is alive, it can start moving toward the next stage again.';
     setAction('Review Seeds',()=>applyFilterValue('dead'));
     wrap.classList.add('show');
     return;
@@ -4860,7 +4873,7 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
   if(nextStage)nextStage.textContent=stage.nextStage;
   if(nextDays)nextDays.textContent=days?`${days}d`:'Reached';
   if(nextGp)nextGp.textContent=Number(seed.growthPoints||0).toLocaleString();
-  if(score)score.textContent=`Current stage: ${stage.label}. ${seasonDaysLeft?`${seasonDaysLeft}d left. `:''}Final Growth Points decide your Growth Pool share.`;
+  if(score)score.textContent=nextGrowthForecast(stage,seed,{ready:Boolean(ready),wilting:Boolean(wilting),toolCount,crateCount});
   if(wilting||ready)setAction(wilting?'Water Now':'Water All',doWaterAll);
   else if(toolCount)setAction('Apply Item',doApplyTool);
   else if(crateCount)setAction('Open Crate',()=>doOpenCrate());
