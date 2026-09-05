@@ -908,7 +908,18 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-board-panel::before{content:"";position:absolute;left:18px;right:18px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(25,230,180,.65),rgba(255,216,111,.42),transparent);}
 .garden-board-tools{margin-top:.78rem;padding-top:.6rem;border-top:1px solid rgba(190,224,255,.12);}
 .garden-daily-rail{display:flex;flex-direction:column;gap:.72rem;position:sticky;top:104px;}
-.garden-support-stack{display:flex;flex-direction:column;gap:.72rem;margin-top:.85rem;padding-top:.82rem;border-top:1px solid rgba(190,224,255,.14);}
+.garden-support-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.85rem;padding-top:.82rem;border-top:1px solid rgba(190,224,255,.14);}
+.garden-support-utility{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.58rem;}
+.garden-next-growth{display:none;margin:.72rem 0 0;padding:.72rem .78rem;border-radius:16px;border:1px solid rgba(255,216,111,.42);background:radial-gradient(circle at 0 0,rgba(255,216,111,.16),transparent 54%),linear-gradient(135deg,rgba(7,13,24,.98),rgba(3,18,18,.96));box-shadow:0 0 18px rgba(255,216,111,.13);}
+.garden-next-growth.show{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center;}
+.garden-next-growth-kicker{font-size:.56rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.18rem;}
+.garden-next-growth-title{font-family:"Orbitron",monospace;font-size:.92rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);line-height:1.15;}
+.garden-next-growth-copy{margin-top:.24rem;color:var(--muted);font-size:.68rem;line-height:1.42;}
+.garden-next-growth-meta{display:flex;gap:.42rem;flex-wrap:wrap;margin-top:.5rem;}
+.garden-next-growth-chip{display:inline-flex;align-items:center;padding:.18rem .48rem;border-radius:999px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.72);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+.garden-next-growth-chip strong{color:var(--text);margin-right:.24rem;}
+.garden-next-growth-action{display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;min-width:150px;}
+.garden-next-growth-score{font-family:"Orbitron",monospace;color:var(--primary);font-size:.72rem;text-align:right;}
 .garden-check{display:grid;grid-template-columns:1.25fr repeat(4,minmax(0,1fr));gap:.55rem;margin:.65rem 0 .75rem;}
 .garden-daily-rail .garden-check{grid-template-columns:repeat(2,minmax(0,1fr));margin:0;padding:.7rem;border-radius:17px;border:1px solid rgba(255,216,111,.32);background:radial-gradient(circle at 0 0,rgba(255,216,111,.12),transparent 52%),rgba(5,9,19,.9);}
 .garden-daily-rail .garden-focus{grid-column:1/-1;}
@@ -923,6 +934,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-stat.danger strong{color:var(--danger);}
 .daily-goals{display:none;margin:-.1rem 0 .8rem;padding:.78rem .86rem;border-radius:15px;border:1px solid rgba(25,230,180,.26);background:radial-gradient(circle at 0 0,rgba(25,230,180,.1),transparent 52%),rgba(5,9,19,.92);}
 .garden-daily-rail .daily-goals{margin:0;border-color:rgba(25,230,180,.34);box-shadow:0 0 18px rgba(25,230,180,.08);}
+.garden-daily-rail .daily-goals{background:linear-gradient(180deg,rgba(5,18,20,.96),rgba(3,7,16,.94));}
 .daily-goals.show{display:block;}
 .daily-goals-head{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.55rem;}
 .daily-goals-title{font-family:"Orbitron",monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);}
@@ -932,6 +944,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-daily-rail .daily-goal-grid{grid-template-columns:1fr;}
 .garden-daily-rail .daily-goal{min-height:auto;}
 .daily-goal{position:relative;min-height:112px;padding:.62rem .65rem .68rem;border-radius:13px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.82);overflow:hidden;}
+.garden-daily-rail .daily-goal:not(.done){border-color:rgba(255,216,111,.22);background:radial-gradient(circle at 0 0,rgba(255,216,111,.08),transparent 56%),rgba(3,7,16,.9);}
 .daily-goal::after{content:"";position:absolute;right:-22px;top:-28px;width:70px;height:70px;border-radius:50%;background:rgba(25,230,180,.08);pointer-events:none;}
 .daily-goal.done{border-color:rgba(25,230,180,.48);background:radial-gradient(circle at 0 0,rgba(25,230,180,.16),transparent 58%),rgba(3,7,16,.9);}
 .daily-goal.done::after{background:rgba(25,230,180,.16);}
@@ -943,11 +956,14 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .daily-goal-status{font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);}
 .daily-goal .gbtn{margin-top:.45rem;padding:.3rem .55rem;font-size:.55rem;letter-spacing:.08em;}
 .garden-support-group{border-radius:17px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.46);overflow:hidden;}
+.garden-support-utility .garden-support-group{border-radius:15px;}
 .garden-support-group summary{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.68rem .8rem;cursor:pointer;list-style:none;font-family:"Orbitron",monospace;font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;color:var(--primary);background:linear-gradient(135deg,rgba(25,230,180,.08),rgba(255,216,111,.035));}
+.garden-support-utility .garden-support-group summary{padding:.56rem .65rem;font-size:.62rem;color:var(--muted);}
 .garden-support-group summary::-webkit-details-marker{display:none;}
 .garden-support-group summary::after{content:"-";width:22px;height:22px;border-radius:999px;border:1px solid rgba(25,230,180,.34);display:flex;align-items:center;justify-content:center;color:var(--primary);font-size:.72rem;line-height:1;flex:0 0 22px;}
 .garden-support-group:not([open]) summary::after{content:"+";}
 .garden-support-group-body{display:flex;flex-direction:column;gap:.55rem;padding:.62rem;}
+.garden-support-utility .garden-support-group-body{padding:.55rem;}
 .garden-support-group .garden-challenge-nudge,.garden-support-group .garden-crate-nudge,.garden-support-group .garden-referral-nudge,.garden-support-group .garden-slot-nudge,.garden-support-group .daily-reminder{margin:0;}
 .daily-reminder{display:none;align-items:center;justify-content:space-between;gap:.8rem;margin:-.2rem 0 .8rem;padding:.76rem .86rem;border-radius:15px;border:1px solid rgba(133,189,255,.28);background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(25,230,180,.06)),rgba(5,9,19,.9);}
 .daily-reminder.show{display:flex;}
@@ -977,9 +993,13 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-crate-nudge.show{display:flex;}
 .garden-crate-nudge strong{display:block;color:var(--accent);font-size:.75rem;margin-bottom:.12rem;}
 .garden-crate-nudge span{display:block;color:var(--muted);font-size:.68rem;line-height:1.4;}
-.garden-buy-crates-banner{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin:0 0 .85rem;padding:.82rem .95rem;border-radius:16px;border:1px solid rgba(255,216,111,.52);background:radial-gradient(circle at 0 0,rgba(255,216,111,.24),transparent 58%),linear-gradient(135deg,rgba(255,216,111,.14),rgba(25,230,180,.08)),rgba(5,9,19,.94);box-shadow:0 0 22px rgba(255,216,111,.18),inset 0 0 18px rgba(25,230,180,.05);}
+.garden-buy-crates-banner{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin:0;padding:.82rem .95rem;border-radius:16px;border:1px solid rgba(255,216,111,.52);background:radial-gradient(circle at 0 0,rgba(255,216,111,.24),transparent 58%),linear-gradient(135deg,rgba(255,216,111,.14),rgba(25,230,180,.08)),rgba(5,9,19,.94);box-shadow:0 0 22px rgba(255,216,111,.18),inset 0 0 18px rgba(25,230,180,.05);}
 .garden-buy-crates-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-size:.88rem;line-height:1.15;}
 .garden-buy-crates-copy{margin-top:.16rem;color:var(--muted);font-size:.68rem;line-height:1.4;}
+.garden-items-card{display:flex;align-items:center;justify-content:space-between;gap:.8rem;margin:0;padding:.82rem .95rem;border-radius:16px;border:1px solid rgba(25,230,180,.34);background:radial-gradient(circle at 100% 0,rgba(25,230,180,.16),transparent 54%),rgba(5,9,19,.94);box-shadow:0 0 18px rgba(25,230,180,.1),inset 0 0 18px rgba(25,230,180,.04);}
+.garden-items-card strong{display:block;color:var(--primary);font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;margin-bottom:.13rem;}
+.garden-items-card span{display:block;color:var(--muted);font-size:.68rem;line-height:1.4;}
+.garden-items-card .garden-challenge-pill{margin-bottom:.42rem;}
 .garden-referral-nudge{display:none;align-items:center;justify-content:space-between;gap:.75rem;margin:-.15rem 0 .75rem;padding:.72rem .85rem;border-radius:14px;border:1px solid rgba(133,189,255,.3);background:linear-gradient(135deg,rgba(133,189,255,.1),rgba(25,230,180,.06)),rgba(5,9,19,.9);}
 .garden-referral-nudge.show{display:flex;}
 .garden-referral-nudge strong{display:block;color:var(--primary);font-size:.75rem;margin-bottom:.12rem;}
@@ -1015,8 +1035,8 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-tool-empty{padding:.75rem;border-radius:12px;border:1px dashed rgba(190,224,255,.22);background:rgba(3,7,16,.72);font-size:.7rem;color:var(--muted);text-align:center;line-height:1.45;}
 .garden-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:.5rem;margin-top:.7rem;}
 .garden-board-panel .garden-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.58rem;}
-@media(max-width:1100px){.garden-command-layout{grid-template-columns:1fr;}.garden-daily-rail{position:static;display:grid;grid-template-columns:1fr 1fr;}.garden-daily-rail .daily-goal-grid{grid-template-columns:1fr;}}
-@media(max-width:900px){.garden-check{grid-template-columns:1fr 1fr;}.garden-focus{grid-column:1/-1;}.daily-goal-grid{grid-template-columns:1fr;}.garden-daily-rail{grid-template-columns:1fr;}.daily-reminder,.garden-slot-nudge,.garden-crate-nudge,.garden-referral-nudge,.garden-challenge-nudge,.garden-slots-head,.garden-buy-crates-banner,.buy-crates-marquee,.shop-choice-card{align-items:flex-start;flex-direction:column;}.daily-reminder-meta,.daily-reminder-actions,.garden-slot-stats,.garden-slot-actions,.garden-nudge-actions,.buy-crates-actions,.shop-choice-actions{justify-content:flex-start;align-items:flex-start;}.garden-slots-cap{align-self:flex-start;}.buy-crates-actions,.shop-choice-actions{width:100%;}.buy-crates-actions .gbtn,.garden-buy-crates-banner .gbtn,.shop-choice-actions .gbtn{width:100%;}.crate-help-row{grid-template-columns:1fr;}}
+@media(max-width:1100px){.garden-command-layout{grid-template-columns:1fr;}.garden-daily-rail{position:static;display:grid;grid-template-columns:1fr 1fr;}.garden-daily-rail .daily-goal-grid{grid-template-columns:1fr;}.garden-support-utility{grid-template-columns:1fr;}}
+@media(max-width:900px){.garden-check{grid-template-columns:1fr 1fr;}.garden-focus{grid-column:1/-1;}.daily-goal-grid{grid-template-columns:1fr;}.garden-daily-rail,.garden-support-stack{grid-template-columns:1fr;}.daily-reminder,.garden-slot-nudge,.garden-crate-nudge,.garden-referral-nudge,.garden-challenge-nudge,.garden-slots-head,.garden-buy-crates-banner,.garden-items-card,.garden-next-growth,.buy-crates-marquee,.shop-choice-card{align-items:flex-start;flex-direction:column;}.garden-next-growth.show{grid-template-columns:1fr;}.garden-next-growth-action{align-items:flex-start;min-width:0;}.garden-next-growth-score{text-align:left;}.daily-reminder-meta,.daily-reminder-actions,.garden-slot-stats,.garden-slot-actions,.garden-nudge-actions,.buy-crates-actions,.shop-choice-actions{justify-content:flex-start;align-items:flex-start;}.garden-slots-cap{align-self:flex-start;}.buy-crates-actions,.shop-choice-actions{width:100%;}.buy-crates-actions .gbtn,.garden-buy-crates-banner .gbtn,.garden-items-card .gbtn,.shop-choice-actions .gbtn{width:100%;}.crate-help-row{grid-template-columns:1fr;}}
 @media(max-width:900px){.garden-grid{grid-template-columns:repeat(4,1fr);}}
 @media(max-width:760px){.garden-board-panel .garden-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:480px){.garden-check{grid-template-columns:1fr 1fr;}.garden-grid{grid-template-columns:repeat(2,1fr);}.garden-command-layout{gap:.65rem;}.garden-board-panel{padding:.65rem .58rem .72rem;border-radius:16px;}.garden-support-stack{gap:.58rem;}}
@@ -2043,6 +2063,22 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         </div>
         <div id="inv-display" style="display:none;margin-top:.5rem;font-size:.72rem;color:var(--muted)"></div>
       </div>
+      <div class="garden-next-growth" id="garden-next-growth">
+        <div>
+          <div class="garden-next-growth-kicker">Next growth milestone</div>
+          <div class="garden-next-growth-title" id="garden-next-growth-title">Plant a Seed to begin</div>
+          <div class="garden-next-growth-copy" id="garden-next-growth-copy">Each active Seed is one path to earn Growth Points during the 30-day cycle.</div>
+          <div class="garden-next-growth-meta">
+            <span class="garden-next-growth-chip"><strong id="garden-next-stage">--</strong> next stage</span>
+            <span class="garden-next-growth-chip"><strong id="garden-next-days">--</strong> timing</span>
+            <span class="garden-next-growth-chip"><strong id="garden-next-gp">0</strong> GP now</span>
+          </div>
+        </div>
+        <div class="garden-next-growth-action">
+          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more GP to earn more of the Growth Pool.</div>
+          <button class="gbtn" id="garden-next-growth-action" onclick="doPlant()">Plant Seed</button>
+        </div>
+      </div>
     </div>
     <aside class="garden-daily-rail">
       <div id="garden-check" class="garden-check">
@@ -2060,7 +2096,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="daily-goals-head">
           <div>
             <div class="daily-goals-title">Today’s Garden Goals</div>
-            <div class="daily-goals-sub" id="daily-goals-sub">Complete small actions to keep the garden loop fresh.</div>
+            <div class="daily-goals-sub" id="daily-goals-sub">Win the day: protect streaks, time items, and keep your 30-day GP climbing.</div>
           </div>
           <div class="daily-goals-meter" id="daily-goals-meter">0 / 3 done</div>
         </div>
@@ -2072,34 +2108,44 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
     <div class="garden-buy-crates-banner">
       <div>
         <div class="garden-buy-crates-title">Buy Crates</div>
-        <div class="garden-buy-crates-copy">Crates reveal Arborist Items that help you create, protect, or multiply Growth Points before the cycle ends.</div>
+        <div class="garden-buy-crates-copy">Need an edge? Crates reveal items that boost GP, save streaks, and help you pass players who only water.</div>
       </div>
       <button class="gbtn" onclick="doc('crates-panel')">Shop Crates</button>
     </div>
-    <details class="garden-support-group" open>
-      <summary>Today’s Tools & Reminders</summary>
-      <div class="garden-support-group-body">
-        <div class="garden-challenge-nudge planned" id="garden-challenge-nudge">
-          <div>
-            <strong>Daily Canopy Challenges Coming Later</strong>
-            <span id="garden-challenge-copy">Not active yet. For now, focus on watering, item timing, Seed health, and monthly Growth Pool rewards.</span>
+    <div class="garden-items-card" id="garden-items-nudge">
+      <div>
+        <strong>Items Ready</strong>
+        <span id="garden-items-copy">Connect wallet to see usable Arborist Items inside My Garden.</span>
+      </div>
+      <div class="garden-nudge-actions">
+        <span class="garden-challenge-pill" id="garden-items-pill">0 items</span>
+        <button class="gbtn" onclick="setStrategyTab('owned');doc('tools-sec')">My Items</button>
+        <button class="gbtn" id="garden-items-apply" onclick="doApplyTool()">Apply Item</button>
+      </div>
+    </div>
+    <div class="garden-support-utility">
+      <details class="garden-support-group">
+        <summary>Open Slots</summary>
+        <div class="garden-support-group-body">
+        <div class="garden-slot-nudge" id="garden-slot-nudge">
+          <div class="garden-slot-main">
+            <strong>Expand your garden</strong>
+            <span id="garden-slot-copy">Each extra NFTree can unlock another active Seed slot, up to eight.</span>
           </div>
-          <div class="garden-nudge-actions">
-            <span class="garden-challenge-pill" id="garden-challenge-pill">Not live</span>
-            <button class="gbtn" disabled>Coming Soon</button>
+          <div class="garden-slot-stats">
+            <div class="garden-slot-stat"><b id="garden-open-slots">0</b><small>Open slots</small></div>
+            <div class="garden-slot-stat"><b id="garden-nftree-ready">0</b><small>NFTree ready</small></div>
+            <div class="garden-slot-actions">
+              <button class="gbtn" id="garden-slot-primary" onclick="doMint()">Unlock Slot</button>
+              <button class="gbtn" id="garden-slot-secondary" onclick="doPlant()">Plant Seed</button>
+            </div>
           </div>
         </div>
-        <div class="garden-crate-nudge garden-items-nudge" id="garden-items-nudge">
-          <div>
-            <strong>My Items</strong>
-            <span id="garden-items-copy">Connect wallet to see usable Arborist Items inside My Garden.</span>
-          </div>
-          <div class="garden-nudge-actions">
-            <span class="garden-challenge-pill" id="garden-items-pill">0 items</span>
-            <button class="gbtn" onclick="setStrategyTab('owned');doc('tools-sec')">My Items</button>
-            <button class="gbtn" id="garden-items-apply" onclick="doApplyTool()">Apply Item</button>
-          </div>
         </div>
+      </details>
+      <details class="garden-support-group">
+        <summary>Reminder</summary>
+        <div class="garden-support-group-body">
         <div class="daily-reminder" id="daily-reminder">
           <div class="daily-reminder-main">
             <strong>Daily Reminder</strong>
@@ -2115,6 +2161,11 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
             </div>
           </div>
         </div>
+        </div>
+      </details>
+      <details class="garden-support-group">
+        <summary>More</summary>
+        <div class="garden-support-group-body">
         <div class="garden-crate-nudge" id="garden-crate-nudge">
           <div>
             <strong id="garden-nudge-title">Crates & items</strong>
@@ -2125,23 +2176,14 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
             <button class="gbtn" id="garden-nudge-secondary" onclick="doApplyTool()">Apply Item</button>
           </div>
         </div>
-      </div>
-    </details>
-    <details class="garden-support-group" open>
-      <summary>Growth Opportunities</summary>
-      <div class="garden-support-group-body">
-        <div class="garden-slot-nudge" id="garden-slot-nudge">
-          <div class="garden-slot-main">
-            <strong>Expand your garden</strong>
-            <span id="garden-slot-copy">Each extra NFTree can unlock another active Seed slot, up to eight.</span>
+        <div class="garden-challenge-nudge planned" id="garden-challenge-nudge">
+          <div>
+            <strong>Daily Canopy Challenges Coming Later</strong>
+            <span id="garden-challenge-copy">Not active yet. For now, focus on watering, item timing, Seed health, and monthly Growth Pool rewards.</span>
           </div>
-          <div class="garden-slot-stats">
-            <div class="garden-slot-stat"><b id="garden-open-slots">0</b><small>Open slots</small></div>
-            <div class="garden-slot-stat"><b id="garden-nftree-ready">0</b><small>NFTree ready</small></div>
-            <div class="garden-slot-actions">
-              <button class="gbtn" id="garden-slot-primary" onclick="doMint()">Unlock Slot</button>
-              <button class="gbtn" id="garden-slot-secondary" onclick="doPlant()">Plant Seed</button>
-            </div>
+          <div class="garden-nudge-actions">
+            <span class="garden-challenge-pill" id="garden-challenge-pill">Not live</span>
+            <button class="gbtn" disabled>Coming Soon</button>
           </div>
         </div>
         <div class="garden-referral-nudge" id="garden-referral-nudge">
@@ -2154,8 +2196,9 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
             <button class="gbtn" onclick="doc('rewards-sec')">Invite Stats</button>
           </div>
         </div>
-      </div>
-    </details>
+        </div>
+      </details>
+    </div>
   </div>
   <div class="alert-bar" id="alert-bar"></div>
 </section>
@@ -4150,6 +4193,7 @@ async function doDisconnect(){
   setLiveWalletState(false);
   renderGarden([]);
   updateDailyGardenCheck([],[]);
+  updateGardenNextGrowth([],[],[]);
   renderDailyGoals([],[],[]);
   $('admin-panel')?.classList.remove('show');
   $('admin-nav').style.display='none';
@@ -4439,7 +4483,7 @@ function updateDailyGardenCheck(seeds=[],legacySeeds=[]){
     return;
   }
   if(!seeds.length){
-    copy.textContent='Start by planting your first Seed, then come back daily to water and grow GP.';
+    copy.textContent='Plant your first Seed to start a 30-day GP path. Daily watering is the base strategy.';
     btn.textContent='Plant Seed';
     btn.onclick=doPlant;
   }else if(dead){
@@ -4447,15 +4491,15 @@ function updateDailyGardenCheck(seeds=[],legacySeeds=[]){
     btn.textContent='Review Dead Seeds';
     btn.onclick=()=>applyFilterValue('dead');
   }else if(wilting){
-    copy.textContent=`${wilting} Seed${wilting===1?' is':'s are'} wilting. Water now to protect your cycle streak.`;
+    copy.textContent=`${wilting} Seed${wilting===1?' is':'s are'} wilting. Water now or use protection before GP momentum slips.`;
     btn.textContent='Water Ready Seeds';
     btn.onclick=doWaterAll;
   }else if(ready){
-    copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready. Water now to grow GP and keep the daily ritual alive.`;
+    copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready. Use a boost first if you want today’s GP to count harder.`;
     btn.textContent='Water Ready Seeds';
     btn.onclick=doWaterAll;
   }else{
-    copy.textContent='All current Seeds are watered. Your garden is safe for now.';
+    copy.textContent='All current Seeds are watered. Next edge: open crates or prep an item before the next watering window.';
     btn.textContent='Come Back Later';
     btn.onclick=()=>toast('All current Seeds are watered for now. The next watering window opens about 21h 36m after watering.','ti');
   }
@@ -4518,16 +4562,16 @@ function buildDailyGoals(seeds=[],tools=[],crates=[]){
   }
   if(dead)goals.push({key:'revive',em:'💫',name:'Recover a Seed',copy:'Use a Revival Kit or reset the dead slot to keep playing.',action:goalButton('Review',"applyFilterValue('dead')")});
   if(wilting)goals.push({key:'water',em:'💧',name:'Save Wilting Seed',copy:'Water now before the streak slips further.',action:goalButton('Water','doWaterAll()')});
-  else if(ready)goals.push({key:'water',em:'💧',name:'Water Today',copy:`${ready} Seed${ready===1?' is':'s are'} ready for today’s GP.`,action:goalButton('Water','doWaterAll()')});
-  else goals.push({key:'water_all',em:'✅',name:'Daily Care Complete',copy:'Your live Seeds are watered for now. The timer shows when the next watering window opens.',action:goalButton('Reminder','copyGardenReminder()')});
-  if(hasCrates)goals.push({key:'open_crate',em:'📦',name:'Open a Pending Crate',copy:'Reveal Arborist Items so they are ready before your next watering.',action:goalButton('Open',"doOpenCrate()")});
+  else if(ready)goals.push({key:'water',em:'💧',name:'Water for GP',copy:`${ready} Seed${ready===1?' is':'s are'} ready. Boost first if you want today’s watering to hit harder.`,action:goalButton('Water','doWaterAll()')});
+  else goals.push({key:'water_all',em:'✅',name:'Daily Care Complete',copy:'Your Seeds are watered. Next edge: prep an item before the next watering window.',action:goalButton('Reminder','copyGardenReminder()')});
+  if(hasCrates)goals.push({key:'open_crate',em:'📦',name:'Open Crate',copy:'Reveal Arborist Items now so you have options before the next watering.',action:goalButton('Open',"doOpenCrate()")});
   if(hasTools){
     goals.push(wilting
       ? {key:'protect',em:'🛡️',name:'Use Protection',copy:'Apply a Protection or Recovery Item to stabilize the garden.',action:goalButton('Apply','doApplyTool()')}
-      : {key:'apply_tool',em:'🧰',name:'Use One Item',copy:'Make a strategic item move instead of only watering.',action:goalButton('Apply','doApplyTool()')});
+      : {key:'apply_tool',em:'🧰',name:'Use an Item',copy:'Use boosts for GP, protection for risky windows, or streak tools to level faster.',action:goalButton('Apply','doApplyTool()')});
   }
-  if(!hasCrates&&!hasTools)goals.push({key:'visit_crates',em:'🧰',name:'Plan Your Items',copy:'Review crate tiers and decide what kind of support your garden needs.',action:goalButton('Shop',"doc('market-sec')")});
-  goals.push({key:'check_rewards',em:'🏆',name:'Check Rewards',copy:'Review badges, Forest Invites, and monthly reward progress.',action:goalButton('Rewards',"markDailyGoal('checkRewards');doc('rewards-sec');renderDailyGoals(ALL,ACH_STATE.tools||[],ACH_STATE.crates||[])")});
+  if(!hasCrates&&!hasTools)goals.push({key:'visit_crates',em:'🧰',name:'Get an Edge',copy:'Buy crates when you need boosters, protection, recovery, or faster stages.',action:goalButton('Shop',"doc('market-sec')")});
+  goals.push({key:'check_rewards',em:'🏆',name:'Check Pool Share',copy:'See how your final GP is tracking against the current Growth Pool.',action:goalButton('Rewards',"markDailyGoal('checkRewards');doc('rewards-sec');renderDailyGoals(ALL,ACH_STATE.tools||[],ACH_STATE.crates||[])")});
   goals.push({key:'copy_ref',em:'🔗',name:'Share Invite',copy:'Copy your invite link to earn direct planting and Item Shop bonuses.',action:goalButton('Copy Link','copyRef()')});
   return {ctx,goals:goals.slice(0,3)};
 }
@@ -4546,8 +4590,8 @@ function renderDailyGoals(seeds=[],tools=[],crates=[]){
   const doneCount=rendered.filter(g=>g.done).length;
   meter.textContent=`${doneCount} / ${rendered.length||3} done`;
   sub.textContent=doneCount===rendered.length&&rendered.length
-    ?'Nice. Today’s core garden loop is handled.'
-    :'Complete small actions daily. These are guidance goals, not financial rewards.';
+    ?'Today’s base loop is handled. Use items and crates when you want a leaderboard edge.'
+    :'Win the day: protect streaks, time items, and keep your 30-day GP climbing.';
   grid.innerHTML=rendered.map(({goal,done})=>`<div class="daily-goal ${done?'done':''}">
     <div class="daily-goal-top">
       <div class="daily-goal-icon">${esc(done?'✓':goal.em)}</div>
@@ -4627,11 +4671,11 @@ function renderGardenItemsNudge(tools=[],seeds=[]){
   pill.textContent=parsed.length?`${parsed.length} ${itemWord} · ${uses} ${useWord}`:'0 items';
   if(apply)apply.disabled=!parsed.length||!seeds.length;
   if(!parsed.length){
-    copy.textContent='No Arborist Items yet. Open crates in the Item Shop, then apply items before key watering moments.';
+    copy.textContent='No items yet. Buy crates to get boosters, protection, recovery, and streak tools for higher GP.';
   }else if(!seeds.length){
     copy.textContent=`You have ${parsed.length} Arborist ${itemWord} ready. Plant a Seed before applying items.`;
   }else{
-    copy.textContent=`You have ${parsed.length} Arborist ${itemWord} ready. Review My Items or apply one before watering.`;
+    copy.textContent=`${parsed.length} Arborist ${itemWord} ready. Use boosters before watering, protection before dry windows, and streak tools to level faster.`;
   }
   wrap.classList.add('show');
 }
@@ -4723,8 +4767,8 @@ function seedGrowthStage(s){
     {label:'Taking Root',short:'Rooted',cls:'taking-root',art:'rooted',at:3,nextLabel:'First Growth Ring'},
     {label:'First Growth Ring',short:'Growth Ring',cls:'first-ring',art:'ring',at:7,nextLabel:'Branching Out'},
     {label:'Branching Out',short:'Branching',cls:'branching',art:'branch',at:14,nextLabel:'Canopy Rise'},
-    {label:'Canopy Rise',short:'Canopy',cls:'canopy',art:'canopy',at:30,nextLabel:'Ancient Growth'},
-    {label:'Ancient Growth',short:'Ancient',cls:'ancient',art:'ancient',at:21,nextLabel:'Season Harvest'},
+    {label:'Canopy Rise',short:'Canopy',cls:'canopy',art:'canopy',at:21,nextLabel:'Ancient Growth'},
+    {label:'Ancient Growth',short:'Ancient',cls:'ancient',art:'ancient',at:25,nextLabel:'Season Harvest'},
     {label:'Season Harvest',short:'Harvest',cls:'harvest',art:'harvest',at:30,nextLabel:'Ready to claim'},
   ];
   let idx=0;
@@ -4734,7 +4778,86 @@ function seedGrowthStage(s){
   const progress=next?Math.max(0,Math.min(100,((score-cur.at)/(next.at-cur.at))*100)):100;
   const daysToNext=next?Math.max(1,next.at-score):0;
   const nextText=next?`Next: ${next.label} in ${daysToNext} day${daysToNext===1?'':'s'}`:'Season Harvest reached';
-  return {...cur,progress,next:nextText,score};
+  return {...cur,progress,next:nextText,score,nextStage:next?.label||'Season Harvest',daysToNext,nextAt:next?.at||30};
+}
+function bestGrowthSeed(seeds=[]){
+  return [...seeds].filter(s=>s&&s.state!=='dead').map((seed,idx)=>({seed,idx,stage:seedGrowthStage(seed)})).sort((a,b)=>{
+    if(a.stage.daysToNext!==b.stage.daysToNext)return a.stage.daysToNext-b.stage.daysToNext;
+    return Number(b.seed.growthPoints||0)-Number(a.seed.growthPoints||0);
+  })[0]||null;
+}
+function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
+  const wrap=$('garden-next-growth');
+  if(!wrap)return;
+  const title=$('garden-next-growth-title');
+  const copy=$('garden-next-growth-copy');
+  const nextStage=$('garden-next-stage');
+  const nextDays=$('garden-next-days');
+  const nextGp=$('garden-next-gp');
+  const score=$('garden-next-growth-score');
+  const action=$('garden-next-growth-action');
+  const setAction=(label,handler)=>{if(action){action.textContent=label;action.onclick=handler;}};
+  if(!PA){
+    if(title)title.textContent='Connect to see your growth path';
+    if(copy)copy.textContent='My Garden will show which Seed is closest to leveling up and what action helps next.';
+    if(nextStage)nextStage.textContent='Connect';
+    if(nextDays)nextDays.textContent='--';
+    if(nextGp)nextGp.textContent='0';
+    if(score)score.textContent='Goal: finish the 30-day cycle with as much GP as possible.';
+    setAction('Connect Wallet',handleWalletBtn);
+    wrap.classList.add('show');
+    return;
+  }
+  if(!seeds.length){
+    if(title)title.textContent='Plant your first GP path';
+    if(copy)copy.textContent='Each NFTree you plant becomes one active Seed. More active Seeds create more ways to build Growth Points.';
+    if(nextStage)nextStage.textContent='First Planting';
+    if(nextDays)nextDays.textContent='Today';
+    if(nextGp)nextGp.textContent='0';
+    if(score)score.textContent='Start now, then water daily through the 30-day cycle.';
+    setAction('Plant Seed',doPlant);
+    wrap.classList.add('show');
+    return;
+  }
+  const dead=seeds.filter(s=>s.state==='dead').length;
+  const wilting=seeds.filter(s=>s.state==='wilting').length;
+  const ready=seeds.filter(seedManualWaterReady).length;
+  const best=bestGrowthSeed(seeds);
+  const toolCount=Array.isArray(tools)?tools.length:0;
+  const crateCount=Array.isArray(crates)?crates.length:0;
+  if(!best){
+    if(title)title.textContent='Recover a Seed to restart growth';
+    if(copy)copy.textContent='All active Seeds need recovery. Use a Revival Kit or reset a slot so you can build GP again.';
+    if(nextStage)nextStage.textContent='Recovery';
+    if(nextDays)nextDays.textContent='Now';
+    if(nextGp)nextGp.textContent=seeds.reduce((sum,s)=>sum+Number(s.growthPoints||0),0).toLocaleString();
+    if(score)score.textContent='Recovery comes before chasing more Growth Points.';
+    setAction('Review Seeds',()=>applyFilterValue('dead'));
+    wrap.classList.add('show');
+    return;
+  }
+  const seed=best.seed;
+  const stage=best.stage;
+  const slot=best.idx+1;
+  const days=stage.daysToNext;
+  const seasonDaysLeft=Number(SEASON_STATS?.daysLeft||0);
+  if(title)title.textContent=days?`Slot ${slot}: ${stage.nextStage} in ${days} day${days===1?'':'s'}`:`Slot ${slot}: harvest stage reached`;
+  if(copy){
+    if(wilting)copy.textContent='One or more Seeds are wilting. Water or protect them first so you do not lose your growth rhythm.';
+    else if(ready)copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready to water. Use a boost first if you want today’s watering to hit harder.`;
+    else if(toolCount)copy.textContent='You have items ready. Streak Builders move Seeds toward stages faster; Growth Boosters help push GP and rank.';
+    else if(crateCount)copy.textContent='You have unopened crates. Open them now so item choices are ready before the next watering window.';
+    else copy.textContent='Keep watering consistently. Crates add the tools that help you protect streaks and push past other players.';
+  }
+  if(nextStage)nextStage.textContent=stage.nextStage;
+  if(nextDays)nextDays.textContent=days?`${days}d`:'Reached';
+  if(nextGp)nextGp.textContent=Number(seed.growthPoints||0).toLocaleString();
+  if(score)score.textContent=`Current stage: ${stage.label}. ${seasonDaysLeft?`${seasonDaysLeft}d left. `:''}Final GP decides your Growth Pool share.`;
+  if(wilting||ready)setAction(wilting?'Water Now':'Water All',doWaterAll);
+  else if(toolCount)setAction('Apply Item',doApplyTool);
+  else if(crateCount)setAction('Open Crate',()=>doOpenCrate());
+  else setAction('Buy Crates',()=>doc('crates-panel'));
+  wrap.classList.add('show');
 }
 function growthStageArt(stage){
   if(!stage)return '';
@@ -4887,6 +5010,7 @@ async function refreshGarden(){
     renderGardenItemsNudge(currentTools,seeds);
     renderGardenCrateNudge(currentTools,currentCrates,seeds);
     renderGardenReferralNudge(seeds);
+    updateGardenNextGrowth(seeds,currentTools,currentCrates);
     loadCanopyChallengeState();
     renderDailyGoals(seeds,currentTools,currentCrates);
     Object.assign(ACH_STATE,{seeds,tools:currentTools,crates:currentCrates});
@@ -7358,6 +7482,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderGardenItemsNudge([],[]);
   renderGardenCrateNudge([],[],[]);
   renderGardenReferralNudge([]);
+  updateGardenNextGrowth([],[],[]);
   renderAchievementBadges();
   renderCosmeticShelf();
   renderSupplyDrop();
