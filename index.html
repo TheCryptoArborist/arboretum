@@ -547,6 +547,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .tree-enhance-card span{display:inline-flex;margin-top:.4rem;padding:.14rem .42rem;border-radius:999px;border:1px solid rgba(25,230,180,.32);color:var(--primary);font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;}
 .flow-market .two-col>.acc:first-child{display:flex;flex-direction:column;}
 .flow-market .two-col>.acc:first-child>*{order:20;}
+.flow-market .two-col{grid-template-columns:1fr;}
 #crates-panel{order:1;}
 #bc{order:2;}
 #mint-panel{order:3;}
@@ -1176,11 +1177,11 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .crate-room-shell>*{order:20;}
 .buy-crates-marquee{order:0;display:flex;align-items:center;justify-content:space-between;gap:.9rem;margin:0 0 .72rem;padding:.82rem .9rem;border-radius:16px;border:1px solid rgba(255,216,111,.5);background:radial-gradient(circle at 0 0,rgba(255,216,111,.2),transparent 54%),linear-gradient(135deg,rgba(24,20,11,.98),rgba(3,15,18,.96));box-shadow:0 0 18px rgba(255,216,111,.16),inset 0 0 18px rgba(255,216,111,.04);}
 .buy-crates-kicker{font-size:.58rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.18rem;}
-.buy-crates-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-size:clamp(1.1rem,2.4vw,1.55rem);line-height:1;text-shadow:0 0 12px rgba(255,216,111,.34);}
+.buy-crates-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-size:clamp(1.2rem,2.8vw,1.85rem);line-height:1;text-shadow:0 0 12px rgba(255,216,111,.34);}
 .buy-crates-copy{max-width:620px;margin-top:.28rem;font-size:.68rem;color:var(--muted);line-height:1.4;}
 .buy-crates-actions{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;justify-content:flex-end;}
 .buy-crates-actions .gbtn{padding:.55rem .9rem;font-size:.68rem;}
-.crate-quick-help{order:2;margin:0 0 .65rem;border-radius:14px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.62);overflow:hidden;}
+.crate-quick-help{order:3;margin:0 0 .65rem;border-radius:14px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.62);overflow:hidden;}
 .crate-quick-help summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .65rem;cursor:pointer;font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:.62rem;}
 .crate-quick-help summary::-webkit-details-marker{display:none;}
 .crate-quick-help summary span{color:var(--accent);}
@@ -1207,7 +1208,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .crate-category-strip{order:2;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.42rem;margin:.15rem 0 .65rem;}
 .crate-category{padding:.48rem .52rem;border-radius:12px;border:1px solid rgba(25,230,180,.22);background:rgba(5,9,19,.82);font-size:.58rem;color:var(--muted);line-height:1.3;min-width:0;}
 .crate-category strong{display:block;color:var(--primary);font-size:.61rem;margin-bottom:.08rem;text-transform:uppercase;letter-spacing:.07em;}
-.shop-choice-grid{order:3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:0 0 .65rem;}
+.shop-choice-grid{order:3;display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin:0 0 .65rem;}
 .shop-choice{position:relative;overflow:hidden;padding:.58rem .64rem;border-radius:13px;border:1px solid rgba(190,224,255,.17);background:rgba(5,9,19,.86);font-size:.64rem;color:var(--muted);line-height:1.38;}
 .shop-choice::after{content:"";position:absolute;right:-24px;top:-28px;width:68px;height:68px;border-radius:50%;background:rgba(25,230,180,.08);pointer-events:none;}
 .shop-choice strong{display:block;color:var(--text);font-size:.68rem;margin-bottom:.12rem;}
@@ -1221,7 +1222,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .shop-choice-copy{margin-top:.22rem;color:var(--muted);font-size:.66rem;line-height:1.4;max-width:430px;}
 .shop-choice-actions{display:flex;flex-direction:column;gap:.35rem;align-items:flex-end;position:relative;z-index:1;}
 .shop-choice-card .gbtn{padding:.4rem .7rem;font-size:.58rem;letter-spacing:.08em;white-space:nowrap;}
-.crate-grid{order:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin-top:0;margin-bottom:.65rem;}
+.crate-grid{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin-top:0;margin-bottom:.75rem;}
 .crate-card{position:relative;min-height:202px;padding:.68rem;border-radius:16px;border:1px solid rgba(190,224,255,.2);background:radial-gradient(circle at 16% 0,var(--tier-soft,rgba(255,216,111,.12)),transparent 50%),radial-gradient(circle at 92% 8%,rgba(255,255,255,.06),transparent 34%),linear-gradient(180deg,rgba(7,13,28,.98),rgba(3,7,16,.96));overflow:hidden;display:flex;flex-direction:column;gap:.35rem;transition:transform .18s,border-color .18s,box-shadow .18s;}
 .crate-card:hover{transform:translateY(-3px);border-color:var(--tier,rgba(25,230,180,.65));box-shadow:0 0 26px var(--tier-glow,rgba(25,230,180,.14));}
 .crate-card::before{content:"";position:absolute;inset:0;border-top:3px solid var(--tier,rgba(25,230,180,.65));background:linear-gradient(120deg,transparent,rgba(255,255,255,.055),transparent 58%);opacity:.95;pointer-events:none;}
@@ -1287,6 +1288,8 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .crate-zone-head{display:flex;align-items:center;justify-content:space-between;gap:.5rem;margin-bottom:.55rem;}
 .shop-drawer .crate-zone-head{margin-bottom:0;}
 .crate-zone-title{font-family:"Orbitron",monospace;font-size:.76rem;letter-spacing:.11em;text-transform:uppercase;color:var(--primary);}
+.crate-room-shell>.crate-zone-title{order:1!important;margin:0 0 .45rem!important;}
+.shop-help-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.2rem;}
 .crate-zone-copy{font-size:.66rem;color:var(--muted);line-height:1.4;}
 .pending-crate-grid,.owned-tool-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.5rem;}
 .pending-crate-card,.owned-tool-card{position:relative;padding:.62rem;border-radius:13px;border:1px solid rgba(190,224,255,.18);background:rgba(5,9,19,.96);overflow:hidden;}
@@ -1328,7 +1331,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .chase-card{padding:.58rem .62rem;border-radius:12px;border:1px solid rgba(255,216,111,.22);background:rgba(5,9,19,.95);font-size:.66rem;color:var(--muted);line-height:1.35;}
 .chase-card strong{display:block;color:var(--text);font-size:.68rem;margin-bottom:.08rem;}
 .chase-card span{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;border-radius:9px;background:rgba(255,216,111,.09);border:1px solid rgba(255,216,111,.22);margin-bottom:.28rem;}
-.shop-side-quiet{display:grid;gap:.65rem;align-content:start;}
+.shop-side-quiet{display:none;gap:.65rem;align-content:start;}
 .shop-side-card{position:relative;overflow:hidden;padding:.74rem .78rem;border-radius:14px;border:1px solid rgba(190,224,255,.18);background:rgba(5,9,19,.94);font-size:.68rem;color:var(--muted);line-height:1.45;}
 .shop-side-card::after{content:"";position:absolute;right:-34px;top:-34px;width:92px;height:92px;border-radius:50%;background:rgba(25,230,180,.09);pointer-events:none;}
 .shop-side-card.highlight{border-color:rgba(255,216,111,.35);background:radial-gradient(circle at 100% 0,rgba(255,216,111,.12),transparent 48%),rgba(5,9,19,.95);}
@@ -1810,10 +1813,10 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           The leaderboard is a Growth Point race. Keep your planted NFTrees alive, add more active NFTree Seeds when you can, and use Arborist Items before important watering windows.
         </div>
         <div class="climb-ladder">
-          <div class="climb-step"><b>More NFTrees</b>Each NFTree can plant one active Seed, giving you another path to earn GP.</div>
+          <div class="climb-step"><b>More NFTrees</b>Each NFTree can plant one active Seed, giving you another path to earn Growth Points.</div>
           <div class="climb-step"><b>Daily Watering</b>Watering keeps Seeds alive and builds streaks.</div>
-          <div class="climb-step"><b>Smart Items</b>Crates can reveal items that boost, protect, revive, or add GP.</div>
-          <div class="climb-step"><b>Pool share</b><em>Your GP / Total GP</em> drives rank and reward estimates.</div>
+          <div class="climb-step"><b>Smart Items</b>Crates can reveal items that boost, protect, revive, or add Growth Points.</div>
+          <div class="climb-step"><b>Pool share</b><em>Your Growth Points / Total Growth Points</em> drives rank and reward estimates.</div>
         </div>
       </div>
       <details class="overview-details" id="daily-canopy-challenges">
@@ -1825,7 +1828,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <div class="overview-step"><strong>Cosmetics</strong>Visual upgrades personalize Seed slots without changing reward math.</div>
         </div>
       </details>
-      <div class="profit-note">Projected rewards are estimates, not guaranteed. Final payout depends on your GP, total player GP, Growth Pool size, cycle participation, and whether your Seeds survive.</div>
+      <div class="profit-note">Projected rewards are estimates, not guaranteed. Final payout depends on your Growth Points, total player Growth Points, Growth Pool size, cycle participation, and whether your Seeds survive.</div>
       <div class="addr-bar" id="addr-bar"></div>
     </div>
     <div class="hero-stats">
@@ -1845,7 +1848,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       <div class="mstat">
         <div class="mstat-lbl">Current pool share</div>
         <div class="mstat-val" id="h-share">0.0000%</div>
-        <div class="mstat-note">Your GP compared with total cycle GP.</div>
+        <div class="mstat-note">Your Growth Points compared with total cycle Growth Points.</div>
       </div>
       <div class="mstat">
         <div class="mstat-lbl">Seeds planted</div>
@@ -1901,7 +1904,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           </button>
         </div>
         <div class="next-move-foot">
-          <span>Quick rule: planted NFTrees create Seed paths, Seed paths earn GP, and GP drives your pool share.</span>
+          <span>Quick rule: planted NFTrees create Seed paths, Seed paths earn Growth Points, and Growth Points drive your pool share.</span>
         </div>
       </div>
     </div>
@@ -2038,14 +2041,14 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
     <div class="path-step"><strong>1. Connect Wallet</strong>Use a Sui wallet on mainnet.</div>
     <div class="path-step"><strong>2. Hold NFTree</strong>Mint or hold an NFTree NFT.</div>
     <div class="path-step"><strong>3. Plant Seed</strong>Attach NFTree + 0.01 SUI deposit.</div>
-    <div class="path-step"><strong>4. Water Daily</strong>Grow GP and protect the Seed.</div>
+    <div class="path-step"><strong>4. Water Daily</strong>Grow Growth Points and protect the Seed.</div>
   </div>
   <div class="garden-command-layout">
     <div class="garden-board-panel">
       <div class="garden-slots-head" id="planting-area">
         <div>
           <div class="garden-slots-title">Planting Area</div>
-        <div class="garden-slots-copy">Each card is one GP path for the 30-day cycle. Water, protect, and boost Live Seeds so your final Growth Points earn a larger Growth Pool share.</div>
+        <div class="garden-slots-copy">Each card is one Growth Point path for the 30-day cycle. Water, protect, and boost Live Seeds so your final Growth Points earn a larger Growth Pool share.</div>
         </div>
         <div class="garden-slots-cap">Up to 8 slots</div>
       </div>
@@ -2073,11 +2076,11 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <div class="garden-next-growth-meta">
             <span class="garden-next-growth-chip"><strong id="garden-next-stage">--</strong> next stage</span>
             <span class="garden-next-growth-chip"><strong id="garden-next-days">--</strong> timing</span>
-            <span class="garden-next-growth-chip"><strong id="garden-next-gp">0</strong> GP now</span>
+            <span class="garden-next-growth-chip"><strong id="garden-next-gp">0</strong> Growth Points now</span>
           </div>
         </div>
         <div class="garden-next-growth-action">
-          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more GP to earn more of the Growth Pool.</div>
+          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more Growth Points to earn more of the Growth Pool.</div>
           <button class="gbtn" id="garden-next-growth-action" onclick="doPlant()">Plant Seed</button>
         </div>
       </div>
@@ -2098,7 +2101,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="daily-goals-head">
           <div>
             <div class="daily-goals-title">Today’s Garden Goals</div>
-            <div class="daily-goals-sub" id="daily-goals-sub">Win the day: protect streaks, time items, and keep your 30-day GP climbing.</div>
+            <div class="daily-goals-sub" id="daily-goals-sub">Win the day: protect streaks, time items, and keep your 30-day Growth Points climbing.</div>
           </div>
           <div class="daily-goals-meter" id="daily-goals-meter">0 / 3 done</div>
         </div>
@@ -2110,7 +2113,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
     <div class="garden-buy-crates-banner">
       <div>
         <div class="garden-buy-crates-title">Buy Crates</div>
-        <div class="garden-buy-crates-copy">Need an edge? Crates reveal items that boost GP, save streaks, and help you pass players who only water.</div>
+        <div class="garden-buy-crates-copy">Need an edge? Crates reveal items that boost Growth Points, save streaks, and help you pass players who only water.</div>
       </div>
       <button class="gbtn" onclick="doc('crates-panel')">Shop Crates</button>
     </div>
@@ -2171,7 +2174,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="garden-crate-nudge" id="garden-crate-nudge">
           <div>
             <strong id="garden-nudge-title">Crates & items</strong>
-            <span id="garden-nudge-copy">Use crates and Arborist Items to cover missed days, revive Seeds, and boost GP.</span>
+            <span id="garden-nudge-copy">Use crates and Arborist Items to cover missed days, revive Seeds, and boost Growth Points.</span>
           </div>
           <div class="garden-nudge-actions">
             <button class="gbtn" id="garden-nudge-primary" onclick="doc('market-sec')">Item Shop</button>
@@ -2209,7 +2212,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
   <div class="sec-hdr">
     <div>
       <h2 class="sec-title">Strategy & Items</h2>
-      <p class="sec-sub">Your 30-day goal is simple: finish with as many Growth Points as possible, because final GP decides your share of the Growth Pool.</p>
+      <p class="sec-sub">Your 30-day goal is simple: finish with as many Growth Points as possible, because final Growth Points decide your share of the Growth Pool.</p>
     </div>
     <div style="display:flex;gap:.45rem;flex-wrap:wrap">
       <button class="gbtn" onclick="doApplyTool()">Apply Item</button>
@@ -2237,12 +2240,12 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       <div class="strategy-gp-equation" aria-label="Your final Growth Points divided by total final Growth Points equals your Growth Pool share, which becomes your SUI payout">
         <div class="gp-eq-piece">
           <div class="gp-eq-label">Your score</div>
-          <div class="gp-eq-value">Final GP</div>
+          <div class="gp-eq-value">Final Growth Points</div>
         </div>
         <div class="gp-eq-op">/</div>
         <div class="gp-eq-piece">
           <div class="gp-eq-label">Everyone's score</div>
-          <div class="gp-eq-value">Total Final GP</div>
+          <div class="gp-eq-value">Total Final Growth Points</div>
         </div>
         <div class="gp-eq-op">=</div>
         <div class="gp-eq-piece result">
@@ -2254,13 +2257,13 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <div class="gp-eq-label">Paid after cycle</div>
           <div class="gp-eq-value">SUI Payout</div>
         </div>
-        <div class="gp-eq-caption">Example: 10% of final GP earns 10% of the claimable SUI Growth Pool.</div>
+        <div class="gp-eq-caption">Example: 10% of final Growth Points earns 10% of the claimable SUI Growth Pool.</div>
       </div>
     </div>
     <div class="strategy-hero">
       <div class="strategy-card featured">
         <div class="strategy-kicker">Daily Strategy</div>
-        <strong>Every useful move should create, protect, or multiply GP.</strong>
+        <strong>Every useful move should create, protect, or multiply Growth Points.</strong>
         Watering keeps Seeds alive, but strategy is how you climb. Check your watering window, protect risky Seeds, use Arborist Items before high-value moments, and add more active Seeds when you want more paths to earn Growth Points.
       </div>
       <div class="strategy-card">
@@ -2271,9 +2274,9 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
     </div>
     <div class="strategy-steps">
       <div class="strategy-step"><span>1</span><strong>Show up for 30 days</strong>Consistency is the base strategy. Water ready Seeds throughout the full cycle so you keep adding <b>Growth Points</b> while inactive players fall behind.<small>Daily habit creates the score.</small></div>
-      <div class="strategy-step"><span>2</span><strong>Keep every GP path alive</strong>Each live Seed is another way to earn. Use protection items before missed time turns into lost Growth Points.<small>Protect the paths that pay.</small></div>
+      <div class="strategy-step"><span>2</span><strong>Keep every Growth Point path alive</strong>Each live Seed is another way to earn. Use protection items before missed time turns into lost Growth Points.<small>Protect the paths that pay.</small></div>
       <div class="strategy-step"><span>3</span><strong>Use crate items for edge</strong>Crates create Arborist Items. Timed well, those items boost waterings, build streaks, recover Seeds, and help you pass players who only water.<small>Items are the competitive edge.</small></div>
-      <div class="strategy-step"><span>4</span><strong>Push before the cycle ends</strong>Watch your pool share near the end of the 30 days. If another player is close, add Seeds, open crates, or use items before final GP is locked.<small>Final GP decides the pool share.</small></div>
+      <div class="strategy-step"><span>4</span><strong>Push before the cycle ends</strong>Watch your pool share near the end of the 30 days. If another player is close, add Seeds, open crates, or use items before final Growth Points are locked.<small>Final Growth Points decide the pool share.</small></div>
     </div>
     <div class="strategy-tip-grid">
       <div class="strategy-tip"><strong>End-of-cycle mindset</strong>The number that matters most is your final Growth Point total when the 30-day cycle closes. Daily choices are small, but they compound into final pool share.</div>
@@ -2286,7 +2289,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       <div class="strategy-lane">
         <span class="lane-tag">Casual</span>
         <strong>Survive and stay consistent</strong>
-        Water daily, keep one Protection Item ready, and open smaller crates when you need basic support. This path is about keeping your GP paths alive with low effort.
+        Water daily, keep one Protection Item ready, and open smaller crates when you need basic support. This path is about keeping your Growth Point paths alive with low effort.
       </div>
       <div class="strategy-lane">
         <span class="lane-tag">Balanced</span>
@@ -2296,14 +2299,14 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       <div class="strategy-lane">
         <span class="lane-tag">Competitive</span>
         <strong>Push leaderboard pressure</strong>
-        Use higher-tier crates for stronger Arborist Items, time boosts around watering, protect your best Seeds, and keep watching your GP share as other players enter.
+        Use higher-tier crates for stronger Arborist Items, time boosts around watering, protect your best Seeds, and keep watching your Growth Point share as other players enter.
       </div>
     </div>
   </div>
   <div class="strategy-tab-panel" id="strategy-tab-items" role="tabpanel" aria-labelledby="strategy-tab-items-btn">
     <p class="strategy-section-note">Arborist Items fall into five roles. Read the role first, then the item name. The role tells you why you would use it.</p>
     <div class="strategy-role-grid">
-      <div class="strategy-role"><span>🌻</span><strong>Growth Boosters</strong>Score more GP now or on upcoming waterings. Best when you are trying to climb rank.</div>
+      <div class="strategy-role"><span>🌻</span><strong>Growth Boosters</strong>Score more Growth Points now or on upcoming waterings. Best when you are trying to climb rank.</div>
       <div class="strategy-role"><span>♻️</span><strong>Streak Builders</strong>Add streak days so a Seed reaches stronger growth stages sooner.</div>
       <div class="strategy-role"><span>🛡️</span><strong>Protection Items</strong>Cover missed watering time before a Seed wilts or dies.</div>
       <div class="strategy-role"><span>💫</span><strong>Recovery Items</strong>Bring a dead current-cycle Seed back into play.</div>
@@ -2351,7 +2354,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="mint-nftree-grid">
           <div class="mint-access-copy">
             <strong>NFTree access</strong>
-            Each NFTree unlocks one active Seed slot during the monthly cycle. More active Seeds create more ways to grow GP and compete for rewards.
+            Each NFTree unlocks one active Seed slot during the monthly cycle. More active Seeds create more ways to grow Growth Points and compete for rewards.
           </div>
           <div class="mint-slot-card">
             <strong id="mint-open-slots">8</strong>
@@ -2365,40 +2368,17 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="crate-room-shell">
           <div class="buy-crates-marquee">
             <div>
-              <div class="buy-crates-kicker">Two ways to get Arborist Items</div>
-              <div class="buy-crates-title">Crates or Featured Item</div>
-              <div class="buy-crates-copy">Choose crates when you want value and variety. Choose Supply Drop when you need one specific fix.</div>
+              <div class="buy-crates-kicker">Main item shop</div>
+              <div class="buy-crates-title">Choose Your Crate</div>
+              <div class="buy-crates-copy">Crates are the main way to build an Arborist Item stack for the 30-day Growth Point race. Supply Drop sits with the crates for the one time you need today’s featured item directly.</div>
             </div>
             <div class="buy-crates-actions">
               <button class="gbtn" onclick="document.querySelector('.crate-grid')?.scrollIntoView({behavior:'smooth',block:'start'})">Buy Crates</button>
-              <button class="gbtn" onclick="document.querySelector('.supply-drop')?.scrollIntoView({behavior:'smooth',block:'center'})">Supply Drop</button>
               <button class="gbtn" onclick="doOpenCrate()">Open Pending</button>
+              <button class="gbtn" onclick="doc('strategy-sec');setStrategyTab('items')">Item Guide</button>
             </div>
           </div>
-          <div class="shop-choice-grid">
-            <div class="shop-choice-card">
-              <div>
-                <div class="shop-choice-label">Random bundle</div>
-                <div class="shop-choice-title">Buy Crates</div>
-                <div class="shop-choice-copy">Best value when you want multiple Arborist Items, stronger rarity chances, and a deeper inventory for the month.</div>
-              </div>
-              <div class="shop-choice-actions">
-                <button class="gbtn" onclick="document.querySelector('.crate-grid')?.scrollIntoView({behavior:'smooth',block:'start'})">View Crates</button>
-                <button class="gbtn" onclick="doOpenCrate()">Open Pending</button>
-              </div>
-            </div>
-            <div class="shop-choice-card direct">
-              <div>
-                <div class="shop-choice-label">Featured direct buy</div>
-                <div class="shop-choice-title">Supply Drop</div>
-                <div class="shop-choice-copy">Best when you need the current featured item now, like recovery, protection, or timer help, without crate randomness.</div>
-              </div>
-              <div class="shop-choice-actions">
-                <button class="gbtn" onclick="document.querySelector('.supply-drop')?.scrollIntoView({behavior:'smooth',block:'center'})">View Drop</button>
-                <button class="gbtn" id="supply-choice-btn" onclick="confirmSupplyDrop()">Buy Featured</button>
-              </div>
-            </div>
-          </div>
+          <div class="shop-choice-grid" aria-hidden="true"></div>
           <details class="crate-quick-help">
             <summary>How crates work <span>+</span></summary>
             <div class="crate-help-body">
@@ -2420,7 +2400,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
                 <div class="shop-choice"><strong>Specific fix</strong>Supply Drops let you buy the current featured item directly.</div>
               </div>
               <div class="crate-category-strip">
-                <div class="crate-category"><strong>Growth</strong>More GP now or later.</div>
+                <div class="crate-category"><strong>Growth</strong>More Growth Points now or later.</div>
                 <div class="crate-category"><strong>Streak</strong>Reach stages sooner.</div>
                 <div class="crate-category"><strong>Protect</strong>Cover missed watering.</div>
                 <div class="crate-category"><strong>Recover</strong>Revive a dead Seed.</div>
@@ -2429,7 +2409,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <div class="crate-note"><strong>Bottomless Can reminder.</strong> It protects one selected Seed with timed auto-water, not the whole garden.</div>
             </div>
           </details>
-          <div class="crate-zone-title" style="order:4;margin:0 0 .45rem;">Crates: random item bundles</div>
+          <div class="crate-zone-title">Featured Crates</div>
           <div class="crate-grid">
             <div class="crate-card seedling">
               <div class="crate-top"><div><div class="crate-name">Seedling</div><div class="crate-role">Starter Boost</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
@@ -2452,7 +2432,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <div class="crate-loot">Guaranteed: 1 uncommon + 2 common. Bonus: 5% legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Growth</span><span class="crate-focus">Protect</span><span class="crate-focus">Streak</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip u">Uncommon</span><span class="rarity-chip c">Common x2</span><span class="rarity-chip l">5%</span></div>
-              <div class="crate-best"><strong>Best for:</strong> players pushing streak growth and GP bursts.</div>
+              <div class="crate-best"><strong>Best for:</strong> players pushing streak growth and Growth Point bursts.</div>
               <button type="button" class="gbtn" title="Guaranteed: 1 uncommon + 2 common. Bonus: 5% legendary roll" onclick="showConfirm('Canopy Crate for 0.01 SUI?', () => doBuyCrate(2))">Buy</button>
             </div>
             <div class="crate-card ancient">
@@ -2481,6 +2461,22 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" id="supply-buy-btn" onclick="confirmSupplyDrop()">Buy Featured Item</button>
             </div>
           </div>
+          <details class="crate-quick-help">
+            <summary>Need help choosing? <span>+</span></summary>
+            <div class="crate-help-body">
+              <div class="crate-note" id="crate-reco"><strong>Best next move</strong>Connect wallet to see whether you should open crates, buy a crate, or use a specific item from your inventory.</div>
+              <div class="crate-help-row">
+                <div class="shop-choice"><strong>Build inventory</strong>Buy a crate when you want multiple items, better rarity chances, and more options for the month.</div>
+                <div class="shop-choice"><strong>Fix one problem</strong>Use Supply Drop when the featured item solves the exact issue in your garden.</div>
+                <div class="shop-choice"><strong>After buying</strong>Open pending crates here, then apply items from My Garden before key watering moments.</div>
+              </div>
+              <div class="shop-help-actions">
+                <button class="gbtn" onclick="doOpenCrate()">Open Pending</button>
+                <button class="gbtn" onclick="doApplyTool()">Apply Item</button>
+                <button class="gbtn" onclick="doc('strategy-sec');setStrategyTab('items')">Open Item Guide</button>
+              </div>
+            </div>
+          </details>
           <details class="crate-zone shop-drawer">
             <summary>
               <div class="crate-zone-head">
@@ -2514,7 +2510,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
             <div class="crate-help-body">
               <div class="crate-note"><strong>Fair reveal.</strong> Crate randomness uses on-chain VRF through sui::random, matching the Move crate logic.</div>
               <div class="crate-category-strip">
-                <div class="crate-category"><strong>Growth</strong>More GP now or later.</div>
+                <div class="crate-category"><strong>Growth</strong>More Growth Points now or later.</div>
                 <div class="crate-category"><strong>Streak</strong>Reach stages sooner.</div>
                 <div class="crate-category"><strong>Protect</strong>Cover missed watering.</div>
                 <div class="crate-category"><strong>Recover</strong>Revive a dead Seed.</div>
@@ -2584,10 +2580,10 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       </div>
       </div>
     </div>
-    <div class="shop-side-quiet">
+    <div class="shop-side-quiet" aria-hidden="true">
       <div class="shop-side-card highlight">
         <div class="shop-side-title">Shop Compass</div>
-        <div id="crate-reco"><strong>Best next move</strong>Connect wallet to see whether you should open crates, buy a crate, or use a specific item from your inventory.</div>
+        <div><strong>Best next move</strong>Connect wallet to see whether you should open crates, buy a crate, or use a specific item from your inventory.</div>
       </div>
       <div class="shop-side-card">
         <div class="shop-side-title">Simple Rule</div>
@@ -2633,7 +2629,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="lb-ach-title">Leaderboard Badges</div>
         <div class="lb-ach-copy">Badges show who is leading the forest: Growth Points, active Seeds, streak strength, and reward-zone position.</div>
       </div>
-      <button class="gbtn" onclick="doc('garden-sec')">Build GP</button>
+      <button class="gbtn" onclick="doc('garden-sec')">Build Growth Points</button>
     </div>
     <div class="lb-ach-grid">
       <div class="lb-ach-card"><strong>🏆 Crown Leader</strong>Current #1 wallet by Growth Points.</div>
@@ -2679,10 +2675,10 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="roi-left">
           <div class="roi-label">Projected Monthly Reward</div>
           <div class="roi-pct" id="roi-pct">-</div>
-          <div class="roi-sub">Current estimate from your GP share</div>
+          <div class="roi-sub">Current estimate from your Growth Point share</div>
         </div>
         <div class="roi-pills">
-          <div class="roi-pill gold">Your GP / Total GP</div>
+          <div class="roi-pill gold">Your Growth Points / Total Growth Points</div>
           <div class="roi-pill teal">Live pool estimate</div>
           <button class="roi-plant-btn" onclick="doPlant()">Plant another Seed</button>
         </div>
@@ -2702,7 +2698,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       </div>
       <div class="reward-primary-grid">
         <div class="reward-card"><div class="reward-icon">💰</div><div class="reward-label">Projected SUI</div><div class="reward-value" id="r-proj">0.00 SUI</div><div class="reward-copy">Based on your current pool share.</div></div>
-        <div class="reward-card"><div class="reward-icon">📊</div><div class="reward-label">Pool Share</div><div class="reward-value" id="r-share">0.0000%</div><div class="reward-copy">Your GP divided by total cycle GP.</div></div>
+        <div class="reward-card"><div class="reward-icon">📊</div><div class="reward-label">Pool Share</div><div class="reward-value" id="r-share">0.0000%</div><div class="reward-copy">Your Growth Points divided by total cycle Growth Points.</div></div>
         <div class="reward-card"><div class="reward-icon">🌿</div><div class="reward-label">Growth Points</div><div class="reward-value" id="r-gp">0</div><div class="reward-copy">Your cycle score.</div></div>
         <div class="reward-card"><div class="reward-icon">🧺</div><div class="reward-label">Collected</div><div class="reward-value" id="r-collected">0.0000 SUI</div><div class="reward-copy">Actual SUI claimed from completed cycles.</div></div>
       </div>
@@ -3064,9 +3060,9 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
     </div>
     <div class="reward-panel" id="hm">
       <div class="reward-zone-title">Harvest Math</div>
-      <div class="acc-row">Keep Seeds alive, grow more GP than other players, then claim your share of the monthly SUI Growth Pool.</div>
+      <div class="acc-row">Keep Seeds alive, grow more Growth Points than other players, then claim your share of the monthly SUI Growth Pool.</div>
       <div class="acc-row">Payout = floor(player_GP x pool / total_GP).</div>
-      <div class="acc-row">GP per water = 10 + min(streak x 2, 50). Fertilizer adds 50%. Miracle Grow doubles the next watering.</div>
+      <div class="acc-row">Growth Points per water = 10 + min(streak x 2, 50). Fertilizer adds 50%. Miracle Grow doubles the next watering.</div>
       <div class="acc-row">Paid actions are designed to split 70% to the reward pool, 28% to the project treasury, and 2% to the developer wallet.</div>
       <div class="acc-row">When a direct invite reward applies, it is paid first; the remaining amount follows the 70 / 28 / 2 split.</div>
       <div class="acc-row">Daily Canopy Challenges are optional player-funded contests. They are separate from the monthly Growth Pool and should only pay out what players choose to enter.</div>
@@ -3722,7 +3718,7 @@ function updateNextMovePanel(seeds=[],tools=[],crates=[],totalGP=0,wiltCount=0,d
     setNextMoveAction('Open Garden',"doc('garden-sec')");
   }else if(ready>0){
     txt('next-move-badge','Water now');
-    txt('next-move-copy',`${ready} Seed${ready===1?' is':'s are'} ready. Watering keeps the daily loop moving and builds GP.`);
+    txt('next-move-copy',`${ready} Seed${ready===1?' is':'s are'} ready. Watering keeps the daily loop moving and builds Growth Points.`);
     txt('next-move-kicker','Best action');
     txt('next-move-title','Water ready Seeds');
     txt('next-move-detail','This is the cleanest move: protect the planted NFTrees you already have and keep climbing.');
@@ -3743,7 +3739,7 @@ function updateNextMovePanel(seeds=[],tools=[],crates=[],totalGP=0,wiltCount=0,d
     setNextMoveAction('Item Shop',"doc('market-sec')");
   }else if(seedCount<8){
     txt('next-move-badge',`${seedCount} / 8 planted`);
-    txt('next-move-copy','More planted NFTrees create more Seed paths and more ways to build GP.');
+    txt('next-move-copy','More planted NFTrees create more Seed paths and more ways to build Growth Points.');
     txt('next-move-kicker','Grow position');
     txt('next-move-title','Consider planting another NFTree');
     txt('next-move-detail',`Current estimate: ${projected} at ${share}. Extra active Seeds can improve your chance to climb.`);
@@ -3760,7 +3756,7 @@ function updateNextMovePanel(seeds=[],tools=[],crates=[],totalGP=0,wiltCount=0,d
     txt('next-move-copy','Your core loop is stable. Watch your share and decide when to push with items or invites.');
     txt('next-move-kicker','Monitor');
     txt('next-move-title','Check rewards and rank');
-    txt('next-move-detail',`You have ${seedCount} planted Seed${seedCount===1?'':'s'} and ${Number(totalGP||0).toLocaleString()} GP this cycle.`);
+    txt('next-move-detail',`You have ${seedCount} planted Seed${seedCount===1?'':'s'} and ${Number(totalGP||0).toLocaleString()} Growth Points this cycle.`);
     setNextMoveAction('Rewards',"doc('rewards-sec')");
   }
   txt('next-card-garden-title',ready>0?'Watering':'My Garden');
@@ -4488,7 +4484,7 @@ function updateDailyGardenCheck(seeds=[],legacySeeds=[]){
     return;
   }
   if(!seeds.length){
-    copy.textContent='Plant your first Seed to start a 30-day GP path. Daily watering is the base strategy.';
+    copy.textContent='Plant your first Seed to start a 30-day Growth Point path. Daily watering is the base strategy.';
     btn.textContent='Plant Seed';
     btn.onclick=doPlant;
   }else if(dead){
@@ -4496,11 +4492,11 @@ function updateDailyGardenCheck(seeds=[],legacySeeds=[]){
     btn.textContent='Review Dead Seeds';
     btn.onclick=()=>applyFilterValue('dead');
   }else if(wilting){
-    copy.textContent=`${wilting} Seed${wilting===1?' is':'s are'} wilting. Water now or use protection before GP momentum slips.`;
+    copy.textContent=`${wilting} Seed${wilting===1?' is':'s are'} wilting. Water now or use protection before Growth Point momentum slips.`;
     btn.textContent='Water Ready Seeds';
     btn.onclick=doWaterAll;
   }else if(ready){
-    copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready. Use a boost first if you want today’s GP to count harder.`;
+    copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready. Use a boost first if you want today’s Growth Points to count harder.`;
     btn.textContent='Water Ready Seeds';
     btn.onclick=doWaterAll;
   }else{
@@ -4567,16 +4563,16 @@ function buildDailyGoals(seeds=[],tools=[],crates=[]){
   }
   if(dead)goals.push({key:'revive',em:'💫',name:'Recover a Seed',copy:'Use a Revival Kit or reset the dead slot to keep playing.',action:goalButton('Review',"applyFilterValue('dead')")});
   if(wilting)goals.push({key:'water',em:'💧',name:'Save Wilting Seed',copy:'Water now before the streak slips further.',action:goalButton('Water','doWaterAll()')});
-  else if(ready)goals.push({key:'water',em:'💧',name:'Water for GP',copy:`${ready} Seed${ready===1?' is':'s are'} ready. Boost first if you want today’s watering to hit harder.`,action:goalButton('Water','doWaterAll()')});
+  else if(ready)goals.push({key:'water',em:'💧',name:'Water for Growth Points',copy:`${ready} Seed${ready===1?' is':'s are'} ready. Boost first if you want today’s watering to hit harder.`,action:goalButton('Water','doWaterAll()')});
   else goals.push({key:'water_all',em:'✅',name:'Daily Care Complete',copy:'Your Seeds are watered. Next edge: prep an item before the next watering window.',action:goalButton('Reminder','copyGardenReminder()')});
   if(hasCrates)goals.push({key:'open_crate',em:'📦',name:'Open Crate',copy:'Reveal Arborist Items now so you have options before the next watering.',action:goalButton('Open',"doOpenCrate()")});
   if(hasTools){
     goals.push(wilting
       ? {key:'protect',em:'🛡️',name:'Use Protection',copy:'Apply a Protection or Recovery Item to stabilize the garden.',action:goalButton('Apply','doApplyTool()')}
-      : {key:'apply_tool',em:'🧰',name:'Use an Item',copy:'Use boosts for GP, protection for risky windows, or streak tools to level faster.',action:goalButton('Apply','doApplyTool()')});
+      : {key:'apply_tool',em:'🧰',name:'Use an Item',copy:'Use boosts for Growth Points, protection for risky windows, or streak tools to level faster.',action:goalButton('Apply','doApplyTool()')});
   }
   if(!hasCrates&&!hasTools)goals.push({key:'visit_crates',em:'🧰',name:'Get an Edge',copy:'Buy crates when you need boosters, protection, recovery, or faster stages.',action:goalButton('Shop',"doc('market-sec')")});
-  goals.push({key:'check_rewards',em:'🏆',name:'Check Pool Share',copy:'See how your final GP is tracking against the current Growth Pool.',action:goalButton('Rewards',"markDailyGoal('checkRewards');doc('rewards-sec');renderDailyGoals(ALL,ACH_STATE.tools||[],ACH_STATE.crates||[])")});
+  goals.push({key:'check_rewards',em:'🏆',name:'Check Pool Share',copy:'See how your final Growth Points are tracking against the current Growth Pool.',action:goalButton('Rewards',"markDailyGoal('checkRewards');doc('rewards-sec');renderDailyGoals(ALL,ACH_STATE.tools||[],ACH_STATE.crates||[])")});
   goals.push({key:'copy_ref',em:'🔗',name:'Share Invite',copy:'Copy your invite link to earn direct planting and Item Shop bonuses.',action:goalButton('Copy Link','copyRef()')});
   return {ctx,goals:goals.slice(0,3)};
 }
@@ -4596,7 +4592,7 @@ function renderDailyGoals(seeds=[],tools=[],crates=[]){
   meter.textContent=`${doneCount} / ${rendered.length||3} done`;
   sub.textContent=doneCount===rendered.length&&rendered.length
     ?'Today’s base loop is handled. Use items and crates when you want a leaderboard edge.'
-    :'Win the day: protect streaks, time items, and keep your 30-day GP climbing.';
+    :'Win the day: protect streaks, time items, and keep your 30-day Growth Points climbing.';
   grid.innerHTML=rendered.map(({goal,done})=>`<div class="daily-goal ${done?'done':''}">
     <div class="daily-goal-top">
       <div class="daily-goal-icon">${esc(done?'✓':goal.em)}</div>
@@ -4649,7 +4645,7 @@ function renderGardenCrateNudge(tools=[],crates=[],seeds=[]){
     return;
   }
   title.textContent='Build your item supply';
-  copy.textContent='Crates create Arborist Items that boost GP, build streaks, cover missed days, revive Seeds, and help you compete for rewards.';
+  copy.textContent='Crates create Arborist Items that boost Growth Points, build streaks, cover missed days, revive Seeds, and help you compete for rewards.';
   primary.textContent='Item Shop';
   primary.onclick=()=>doc('market-sec');
   secondary.textContent='Item Guide';
@@ -4676,7 +4672,7 @@ function renderGardenItemsNudge(tools=[],seeds=[]){
   pill.textContent=parsed.length?`${parsed.length} ${itemWord} · ${uses} ${useWord}`:'0 items';
   if(apply)apply.disabled=!parsed.length||!seeds.length;
   if(!parsed.length){
-    copy.textContent='No items yet. Buy crates to get boosters, protection, recovery, and streak tools for higher GP.';
+    copy.textContent='No items yet. Buy crates to get boosters, protection, recovery, and streak tools for higher Growth Points.';
   }else if(!seeds.length){
     copy.textContent=`You have ${parsed.length} Arborist ${itemWord} ready. Plant a Seed before applying items.`;
   }else{
@@ -4808,13 +4804,13 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
     if(nextStage)nextStage.textContent='Connect';
     if(nextDays)nextDays.textContent='--';
     if(nextGp)nextGp.textContent='0';
-    if(score)score.textContent='Goal: finish the 30-day cycle with as much GP as possible.';
+    if(score)score.textContent='Goal: finish the 30-day cycle with as many Growth Points as possible.';
     setAction('Connect Wallet',handleWalletBtn);
     wrap.classList.add('show');
     return;
   }
   if(!seeds.length){
-    if(title)title.textContent='Plant your first GP path';
+    if(title)title.textContent='Plant your first Growth Point path';
     if(copy)copy.textContent='Each NFTree you plant becomes one active Seed. More active Seeds create more ways to build Growth Points.';
     if(nextStage)nextStage.textContent='First Planting';
     if(nextDays)nextDays.textContent='Today';
@@ -4832,7 +4828,7 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
   const crateCount=Array.isArray(crates)?crates.length:0;
   if(!best){
     if(title)title.textContent='Recover a Seed to restart growth';
-    if(copy)copy.textContent='All active Seeds need recovery. Use a Revival Kit or reset a slot so you can build GP again.';
+    if(copy)copy.textContent='All active Seeds need recovery. Use a Revival Kit or reset a slot so you can build Growth Points again.';
     if(nextStage)nextStage.textContent='Recovery';
     if(nextDays)nextDays.textContent='Now';
     if(nextGp)nextGp.textContent=seeds.reduce((sum,s)=>sum+Number(s.growthPoints||0),0).toLocaleString();
@@ -4850,14 +4846,14 @@ function updateGardenNextGrowth(seeds=[],tools=[],crates=[]){
   if(copy){
     if(wilting)copy.textContent='One or more Seeds are wilting. Water or protect them first so you do not lose your growth rhythm.';
     else if(ready)copy.textContent=`${ready} Seed${ready===1?' is':'s are'} ready to water. Use a boost first if you want today’s watering to hit harder.`;
-    else if(toolCount)copy.textContent='You have items ready. Streak Builders move Seeds toward stages faster; Growth Boosters help push GP and rank.';
+    else if(toolCount)copy.textContent='You have items ready. Streak Builders move Seeds toward stages faster; Growth Boosters help push Growth Points and rank.';
     else if(crateCount)copy.textContent='You have unopened crates. Open them now so item choices are ready before the next watering window.';
     else copy.textContent='Keep watering consistently. Crates add the tools that help you protect streaks and push past other players.';
   }
   if(nextStage)nextStage.textContent=stage.nextStage;
   if(nextDays)nextDays.textContent=days?`${days}d`:'Reached';
   if(nextGp)nextGp.textContent=Number(seed.growthPoints||0).toLocaleString();
-  if(score)score.textContent=`Current stage: ${stage.label}. ${seasonDaysLeft?`${seasonDaysLeft}d left. `:''}Final GP decides your Growth Pool share.`;
+  if(score)score.textContent=`Current stage: ${stage.label}. ${seasonDaysLeft?`${seasonDaysLeft}d left. `:''}Final Growth Points decide your Growth Pool share.`;
   if(wilting||ready)setAction(wilting?'Water Now':'Water All',doWaterAll);
   else if(toolCount)setAction('Apply Item',doApplyTool);
   else if(crateCount)setAction('Open Crate',()=>doOpenCrate());
@@ -4905,7 +4901,7 @@ function renderGarden(seeds=[]){
       <div class="gc-slot-label">${slotLabel}</div>
       <div class="gc-em stage-art${iw?' wilt-pulse':''}${id?' dead-shake':''}">${id?e.i:growthStageArt(stage)}</div>
       <div class="gc-lbl" style="color:${e.c}">${e.l}</div>
-      <div class="gc-stage" title="Growth stage is based on streak and GP. Tools that add streak or GP can push this forward.">
+      <div class="gc-stage" title="Growth stage is based on streak and Growth Points. Tools that add streak or Growth Points can push this forward.">
         <div class="gc-stage-top"><span class="gc-stage-name">${esc(stage.short||stage.label)}</span><span class="gc-stage-next">${esc(stage.next)}</span></div>
         <div class="gc-grow-track"><div class="gc-grow-fill" style="width:${stage.progress}%"></div></div>
       </div>
@@ -5312,7 +5308,7 @@ function equipCosmetic(id){
   applyCosmetics();
   setTimeout(applyCosmetics,80);
   renderCosmeticShelf();
-  toast(`${item.type} equipped: ${item.name}. Check My Garden seed slots for the visual change. No wallet approval needed yet; no GP change.`,'tg',9000);
+  toast(`${item.type} equipped: ${item.name}. Check My Garden seed slots for the visual change. No wallet approval needed yet; no Growth Point change.`,'tg',9000);
 }
 window.equipCosmetic=equipCosmetic;
 function unequipCosmetic(slot){
@@ -5506,7 +5502,7 @@ window.renderCosmeticShelf=renderCosmeticShelf;
 const CRATE_TIER_INFO=[
   {name:'Seedling',role:'Starter Boost',cls:'seedling',hint:'Cheap daily utility and learning the item loop.'},
   {name:'Grove',role:'Daily Helper',cls:'grove',hint:'More common items for steady watering support.'},
-  {name:'Canopy',role:'Rank Climber',cls:'canopy',hint:'Adds uncommon items for streak growth and GP bursts.'},
+  {name:'Canopy',role:'Rank Climber',cls:'canopy',hint:'Adds uncommon items for streak growth and Growth Point bursts.'},
   {name:'Ancient',role:'Power Crate',cls:'ancient',hint:'Rare recovery and stronger competition items.'},
   {name:'Mythic',role:'Season Changer',cls:'mythic',hint:'Legendary chase and bigger leaderboard pushes.'},
 ];
@@ -5515,48 +5511,48 @@ function toolUseHint(kind){
     fertilizer:'Use before watering. Adds three +50% future waterings, starting with the next watering on that Seed.',
     watering_boost:'Use before watering. Adds one +50% boost to the next watering on that Seed.',
     compost:'Best before watering. Adds one streak day now, which can slightly increase the next watering and speed up stages.',
-    growth_tonic:'Use before or after watering. Adds +20 GP immediately for rank and pool share.',
+    growth_tonic:'Use before or after watering. Adds +20 Growth Points immediately for rank and pool share.',
     miracle_grow:'Use before watering. Doubles the next watering on that Seed.',
-    mulch:'Use before you miss a watering window. Protects future GP through about three missed watering days.',
-    rain_barrel:'Use before a Seed gets too dry, or after a missed day. Refreshes the timer so it can keep earning future GP.',
+    mulch:'Use before you miss a watering window. Protects future Growth Points through about three missed watering days.',
+    rain_barrel:'Use before a Seed gets too dry, or after a missed day. Refreshes the timer so it can keep earning future Growth Points.',
     super_soil:'Best before watering. Adds three streak days now, which can increase the next watering and speed up stages.',
-    sunstone:'Use before or after watering. Adds +30 GP immediately for leaderboard position and projected pool share.',
-    revival_kit:'Use after a Seed dies. Revives it so it can earn future GP again.',
+    sunstone:'Use before or after watering. Adds +30 Growth Points immediately for leaderboard position and projected pool share.',
+    revival_kit:'Use after a Seed dies. Revives it so it can earn future Growth Points again.',
     double_dose:'Use before watering. Doubles the next watering, then adds two later +50% watering boosts.',
-    drought_shield:'Use before longer time away. Protects future GP through about a week of missed watering.',
-    ancient_bark:'Use before or after watering. Adds +50 GP immediately for leaderboard position and projected pool share.',
+    drought_shield:'Use before longer time away. Protects future Growth Points through about a week of missed watering.',
+    ancient_bark:'Use before or after watering. Adds +50 Growth Points immediately for leaderboard position and projected pool share.',
     moon_water:'Use before watering. Adds five +50% future waterings on a Seed you will keep active.',
     earth_core:'Use before watering. Adds five +50% future waterings on a Seed you will keep active.',
     bottomless_can:'Use before time away. Auto-waters one selected Seed during the timed window; it does not cover the whole garden.',
     philosophers_soil:'Use before watering, preferably early. Adds ten +50% future waterings on one Seed.',
-    timeless_seed:'Use after missed time or before risk. Refreshes the timer and adds five streak days for safer future GP.',
+    timeless_seed:'Use after missed time or before risk. Refreshes the timer and adds five streak days for safer future Growth Points.',
     crystal_water:'Use before watering on a high-value Seed. Doubles the next watering, then adds nine later +50% boosts.',
-    forest_heart:'Use before watering, preferably early. Every future watering on this Seed earns +5 extra GP.',
+    forest_heart:'Use before watering, preferably early. Every future watering on this Seed earns +5 extra Growth Points.',
   })[kind]||'Use strategically to support your Seed.';
 }
 function itemGpImpact(kind){
   return ({
-    fertilizer:'GP race impact: use before watering. No instant GP; the next 3 waterings on this Seed earn 50% more GP.',
-    watering_boost:'GP race impact: use before watering. No instant GP; the next watering on this Seed earns 50% more GP.',
-    compost:'GP race impact: best before watering. No instant GP; adds 1 streak day now and can improve the next watering.',
-    growth_tonic:'GP race impact: use before or after watering. +20 GP now, so rank and projected pool share update immediately.',
-    miracle_grow:'GP race impact: use before watering. No instant GP; the next watering on this Seed earns double GP.',
-    mulch:'GP race impact: use before you miss a window. No instant GP; protects future GP for about 3 missed watering days.',
-    rain_barrel:'GP race impact: use before a Seed gets too dry. No instant GP; resets the timer so the Seed stays alive for future GP.',
-    super_soil:'GP race impact: best before watering. No instant GP; adds 3 streak days now and can improve the next watering.',
-    sunstone:'GP race impact: use before or after watering. +30 GP now for immediate rank and projected payout-share boost.',
-    revival_kit:'GP race impact: use after a Seed dies. No instant GP; brings it back so it can earn future GP again.',
-    double_dose:'GP race impact: use before watering. No instant GP until watering; next watering is doubled, then 2 later waterings get +50%.',
-    drought_shield:'GP race impact: use before longer time away. No instant GP; protects future GP for about 7 missed watering days.',
-    ancient_bark:'GP race impact: use before or after watering. +50 GP now for immediate rank and projected payout-share boost.',
-    moon_water:'GP race impact: use before watering. No instant GP; the next 5 waterings on this Seed earn 50% more GP.',
-    earth_core:'GP race impact: use before watering. No instant GP; the next 5 waterings on this Seed earn 50% more GP.',
-    bottomless_can:'GP race impact: use before time away. No instant GP; auto-water protection helps one Seed keep earning future GP.',
-    philosophers_soil:'GP race impact: use before watering, preferably early. No instant GP; the next 10 waterings earn 50% more GP.',
-    timeless_seed:'GP race impact: use after missed time or before risk. No instant GP; adds 5 streak days and resets the timer.',
-    crystal_water:'GP race impact: use before watering. No instant GP until watering; next watering is doubled, then 9 later waterings get +50%.',
-    forest_heart:'GP race impact: use before watering, preferably early. No instant GP; every future watering on this Seed earns +5 extra GP.',
-  })[kind]||'GP race impact: supports your final Growth Point total when timed correctly.';
+    fertilizer:'Growth Point impact: use before watering. No instant Growth Points; the next 3 waterings on this Seed earn 50% more Growth Points.',
+    watering_boost:'Growth Point impact: use before watering. No instant Growth Points; the next watering on this Seed earns 50% more Growth Points.',
+    compost:'Growth Point impact: best before watering. No instant Growth Points; adds 1 streak day now and can improve the next watering.',
+    growth_tonic:'Growth Point impact: use before or after watering. +20 Growth Points now, so rank and projected pool share update immediately.',
+    miracle_grow:'Growth Point impact: use before watering. No instant Growth Points; the next watering on this Seed earns double Growth Points.',
+    mulch:'Growth Point impact: use before you miss a window. No instant Growth Points; protects future Growth Points for about 3 missed watering days.',
+    rain_barrel:'Growth Point impact: use before a Seed gets too dry. No instant Growth Points; resets the timer so the Seed stays alive for future Growth Points.',
+    super_soil:'Growth Point impact: best before watering. No instant Growth Points; adds 3 streak days now and can improve the next watering.',
+    sunstone:'Growth Point impact: use before or after watering. +30 Growth Points now for immediate rank and projected payout-share boost.',
+    revival_kit:'Growth Point impact: use after a Seed dies. No instant Growth Points; brings it back so it can earn future Growth Points again.',
+    double_dose:'Growth Point impact: use before watering. No instant Growth Points until watering; next watering is doubled, then 2 later waterings get +50%.',
+    drought_shield:'Growth Point impact: use before longer time away. No instant Growth Points; protects future Growth Points for about 7 missed watering days.',
+    ancient_bark:'Growth Point impact: use before or after watering. +50 Growth Points now for immediate rank and projected payout-share boost.',
+    moon_water:'Growth Point impact: use before watering. No instant Growth Points; the next 5 waterings on this Seed earn 50% more Growth Points.',
+    earth_core:'Growth Point impact: use before watering. No instant Growth Points; the next 5 waterings on this Seed earn 50% more Growth Points.',
+    bottomless_can:'Growth Point impact: use before time away. No instant Growth Points; auto-water protection helps one Seed keep earning future Growth Points.',
+    philosophers_soil:'Growth Point impact: use before watering, preferably early. No instant Growth Points; the next 10 waterings earn 50% more Growth Points.',
+    timeless_seed:'Growth Point impact: use after missed time or before risk. No instant Growth Points; adds 5 streak days and resets the timer.',
+    crystal_water:'Growth Point impact: use before watering. No instant Growth Points until watering; next watering is doubled, then 9 later waterings get +50%.',
+    forest_heart:'Growth Point impact: use before watering, preferably early. No instant Growth Points; every future watering on this Seed earns +5 extra Growth Points.',
+  })[kind]||'Growth Point impact: supports your final Growth Point total when timed correctly.';
 }
 function nextSeedWaterWindow(seeds=[]){
   const live=seeds.filter(s=>s&&s.state!=='dead'&&!s.bottomlessCanActive);
@@ -5607,11 +5603,11 @@ function itemTimingPrompt(kind,seeds=[]){
 }
 const GARDEN_TOOL_GROUPS=[
   {key:'recommended',title:'Recommended now',short:'Recommended',copy:'Best matches for your current garden state.',kinds:[]},
-  {key:'growth',title:'Growth Boosters',short:'Boost',copy:'Increase GP directly now or make upcoming waterings worth more.',when:'Use when you want to climb rank or make the next watering count.',kinds:['fertilizer','watering_boost','growth_tonic','miracle_grow','sunstone','double_dose','ancient_bark']},
-  {key:'streak',title:'Streak Builders',short:'Streak',copy:'Do not add GP by themselves. They speed up stage progress so the Seed can become more valuable over the season.',when:'Use on a Seed you want to mature faster.',kinds:['compost','super_soil','timeless_seed']},
-  {key:'protect',title:'Protection Items',short:'Protect',copy:'Do not add GP by themselves. They protect the future GP you would lose if a Seed dries out or dies.',when:'Use before travel, busy days, or risky watering windows.',kinds:['mulch','rain_barrel','drought_shield','bottomless_can']},
-  {key:'recover',title:'Recovery Items',short:'Recover',copy:'Do not add GP immediately. They bring a dead current-cycle Seed back so it can earn again.',when:'Use only when a Seed has already died.',kinds:['revival_kit']},
-  {key:'enhance',title:'Power Enhancers',short:'Enhance',copy:'Mostly long-term GP tools. They make one Seed stronger for future waterings or the rest of the cycle.',when:'Use on a Seed you plan to keep active for the rest of the cycle.',kinds:['moon_water','earth_core','philosophers_soil','crystal_water','forest_heart']},
+  {key:'growth',title:'Growth Boosters',short:'Boost',copy:'Increase Growth Points directly now or make upcoming waterings worth more.',when:'Use when you want to climb rank or make the next watering count.',kinds:['fertilizer','watering_boost','growth_tonic','miracle_grow','sunstone','double_dose','ancient_bark']},
+  {key:'streak',title:'Streak Builders',short:'Streak',copy:'Do not add Growth Points by themselves. They speed up stage progress so the Seed can become more valuable over the season.',when:'Use on a Seed you want to mature faster.',kinds:['compost','super_soil','timeless_seed']},
+  {key:'protect',title:'Protection Items',short:'Protect',copy:'Do not add Growth Points by themselves. They protect the future Growth Points you would lose if a Seed dries out or dies.',when:'Use before travel, busy days, or risky watering windows.',kinds:['mulch','rain_barrel','drought_shield','bottomless_can']},
+  {key:'recover',title:'Recovery Items',short:'Recover',copy:'Do not add Growth Points immediately. They bring a dead current-cycle Seed back so it can earn again.',when:'Use only when a Seed has already died.',kinds:['revival_kit']},
+  {key:'enhance',title:'Power Enhancers',short:'Enhance',copy:'Mostly long-term Growth Point tools. They make one Seed stronger for future waterings or the rest of the cycle.',when:'Use on a Seed you plan to keep active for the rest of the cycle.',kinds:['moon_water','earth_core','philosophers_soil','crystal_water','forest_heart']},
 ];
 function gardenToolGroup(kind){
   return GARDEN_TOOL_GROUPS.find(g=>g.key!=='recommended'&&g.kinds.includes(kind))||null;
@@ -5735,7 +5731,7 @@ function gardenToolCard(t,recommended=false,seeds=[]){
     <div class="garden-tool-role">${esc(gardenToolRoleShort(t.kind))}</div>
     <div class="garden-tool-role-copy">${esc(gardenToolRoleCopy(t.kind))}</div>
     <div class="garden-tool-copy">${esc(t.effect)}</div>
-    <div class="tool-gp-impact"><strong>GP race impact:</strong> ${esc(itemGpImpact(t.kind).replace(/^GP race impact:\s*/i,''))}</div>
+    <div class="tool-gp-impact"><strong>Growth Point impact:</strong> ${esc(itemGpImpact(t.kind).replace(/^Growth Point impact:\s*/i,''))}</div>
     <div class="garden-tool-use">Best when: ${esc(t.hint)}</div>
     <div class="tool-timing-prompt"><strong>Suggested move:</strong> ${esc(prompt)}</div>
     <button class="gbtn" onclick="doApplyTool('${t.objectId}')">Apply Item</button>
@@ -5785,7 +5781,7 @@ function renderCrateRoomInventory(tools=[],crates=[],seeds=[]){
     else if(crates.length)copy=`You have ${crates.length} unopened crate${crates.length===1?'':'s'}. Open them now so the Arborist Items are ready before your next watering.`;
     else if(dead)copy='You have a dead Seed. Ancient and Mythic crates are the strongest chase for Revival Kit and recovery items.';
     else if(wilt)copy='You have a wilting Seed. Look for drought protection, Rain Barrel, or Revival Kit safety.';
-    else if(high)copy='You have a strong streak. Canopy, Ancient, or Mythic crates can help push GP and leaderboard rank.';
+    else if(high)copy='You have a strong streak. Canopy, Ancient, or Mythic crates can help push Growth Points and leaderboard rank.';
     else if(seeds.length)copy='Your garden is active. Seedling and Grove crates are useful for everyday Growth Boosters and Streak Builders.';
     reco.innerHTML=`<strong>${esc(title)}</strong>${esc(copy)}`;
   }
@@ -5823,7 +5819,7 @@ function renderCrateRoomInventory(tools=[],crates=[],seeds=[]){
         <div class="owned-tool-category">${esc(category)}</div>
         <div class="garden-tool-role-copy">${esc(gardenToolRoleCopy(kind))}</div>
         <div class="owned-tool-meta"><strong>${esc(usesLeftText(charges))}</strong><br>${esc(toolUseHint(kind))}</div>
-        <div class="tool-gp-impact"><strong>GP race impact:</strong> ${esc(itemGpImpact(kind).replace(/^GP race impact:\s*/i,''))}</div>
+        <div class="tool-gp-impact"><strong>Growth Point impact:</strong> ${esc(itemGpImpact(kind).replace(/^Growth Point impact:\s*/i,''))}</div>
         <div class="tool-timing-prompt owned-tool-prompt"><strong>Suggested move:</strong> ${esc(prompt)}</div>
         <button class="gbtn" onclick="doApplyTool('${t.objectId}')">Apply</button>
       </div>`;
@@ -6033,7 +6029,7 @@ function updateGardenSlotNudge(access){
     return;
   }
   if(readySlots>0){
-    copy.textContent=`You have ${readySlots} NFTree-ready slot${readySlots===1?'':'s'} available. Plant more Seeds to grow more GP and compete for a bigger cycle share.`;
+    copy.textContent=`You have ${readySlots} NFTree-ready slot${readySlots===1?'':'s'} available. Plant more Seeds to grow more Growth Points and compete for a bigger cycle share.`;
     const batchCount=Math.min(readySlots,Array.isArray(access.availableNfts)?access.availableNfts.length:readySlots,8);
     if(batchCount>1){
       primary.textContent=`Plant All ${batchCount}`;
@@ -6049,7 +6045,7 @@ function updateGardenSlotNudge(access){
     wrap.classList.add('show');
     return;
   }
-  copy.textContent=`${openSlots} of 8 garden slot${openSlots===1?' is':'s are'} still open. Mint another NFTree to unlock another Seed and create another path to earn GP.`;
+  copy.textContent=`${openSlots} of 8 garden slot${openSlots===1?' is':'s are'} still open. Mint another NFTree to unlock another Seed and create another path to earn Growth Points.`;
   primary.textContent='Unlock Slot';
   primary.onclick=doMint;
   secondary.textContent='Check Wallet';
