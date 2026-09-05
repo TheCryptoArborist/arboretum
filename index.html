@@ -911,16 +911,20 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-daily-rail{display:flex;flex-direction:column;gap:.72rem;position:sticky;top:104px;}
 .garden-support-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.85rem;padding-top:.82rem;border-top:1px solid rgba(190,224,255,.14);}
 .garden-support-utility{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.58rem;}
-.garden-next-growth{display:none;margin:.72rem 0 0;padding:.72rem .78rem;border-radius:16px;border:1px solid rgba(255,216,111,.42);background:radial-gradient(circle at 0 0,rgba(255,216,111,.16),transparent 54%),linear-gradient(135deg,rgba(7,13,24,.98),rgba(3,18,18,.96));box-shadow:0 0 18px rgba(255,216,111,.13);}
-.garden-next-growth.show{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center;}
-.garden-next-growth-kicker{font-size:.56rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.18rem;}
-.garden-next-growth-title{font-family:"Orbitron",monospace;font-size:.92rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);line-height:1.15;}
-.garden-next-growth-copy{margin-top:.24rem;color:var(--muted);font-size:.68rem;line-height:1.42;}
-.garden-next-growth-meta{display:flex;gap:.42rem;flex-wrap:wrap;margin-top:.5rem;}
-.garden-next-growth-chip{display:inline-flex;align-items:center;padding:.18rem .48rem;border-radius:999px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.72);font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+.garden-next-growth{display:none;margin:.72rem 0 0;padding:.78rem .85rem;border-radius:16px;border:1px solid rgba(255,216,111,.42);background:radial-gradient(circle at 0 0,rgba(255,216,111,.13),transparent 48%),linear-gradient(135deg,rgba(7,13,24,.98),rgba(3,18,18,.96));box-shadow:0 0 18px rgba(255,216,111,.13);}
+.garden-next-growth.show{display:grid;grid-template-columns:minmax(185px,.82fr) minmax(260px,1.12fr) auto;gap:.8rem;align-items:stretch;}
+.garden-next-growth-main,.garden-next-growth-status,.garden-next-growth-action{min-width:0;}
+.garden-next-growth-main{display:flex;flex-direction:column;justify-content:flex-start;}
+.garden-next-growth-kicker{font-size:.54rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.22rem;}
+.garden-next-growth-title{font-family:"Orbitron",monospace;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);line-height:1.14;}
+.garden-next-growth-copy{max-width:265px;margin-top:.42rem;color:var(--muted);font-size:.68rem;line-height:1.48;}
+.garden-next-growth-status{padding:.58rem .65rem;border-radius:13px;border:1px solid rgba(190,224,255,.14);background:rgba(3,7,16,.55);display:flex;flex-direction:column;justify-content:center;}
+.garden-next-growth-status-label{font-size:.54rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:800;margin-bottom:.28rem;}
+.garden-next-growth-score{max-width:430px;color:var(--text);font-size:.7rem;line-height:1.42;}
+.garden-next-growth-meta{display:flex;gap:.34rem;flex-wrap:wrap;margin-top:.55rem;}
+.garden-next-growth-chip{display:inline-flex;align-items:center;padding:.18rem .46rem;border-radius:999px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.72);font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
 .garden-next-growth-chip strong{color:var(--text);margin-right:.24rem;}
-.garden-next-growth-action{display:flex;flex-direction:column;align-items:flex-end;gap:.45rem;min-width:150px;}
-.garden-next-growth-score{font-family:"Orbitron",monospace;color:var(--primary);font-size:.72rem;text-align:right;}
+.garden-next-growth-action{display:flex;align-items:center;justify-content:flex-end;min-width:132px;}
 .garden-check{display:grid;grid-template-columns:1.25fr repeat(4,minmax(0,1fr));gap:.55rem;margin:.65rem 0 .75rem;}
 .garden-daily-rail .garden-check{grid-template-columns:repeat(2,minmax(0,1fr));margin:0;padding:.7rem;border-radius:17px;border:1px solid rgba(255,216,111,.32);background:radial-gradient(circle at 0 0,rgba(255,216,111,.12),transparent 52%),rgba(5,9,19,.9);}
 .garden-daily-rail .garden-focus{grid-column:1/-1;}
@@ -1039,7 +1043,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:.5rem;margin-top:.7rem;}
 .garden-board-panel .garden-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.58rem;}
 @media(max-width:1100px){.garden-command-layout{grid-template-columns:1fr;}.garden-daily-rail{position:static;display:grid;grid-template-columns:1fr 1fr;}.garden-daily-rail .daily-goal-grid{grid-template-columns:1fr;}.garden-support-utility{grid-template-columns:1fr;}}
-@media(max-width:900px){.garden-check{grid-template-columns:1fr 1fr;}.garden-focus{grid-column:1/-1;}.daily-goal-grid{grid-template-columns:1fr;}.garden-daily-rail,.garden-support-stack{grid-template-columns:1fr;}.daily-reminder,.garden-slot-nudge,.garden-crate-nudge,.garden-referral-nudge,.garden-challenge-nudge,.garden-slots-head,.garden-buy-crates-banner,.garden-items-card,.garden-next-growth,.buy-crates-marquee,.shop-choice-card{align-items:flex-start;flex-direction:column;}.garden-next-growth.show{grid-template-columns:1fr;}.garden-next-growth-action{align-items:flex-start;min-width:0;}.garden-next-growth-score{text-align:left;}.daily-reminder-meta,.daily-reminder-actions,.garden-slot-stats,.garden-slot-actions,.garden-nudge-actions,.buy-crates-actions,.shop-choice-actions{justify-content:flex-start;align-items:flex-start;}.garden-slots-cap{align-self:flex-start;}.buy-crates-actions,.shop-choice-actions{width:100%;}.buy-crates-actions .gbtn,.garden-buy-crates-banner .gbtn,.garden-items-card .gbtn,.shop-choice-actions .gbtn{width:100%;}.crate-help-row{grid-template-columns:1fr;}}
+@media(max-width:900px){.garden-check{grid-template-columns:1fr 1fr;}.garden-focus{grid-column:1/-1;}.daily-goal-grid{grid-template-columns:1fr;}.garden-daily-rail,.garden-support-stack{grid-template-columns:1fr;}.daily-reminder,.garden-slot-nudge,.garden-crate-nudge,.garden-referral-nudge,.garden-challenge-nudge,.garden-slots-head,.garden-buy-crates-banner,.garden-items-card,.buy-crates-marquee,.shop-choice-card{align-items:flex-start;flex-direction:column;}.garden-next-growth.show{grid-template-columns:1fr;}.garden-next-growth-copy,.garden-next-growth-score{max-width:none;}.garden-next-growth-action{align-items:flex-start;justify-content:flex-start;min-width:0;}.garden-next-growth-action .gbtn{width:100%;}.daily-reminder-meta,.daily-reminder-actions,.garden-slot-stats,.garden-slot-actions,.garden-nudge-actions,.buy-crates-actions,.shop-choice-actions{justify-content:flex-start;align-items:flex-start;}.garden-slots-cap{align-self:flex-start;}.buy-crates-actions,.shop-choice-actions{width:100%;}.buy-crates-actions .gbtn,.garden-buy-crates-banner .gbtn,.garden-items-card .gbtn,.shop-choice-actions .gbtn{width:100%;}.crate-help-row{grid-template-columns:1fr;}}
 @media(max-width:900px){.garden-grid{grid-template-columns:repeat(4,1fr);}}
 @media(max-width:760px){.garden-board-panel .garden-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:480px){.garden-check{grid-template-columns:1fr 1fr;}.garden-grid{grid-template-columns:repeat(2,1fr);}.garden-command-layout{gap:.65rem;}.garden-board-panel{padding:.65rem .58rem .72rem;border-radius:16px;}.garden-support-stack{gap:.58rem;}}
@@ -2069,10 +2073,14 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div id="inv-display" style="display:none;margin-top:.5rem;font-size:.72rem;color:var(--muted)"></div>
       </div>
       <div class="garden-next-growth" id="garden-next-growth">
-        <div>
+        <div class="garden-next-growth-main">
           <div class="garden-next-growth-kicker">Next growth milestone</div>
           <div class="garden-next-growth-title" id="garden-next-growth-title">Plant a Seed to begin</div>
           <div class="garden-next-growth-copy" id="garden-next-growth-copy">Each active Seed is one path to earn Growth Points during the 30-day cycle.</div>
+        </div>
+        <div class="garden-next-growth-status">
+          <div class="garden-next-growth-status-label">Race Status</div>
+          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more Growth Points to earn more of the Growth Pool.</div>
           <div class="garden-next-growth-meta">
             <span class="garden-next-growth-chip"><strong id="garden-next-stage">--</strong> next stage</span>
             <span class="garden-next-growth-chip"><strong id="garden-next-days">--</strong> timing</span>
@@ -2080,7 +2088,6 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           </div>
         </div>
         <div class="garden-next-growth-action">
-          <div class="garden-next-growth-score" id="garden-next-growth-score">Finish with more Growth Points to earn more of the Growth Pool.</div>
           <button class="gbtn" id="garden-next-growth-action" onclick="doPlant()">Plant Seed</button>
         </div>
       </div>
