@@ -1,0 +1,28 @@
+{
+  "name": "arboretum-api",
+  "version": "1.0.0",
+  "description": "Arboretum Monthly SUI Growth Cycles — Backend API",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js",
+    "dev": "nodemon api.js",
+    "lint": "node --check api.js && node --check wallet.js && node --check garden.js && node --check sdk-entry.js",
+    "build:sdk": "esbuild ./sdk-entry.js --bundle --format=esm --platform=browser --target=es2020 --outfile=sui-sdk.bundle.js --minify",
+    "preview": "node local-preview.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@mysten/sui": "^2.19.0",
+    "@mysten/wallet-standard": "^0.21.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "nodemon": "^3.1.14"
+  }
+}

@@ -1,0 +1,10 @@
+[package]
+name = "arboretum"
+edition = "2024.beta"
+version = "0.0.1"
+published-at = "0x0ad12507d7e2762102cea78aa2fe3b2c2aed96c1e180ee18561233f931f75914"
+
+[dependencies]
+
+[addresses]
+arboretum = "0xcc0ddce744b32314fd69ea6f842ea2e6e37c2fc8be7591cde468a56842f64f62"
