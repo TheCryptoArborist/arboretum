@@ -1029,6 +1029,8 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-tool-use{font-size:.61rem;color:var(--primary);line-height:1.35;margin-bottom:.5rem;}
 .tool-timing-prompt{position:relative;margin:.38rem 0 .5rem;padding:.36rem .45rem;border-radius:9px;border:1px solid rgba(25,230,180,.22);background:rgba(25,230,180,.07);color:var(--text);font-size:.6rem;line-height:1.35;}
 .tool-timing-prompt strong{color:var(--accent);font-weight:800;}
+.tool-gp-impact{margin:.36rem 0 .42rem;padding:.38rem .46rem;border-radius:9px;border:1px solid rgba(255,216,111,.28);background:rgba(255,216,111,.08);color:var(--text);font-size:.61rem;line-height:1.35;}
+.tool-gp-impact strong{color:var(--accent);}
 .garden-tool-card .gbtn{padding:.32rem .6rem;font-size:.58rem;letter-spacing:.08em;}
 .tool-purpose{margin-top:.7rem;}
 .tool-purpose-title{font-size:.66rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;margin:.65rem 0 .35rem;}
@@ -5510,27 +5512,51 @@ const CRATE_TIER_INFO=[
 ];
 function toolUseHint(kind){
   return ({
-    fertilizer:'Loads three future watering boosts. Use before regular watering to earn more Growth Points.',
-    watering_boost:'Loads one future watering boost. Use it when the next watering should count more.',
-    compost:'Adds one day to the Seed watering streak immediately. Helpful for reaching the next growth stage.',
-    growth_tonic:'Adds instant Growth Points. Useful for a quick leaderboard push.',
-    miracle_grow:'Doubles the next watering. Best right before you water a strong Seed.',
-    mulch:'Protects one Seed through about three missed watering days. Good before busy days or travel.',
-    rain_barrel:'Refreshes one Seed watering timer. Best when a Seed is close to drying out.',
-    super_soil:'Adds three days to the Seed watering streak immediately. Use it to speed up stage progress.',
-    sunstone:'Adds instant Growth Points. Useful when you want to climb without waiting for watering.',
-    revival_kit:'Revives one dead Seed so it can continue the cycle.',
-    double_dose:'Doubles the next watering and loads two future watering boosts. Best for a leaderboard push.',
-    drought_shield:'Protects one Seed through about a week of missed watering. Good before longer time away.',
-    ancient_bark:'Adds instant Growth Points to one Seed. Useful for climbing the leaderboard quickly.',
-    moon_water:'Loads five future watering boosts. Use it on a Seed you plan to keep watering.',
-    earth_core:'Loads five future watering boosts on one Seed. Use it to set up stronger future waterings.',
-    bottomless_can:'Turns on timed auto-water protection for one selected Seed. It does not protect the whole garden, and the timer still matters.',
-    philosophers_soil:'Loads ten future watering boosts. Best for a Seed you plan to keep active.',
-    timeless_seed:'Refreshes the watering timer and adds five streak days after missed time.',
-    crystal_water:'Doubles the next watering and loads nine future watering boosts. Save it for a high-value Seed.',
-    forest_heart:'Permanently improves future watering value for one Seed. Best used early in the cycle.',
+    fertilizer:'Adds three +50% future waterings. Advantage later, as long as you keep watering that Seed.',
+    watering_boost:'Adds one +50% future watering. Advantage later on the next watered Seed action.',
+    compost:'Adds one streak day now. Advantage later by moving that Seed closer to stronger stages.',
+    growth_tonic:'Adds +20 GP immediately. Advantage now for rank and pool share.',
+    miracle_grow:'Doubles the next watering. Advantage later, best immediately before watering.',
+    mulch:'Protects one Seed through about three missed watering days. Advantage later by preserving future GP.',
+    rain_barrel:'Refreshes one Seed watering timer. Advantage later by preventing a missed-window penalty.',
+    super_soil:'Adds three streak days now. Advantage later by moving that Seed toward the next growth stage faster.',
+    sunstone:'Adds +30 GP immediately. Advantage now for leaderboard position and projected pool share.',
+    revival_kit:'Revives one dead Seed so it can earn future GP again.',
+    double_dose:'Doubles the next watering and adds two +50% future waterings. Advantage now if used before watering, plus later boosts.',
+    drought_shield:'Protects one Seed through about a week of missed watering. Advantage later by preserving future GP.',
+    ancient_bark:'Adds +50 GP immediately. Advantage now for leaderboard position and projected pool share.',
+    moon_water:'Adds five +50% future waterings. Advantage later on a Seed you will keep active.',
+    earth_core:'Adds five +50% future waterings. Advantage later on a Seed you will keep active.',
+    bottomless_can:'Auto-waters one selected Seed for the timed window. Advantage later by protecting future GP; it does not cover the whole garden.',
+    philosophers_soil:'Adds ten +50% future waterings. Advantage later, best early on a Seed you will keep active.',
+    timeless_seed:'Refreshes the timer and adds five streak days. Advantage now for safety and later for faster stage progress.',
+    crystal_water:'Doubles the next watering and adds nine +50% future waterings. Big later advantage for a high-value Seed.',
+    forest_heart:'Adds +5 GP to every future watering on one Seed. Long-term advantage, strongest early in the cycle.',
   })[kind]||'Use strategically to support your Seed.';
+}
+function itemGpImpact(kind){
+  return ({
+    fertilizer:'GP race impact: no instant GP. The next 3 waterings on this Seed earn 50% more GP.',
+    watering_boost:'GP race impact: no instant GP. The next watering on this Seed earns 50% more GP.',
+    compost:'GP race impact: no instant GP. Adds 1 streak day now, helping the Seed reach higher stages sooner.',
+    growth_tonic:'GP race impact: +20 GP now. Your leaderboard score and projected pool share update immediately.',
+    miracle_grow:'GP race impact: no instant GP. The next watering on this Seed earns double GP.',
+    mulch:'GP race impact: no instant GP. Protects future GP by covering about 3 missed watering days.',
+    rain_barrel:'GP race impact: no instant GP. Resets the timer so the Seed stays alive for future GP.',
+    super_soil:'GP race impact: no instant GP. Adds 3 streak days now, helping the Seed reach higher stages sooner.',
+    sunstone:'GP race impact: +30 GP now. This is an immediate rank and projected payout-share boost.',
+    revival_kit:'GP race impact: no instant GP. Brings a dead Seed back so it can start earning future GP again.',
+    double_dose:'GP race impact: no instant GP until watering. Next watering is doubled, then 2 later waterings get +50%.',
+    drought_shield:'GP race impact: no instant GP. Protects future GP by covering about 7 missed watering days.',
+    ancient_bark:'GP race impact: +50 GP now. This is an immediate rank and projected payout-share boost.',
+    moon_water:'GP race impact: no instant GP. The next 5 waterings on this Seed earn 50% more GP.',
+    earth_core:'GP race impact: no instant GP. The next 5 waterings on this Seed earn 50% more GP.',
+    bottomless_can:'GP race impact: no instant GP. Auto-water protection helps one Seed keep earning future GP.',
+    philosophers_soil:'GP race impact: no instant GP. The next 10 waterings on this Seed earn 50% more GP.',
+    timeless_seed:'GP race impact: no instant GP. Adds 5 streak days and resets the timer for safer future GP.',
+    crystal_water:'GP race impact: no instant GP until watering. Next watering is doubled, then 9 later waterings get +50%.',
+    forest_heart:'GP race impact: no instant GP. Every future watering on this Seed earns +5 extra GP.',
+  })[kind]||'GP race impact: supports your final Growth Point total when timed correctly.';
 }
 function nextSeedWaterWindow(seeds=[]){
   const live=seeds.filter(s=>s&&s.state!=='dead'&&!s.bottomlessCanActive);
@@ -5581,11 +5607,11 @@ function itemTimingPrompt(kind,seeds=[]){
 }
 const GARDEN_TOOL_GROUPS=[
   {key:'recommended',title:'Recommended now',short:'Recommended',copy:'Best matches for your current garden state.',kinds:[]},
-  {key:'growth',title:'Growth Boosters',short:'Boost',copy:'Score more GP now or on upcoming waterings.',when:'Use when you want to climb rank or make the next watering count.',kinds:['fertilizer','watering_boost','growth_tonic','miracle_grow','sunstone','double_dose','ancient_bark']},
-  {key:'streak',title:'Streak Builders',short:'Streak',copy:'Add streak days so a Seed reaches stronger growth stages sooner.',when:'Use on a Seed you want to mature faster.',kinds:['compost','super_soil','timeless_seed']},
-  {key:'protect',title:'Protection Items',short:'Protect',copy:'Cover missed watering time before a Seed wilts or dies.',when:'Use before travel, busy days, or risky watering windows.',kinds:['mulch','rain_barrel','drought_shield','bottomless_can']},
-  {key:'recover',title:'Recovery Items',short:'Recover',copy:'Bring a dead current-cycle Seed back into play.',when:'Use only when a Seed has already died.',kinds:['revival_kit']},
-  {key:'enhance',title:'Power Enhancers',short:'Enhance',copy:'Invest in your best Seed for a stronger rest-of-cycle push.',when:'Use on a Seed you plan to keep active for the rest of the cycle.',kinds:['moon_water','earth_core','philosophers_soil','crystal_water','forest_heart']},
+  {key:'growth',title:'Growth Boosters',short:'Boost',copy:'Increase GP directly now or make upcoming waterings worth more.',when:'Use when you want to climb rank or make the next watering count.',kinds:['fertilizer','watering_boost','growth_tonic','miracle_grow','sunstone','double_dose','ancient_bark']},
+  {key:'streak',title:'Streak Builders',short:'Streak',copy:'Do not add GP by themselves. They speed up stage progress so the Seed can become more valuable over the season.',when:'Use on a Seed you want to mature faster.',kinds:['compost','super_soil','timeless_seed']},
+  {key:'protect',title:'Protection Items',short:'Protect',copy:'Do not add GP by themselves. They protect the future GP you would lose if a Seed dries out or dies.',when:'Use before travel, busy days, or risky watering windows.',kinds:['mulch','rain_barrel','drought_shield','bottomless_can']},
+  {key:'recover',title:'Recovery Items',short:'Recover',copy:'Do not add GP immediately. They bring a dead current-cycle Seed back so it can earn again.',when:'Use only when a Seed has already died.',kinds:['revival_kit']},
+  {key:'enhance',title:'Power Enhancers',short:'Enhance',copy:'Mostly long-term GP tools. They make one Seed stronger for future waterings or the rest of the cycle.',when:'Use on a Seed you plan to keep active for the rest of the cycle.',kinds:['moon_water','earth_core','philosophers_soil','crystal_water','forest_heart']},
 ];
 function gardenToolGroup(kind){
   return GARDEN_TOOL_GROUPS.find(g=>g.key!=='recommended'&&g.kinds.includes(kind))||null;
@@ -5709,6 +5735,7 @@ function gardenToolCard(t,recommended=false,seeds=[]){
     <div class="garden-tool-role">${esc(gardenToolRoleShort(t.kind))}</div>
     <div class="garden-tool-role-copy">${esc(gardenToolRoleCopy(t.kind))}</div>
     <div class="garden-tool-copy">${esc(t.effect)}</div>
+    <div class="tool-gp-impact"><strong>GP race impact:</strong> ${esc(itemGpImpact(t.kind).replace(/^GP race impact:\s*/i,''))}</div>
     <div class="garden-tool-use">Best when: ${esc(t.hint)}</div>
     <div class="tool-timing-prompt"><strong>Suggested move:</strong> ${esc(prompt)}</div>
     <button class="gbtn" onclick="doApplyTool('${t.objectId}')">Apply Item</button>
@@ -5796,6 +5823,7 @@ function renderCrateRoomInventory(tools=[],crates=[],seeds=[]){
         <div class="owned-tool-category">${esc(category)}</div>
         <div class="garden-tool-role-copy">${esc(gardenToolRoleCopy(kind))}</div>
         <div class="owned-tool-meta"><strong>${esc(usesLeftText(charges))}</strong><br>${esc(toolUseHint(kind))}</div>
+        <div class="tool-gp-impact"><strong>GP race impact:</strong> ${esc(itemGpImpact(kind).replace(/^GP race impact:\s*/i,''))}</div>
         <div class="tool-timing-prompt owned-tool-prompt"><strong>Suggested move:</strong> ${esc(prompt)}</div>
         <button class="gbtn" onclick="doApplyTool('${t.objectId}')">Apply</button>
       </div>`;
@@ -6749,7 +6777,7 @@ async function doApplyTool(toolObjectId=null){
       const meta=window.arb?.ITEMS?.[kind]||{};
       return {
         lbl:`${meta.em||'🧰'} ${meta.label||titleFromKind(kind)} (${usesLeftText(f.charges||0)})`,
-        desc:`${gardenToolPurpose(kind)}: ${gardenToolRoleCopy(kind)} ${gardenToolEffect(kind,meta)}`,
+        desc:`${gardenToolPurpose(kind)}: ${itemGpImpact(kind)} ${gardenToolEffect(kind,meta)}`,
         id:t.objectId
       };
     });
