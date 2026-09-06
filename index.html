@@ -191,7 +191,7 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;align-content:start;padding:.75rem;border-radius:18px;border:1px solid rgba(190,224,255,.18);background:rgba(3,7,16,.62);}
 .hero-stats.overview-brief{grid-template-columns:1fr;align-content:start;}
 .overview-brief .snapshot-title{margin-bottom:.1rem;}
-.overview-brief .mstat{min-height:96px;}
+.overview-brief .mstat{min-height:104px;}
 .overview-brief .mstat-val{font-size:1.02rem;}
 .overview-brief .snapshot-actions{display:flex;gap:.45rem;flex-wrap:wrap;margin-top:.1rem;}
 .overview-brief .snapshot-actions .gbtn{flex:1 1 130px;}
@@ -918,19 +918,19 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .garden-board-panel::before{content:"";position:absolute;left:18px;right:18px;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(25,230,180,.65),rgba(255,216,111,.42),transparent);}
 .garden-board-tools{margin-top:.78rem;padding-top:.6rem;border-top:1px solid rgba(190,224,255,.12);}
 .garden-daily-rail{display:flex;flex-direction:column;gap:.72rem;position:sticky;top:104px;}
-.garden-support-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.85rem;padding-top:.82rem;border-top:1px solid rgba(190,224,255,.14);}
+.garden-support-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem;margin-top:.78rem;padding-top:.72rem;border-top:1px solid rgba(190,224,255,.14);}
 .garden-support-utility{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.58rem;}
-.garden-next-growth{display:none;margin:.72rem 0 0;padding:.78rem .85rem;border-radius:16px;border:1px solid rgba(255,216,111,.42);background:radial-gradient(circle at 0 0,rgba(255,216,111,.13),transparent 48%),linear-gradient(135deg,rgba(7,13,24,.98),rgba(3,18,18,.96));box-shadow:0 0 18px rgba(255,216,111,.13);}
-.garden-next-growth.show{display:grid;grid-template-columns:minmax(185px,.82fr) minmax(260px,1.12fr) auto;gap:.8rem;align-items:stretch;}
+.garden-next-growth{display:none;margin:.68rem 0 0;padding:.68rem .72rem;border-radius:15px;border:1px solid rgba(255,216,111,.42);background:radial-gradient(circle at 0 0,rgba(255,216,111,.13),transparent 48%),linear-gradient(135deg,rgba(7,13,24,.98),rgba(3,18,18,.96));box-shadow:0 0 18px rgba(255,216,111,.13);}
+.garden-next-growth.show{display:grid;grid-template-columns:minmax(170px,.75fr) minmax(250px,1.15fr) auto;gap:.62rem;align-items:center;}
 .garden-next-growth-main,.garden-next-growth-status,.garden-next-growth-action{min-width:0;}
 .garden-next-growth-main{display:flex;flex-direction:column;justify-content:flex-start;}
-.garden-next-growth-kicker{font-size:.54rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.22rem;}
-.garden-next-growth-title{font-family:"Orbitron",monospace;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);line-height:1.14;}
-.garden-next-growth-copy{max-width:265px;margin-top:.42rem;color:var(--muted);font-size:.68rem;line-height:1.48;}
-.garden-next-growth-status{padding:.58rem .65rem;border-radius:13px;border:1px solid rgba(190,224,255,.14);background:rgba(3,7,16,.55);display:flex;flex-direction:column;justify-content:center;}
+.garden-next-growth-kicker{font-size:.52rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.18rem;}
+.garden-next-growth-title{font-family:"Orbitron",monospace;font-size:.86rem;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);line-height:1.12;}
+.garden-next-growth-copy{max-width:245px;margin-top:.32rem;color:var(--muted);font-size:.66rem;line-height:1.42;}
+.garden-next-growth-status{padding:.52rem .6rem;border-radius:12px;border:1px solid rgba(190,224,255,.14);background:rgba(3,7,16,.55);display:flex;flex-direction:column;justify-content:center;}
 .garden-next-growth-status-label{font-size:.54rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:800;margin-bottom:.28rem;}
 .garden-next-growth-score{max-width:430px;color:var(--text);font-size:.7rem;line-height:1.42;}
-.garden-next-growth-meta{display:flex;gap:.34rem;flex-wrap:wrap;margin-top:.55rem;}
+.garden-next-growth-meta{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.45rem;}
 .garden-next-growth-chip{display:inline-flex;align-items:center;padding:.18rem .46rem;border-radius:999px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.72);font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
 .garden-next-growth-chip strong{color:var(--text);margin-right:.24rem;}
 .garden-next-growth-action{display:flex;align-items:center;justify-content:flex-end;min-width:132px;}
@@ -1845,26 +1845,26 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
       <div class="addr-bar" id="addr-bar"></div>
     </div>
     <div class="hero-stats overview-brief">
-      <div class="snapshot-title">Start Here</div>
+      <div class="snapshot-title">How You Climb</div>
       <div class="mstat">
-        <div class="mstat-lbl">Goal</div>
-        <div class="mstat-val">Grow Points</div>
-        <div class="mstat-note">Water Seeds and use items to build Growth Points during the 30-day cycle.</div>
+        <div class="mstat-lbl">1. Scoring Paths</div>
+        <div class="mstat-val">Plant Seeds</div>
+        <div class="mstat-note">Each active Seed is another path to earn Growth Points across the 30-day race.</div>
       </div>
       <div class="mstat">
-        <div class="mstat-lbl">Prize</div>
-        <div class="mstat-val">SUI Pool</div>
-        <div class="mstat-note">Your final Growth Points decide your share of the Growth Pool.</div>
-      </div>
-      <div class="mstat">
-        <div class="mstat-lbl">Daily Habit</div>
+        <div class="mstat-lbl">2. Daily Score</div>
         <div class="mstat-val">Water</div>
-        <div class="mstat-note">Keep Seeds alive and build streaks. My Garden shows the next action.</div>
+        <div class="mstat-note">Water on time to keep Seeds alive, build streaks, and keep Growth Points climbing.</div>
       </div>
       <div class="mstat">
-        <div class="mstat-lbl">Edge</div>
-        <div class="mstat-val">Crates</div>
-        <div class="mstat-note">Crates reveal items that boost Growth Points, protect Seeds, and recover mistakes.</div>
+        <div class="mstat-lbl">3. Competitive Edge</div>
+        <div class="mstat-val">Crate Items</div>
+        <div class="mstat-note">Crates reveal boosters, protection, recovery, and timing tools that help you pass players who only water.</div>
+      </div>
+      <div class="mstat">
+        <div class="mstat-lbl">4. End Result</div>
+        <div class="mstat-val">Claim SUI</div>
+        <div class="mstat-note">At cycle close, your final Growth Points divided by total Growth Points sets your Growth Pool payout share.</div>
       </div>
       <div class="snapshot-actions">
         <button class="gbtn" onclick="doc('garden-sec')">Open My Garden</button>
@@ -2051,6 +2051,102 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <button class="gbtn" id="garden-next-growth-action" onclick="doPlant()">Plant Seed</button>
         </div>
       </div>
+      <div class="garden-support-stack">
+        <div class="garden-buy-crates-banner">
+          <div>
+            <div class="garden-buy-crates-title">Buy Crates</div>
+            <div class="garden-buy-crates-copy">Need an edge? Crates reveal items that boost Growth Points, save streaks, and help you pass players who only water.</div>
+          </div>
+          <button class="gbtn" onclick="doc('crates-panel')">Shop Crates</button>
+        </div>
+        <div class="garden-items-card" id="garden-items-nudge">
+          <div>
+            <strong>Items Ready</strong>
+            <span id="garden-items-copy">Connect wallet to see usable Arborist Items inside My Garden.</span>
+          </div>
+          <div class="garden-nudge-actions">
+            <span class="garden-challenge-pill" id="garden-items-pill">0 items</span>
+            <button class="gbtn" onclick="setStrategyTab('owned');doc('tools-sec')">My Items</button>
+            <button class="gbtn" id="garden-items-apply" onclick="doApplyTool()">Apply Item</button>
+          </div>
+        </div>
+        <div class="garden-support-utility">
+          <details class="garden-support-group">
+            <summary>Open Slots</summary>
+            <div class="garden-support-group-body">
+            <div class="garden-slot-nudge" id="garden-slot-nudge">
+              <div class="garden-slot-main">
+                <strong>Expand your garden</strong>
+                <span id="garden-slot-copy">Each extra NFTree can unlock another active Seed slot, up to eight.</span>
+              </div>
+              <div class="garden-slot-stats">
+                <div class="garden-slot-stat"><b id="garden-open-slots">0</b><small>Open slots</small></div>
+                <div class="garden-slot-stat"><b id="garden-nftree-ready">0</b><small>NFTree ready</small></div>
+                <div class="garden-slot-actions">
+                  <button class="gbtn" id="garden-slot-primary" onclick="doMint()">Unlock Slot</button>
+                  <button class="gbtn" id="garden-slot-secondary" onclick="doPlant()">Plant Seed</button>
+                </div>
+              </div>
+            </div>
+            </div>
+          </details>
+          <details class="garden-support-group">
+            <summary>Reminder</summary>
+            <div class="garden-support-group-body">
+            <div class="daily-reminder" id="daily-reminder">
+              <div class="daily-reminder-main">
+                <strong>Daily Reminder</strong>
+                <span id="daily-reminder-copy">Connect wallet to calculate when your next watering window opens.</span>
+              </div>
+              <div class="daily-reminder-meta">
+                <div class="daily-reminder-stat"><b id="daily-reminder-time">--</b><small>Next watering opens</small></div>
+                <div class="daily-reminder-stat"><b id="daily-reminder-risk">--</b><small>Garden status</small></div>
+                <div class="daily-reminder-actions">
+                  <button class="gbtn" id="daily-reminder-calendar" onclick="openGoogleCalendarReminder()">Google Calendar</button>
+                  <button class="gbtn" id="daily-reminder-ics" onclick="downloadGardenCalendarReminder()">Apple / Outlook</button>
+                  <button class="gbtn" onclick="createPhoneReminder()">Phone Reminder</button>
+                </div>
+              </div>
+            </div>
+            </div>
+          </details>
+          <details class="garden-support-group">
+            <summary>More</summary>
+            <div class="garden-support-group-body">
+            <div class="garden-crate-nudge" id="garden-crate-nudge">
+              <div>
+                <strong id="garden-nudge-title">Crates & items</strong>
+                <span id="garden-nudge-copy">Use crates and Arborist Items to cover missed days, revive Seeds, and boost Growth Points.</span>
+              </div>
+              <div class="garden-nudge-actions">
+                <button class="gbtn" id="garden-nudge-primary" onclick="doc('market-sec')">Item Shop</button>
+                <button class="gbtn" id="garden-nudge-secondary" onclick="doApplyTool()">Apply Item</button>
+              </div>
+            </div>
+            <div class="garden-challenge-nudge planned" id="garden-challenge-nudge">
+              <div>
+                <strong>Daily Canopy Challenges Coming Later</strong>
+                <span id="garden-challenge-copy">Not active yet. For now, focus on watering, item timing, Seed health, and monthly Growth Pool rewards.</span>
+              </div>
+              <div class="garden-nudge-actions">
+                <span class="garden-challenge-pill" id="garden-challenge-pill">Not live</span>
+                <button class="gbtn" disabled>Coming Soon</button>
+              </div>
+            </div>
+            <div class="garden-referral-nudge" id="garden-referral-nudge">
+              <div>
+                <strong>Grow the forest together</strong>
+                <span id="garden-ref-copy">Share your invite link after planting. Direct invites can earn planting and Item Shop bonuses.</span>
+              </div>
+              <div class="garden-nudge-actions">
+                <button class="gbtn" onclick="copyRef()">Copy Invite Link</button>
+                <button class="gbtn" onclick="doc('rewards-sec')">Invite Stats</button>
+              </div>
+            </div>
+            </div>
+          </details>
+        </div>
+      </div>
     </div>
     <aside class="garden-daily-rail">
       <div id="garden-check" class="garden-check">
@@ -2106,102 +2202,6 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
         <div class="daily-goal-grid" id="daily-goal-grid"></div>
       </div>
     </aside>
-  </div>
-  <div class="garden-support-stack">
-    <div class="garden-buy-crates-banner">
-      <div>
-        <div class="garden-buy-crates-title">Buy Crates</div>
-        <div class="garden-buy-crates-copy">Need an edge? Crates reveal items that boost Growth Points, save streaks, and help you pass players who only water.</div>
-      </div>
-      <button class="gbtn" onclick="doc('crates-panel')">Shop Crates</button>
-    </div>
-    <div class="garden-items-card" id="garden-items-nudge">
-      <div>
-        <strong>Items Ready</strong>
-        <span id="garden-items-copy">Connect wallet to see usable Arborist Items inside My Garden.</span>
-      </div>
-      <div class="garden-nudge-actions">
-        <span class="garden-challenge-pill" id="garden-items-pill">0 items</span>
-        <button class="gbtn" onclick="setStrategyTab('owned');doc('tools-sec')">My Items</button>
-        <button class="gbtn" id="garden-items-apply" onclick="doApplyTool()">Apply Item</button>
-      </div>
-    </div>
-    <div class="garden-support-utility">
-      <details class="garden-support-group">
-        <summary>Open Slots</summary>
-        <div class="garden-support-group-body">
-        <div class="garden-slot-nudge" id="garden-slot-nudge">
-          <div class="garden-slot-main">
-            <strong>Expand your garden</strong>
-            <span id="garden-slot-copy">Each extra NFTree can unlock another active Seed slot, up to eight.</span>
-          </div>
-          <div class="garden-slot-stats">
-            <div class="garden-slot-stat"><b id="garden-open-slots">0</b><small>Open slots</small></div>
-            <div class="garden-slot-stat"><b id="garden-nftree-ready">0</b><small>NFTree ready</small></div>
-            <div class="garden-slot-actions">
-              <button class="gbtn" id="garden-slot-primary" onclick="doMint()">Unlock Slot</button>
-              <button class="gbtn" id="garden-slot-secondary" onclick="doPlant()">Plant Seed</button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </details>
-      <details class="garden-support-group">
-        <summary>Reminder</summary>
-        <div class="garden-support-group-body">
-        <div class="daily-reminder" id="daily-reminder">
-          <div class="daily-reminder-main">
-            <strong>Daily Reminder</strong>
-            <span id="daily-reminder-copy">Connect wallet to calculate when your next watering window opens.</span>
-          </div>
-          <div class="daily-reminder-meta">
-            <div class="daily-reminder-stat"><b id="daily-reminder-time">--</b><small>Next watering opens</small></div>
-            <div class="daily-reminder-stat"><b id="daily-reminder-risk">--</b><small>Garden status</small></div>
-            <div class="daily-reminder-actions">
-              <button class="gbtn" id="daily-reminder-calendar" onclick="openGoogleCalendarReminder()">Google Calendar</button>
-              <button class="gbtn" id="daily-reminder-ics" onclick="downloadGardenCalendarReminder()">Apple / Outlook</button>
-              <button class="gbtn" onclick="createPhoneReminder()">Phone Reminder</button>
-            </div>
-          </div>
-        </div>
-        </div>
-      </details>
-      <details class="garden-support-group">
-        <summary>More</summary>
-        <div class="garden-support-group-body">
-        <div class="garden-crate-nudge" id="garden-crate-nudge">
-          <div>
-            <strong id="garden-nudge-title">Crates & items</strong>
-            <span id="garden-nudge-copy">Use crates and Arborist Items to cover missed days, revive Seeds, and boost Growth Points.</span>
-          </div>
-          <div class="garden-nudge-actions">
-            <button class="gbtn" id="garden-nudge-primary" onclick="doc('market-sec')">Item Shop</button>
-            <button class="gbtn" id="garden-nudge-secondary" onclick="doApplyTool()">Apply Item</button>
-          </div>
-        </div>
-        <div class="garden-challenge-nudge planned" id="garden-challenge-nudge">
-          <div>
-            <strong>Daily Canopy Challenges Coming Later</strong>
-            <span id="garden-challenge-copy">Not active yet. For now, focus on watering, item timing, Seed health, and monthly Growth Pool rewards.</span>
-          </div>
-          <div class="garden-nudge-actions">
-            <span class="garden-challenge-pill" id="garden-challenge-pill">Not live</span>
-            <button class="gbtn" disabled>Coming Soon</button>
-          </div>
-        </div>
-        <div class="garden-referral-nudge" id="garden-referral-nudge">
-          <div>
-            <strong>Grow the forest together</strong>
-            <span id="garden-ref-copy">Share your invite link after planting. Direct invites can earn planting and Item Shop bonuses.</span>
-          </div>
-          <div class="garden-nudge-actions">
-            <button class="gbtn" onclick="copyRef()">Copy Invite Link</button>
-            <button class="gbtn" onclick="doc('rewards-sec')">Invite Stats</button>
-          </div>
-        </div>
-        </div>
-      </details>
-    </div>
   </div>
   <div class="alert-bar" id="alert-bar"></div>
 </section>
