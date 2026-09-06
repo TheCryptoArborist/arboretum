@@ -1248,15 +1248,23 @@ header{position:sticky;top:0;z-index:1000;max-width:min(1440px,calc(100vw - 2rem
 .crate-card.mythic{--tier:rgba(255,216,111,1);--tier-soft:rgba(255,216,111,.28);--tier-glow:rgba(255,216,111,.38);border-color:rgba(255,216,111,.5);box-shadow:0 0 22px rgba(255,216,111,.18),inset 0 0 20px rgba(255,216,111,.04);}
 .crate-card.supply-drop{order:5;--tier:rgba(255,91,217,.9);--tier-soft:rgba(255,91,217,.18);--tier-glow:rgba(255,91,217,.28);--crate-light:#ffd1f5;--crate-mid:#9c3a84;border-color:rgba(255,91,217,.44);background:radial-gradient(circle at 15% 0,rgba(255,91,217,.16),transparent 52%),radial-gradient(circle at 100% 18%,rgba(255,216,111,.1),transparent 48%),rgba(5,9,19,.96);}
 .crate-card.supply-drop .crate-loot{min-height:38px;}
-.crate-card.supply-drop .crate-top{align-items:center;}
 .crate-card.ancient::before,.crate-card.mythic::before{border-top-width:4px;}
 .crate-card.mythic .crate-name{color:var(--accent);}
 .crate-card.ancient .crate-name{color:#ffcf8a;}
 .crate-card.ancient .crate-icon,.crate-card.mythic .crate-icon{transform:scale(1.08);transform-origin:top right;}
 .crate-card.ancient .crate-best,.crate-card.mythic .crate-best{border-color:rgba(255,216,111,.3);background:rgba(255,216,111,.07);}
-.supply-icon{position:relative;width:58px;height:54px;flex:0 0 58px;border-radius:18px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,91,217,.46);background:radial-gradient(circle at 50% 22%,rgba(255,216,111,.28),transparent 44%),linear-gradient(145deg,rgba(255,91,217,.22),rgba(25,230,180,.08)),rgba(5,9,19,.9);font-size:0;color:transparent;filter:drop-shadow(0 0 14px rgba(255,91,217,.35));box-shadow:inset 0 0 18px rgba(255,255,255,.04),0 0 18px rgba(255,91,217,.18);overflow:hidden;}
-.supply-icon::before{content:"";position:absolute;left:15px;right:15px;top:9px;bottom:8px;border-radius:14px 14px 10px 10px;background:linear-gradient(180deg,#ffd1f5,#9c3a84 62%,#431b48);border:1px solid rgba(255,255,255,.28);box-shadow:inset 0 -10px 0 rgba(0,0,0,.22),0 0 15px rgba(255,91,217,.34);}
-.supply-icon::after{content:"";position:absolute;left:23px;right:23px;top:5px;height:46px;border-radius:999px;background:linear-gradient(180deg,#fff1a6,#ffd86f 42%,#19e6b4);box-shadow:0 0 12px rgba(255,216,111,.58);}
+.crate-art-wrap{position:relative;margin:-.08rem -.08rem .18rem;border-radius:14px;border:1px solid color-mix(in srgb,var(--tier,rgba(25,230,180,.65)) 58%,transparent);background:rgba(3,7,16,.8);box-shadow:0 0 22px var(--tier-glow,rgba(25,230,180,.16)),inset 0 0 18px rgba(255,255,255,.035);overflow:hidden;aspect-ratio:1.45/1;}
+.crate-art-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,7,16,0) 48%,rgba(3,7,16,.78) 100%);z-index:1;pointer-events:none;}
+.crate-art-wrap::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--tier,rgba(25,230,180,.65)),transparent);z-index:2;pointer-events:none;}
+.crate-art{display:block;width:100%;height:100%;object-fit:cover;object-position:center 54%;transform:scale(1.02);transition:transform .22s ease,filter .22s ease;filter:saturate(1.08) contrast(1.04);}
+.crate-card:hover .crate-art{transform:scale(1.065);filter:saturate(1.14) contrast(1.08);}
+.crate-icon-fallback,.supply-icon{display:none;}
+.crate-card.seedling .crate-art{object-position:center 50%;}
+.crate-card.grove .crate-art{object-position:center 48%;}
+.crate-card.canopy .crate-art{object-position:center 48%;}
+.crate-card.ancient .crate-art{object-position:center 53%;}
+.crate-card.mythic .crate-art{object-position:center 52%;}
+.crate-card.supply-drop .crate-art{object-position:center 46%;}
 .supply-tag-row{display:flex;flex-wrap:wrap;gap:.28rem;align-items:center;}
 .supply-tag{display:inline-flex;align-items:center;gap:.22rem;padding:.14rem .42rem;border-radius:999px;border:1px solid rgba(255,216,111,.34);background:rgba(255,216,111,.08);font-size:.52rem;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;font-weight:700;}
 .supply-tag.direct{border-color:rgba(255,91,217,.42);color:#ffd1f5;background:rgba(255,91,217,.09);}
@@ -2419,7 +2427,8 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
           <div class="crate-zone-title">Featured Crates</div>
           <div class="crate-grid">
             <div class="crate-card seedling">
-              <div class="crate-top"><div><div class="crate-name">Seedling</div><div class="crate-role">Starter Boost</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/seedling-crate.jpg" alt="Seedling Crate" loading="lazy" decoding="async"></div>
+              <div class="crate-top"><div><div class="crate-name">Seedling</div><div class="crate-role">Starter Boost</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
               <div class="crate-loot">Guaranteed: 1 common Arborist Item. No bonus legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Growth</span><span class="crate-focus">Streak</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip c">Common</span><span class="rarity-chip">1 item</span></div>
@@ -2427,7 +2436,8 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" title="Guaranteed: 1 common Arborist Item" onclick="showConfirm('Seedling Crate for 0.01 SUI?', () => doBuyCrate(0))">Buy</button>
             </div>
             <div class="crate-card grove">
-              <div class="crate-top"><div><div class="crate-name">Grove</div><div class="crate-role">Daily Helper</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/grove-crate.jpg" alt="Grove Crate" loading="lazy" decoding="async"></div>
+              <div class="crate-top"><div><div class="crate-name">Grove</div><div class="crate-role">Daily Helper</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
               <div class="crate-loot">Guaranteed: 2 common Arborist Items. Bonus: 0.01% legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Growth</span><span class="crate-focus">Streak</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip c">Common x2</span><span class="rarity-chip l">Tiny legendary</span></div>
@@ -2435,7 +2445,8 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" title="Guaranteed: 2 common Arborist Items. Bonus: 0.01% legendary roll" onclick="showConfirm('Grove Crate for 0.01 SUI?', () => doBuyCrate(1))">Buy</button>
             </div>
             <div class="crate-card canopy">
-              <div class="crate-top"><div><div class="crate-name">Canopy</div><div class="crate-role">Rank Climber</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/canopy-crate.jpg" alt="Canopy Crate" loading="lazy" decoding="async"></div>
+              <div class="crate-top"><div><div class="crate-name">Canopy</div><div class="crate-role">Rank Climber</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
               <div class="crate-loot">Guaranteed: 1 uncommon + 2 common. Bonus: 5% legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Growth</span><span class="crate-focus">Protect</span><span class="crate-focus">Streak</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip u">Uncommon</span><span class="rarity-chip c">Common x2</span><span class="rarity-chip l">5%</span></div>
@@ -2443,7 +2454,8 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" title="Guaranteed: 1 uncommon + 2 common. Bonus: 5% legendary roll" onclick="showConfirm('Canopy Crate for 0.01 SUI?', () => doBuyCrate(2))">Buy</button>
             </div>
             <div class="crate-card ancient">
-              <div class="crate-top"><div><div class="crate-name">Ancient</div><div class="crate-role">Power Crate</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/ancient-crate.jpg" alt="Ancient Crate" loading="lazy" decoding="async"></div>
+              <div class="crate-top"><div><div class="crate-name">Ancient</div><div class="crate-role">Power Crate</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
               <div class="crate-loot">Guaranteed: 2 rare + 2 uncommon + 1 common. Bonus: 50% legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Recover</span><span class="crate-focus">Protect</span><span class="crate-focus">Power</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip r">Rare x2</span><span class="rarity-chip u">Uncommon x2</span><span class="rarity-chip l">50%</span></div>
@@ -2451,7 +2463,8 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" title="Guaranteed: 2 rare + 2 uncommon + 1 common. Bonus: 50% legendary roll" onclick="showConfirm('Ancient Crate for 0.01 SUI?', () => doBuyCrate(3))">Buy</button>
             </div>
             <div class="crate-card mythic">
-              <div class="crate-top"><div><div class="crate-name">Mythic</div><div class="crate-role">Cycle Changer</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/mythic-crate.jpg" alt="Mythic Crate" loading="lazy" decoding="async"></div>
+              <div class="crate-top"><div><div class="crate-name">Mythic</div><div class="crate-role">Cycle Changer</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
               <div class="crate-loot">Guaranteed: 1 legendary + 3 rare + 3 uncommon + 2 common. Bonus: 30% second legendary roll.</div>
               <div class="crate-focus-row"><span class="crate-focus">Power</span><span class="crate-focus">Recover</span><span class="crate-focus">Protect</span></div>
               <div class="crate-rarity-strip"><span class="rarity-chip l">Legendary</span><span class="rarity-chip r">Rare x3</span><span class="rarity-chip u">Uncommon x3</span><span class="rarity-chip c">Common x2</span></div>
@@ -2459,6 +2472,7 @@ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-siz
               <button type="button" class="gbtn" title="Guaranteed: 1 legendary + 3 rare + 3 uncommon + 2 common. Bonus: 30% second legendary" onclick="showConfirm('Mythic Crate for 0.01 SUI?', () => doBuyCrate(4))">Buy</button>
             </div>
             <div class="crate-card supply-drop">
+              <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/supply-drop.jpg" alt="Supply Drop" loading="lazy" decoding="async"></div>
               <div class="crate-top"><div><div class="crate-name">Supply Drop</div><div class="crate-role" id="supply-role">Emergency Recovery</div><div class="crate-price" id="supply-price">0.05 SUI</div></div><div class="supply-icon" id="supply-icon" aria-hidden="true">💫</div></div>
               <div class="supply-tag-row"><span class="supply-tag direct" id="supply-status-tag">Live direct buy</span><span class="supply-tag" id="supply-value-tag">One featured item</span></div>
               <div class="crate-loot" id="supply-copy">Buy the current featured Arborist Item directly when you need a specific fix instead of opening crates.</div>
