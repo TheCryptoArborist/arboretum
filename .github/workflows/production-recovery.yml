@@ -1,0 +1,183 @@
+name: Recover production source without changing main
+on:
+  push:
+    branches: [recovery/production-garden-20260909]
+    paths: [.github/workflows/production-recovery.yml]
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      RECOVERY_BRANCH: recovery/production-garden-20260909
+      BASE_COMMIT: d493a045dddf9d4111e0c8ba92ae3a9ba6fc665b
+      DEPLOY_ID: 6aa0cfff32d753e6369d8cba
+    steps:
+      - name: Download exact public source, compare, and preserve on recovery branch only
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, concurrent.futures, datetime, difflib, hashlib, json, os, pathlib, re, subprocess, tempfile, time
+          from html.parser import HTMLParser
+          from urllib.parse import urljoin, urlsplit, quote
+          from urllib.request import Request, urlopen
+
+          repo = os.environ['REPO']
+          assert repo == 'TheCryptoArborist/arboretum'
+          branch = os.environ['RECOVERY_BRANCH']
+          assert branch == 'recovery/production-garden-20260909' and branch != 'main'
+          baseline = os.environ['BASE_COMMIT']
+          deploy = os.environ['DEPLOY_ID']
+          origin = 'https://' + deploy + '--arboretum-sui-forest.netlify.app/'
+          api_root = 'https://api.github.com/repos/' + repo
+
+          def api(path, data=None, method=None):
+              headers = {'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'User-Agent': 'Arboretum-production-recovery'}
+              body = None if data is None else json.dumps(data).encode('utf-8')
+              if body is not None:
+                  headers['Content-Type'] = 'application/json'
+              req = Request(api_root + path, data=body, headers=headers, method=method or ('GET' if data is None else 'POST'))
+              with urlopen(req, timeout=45) as response:
+                  return json.load(response)
+
+          def public_get(url):
+              allowed = {urlsplit(origin).netloc, 'treegrow.xyz', 'www.treegrow.xyz'}
+              assert urlsplit(url).netloc in allowed
+              last = None
+              for attempt in range(3):
+                  try:
+                      req = Request(url, headers={'User-Agent': 'Arboretum-source-backup/1.0', 'Accept-Encoding': 'identity', 'Cache-Control': 'no-cache'})
+                      with urlopen(req, timeout=40) as response:
+                          assert response.status == 200, 'Non-200 source response'
+                          assert urlsplit(response.url).netloc in allowed, 'Unexpected redirect'
+                          data = response.read(8_000_001)
+                          assert len(data) <= 8_000_000, 'Unexpectedly large asset'
+                          return data, {'url': response.url, 'content_type': response.headers.get('Content-Type'), 'etag': response.headers.get('ETag'), 'last_modified': response.headers.get('Last-Modified')}
+                  except Exception as exc:
+                      last = exc
+                      time.sleep(attempt + 1)
+              raise last
+
+          def git_hash(data):
+              return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+
+          def digest(data):
+              return {'bytes': len(data), 'git_blob_sha': git_hash(data), 'sha256': hashlib.sha256(data).hexdigest()}
+
+          head = api('/git/ref/heads/main')['object']['sha']
+          assert head == baseline, 'Main advanced: stop and recompare instead of overwriting'
+          old_obj = api('/contents/index.html?ref=' + baseline)
+          old = base64.b64decode(old_obj['content'])
+          assert git_hash(old) == old_obj['sha']
+          candidate, source_headers = public_get(origin + 'index.html')
+          live, live_headers = public_get('https://treegrow.xyz/')
+          www, www_headers = public_get('https://www.treegrow.xyz/')
+          assert candidate == live == www, 'Pinned deploy, apex and www are not byte-identical; stop before main changes'
+          assert len(candidate) > 100000 and b'<html' in candidate.lower() and b'arboretum' in candidate.lower()
+          text = candidate.decode('utf-8', errors='strict')
+          assert text.encode('utf-8') == candidate
+          assert '</html>' in text.lower(), 'HTML appears truncated'
+
+          class Parser(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=False)
+                  self.scripts, self.script, self.local = [], None, set()
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if tag == 'script':
+                      self.script = {'attrs': a, 'body': ''}
+                  value = a.get('src') if tag in ('script', 'img', 'source') else a.get('href') if tag == 'link' else None
+                  if value and not urlsplit(value).scheme and not value.startswith('//'):
+                      path = urlsplit(urljoin(origin, value)).path.lstrip('/')
+                      if path and not path.startswith('.'):
+                          self.local.add(path)
+              def handle_data(self, data):
+                  if self.script is not None:
+                      self.script['body'] += data
+              def handle_endtag(self, tag):
+                  if tag == 'script' and self.script is not None:
+                      self.scripts.append(self.script)
+                      self.script = None
+
+          parser = Parser()
+          parser.feed(text)
+          syntax = []
+          with tempfile.TemporaryDirectory() as tmp:
+              for i, script in enumerate(parser.scripts):
+                  attrs = script['attrs']
+                  kind = attrs.get('type', '').lower()
+                  if attrs.get('src') or kind not in ('', 'module', 'text/javascript', 'application/javascript'):
+                      continue
+                  file = pathlib.Path(tmp) / ('inline-' + str(i) + ('.mjs' if kind == 'module' else '.js'))
+                  file.write_text(script['body'], encoding='utf-8')
+                  result = subprocess.run(['node', '--check', str(file)], capture_output=True, text=True, timeout=20)
+                  syntax.append({'script': i, 'type': kind or 'classic', 'pass': result.returncode == 0, 'error': result.stderr[-2000:] if result.returncode else None})
+
+          tree = api('/git/trees/' + baseline + '?recursive=1')
+          assert not tree.get('truncated')
+          tracked = {item['path']: item for item in tree['tree'] if item['type'] == 'blob'}
+          assets = set(parser.local)
+          assets.update(re.findall(r'(?<![A-Za-z0-9_-])(assets/[A-Za-z0-9_./-]+\.(?:png|jpg|jpeg|webp|svg|css|js))', text))
+          assets.update(['wallet.js', 'sui-sdk.bundle.js', 'garden.js'])
+          assets = sorted(p for p in assets if '..' not in p and p != 'index.html' and p.endswith(('.js', '.css', '.png', '.jpg', '.jpeg', '.webp', '.svg', '.ico')))
+          def check_asset(path):
+              result = {'path': path, 'tracked': path in tracked}
+              try:
+                  data, headers = public_get(urljoin(origin, path))
+                  result.update(digest(data))
+                  result['http_ok'] = not (path.endswith(('.js', '.css')) and data.lstrip().lower().startswith(b'<!doctype html'))
+                  result['matches_github'] = path in tracked and git_hash(data) == tracked[path]['sha']
+                  if path.endswith('.js'):
+                      with tempfile.TemporaryDirectory() as tmp:
+                          file = pathlib.Path(tmp) / 'asset.mjs'
+                          file.write_bytes(data)
+                          check = subprocess.run(['node', '--check', str(file)], capture_output=True, text=True, timeout=20)
+                          result['syntax_ok'] = check.returncode == 0
+                          if check.returncode:
+                              result['syntax_error'] = check.stderr[-1000:]
+              except Exception as exc:
+                  result['error'] = str(exc)[:800]
+                  result['http_ok'] = False
+              return result
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+              asset_report = list(executor.map(check_asset, assets))
+
+          diff = ''.join(difflib.unified_diff(old.decode('utf-8').splitlines(True), text.splitlines(True), fromfile='github-main/index.html', tofile='production/index.html', n=3))
+          diff_lines = diff.splitlines()
+          report = {
+              'recovered_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'repository': repo, 'baseline_commit': baseline, 'recovery_branch': branch,
+              'production_deploy': deploy, 'source': source_headers, 'live': live_headers, 'www': www_headers,
+              'all_three_sources_byte_identical': True, 'original': digest(old), 'production': digest(candidate),
+              'changed': old != candidate,
+              'diff': {'added_lines': sum(s.startswith('+') and not s.startswith('+++') for s in diff_lines), 'removed_lines': sum(s.startswith('-') and not s.startswith('---') for s in diff_lines), 'hunks': sum(s.startswith('@@') for s in diff_lines)},
+              'inline_script_syntax': syntax, 'inline_script_syntax_all_pass': all(s['pass'] for s in syntax),
+              'assets': asset_report,
+              'assets_all_match_github': all(s.get('matches_github') for s in asset_report),
+              'assets_all_http_ok': all(s.get('http_ok') for s in asset_report),
+              'scope': 'Recovery branch only. Main and Netlify production are not modified. Wallet transactions not tested.'
+          }
+          assert api('/git/ref/heads/main')['object']['sha'] == baseline, 'Main advanced during recovery'
+          def blob(data):
+              result = api('/git/blobs', {'content': base64.b64encode(data).decode('ascii'), 'encoding': 'base64'})
+              assert result['sha'] == git_hash(data), 'Uploaded bytes did not match'
+              return result['sha']
+          saved = {
+              'recovery/production-index.html': blob(candidate),
+              'recovery/prior-index.html': old_obj['sha'],
+              'recovery/production-index.diff': blob(diff.encode('utf-8')),
+              'recovery/production-sync-report.json': blob((json.dumps(report, indent=2) + '\n').encode('utf-8'))
+          }
+          branch_ref = api('/git/ref/heads/' + quote(branch, safe='/'))['object']['sha']
+          assert branch_ref == os.environ['GITHUB_SHA'], 'Recovery branch advanced; stop'
+          branch_tree = api('/git/commits/' + branch_ref)['tree']['sha']
+          new_tree = api('/git/trees', {'base_tree': branch_tree, 'tree': [{'path': path, 'mode': '100644', 'type': 'blob', 'sha': sha} for path, sha in saved.items()]})['sha']
+          commit = api('/git/commits', {'message': 'Preserve exact production HTML and comparison [skip netlify]', 'tree': new_tree, 'parents': [branch_ref]})['sha']
+          api('/git/refs/heads/' + quote(branch, safe='/'), {'sha': commit, 'force': False}, 'PATCH')
+          print(json.dumps({'backup_commit': commit, 'production': digest(candidate), 'diff': report['diff'], 'inline_scripts_pass': report['inline_script_syntax_all_pass'], 'assets_all_match': report['assets_all_match_github'], 'assets_all_http_ok': report['assets_all_http_ok'], 'main_unchanged': api('/git/ref/heads/main')['object']['sha'] == baseline}, indent=2))
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as summary:
+              summary.write('## Production recovery saved on isolated branch\n\n```json\n' + json.dumps(report, indent=2) + '\n```\n')
+          PY
