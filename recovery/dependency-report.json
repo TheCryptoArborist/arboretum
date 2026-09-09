@@ -1,0 +1,61 @@
+{
+  "created_at_utc": "2026-09-09T19:17:10.331114+00:00",
+  "baseline_commit": "d493a045dddf9d4111e0c8ba92ae3a9ba6fc665b",
+  "production_index_blob": "7757bfb2695c822d20752ded16eb0048f753bcd7",
+  "dependencies": [
+    {
+      "path": "wallet.js",
+      "bytes": 61962,
+      "blob_sha": "de725c9fe0db18d35e41232f7ad96406de086168",
+      "sha256": "e75087b0cfad4857932205f1aa827812d7ea06b4c9d833a062ab2ed3c1f08e17",
+      "production_matches_pinned": true,
+      "javascript_syntax_pass": true,
+      "added_lines": 59,
+      "removed_lines": 5
+    },
+    {
+      "path": "assets/shop/crates/boom-chest.png",
+      "bytes": 2716812,
+      "blob_sha": "d90ebb332a84efe2b4b6ca32881a2b9c259dd8c5",
+      "sha256": "5a9a588883a15ebd18369bed77fc9283b2d0a94ea2512d80395fa4a0be2609ac",
+      "production_matches_pinned": true
+    },
+    {
+      "path": "assets/shop/crates/victory-chest.png",
+      "bytes": 2505790,
+      "blob_sha": "c067051cf16e237c2e8c0a8c6c46224ffee4561c",
+      "sha256": "94f82e1234b6f1ce0c831b9c3d49453521a115dde97e36ae28da86c08d421356",
+      "production_matches_pinned": true
+    }
+  ],
+  "main_modified": false,
+  "reference_context": [
+    {
+      "path": "assets/cosmetics/frames/crystal-trellis.png",
+      "present_in_prior_main": true,
+      "production_context": [
+        "age.',unlocked:()=>maxSeedStageScore()>=30,unlock:'Reach Season Harvest'},\n  {id:'frame_crystal',slot:'frame',cls:'frame-crystal',em:'\ud83d\udc8e',type:'Frame',name:'Crystal Trellis',rarity:'TREE Shop',priceTree:250,status:'planned',asset:'assets/cosmetics/frames/crystal-trellis.png',assetReady:false,copy:'A bright crystal edge for players who want their active Seeds to stand out.',unlocked:()=>false,unlock:'TREE checkout planned'},\n  {id:'aura_gold',slot:'aura',cls:'aura-gold',em:'\ud83c\udf1e',type:'Aura',name:'Golden Canopy Glow',rarity:'TREE Shop',priceTree:500,st"
+      ]
+    },
+    {
+      "path": "assets/cosmetics/frames/rare-crystal-bark.png",
+      "present_in_prior_main": true,
+      "production_context": [
+        "Uncommon or higher NFTree.',unlocked:()=>hasNftreeRarityAtLeast(1),unlock:'Hold Uncommon NFTree'},\n  {id:'frame_rare_nftree',slot:'frame',cls:'frame-rare',em:'\ud83d\udd37',type:'Frame',name:'Rare Crystal Bark',rarity:'NFTree Rarity',asset:'assets/cosmetics/frames/rare-crystal-bark.png',assetReady:false,copy:'A blue rare-tier frame unlocked by holding a Rare or higher NFTree.',unlocked:()=>hasNftreeRarityAtLeast(2),unlock:'Hold Rare NFTree'},\n  {id:'aura_epic_nftree',slot:'aura',cls:'aura-epic',em:'\ud83d\udfe3',type:'Aura',name:'Epic Moon Canopy',rarity:'NFTree Rarity',"
+      ]
+    },
+    {
+      "path": "assets/nftree-wallet-mint.js",
+      "present_in_prior_main": true,
+      "production_context": [
+        "ng. That keeps the daily rhythm while giving players a little flexibility.';\nlet NFTREE_MINT_SCRIPT_PROMISE=null;\nconst NFTREE_SALE_POOL_API='https://nftree.net/api/nftree-sale-pools';\nconst NFTREE_MINT_SCRIPT='https://nftree.net/assets/nftree-wallet-mint.js';\nconst NFTREE_FALLBACK_SALE_STATUS={\n  latestPackageId:'0xcfb2af9a22d5a468f15e673c3ec40c76be8da3ec69c66405d832bb4d6985cdf5',\n  mintConfigId:'0xe83616020f61f73b30c40fd3f888ed397626afd071bd4666374c306d8e98b06b',\n  mintPriceMist:'25000000000',\n  treasury:'0x956624f2fbbdf16bb5e334b"
+      ]
+    }
+  ],
+  "saved_production_files": {
+    "index.html": "7757bfb2695c822d20752ded16eb0048f753bcd7",
+    "wallet.js": "de725c9fe0db18d35e41232f7ad96406de086168",
+    "assets/shop/crates/boom-chest.png": "d90ebb332a84efe2b4b6ca32881a2b9c259dd8c5",
+    "assets/shop/crates/victory-chest.png": "c067051cf16e237c2e8c0a8c6c46224ffee4561c"
+  }
+}
