@@ -12,7 +12,7 @@ const GRAPHQL_URL = 'https://graphql.mainnet.sui.io/graphql';
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days — supports daily return visits
 
 export const CONTRACT = {
-  PACKAGE_ID: "0x0ad12507d7e2762102cea78aa2fe3b2c2aed96c1e180ee18561233f931f75914",
+  PACKAGE_ID: "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
   TYPE_PACKAGE_ID: "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b",
   TYPE_PACKAGE_IDS: [
     "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b",
@@ -27,6 +27,7 @@ export const CONTRACT = {
   SUPPORTS_MONTHLY_DURATION_START: true,
   SUPPORTS_ARCHIVED_SEASON_CLAIMS: true,
   SUPPORTS_EARLY_SEASON_ARCHIVE: true,
+  SUPPORTS_PARTNER_CHESTS: true,
   SUPPORTS_CANOPY_CHALLENGES: false,
   CHALLENGE_BOOK_ID: "",
   ACTIVE_CANOPY_CHALLENGE_ID: "",
@@ -56,6 +57,8 @@ export const CRATE_PRICES = {
   2: 10_000_000n,   // 0.01 SUI  (Canopy)
   3: 10_000_000n,   // 0.01 SUI  (Ancient)
   4: 10_000_000n,   // 0.01 SUI  (Mythic)
+  5: 10_000_000n,   // 0.01 SUI  ($BOOM)
+  6: 10_000_000n,   // 0.01 SUI  (Victory)
 };
 export const SUPPLY_DROP_PRICES = {
   0: 50_000_000n,   // 0.05 SUI  (Revival Kit)    original economy target: 25 SUI
@@ -121,6 +124,12 @@ export const CRATES = [
   { id:4, name:'Mythic Crate',   sui:0.01, em:'✨🌳✨', color:'rgba(255,216,111,1)',
     items:'9+', desc:'9 items guaranteed + 1 Legendary + 30% second Legendary',
     lootTable:[ {w:100,rarity:3} ] },
+  { id:5, name:'$BOOM Chest',     sui:0.01, em:'💥', color:'rgba(255,111,28,.95)',
+    items:'4+', desc:'Growth Point burst chest with Ancient Bark, Sunstone, Double Dose, and bonus upside',
+    lootTable:[ {w:90,rarity:2}, {w:10,rarity:3} ] },
+  { id:6, name:'Victory Chest',   sui:0.01, em:'🏆', color:'rgba(88,156,255,.95)',
+    items:'4', desc:'Protection chest with Drought Shield, Rain Barrel, Mulch, and recovery upside',
+    lootTable:[ {w:75,rarity:2}, {w:25,rarity:3} ] },
 ];
 
 // ── SIGN FEATURES ─────────────────────────────────────────────────────────────
@@ -474,6 +483,22 @@ export async function getObjectById(objectId){
   return gqlObjectById(objectId);
 }
 
+export async function getObjectsByIds(objectIds=[]){
+  const ids=[...new Set((Array.isArray(objectIds)?objectIds:[]).filter(Boolean))];
+  if(!ids.length)return [];
+  try{
+    const objects=await _client().multiGetObjects({
+      ids,
+      options:{showType:true,showContent:true,showDisplay:true},
+    });
+    return (objects||[]).map(fullnodeObjectToSuiData).filter(Boolean);
+  }catch(err){
+    console.warn('Fullnode object batch read failed, falling back to GraphQL', err);
+    const objects=await Promise.all(ids.map((id)=>gqlObjectById(id).catch(()=>null)));
+    return objects.filter(Boolean);
+  }
+}
+
 async function getDynamicFieldObject(parentId,nameType,nameValue){
   if(!parentId)throw new Error('No parent object id');
   const res=await _client().getDynamicFieldObject({
@@ -591,7 +616,12 @@ export async function getOwnedObjectsByStructType(addr,structType){
   if(!/^0x[a-fA-F0-9]+::[A-Za-z_][A-Za-z0-9_]*::[A-Za-z_][A-Za-z0-9_]*(<.*>)?$/.test(String(structType||''))){
     throw new Error('NFTree collection StructType is not configured.');
   }
-  return gqlOwnedObjectsByType(addr,structType);
+  try{
+    return await fullnodeOwnedObjectsByType(addr,structType);
+  }catch(err){
+    console.warn('Fullnode NFTree read failed, falling back to GraphQL', err);
+    return gqlOwnedObjectsByType(addr,structType);
+  }
 }
 
 export async function getOwnedNftreeNfts(addr=_address){
@@ -999,6 +1029,30 @@ export async function buyCrate(tier = 0) {
   return signAndExecute(tx);
 }
 
+async function buyPartnerChest(targetName, price) {
+  if (!CONTRACT.SUPPORTS_PARTNER_CHESTS) {
+    throw new Error("Partner Chests need the upgraded contract package before they can mint live.");
+  }
+  const tx = new Transaction();
+  const [payment] = tx.splitCoins(tx.gas, [tx.pure.u64(price)]);
+  tx.moveCall({
+    target: `${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::${targetName}`,
+    arguments: [
+      tx.object(CONTRACT.REGISTRY_ID),
+      payment,
+    ],
+  });
+  return signAndExecute(tx);
+}
+
+export async function buyBoomChest() {
+  return buyPartnerChest("buy_boom_chest", CRATE_PRICES[5]);
+}
+
+export async function buyVictoryChest() {
+  return buyPartnerChest("buy_victory_chest", CRATE_PRICES[6]);
+}
+
 export async function buySupplyDrop(drop = 0) {
   if (!CONTRACT.SUPPORTS_SUPPLY_DROPS) {
     throw new Error("Supply Drop purchases are not enabled in the current live Arboretum contract.");
@@ -1120,7 +1174,7 @@ export async function adminResetSeason(){ if(!isAdmin())throw new Error('Not adm
 export async function adminSetPaused(p){ if(!isAdmin())throw new Error('Not admin'); const tx=new Transaction(); tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::set_paused`,arguments:[tx.object(getAdminCapId()),tx.object(CONTRACT.REGISTRY_ID),tx.pure.bool(Boolean(p))]}); return signAndExecute(tx); }
 export async function adminDepositToPool(amountMist){ if(!isAdmin())throw new Error('Not admin'); const tx=new Transaction(); const[coin]=tx.splitCoins(tx.gas,[tx.pure.u64(BigInt(amountMist))]); tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::deposit_to_pool`,arguments:[tx.object(getAdminCapId()),tx.object(CONTRACT.REGISTRY_ID),coin]}); return signAndExecute(tx); }
 export async function adminWithdrawTreasury(amountMist){ if(!isAdmin())throw new Error('Not admin'); const tx=new Transaction(); tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::withdraw_treasury`,arguments:[tx.object(getAdminCapId()),tx.object(CONTRACT.REGISTRY_ID),tx.pure.u64(BigInt(amountMist))]}); return signAndExecute(tx); }
-export async function adminSendPromoCrate(recipient,tier=0){ if(!isAdmin())throw new Error('Not admin'); if(!/^0x[a-fA-F0-9]{64}$/.test(String(recipient||'')))throw new Error('Enter a valid recipient wallet address.'); const n=Number(tier); if(!Number.isInteger(n)||n<0||n>4)throw new Error('Choose a valid crate tier.'); const tx=new Transaction(); tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::send_promo_crate`,arguments:[tx.object(getAdminCapId()),tx.object(CONTRACT.REGISTRY_ID),tx.pure.address(recipient),tx.pure.u8(n)]}); return signAndExecute(tx); }
+export async function adminSendPromoCrate(recipient,tier=0){ if(!isAdmin())throw new Error('Not admin'); if(!/^0x[a-fA-F0-9]{64}$/.test(String(recipient||'')))throw new Error('Enter a valid recipient wallet address.'); const n=Number(tier); if(!Number.isInteger(n)||n<0||n>6)throw new Error('Choose a valid crate tier.'); const tx=new Transaction(); tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::send_promo_crate`,arguments:[tx.object(getAdminCapId()),tx.object(CONTRACT.REGISTRY_ID),tx.pure.address(recipient),tx.pure.u8(n)]}); return signAndExecute(tx); }
 
 function assertCanopyChallengesSupported(){
   if(!CONTRACT.SUPPORTS_CANOPY_CHALLENGES)throw new Error('Daily Canopy Challenges are coming soon.');
@@ -1208,10 +1262,10 @@ if(typeof window!=='undefined'){
     loadProjectedReward,
     parseSeedObject,
     arb:{
-      plantSeed,batchPlantSeeds,waterSeed,applyTool,reviveSeed,reviveSeedWithTool,abandonSeed,buyCrate,buySupplyDrop,openCrate,claimReward,claimArchivedReward,batchWaterAllSeeds,
+      plantSeed,batchPlantSeeds,waterSeed,applyTool,reviveSeed,reviveSeedWithTool,abandonSeed,buyCrate,buyBoomChest,buyVictoryChest,buySupplyDrop,openCrate,claimReward,claimArchivedReward,batchWaterAllSeeds,
       adminStartSeason,adminStartSeasonForDuration,adminResetSeason,adminSetPaused,adminDepositToPool,adminWithdrawTreasury,adminSendPromoCrate,
       getCanopyChallengeState,enterCanopySprint,refundCanopySprintEntry,adminCreateChallengeBook,adminOpenCanopySprint,adminFinalizeCanopySprint,adminCancelCanopySprint,
-      getOwnedObjects,getOwnedObjectsByStructType,getAllObjectsByStructType,getObjectById,getOwnedNftreeNfts,checkWalletNftreeAccess,getRegistryFields,getSeasonStats,getSeasonArchive,getConfiguredSeasonArchiveId,getProjectedReward,getTotalRewardsCollected,
+      getOwnedObjects,getOwnedObjectsByStructType,getAllObjectsByStructType,getObjectById,getObjectsByIds,getOwnedNftreeNfts,checkWalletNftreeAccess,getRegistryFields,getSeasonStats,getSeasonArchive,getConfiguredSeasonArchiveId,getProjectedReward,getTotalRewardsCollected,
       getEventsByType,parseSeedObject,parseToolObject,getSuiBalance,isAdmin,getAddress,getClient,getInstalledWallets,resolveSuiName,
       CONTRACT,NFTREE,ADMIN_WALLETS,ITEMS,CRATES,CRATE_PRICES,SUPPLY_DROP_PRICES,GROWTH_DEPOSIT_MIST,ONE_DAY_MS,CANOPY_CHALLENGE_ENTRY_MIST,WILT_DAYS,DEATH_DAYS,
     },
