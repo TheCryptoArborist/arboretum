@@ -1,0 +1,263 @@
+{
+  "recovered_at_utc": "2026-09-09T19:15:44.604757+00:00",
+  "repository": "TheCryptoArborist/arboretum",
+  "baseline_commit": "d493a045dddf9d4111e0c8ba92ae3a9ba6fc665b",
+  "recovery_branch": "recovery/production-garden-20260909",
+  "production_deploy": "6aa0cfff32d753e6369d8cba",
+  "source": {
+    "url": "https://6aa0cfff32d753e6369d8cba--arboretum-sui-forest.netlify.app/index.html",
+    "content_type": "text/html; charset=UTF-8",
+    "etag": "\"7e46d3543a3b58d545e4b428611661db-ssl\"",
+    "last_modified": null
+  },
+  "live": {
+    "url": "https://treegrow.xyz/",
+    "content_type": "text/html; charset=UTF-8",
+    "etag": "\"7e46d3543a3b58d545e4b428611661db-ssl\"",
+    "last_modified": null
+  },
+  "www": {
+    "url": "https://treegrow.xyz/",
+    "content_type": "text/html; charset=UTF-8",
+    "etag": "\"7e46d3543a3b58d545e4b428611661db-ssl\"",
+    "last_modified": null
+  },
+  "all_three_sources_byte_identical": true,
+  "original": {
+    "bytes": 547745,
+    "git_blob_sha": "1b73b4ab1b5fae93da5b79c991c4bde7123967c8",
+    "sha256": "9bf5743cc687efd011f51d18b7418132305a71df72da06b03879a333271c0c90"
+  },
+  "production": {
+    "bytes": 574682,
+    "git_blob_sha": "7757bfb2695c822d20752ded16eb0048f753bcd7",
+    "sha256": "d097ef796f14380c0d2e9e3dcfecab0fead13808d6c26a20497b5b9bd0123701"
+  },
+  "changed": true,
+  "diff": {
+    "added_lines": 467,
+    "removed_lines": 111,
+    "hunks": 46
+  },
+  "inline_script_syntax": [
+    {
+      "script": 0,
+      "type": "classic",
+      "pass": true,
+      "error": null
+    },
+    {
+      "script": 2,
+      "type": "classic",
+      "pass": true,
+      "error": null
+    }
+  ],
+  "inline_script_syntax_all_pass": true,
+  "assets": [
+    {
+      "path": "arboretum-protocol-logo.png",
+      "tracked": true,
+      "bytes": 1817978,
+      "git_blob_sha": "9c1c9cb7e8ba943749d3be077f0219aed8507417",
+      "sha256": "9e0e5f54c623f7bf25f8710fff7de04f9298282a359166443f078b669c4a2dff",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/ancient-oak-frame.png",
+      "tracked": true,
+      "bytes": 251920,
+      "git_blob_sha": "fb312614878de2931debc73bddce5aee0ca12884",
+      "sha256": "93d050e7ce35bcbb637e53e82f81cfd924e2cff810c2d0e42ebaedd99191b16d",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/crystal-trellis.png",
+      "tracked": false,
+      "error": "HTTP Error 404: Not Found",
+      "http_ok": false
+    },
+    {
+      "path": "assets/cosmetics/frames/first-growth-ring-frame.png",
+      "tracked": true,
+      "bytes": 201969,
+      "git_blob_sha": "6810a4f7b8cb67faef84295e25e6096295d5f05e",
+      "sha256": "2a79a1643af70f50d768435ad214784825c0488eea4ea9e62b925d574ea44553",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/legendary-canopy-frame.png",
+      "tracked": true,
+      "bytes": 363521,
+      "git_blob_sha": "76745e1c16ad2498d5887b9146e90f03d3810f7d",
+      "sha256": "9aa066fe69d15fb29b1cbe2870998ba2caedead770a2a207ada9b0f5e853447c",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/mythic-living-crown.png",
+      "tracked": true,
+      "bytes": 366663,
+      "git_blob_sha": "b5990e806a5d9f32fffc6b8a701d35c27e48e3c0",
+      "sha256": "3c40325b6922992bce5c546c46af72044acf32a894203de521077c9be220f8dc",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "tracked": true,
+      "bytes": 290825,
+      "git_blob_sha": "920491a9a54765016c9a892a0aa600f7c5323e1d",
+      "sha256": "67050a51c18919afc3a87531aa0a8530aefcd1f2c57931be09cda3ea8f00ffb3",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/cosmetics/frames/rare-crystal-bark.png",
+      "tracked": false,
+      "error": "HTTP Error 404: Not Found",
+      "http_ok": false
+    },
+    {
+      "path": "assets/cosmetics/frames/starter-emerald-nursery.png",
+      "tracked": true,
+      "bytes": 241300,
+      "git_blob_sha": "4f36870c17223e5057dae0f86f986b06feaa96d3",
+      "sha256": "962a726e41e7236ebd37c4d456a41e1cf749472f26c747ed4f0a50fab7640b9d",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/growth/taking-root.png",
+      "tracked": true,
+      "bytes": 42920,
+      "git_blob_sha": "5074671e738be66fd5a3d63b63c72c020563dc6c",
+      "sha256": "d9d4d2f6158340af5ed0a0bf8bb2144866679871cda7382f08500f39691ecc3c",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/nftree-wallet-mint.js",
+      "tracked": false,
+      "error": "HTTP Error 404: Not Found",
+      "http_ok": false
+    },
+    {
+      "path": "assets/shop/crates/ancient-crate.jpg",
+      "tracked": true,
+      "bytes": 591531,
+      "git_blob_sha": "603c9f91e1607149895761e69b9058961bd168f1",
+      "sha256": "268a8ec5c982e44b042daceac82d5f94fdc5898560ee639fc8e3ab8e3c62ccb5",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/boom-chest.png",
+      "tracked": false,
+      "bytes": 2716812,
+      "git_blob_sha": "d90ebb332a84efe2b4b6ca32881a2b9c259dd8c5",
+      "sha256": "5a9a588883a15ebd18369bed77fc9283b2d0a94ea2512d80395fa4a0be2609ac",
+      "http_ok": true,
+      "matches_github": false
+    },
+    {
+      "path": "assets/shop/crates/canopy-crate.jpg",
+      "tracked": true,
+      "bytes": 444971,
+      "git_blob_sha": "b948e98078c0fc4d47d38c3bd55a0170bd2a8891",
+      "sha256": "a63b7c62b1709ba5c0f3abc561202525b3aacab5068e6fa5c6d34367de0088ac",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/grove-crate.jpg",
+      "tracked": true,
+      "bytes": 474164,
+      "git_blob_sha": "6626d3211969a66e693d483d9e08366d9bbff771",
+      "sha256": "6f43370f077c861e3e4b7e834cd5b351ba1f164a1500565d61fb77eef94de080",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/mythic-crate.jpg",
+      "tracked": true,
+      "bytes": 535874,
+      "git_blob_sha": "4d71edda099898dc3e935c8df114c9b9c1e7a0bf",
+      "sha256": "78146b1782d482ecd0e4a18789e61497cc70103a8091ed8c1041118e513ca95d",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/seedling-crate.jpg",
+      "tracked": true,
+      "bytes": 389653,
+      "git_blob_sha": "c33d2e1280cdee77ce96283898cd52a82f585732",
+      "sha256": "234a041d8a9147e545638cfe3bef93a5fda41fbb10920146f195fff35da63f65",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/supply-drop.jpg",
+      "tracked": true,
+      "bytes": 409209,
+      "git_blob_sha": "c1cb86d1eb3310ab4bfe1ef70c0d6035c0eca50d",
+      "sha256": "92ab1504c3db63e600dcf3b4e4882414810d0d9a645cb1fe7770830f23deab00",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "assets/shop/crates/victory-chest.png",
+      "tracked": false,
+      "bytes": 2505790,
+      "git_blob_sha": "c067051cf16e237c2e8c0a8c6c46224ffee4561c",
+      "sha256": "94f82e1234b6f1ce0c831b9c3d49453521a115dde97e36ae28da86c08d421356",
+      "http_ok": true,
+      "matches_github": false
+    },
+    {
+      "path": "garden-battles-cosmetics-concept.png",
+      "tracked": true,
+      "bytes": 2088628,
+      "git_blob_sha": "272fbed725e260e19cf6acf4bad7c721c1ba856c",
+      "sha256": "d27a5a0d8dbc6d81892c2cf6e77917224acc0c392f814b2a7f5f871ff4a8ee24",
+      "http_ok": true,
+      "matches_github": true
+    },
+    {
+      "path": "garden.js",
+      "tracked": true,
+      "bytes": 15258,
+      "git_blob_sha": "b83ccafe659873bfc554fdad2803394484f55fa6",
+      "sha256": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+      "http_ok": true,
+      "matches_github": true,
+      "syntax_ok": true
+    },
+    {
+      "path": "sui-sdk.bundle.js",
+      "tracked": true,
+      "bytes": 152351,
+      "git_blob_sha": "f2b6431c5d530f52abd2d7bd32f2e85514fe045a",
+      "sha256": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+      "http_ok": true,
+      "matches_github": true,
+      "syntax_ok": true
+    },
+    {
+      "path": "wallet.js",
+      "tracked": true,
+      "bytes": 61962,
+      "git_blob_sha": "de725c9fe0db18d35e41232f7ad96406de086168",
+      "sha256": "e75087b0cfad4857932205f1aa827812d7ea06b4c9d833a062ab2ed3c1f08e17",
+      "http_ok": true,
+      "matches_github": false,
+      "syntax_ok": true
+    }
+  ],
+  "assets_all_match_github": false,
+  "assets_all_http_ok": false,
+  "scope": "Recovery branch only. Main and Netlify production are not modified. Wallet transactions not tested."
+}

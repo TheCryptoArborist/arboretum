@@ -1,0 +1,986 @@
+--- github-main/index.html
++++ production/index.html
+@@ -379,6 +379,42 @@
+ .reward-tab.active{border-color:rgba(25,230,180,.72);background:radial-gradient(circle at 0 0,rgba(25,230,180,.18),rgba(5,9,19,.96));color:var(--text);box-shadow:0 0 14px rgba(25,230,180,.22);}
+ .reward-tab-panel{display:none;}
+ .reward-tab-panel.active{display:block;animation:faIn .18s ease;}
++.reward-status-board{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(255px,.72fr);gap:.7rem;align-items:stretch;}
++.reward-claim-hero{display:flex;flex-direction:column;gap:.56rem;min-width:0;}
++.reward-claim-story{height:100%;padding:.78rem .82rem;border-radius:16px;border:1px solid rgba(255,216,111,.28);background:linear-gradient(135deg,rgba(255,216,111,.11),rgba(25,230,180,.055)),rgba(3,7,16,.82);}
++.reward-claim-kicker{font-size:.56rem;text-transform:uppercase;letter-spacing:.14em;color:var(--primary);font-weight:800;margin-bottom:.28rem;}
++.reward-claim-title{font-family:"Orbitron",monospace;color:var(--accent);font-size:clamp(1rem,2vw,1.25rem);letter-spacing:.08em;text-transform:uppercase;line-height:1.18;margin-bottom:.38rem;}
++.reward-claim-copy{color:var(--muted);font-size:.72rem;line-height:1.5;max-width:680px;}
++.reward-claim-actions{display:flex;flex-wrap:wrap;gap:.42rem;margin-top:.68rem;}
++.reward-claim-actions .gbtn{padding:.42rem .72rem;font-size:.6rem;}
++.reward-payout-card{position:relative;overflow:hidden;padding:.78rem .82rem;border-radius:16px;border:1px solid rgba(25,230,180,.38);background:radial-gradient(circle at 0 0,rgba(25,230,180,.16),transparent 55%),rgba(3,7,16,.9);box-shadow:0 0 22px rgba(25,230,180,.1);}
++.reward-payout-label{font-size:.56rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.25rem;}
++.reward-payout-value{font-family:"Orbitron",monospace;color:var(--accent);font-size:clamp(1.2rem,2.6vw,1.65rem);line-height:1.15;word-break:break-word;}
++.reward-payout-note{font-size:.64rem;color:var(--muted);line-height:1.42;margin-top:.35rem;}
++.reward-equation{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.36rem;align-items:stretch;margin:0;padding:.5rem;border-radius:15px;border:1px solid rgba(190,224,255,.14);background:rgba(3,7,16,.62);}
++.reward-eq-piece{padding:.56rem .6rem;border-radius:12px;border:1px solid rgba(190,224,255,.14);background:rgba(5,9,19,.88);min-width:0;}
++.reward-eq-label{font-size:.52rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:.16rem;}
++.reward-eq-value{font-family:"Orbitron",monospace;color:var(--text);font-size:.8rem;word-break:break-word;}
++.reward-eq-piece.result{border-color:rgba(255,216,111,.34);background:rgba(255,216,111,.07);}
++.reward-eq-piece.result .reward-eq-value{color:var(--accent);}
++.reward-eq-op{display:flex;align-items:center;justify-content:center;color:var(--primary);font-family:"Orbitron",monospace;font-size:1rem;}
++.reward-action-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin-top:.6rem;}
++.reward-action-card{padding:.68rem .72rem;border-radius:14px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.76);font-size:.66rem;color:var(--muted);line-height:1.42;}
++.reward-action-card strong{display:block;color:var(--text);font-size:.72rem;margin-bottom:.15rem;}
++.reward-action-card .gbtn{margin-top:.52rem;padding:.34rem .62rem;font-size:.56rem;}
++.reward-claim-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.5rem;margin:.55rem 0 0;}
++.reward-claim-status{padding:.64rem .7rem;border-radius:14px;border:1px solid rgba(190,224,255,.14);background:rgba(3,7,16,.7);font-size:.64rem;color:var(--muted);line-height:1.42;}
++.reward-claim-status strong{display:block;margin-bottom:.16rem;color:var(--text);font-size:.72rem;}
++.reward-claim-status b{color:var(--accent);font-weight:800;}
++.reward-support-panel{display:grid;gap:.55rem;min-width:0;}
++.reward-mini-grid.compact{grid-template-columns:repeat(2,minmax(0,1fr));gap:.42rem;margin:0;}
++.reward-mini-grid.compact .reward-mini{min-height:58px;padding:.48rem .54rem;}
++.reward-mini-grid.compact .reward-mini small{font-size:.5rem;}
++.reward-mini-grid.compact .reward-mini b{font-size:.72rem;}
++.reward-mini-grid.compact .reward-mini.ref-link{grid-column:1/-1;}
++.reward-note-inline{padding:.55rem .64rem;border-radius:13px;border:1px solid rgba(255,216,111,.22);background:rgba(255,216,111,.055);color:var(--muted);font-size:.62rem;line-height:1.42;}
++.reward-note-inline strong{color:var(--accent);}
++.reward-sync-only{display:none!important;}
+ .rewards-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:.85rem;align-items:start;}
+ .reward-panel{margin:0;padding:.85rem;border-radius:18px;border:1px solid rgba(190,224,255,.18);background:linear-gradient(135deg,rgba(5,9,19,.94),rgba(8,18,24,.9));}
+ .reward-panel + .reward-panel{margin-top:.85rem;}
+@@ -469,7 +505,7 @@
+ .cosmetic-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:.64rem 0 .72rem;}
+ .cosmetic-guide-card{padding:.58rem .62rem;border-radius:13px;border:1px solid rgba(190,224,255,.16);background:rgba(5,9,19,.86);font-size:.62rem;color:var(--muted);line-height:1.38;}
+ .cosmetic-guide-card strong{display:block;color:var(--text);font-size:.68rem;margin-bottom:.12rem;}
+-.cosmetic-equipped-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:.7rem 0;padding:.62rem;border-radius:15px;border:1px solid rgba(25,230,180,.28);background:linear-gradient(135deg,rgba(25,230,180,.09),rgba(255,216,111,.04)),rgba(3,7,16,.82);}
++.cosmetic-equipped-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:0;padding:.62rem;border-radius:15px;border:1px solid rgba(25,230,180,.28);background:linear-gradient(135deg,rgba(25,230,180,.09),rgba(255,216,111,.04)),rgba(3,7,16,.82);}
+ .cosmetic-equipped-summary{grid-column:1/-1;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem;padding:.12rem .08rem .18rem;}
+ .cosmetic-equipped-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);font-size:.7rem;}
+ .cosmetic-equipped-copy{font-size:.62rem;color:var(--muted);line-height:1.4;margin-top:.12rem;}
+@@ -481,13 +517,13 @@
+ .cosmetic-equipped-action{margin-top:.36rem;padding:.22rem .48rem;border-radius:999px;border:1px solid rgba(190,224,255,.18);background:rgba(3,7,16,.75);color:var(--muted);font-family:inherit;font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
+ .cosmetic-equipped-action.ready{border-color:rgba(25,230,180,.38);color:var(--primary);}
+ .cosmetic-equipped-action:disabled{opacity:.45;cursor:default;}
+-.cosmetic-live-preview{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:1rem;align-items:center;margin:.72rem 0;padding:.9rem;border-radius:15px;border:1px solid rgba(255,216,111,.3);background:linear-gradient(135deg,rgba(255,216,111,.08),rgba(25,230,180,.05)),rgba(3,7,16,.8);}
++.cosmetic-live-preview{display:contents;}
+ .cosmetic-live-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-size:.68rem;margin-bottom:.16rem;}
+ .cosmetic-live-copy{font-size:.64rem;color:var(--muted);line-height:1.45;max-width:620px;}
+ .cosmetic-live-note{margin-top:.38rem;font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+ .cosmetic-live-note b{color:var(--primary);}
+-.cosmetic-live-slot{justify-self:center;width:240px;max-width:100%;}
+-.cosmetic-preview-grid{display:flex!important;align-items:center;justify-content:center;width:240px;max-width:100%;margin:0;overflow:visible;}
++.cosmetic-live-slot{justify-self:center;width:230px;max-width:100%;}
++.cosmetic-preview-grid{display:flex!important;align-items:center;justify-content:center;width:230px;max-width:100%;margin:0;overflow:visible;}
+ .cosmetic-preview-grid .gc{flex:0 0 210px;width:210px!important;min-width:210px;max-width:210px;min-height:258px;margin:0;pointer-events:none;}
+ .cosmetic-preview-grid .gc-actions{margin-top:.36rem;}
+ .cosmetic-preview-grid .gc-btn{pointer-events:none;}
+@@ -546,6 +582,7 @@
+ .rarity-equip-actions{display:flex;align-items:center;gap:.28rem;flex-wrap:wrap;}
+ .rarity-equip-card .gbtn{padding:.24rem .48rem;font-size:.5rem;letter-spacing:.08em;}
+ .tree-utility-panel{margin:.72rem 0 .75rem;padding:.72rem;border-radius:15px;border:1px solid rgba(25,230,180,.28);background:linear-gradient(135deg,rgba(25,230,180,.1),rgba(255,216,111,.06)),rgba(3,7,16,.86);}
++.tree-utility-panel.is-hidden{display:none;}
+ .tree-utility-head{display:flex;align-items:center;justify-content:space-between;gap:.7rem;margin-bottom:.55rem;}
+ .tree-utility-title{font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--primary);font-size:.72rem;}
+ .tree-utility-copy{font-size:.64rem;color:var(--muted);line-height:1.45;margin-top:.12rem;}
+@@ -554,6 +591,29 @@
+ .tree-enhance-card{padding:.62rem .65rem;border-radius:13px;border:1px solid rgba(190,224,255,.16);background:rgba(5,9,19,.9);font-size:.63rem;color:var(--muted);line-height:1.38;}
+ .tree-enhance-card strong{display:block;color:var(--text);font-size:.68rem;margin-bottom:.12rem;}
+ .tree-enhance-card span{display:inline-flex;margin-top:.4rem;padding:.14rem .42rem;border-radius:999px;border:1px solid rgba(25,230,180,.32);color:var(--primary);font-size:.52rem;text-transform:uppercase;letter-spacing:.08em;}
++.cosmetic-shelf{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,.78fr);grid-template-areas:"head head" "preview equipped" "rarity rarity" "inventory inventory" "filters filters" "showcase showcase" "utility utility" "grid grid" "note note";gap:.65rem;align-items:start;}
++.cosmetic-head{grid-area:head;margin-bottom:0;}
++.cosmetic-guide{display:none;}
++.cosmetic-live-preview{grid-area:preview;display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:.75rem;align-items:center;margin:0;padding:.82rem;border-radius:16px;border:1px solid rgba(255,216,111,.34);background:linear-gradient(135deg,rgba(255,216,111,.09),rgba(25,230,180,.05)),rgba(3,7,16,.82);}
++.cosmetic-live-title{font-size:.76rem;}
++.cosmetic-live-copy{font-size:.68rem;max-width:520px;}
++.cosmetic-live-note{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.42rem;margin-top:.62rem;text-transform:none;letter-spacing:0;}
++.cosmetic-live-note span{display:block;padding:.48rem .52rem;border-radius:12px;border:1px solid rgba(190,224,255,.14);background:rgba(5,9,19,.78);color:var(--muted);font-size:.58rem;line-height:1.35;font-weight:600;}
++.cosmetic-live-note b{display:block;color:var(--text);font-weight:800;margin-bottom:.08rem;}
++.cosmetic-equipped-panel{grid-area:equipped;grid-template-columns:1fr;margin:0;}
++.cosmetic-equipped-summary{padding:.04rem 0 .08rem;}
++.cosmetic-equipped-item{min-height:auto;}
++.nft-rarity-strip{grid-area:rarity;margin:0;}
++.nft-rarity-strip.show{align-items:flex-start;}
++.nft-rarity-strip #nft-rarity-copy{flex:1 1 100%;}
++.rarity-equip-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));}
++.cosmetic-inventory-head{grid-area:inventory;margin:0;}
++.cosmetic-filter-bar{grid-area:filters;margin:0;}
++.cosmetic-showcase{grid-area:showcase;margin:0;}
++.tree-utility-panel{grid-area:utility;display:none;margin:0;}
++.cosmetic-shelf.show-future .tree-utility-panel{display:block;}
++.cosmetic-grid{grid-area:grid;}
++.cosmetic-note{grid-area:note;margin-top:0;padding:.52rem .6rem;border-radius:12px;border:1px solid rgba(190,224,255,.12);background:rgba(3,7,16,.62);}
+ .flow-market .two-col>.acc:first-child{display:flex;flex-direction:column;}
+ .flow-market .two-col>.acc:first-child>*{order:20;}
+ .flow-market .two-col{grid-template-columns:1fr;}
+@@ -981,14 +1041,25 @@
+ .garden-support-group .garden-challenge-nudge,.garden-support-group .garden-crate-nudge,.garden-support-group .garden-referral-nudge,.garden-support-group .garden-slot-nudge,.garden-support-group .daily-reminder{margin:0;}
+ .daily-reminder{display:none;align-items:center;justify-content:space-between;gap:.8rem;margin:-.2rem 0 .8rem;padding:.76rem .86rem;border-radius:15px;border:1px solid rgba(133,189,255,.28);background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(25,230,180,.06)),rgba(5,9,19,.9);}
+ .daily-reminder.show{display:flex;}
++.garden-daily-rail .daily-reminder{margin:0;display:none;flex-direction:column;align-items:stretch;gap:.65rem;border-color:rgba(255,216,111,.48);background:radial-gradient(circle at 0 0,rgba(255,216,111,.16),transparent 52%),linear-gradient(160deg,rgba(8,18,24,.98),rgba(3,7,16,.96));box-shadow:0 0 24px rgba(255,216,111,.14),inset 0 0 0 1px rgba(255,255,255,.03);}
++.garden-daily-rail .daily-reminder.show{display:flex;}
++.garden-daily-rail .daily-reminder.reminder-ready{border-color:rgba(25,230,180,.62);box-shadow:0 0 26px rgba(25,230,180,.18),inset 0 0 0 1px rgba(25,230,180,.08);}
++.garden-daily-rail .daily-reminder.reminder-risk{border-color:rgba(255,80,126,.72);box-shadow:0 0 28px rgba(255,80,126,.2),inset 0 0 0 1px rgba(255,80,126,.12);}
+ .daily-reminder-main strong{display:block;color:var(--primary);font-family:"Orbitron",monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.12rem;}
++.garden-daily-rail .daily-reminder-main strong{color:var(--accent);font-size:.82rem;}
+ .daily-reminder-main span{display:block;color:var(--muted);font-size:.68rem;line-height:1.45;}
++.garden-daily-rail .daily-reminder-main span{color:var(--text);font-size:.72rem;line-height:1.42;}
+ .daily-reminder-meta{display:flex;gap:.42rem;align-items:stretch;flex-wrap:wrap;justify-content:flex-end;}
++.garden-daily-rail .daily-reminder-meta{justify-content:stretch;}
+ .daily-reminder-stat{min-width:122px;padding:.48rem .58rem;border-radius:12px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.78);}
++.garden-daily-rail .daily-reminder-stat{flex:1 1 120px;}
+ .daily-reminder-stat b{display:block;color:var(--accent);font-size:.82rem;}
++.garden-daily-rail .daily-reminder-stat b{font-size:1rem;}
+ .daily-reminder-stat small{display:block;color:var(--muted);font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;}
+ .daily-reminder-actions{display:flex;gap:.42rem;flex-wrap:wrap;justify-content:flex-end;}
++.garden-daily-rail .daily-reminder-actions{justify-content:stretch;width:100%;}
+ .daily-reminder-actions .gbtn{padding:.38rem .7rem;font-size:.6rem;letter-spacing:.08em;}
++.garden-daily-rail .daily-reminder-actions .gbtn{flex:1 1 120px;justify-content:center;}
+ .garden-slot-nudge{display:none;align-items:center;justify-content:space-between;gap:.75rem;margin:-.15rem 0 .75rem;padding:.72rem .85rem;border-radius:14px;border:1px solid rgba(25,230,180,.3);background:linear-gradient(135deg,rgba(25,230,180,.1),rgba(255,216,111,.05)),rgba(5,9,19,.9);}
+ .garden-slot-nudge.show{display:flex;}
+ .garden-slot-main strong{display:block;color:var(--primary);font-family:"Orbitron",monospace;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.12rem;}
+@@ -1054,6 +1125,7 @@
+ .garden-board-panel .garden-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:.58rem;}
+ @media(max-width:1100px){.garden-command-layout{grid-template-columns:1fr;}.garden-daily-rail{position:static;display:grid;grid-template-columns:1fr 1fr;}.garden-daily-rail .daily-goal-grid{grid-template-columns:1fr;}.garden-support-utility{grid-template-columns:1fr;}}
+ @media(max-width:900px){.garden-check{grid-template-columns:1fr 1fr;}.garden-focus{grid-column:1/-1;}.daily-goal-grid{grid-template-columns:1fr;}.garden-daily-rail,.garden-support-stack{grid-template-columns:1fr;}.daily-reminder,.garden-slot-nudge,.garden-crate-nudge,.garden-referral-nudge,.garden-challenge-nudge,.garden-slots-head,.garden-buy-crates-banner,.garden-items-card,.buy-crates-marquee,.shop-choice-card{align-items:flex-start;flex-direction:column;}.garden-next-growth.show{grid-template-columns:1fr;}.garden-next-growth-copy,.garden-next-growth-score{max-width:none;}.garden-next-growth-action{align-items:flex-start;justify-content:flex-start;min-width:0;}.garden-next-growth-action .gbtn{width:100%;}.daily-reminder-meta,.daily-reminder-actions,.garden-slot-stats,.garden-slot-actions,.garden-nudge-actions,.buy-crates-actions,.shop-choice-actions{justify-content:flex-start;align-items:flex-start;}.garden-slots-cap{align-self:flex-start;}.buy-crates-actions,.shop-choice-actions{width:100%;}.buy-crates-actions .gbtn,.garden-buy-crates-banner .gbtn,.garden-items-card .gbtn,.shop-choice-actions .gbtn{width:100%;}.crate-help-row{grid-template-columns:1fr;}}
++@media(max-width:900px){.partner-chest-head{align-items:flex-start;flex-direction:column;}.partner-chest-grid{grid-template-columns:1fr;}.crate-card.partner-chest .gbtn{width:100%;}}
+ @media(max-width:900px){.garden-grid{grid-template-columns:repeat(4,1fr);}}
+ @media(max-width:760px){.garden-board-panel .garden-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+ @media(max-width:480px){.garden-check{grid-template-columns:1fr 1fr;}.garden-grid{grid-template-columns:repeat(2,1fr);}.garden-command-layout{gap:.65rem;}.garden-board-panel{padding:.65rem .58rem .72rem;border-radius:16px;}.garden-support-stack{gap:.58rem;}}
+@@ -1062,6 +1134,28 @@
+ .gc::before{content:"";position:absolute;inset:auto -25% -34px;height:68px;background:radial-gradient(circle at 50% 0,var(--growth-glow,rgba(25,230,180,.18)),transparent 70%);opacity:.9;pointer-events:none;z-index:0;}
+ .gc::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:46px;background:transparent;pointer-events:none;z-index:0;}
+ .gc:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(25,230,180,.18);border-color:rgba(25,230,180,.38);}
++.gc.has-nft-image{justify-content:flex-end;min-height:214px;padding:.46rem .42rem .44rem;background:rgba(3,7,16,.98);border-color:rgba(25,230,180,.28);box-shadow:inset 0 -48px 36px rgba(3,7,16,.82);}
++.gc.has-nft-image::before{inset:0;height:auto;background:linear-gradient(180deg,rgba(3,7,16,.08) 0%,rgba(3,7,16,0) 44%,rgba(3,7,16,.32) 72%,rgba(3,7,16,.86) 100%);opacity:1;z-index:1;}
++.gc.has-nft-image::after{height:48px;background:radial-gradient(circle at 50% 0,var(--growth-glow,rgba(25,230,180,.18)),transparent 74%);z-index:1;}
++.gc-nft-art{position:absolute;inset:0;z-index:0;background:rgba(3,7,16,.95);}
++.gc-nft-art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:saturate(1.08) contrast(1.05);}
++.gc.has-nft-image .gc-slot-label{position:absolute;top:.38rem;left:.38rem;margin:0;padding:.08rem .3rem;border-radius:999px;background:rgba(3,7,16,.68);border:1px solid rgba(190,224,255,.18);color:rgba(239,247,255,.86);text-shadow:0 1px 4px #000;backdrop-filter:blur(2px);}
++.gc.has-nft-image .gc-em{display:none;}
++.gc.has-nft-image .gc-lbl{position:absolute;top:.38rem;right:.38rem;padding:.08rem .34rem;border-radius:999px;background:rgba(3,7,16,.68);border:1px solid color-mix(in srgb,var(--stage-accent,#52f0b8) 38%,transparent);color:var(--stage-accent,#52f0b8)!important;font-size:.5rem;line-height:1.05;text-shadow:0 1px 5px #000,0 0 8px currentColor;backdrop-filter:blur(2px);}
++.gc.has-nft-image .gc-stage{width:100%;margin:0;padding:0;background:transparent;border:0;box-shadow:none;backdrop-filter:none;}
++.gc.has-nft-image .gc-stage-top{font-size:.43rem;line-height:1.1;}
++.gc.has-nft-image .gc-stage-name{font-size:.54rem;}
++.gc.has-nft-image .gc-stage-next{color:rgba(239,247,255,.82);}
++.gc-readout{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:.12rem;width:100%;}
++.gc-stat-line{display:flex;align-items:center;justify-content:center;gap:.28rem;flex-wrap:wrap;}
++.gc.has-nft-image .gc-readout{gap:.1rem;padding:.22rem .3rem .24rem;border-radius:10px;background:linear-gradient(180deg,rgba(3,7,16,.56),rgba(3,7,16,.76));border:1px solid rgba(190,224,255,.13);box-shadow:0 0 12px rgba(0,0,0,.28);backdrop-filter:blur(2px);}
++.gc.has-nft-image .gc-status,.gc.has-nft-image .gc-meta{background:transparent;text-shadow:0 1px 4px #000;}
++.gc.has-nft-image .gc-status{padding:.06rem .34rem;background:rgba(3,7,16,.46);font-size:.48rem;}
++.gc.has-nft-image .gc-meta{padding:0;color:rgba(239,247,255,.84);}
++.gc.has-nft-image .gc-status-hint{display:none;}
++.gc.has-nft-image .gc-grow-track{height:4px;margin-top:.12rem;}
++.gc.has-nft-image .gc-actions{margin-top:.16rem;padding-top:0;}
++.gc.has-nft-image .gc-btn{margin-top:0;padding:.1rem .36rem;font-size:.5rem;background:rgba(3,88,78,.78);box-shadow:0 0 9px rgba(25,230,180,.18),0 1px 5px rgba(0,0,0,.32);}
+ .gc.empty-slot{border-style:dashed;border-color:rgba(190,224,255,.13);opacity:.7;cursor:pointer;background:linear-gradient(180deg,rgba(25,230,180,.035),rgba(5,9,19,.96));justify-content:center;gap:.28rem;}
+ .gc.empty-slot:hover{opacity:1;border-color:rgba(25,230,180,.48);box-shadow:0 0 20px rgba(25,230,180,.14);}
+ .gc.wilt-slot{border-color:rgba(255,179,71,.45);box-shadow:0 0 9px rgba(255,179,71,.12);}
+@@ -1195,7 +1289,7 @@
+ .buy-crates-copy{max-width:620px;margin-top:.28rem;font-size:.68rem;color:var(--muted);line-height:1.4;}
+ .buy-crates-actions{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;justify-content:flex-end;}
+ .buy-crates-actions .gbtn{padding:.55rem .9rem;font-size:.68rem;}
+-.crate-quick-help{order:3;margin:0 0 .65rem;border-radius:14px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.62);overflow:hidden;}
++.crate-quick-help{order:4;margin:0 0 .65rem;border-radius:14px;border:1px solid rgba(190,224,255,.16);background:rgba(3,7,16,.62);overflow:hidden;}
+ .crate-quick-help summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .65rem;cursor:pointer;font-family:"Orbitron",monospace;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-size:.62rem;}
+ .crate-quick-help summary::-webkit-details-marker{display:none;}
+ .crate-quick-help summary span{color:var(--accent);}
+@@ -1248,6 +1342,24 @@
+ .crate-card.mythic{--tier:rgba(255,216,111,1);--tier-soft:rgba(255,216,111,.28);--tier-glow:rgba(255,216,111,.38);border-color:rgba(255,216,111,.5);box-shadow:0 0 22px rgba(255,216,111,.18),inset 0 0 20px rgba(255,216,111,.04);}
+ .crate-card.supply-drop{order:5;--tier:rgba(255,91,217,.9);--tier-soft:rgba(255,91,217,.18);--tier-glow:rgba(255,91,217,.28);--crate-light:#ffd1f5;--crate-mid:#9c3a84;border-color:rgba(255,91,217,.44);background:radial-gradient(circle at 15% 0,rgba(255,91,217,.16),transparent 52%),radial-gradient(circle at 100% 18%,rgba(255,216,111,.1),transparent 48%),rgba(5,9,19,.96);}
+ .crate-card.supply-drop .crate-loot{min-height:38px;}
++.partner-chest-section{order:3;margin:0 0 .7rem;padding:.7rem;border-radius:16px;border:1px solid rgba(255,216,111,.24);background:radial-gradient(circle at 8% 0,rgba(255,216,111,.13),transparent 44%),rgba(4,8,18,.76);}
++.partner-chest-head{display:flex;align-items:flex-end;justify-content:space-between;gap:.75rem;margin-bottom:.55rem;}
++.partner-chest-title{font-family:"Orbitron",monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
++.partner-chest-copy{max-width:720px;margin-top:.16rem;font-size:.66rem;color:var(--muted);line-height:1.42;}
++.partner-chest-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;}
++.crate-card.partner-chest{min-height:202px;}
++.crate-card.boom-chest{--tier:rgba(255,111,28,.95);--tier-soft:rgba(255,111,28,.2);--tier-glow:rgba(255,111,28,.34);--crate-light:#ffcf5f;--crate-lid:#ffe59a;--crate-mid:#c94d16;--crate-dark:#571b0b;border-color:rgba(255,111,28,.46);}
++.crate-card.victory-chest{--tier:rgba(88,156,255,.95);--tier-soft:rgba(168,85,247,.18);--tier-glow:rgba(88,156,255,.32);--crate-light:#9fc6ff;--crate-lid:#d8e5ff;--crate-mid:#5b39c9;--crate-dark:#17194f;border-color:rgba(88,156,255,.42);}
++.crate-card.boom-chest .crate-name{color:#ffd86f;}
++.crate-card.victory-chest .crate-name{color:#9fc6ff;}
++.crate-card.boom-chest .crate-focus{border-color:rgba(255,111,28,.34);background:rgba(255,111,28,.08);color:#ffcf8a;}
++.crate-card.victory-chest .crate-focus{border-color:rgba(88,156,255,.34);background:rgba(88,156,255,.08);color:#9fc6ff;}
++.crate-card.partner-chest .crate-best{border-color:color-mix(in srgb,var(--tier) 34%,transparent);background:color-mix(in srgb,var(--tier-soft) 38%,rgba(5,9,19,.72));}
++.crate-card.partner-chest .crate-best strong{color:var(--text);}
++.partner-chest-link{color:var(--primary);font-weight:800;text-decoration:none;border-bottom:1px solid rgba(25,230,180,.32);}
++.partner-chest-link:hover{color:var(--accent);border-bottom-color:rgba(255,216,111,.5);}
++.crate-card.boom-chest .crate-art{object-position:center 51%;}
++.crate-card.victory-chest .crate-art{object-position:center 50%;}
+ .crate-card.ancient::before,.crate-card.mythic::before{border-top-width:4px;}
+ .crate-card.mythic .crate-name{color:var(--accent);}
+ .crate-card.ancient .crate-name{color:#ffcf8a;}
+@@ -1329,7 +1441,19 @@
+ .pending-crate-card.canopy{--tier:rgba(168,85,247,.85);--crate-light:#d4a0ff;--crate-mid:#7446bc;}
+ .pending-crate-card.ancient{--tier:rgba(255,179,71,.9);--crate-light:#ffc879;--crate-mid:#a56828;}
+ .pending-crate-card.mythic{--tier:rgba(255,216,111,1);--crate-light:#fff1a6;--crate-mid:#c8951e;}
++.pending-crate-card.boom-chest{--tier:rgba(255,111,28,.95);--crate-light:#ffcf5f;--crate-mid:#c94d16;}
++.pending-crate-card.victory-chest{--tier:rgba(88,156,255,.95);--crate-light:#9fc6ff;--crate-mid:#5b39c9;}
+ .pending-crate-card .crate-icon{margin-bottom:.45rem;}
++.pending-crate-art-wrap{position:relative;margin:-.18rem -.18rem .5rem;border-radius:12px;border:1px solid color-mix(in srgb,var(--tier,rgba(25,230,180,.65)) 55%,transparent);background:rgba(3,7,16,.86);box-shadow:0 0 18px color-mix(in srgb,var(--tier,rgba(25,230,180,.65)) 28%,transparent);overflow:hidden;aspect-ratio:1.35/1;}
++.pending-crate-art-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,7,16,0) 46%,rgba(3,7,16,.76) 100%);pointer-events:none;}
++.pending-crate-art{display:block;width:100%;height:100%;object-fit:cover;object-position:center 52%;filter:saturate(1.08) contrast(1.04);}
++.pending-crate-card.seedling .pending-crate-art{object-position:center 50%;}
++.pending-crate-card.grove .pending-crate-art{object-position:center 48%;}
++.pending-crate-card.canopy .pending-crate-art{object-position:center 48%;}
++.pending-crate-card.ancient .pending-crate-art{object-position:center 53%;}
++.pending-crate-card.mythic .pending-crate-art{object-position:center 52%;}
++.pending-crate-card.boom-chest .pending-crate-art{object-position:center 51%;}
++.pending-crate-card.victory-chest .pending-crate-art{object-position:center 50%;}
+ .pending-crate-name,.owned-tool-name{font-family:"Orbitron",monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text);margin-bottom:.12rem;}
+ .pending-crate-meta,.owned-tool-meta{font-size:.64rem;color:var(--muted);line-height:1.4;margin-bottom:.45rem;}
+ .owned-tool-prompt{margin:.42rem 0 .5rem;}
+@@ -1535,7 +1659,8 @@
+ .adm-list-row.compact{max-height:88px;overflow:auto;}
+ footer{max-width:1240px;margin:0 auto 1rem;padding:.75rem 1.3rem .35rem;font-size:.72rem;color:var(--muted);text-align:center;}
+ .flink{color:var(--accent);text-decoration:none;}
+-@media(max-width:900px){.hero-grid,.two-col,.info-grid,.rewards-layout{grid-template-columns:1fr;}.reward-side{gap:.75rem;}}
++@media(max-width:900px){.hero-grid,.two-col,.info-grid,.rewards-layout,.reward-status-board,.reward-claim-grid{grid-template-columns:1fr;}.reward-side{gap:.75rem;}}
++@media(max-width:900px){.cosmetic-shelf{grid-template-columns:1fr;grid-template-areas:"head" "preview" "equipped" "rarity" "inventory" "filters" "showcase" "utility" "grid" "note";}.cosmetic-live-preview{grid-template-columns:1fr;}.cosmetic-live-slot{justify-self:center;}.cosmetic-live-note{grid-template-columns:1fr;}}
+ @media(max-width:1320px) and (min-width:769px){
+   header{border-radius:24px;padding:.62rem .85rem;}
+   .logo{min-width:0;}
+@@ -1615,6 +1740,9 @@
+   .reward-grid{grid-template-columns:1fr;}
+   .reward-primary-grid{grid-template-columns:1fr;}
+   .reward-mini-grid{grid-template-columns:1fr;}
++  .reward-mini-grid.compact{grid-template-columns:1fr 1fr;}
++  .reward-equation{grid-template-columns:1fr;}
++  .reward-eq-op{min-height:18px;padding:0;font-size:.85rem;}
+   .reward-dash-pair{grid-template-columns:1fr;}
+   .reward-side .badge-board{grid-template-columns:1fr;}
+   .reward-zone-head{align-items:flex-start;flex-direction:column;}
+@@ -1660,7 +1788,7 @@
+   .addr{padding:.42rem .65rem;font-size:.66rem;letter-spacing:.08em;}
+   .container{padding-inline:.55rem;}
+   .section{padding:.9rem .72rem;border-radius:18px;}
+-  .reward-grid,.reward-primary-grid,.reward-mini-grid,.reward-dash-pair,.ref-snapshot,.milestone-grid,.reward-side .badge-board,.cosmetic-grid,.tree-enhance-grid,.invite-reward-grid{grid-template-columns:1fr;}
++  .reward-grid,.reward-primary-grid,.reward-mini-grid,.reward-mini-grid.compact,.reward-dash-pair,.ref-snapshot,.milestone-grid,.reward-side .badge-board,.cosmetic-grid,.tree-enhance-grid,.invite-reward-grid{grid-template-columns:1fr;}
+   .sec-hdr{align-items:flex-start;flex-direction:column;}
+   .hero{padding:1.12rem .82rem 1rem;border-radius:18px;}
+   .hero h1{font-size:clamp(1.08rem,5.15vw,1.32rem);line-height:1.48;letter-spacing:.055em;margin-bottom:.65rem;}
+@@ -2084,6 +2212,7 @@
+           <div class="garden-nudge-actions">
+             <span class="garden-challenge-pill" id="garden-items-pill">0 items</span>
+             <button class="gbtn" onclick="setStrategyTab('owned');doc('tools-sec')">My Items</button>
++            <button class="gbtn" id="garden-open-crates" onclick="doOpenCrate()" disabled>Open Crates</button>
+             <button class="gbtn" id="garden-items-apply" onclick="doApplyTool()">Apply Item</button>
+           </div>
+         </div>
+@@ -2110,19 +2239,10 @@
+           <details class="garden-support-group">
+             <summary>Reminder</summary>
+             <div class="garden-support-group-body">
+-            <div class="daily-reminder" id="daily-reminder">
+-              <div class="daily-reminder-main">
+-                <strong>Daily Reminder</strong>
+-                <span id="daily-reminder-copy">Connect wallet to calculate when your next watering window opens.</span>
+-              </div>
+-              <div class="daily-reminder-meta">
+-                <div class="daily-reminder-stat"><b id="daily-reminder-time">--</b><small>Next watering opens</small></div>
+-                <div class="daily-reminder-stat"><b id="daily-reminder-risk">--</b><small>Garden status</small></div>
+-                <div class="daily-reminder-actions">
+-                  <button class="gbtn" id="daily-reminder-calendar" onclick="openGoogleCalendarReminder()">Google Calendar</button>
+-                  <button class="gbtn" id="daily-reminder-ics" onclick="downloadGardenCalendarReminder()">Apple / Outlook</button>
+-                  <button class="gbtn" onclick="createPhoneReminder()">Phone Reminder</button>
+-                </div>
++            <div class="garden-crate-nudge show">
++              <div>
++                <strong>Do not miss watering</strong>
++                <span>Your live reminder now stays near Today’s Garden Check. Use the calendar buttons there to save it outside the site.</span>
+               </div>
+             </div>
+             </div>
+@@ -2176,6 +2296,21 @@
+         <div class="garden-stat"><strong id="garden-watered">0</strong><span>Watered today</span></div>
+         <div class="garden-stat warn"><strong id="garden-wilting">0</strong><span>Wilting</span></div>
+         <div class="garden-stat danger"><strong id="garden-dead">0</strong><span>Dead</span></div>
++      </div>
++      <div class="daily-reminder" id="daily-reminder">
++        <div class="daily-reminder-main">
++          <strong>Watering Reminder</strong>
++          <span id="daily-reminder-copy">Connect wallet to calculate when your next watering window opens.</span>
++        </div>
++        <div class="daily-reminder-meta">
++          <div class="daily-reminder-stat"><b id="daily-reminder-time">--</b><small>Next watering opens</small></div>
++          <div class="daily-reminder-stat"><b id="daily-reminder-risk">--</b><small>Garden status</small></div>
++        </div>
++        <div class="daily-reminder-actions">
++          <button class="gbtn" id="daily-reminder-calendar" onclick="openGoogleCalendarReminder()">Google Calendar</button>
++          <button class="gbtn" id="daily-reminder-ics" onclick="downloadGardenCalendarReminder()">Apple / Outlook</button>
++          <button class="gbtn" onclick="createPhoneReminder()">Phone Reminder</button>
++        </div>
+       </div>
+       <div class="next-move-panel garden-next-move-panel" aria-label="Your next move">
+         <div class="next-move-head">
+@@ -2482,6 +2617,35 @@
+               <button type="button" class="gbtn" id="supply-buy-btn" onclick="confirmSupplyDrop()">Buy Featured Item</button>
+             </div>
+           </div>
++          <div class="partner-chest-section" id="partner-chests">
++            <div class="partner-chest-head">
++              <div>
++                <div class="partner-chest-title">Partner Chests</div>
++                <div class="partner-chest-copy">Brand-specific chests with their own contract loot tables. BOOM pushes Growth Points; Victory protects and recovers progress.</div>
++              </div>
++              <span class="supply-tag" id="partner-chest-status">Contract upgrade ready</span>
++            </div>
++            <div class="partner-chest-grid">
++              <div class="crate-card partner-chest boom-chest">
++                <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/boom-chest.png" alt="$BOOM Partner Chest" loading="lazy" decoding="async"></div>
++                <div class="crate-top"><div><div class="crate-name">$BOOM Chest</div><div class="crate-role">Growth Point Burst</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
++                <div class="supply-tag-row"><span class="supply-tag direct">Partner</span><span class="supply-tag">Unique loot table</span></div>
++                <div class="crate-loot">Guaranteed Ancient Bark, Sunstone, and Double Dose. Bonus roll can add Forest Heart or Growth Tonic.</div>
++                <div class="crate-focus-row"><span class="crate-focus">Growth</span><span class="crate-focus">Push</span><span class="crate-focus">Streak</span></div>
++                <div class="crate-best"><strong>Best for:</strong> players trying to make a leaderboard move with Growth Point boosters and streak tools. Partner project: <a class="partner-chest-link" href="https://boombotsai.wal.app" target="_blank" rel="noopener noreferrer">Boom Bots AI</a>.</div>
++                <button type="button" class="gbtn" title="Buy a BOOM Partner Chest" onclick="confirmPartnerChest('boom')">Buy $BOOM</button>
++              </div>
++              <div class="crate-card partner-chest victory-chest">
++                <div class="crate-art-wrap"><img class="crate-art" src="assets/shop/crates/victory-chest.png" alt="Victory Partner Chest" loading="lazy" decoding="async"></div>
++                <div class="crate-top"><div><div class="crate-name">Victory Chest</div><div class="crate-role">Protect the Lead</div><div class="crate-price">0.01 SUI</div></div><div class="crate-icon crate-icon-fallback" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div></div>
++                <div class="supply-tag-row"><span class="supply-tag direct">Partner</span><span class="supply-tag">Unique loot table</span></div>
++                <div class="crate-loot">Guaranteed Drought Shield, Rain Barrel, and Mulch. Bonus roll adds Bottomless Can or Revival Kit.</div>
++                <div class="crate-focus-row"><span class="crate-focus">Protect</span><span class="crate-focus">Recover</span><span class="crate-focus">Power</span></div>
++                <div class="crate-best"><strong>Best for:</strong> wallets trying to protect progress, recover from trouble, and keep a strong season alive. Partner project: <a class="partner-chest-link" href="https://dex.suidex.org/swap" target="_blank" rel="noopener noreferrer">SUIDEX</a>.</div>
++                <button type="button" class="gbtn" title="Buy a Victory Partner Chest" onclick="confirmPartnerChest('victory')">Buy Victory</button>
++              </div>
++            </div>
++          </div>
+           <details class="crate-quick-help">
+             <summary>Need help choosing? <span>+</span></summary>
+             <div class="crate-help-body">
+@@ -2670,86 +2834,103 @@
+ <section class="section flow-rewards" id="rewards-sec">
+   <div class="sec-hdr">
+     <div>
+-      <h2 class="sec-title">Rewards Hub</h2>
+-      <p class="sec-sub">Track monthly rewards, Forest Invites, badges, cosmetics, Daily Canopy Challenge notes, and claim details without the long scroll.</p>
++      <h2 class="sec-title">Rewards</h2>
++      <p class="sec-sub">See your monthly SUI pool estimate, claim status, invite earnings, badges, and cosmetics.</p>
+     </div>
+-    <button class="gbtn" onclick="copyRef()">Copy Invite Link</button>
++    <div style="display:flex;gap:.45rem;flex-wrap:wrap">
++      <button class="gbtn" onclick="doc('garden-sec')">My Garden</button>
++      <button class="gbtn" onclick="copyRef()">Copy Invite Link</button>
++    </div>
+   </div>
+   <div class="reward-tabs" role="tablist" aria-label="Rewards Hub sections">
+-    <button class="reward-tab active" id="reward-tab-season-btn" role="tab" aria-selected="true" aria-controls="reward-tab-season" onclick="setRewardTab('season')">Cycle</button>
+-    <button class="reward-tab" id="reward-tab-challenges-btn" role="tab" aria-selected="false" aria-controls="reward-tab-challenges" onclick="setRewardTab('challenges')">Challenges</button>
++    <button class="reward-tab active" id="reward-tab-season-btn" role="tab" aria-selected="true" aria-controls="reward-tab-season" onclick="setRewardTab('season')">Monthly Pool</button>
+     <button class="reward-tab" id="reward-tab-invites-btn" role="tab" aria-selected="false" aria-controls="reward-tab-invites" onclick="setRewardTab('invites')">Invites</button>
+     <button class="reward-tab" id="reward-tab-badges-btn" role="tab" aria-selected="false" aria-controls="reward-tab-badges" onclick="setRewardTab('badges')">Badges</button>
+     <button class="reward-tab" id="reward-tab-cosmetics-btn" role="tab" aria-selected="false" aria-controls="reward-tab-cosmetics" onclick="setRewardTab('cosmetics')">Cosmetics</button>
+-    <button class="reward-tab" id="reward-tab-details-btn" role="tab" aria-selected="false" aria-controls="reward-tab-details" onclick="setRewardTab('details')">Details</button>
++    <button class="reward-tab" id="reward-tab-challenges-btn" role="tab" aria-selected="false" aria-controls="reward-tab-challenges" onclick="setRewardTab('challenges')">Future Challenges</button>
++    <button class="reward-tab" id="reward-tab-details-btn" role="tab" aria-selected="false" aria-controls="reward-tab-details" onclick="setRewardTab('details')">Rules</button>
+   </div>
+   <div class="reward-tab-panel active" id="reward-tab-season" role="tabpanel" aria-labelledby="reward-tab-season-btn">
+     <div class="reward-zone claim">
+       <div class="reward-zone-head">
+         <div>
+           <div class="reward-zone-title">Monthly Growth Pool</div>
+-          <div class="reward-zone-copy">This is the main prize: your Growth Points decide your share of the live SUI pool. Claim opens after the monthly cycle ends.</div>
++          <div class="reward-zone-copy">This is the main reward path. Finish the cycle with more Growth Points to earn a larger share of the claimable SUI pool.</div>
+         </div>
+         <button class="gbtn" onclick="doClaimReward()">Claim Reward</button>
+       </div>
+-      <div class="roi-banner">
+-        <div class="roi-left">
+-          <div class="roi-label">Projected Monthly Reward</div>
+-          <div class="roi-pct" id="roi-pct">-</div>
+-          <div class="roi-sub">Current estimate from your Growth Point share</div>
+-        </div>
+-        <div class="roi-pills">
+-          <div class="roi-pill gold">Your Growth Points / Total Growth Points</div>
+-          <div class="roi-pill teal">Live pool estimate</div>
+-          <button class="roi-plant-btn" onclick="doPlant()">Plant another Seed</button>
+-        </div>
+-      </div>
+-      <div class="cycle-countdown">
+-        <div class="cycle-timer-card">
+-          <div class="cycle-label" id="cycle-live-label">Current cycle ends in</div>
+-          <div class="cycle-time" id="cycle-live-countdown">Connect wallet</div>
+-          <div class="cycle-copy" id="cycle-live-copy">Rewards unlock when the live on-chain cycle ends.</div>
+-          <div class="cycle-state pending" id="cycle-live-status">Loading</div>
+-        </div>
+-        <div class="cycle-timer-card calendar">
+-          <div class="cycle-label" id="cycle-next-label">Next planned monthly cycle</div>
+-          <div class="cycle-time gold" id="cycle-next-month">First of next month</div>
+-          <div class="cycle-copy" id="cycle-next-month-copy">Planned around 00:00 UTC for a clear monthly rhythm.</div>
+-        </div>
+-      </div>
+-      <div class="reward-primary-grid">
+-        <div class="reward-card"><div class="reward-icon">💰</div><div class="reward-label">Projected SUI</div><div class="reward-value" id="r-proj">0.00 SUI</div><div class="reward-copy">Based on your current pool share.</div></div>
+-        <div class="reward-card"><div class="reward-icon">📊</div><div class="reward-label">Pool Share</div><div class="reward-value" id="r-share">0.0000%</div><div class="reward-copy">Your Growth Points divided by total cycle Growth Points.</div></div>
+-        <div class="reward-card"><div class="reward-icon">🌿</div><div class="reward-label">Growth Points</div><div class="reward-value" id="r-gp">0</div><div class="reward-copy">Your cycle score.</div></div>
+-        <div class="reward-card"><div class="reward-icon">🧺</div><div class="reward-label">Collected</div><div class="reward-value" id="r-collected">0.0000 SUI</div><div class="reward-copy">Actual SUI claimed from completed cycles.</div></div>
+-      </div>
+-    </div>
+-    <div class="reward-panel">
+-      <div class="reward-zone-head">
+-        <div>
+-          <div class="reward-zone-title">Garden Snapshot</div>
+-          <div class="reward-zone-copy">Quick account context for your reward position.</div>
+-        </div>
+-        <button class="gbtn" onclick="doc('garden-sec')">My Garden</button>
+-      </div>
+-      <div class="reward-mini-grid">
++      <div class="reward-status-board">
++        <div class="reward-claim-hero">
++          <div class="reward-claim-story">
++            <div class="reward-claim-kicker">Main payout</div>
++            <div class="reward-claim-title">Your Growth Points become SUI after the cycle closes.</div>
++            <div class="reward-claim-copy">Water daily, keep Seeds alive, and use crate items when they give you an edge. Your final Growth Points are compared with everyone else's final Growth Points to set your Growth Pool share.</div>
++            <div class="reward-claim-actions">
++              <button class="gbtn" onclick="doc('garden-sec')">Build Growth Points</button>
++              <button class="gbtn" onclick="doc('market-sec')">Buy Crates</button>
++              <button class="gbtn" onclick="doClaimReward()">Claim</button>
++            </div>
++          </div>
++          <div class="reward-equation" aria-label="Reward calculation">
++            <div class="reward-eq-piece">
++              <div class="reward-eq-label">You</div>
++              <div class="reward-eq-value"><span id="r-gp">0</span> Growth Points</div>
++            </div>
++            <div class="reward-eq-op">/</div>
++            <div class="reward-eq-piece">
++              <div class="reward-eq-label">All players</div>
++              <div class="reward-eq-value">Total Growth Points</div>
++            </div>
++            <div class="reward-eq-op">=</div>
++            <div class="reward-eq-piece result">
++              <div class="reward-eq-label">Pool share</div>
++              <div class="reward-eq-value" id="r-share">0.0000%</div>
++            </div>
++          </div>
++        </div>
++        <div class="reward-support-panel">
++          <div class="reward-payout-card">
++            <div class="reward-payout-label">Projected SUI</div>
++            <div class="reward-payout-value" id="r-proj">0.00 SUI</div>
++            <div class="reward-payout-note">Estimate based on your current Growth Point share. Final payout can move until the cycle closes.</div>
++          </div>
++          <div class="cycle-countdown">
++            <div class="cycle-timer-card">
++              <div class="cycle-label" id="cycle-live-label">Current cycle ends in</div>
++              <div class="cycle-time" id="cycle-live-countdown">Connect wallet</div>
++              <div class="cycle-copy" id="cycle-live-copy">Rewards unlock when the live on-chain cycle ends.</div>
++              <div class="cycle-state pending" id="cycle-live-status">Loading</div>
++            </div>
++            <div class="cycle-timer-card calendar">
++              <div class="cycle-label" id="cycle-next-label">Next planned monthly cycle</div>
++              <div class="cycle-time gold" id="cycle-next-month">First of next month</div>
++              <div class="cycle-copy" id="cycle-next-month-copy">Planned around 00:00 UTC for a clear monthly rhythm.</div>
++            </div>
++          </div>
++        </div>
++      </div>
++      <div class="reward-mini-grid compact">
+         <div class="reward-mini"><small>Seeds planted</small><b id="d-seeds">0</b></div>
+         <div class="reward-mini"><small>NFTree access</small><b id="d-nfts">0</b></div>
+         <div class="reward-mini"><small>Open slots</small><b id="d-slots">0</b></div>
+         <div class="reward-mini"><small>Growth Points</small><b id="d-gp">0</b></div>
+         <div class="reward-mini"><small>Pool share</small><b id="d-share">0.0000%</b></div>
+         <div class="reward-mini"><small>Projected SUI</small><b id="d-sui">0.00 SUI</b></div>
+-        <div class="reward-mini"><small>Collected</small><b id="d-collected">0.0000 SUI</b></div>
+         <div class="reward-mini"><small>Invite earned</small><b id="d-ref">0.00 SUI</b></div>
++        <div class="reward-mini"><small>Claimed</small><b id="r-collected">0.0000 SUI</b><b class="reward-sync-only" id="d-collected">0.0000 SUI</b></div>
+         <div class="reward-mini ref-link" id="ref-row">
+           <small>Forest Invite link</small>
+           <span id="ref-link"></span>
+           <button class="gbtn" style="padding:.28rem .6rem;font-size:.6rem" onclick="copyRef()">Copy Link</button>
+         </div>
+       </div>
+-    </div>
+-    <div class="roi-math-note">
+-      <strong>Projected reward math:</strong> current estimate = your Growth Points divided by total cycle Growth Points, multiplied by the live SUI Growth Pool. Final payout can change as players add Growth Points, the pool grows, tools are used, Seeds die, and the cycle ends.
++      <div class="reward-claim-grid">
++        <div class="reward-claim-status"><strong>Claim window</strong>Claim after the cycle closes. If a previous archive is still claimable, you can claim it while the new cycle is already running.</div>
++        <div class="reward-claim-status"><strong>Need a bigger share?</strong>Go back to My Garden to keep Seeds growing, or use crate items before key watering windows.</div>
++      </div>
++      <div class="reward-note-inline">
++        <strong>Reward math:</strong> your Growth Points / total Growth Points x live SUI Growth Pool. Final payout can change as players add Growth Points, the pool grows, items are used, Seeds die, and the cycle ends.
++      </div>
+     </div>
+   </div>
+   <div class="reward-tab-panel challenge-panel-parked" id="reward-tab-challenges" role="tabpanel" aria-labelledby="reward-tab-challenges-btn">
+@@ -2984,7 +3165,11 @@
+         <div>
+           <div class="cosmetic-live-title">Seed Slot Preview</div>
+           <div class="cosmetic-live-copy" id="cosmetic-preview-copy">Plain Seed slot preview. Equip unlocked cosmetics to change the frame, glow, or ground style.</div>
+-          <div class="cosmetic-live-note"><b>Visual only:</b> no Growth Point or reward change.</div>
++          <div class="cosmetic-live-note">
++            <span><b>Visual only</b>No Growth Point or reward change.</span>
++            <span><b>Instant equip</b>Saved on this device for this wallet.</span>
++            <span><b>Rarity unlocks</b>NFTree rarity can unlock prestige looks.</span>
++          </div>
+         </div>
+         <div class="cosmetic-live-slot">
+           <div class="garden-grid cosmetic-preview-grid" id="cosmetic-preview-grid">
+@@ -3204,6 +3389,8 @@
+             <option value="2">Canopy</option>
+             <option value="3">Ancient</option>
+             <option value="4">Mythic</option>
++            <option value="5">$BOOM Chest</option>
++            <option value="6">Victory Chest</option>
+           </select>
+           <button class="adm-btn" onclick="aPromoCrate()">Send Crate</button>
+         </div>
+@@ -3555,6 +3742,7 @@
+ let SEASON_STATS=null;
+ let CANOPY_CHALLENGE_STATE=null;
+ let NFTREE_LOCKED=false;
++let NFTREE_ART_BY_ID=new Map();
+ let FOCUS_PLANTING_ON_LOAD=false;
+ let GARDEN_REMINDER={text:'Connect wallet to load your TreeGrow reminder.',at:null,status:'Connect'};
+ let GARDEN_COUNTDOWN_TIMER=null;
+@@ -4221,9 +4409,10 @@
+   $('admin-nav').style.display='none';
+   txt('inv-display','');
+   Object.assign(ACH_STATE,{seeds:[],tools:[],crates:[],nfts:[],refereeCount:0,rank:null});
++  NFTREE_ART_BY_ID=new Map();
+   renderCrateRoomInventory([],[],[]);
+   renderGardenTools([],[]);
+-  renderGardenItemsNudge([],[]);
++  renderGardenItemsNudge([],[],[]);
+   renderGardenCrateNudge([],[],[]);
+   renderGardenReferralNudge([]);
+   renderCanopyChallengeState({supported:false,status:'upgrade_needed'});
+@@ -4294,6 +4483,7 @@
+   const cal=$('daily-reminder-calendar');
+   const ics=$('daily-reminder-ics');
+   if(!wrap||!copy||!time||!risk)return;
++  wrap.classList.remove('reminder-ready','reminder-risk');
+   if(!PA){
+     wrap.classList.remove('show');
+     setGardenCountdown(null,'--');
+@@ -4330,9 +4520,11 @@
+   if(wilting.length){
+     status='Wilting';
+     message=`${wilting.length} Seed${wilting.length===1?' is':'s are'} wilting. Water now to protect your cycle.`;
++    wrap.classList.add('reminder-risk');
+   }else if(ready.length){
+     status='Ready now';
+     message=`${ready.length} Seed${ready.length===1?' is':'s are'} ready to water. Make today's check-in count.`;
++    wrap.classList.add('reminder-ready');
+   }else if(protectedSeeds.length&&protectedSeeds.length===live.length){
+     status='Auto-water';
+     message=`Auto-water is covering ${protectedSeeds.length} Seed${protectedSeeds.length===1?'':'s'}. Check back before protection expires or the next manual watering window opens.`;
+@@ -4673,29 +4865,43 @@
+   secondary.onclick=()=>doc('market-sec');
+   wrap.classList.add('show');
+ }
+-function renderGardenItemsNudge(tools=[],seeds=[]){
++function renderGardenItemsNudge(tools=[],seeds=[],crates=[]){
+   const wrap=$('garden-items-nudge');
+   const copy=$('garden-items-copy');
+   const pill=$('garden-items-pill');
+   const apply=$('garden-items-apply');
++  const openCrates=$('garden-open-crates');
+   if(!wrap||!copy||!pill)return;
+   if(!PA){
+     copy.textContent='Connect wallet to see usable Arborist Items inside My Garden.';
+     pill.textContent='0 items';
+     if(apply)apply.disabled=true;
++    if(openCrates){
++      openCrates.textContent='Open Crates';
++      openCrates.disabled=true;
++    }
+     wrap.classList.add('show');
+     return;
+   }
+   const parsed=tools.map(parsedToolFromObject);
++  const crateCount=Array.isArray(crates)?crates.length:0;
+   const uses=parsed.reduce((sum,t)=>sum+Number(t.charges||0),0);
+   const itemWord=parsed.length===1?'item':'items';
+   const useWord=uses===1?'use':'uses';
+   pill.textContent=parsed.length?`${parsed.length} ${itemWord} · ${uses} ${useWord}`:'0 items';
+   if(apply)apply.disabled=!parsed.length||!seeds.length;
++  if(openCrates){
++    openCrates.textContent=crateCount?`Open ${crateCount} Crate${crateCount===1?'':'s'}`:'Open Crates';
++    openCrates.disabled=!crateCount;
++  }
+   if(!parsed.length){
+-    copy.textContent='No items yet. Buy crates to get boosters, protection, recovery, and streak tools for higher Growth Points.';
++    copy.textContent=crateCount
++      ?`Open ${crateCount} pending crate${crateCount===1?'':'s'} to reveal Arborist Items for Growth Points, protection, recovery, and streak timing.`
++      :'No items yet. Buy crates to get boosters, protection, recovery, and streak tools for higher Growth Points.';
+   }else if(!seeds.length){
+     copy.textContent=`You have ${parsed.length} Arborist ${itemWord} ready. Plant a Seed before applying items.`;
++  }else if(crateCount){
++    copy.textContent=`${parsed.length} Arborist ${itemWord} ready, plus ${crateCount} unopened crate${crateCount===1?'':'s'}. Open crates now so every option is ready before watering.`;
+   }else{
+     copy.textContent=`${parsed.length} Arborist ${itemWord} ready. Use boosters before watering, protection before dry windows, and streak tools to level faster.`;
+   }
+@@ -4799,7 +5005,7 @@
+   const next=stages[idx+1];
+   const progress=next?Math.max(0,Math.min(100,((score-cur.at)/(next.at-cur.at))*100)):100;
+   const daysToNext=next?Math.max(1,next.at-score):0;
+-  const nextText=next?`Next: ${next.label} in ${daysToNext} day${daysToNext===1?'':'s'}`:'Season Harvest reached';
++  const nextText=next?`Next stage progress: ${next.label} in ${daysToNext}d`:'Next stage progress: Season Harvest reached';
+   return {...cur,progress,next:nextText,score,nextStage:next?.label||'Season Harvest',daysToNext,nextAt:next?.at||30};
+ }
+ function bestGrowthSeed(seeds=[]){
+@@ -4831,7 +5037,7 @@
+   const nextGp=$('garden-next-gp');
+   const score=$('garden-next-growth-score');
+   const action=$('garden-next-growth-action');
+-  const setAction=(label,handler)=>{if(action){action.textContent=label;action.onclick=handler;}};
++  const setAction=(label,handler)=>{if(action){action.textContent=label;action.onclick=()=>handler();}};
+   if(!PA){
+     if(title)title.textContent='Connect to see your growth path';
+     if(copy)copy.textContent='My Garden will show which Seed is closest to leveling up and what action helps next.';
+@@ -4908,6 +5114,87 @@
+   const file=art[stage.art]||art.planted;
+   return `<img class="growth-img" src="assets/growth/${file}.png" alt="" loading="lazy">`;
+ }
++function normalizeNftreeImageUrl(url){
++  const raw=String(url||'').trim();
++  if(!raw)return '';
++  if(raw.startsWith('ipfs://'))return `https://ipfs.io/ipfs/${raw.replace(/^ipfs:\/\//,'').replace(/^ipfs\//,'')}`;
++  if(raw.startsWith('ar://'))return `https://arweave.net/${raw.slice(5)}`;
++  if(/^https?:\/\//i.test(raw)||raw.startsWith('data:image/'))return raw;
++  return '';
++}
++function nftreeIpfsPath(url){
++  const raw=String(url||'').trim();
++  if(!raw)return '';
++  if(/^ipfs:\/\//i.test(raw))return raw.replace(/^ipfs:\/\//i,'').replace(/^ipfs\//i,'');
++  const match=raw.match(/^https?:\/\/[^/]+\/ipfs\/(.+)$/i);
++  return match?.[1]||'';
++}
++function nftreeImageFallbacks(url){
++  const primary=normalizeNftreeImageUrl(url);
++  const path=nftreeIpfsPath(url);
++  const urls=[
++    primary,
++    path?`https://gateway.pinata.cloud/ipfs/${path}`:'',
++    path?`https://ipfs.io/ipfs/${path}`:'',
++    path?`https://cloudflare-ipfs.com/ipfs/${path}`:'',
++  ].filter(Boolean);
++  return [...new Set(urls)];
++}
++function handleNftreeArtError(img){
++  const fallbacks=String(img?.dataset?.fallbacks||'').split('|').filter(Boolean);
++  const next=fallbacks.shift();
++  if(next){
++    img.dataset.fallbacks=fallbacks.join('|');
++    img.src=next;
++    return;
++  }
++  img.closest('.gc')?.classList.remove('has-nft-image');
++  img.parentElement?.remove();
++}
++function nftreeDisplayData(nft){
++  return {
++    ...(nft?.display?.data||{}),
++    ...(nft?.data?.display?.data||{}),
++  };
++}
++function firstImageLikeValue(value){
++  const values=collectNftreeMetadataValues(value,[]);
++  return values.find(v=>/\.(png|jpe?g|webp|gif|svg)(\?|#|$)/i.test(v)||/^ipfs:\/\//i.test(v)||/^ar:\/\//i.test(v)||/^data:image\//i.test(v))||'';
++}
++function nftreeImageUrl(nft){
++  const f=nft?.content?.fields||{};
++  const d=nftreeDisplayData(nft);
++  const direct=[
++    d.image_url,d.imageUrl,d.image,d.img_url,d.media_url,d.url,
++    f.image_url,f.imageUrl,f.image,f.img_url,f.media_url,f.url,
++    f.metadata?.image_url,f.metadata?.imageUrl,f.metadata?.image,f.metadata?.url,
++  ];
++  for(const candidate of direct){
++    const url=normalizeNftreeImageUrl(candidate);
++    if(url)return url;
++  }
++  return normalizeNftreeImageUrl(firstImageLikeValue([d,f]));
++}
++function nftreeName(nft){
++  const f=nft?.content?.fields||{};
++  const d=nftreeDisplayData(nft);
++  return String(d.name||f.name||f.metadata?.name||'NFTree');
++}
++function buildNftreeArtMap(nfts=[]){
++  const map=new Map();
++  (Array.isArray(nfts)?nfts:[]).forEach(nft=>{
++    const id=nft?.objectId;
++    const image=nftreeImageUrl(nft);
++    const fallbacks=nftreeImageFallbacks(image);
++    if(id&&fallbacks.length)map.set(id,{image:fallbacks[0],fallbacks:fallbacks.slice(1),name:nftreeName(nft)});
++  });
++  return map;
++}
++function seedWithNftreeArt(seed){
++  if(!seed?.saplingId)return seed;
++  const art=NFTREE_ART_BY_ID.get(seed.saplingId);
++  return art?{...seed,nftreeImage:art.image,nftreeFallbacks:art.fallbacks||[],nftreeName:art.name}:seed;
++}
+ function renderGarden(seeds=[]){
+   const g=$('garden-grid');if(!g)return;
+   if(!PA){
+@@ -4915,7 +5202,7 @@
+     applyCosmetics();
+     return;
+   }
+-  const pad=[...seeds].slice(0,8);while(pad.length<8)pad.push(null);
++  const pad=[...seeds].map(seedWithNftreeArt).slice(0,8);while(pad.length<8)pad.push(null);
+   g.innerHTML=pad.map((s,idx)=>{
+     const slotLabel=`Slot ${idx+1}`;
+     if(!s)return `<div class="gc empty-slot" onclick="handleEmptySeedSlot()" title="Unlock this garden slot with an NFTree, then plant a Seed">
+@@ -4929,23 +5216,28 @@
+     const legacy=s.objectType&&!isCurrentArbObject(s,'Seed');
+     const status=seedStatusInfo(s);
+     const stage=seedGrowthStage(s);
+-    return `<div class="gc stage-${stage.cls}${iw?' wilt-slot':''}${id?' dead-slot':''}" data-seed-id="${esc(s.objectId)}" title="${stage.label} | ${e.l} | Streak:${s.streak}d | GP:${(s.growthPoints||0).toLocaleString()}">
++    return `<div class="gc stage-${stage.cls}${s.nftreeImage?' has-nft-image':''}${iw?' wilt-slot':''}${id?' dead-slot':''}" data-seed-id="${esc(s.objectId)}" title="${stage.label} | ${e.l} | Streak:${s.streak}d | GP:${(s.growthPoints||0).toLocaleString()}">
++      ${s.nftreeImage?`<div class="gc-nft-art" aria-hidden="true"><img src="${esc(s.nftreeImage)}" data-fallbacks="${esc((s.nftreeFallbacks||[]).join('|'))}" alt="" loading="lazy" decoding="async" onerror="handleNftreeArtError(this)"></div>`:''}
+       <div class="cosmetic-frame-art" aria-hidden="true"></div>
+       <div class="rarity-frame-decor" aria-hidden="true"><span class="rf-vine tl"></span><span class="rf-vine tr"></span><span class="rf-vine bl"></span><span class="rf-vine br"></span><span class="rf-leaf l1"></span><span class="rf-leaf l2"></span><span class="rf-leaf l3"></span><span class="rf-leaf l4"></span><span class="rf-crest"></span></div>
+       <div class="gc-slot-label">${slotLabel}</div>
+       <div class="gc-em stage-art${iw?' wilt-pulse':''}${id?' dead-shake':''}">${id?e.i:growthStageArt(stage)}</div>
+       <div class="gc-lbl" style="color:${e.c}">${e.l}</div>
+-      <div class="gc-stage" title="Growth stage is based on streak and Growth Points. Tools that add streak or Growth Points can push this forward.">
+-        <div class="gc-stage-top"><span class="gc-stage-name">${esc(stage.short||stage.label)}</span><span class="gc-stage-next">${esc(stage.next)}</span></div>
+-        <div class="gc-grow-track"><div class="gc-grow-fill" style="width:${stage.progress}%"></div></div>
+-      </div>
+-      <div class="gc-status ${status.cls}">${esc(status.label)}</div>
+-      <div class="gc-meta">🔥 ${s.streak}d</div>
+-      <div class="gc-meta">🌿 ${(s.growthPoints||0).toLocaleString()} GP</div>
+-      <div class="gc-meta">${esc(status.hint)}</div>
+-      ${seedEffectPills(s)}
+-      ${!s.bottomlessCanActive&&s.droughtDays>0?`<div class="gc-meta gc-dry">💧 Dry: ${s.droughtDays}d</div>`:''}
+-      ${legacy?'<div class="gc-meta" style="color:var(--warning)">Legacy view-only</div>':''}
++      <div class="gc-readout">
++        <div class="gc-stage" title="Next stage progress is based on streak and Growth Points. Tools that add streak or Growth Points can push this forward.">
++          <div class="gc-stage-top"><span class="gc-stage-name">${esc(stage.short||stage.label)}</span><span class="gc-stage-next">${esc(stage.next)}</span></div>
++          <div class="gc-grow-track"><div class="gc-grow-fill" style="width:${stage.progress}%"></div></div>
++        </div>
++        <div class="gc-status ${status.cls}">${esc(status.label)}</div>
++        <div class="gc-stat-line">
++          <span class="gc-meta">🔥 ${s.streak}d</span>
++          <span class="gc-meta">🌿 ${(s.growthPoints||0).toLocaleString()} GP</span>
++        </div>
++        <div class="gc-meta gc-status-hint">${esc(status.hint)}</div>
++        ${seedEffectPills(s)}
++        ${!s.bottomlessCanActive&&s.droughtDays>0?`<div class="gc-meta gc-dry">💧 Dry: ${s.droughtDays}d</div>`:''}
++        ${legacy?'<div class="gc-meta" style="color:var(--warning)">Legacy view-only</div>':''}
++      </div>
+       <div class="gc-actions">
+         ${!legacy&&!id?`<button class="gc-btn" onclick="doWaterSeed('${s.objectId}')">💧 Water</button>`:''}
+         ${!legacy&&id&&s.revivalCharges>0?`<button class="gc-btn gc-rev" onclick="doRevive('${s.objectId}')">💫 Revive</button>`:''}
+@@ -4972,8 +5264,13 @@
+     const seasonStarted=Number(SEASON_STATS?.seasonStartMs||0)>0;
+     const parsedCurrentSeeds = currentSeedObjects.map(window.arb.parseSeedObject);
+     const seeds = parsedCurrentSeeds.filter(s=>seasonStarted&&Number(s.claimedMs||0)===0&&(!currentCycleId||Number(s.seasonId||0)===currentCycleId));
++    const plantedNftIds=[...new Set(seeds.map(s=>s.saplingId).filter(Boolean))];
++    const nfts=plantedNftIds.length&&window.arb.getObjectsByIds
++      ? await window.arb.getObjectsByIds(plantedNftIds).catch(()=>[])
++      : [];
++    NFTREE_ART_BY_ID=buildNftreeArtMap(nfts);
+     const legacySeeds = legacySeedObjects.map(window.arb.parseSeedObject);
+-    ALL = seeds;
++    ALL = seeds.map(seedWithNftreeArt);
+ 
+     const wilt = seeds.filter(s=>s.state==='wilting');
+     const dead = seeds.filter(s=>s.state==='dead');
+@@ -5042,7 +5339,7 @@
+ 
+     renderCrateRoomInventory(currentTools,currentCrates,seeds);
+     renderGardenTools(currentTools,seeds);
+-    renderGardenItemsNudge(currentTools,seeds);
++    renderGardenItemsNudge(currentTools,seeds,currentCrates);
+     renderGardenCrateNudge(currentTools,currentCrates,seeds);
+     renderGardenReferralNudge(seeds);
+     updateGardenNextGrowth(seeds,currentTools,currentCrates);
+@@ -5486,6 +5783,7 @@
+   if(!grid)return;
+   updateNftreeRarityStrip();
+   $('cosmetic-battles-showcase')?.classList.toggle('is-hidden',COSMETIC_FILTER!=='coming');
++  $('cosmetic-shelf')?.classList.toggle('show-future',COSMETIC_FILTER==='coming');
+   if(!PA){
+     grid.innerHTML='<div class="ach-empty">Connect wallet to preview cosmetic unlocks.</div>';
+     renderEquippedCosmeticsPanel(defaultCosmetics());
+@@ -5534,12 +5832,17 @@
+ }
+ window.renderCosmeticShelf=renderCosmeticShelf;
+ const CRATE_TIER_INFO=[
+-  {name:'Seedling',role:'Starter Boost',cls:'seedling',hint:'Cheap daily utility and learning the item loop.'},
+-  {name:'Grove',role:'Daily Helper',cls:'grove',hint:'More common items for steady watering support.'},
+-  {name:'Canopy',role:'Rank Climber',cls:'canopy',hint:'Adds uncommon items for streak growth and Growth Point bursts.'},
+-  {name:'Ancient',role:'Power Crate',cls:'ancient',hint:'Rare recovery and stronger competition items.'},
+-  {name:'Mythic',role:'Season Changer',cls:'mythic',hint:'Legendary chase and bigger leaderboard pushes.'},
++  {name:'Seedling Crate',role:'Starter Boost',cls:'seedling',hint:'Cheap daily utility and learning the item loop.',art:'assets/shop/crates/seedling-crate.jpg'},
++  {name:'Grove Crate',role:'Daily Helper',cls:'grove',hint:'More common items for steady watering support.',art:'assets/shop/crates/grove-crate.jpg'},
++  {name:'Canopy Crate',role:'Rank Climber',cls:'canopy',hint:'Adds uncommon items for streak growth and Growth Point bursts.',art:'assets/shop/crates/canopy-crate.jpg'},
++  {name:'Ancient Crate',role:'Power Crate',cls:'ancient',hint:'Rare recovery and stronger competition items.',art:'assets/shop/crates/ancient-crate.jpg'},
++  {name:'Mythic Crate',role:'Season Changer',cls:'mythic',hint:'Legendary chase and bigger leaderboard pushes.',art:'assets/shop/crates/mythic-crate.jpg'},
++  {name:'$BOOM Chest',role:'Growth Point Burst',cls:'boom-chest',hint:'Partner chest focused on instant Growth Points and boosted waterings.',art:'assets/shop/crates/boom-chest.png'},
++  {name:'Victory Chest',role:'Protect the Lead',cls:'victory-chest',hint:'Partner chest focused on protection, recovery, and staying alive.',art:'assets/shop/crates/victory-chest.png'},
+ ];
++function crateTierLabel(tier){
++  return CRATE_TIER_INFO[Number(tier)]?.name||'Crate';
++}
+ function toolUseHint(kind){
+   return ({
+     fertilizer:'Use before watering. Adds three +50% future waterings, starting with the next watering on that Seed.',
+@@ -5826,8 +6129,8 @@
+       const tier=Number(c.content?.fields?.tier??0);
+       const info=CRATE_TIER_INFO[tier]||CRATE_TIER_INFO[0];
+       return `<div class="pending-crate-card ${info.cls}" style="--tier:var(--tier,rgba(25,230,180,.65))">
+-        <div class="crate-icon" aria-hidden="true"><div class="crate-chest"><span class="crate-band left"></span><span class="crate-band right"></span></div></div>
+-        <div class="pending-crate-name">${esc(info.name)} Crate</div>
++        <div class="pending-crate-art-wrap"><img class="pending-crate-art" src="${esc(info.art)}" alt="${esc(info.name)}" loading="lazy" decoding="async"></div>
++        <div class="pending-crate-name">${esc(info.name)}</div>
+         <div class="pending-crate-meta">${esc(info.role)}<br>${esc(info.hint)}</div>
+         <button class="gbtn" onclick="doOpenCrate('${c.objectId}')">Open</button>
+       </div>`;
+@@ -6618,7 +6921,7 @@
+ async function doBuyCrate(tier){
+   if(needWallet())return;
+   txToast('Buy Crate','approve the wallet request. The crate will appear after confirmation.');
+-  showCratePending(`${CRATE_TIER_INFO[Number(tier)]?.name||'Crate'} Crate`, 'Approve in your wallet. The purchase popup will update as soon as the transaction confirms.', tier);
++  showCratePending(crateTierLabel(tier), 'Approve in your wallet. The purchase popup will update as soon as the transaction confirms.', tier);
+   try{
+     await window.arb.buyCrate(tier);
+     txToast('Buy Crate','confirmed. Open it next in the Item Shop to reveal Arborist Items.','tg',8500);
+@@ -6631,6 +6934,56 @@
+   }
+ }
+ window.doBuyCrate=doBuyCrate;
++const PARTNER_CHESTS={
++  boom:{
++    tier:5,
++    label:'$BOOM Chest',
++    fn:'buyBoomChest',
++    confirm:'$BOOM Chest for 0.01 SUI? This mints the unique Growth Point burst chest.',
++    pending:'Approve in your wallet. The BOOM chest will appear after confirmation.',
++    success:'$BOOM Chest confirmed. Open it next to reveal Growth Point burst items.'
++  },
++  victory:{
++    tier:6,
++    label:'Victory Chest',
++    fn:'buyVictoryChest',
++    confirm:'Victory Chest for 0.01 SUI? This mints the unique protection and recovery chest.',
++    pending:'Approve in your wallet. The Victory chest will appear after confirmation.',
++    success:'Victory Chest confirmed. Open it next to reveal protection and recovery items.'
++  }
++};
++function updatePartnerChestStatus(){
++  const live=Boolean(window.arb?.CONTRACT?.SUPPORTS_PARTNER_CHESTS);
++  txt('partner-chest-status',live?'Live unique chests':'Contract upgrade ready');
++}
++function confirmPartnerChest(kind){
++  const chest=PARTNER_CHESTS[kind];
++  if(!chest)return;
++  showConfirm(chest.confirm,()=>doBuyPartnerChest(kind));
++}
++async function doBuyPartnerChest(kind){
++  if(needWallet())return;
++  const chest=PARTNER_CHESTS[kind];
++  if(!chest)return;
++  if(!window.arb?.CONTRACT?.SUPPORTS_PARTNER_CHESTS){
++    toast('Partner Chests are designed and ready, but the upgraded contract package must be published before these buttons can mint live.', 'tw', 11000);
++    return;
++  }
++  txToast(chest.label,'approve the wallet request. The chest will appear after confirmation.');
++  showCratePending(chest.label,chest.pending,chest.tier);
++  try{
++    await window.arb[chest.fn]();
++    txToast(chest.label,chest.success,'tg',8500);
++    showCratePurchase(chest.tier);
++    refreshGardenAfterTx();
++  }catch(e){
++    console.error('partner chest error',e);
++    closeCrate();
++    toast(`${chest.label} failed: ${e.message || e}`,'td',9000);
++  }
++}
++window.confirmPartnerChest=confirmPartnerChest;
++window.doBuyPartnerChest=doBuyPartnerChest;
+ const SUPPLY_DROP_ROTATION_MS=3*60*60*1000;
+ const SUPPLY_DROPS=[
+   {drop:0,kind:'revival_kit',name:'Revival Kit',em:'💫',role:'Emergency Recovery',price:'0.05 SUI',rarity:2,copy:'Revives one dead current Seed. Use this when recovery matters more than crate value.',best:'dead Seed recovery'},
+@@ -6734,7 +7087,7 @@
+       closePicker();
+       txToast('Open Crate','approve the wallet request. VRF will reveal your Arborist Items after confirmation.','ti',11000);
+       const tier=Number(c.content?.fields?.tier??0);
+-      showCratePending(`Opening ${CRATE_TIER_INFO[tier]?.name||'Crate'} Crate`, 'Waiting for on-chain randomness. Your Arborist Items will appear here when the transaction confirms.', tier);
++      showCratePending(`Opening ${crateTierLabel(tier)}`, 'Waiting for on-chain randomness. Your Arborist Items will appear here when the transaction confirms.', tier);
+       try{
+         let beforeToolIds=null;
+         try{
+@@ -6767,6 +7120,7 @@
+ }
+ window.doOpenCrate=doOpenCrate;
+ async function doApplyTool(toolObjectId=null){
++  if(toolObjectId&&typeof toolObjectId!=='string')toolObjectId=null;
+   if(needWallet())return;
+   if(!(await requireGardenActive()))return;
+   try{
+@@ -6950,14 +7304,14 @@
+ async function aPromoCrate(){
+   const recipient=String($('promo-recipient')?.value||'').trim();
+   const tier=Number($('promo-tier')?.value||0);
+-  const tierNames=['Seedling','Grove','Canopy','Ancient','Mythic'];
++  const tierNames=['Seedling Crate','Grove Crate','Canopy Crate','Ancient Crate','Mythic Crate','$BOOM Chest','Victory Chest'];
+   if(!isSuiAddress(recipient)){ast('ast-promo','❌ Enter a valid recipient wallet address.');return;}
+   if(!window.arb?.adminSendPromoCrate){ast('ast-promo','❌ Promo crate helper is not loaded. Refresh the page after deploy.');return;}
+-  showConfirm(`Send one ${tierNames[tier]||'Promo'} Crate to ${shortAddr(recipient)}?`,async()=>{
+-    ast('ast-promo',`Sending ${tierNames[tier]||'Promo'} Crate…`);
++  showConfirm(`Send one ${tierNames[tier]||'Promo Crate'} to ${shortAddr(recipient)}?`,async()=>{
++    ast('ast-promo',`Sending ${tierNames[tier]||'Promo Crate'}...`);
+     try{
+       await window.arb.adminSendPromoCrate(recipient,tier);
+-      ast('ast-promo',`✅ Sent ${tierNames[tier]||'Promo'} Crate to ${shortAddr(recipient)}.`);
++      ast('ast-promo',`✅ Sent ${tierNames[tier]||'Promo Crate'} to ${shortAddr(recipient)}.`);
+       toast(`📦 Promo crate sent to ${shortAddr(recipient)}.`, 'tg', 8500);
+     }catch(e){
+       console.error('adminSendPromoCrate error',e);
+@@ -7181,7 +7535,7 @@
+     const dead=seeds.filter(s=>s.state==='dead').length;
+     const gp=seeds.reduce((a,s)=>a+Number(s.growthPoints||0),0);
+     const balanceSui=(Number(balanceMist||0n)/1e9).toFixed(4);
+-    const crateTiers=['Seedling','Grove','Canopy','Ancient','Mythic'];
++    const crateTiers=['Seedling','Grove','Canopy','Ancient','Mythic','$BOOM','Victory'];
+     const toolSummary=countByLabel(tools,t=>t.label||titleFromKind(t.kind));
+     const crateSummary=countByLabel(crateObjs,c=>`${crateTiers[Number(c.content?.fields?.tier??0)]||'Unknown'} Crate`);
+     const oldestSeed=seeds.reduce((min,s)=>s.plantedAt&&(!min||s.plantedAt<min)?s.plantedAt:min,0);
+@@ -7389,8 +7743,8 @@
+   if(rewards.length<=1)return {...(rewards[0]||toolFromKind('unknown_tool',0)),tools:rewards,crate};
+   const primary=[...rewards].sort((a,b)=>rarityIndex(b.rarity)-rarityIndex(a.rarity))[0];
+   const tier=Number(crate?.content?.fields?.tier??-1);
+-  const tierName=CRATE_TIER_INFO[tier]?.name||'Crate';
+-  return {...primary,nm:`${rewards.length} Items Unboxed`,dc:`${tierName} Crate revealed ${rewards.length} Arborist Item NFT${rewards.length===1?'':'s'}.`,tools:rewards,crate};
++  const tierName=crateTierLabel(tier);
++  return {...primary,nm:`${rewards.length} Items Unboxed`,dc:`${tierName} revealed ${rewards.length} Arborist Item NFT${rewards.length===1?'':'s'}.`,tools:rewards,crate};
+ }
+ function crateRevealNextText(tool={},rewards=[]){
+   if(tool.next)return tool.next;
+@@ -7406,7 +7760,7 @@
+   const info=CRATE_TIER_INFO[Number(tier)]||CRATE_TIER_INFO[0];
+   showCrateReveal({
+     em:'📦',
+-    nm:`${info.name} Crate Purchased`,
++    nm:`${info.name} Purchased`,
+     dc:'Your crate is now in your wallet. Open it to reveal Arborist Item NFTs.',
+     rarity:Number(tier)>=4?3:Number(tier)>=3?2:Number(tier)>=2?1:0,
+     tools:[],
+@@ -7540,13 +7894,14 @@
+   initPanels();
+   renderDS();
+   renderCrateRoomInventory([],[],[]);
+-  renderGardenItemsNudge([],[]);
++  renderGardenItemsNudge([],[],[]);
+   renderGardenCrateNudge([],[],[]);
+   renderGardenReferralNudge([]);
+   updateGardenNextGrowth([],[],[]);
+   renderAchievementBadges();
+   renderCosmeticShelf();
+   renderSupplyDrop();
++  updatePartnerChestStatus();
+   updateForestPreview(0);
+   updateNextMovePanel();
+   updateCycleCountdown();
+@@ -7564,6 +7919,7 @@
+       if(r?.address){PA=r.address;afterConnect(r);}
+       if(window.arb)loadSeasonStats();
+       if(window.arb)loadCanopyChallengeState();
++      updatePartnerChestStatus();
+     }catch(e){console.warn('Session restore failed:',e.message);}
+   };
+   if(window._walletReady){
