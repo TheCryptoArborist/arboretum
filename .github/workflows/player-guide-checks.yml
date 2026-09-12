@@ -1,0 +1,65 @@
+name: Player guide checks
+on:
+  push:
+    branches: [feature/player-guide]
+  pull_request:
+    paths:
+      - 'scripts/build-player-guide.py'
+      - 'scripts/build-guide-site.mjs'
+      - 'netlify.toml'
+      - '.github/workflows/player-guide-checks.yml'
+permissions:
+  contents: read
+jobs:
+  guide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Build guide and verify non-invasive navigation integration
+        run: |
+          python3 -m py_compile scripts/build-player-guide.py
+          python3 scripts/build-player-guide.py
+          node --check scripts/build-guide-site.mjs
+          node scripts/build-guide-site.mjs
+      - name: Validate guide markup and JavaScript
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from html.parser import HTMLParser
+          import subprocess,json
+          class Check(HTMLParser):
+              def __init__(self):
+                  super().__init__();self.ids=[];self.targets=[];self.tools=0;self.external_scripts=0;self.script=False;self.scripts=[]
+              def handle_starttag(self,tag,attrs):
+                  a=dict(attrs)
+                  if 'id' in a:self.ids.append(a['id'])
+                  if tag=='a' and a.get('href','').startswith('#'):self.targets.append(a['href'][1:])
+                  if tag=='details' and 'tool' in a.get('class','').split():self.tools+=1
+                  if tag=='script':
+                      if a.get('src'):self.external_scripts+=1
+                      else:self.script=True;self.scripts.append('')
+              def handle_endtag(self,tag):
+                  if tag=='script':self.script=False
+              def handle_data(self,data):
+                  if self.script:self.scripts[-1]+=data
+          p=Check();p.feed(Path('dist/player-guide.html').read_text())
+          assert len(p.ids)==len(set(p.ids)), 'Duplicate IDs'
+          assert all(target in p.ids for target in p.targets), 'Broken in-page link'
+          assert p.tools==20, 'Expected 20 tools'
+          assert p.external_scripts==0, 'Guide must not load wallet or external scripts'
+          for n,script in enumerate(p.scripts):
+              f=Path(f'guide-script-check-{n}.js');f.write_text(script)
+              subprocess.run(['node','--check',str(f)],check=True)
+          print(json.dumps({'tools':p.tools,'unique_ids':True,'in_page_links_valid':True,'no_external_scripts':True,'script_syntax':True}))
+          PY
+      - name: Preserve reviewable build (no deployment)
+        uses: actions/upload-artifact@v4
+        with:
+          name: arboretum-player-guide-preview
+          path: |
+            dist/
+            guide-build-report.json
+          retention-days: 14
