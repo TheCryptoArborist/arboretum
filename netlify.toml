@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "python3 scripts/build-player-guide.py && node scripts/build-guide-site.mjs"
+  publish = "dist"
 
 [functions]
   directory = "netlify/functions"
