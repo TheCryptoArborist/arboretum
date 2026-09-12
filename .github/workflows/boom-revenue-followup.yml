@@ -1,0 +1,52 @@
+name: Verify BOOM revenue routing
+on:
+  push:
+    branches: [analysis/boom-receipts-20260912]
+    paths: [.github/workflows/boom-revenue-followup.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Read public receipts and documentation endpoints
+        run: |
+          python3 -u - <<'PY'
+          import json,datetime,concurrent.futures
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          OUT=Path('boom-followup');OUT.mkdir()
+          report={'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'errors':[]}
+          END='https://graphql.mainnet.sui.io/graphql'
+          def req(url,payload=None):
+              r=Request(url,data=None if payload is None else json.dumps(payload).encode(),headers={'Content-Type':'application/json','User-Agent':'BOOM-public-receipt-audit'})
+              with urlopen(r,timeout=25) as x:return json.load(x)
+          def gql(q,v=None):
+              r=req(END,{'query':q,'variables':v or {}})
+              if r.get('errors'):raise RuntimeError(json.dumps(r['errors']))
+              return r['data']
+          def save(n,x):(OUT/(n+'.json')).write_text(json.dumps(x,indent=2))
+          fields='''digest sender { address } transactionBcs effects { status timestamp checkpoint { sequenceNumber } effectsJson balanceChanges(first:100){pageInfo{hasNextPage endCursor} nodes{amount coinType{repr} owner{address asObject{address}}}} events(first:100){pageInfo{hasNextPage endCursor} nodes{sequenceNumber contents{type{repr} json}}} }'''
+          jobs=[]
+          q='query($f:TransactionFilter!){transactions(last:30,filter:$f){pageInfo{hasPreviousPage startCursor} nodes{'+fields+'}}}'
+          jobs.append(('recent-box-purchases',lambda:gql(q,{'f':{'function':'0x2181ed994caf30b30878d16a7309c79fa36b3a25e35b3a973cd2c9a6bc615d9a::lootbox::open_box'}})))
+          jobs.append(('coin-metadata',lambda:gql('query($t:String!){coinMetadata(coinType:$t){decimals name symbol supply address}}',{'t':'0x3766e534b5dc6cdb7defd998debf19f72565f4a7b8224e36b050f690b71a8819::boom::BOOM'})))
+          oq='query($a:SuiAddress!){object(address:$a){address version previousTransaction{digest} asMoveObject{contents{type{repr} json}}}}'
+          jobs.append(('trading-post-config',lambda:gql(oq,{'a':'0xccee9ba1f2173e5582d7a45a11200affc7401c6eac180e2d8874da72147ead66'})))
+          api='https://boombots-production.up.railway.app'
+          for n,p in [('api-upgrades','/bots/all-upgrades/'),('api-prize-pool','/prize-pool/'),('api-burn-meter','/burn-meter/'),('api-prize-history','/prize-history/')]:
+              jobs.append((n,lambda p=p:req(api+p)))
+          def run(pair):
+              name,fn=pair
+              try:save(name,fn());return {'name':name,'ok':True}
+              except Exception as e:return {'name':name,'error':str(e)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:report['results']=list(ex.map(run,jobs))
+          report['finished_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat();save('coverage',report);print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: boom-revenue-followup
+          path: boom-followup/
+          retention-days: 3
