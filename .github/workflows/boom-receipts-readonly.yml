@@ -1,0 +1,102 @@
+name: Read public BOOM purchase receipts
+on:
+  push:
+    branches: [analysis/boom-receipts-20260912]
+    paths: [.github/workflows/boom-receipts-readonly.yml]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Query public Sui records and BOOM site assets (no signing)
+        run: |
+          python3 - <<'PY'
+          import json,re,time,hashlib,datetime,collections,concurrent.futures
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          from urllib.parse import urljoin,urlparse
+          OUT=Path('boom-audit');OUT.mkdir()
+          ADDR='0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6'
+          RPC='https://fullnode.mainnet.sui.io:443'
+          report={'wallet':ADDR,'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'rpc':RPC,'scope':'Public read-only data. No signing, swaps, deployment or production code changes.','errors':[]}
+          def read(url,data=None):
+              hdr={'User-Agent':'BOOM-public-receipt-analysis','Cache-Control':'no-cache'}
+              if data is not None:hdr['Content-Type']='application/json'
+              req=Request(url,headers=hdr,data=None if data is None else json.dumps(data).encode())
+              with urlopen(req,timeout=25) as r:return r.read()
+          ALLOWED={'suix_queryTransactionBlocks','suix_getAllBalances','sui_getObject','sui_getLatestCheckpointSequenceNumber','sui_getCheckpoint','sui_getNormalizedMoveModulesByPackage','suix_getCoinMetadata'}
+          def rpc(method,params):
+              assert method in ALLOWED
+              for n in range(3):
+                  try:
+                      obj=json.loads(read(RPC,{'jsonrpc':'2.0','id':1,'method':method,'params':params}))
+                      if 'error' in obj:raise RuntimeError(json.dumps(obj['error']))
+                      return obj['result']
+                  except Exception:
+                      if n==2:raise
+                      time.sleep(2*(n+1))
+          def save(name,obj):
+              (OUT/name).write_text(json.dumps(obj,indent=2),encoding='utf-8')
+          def site_fetch():
+              origin='https://boombotsai.wal.app/'
+              site={'origin':origin,'assets':[]}
+              try:
+                  html=read(origin).decode();(OUT/'boom-site.html').write_text(html)
+                  initial=re.findall(r'(?:src|href)=[\"\']([^\"\']+\.js(?:\?[^\"\']*)?)[\"\']',html)
+                  queue=[urljoin(origin,x) for x in initial];seen=set()
+                  for url in queue:
+                      if len(seen)>=35:break
+                      if url in seen or urlparse(url).netloc!=urlparse(origin).netloc:continue
+                      seen.add(url)
+                      try:
+                          raw=read(url);text=raw.decode();name=urlparse(url).path.rsplit('/',1)[-1]
+                          (OUT/name).write_bytes(raw)
+                          site['assets'].append({'url':url,'file':name,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})
+                          for rel in re.findall(r'[\"\']((?:\./|/assets/)?[A-Za-z0-9_.-]+\.js)[\"\']',text):
+                              nxt=urljoin(url,rel)
+                              if nxt not in seen and nxt not in queue:queue.append(nxt)
+                      except Exception as e:site['assets'].append({'url':url,'error':str(e)})
+              except Exception as e:site['error']=str(e)
+              save('site-manifest.json',site)
+          with concurrent.futures.ThreadPoolExecutor(max_workers=1) as ex:
+              future=ex.submit(site_fetch)
+              try:
+                  latest=rpc('sui_getLatestCheckpointSequenceNumber',[])
+                  report['checkpoint_start']=rpc('sui_getCheckpoint',[latest])
+              except Exception as e:report['errors'].append({'checkpoint':str(e)})
+              rows=[];cursor=None;pages=0;has_more=True
+              try:
+                  for page in range(24):
+                      params=[{'filter':{'FromAddress':ADDR},'options':{'showInput':True,'showEffects':True,'showEvents':True,'showBalanceChanges':True,'showObjectChanges':True}},cursor,50,True]
+                      result=rpc('suix_queryTransactionBlocks',params);pages+=1
+                      save('wallet-page-%02d.json'%pages,result)
+                      rows.extend(result.get('data',[]));cursor=result.get('nextCursor');has_more=result.get('hasNextPage',False)
+                      if not has_more:break
+                      time.sleep(.3)
+              except Exception as e:report['errors'].append({'transactions':str(e)})
+              report.update({'transaction_count':len(rows),'pages':pages,'has_more':has_more,'next_cursor':cursor})
+              counts=collections.Counter();summary=[]
+              for t in rows:
+                  td=t.get('transaction',{}).get('data',{});calls=[]
+                  for cmd in td.get('transaction',{}).get('transactions',[]):
+                      if 'MoveCall' in cmd:
+                          c=cmd['MoveCall'];name='::'.join([c.get('package',''),c.get('module',''),c.get('function','')]);calls.append(name);counts[name]+=1
+                  summary.append({'digest':t.get('digest'),'timestampMs':t.get('timestampMs'),'checkpoint':t.get('checkpoint'),'status':t.get('effects',{}).get('status'),'gasUsed':t.get('effects',{}).get('gasUsed'),'calls':calls,'events':[{'type':ev.get('type'),'parsedJson':ev.get('parsedJson')} for ev in t.get('events',[])],'balanceChanges':t.get('balanceChanges',[])})
+              report['call_counts']=dict(counts.most_common())
+              report['timestamps']={'newest':max((int(r.get('timestampMs',0)) for r in rows),default=0),'oldest':min((int(r.get('timestampMs',0)) for r in rows),default=0)}
+              save('transaction-summary.json',summary)
+              try:save('wallet-balances.json',rpc('suix_getAllBalances',[ADDR]))
+              except Exception as e:report['errors'].append({'balances':str(e)})
+              future.result()
+          report['finished_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat();save('coverage.json',report)
+          print(json.dumps({k:v for k,v in report.items() if k!='checkpoint_start'},indent=2))
+          PY
+      - name: Preserve raw responses for analysis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: boom-public-receipts
+          path: boom-audit/
+          retention-days: 3
