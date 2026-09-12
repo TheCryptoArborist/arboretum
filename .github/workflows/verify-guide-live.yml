@@ -1,0 +1,58 @@
+name: Verify published player guide
+on:
+  push:
+    branches: [publish/player-guide-20260912]
+    paths: [.github/workflows/verify-guide-live.yml]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 12f2d489ad2fff80c65ad13869baadcb8b36d21b
+          persist-credentials: false
+      - name: Compare live deployment, built guide and runtime scripts
+        run: |
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          python3 - <<'PY'
+          import json,hashlib,difflib,re
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          out=Path('live-verification');out.mkdir()
+          report={}
+          for p in ['player-guide.html','index.html','wallet.js','garden.js','sui-sdk.bundle.js']:
+              req=Request('https://treegrow.xyz/'+p+'?guide-verification=20260912',headers={'User-Agent':'Arboretum-guide-verification','Cache-Control':'no-cache'})
+              with urlopen(req,timeout=30) as r:data=r.read();status=r.status;url=r.url
+              (out/p).write_bytes(data)
+              expected=(Path('dist')/p).read_bytes()
+              info={'http_status':status,'url':url,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest(),'exact_match':data==expected}
+              if p=='index.html':
+                  txt=data.decode();before=expected.decode()
+                  diff=''.join(difflib.unified_diff(before.splitlines(True),txt.splitlines(True),fromfile='built/index.html',tofile='live/index.html'))
+                  (out/'index.diff').write_text(diff)
+                  info['diff_preview']=diff[:7000]
+                  pattern=r'<script\b[^>]*>[\s\S]*?</script\s*>'
+                  old=re.findall(pattern,before,re.I);new=re.findall(pattern,txt,re.I)
+                  info['original_scripts_preserved']=all(s in new for s in old)
+                  info['added_scripts']=[s[:1500] for s in new if s not in old]
+                  info['how_to_play_present']='player-guide.html' in txt
+              report[p]=info
+          guide=(out/'player-guide.html').read_text()
+          report['guide_content']={'purchase_order': 'What do I buy first?' in guide,'tools':guide.count('class="tool"'),'tester_label':'TESTER PREVIEW' in guide}
+          (out/'report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          assert report['player-guide.html']['exact_match'],'Guide content mismatch'
+          assert all(report[p]['exact_match'] for p in ['wallet.js','garden.js','sui-sdk.bundle.js']),'Runtime file changed'
+          assert report['index.html']['original_scripts_preserved'],'Game inline script changed'
+          assert report['index.html']['how_to_play_present'],'Missing guide navigation'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-guide-live-check
+          path: live-verification/
+          retention-days: 14
