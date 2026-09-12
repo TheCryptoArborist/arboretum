@@ -1,5 +1,6 @@
 // Build a reviewable static site without modifying source index.html or game scripts.
 // Run python3 scripts/build-player-guide.py first, then node scripts/build-guide-site.mjs.
+// The complete reviewable guide, including purchase-order content, is dist/player-guide.html.
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -12,9 +13,37 @@ const original = await fs.readFile(path.join(root, 'index.html'));
 if (sha256(original) !== expectedIndexHash) {
   throw new Error('index.html changed since the reviewed checkpoint. Review the latest source before rebuilding guide navigation; do not overwrite newer work.');
 }
-const guide = await fs.readFile(path.join(root, 'player-guide.html'));
+const rawGuide = await fs.readFile(path.join(root, 'player-guide.html'), 'utf8');
+const purchaseContent = await fs.readFile(path.join(root, 'content/player-guide-first-purchase.html'), 'utf8');
+if (/<script\b/i.test(purchaseContent)) throw new Error('Purchase guide content must not add executable scripts.');
+let guide = rawGuide;
+function replaceGuideOnce(marker, replacement, label) {
+  if (guide.split(marker).length !== 2) throw new Error(`Expected exactly one guide ${label}.`);
+  guide = guide.replace(marker, replacement);
+}
+replaceGuideOnce(
+  '<section class="section" id="watering">',
+  purchaseContent + '\n<section class="section" id="watering">',
+  'purchase section insertion point'
+);
+const quickStartLink = '<a href="#start">Quick Start</a>';
+if (guide.split(quickStartLink).length !== 3) throw new Error('Expected desktop and mobile guide navigation.');
+guide = guide.split(quickStartLink).join(quickStartLink + '<a href="#buy-first">What to buy first</a>');
+replaceGuideOnce(
+  '<a class="button primary" href="#tools">Explore the 20 tools</a>',
+  '<a class="button primary" href="#buy-first">What do I buy first?</a><a class="button" href="#tools">Explore the 20 tools</a>',
+  'opening call to action'
+);
+replaceGuideOnce(
+  '<h1>Grow with a plan.</h1>',
+  '<h1>Grow with a plan.</h1><p style="margin-top:1rem"><strong>First: an eligible NFTree. Next: the separate Seed planting payment. Crates are optional.</strong></p>',
+  'opening purchase summary'
+);
+replaceGuideOnce('Player Guide v0.1', 'Player Guide v0.2', 'version label');
+const scripts = value => Array.from(value.matchAll(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi), m => m[0]);
+if (JSON.stringify(scripts(rawGuide)) !== JSON.stringify(scripts(guide))) throw new Error('Unexpected guide script modification.');
 let html = original.toString('utf8');
-const edits = [];
+const edits = ['guide purchase order section', 'guide purchase-order navigation', 'guide opening purchase summary'];
 function insertBeforeOnce(marker, addition, label) {
   if (html.split(marker).length !== 2) throw new Error(`Expected exactly one ${label} insertion point.`);
   html = html.replace(marker, addition + marker);
@@ -45,7 +74,6 @@ insertBeforeOnce(
   'shop contextual help'
 );
 insertBeforeOnce('</head>', '<style id="player-guide-navigation-style">\n.guide-context-link{display:inline-flex;text-decoration:none;margin:.3rem .3rem .3rem 0;min-height:36px;align-items:center;}\n@media(min-width:1101px){header #nav-links{flex-wrap:wrap;row-gap:.18rem;}}\n</style>\n', 'guide link styling');
-const scripts = value => Array.from(value.matchAll(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi), m => m[0]);
 if (JSON.stringify(scripts(original.toString('utf8'))) !== JSON.stringify(scripts(html))) throw new Error('Unexpected script modification.');
 await fs.mkdir(output, { recursive: true });
 // Only public static site assets. No dotfiles, credentials, source contracts, docs or build scripts.
@@ -58,12 +86,12 @@ for (const item of await fs.readdir(root, { withFileTypes: true })) {
 }
 await fs.cp(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
 await fs.writeFile(path.join(output,'index.html'), html, 'utf8');
-await fs.writeFile(path.join(output,'player-guide.html'), guide);
+await fs.writeFile(path.join(output,'player-guide.html'), guide, 'utf8');
 for (const name of ['wallet.js','garden.js','sui-sdk.bundle.js']) {
   const source = await fs.readFile(path.join(root,name));
   const built = await fs.readFile(path.join(output,name));
   if (!source.equals(built)) throw new Error(`Unexpected change in ${name}`);
 }
-const report = { baseline:'d1dcfafb5d3090ae1866ed38d806c77b3567357a', originalIndexSha256:sha256(original), builtIndexSha256:sha256(html), guideSha256:sha256(guide), changes:edits, inlineScriptsUnchanged:true, walletGardenAndSdkUnchanged:true, note:'Read-only guide and links only. No prices, contracts, wallet calls or economic settings modified. Full browser integration and deployed-mechanics verification required before production.' };
+const report = { baseline:'d1dcfafb5d3090ae1866ed38d806c77b3567357a', originalIndexSha256:sha256(original), builtIndexSha256:sha256(html), guideSha256:sha256(guide), changes:edits, purchaseOrderExplained:true, inlineScriptsUnchanged:true, guideScriptsUnchanged:true, walletGardenAndSdkUnchanged:true, note:'Read-only guide and links only. No prices, contracts, wallet calls or economic settings modified. Full browser integration and deployed-mechanics verification required before production.' };
 await fs.writeFile(path.join(root,'guide-build-report.json'), JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
