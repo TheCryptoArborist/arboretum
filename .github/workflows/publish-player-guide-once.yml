@@ -1,0 +1,131 @@
+name: Publish approved player guide
+on:
+  push:
+    branches: [publish/player-guide-20260912]
+    paths: [.github/workflows/publish-player-guide-once.yml]
+permissions:
+  contents: read
+concurrency:
+  group: arboretum-guide-production-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 12f2d489ad2fff80c65ad13869baadcb8b36d21b
+          persist-credentials: false
+      - name: Build the approved v0.2 guide and check production baseline
+        run: |
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          import hashlib,json
+          report=json.loads(Path('guide-build-report.json').read_text())
+          assert report['guideSha256']=='885a34075dc8aebe919e1f49854c1b82df1f8cc884f3e6e5654eddc1e7659b89'
+          assert report['inlineScriptsUnchanged'] and report['walletGardenAndSdkUnchanged']
+          for p in ['index.html','wallet.js','garden.js','sui-sdk.bundle.js']:
+              req=Request('https://treegrow.xyz/'+p,headers={'Cache-Control':'no-cache','User-Agent':'Arboretum-guide-publish'})
+              with urlopen(req,timeout=30) as r: live=r.read()
+              assert live==Path(p).read_bytes(), 'Production has changed; stop before publishing: '+p
+          print('Approved guide build and unchanged production baseline verified.')
+          PY
+      - name: Prepare short-lived encrypted deployment handoff
+        run: |
+          node --input-type=module <<'JS'
+          import {generateKeyPairSync} from 'node:crypto';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const dir=path.join(process.env.RUNNER_TEMP,'guide-publish');fs.mkdirSync(dir,{recursive:true,mode:0o700});
+          const pair=generateKeyPairSync('rsa',{modulusLength:3072,publicKeyEncoding:{type:'spki',format:'pem'},privateKeyEncoding:{type:'pkcs8',format:'pem'}});
+          fs.writeFileSync(path.join(dir,'private.pem'),pair.privateKey,{mode:0o600});
+          fs.writeFileSync('guide-publish-public-key.json',JSON.stringify({runId:process.env.GITHUB_RUN_ID,publicKey:pair.publicKey,siteId:'a344fb31-10b4-4eea-9562-067d90a39607'}));
+          console.log('Ephemeral public key prepared; private key remains only in this runner.');
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: guide-publish-public-key
+          path: guide-publish-public-key.json
+          retention-days: 1
+      - name: Publish through Netlify's scoped deployment command
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs/promises';
+          import path from 'node:path';
+          import {privateDecrypt,constants,createDecipheriv} from 'node:crypto';
+          import {execFile} from 'node:child_process';
+          import {promisify} from 'node:util';
+          const exec=promisify(execFile),runId=process.env.GITHUB_RUN_ID;
+          const temp=path.join(process.env.RUNNER_TEMP,'guide-publish');
+          const url='https://raw.githubusercontent.com/TheCryptoArborist/arboretum/publish/player-guide-20260912/docs/deployment/authorization-'+runId+'.json';
+          let envelope;
+          for(let i=0;i<60;i++){
+            try {const r=await fetch(url+'?poll='+Date.now(),{signal:AbortSignal.timeout(15000),headers:{'Cache-Control':'no-cache'}});if(r.ok){envelope=await r.json();break;}}
+            catch {}
+            await new Promise(r=>setTimeout(r,10000));
+          }
+          if(!envelope||envelope.runId!==runId)throw new Error('No authorization for this specific run; nothing deployed.');
+          const key=privateDecrypt({key:await fs.readFile(path.join(temp,'private.pem')),padding:constants.RSA_PKCS1_OAEP_PADDING,oaepHash:'sha256'},Buffer.from(envelope.wrappedKey,'base64'));
+          const decipher=createDecipheriv('aes-256-gcm',key,Buffer.from(envelope.iv,'base64'));
+          decipher.setAAD(Buffer.from('arboretum-guide:'+runId));decipher.setAuthTag(Buffer.from(envelope.tag,'base64'));
+          const auth=JSON.parse(Buffer.concat([decipher.update(Buffer.from(envelope.ciphertext,'base64')),decipher.final()]).toString());
+          await fs.unlink(path.join(temp,'private.pem'));
+          if(auth.siteId!=='a344fb31-10b4-4eea-9562-067d90a39607')throw new Error('Wrong deployment site.');
+          const parsed=new URL(auth.proxyUrl);
+          if(parsed.origin!=='https://netlify-mcp.netlify.app'||!/^\/proxy\/[A-Za-z0-9_.-]+$/.test(parsed.pathname))throw new Error('Unexpected deployment endpoint.');
+          console.log('::add-mask::'+auth.proxyUrl);console.log('::add-mask::'+parsed.pathname.split('/').pop());
+          const stage=path.join(temp,'source');await fs.mkdir(stage,{recursive:true});
+          // Copy the approved site source, never the authorization, public key, logs or CI files.
+          const {stdout:tracked}=await exec('git',['ls-tree','-r','--name-only','12f2d489ad2fff80c65ad13869baadcb8b36d21b']);
+          for(const name of tracked.trim().split('\n')){
+            if(name.startsWith('.github/')||name.startsWith('.netlify/')||name.startsWith('.env')||name.startsWith('docs/deployment/'))continue;
+            const to=path.join(stage,name);await fs.mkdir(path.dirname(to),{recursive:true});await fs.copyFile(name,to);
+          }
+          console.log('Publishing approved source to the existing Arboretum site.');
+          try {
+            const result=await exec('npx',['-y','@netlify/mcp@latest','--site-id',auth.siteId,'--proxy-path',auth.proxyUrl],{cwd:stage,timeout:540000,maxBuffer:8*1024*1024,env:{...process.env,CI:'true'}});
+            let output=(result.stdout||'')+'\n'+(result.stderr||'');
+            output=output.split(auth.proxyUrl).join('[SCOPED ENDPOINT REDACTED]').split(parsed.pathname.split('/').pop()).join('[REDACTED]');
+            console.log(output);await fs.writeFile('guide-publish-result.txt',output);
+          }catch(error){
+            let output=String(error.stdout||'')+'\n'+String(error.stderr||'');
+            output=output.split(auth.proxyUrl).join('[SCOPED ENDPOINT REDACTED]').split(parsed.pathname.split('/').pop()).join('[REDACTED]');
+            console.log(output);throw new Error('Publishing command failed; check the existing site before retrying.');
+          }finally {await fs.rm(temp,{recursive:true,force:true});}
+          JS
+      - name: Verify the public guide and unchanged runtime scripts
+        run: |
+          python3 - <<'PY'
+          from urllib.request import Request,urlopen
+          from pathlib import Path
+          import json,time,hashlib
+          expected=json.loads(Path('guide-build-report.json').read_text())
+          checks={}
+          for p in ['player-guide.html','index.html','wallet.js','garden.js','sui-sdk.bundle.js']:
+              local=Path('dist')/p
+              for i in range(12):
+                  try:
+                      with urlopen(Request('https://treegrow.xyz/'+p,headers={'Cache-Control':'no-cache','User-Agent':'Arboretum-guide-verification'}),timeout=30) as r:
+                          data=r.read();status=r.status
+                      if data==local.read_bytes():break
+                  except Exception: pass
+                  time.sleep(5)
+              else:raise RuntimeError('Live verification failed: '+p)
+              checks[p]={'http_status':status,'matches_build':True,'sha256':hashlib.sha256(data).hexdigest()}
+          Path('guide-live-verification.json').write_text(json.dumps(checks,indent=2))
+          print(json.dumps(checks,indent=2))
+          print('SHAREABLE_GUIDE=https://treegrow.xyz/player-guide.html')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: guide-publish-verification
+          path: |
+            guide-build-report.json
+            guide-live-verification.json
+            guide-publish-result.txt
+          retention-days: 14
