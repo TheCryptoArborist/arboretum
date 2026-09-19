@@ -1,0 +1,76 @@
+name: Read Arboretum launch evidence
+on:
+  push:
+    branches: [analysis/launch-readiness-20260919]
+    paths: [.github/workflows/launch-readonly-20260919.yml]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Read public site and Sui state without signing or simulation
+        run: |
+          python3 -u - <<'PY'
+          import json,re,hashlib,datetime,concurrent.futures
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          OUT=Path('launch-evidence');OUT.mkdir()
+          BASE='2338affe1dd984f5bc676cec7f3763d1f37a90cf'
+          WALLET='0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6'
+          report={'read_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'baseline':BASE,'wallet_examined':WALLET,'scope':'Public HTTP and GraphQL queries only. No signing, transactions, dry runs, wallet connection, production change or financial-account access.','errors':[],'http':{}}
+          def fetch(u,payload=None):
+              headers={'User-Agent':'Arboretum-launch-readonly','Cache-Control':'no-cache'}
+              if payload is not None:headers['Content-Type']='application/json'
+              req=Request(u,data=None if payload is None else json.dumps(payload).encode(),headers=headers)
+              with urlopen(req,timeout=25) as r:return r.read(),r.status,r.geturl()
+          def save(name,obj):(OUT/name).write_text(json.dumps(obj,indent=2))
+          urls={'live-index.html':'https://treegrow.xyz/','live-wallet.js':'https://treegrow.xyz/wallet.js','live-player-guide.html':'https://treegrow.xyz/player-guide','saved-wallet.js':f'https://raw.githubusercontent.com/TheCryptoArborist/arboretum/{BASE}/wallet.js','saved-arboretum.move':f'https://raw.githubusercontent.com/TheCryptoArborist/arboretum/{BASE}/contract/sources/arboretum.move'}
+          def get_file(pair):
+              name,url=pair
+              try:
+                  data,status,final=fetch(url);(OUT/name).write_bytes(data)
+                  return name,{'url':url,'final_url':final,'status':status,'bytes':len(data),'sha256':hashlib.sha256(data).hexdigest()}
+              except Exception as e:return name,{'error':str(e)}
+          with concurrent.futures.ThreadPoolExecutor(max_workers=5) as ex:
+              report['http']=dict(ex.map(get_file,urls.items()))
+          wallet_text=(OUT/'live-wallet.js').read_text() if (OUT/'live-wallet.js').exists() else (OUT/'saved-wallet.js').read_text()
+          package=re.search(r'PACKAGE_ID:\s*"(0x[0-9a-f]+)"',wallet_text).group(1)
+          registry=re.search(r'REGISTRY_ID:\s*"(0x[0-9a-f]+)"',wallet_text).group(1)
+          report.update({'configured_package':package,'registry':registry,'live_wallet_matches_saved':(OUT/'live-wallet.js').read_bytes()==(OUT/'saved-wallet.js').read_bytes() if (OUT/'live-wallet.js').exists() else None})
+          endpoint='https://graphql.mainnet.sui.io/graphql'
+          def gql(query,variables=None):
+              assert not query.lstrip().startswith('mutation')
+              data,_,_=fetch(endpoint,{'query':query,'variables':variables or {}});result=json.loads(data)
+              if result.get('errors'):raise RuntimeError(json.dumps(result['errors']))
+              return result['data']
+          def attempt(name,q,v=None):
+              try:
+                  result=gql(q,v);save(name+'.json',result);print(name,'OK');return result
+              except Exception as e:report['errors'].append({'operation':name,'error':str(e)});print(name,'FAILED',str(e)[:160]);return None
+          attempt('registry','query($a:SuiAddress!){object(address:$a){address version previousTransaction{digest} asMoveObject{contents{type{repr} json}}}}',{'a':registry})
+          attempt('chain','{chainIdentifier checkpoint{sequenceNumber timestamp}}')
+          fields='''digest sender{address} effects{status timestamp checkpoint{sequenceNumber} events(first:40){pageInfo{hasNextPage endCursor} nodes{sequenceNumber contents{type{repr} json}}} objectChanges(first:40){pageInfo{hasNextPage endCursor} nodes{address idCreated idDeleted inputState{version asMoveObject{contents{type{repr} json}}} outputState{version asMoveObject{contents{type{repr} json}}}}}}'''
+          q='query($f:TransactionFilter!){transactions(last:10,filter:$f){pageInfo{hasPreviousPage startCursor} nodes{'+fields+'}}}'
+          result=attempt('recent-gameplay',q,{'f':{'sentAddress':WALLET,'function':package+'::arboretum'}})
+          if not result:
+              attempt('recent-wallet-fallback',q,{'f':{'sentAddress':WALLET}})
+          qmodule='query($a:SuiAddress!){object(address:$a){address asMovePackage{module(name:"arboretum"){name disassembly}}}}'
+          module=attempt('deployed-module',qmodule,{'a':package})
+          if module:
+              content=module.get('object',{}).get('asMovePackage',{}).get('module',{}) or {}
+              if content.get('disassembly'):(OUT/'deployed-arboretum.asm').write_text(content['disassembly'])
+          else:
+              for typename in ['MoveModule','MovePackage','Query']:
+                  attempt('schema-'+typename,'query($n:String!){__type(name:$n){fields{name args{name type{kind name ofType{kind name}}} type{kind name ofType{kind name}}}}}',{'n':typename})
+          report['finished_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat();save('coverage.json',report)
+          print(json.dumps(report,indent=2))
+          PY
+      - name: Preserve read-only evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arboretum-launch-evidence-20260919
+          path: launch-evidence/
+          retention-days: 14
