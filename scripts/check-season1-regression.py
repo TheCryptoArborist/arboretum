@@ -25,7 +25,8 @@ dest = area / 'baseline-regression'
 (dest/'sources').mkdir(parents=True,exist_ok=True)
 (dest/'Move.toml').write_text(ns['manifest'].replace('arboretum_step1_candidate','arboretum_step1_negative_control'))
 (dest/'sources/arboretum.move').write_text(baseline)
-result = subprocess.run(['sui','move','test','--path',str(dest)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=300)
+# --build-env selects framework dependency context; it does not publish or submit.
+result = subprocess.run(['sui','move','test','--build-env','mainnet','--path',str(dest)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=300)
 # Defense in depth: never put any compiler-generated recovery phrase into an artifact.
 log = re.sub(r'(?im)^.*secret recovery phrase.*$', '[EPHEMERAL CLI RECOVERY MATERIAL REDACTED]', result.stdout)
 (root/'step1-results/baseline-regression.txt').write_text(log)
