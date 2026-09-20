@@ -1,0 +1,78 @@
+name: Season 1 core controls
+on:
+  push:
+    branches: [fix/season1-watering-controls]
+    paths:
+      - '.github/workflows/season1-step1.yml'
+      - 'scripts/prepare-season1-step1.py'
+      - 'contract/season1-step1/**'
+  pull_request:
+    paths:
+      - 'scripts/prepare-season1-step1.py'
+      - 'contract/season1-step1/**'
+permissions:
+  contents: read
+concurrency:
+  group: season1-step1-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  move-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Cache verified Sui compiler
+        id: sui-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/sui-step1
+          key: sui-mainnet-v1.79.1-547b3091-ubuntu24
+      - name: Install pinned official compiler (no wallet configuration)
+        if: steps.sui-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.local/sui-step1"
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/sui.tgz" 'https://github.com/MystenLabs/sui/releases/download/mainnet-v1.79.1/sui-mainnet-v1.79.1-ubuntu-x86_64.tgz'
+          echo '547b3091e975b8a6b4078473a3868d86e985156b6715a8c4afb7fd7313a36abf  '"$RUNNER_TEMP/sui.tgz" | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile,os,pathlib,shutil
+          with tarfile.open(os.environ['RUNNER_TEMP']+'/sui.tgz') as t:
+              m=[x for x in t.getmembers() if x.isfile() and pathlib.PurePosixPath(x.name).name=='sui']
+              assert len(m)==1
+              p=pathlib.Path.home()/'.local/sui-step1/sui'
+              with p.open('wb') as f:shutil.copyfileobj(t.extractfile(m[0]),f)
+              p.chmod(0o755)
+          PY
+          rm "$RUNNER_TEMP/sui.tgz"
+      - name: Build isolated candidate and run actual Move tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p step1-results
+          export PATH="$HOME/.local/sui-step1:$PATH"
+          sui --version | tee step1-results/compiler.txt
+          if [ -f scripts/prepare-season1-step1.py ]; then
+            python3 scripts/prepare-season1-step1.py
+            CANDIDATE='contract/season1-step1/generated'
+          else
+            CANDIDATE="$RUNNER_TEMP/arboretum-baseline"
+            mkdir -p "$CANDIDATE/sources"
+            cp contract/sources/arboretum.move "$CANDIDATE/sources/arboretum.move"
+            printf '[package]\nname = "arboretum"\nedition = "2024.beta"\n\n[dependencies]\nSui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "58386edc269ef88ff0f40ab0a9d50e87cba80ca8" }\n\n[addresses]\narboretum = "0x0"\n' > "$CANDIDATE/Move.toml"
+          fi
+          sui move test --path "$CANDIDATE" 2>&1 | tee step1-results/move-tests.txt
+          if [ -f scripts/prepare-season1-step1.py ]; then
+            cp "$CANDIDATE/sources/arboretum.move" step1-results/candidate-arboretum.move
+            cp "$CANDIDATE/Move.toml" step1-results/Move.toml
+            cp "$CANDIDATE/Move.lock" step1-results/Move.lock || true
+          fi
+      - name: Preserve test results and reviewable source (no deployment)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-season1-step1
+          path: step1-results/
+          retention-days: 14
