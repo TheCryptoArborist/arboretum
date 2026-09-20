@@ -18,28 +18,35 @@ The generator patches the pinned saved Arboretum module into a separate local Mo
 - Boost queues add future waterings, not percentages. Overflow is explicitly rejected. The existing double-then-50% calculation remains.
 - Read helpers expose next earning time, instant-tool availability and Forest Heart usage for later UI integration.
 
+## Test evidence
+
+The corrected generated source passed **36 new regression tests plus all 4 existing tests: 40 passed, 0 failed**, using the actual Sui Move VM. The generated-source SHA-256 is `f0ade5506f09076f88d56249aca75c508d062377126d6df745df8dcc2bfc48b9`.
+
+A negative-control run of the original saved source plus the same protection regression returned exactly **4 existing tests passed, 1 regression failed**. This demonstrates the test detects the prior behavior rather than merely testing the new implementation's preferred output. This is synthetic VM execution; the deployed-bytecode finding is separate evidence from the September 19 inspection.
+
+Initial candidate evidence: run `35530236415`, commit `a3982290189fa9893cf6b603cb5156b568cace19`. The later keyless run `35530604841` also completed the negative control and all 40 corrected tests; its overall workflow failed only afterward because the artifact-copy step expected a Move.lock file that this invocation did not generate. The workflow now handles that file conditionally and keeps explicit pinned framework/compiler inputs. Use the latest completed workflow and its `execution-scope.json` for final packaging status; a passing unit-test count alone is not an assertion that every CI step succeeded.
+
 ## Structure and reproduction
 
 - `controls.move.inc`: persistent state and enforcement helpers.
-- `regression-tests.move.inc`: new Move regression tests.
-- `../../scripts/prepare-season1-step1.py` (repository path `scripts/prepare-season1-step1.py`): checked generator, no network access or writes outside the generated package/results. It refuses source drift, preserves existing tests, and verifies payment/claim/admin routines are unchanged.
-- `scripts/check-season1-regression.py`: builds a negative control from the original source and requires exactly the protection regression to fail. A build error does not count as reproduction.
-- `.github/workflows/season1-step1.yml`: pinned compiler, actual Move VM tests, read-only repository permissions, no publish command. Final execution uses an empty keystore and a non-serving localhost RPC setting, with an assertion that no keys were created. GitHub is used only to fetch compiler/framework dependencies.
+- `regression-tests.move.inc`: the 36 new Move regression tests.
+- Repository path `scripts/prepare-season1-step1.py`: checked generator, no network access or writes outside the generated package/results. It refuses source drift, preserves existing tests, and verifies payment/claim/admin routines are unchanged.
+- `scripts/check-season1-regression.py`: builds the original-source negative control and requires exactly the protection regression to fail. A build or configuration error does not count as reproduction.
+- `.github/workflows/season1-step1.yml`: pinned compiler and actions, actual Move VM tests, read-only repository permissions, no publish command. Final execution uses an empty keystore and a non-serving localhost RPC setting, with an assertion that no signing keys were created. Dependencies are fetched from GitHub; the VM tests do not require an on-chain transaction.
 
 From the repository root, with the pinned Sui compiler available:
 
 ```sh
 python3 scripts/prepare-season1-step1.py
-sui move test --path contract/season1-step1/generated
+sui move test --build-env mainnet --path contract/season1-step1/generated
 python3 scripts/check-season1-regression.py
 ```
 
-Use the CI's isolated empty-keystore setup when no client configuration exists; do not connect or use a funded wallet. All functional tests run in the local Move VM. No testnet deployment is required.
+Use the CI's isolated empty-keystore setup when no client configuration exists; do not connect or use a funded wallet. `--build-env mainnet` selects the compiler's dependency context, not a mainnet deployment. All functional tests run in the local Move VM. No testnet account or deployment is required.
 
 Source baseline: `2338affe1dd984f5bc676cec7f3763d1f37a90cf`, SHA-256 `f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2`.
 Official compiler archive: mainnet-v1.79.1, SHA-256 `547b3091e975b8a6b4078473a3868d86e985156b6715a8c4afb7fd7313a36abf`.
 Framework source dependency: `58386edc269ef88ff0f40ab0a9d50e87cba80ca8`.
-The first completed candidate run passed 36 new tests and all 4 existing tests (40 total). See the latest CI artifact for the authoritative result and generated-source hash.
 
 ## Deliberate behavior changes to explain to players
 
