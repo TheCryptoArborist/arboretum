@@ -49,7 +49,7 @@ jobs:
               p.chmod(0o755)
           PY
           rm "$RUNNER_TEMP/sui.tgz"
-      - name: Prevent wallet creation and public-chain access by test commands
+      - name: Configure empty keystore and non-serving local RPC
         shell: bash
         run: |
           python3 - <<'PY'
@@ -72,7 +72,12 @@ jobs:
           sui move test --build-env mainnet --path "$CANDIDATE" 2>&1 | tee step1-results/move-tests.txt
           cp "$CANDIDATE/sources/arboretum.move" step1-results/candidate-arboretum.move
           cp "$CANDIDATE/Move.toml" step1-results/Move.toml
-          cp "$CANDIDATE/Move.lock" step1-results/Move.lock
+          if [ -f "$CANDIDATE/Move.lock" ]; then cp "$CANDIDATE/Move.lock" step1-results/Move.lock; fi
+          mkdir -p step1-results/reproduction/scripts step1-results/reproduction/contract/season1-step1 step1-results/reproduction/contract/sources
+          cp scripts/prepare-season1-step1.py scripts/check-season1-regression.py step1-results/reproduction/scripts/
+          cp contract/season1-step1/*.inc contract/season1-step1/README.md step1-results/reproduction/contract/season1-step1/
+          cp contract/sources/arboretum.move step1-results/reproduction/contract/sources/
+          cp .github/workflows/season1-step1.yml step1-results/reproduction/workflow.yml
           python3 - <<'PY'
           from pathlib import Path
           import json,re,hashlib
@@ -82,8 +87,8 @@ jobs:
               log=Path('step1-results',filename).read_text()
               assert 'secret recovery phrase' not in log.lower() and 'Generated new keypair' not in log
           log=Path('step1-results/move-tests.txt').read_text()
-          assert re.search(r'failed:\s*0',log), 'Missing zero-failure result'
-          report={'empty_keystore':True,'rpc_endpoint':'http://127.0.0.1:9','execution':'Local Move VM only','build_environment':'mainnet framework context; no chain submission','source_sha256':hashlib.sha256(Path('step1-results/candidate-arboretum.move').read_bytes()).hexdigest()}
+          assert re.search(r'Total tests:\s*40;\s*passed:\s*40;\s*failed:\s*0',log), 'Missing exact expected test result'
+          report={'empty_keystore':True,'rpc_endpoint':'http://127.0.0.1:9','execution':'Local Move VM only','build_environment':'mainnet framework context; no chain submission','source_sha256':hashlib.sha256(Path('step1-results/candidate-arboretum.move').read_bytes()).hexdigest(),'test_count':40,'passed':40,'failed':0}
           Path('step1-results/execution-scope.json').write_text(json.dumps(report,indent=2))
           PY
       - name: Preserve test results and reviewable source (no deployment)
