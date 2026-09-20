@@ -27,7 +27,7 @@ jobs:
           persist-credentials: false
       - name: Cache verified Sui compiler
         id: sui-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ~/.local/sui-step1
           key: sui-mainnet-v1.79.1-547b3091-ubuntu24
@@ -69,18 +69,21 @@ jobs:
           sui --version | tee step1-results/compiler.txt
           python3 scripts/check-season1-regression.py
           CANDIDATE='contract/season1-step1/generated'
-          sui move test --path "$CANDIDATE" 2>&1 | tee step1-results/move-tests.txt
+          sui move test --build-env mainnet --path "$CANDIDATE" 2>&1 | tee step1-results/move-tests.txt
           cp "$CANDIDATE/sources/arboretum.move" step1-results/candidate-arboretum.move
           cp "$CANDIDATE/Move.toml" step1-results/Move.toml
+          cp "$CANDIDATE/Move.lock" step1-results/Move.lock
           python3 - <<'PY'
           from pathlib import Path
           import json,re,hashlib
           p=Path.home()/'.sui/sui_config/empty.keystore'
           assert json.loads(p.read_text())==[], 'Test runner must not generate signing keys'
+          for filename in ['move-tests.txt','baseline-regression.txt']:
+              log=Path('step1-results',filename).read_text()
+              assert 'secret recovery phrase' not in log.lower() and 'Generated new keypair' not in log
           log=Path('step1-results/move-tests.txt').read_text()
-          assert 'secret recovery phrase' not in log.lower() and 'Generated new keypair' not in log
           assert re.search(r'failed:\s*0',log), 'Missing zero-failure result'
-          report={'empty_keystore':True,'rpc_endpoint':'http://127.0.0.1:9','execution':'Local Move VM only','source_sha256':hashlib.sha256(Path('step1-results/candidate-arboretum.move').read_bytes()).hexdigest()}
+          report={'empty_keystore':True,'rpc_endpoint':'http://127.0.0.1:9','execution':'Local Move VM only','build_environment':'mainnet framework context; no chain submission','source_sha256':hashlib.sha256(Path('step1-results/candidate-arboretum.move').read_bytes()).hexdigest()}
           Path('step1-results/execution-scope.json').write_text(json.dumps(report,indent=2))
           PY
       - name: Preserve test results and reviewable source (no deployment)
