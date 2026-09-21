@@ -78,8 +78,8 @@ attack='''
 '''
 (dest/'sources/arboretum.move').write_text(src.rstrip()[:-1]+attack+'\n}\n')
 p=run(['sui','move','test','--build-env','mainnet','--path',str(dest)],'reject-borrowed-nft',False)
-assert p.returncode!=0 and re.search(r'E(?:C)?(?:04007|02004|04010)',p.stdout) and 'attack_borrowed_nft' in p.stdout, p.stdout[-9000:]
-negative.append({'case':'borrowed NFT proof','rejected':True,'layer':'Move type/ability checker'})
+assert p.returncode!=0 and re.search(r'E(?:C)?05001',p.stdout) and re.search(r'E(?:C)?04004',p.stdout) and 'attack_borrowed_nft' in p.stdout and 'plant_seed_with_nftree(registry, nft' in p.stdout, p.stdout[-9000:]
+negative.append({'case':'borrowed NFT proof','rejected':True,'layer':'Move type/ability checker','diagnostics':['ability constraint not satisfied','expected a single non-reference type']})
 # No fake collection/legacy modules or dependencies in the production build.
 (OUT/'Move.toml').write_text(ns['manifest'])
 shutil.rmtree(OUT/'build',ignore_errors=True)
