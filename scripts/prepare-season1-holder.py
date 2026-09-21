@@ -58,6 +58,18 @@ def tool_origin(x):
 src=edit(src,'assert_tool_origin',tool_origin)
 src=edit(src,'apply_tool_checked',lambda x:replace(x,'        if (kind_bytes == b"fertilizer") {','        if (kind_bytes == b"holder_growth_boost") {\n            queue_boost(seed, tool.holder_waterings);\n        } else if (kind_bytes == b"fertilizer") {'))
 helpers=(AREA/'holder.move.inc').read_text();tests=(AREA/'holder-tests.move.inc').read_text()
+# Each matrix row needs independent synthetic UIDs, including Registry tables.
+# Reusing step1_setup's fixed context across a loop collides in native test storage.
+# This alters the test fixture only; receipt replay checks remain unchanged.
+tests=edit(tests,'step3_setup',lambda x:replace(x,
+ '        let (mut r, s, c, mut ctx) = step1_setup();',
+ '''        let mut ctx = tx_context::new_from_hint(@0xA,
+            1000 + (rank as u64) * 100 + (tier as u64) * 10 + (choice as u64), 0, 0, 0);
+        let c = clock::create_for_testing(&mut ctx);
+        let mut r = test_registry(@0xA, 1, &mut ctx);
+        let mut s = step1_seed(&r, object::id_from_address(@0xCAFE), @0xA, 1, &mut ctx);
+        register_line(&mut r, &s, 1);
+        add_growth_points(&mut r, &mut s, @0xA, 134);'''))
 src=src.rstrip()[:-1]+'\n'+helpers+'\n'+tests+'\n}\n'
 # Payment allocations, advertised normal loot, limits and claims are not redesigned.
 unchanged=['route_paid_action','pay_direct_invite_shop_bonus','crate_price','open_crate','partner_items',
