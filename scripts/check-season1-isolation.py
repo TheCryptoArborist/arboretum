@@ -6,9 +6,8 @@ ROOT=Path(__file__).resolve().parents[1]
 ns=runpy.run_path(str(ROOT/'scripts/prepare-season1-isolation.py'))
 OUT=ns['OUT']; RESULTS=ns['RESULTS']; src=ns['src']
 
-# The pinned compiler forbids same-named modules in one package even at
-# different addresses. Keep canonical/fake/legacy test stand-ins in separate
-# packages. These dependencies are removed before the production build.
+# Keep same-named canonical/fake/legacy test stand-ins in separate packages.
+# These dependencies are removed before the production build.
 fixture_text=(ns['AREA']/'fixtures.move').read_text()
 fixtures=[]
 for alias,pkg,addr in [('canonical_fixture','CanonicalFixture','0xf6c6d439ea0da2f3e9ba79e4992a7a4c113215fbf54c442ac9020c315f953705'),('fake_fixture','CounterfeitFixture','0xbad'),('legacy_fixture','LegacyFixture','0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b')]:
@@ -19,7 +18,6 @@ for alias,pkg,addr in [('canonical_fixture','CanonicalFixture','0xf6c6d439ea0da2
   if depth==0:b=i+1;break
  d=ns['AREA']/'test-fixture-packages'/pkg
  (d/'sources').mkdir(parents=True,exist_ok=True)
- # No fixture code is represented as authentic collection/legacy bytecode.
  (d/'sources/fixture.move').write_text(fixture_text[a:b]+'\n')
  (d/'Move.toml').write_text(f'''[package]
 name = "{pkg}"
@@ -66,7 +64,7 @@ module season1::legacy_attack {{
 '''
  (dest/'tests/attack.move').write_text(attack)
  p=run(['sui','move','test','--build-env','mainnet','--path',str(dest)],'reject-legacy-'+kind.lower(),False)
- assert p.returncode!=0 and re.search(r'E(?:C)?04007',p.stdout) and 'legacy_attack' in p.stdout, p.stdout[-9000:]
+ assert p.returncode!=0 and re.search(r'E(?:C)?04007',p.stdout) and 'tests/attack.move' in p.stdout and 'Invalid call' in p.stdout, p.stdout[-9000:]
  negative.append({'case':'legacy '+kind,'rejected':True,'layer':'Move type checker','diagnostic':'incompatible types'})
 dest=ns['AREA']/'negative-borrowed-nft'
 (dest/'sources').mkdir(parents=True,exist_ok=True);(dest/'tests').mkdir(exist_ok=True)
