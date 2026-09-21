@@ -1,0 +1,80 @@
+name: Season 1 isolation
+on:
+  push:
+    branches: [feature/season1-isolation]
+    paths: ['scripts/*season1*', 'contract/season1-isolation/**', '.github/workflows/season1-isolation.yml']
+  pull_request:
+    paths: ['scripts/*season1*', 'contract/season1-isolation/**', '.github/workflows/season1-isolation.yml']
+permissions:
+  contents: read
+concurrency:
+  group: season1-isolation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Cached pinned compiler
+        id: sui-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.local/sui-step1
+          key: sui-mainnet-v1.79.1-547b3091-ubuntu24
+      - name: Install verified official compiler
+        if: steps.sui-cache.outputs.cache-hit != 'true'
+        run: |
+          set -eu
+          mkdir -p "$HOME/.local/sui-step1"
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/sui.tgz" 'https://github.com/MystenLabs/sui/releases/download/mainnet-v1.79.1/sui-mainnet-v1.79.1-ubuntu-x86_64.tgz'
+          echo '547b3091e975b8a6b4078473a3868d86e985156b6715a8c4afb7fd7313a36abf  '"$RUNNER_TEMP/sui.tgz" | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile,os,pathlib,shutil
+          with tarfile.open(os.environ['RUNNER_TEMP']+'/sui.tgz') as t:
+              m=[x for x in t.getmembers() if x.isfile() and pathlib.PurePosixPath(x.name).name=='sui']
+              assert len(m)==1
+              p=pathlib.Path.home()/'.local/sui-step1/sui'
+              with p.open('wb') as f:shutil.copyfileobj(t.extractfile(m[0]),f)
+              p.chmod(0o755)
+          PY
+          rm "$RUNNER_TEMP/sui.tgz"
+      - name: Empty keystore, no funded account or serving RPC
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path.home()/'.sui/sui_config';p.mkdir(parents=True,exist_ok=True)
+          k=p/'empty.keystore';k.write_text('[]');k.chmod(0o600)
+          (p/'client.yaml').write_text(json.dumps({'keystore':{'File':str(k)},'external_keys':None,'envs':[{'alias':'offline-tests','rpc':'http://127.0.0.1:9','ws':None,'basic_auth':None,'chain_id':'00000000'}],'active_env':'offline-tests','active_address':None}))
+          PY
+      - name: Read immutable partner implementation
+        run: python3 scripts/read-season1-partner-evidence.py
+      - name: Core regression, integrated tests, legacy rejections and production build
+        run: |
+          set -euo pipefail
+          export PATH="$HOME/.local/sui-step1:$PATH"
+          mkdir -p step2-results
+          sui --version | tee step2-results/compiler.txt
+          python3 scripts/check-season1-regression.py
+          python3 scripts/check-season1-isolation.py
+          git diff --exit-code -- contract/sources/arboretum.move wallet.js garden.js index.html netlify.toml
+      - name: Package reproduction source
+        if: always()
+        run: |
+          mkdir -p step2-results/reproduction/scripts step2-results/reproduction/contract/sources step2-results/reproduction/contract/season1-step1 step2-results/reproduction/contract/season1-isolation
+          cp scripts/*season1*.py step2-results/reproduction/scripts/
+          cp contract/sources/arboretum.move step2-results/reproduction/contract/sources/
+          cp contract/season1-step1/*.inc step2-results/reproduction/contract/season1-step1/
+          cp contract/season1-isolation/*.inc contract/season1-isolation/fixtures.move step2-results/reproduction/contract/season1-isolation/
+          cp .github/workflows/season1-isolation.yml step2-results/reproduction/workflow.yml
+          cp step1-results/negative-control.json step2-results/step1-negative-control.json || true
+      - name: Preserve local test evidence; no deployment
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-season1-isolation
+          path: step2-results/
+          retention-days: 14
