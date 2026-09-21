@@ -83,7 +83,7 @@
     fun step3_counterfeit_collection_rejected_before_decoding() {
         let (r, s, c, mut ctx) = step1_setup();
         let nft = fake_fixture::collection::make(&mut ctx);
-        let _ = quote_holder_bonus(&r, &nft, 4);
+        let (_, _, _, _, _) = quote_holder_bonus(&r, &nft, 4);
         fake_fixture::collection::destroy(nft); step1_finish(r, s, c);
     }
     #[test]
