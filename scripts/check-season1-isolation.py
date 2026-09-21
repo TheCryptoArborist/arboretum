@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local VM/compiler checks only. Never sign, publish, or run a client transaction."""
 from pathlib import Path
-import hashlib,json,os,re,runpy,shutil,subprocess
+import hashlib,json,re,runpy,shutil,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 ns=runpy.run_path(str(ROOT/'scripts/prepare-season1-isolation.py'))
 OUT=ns['OUT']; RESULTS=ns['RESULTS']; src=ns['src']
@@ -16,7 +16,6 @@ def run(args,name,success=True):
   print(text[-14000:]);raise SystemExit(name+' failed')
  return p
 
-# Keep Step 1 evidence intact; this suite additionally tests its integrated form.
 p=run(['sui','move','test','--build-env','mainnet','--path',str(OUT)],'move-tests')
 m=re.search(r'Total tests:\s*(\d+);\s*passed:\s*(\d+);\s*failed:\s*(\d+)',p.stdout)
 assert m and int(m[3])==0 and int(m[1])==40+ns['report']['new_test_count'], 'Missing exact expected test total'
@@ -36,12 +35,8 @@ module season1::legacy_attack {{
 '''
  (dest/'tests/attack.move').write_text(attack)
  p=run(['sui','move','test','--build-env','mainnet','--path',str(dest)],'reject-legacy-'+kind.lower(),False)
- text=p.stdout
- # E04007 is Move's incompatible-types diagnostic. A generic build failure
- # must never be reported as successful legacy isolation.
- assert p.returncode!=0 and 'E04007' in text and 'legacy_attack' in text, text[-9000:]
- negative.append({'case':'legacy '+kind,'rejected':True,'layer':'Move type checker','diagnostic':'E04007'})
-# Borrowed canonical NFT cannot satisfy a by-value owned-input entry signature.
+ assert p.returncode!=0 and re.search(r'E(?:C)?04007',p.stdout) and 'legacy_attack' in p.stdout, p.stdout[-9000:]
+ negative.append({'case':'legacy '+kind,'rejected':True,'layer':'Move type checker','diagnostic':'incompatible types'})
 dest=ns['AREA']/'negative-borrowed-nft'
 (dest/'sources').mkdir(parents=True,exist_ok=True);(dest/'tests').mkdir(exist_ok=True)
 (dest/'Move.toml').write_text(ns['manifest'].replace('arboretum_season1_isolated','negative_borrowed_nft'))
@@ -55,10 +50,8 @@ attack='''
 (dest/'sources/arboretum.move').write_text(src.rstrip()[:-1]+attack+'\n}\n')
 (dest/'tests/fixtures.move').write_text((ns['AREA']/'fixtures.move').read_text())
 p=run(['sui','move','test','--build-env','mainnet','--path',str(dest)],'reject-borrowed-nft',False)
-assert p.returncode!=0 and ('E04007' in p.stdout or 'E02004' in p.stdout or 'E04010' in p.stdout) and 'attack_borrowed_nft' in p.stdout, p.stdout[-9000:]
+assert p.returncode!=0 and re.search(r'E(?:C)?(?:04007|02004|04010)',p.stdout) and 'attack_borrowed_nft' in p.stdout, p.stdout[-9000:]
 negative.append({'case':'borrowed NFT proof','rejected':True,'layer':'Move type/ability checker'})
-# Rebuild without tests in a clean build directory. No fixture module may
-# appear among the production modules of this package.
 shutil.rmtree(OUT/'build',ignore_errors=True)
 run(['sui','move','build','--build-env','mainnet','--path',str(OUT)],'production-build')
 module_files=list((OUT/'build').glob('*/bytecode_modules/*.mv'))
