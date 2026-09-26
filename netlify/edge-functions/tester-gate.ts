@@ -39,7 +39,7 @@ function text(message: string, status: number): Response {
 function b64(data: Uint8Array): string {
   return btoa(String.fromCharCode(...data)).replaceAll("+", "-").replaceAll("/", "_").replace(/=+$/, "");
 }
-function unb64(input: string): Uint8Array {
+function unb64(input: string): Uint8Array<ArrayBuffer> {
   if (!/^[A-Za-z0-9_-]+$/.test(input)) throw new Error("Invalid encoding");
   return Uint8Array.from(atob(input.replaceAll("-", "+").replaceAll("_", "/")), c => c.charCodeAt(0));
 }
