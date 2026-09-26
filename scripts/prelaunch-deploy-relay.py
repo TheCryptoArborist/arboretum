@@ -49,7 +49,7 @@ with zipfile.ZipFile(buffer,'w',zipfile.ZIP_DEFLATED) as z:
     for name in files:
         if name.startswith(('.git','.env','docs/','contract/','prelaunch-results/')):continue
         z.write(ROOT/name,name)
-url=proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode({'branch':BRANCH,'title':'Arboretum prelaunch gate preview — not production'})
+url=proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode({'branch':BRANCH,'title':'Arboretum prelaunch login correction — not production'})
 r=requests.post(url,files={'zip':('prelaunch-source.zip',buffer.getvalue(),'application/zip')},timeout=120)
 if not r.ok: raise SystemExit('Preview build request rejected: HTTP '+str(r.status_code))
 data=r.json(); data=data[0] if isinstance(data,list) else data
@@ -84,4 +84,10 @@ r=session.post(base+'/tester-logout',headers={'Origin':base},allow_redirects=Fal
 r=session.get(base+'/wallet.js',headers={'Accept':'application/json'},allow_redirects=False,timeout=30);check('No access after logout',r.status_code in (401,403))
 (OUT/'hosted-access-checks.json').write_text(json.dumps(checks,indent=2))
 summary={'deploy_id':deploy_id,'build_id':data.get('id'),'context':deploy['context'],'preview_url':base,'branch':deploy.get('branch'),'state':deploy['state'],'checks_passed':len(checks),'live_site_switched':False}
+# Verify actual HTML form submissions too, without manually setting Origin.
+browser_run=subprocess.run([sys.executable,str(ROOT/'scripts/test-prelaunch-browser-login.py'),'after',base],input=packet['tester_password'],text=True,capture_output=True,timeout=240)
+print(browser_run.stdout)
+if browser_run.returncode != 0:
+    raise SystemExit('Hosted native browser login regression failed; preview not accepted.')
+summary['native_browser_login_verified']=True
 (OUT/'netlify-preview.json').write_text(json.dumps(summary,indent=2));print(json.dumps(summary,indent=2))
