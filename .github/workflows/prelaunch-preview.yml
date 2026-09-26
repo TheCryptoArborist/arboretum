@@ -1,0 +1,84 @@
+name: Arboretum prelaunch preview
+on:
+  push:
+    branches: [feature/prelaunch-gate]
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*prelaunch*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - 'netlify.toml'
+      - 'docs/prelaunch-review.md'
+      - '.github/workflows/prelaunch-preview.yml'
+  pull_request:
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*prelaunch*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - 'netlify.toml'
+permissions:
+  contents: read
+concurrency:
+  group: prelaunch-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Test gate without any real credentials
+        run: |
+          set -euo pipefail
+          mkdir -p prelaunch-results
+          node --version | tee prelaunch-results/node.txt
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs | tee prelaunch-results/unit-tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts
+      - name: Build review without changing game scripts
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js contract/sources/arboretum.move
+          NETLIFY=true CONTEXT=production node scripts/build-prelaunch.mjs >prelaunch-results/production-guard.txt 2>&1 && exit 1 || grep -q 'not approved for production' prelaunch-results/production-guard.txt
+      - name: Preserve build and unit evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: prelaunch-checks
+          path: prelaunch-results/
+          retention-days: 14
+      - name: Prepare one-use encrypted upload handoff
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-upload]')
+        env:
+          RELAY_MODE: key
+        run: |
+          python3 -m pip install --quiet cryptography requests
+          python3 scripts/prelaunch-deploy-relay.py
+      - name: Expose only the public encryption key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-upload]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: prelaunch-upload-public-key
+          path: prelaunch-results/upload-public-key.json
+          retention-days: 1
+      - name: Build separate Netlify branch preview and verify hosted access
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-upload]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/prelaunch-deploy-relay.py
+      - name: Preserve hosted status without credentials
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: prelaunch-preview-result
+          path: |
+            prelaunch-results/netlify-preview.json
+            prelaunch-results/hosted-access-checks.json
+          if-no-files-found: ignore
+          retention-days: 14

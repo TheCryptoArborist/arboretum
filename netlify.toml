@@ -1,5 +1,5 @@
 [build]
-  command = "python3 scripts/build-player-guide.py && node scripts/build-guide-site.mjs"
+  command = "python3 scripts/build-player-guide.py && node scripts/build-guide-site.mjs && node scripts/build-prelaunch.mjs"
   publish = "dist"
 
 [functions]
