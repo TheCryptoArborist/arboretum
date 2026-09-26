@@ -33,7 +33,7 @@ jobs:
           set -euo pipefail
           mkdir -p prelaunch-results
           node --version | tee prelaunch-results/node.txt
-          node --experimental-strip-types --test scripts/test-prelaunch.mjs | tee prelaunch-results/unit-tests.txt
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-origin.mjs | tee prelaunch-results/unit-tests.txt
           npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
           npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts
       - name: Build review without changing game scripts
@@ -53,6 +53,12 @@ jobs:
           name: prelaunch-checks
           path: prelaunch-results/
           retention-days: 14
+      - name: Reproduce original native browser form failure
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-upload]')
+        run: |
+          python3 -m pip install --quiet playwright==1.55.0
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/test-prelaunch-browser-login.py before https://6ab80d492c4a388d8f76e319--arboretum-sui-forest.netlify.app
       - name: Prepare one-use encrypted upload handoff
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[preview-upload]')
         env:
@@ -80,5 +86,7 @@ jobs:
           path: |
             prelaunch-results/netlify-preview.json
             prelaunch-results/hosted-access-checks.json
+            prelaunch-results/browser-login-*.json
+            prelaunch-results/browser-login-*.png
           if-no-files-found: ignore
           retention-days: 14
