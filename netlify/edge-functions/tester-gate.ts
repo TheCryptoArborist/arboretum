@@ -6,7 +6,7 @@ declare const Netlify: { env: { get(name: string): string | undefined } };
 function publicPaths(): Set<string> {
   return new Set(["/", "/index.html", "/robots.txt", "/sitemap.xml",
     "/prelaunch/site.css", "/prelaunch/forest.jpg", "/prelaunch/hero.png",
-    "/prelaunch/mark.png", "/prelaunch/ancient.jpg"]);
+    "/prelaunch/mark.png", "/prelaunch/ancient.jpg", "/prelaunch/garden-preview.avif"]);
 }
 function secure(response: Response, publicPage = false): Response {
   const h = new Headers(response.headers);

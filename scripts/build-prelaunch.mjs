@@ -8,8 +8,7 @@ const dist=path.join(root,'dist');
 if(process.env.NETLIFY && process.env.CONTEXT === 'production' && process.env.ARBORETUM_PRELAUNCH_APPROVED !== 'true') throw new Error('Prelaunch preview is not approved for production.');
 const hash=x=>crypto.createHash('sha256').update(x).digest('hex');
 const game=await fs.readFile(path.join(dist,'index.html'));
-if(game.includes(Buffer.from('Your next season'))) throw new Error('Run the clean guide build first; refusing to overwrite the preserved game.');
-// Wallet and game are compared with their source files below, not reconstructed.
+if(game.includes(Buffer.from('data-prelaunch-version'))) throw new Error('Run the clean guide build first; refusing to overwrite the preserved game.');
 const protectedFiles=['wallet.js','garden.js','sui-sdk.bundle.js'];
 const before={};
 for(const file of protectedFiles){const a=await fs.readFile(path.join(root,file));const b=await fs.readFile(path.join(dist,file));if(!a.equals(b))throw new Error('Unexpected built changes: '+file);before[file]=hash(b);}
@@ -22,7 +21,7 @@ await fs.writeFile(path.join(dist,'index.html'),landing);
 await fs.copyFile(path.join(root,'prelaunch/site.css'),path.join(dist,'prelaunch/site.css'));
 const assets={'forest.jpg':'background6.jpg','hero.png':'hero.png','mark.png':'arboretum-protocol-logo.png','ancient.jpg':'assets/shop/crates/ancient-crate.jpg'};
 for(const [dest,source] of Object.entries(assets)) await fs.copyFile(path.join(root,source),path.join(dist,'prelaunch',dest));
-// Remove development documentation accidentally included by the older asset copy.
+await fs.copyFile(path.join(root,'prelaunch/garden-preview.avif'),path.join(dist,'prelaunch/garden-preview.avif'));
 async function prune(dir){for(const entry of await fs.readdir(dir,{withFileTypes:true})){const p=path.join(dir,entry.name);if(entry.isDirectory())await prune(p);else if(entry.name.startsWith('.')||/\.(md|map|toml|lock|ts)$/i.test(entry.name))await fs.rm(p);}}
 await prune(path.join(dist,'assets'));
 await fs.writeFile(path.join(dist,'robots.txt'),publicProduction?'User-agent: *\nAllow: /$\nAllow: /index.html$\nAllow: /prelaunch/\nDisallow: /\nSitemap: https://treegrow.xyz/sitemap.xml\n':'User-agent: *\nDisallow: /\n');
