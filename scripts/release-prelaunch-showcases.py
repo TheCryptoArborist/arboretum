@@ -3,7 +3,7 @@
 No blockchain calls, no wallet signing, no credential logs. Encrypted capability
 handoff is single-use and run-bound; the private key stays in runner temp.
 """
-import base64,hashlib,io,json,os,pathlib,subprocess,sys,time,urllib.parse,zipfile
+import base64,hashlib,io,json,os,pathlib,subprocess,sys,time,urllib.parse,zipfile,difflib
 import requests
 from cryptography.hazmat.primitives.asymmetric import rsa,padding
 from cryptography.hazmat.primitives import hashes,serialization
@@ -51,6 +51,21 @@ def assert_live_baseline():
  save('baseline-homepage.json',{'status':r.status_code,'expected_sha256':sha(expected),'observed_sha256':sha(r.content),'matches':r.status_code==200 and r.content==expected,'metadata_checked_via':'Netlify get-project connector'})
  assert r.status_code==200 and r.content==expected,'Public homepage changed; reconcile before publishing'
 assert_live_baseline()
+# Compare hosted game files with the current hosted release, as hosting may
+# post-process HTML differently from the local dist file. Never compare a login
+# error page as a successful baseline, or weaken this to a status-only check.
+previous={}
+prior=requests.Session()
+r=prior.post('https://treegrow.xyz/tester-access',headers={'Origin':'https://treegrow.xyz'},data={'password':packet['tester_password']},allow_redirects=False,timeout=30)
+assert r.status_code==303 and 'HttpOnly' in r.headers.get('set-cookie',''),'Baseline login failed'
+for name in ['game.html','wallet.js','garden.js','sui-sdk.bundle.js','player-guide.html']:
+ r=prior.get('https://treegrow.xyz/'+name,timeout=30)
+ assert r.status_code==200 and len(r.content)>1000,'Baseline file unavailable'
+ if name=='game.html':assert 'id="garden-sec"' in r.text,'Baseline is not game HTML'
+ if name=='player-guide.html':assert 'What do I need to buy first?' in r.text,'Baseline is not guide'
+ previous[name]=r.content
+save('preserved-hosted-baseline.json',{name:{'bytes':len(data),'sha256':sha(data),'local_sha256':sha((ROOT/'dist'/name).read_bytes()),'matches_local':data==(ROOT/'dist'/name).read_bytes()} for name,data in previous.items()})
+prior.post('https://treegrow.xyz/tester-logout',headers={'Origin':'https://treegrow.xyz'},data={},allow_redirects=False,timeout=30)
 def source_zip(ref=None):
  names=git('ls-tree','-r','--name-only',ref or 'HEAD').decode().splitlines();buff=io.BytesIO()
  with zipfile.ZipFile(buff,'w',zipfile.ZIP_DEFLATED) as z:
@@ -85,7 +100,13 @@ def verify(base,stage,production=False):
   r=s.get(base+f,headers={'Accept':'application/json'},allow_redirects=False,timeout=30);check('Anonymous blocked '+f,r.status_code in (401,403))
  r=s.post(base+'/tester-access',headers={'Origin':base},data={'password':packet['tester_password']},allow_redirects=False,timeout=30);check('Tester login',r.status_code==303)
  for f in ['game.html','wallet.js','garden.js','sui-sdk.bundle.js','player-guide.html']:
-  r=s.get(base+'/'+f,timeout=30);check('Preserved '+f,r.status_code==200 and r.content==(ROOT/'dist'/f).read_bytes())
+  r=s.get(base+'/'+f,timeout=30)
+  matched=r.status_code==200 and r.content==previous[f]
+  if not matched:
+   save(stage+'-file-mismatch.json',{'file':f,'status':r.status_code,'final_host':urllib.parse.urlparse(r.url).hostname,'final_path':urllib.parse.urlparse(r.url).path,'expected_sha256':sha(previous[f]),'observed_sha256':sha(r.content),'expected_bytes':len(previous[f]),'observed_bytes':len(r.content),'matches_local':r.content==(ROOT/'dist'/f).read_bytes()})
+   diff=''.join(difflib.unified_diff(previous[f].decode(errors='replace').splitlines(True),r.content.decode(errors='replace').splitlines(True),fromfile='prior-hosted',tofile='candidate-hosted'))
+   (OUT/(stage+'-file-diff.txt')).write_text(diff[:20000])
+  check('Preserved '+f,matched)
  r=s.post(base+'/tester-logout',headers={'Origin':base},data={},allow_redirects=False,timeout=30);check('Logout',r.status_code==303)
  r=s.get(base+'/wallet.js',headers={'Accept':'application/json'},allow_redirects=False,timeout=30);check('Access revoked',r.status_code in (401,403))
  env=dict(os.environ,SHOWCASE_URL=base,SHOWCASE_STAGE=stage,SHOWCASE_TESTER_PASSWORD=packet['tester_password'])
