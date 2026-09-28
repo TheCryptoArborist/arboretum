@@ -3,12 +3,18 @@
 No wallet connection, screenshots of credentials, storage-state files or transactions.
 """
 from pathlib import Path
-import json,os,re
+import json,os,re,sys,urllib.parse
 from playwright.sync_api import sync_playwright
 base=os.environ['GUIDE_URL'].rstrip('/');secret=os.environ['GUIDE_TESTER_PASSWORD'];stage=os.environ['GUIDE_STAGE']
 out=Path(__file__).resolve().parents[1]/'guide-results'/stage;out.mkdir(parents=True,exist_ok=True)
 checks=[]
 game_url=re.compile(r'/game(?:\.html)?(?:\?.*)?$')
+active={'view':'not started','step':'startup'}
+def diagnostic(t,v,tb):
+ message=str(v).replace(secret,'[REDACTED]')[:3000]
+ (out/'browser-failure.json').write_text(json.dumps({'type':t.__name__,'message':message,'active':active,'last_completed_check':checks[-1] if checks else None},indent=2))
+ print('Guide browser check failed. See sanitized browser-failure.json.',file=sys.stderr)
+sys.excepthook=diagnostic
 def check(name,ok):
  checks.append({'check':name,'passed':bool(ok)})
  (out/'browser.json').write_text(json.dumps(checks,indent=2))
@@ -16,6 +22,7 @@ def check(name,ok):
 with sync_playwright() as p:
  browser=p.chromium.launch()
  for width,height,label in [(1440,1000,'desktop'),(768,1000,'tablet'),(390,844,'mobile'),(320,740,'small-mobile')]:
+  active.update(view=label,step='login')
   context=browser.new_context(viewport={'width':width,'height':height})
   # Netlify can serve the same protected game at /game and /game.html.
   def isolate_game(route):
@@ -24,15 +31,19 @@ with sync_playwright() as p:
    route.fulfill(response=response,headers=headers)
   context.route(game_url,isolate_game)
   page=context.new_page()
-  r=page.goto(base+'/player-guide',wait_until='domcontentloaded')
+  page.set_default_timeout(30000)
+  page.goto(base+'/player-guide',wait_until='domcontentloaded')
   check(label+' anonymous guide redirects to tester entrance','/tester-access' in page.url)
   page.locator('#password').fill('incorrect-guide-test-code')
   page.locator('form[action="/tester-access"] button').click()
   check(label+' invalid code rejected',page.locator('.error').count()>0)
   page.locator('#password').fill(secret)
-  page.locator('form[action="/tester-access"] button').click()
-  page.wait_for_url(game_url)
+  # The garden's unrelated images need not finish loading to prove navigation.
+  with page.expect_navigation(wait_until='domcontentloaded'):
+   page.locator('form[action="/tester-access"] button').click(no_wait_after=True)
+  page.wait_for_url(game_url,wait_until='domcontentloaded')
   check(label+' native login accepted',bool(game_url.search(page.url)))
+  active['step']='guide layout'
   r=page.goto(base+'/player-guide',wait_until='load')
   check(label+' guide served',r.status==200 and page.locator('body[data-guide-polish="1"]').count()==1)
   page.evaluate("document.querySelectorAll('img').forEach(i=>i.loading='eager')")
@@ -43,6 +54,7 @@ with sync_playwright() as p:
   check(label+' all 20 tools retained',page.locator('.tool').count()==20)
   check(label+' no wallet scripts',page.locator('script[src*="wallet"],script[src*="sui-sdk"],script[src*="garden.js"]').count()==0)
   page.screenshot(path=str(out/('guide-'+label+'.png')))
+  active['step']='chapter navigation'
   if width<=850:
    page.locator('.mobile-index summary').click()
    page.locator('.mobile-index a[href="#buy-first"]').click()
@@ -51,6 +63,7 @@ with sync_playwright() as p:
   else:
    page.locator('.side a[href="#buy-first"]').click()
    check(label+' sidebar chapter navigation',page.url.endswith('#buy-first'))
+  active['step']='search and filters'
   page.locator('#tools').evaluate("e=>e.scrollIntoView({block:'start'})")
   page.locator('#tool-search').fill('zzzzno-match')
   check(label+' empty search feedback',page.locator('#no-tools').is_visible() and page.locator('.tool:visible').count()==0)
@@ -61,6 +74,7 @@ with sync_playwright() as p:
   check(label+' expand filtered result',page.locator('.tool:visible[open]').count()==1)
   page.locator('#collapse-tools').click()
   check(label+' collapse filtered result',page.locator('.tool:visible[open]').count()==0)
+  active['step']='deep links'
   page.evaluate("location.hash='tool-forest-heart'")
   page.wait_for_function("document.querySelector('#tool-forest-heart').open")
   check(label+' deep link clears filter',page.locator('#tool-search').input_value()=='' and page.locator('#tool-category').input_value()=='all')
@@ -72,17 +86,22 @@ with sync_playwright() as p:
   page.locator('#crates').evaluate("e=>e.scrollIntoView({block:'start'})")
   page.screenshot(path=str(out/('crates-'+label+'.png')))
   check(label+' comparison table keyboard target',page.locator('#crates .table-wrap[tabindex="0"][role="region"]').count()==1)
+  active['step']='print and restore'
   states=page.locator('details').evaluate_all('(a)=>a.map(e=>e.open)')
   page.evaluate("dispatchEvent(new Event('beforeprint'))")
   check(label+' print opens detailed explanations',page.locator('details:not([open])').count()==0)
   page.evaluate("dispatchEvent(new Event('afterprint'))")
   check(label+' print restores disclosure state',states==page.locator('details').evaluate_all('(a)=>a.map(e=>e.open)'))
+  active['step']='reload and return to game'
   page.reload(wait_until='domcontentloaded')
   check(label+' authenticated reload',page.locator('body[data-guide-polish="1"]').count()==1)
-  page.locator('.top-actions a').click();page.wait_for_url(game_url)
+  with page.expect_navigation(wait_until='domcontentloaded'):
+   page.locator('.top-actions a').click(no_wait_after=True)
+  page.wait_for_url(game_url,wait_until='domcontentloaded')
   check(label+' back to game opens game document',bool(game_url.search(page.url)) and page.locator('#garden-sec').count()==1)
+  active['step']='logout'
   page.goto(base+'/tester-access',wait_until='domcontentloaded')
-  page.locator('form[action="/tester-logout"] button').click();page.wait_for_url('**/tester-access')
+  page.locator('form[action="/tester-logout"] button').click();page.wait_for_url('**/tester-access',wait_until='domcontentloaded')
   page.goto(base+'/player-guide',wait_until='domcontentloaded')
   check(label+' guide inaccessible after logout','/tester-access' in page.url)
   context.close()
