@@ -1,0 +1,101 @@
+name: Arboretum rewards-led redesign
+on:
+  push:
+    branches: [feature/prelaunch-gate]
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*prelaunch*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - '.github/workflows/prelaunch-redesign.yml'
+  pull_request:
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*prelaunch*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - '.github/workflows/prelaunch-redesign.yml'
+permissions:
+  contents: read
+concurrency:
+  group: prelaunch-redesign-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Retained authentication tests and TypeScript check
+        run: |
+          set -euo pipefail
+          mkdir -p prelaunch-results
+          node --version > prelaunch-results/node.txt
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs | tee prelaunch-results/gate-tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts
+      - name: Build actual page and test content without changing gameplay
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node --experimental-strip-types --test scripts/test-prelaunch-redesign.mjs | tee prelaunch-results/redesign-tests.txt
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js sdk-entry.js netlify/functions/calendar-reminder.js contract/sources/arboretum.move
+          if NETLIFY=true CONTEXT=production node scripts/build-prelaunch.mjs >prelaunch-results/production-guard.txt 2>&1; then exit 1; else grep -q 'not approved for production' prelaunch-results/production-guard.txt; fi
+      - name: Prepare isolated browser tooling and one-use encryption key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[redesign-upload]')
+        env:
+          REDESIGN_RELAY_MODE: key
+        run: |
+          python3 -m pip install --quiet cryptography requests playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/prelaunch-redesign-relay.py
+      - name: Share only the run-specific public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[redesign-upload]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: prelaunch-redesign-public-key
+          path: prelaunch-results/redesign-public-key.json
+          retention-days: 1
+      - name: Deploy branch preview and verify HTTP and native browser access
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[redesign-upload]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/prelaunch-redesign-relay.py
+      - name: Preserve reviewable source without credentials
+        if: always()
+        run: |
+          mkdir -p prelaunch-results/source/prelaunch prelaunch-results/source/scripts prelaunch-results/source/netlify/edge-functions
+          cp prelaunch/index.html prelaunch/site.css prelaunch/garden-preview.avif prelaunch-results/source/prelaunch/
+          cp scripts/build-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/check-prelaunch-redesign-browser.py scripts/prelaunch-redesign-relay.py prelaunch-results/source/scripts/
+          cp netlify/edge-functions/tester-gate.ts prelaunch-results/source/netlify/edge-functions/
+          cp netlify.toml prelaunch-results/source/
+          git rev-parse HEAD > prelaunch-results/source-commit.txt
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          p=pathlib.Path('prelaunch-results/source')
+          hashes={str(f.relative_to(p)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted(p.rglob('*')) if f.is_file()}
+          pathlib.Path('prelaunch-results/source-hashes.json').write_text(json.dumps(hashes,indent=2))
+          PY
+      - name: Upload source, screenshots and bounded test evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-prelaunch-redesign
+          path: |
+            prelaunch-results/source/
+            prelaunch-results/source-commit.txt
+            prelaunch-results/source-hashes.json
+            prelaunch-results/node.txt
+            prelaunch-results/build.json
+            prelaunch-results/gate-tests.txt
+            prelaunch-results/redesign-tests.txt
+            prelaunch-results/production-guard.txt
+            prelaunch-results/redesign-deploy.json
+            prelaunch-results/redesign-http.json
+            prelaunch-results/redesign-browser.json
+            prelaunch-results/redesign-*.png
+          retention-days: 14
