@@ -15,6 +15,10 @@ sys.excepthook=lambda kind,value,tb:print('Showcase release stopped: '+kind.__na
 def save(name,x):(OUT/name).write_text(json.dumps(x,indent=2)+'\n')
 def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT)
 def sha(b):return hashlib.sha256(b).hexdigest()
+def require_http(response,operation):
+ if not response.ok:
+  save('http-failure.json',{'operation':operation,'status':response.status_code})
+  raise RuntimeError(operation+' returned HTTP '+str(response.status_code))
 if os.environ.get('SHOWCASE_MODE')=='key':
  key=rsa.generate_private_key(public_exponent=65537,key_size=3072);KEY.write_bytes(key.private_bytes(serialization.Encoding.PEM,serialization.PrivateFormat.PKCS8,serialization.NoEncryption()));KEY.chmod(0o600)
  save('public-key.json',{'run_id':RUN,'site_id':SITE,'public_key':key.public_key().public_bytes(serialization.Encoding.PEM,serialization.PublicFormat.SubjectPublicKeyInfo).decode()});print('One-use public key ready.');raise SystemExit(0)
@@ -25,7 +29,7 @@ addition=',\n    "/prelaunch/shop-pool.css", "/prelaunch/seedling-crate.jpg", "/
 assert new_gate.replace(addition,'')==old_gate,'Authentication logic changed'
 api=requests.Session();api.headers.update({'Authorization':'Bearer '+os.environ['GH_TOKEN'],'Accept':'application/vnd.github+json'})
 def assert_main():
- r=api.get('https://api.github.com/repos/TheCryptoArborist/arboretum/git/ref/heads/main',timeout=20);r.raise_for_status();assert r.json()['object']['sha']==BASE,'Main changed; reconcile'
+ r=api.get('https://api.github.com/repos/TheCryptoArborist/arboretum/git/ref/heads/main',timeout=20);require_http(r,'GitHub main read');assert r.json()['object']['sha']==BASE,'Main changed; reconcile'
 assert_main();key=serialization.load_pem_private_key(KEY.read_bytes(),password=None);packet=None
 url='https://api.github.com/repos/TheCryptoArborist/arboretum/contents/docs/showcase-release-envelope.json?ref=feature/shop-pool-previews'
 for _ in range(60):
@@ -38,9 +42,15 @@ for _ in range(60):
 KEY.unlink(missing_ok=True)
 if packet is None:raise SystemExit('No capability received; no deployment attempted.')
 proxy=packet['proxy_url'].rstrip('/');u=urllib.parse.urlparse(proxy);assert u.scheme=='https' and u.hostname in ['netlify-mcp.netlify.app','mcp.netlify.com','netlify-mcp.netlify.com'] and u.path.startswith('/proxy/')
-def current_deploy():
- r=requests.get(proxy+'/api/v1/sites/'+SITE,timeout=30);r.raise_for_status();return r.json()['published_deploy']['id']
-assert current_deploy()==OLD,'Production changed; reconcile'
+# The deploy capability authorizes build creation and deploy-status reads only.
+# Site metadata is checked through the Netlify connector before capability issue.
+# In-run drift protection compares the actual public page with the exact BASE build.
+def assert_live_baseline():
+ expected=git('show',BASE+':prelaunch/index.html').decode().replace('content="noindex,nofollow"','content="index,follow"').encode()
+ r=requests.get('https://treegrow.xyz/',params={'showcase-precheck':RUN},headers={'Cache-Control':'no-cache'},timeout=30)
+ save('baseline-homepage.json',{'status':r.status_code,'expected_sha256':sha(expected),'observed_sha256':sha(r.content),'matches':r.status_code==200 and r.content==expected,'metadata_checked_via':'Netlify get-project connector'})
+ assert r.status_code==200 and r.content==expected,'Public homepage changed; reconcile before publishing'
+assert_live_baseline()
 def source_zip(ref=None):
  names=git('ls-tree','-r','--name-only',ref or 'HEAD').decode().splitlines();buff=io.BytesIO()
  with zipfile.ZipFile(buff,'w',zipfile.ZIP_DEFLATED) as z:
@@ -53,9 +63,9 @@ report={'base_commit':BASE,'source_commit':os.environ['GITHUB_SHA'],'old_product
 def deploy(data,title,branch=None):
  qs={'title':title}
  if branch:qs['branch']=branch
- r=requests.post(proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode(qs),files={'zip':('source.zip',data,'application/zip')},timeout=120);r.raise_for_status();j=r.json();j=j[0] if isinstance(j,list) else j;ident=j['deploy_id']
+ r=requests.post(proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode(qs),files={'zip':('source.zip',data,'application/zip')},timeout=120);require_http(r,'Netlify create build');j=r.json();j=j[0] if isinstance(j,list) else j;ident=j['deploy_id']
  for _ in range(100):
-  r=requests.get(proxy+'/api/v1/deploys/'+ident,timeout=30);r.raise_for_status();d=r.json()
+  r=requests.get(proxy+'/api/v1/deploys/'+ident,timeout=30);require_http(r,'Netlify read deploy');d=r.json()
   if d['state']=='error':raise RuntimeError('Hosting build failed')
   if d['state']=='ready':return d
   time.sleep(5)
@@ -85,7 +95,7 @@ def verify(base,stage,production=False):
 p=deploy(candidate,'Arboretum Item Shop and Growth Pool previews — review','shop-pool-preview-20260928');assert p['context']=='branch-deploy' and not p.get('published_at')
 report.update({'preview_deploy':p['id'],'preview_url':p['deploy_ssl_url']});save('release.json',report)
 report['preview_checks']=verify(p['deploy_ssl_url'],'preview');save('release.json',report)
-assert_main();assert current_deploy()==OLD,'Production changed during preview'
+assert_main();assert_live_baseline()
 production_attempted=False
 try:
  production_attempted=True;d=deploy(candidate,'Add requested Item Shop and SUI Growth Pool previews — no gameplay changes');assert d['context']=='production' and d.get('published_at')
