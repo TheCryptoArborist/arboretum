@@ -1,0 +1,83 @@
+name: Approved prelaunch website release
+on:
+  push:
+    branches: [feature/prelaunch-gate]
+    paths: ['.github/workflows/prelaunch-production-release.yml']
+permissions:
+  contents: read
+concurrency:
+  group: arboretum-production-website-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: contains(github.event.head_commit.message, '[approved-prelaunch-release]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify retained gate and approved page
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p production-release-results
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs | tee production-release-results/gate-tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          CONTEXT=branch-deploy node scripts/build-prelaunch.mjs
+          node --experimental-strip-types --test scripts/test-prelaunch-redesign.mjs | tee production-release-results/content-tests.txt
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js sdk-entry.js contract/sources/arboretum.move netlify/functions/calendar-reminder.js
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          NETLIFY=true CONTEXT=production ARBORETUM_PRELAUNCH_APPROVED=true node scripts/build-prelaunch.mjs
+          cp prelaunch-results/build.json production-release-results/production-build.json
+          grep -q 'content="index,follow"' dist/index.html
+      - name: Set up isolated browser checks and encrypted capability handoff
+        env:
+          PRODUCTION_RELAY_MODE: key
+        run: |
+          python3 -m pip install --quiet cryptography requests playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/publish-prelaunch-production.py
+      - name: Share only the public encryption key
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: prelaunch-production-public-key
+          path: production-release-results/handoff-public-key.json
+          retention-days: 1
+      - name: Publish approved website and verify production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/publish-prelaunch-production.py
+      - name: Preserve non-secret release evidence
+        if: always()
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil
+          out=Path('production-release-results')
+          for p in Path('prelaunch-results').glob('redesign-*.png'):
+              shutil.copyfile(p,out/p.name)
+          p=Path('prelaunch-results/redesign-browser.json')
+          if p.exists():shutil.copyfile(p,out/'production-browser.json')
+          p=Path('scripts/publish-prelaunch-production.py')
+          shutil.copyfile(p,out/'release-script.py')
+          PY
+      - name: Upload verification results, not credentials
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-prelaunch-production-verification
+          path: |
+            production-release-results/*-tests.txt
+            production-release-results/production-*.json
+            production-release-results/before-release.json
+            production-release-results/upload-provenance.json
+            production-release-results/*.png
+            production-release-results/release-script.py
+          retention-days: 14
+          if-no-files-found: warn
