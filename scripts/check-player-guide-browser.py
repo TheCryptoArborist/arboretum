@@ -3,11 +3,12 @@
 No wallet connection, screenshots of credentials, storage-state files or transactions.
 """
 from pathlib import Path
-import json,os
+import json,os,re
 from playwright.sync_api import sync_playwright
 base=os.environ['GUIDE_URL'].rstrip('/');secret=os.environ['GUIDE_TESTER_PASSWORD'];stage=os.environ['GUIDE_STAGE']
 out=Path(__file__).resolve().parents[1]/'guide-results'/stage;out.mkdir(parents=True,exist_ok=True)
 checks=[]
+game_url=re.compile(r'/game(?:\.html)?(?:\?.*)?$')
 def check(name,ok):
  checks.append({'check':name,'passed':bool(ok)})
  (out/'browser.json').write_text(json.dumps(checks,indent=2))
@@ -16,12 +17,12 @@ with sync_playwright() as p:
  browser=p.chromium.launch()
  for width,height,label in [(1440,1000,'desktop'),(768,1000,'tablet'),(390,844,'mobile'),(320,740,'small-mobile')]:
   context=browser.new_context(viewport={'width':width,'height':height})
-  # Only the game document is blocked from executing scripts, not the guide.
+  # Netlify can serve the same protected game at /game and /game.html.
   def isolate_game(route):
    response=route.fetch()
    headers=dict(response.headers);headers['Content-Security-Policy']="script-src 'none'"
    route.fulfill(response=response,headers=headers)
-  context.route('**/game.html*',isolate_game)
+  context.route(game_url,isolate_game)
   page=context.new_page()
   r=page.goto(base+'/player-guide',wait_until='domcontentloaded')
   check(label+' anonymous guide redirects to tester entrance','/tester-access' in page.url)
@@ -30,8 +31,8 @@ with sync_playwright() as p:
   check(label+' invalid code rejected',page.locator('.error').count()>0)
   page.locator('#password').fill(secret)
   page.locator('form[action="/tester-access"] button').click()
-  page.wait_for_url('**/game.html')
-  check(label+' native login accepted',page.url.endswith('/game.html'))
+  page.wait_for_url(game_url)
+  check(label+' native login accepted',bool(game_url.search(page.url)))
   r=page.goto(base+'/player-guide',wait_until='load')
   check(label+' guide served',r.status==200 and page.locator('body[data-guide-polish="1"]').count()==1)
   page.evaluate("document.querySelectorAll('img').forEach(i=>i.loading='eager')")
@@ -78,8 +79,8 @@ with sync_playwright() as p:
   check(label+' print restores disclosure state',states==page.locator('details').evaluate_all('(a)=>a.map(e=>e.open)'))
   page.reload(wait_until='domcontentloaded')
   check(label+' authenticated reload',page.locator('body[data-guide-polish="1"]').count()==1)
-  page.locator('.top-actions a[href="/game.html"]').click();page.wait_for_url('**/game.html')
-  check(label+' back to game uses actual game path',page.url.endswith('/game.html'))
+  page.locator('.top-actions a').click();page.wait_for_url(game_url)
+  check(label+' back to game opens game document',bool(game_url.search(page.url)) and page.locator('#garden-sec').count()==1)
   page.goto(base+'/tester-access',wait_until='domcontentloaded')
   page.locator('form[action="/tester-logout"] button').click();page.wait_for_url('**/tester-access')
   page.goto(base+'/player-guide',wait_until='domcontentloaded')
