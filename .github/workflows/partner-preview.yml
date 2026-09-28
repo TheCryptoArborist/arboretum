@@ -1,0 +1,77 @@
+name: Partner chest preview
+on:
+  push:
+    branches: [feature/partner-chest-preview]
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*partner*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - '.github/workflows/partner-preview.yml'
+  pull_request:
+    paths:
+      - 'prelaunch/**'
+      - 'scripts/*partner*'
+      - 'netlify/edge-functions/tester-gate.ts'
+      - '.github/workflows/partner-preview.yml'
+permissions:
+  contents: read
+concurrency:
+  group: partner-preview-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build and run retained plus partner preview tests
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p partner-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-origin.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs | tee partner-results/unit-tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts netlify/edge-functions/public-player-guide.ts
+          python3 -m py_compile scripts/release-partner-preview.py scripts/check-partner-preview.py
+      - name: Prepare hosted browser checks and one-use public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[partners-release]')
+        env:
+          PARTNER_MODE: key
+        run: |
+          python3 -m pip install --quiet requests cryptography playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-partner-preview.py
+      - name: Share public encryption key only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[partners-release]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: partner-preview-public-key
+          path: partner-results/public-key.json
+          retention-days: 1
+      - name: Verify preview then publish and verify production
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[partners-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-partner-preview.py
+      - name: Save non-secret test results and screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-partner-preview
+          path: |
+            partner-results/
+            handbook-results/preview/browser.json
+            handbook-results/production/browser.json
+            prelaunch/shop-pool.html
+            prelaunch/shop-pool.css
+            scripts/test-partner-preview.mjs
+          retention-days: 14
