@@ -151,4 +151,8 @@ export default async function testerGate(request: Request, context: Context): Pr
   }
 }
 
-export const config: Config = { path: "/*" };
+// The public handbook has a dedicated read-only handler. Gameplay stays gated.
+export const config: Config = { path: "/*", excludedPath: [
+  "/player-guide", "/player-guide.html", "/player-guide/",
+  "/guide/player-guide.css", "/guide/player-guide.js"
+] };

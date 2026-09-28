@@ -1,0 +1,73 @@
+name: Public Player Handbook
+on:
+  push:
+    branches: [feature/public-player-handbook]
+    paths:
+      - 'content/public-player-guide.*'
+      - 'scripts/*public*guide*'
+      - 'netlify/edge-functions/*'
+      - 'netlify.toml'
+      - '.github/workflows/public-player-handbook.yml'
+  pull_request:
+    paths:
+      - 'content/public-player-guide.*'
+      - 'scripts/*public*guide*'
+      - 'netlify/edge-functions/*'
+      - 'netlify.toml'
+permissions:
+  contents: read
+concurrency:
+  group: public-handbook-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  handbook:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build public handbook and preserve internal reference
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p handbook-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-origin.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs | tee handbook-results/tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts netlify/edge-functions/public-player-guide.ts
+          python3 -m py_compile scripts/build-public-guide.py scripts/release-public-player-guide.py scripts/check-public-player-guide-browser.py
+          cp dist/player-guide.html dist/guide/player-guide.css dist/guide/player-guide.js handbook-results/
+      - name: Prepare real-browser checks and encrypted one-use capability
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[public-handbook-release]')
+        env:
+          HANDBOOK_MODE: key
+        run: |
+          python3 -m pip install --quiet cryptography requests playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-public-player-guide.py
+      - name: Publish only the public encryption key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[public-handbook-release]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: public-handbook-public-key
+          path: handbook-results/public-key.json
+          retention-days: 1
+      - name: Verify public guide and private game before and after publication
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[public-handbook-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-public-player-guide.py
+      - name: Save non-secret verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-public-player-handbook
+          path: handbook-results/
+          retention-days: 14
