@@ -1,0 +1,89 @@
+#!/usr/bin/env python3
+"""Hosted guide UI checks. Guide JavaScript runs; game JavaScript is blocked.
+No wallet connection, screenshots of credentials, storage-state files or transactions.
+"""
+from pathlib import Path
+import json,os
+from playwright.sync_api import sync_playwright
+base=os.environ['GUIDE_URL'].rstrip('/');secret=os.environ['GUIDE_TESTER_PASSWORD'];stage=os.environ['GUIDE_STAGE']
+out=Path(__file__).resolve().parents[1]/'guide-results'/stage;out.mkdir(parents=True,exist_ok=True)
+checks=[]
+def check(name,ok):
+ checks.append({'check':name,'passed':bool(ok)})
+ (out/'browser.json').write_text(json.dumps(checks,indent=2))
+ if not ok:raise AssertionError(name)
+with sync_playwright() as p:
+ browser=p.chromium.launch()
+ for width,height,label in [(1440,1000,'desktop'),(768,1000,'tablet'),(390,844,'mobile'),(320,740,'small-mobile')]:
+  context=browser.new_context(viewport={'width':width,'height':height})
+  # Only the game document is blocked from executing scripts, not the guide.
+  def isolate_game(route):
+   response=route.fetch()
+   headers=dict(response.headers);headers['Content-Security-Policy']="script-src 'none'"
+   route.fulfill(response=response,headers=headers)
+  context.route('**/game.html*',isolate_game)
+  page=context.new_page()
+  r=page.goto(base+'/player-guide',wait_until='domcontentloaded')
+  check(label+' anonymous guide redirects to tester entrance','/tester-access' in page.url)
+  page.locator('#password').fill('incorrect-guide-test-code')
+  page.locator('form[action="/tester-access"] button').click()
+  check(label+' invalid code rejected',page.locator('.error').count()>0)
+  page.locator('#password').fill(secret)
+  page.locator('form[action="/tester-access"] button').click()
+  page.wait_for_url('**/game.html')
+  check(label+' native login accepted',page.url.endswith('/game.html'))
+  r=page.goto(base+'/player-guide',wait_until='load')
+  check(label+' guide served',r.status==200 and page.locator('body[data-guide-polish="1"]').count()==1)
+  page.evaluate("document.querySelectorAll('img').forEach(i=>i.loading='eager')")
+  page.evaluate('Promise.all([...document.images].map(i=>i.decode().catch(()=>null)))')
+  check(label+' all images loaded',page.locator('img').evaluate_all('(imgs)=>imgs.every(i=>i.complete&&i.naturalWidth>0)'))
+  check(label+' no page overflow',page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
+  check(label+' original tester disclaimer visible',page.locator('.hero .status').is_visible())
+  check(label+' all 20 tools retained',page.locator('.tool').count()==20)
+  check(label+' no wallet scripts',page.locator('script[src*="wallet"],script[src*="sui-sdk"],script[src*="garden.js"]').count()==0)
+  page.screenshot(path=str(out/('guide-'+label+'.png')))
+  if width<=850:
+   page.locator('.mobile-index summary').click()
+   page.locator('.mobile-index a[href="#buy-first"]').click()
+   check(label+' mobile chapter navigation',page.url.endswith('#buy-first'))
+   page.locator('.mobile-index').evaluate('(e)=>e.open=false')
+  else:
+   page.locator('.side a[href="#buy-first"]').click()
+   check(label+' sidebar chapter navigation',page.url.endswith('#buy-first'))
+  page.locator('#tools').evaluate("e=>e.scrollIntoView({block:'start'})")
+  page.locator('#tool-search').fill('zzzzno-match')
+  check(label+' empty search feedback',page.locator('#no-tools').is_visible() and page.locator('.tool:visible').count()==0)
+  page.locator('#tool-search').fill('')
+  page.locator('#tool-category').select_option('Recovery')
+  check(label+' purpose filter',page.locator('.tool:visible').count()==1 and page.locator('#tool-revival-kit').is_visible())
+  page.locator('#expand-tools').click()
+  check(label+' expand filtered result',page.locator('.tool:visible[open]').count()==1)
+  page.locator('#collapse-tools').click()
+  check(label+' collapse filtered result',page.locator('.tool:visible[open]').count()==0)
+  page.evaluate("location.hash='tool-forest-heart'")
+  page.wait_for_function("document.querySelector('#tool-forest-heart').open")
+  check(label+' deep link clears filter',page.locator('#tool-search').input_value()=='' and page.locator('#tool-category').input_value()=='all')
+  check(label+' deep link opens correct tool',page.locator('#tool-forest-heart[open]').count()==1)
+  page.locator('#collapse-tools').click()
+  page.locator('#tool-fertilizer summary').click()
+  page.locator('#tools').evaluate("e=>e.scrollIntoView({block:'start'})")
+  page.screenshot(path=str(out/('tools-'+label+'.png')))
+  page.locator('#crates').evaluate("e=>e.scrollIntoView({block:'start'})")
+  page.screenshot(path=str(out/('crates-'+label+'.png')))
+  check(label+' comparison table keyboard target',page.locator('#crates .table-wrap[tabindex="0"][role="region"]').count()==1)
+  states=page.locator('details').evaluate_all('(a)=>a.map(e=>e.open)')
+  page.evaluate("dispatchEvent(new Event('beforeprint'))")
+  check(label+' print opens detailed explanations',page.locator('details:not([open])').count()==0)
+  page.evaluate("dispatchEvent(new Event('afterprint'))")
+  check(label+' print restores disclosure state',states==page.locator('details').evaluate_all('(a)=>a.map(e=>e.open)'))
+  page.reload(wait_until='domcontentloaded')
+  check(label+' authenticated reload',page.locator('body[data-guide-polish="1"]').count()==1)
+  page.locator('.top-actions a[href="/game.html"]').click();page.wait_for_url('**/game.html')
+  check(label+' back to game uses actual game path',page.url.endswith('/game.html'))
+  page.goto(base+'/tester-access',wait_until='domcontentloaded')
+  page.locator('form[action="/tester-logout"] button').click();page.wait_for_url('**/tester-access')
+  page.goto(base+'/player-guide',wait_until='domcontentloaded')
+  check(label+' guide inaccessible after logout','/tester-access' in page.url)
+  context.close()
+ browser.close()
+print('Guide browser assertions passed:',len(checks))
