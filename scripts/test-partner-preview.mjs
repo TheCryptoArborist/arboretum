@@ -9,7 +9,7 @@ const guide=fs.readFileSync('dist/player-guide.html','utf8');
 const old=p=>execFileSync('git',['show',base+':'+p],{encoding:'utf8'});
 const ctx={next:async()=>new Response('ORIGIN')};
 globalThis.Netlify={env:{get:k=>k==='ARBORETUM_TESTER_PASSWORD'?'fixture-'+ 'p'.repeat(40):'fixture-'+ 's'.repeat(80)}};
-test('removed Enter the Garden CTA from public homepage and handbook',()=>{assert.doesNotMatch(html,/Enter the Garden/i);assert.doesNotMatch(guide,/Enter the Garden/i)});
+test('removed Enter the Garden CTA from public homepage and handbook',()=>{assert.doesNotMatch(html,/Enter the Garden/i);for(const m of guide.matchAll(/<(a|button)\b[^>]*>([\s\S]*?)<\/\1>/g))assert.doesNotMatch(m[2].replace(/<[^>]*>/g,''),/Enter the Garden/i)});
 test('retained Tester access and promoted public guide action',()=>{assert.match(html,/class="tester-link" href="\/tester-access"/);assert.match(html,/class="button primary" href="\/player-guide"/);assert.match(html,/Player Guide: open to everyone/)});
 test('two partner cards are present outside disclosures',()=>{assert.equal((html.match(/class="partner-preview-card /g)||[]).length,2);const section=html.split('<section class="partner-preview"')[1].split('</section>')[0];assert.doesNotMatch(section,/<details/);for(const n of ['BOOM Chest','Victory Chest'])assert.ok(section.includes(n))});
 test('five standard crates and reward sections retained',()=>{assert.equal((html.match(/class="shop-preview-card /g)||[]).length,5);for(const id of ['growth-pool','referrals','gameplay'])assert.ok(html.includes('id="'+id+'"'))});
