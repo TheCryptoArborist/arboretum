@@ -15,10 +15,18 @@ for(const file of protectedFiles){const a=await fs.readFile(path.join(root,file)
 await fs.copyFile(path.join(dist,'index.html'),path.join(dist,'game.html'));
 await fs.mkdir(path.join(dist,'prelaunch'),{recursive:true});
 let landing=await fs.readFile(path.join(root,'prelaunch/index.html'),'utf8');
+const showcases=await fs.readFile(path.join(root,'prelaunch/shop-pool.html'),'utf8');
+if(/<script\b|on(?:click|load|error)\s*=/i.test(showcases)) throw new Error('Public showcases must stay read-only.');
+const insertBefore='<section class="community wrap"';
+if(landing.split(insertBefore).length!==2) throw new Error('Homepage showcase insertion target changed.');
+landing=landing.replace(insertBefore,showcases+'\n'+insertBefore);
+landing=landing.replace('</head>','<link rel="stylesheet" href="/prelaunch/shop-pool.css">\n</head>');
 const publicProduction=process.env.CONTEXT==='production' && process.env.ARBORETUM_PRELAUNCH_APPROVED==='true';
 if(publicProduction) landing=landing.replace('content="noindex,nofollow"','content="index,follow"');
 await fs.writeFile(path.join(dist,'index.html'),landing);
 await fs.copyFile(path.join(root,'prelaunch/site.css'),path.join(dist,'prelaunch/site.css'));
+await fs.copyFile(path.join(root,'prelaunch/shop-pool.css'),path.join(dist,'prelaunch/shop-pool.css'));
+for(const tier of ['seedling','grove','canopy','mythic']) await fs.copyFile(path.join(root,'assets/shop/crates',tier+'-crate.jpg'),path.join(dist,'prelaunch',tier+'-crate.jpg'));
 const assets={'forest.jpg':'background6.jpg','hero.png':'hero.png','mark.png':'arboretum-protocol-logo.png','ancient.jpg':'assets/shop/crates/ancient-crate.jpg'};
 for(const [dest,source] of Object.entries(assets)) await fs.copyFile(path.join(root,source),path.join(dist,'prelaunch',dest));
 await fs.copyFile(path.join(root,'prelaunch/garden-preview.avif'),path.join(dist,'prelaunch/garden-preview.avif'));

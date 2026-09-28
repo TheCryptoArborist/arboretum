@@ -1,0 +1,63 @@
+name: Item Shop and Growth Pool previews
+on:
+  push:
+    branches: [feature/shop-pool-previews]
+    paths: ['prelaunch/shop-pool.*', 'scripts/*showcase*', 'scripts/build-prelaunch.mjs', 'netlify/edge-functions/tester-gate.ts', '.github/workflows/prelaunch-showcases.yml']
+  pull_request:
+    paths: ['prelaunch/shop-pool.*', 'scripts/*showcase*', 'scripts/build-prelaunch.mjs', 'netlify/edge-functions/tester-gate.ts']
+permissions:
+  contents: read
+concurrency:
+  group: showcase-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build and run retained plus new tests
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p showcase-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-origin.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs | tee showcase-results/unit-tests.txt
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts
+      - name: Prepare browser tooling and one-use handoff
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[showcase-release]')
+        env:
+          SHOWCASE_MODE: key
+        run: |
+          python3 -m pip install --quiet cryptography requests playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-prelaunch-showcases.py
+      - name: Share only public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[showcase-release]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: showcase-public-key
+          path: showcase-results/public-key.json
+          retention-days: 1
+      - name: Verify hosted preview before updating requested public page
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[showcase-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-prelaunch-showcases.py
+      - name: Preserve evidence without credentials
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-shop-pool-previews
+          path: |
+            showcase-results/
+            prelaunch/shop-pool.*
+            scripts/test-prelaunch-showcases.mjs
+          retention-days: 14
