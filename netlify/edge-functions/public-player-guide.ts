@@ -30,4 +30,7 @@ export default async function publicPlayerGuide(request: Request, context: Conte
     return new Response('The player handbook is temporarily unavailable.', {status:503,headers:{'Cache-Control':'no-store','Content-Type':'text/plain; charset=utf-8'}});
   }
 }
-export const config: Config = { path: publicGuidePaths() };
+export const config: Config = { path: [
+  '/player-guide', '/player-guide.html', '/player-guide/',
+  '/guide/player-guide.css', '/guide/player-guide.js'
+] };
