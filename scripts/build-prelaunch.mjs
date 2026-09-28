@@ -27,6 +27,7 @@ await fs.writeFile(path.join(dist,'index.html'),landing);
 await fs.copyFile(path.join(root,'prelaunch/site.css'),path.join(dist,'prelaunch/site.css'));
 await fs.copyFile(path.join(root,'prelaunch/shop-pool.css'),path.join(dist,'prelaunch/shop-pool.css'));
 for(const tier of ['seedling','grove','canopy','mythic']) await fs.copyFile(path.join(root,'assets/shop/crates',tier+'-crate.jpg'),path.join(dist,'prelaunch',tier+'-crate.jpg'));
+for(const partner of ['boom','victory']) await fs.copyFile(path.join(root,'assets/shop/crates',partner+'-chest.png'),path.join(dist,'prelaunch',partner+'-chest.png'));
 const assets={'forest.jpg':'background6.jpg','hero.png':'hero.png','mark.png':'arboretum-protocol-logo.png','ancient.jpg':'assets/shop/crates/ancient-crate.jpg'};
 for(const [dest,source] of Object.entries(assets)) await fs.copyFile(path.join(root,source),path.join(dist,'prelaunch',dest));
 await fs.copyFile(path.join(root,'prelaunch/garden-preview.avif'),path.join(dist,'prelaunch/garden-preview.avif'));
