@@ -1,0 +1,77 @@
+name: Player Guide visual polish
+on:
+  push:
+    branches: [style/player-guide-polish]
+    paths:
+      - 'content/player-guide-polish.css'
+      - 'scripts/polish-player-guide.mjs'
+      - 'scripts/check-player-guide-browser.py'
+      - 'scripts/release-player-guide-polish.py'
+      - '.github/workflows/player-guide-polish.yml'
+      - 'netlify.toml'
+  pull_request:
+    paths:
+      - 'content/player-guide-polish.css'
+      - 'scripts/polish-player-guide.mjs'
+      - 'scripts/check-player-guide-browser.py'
+      - 'scripts/release-player-guide-polish.py'
+      - '.github/workflows/player-guide-polish.yml'
+permissions:
+  contents: read
+concurrency:
+  group: guide-polish-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  polish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Build guide and prove original content preservation
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p guide-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-origin.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs | tee guide-results/retained-tests.txt
+          cp dist/player-guide.html guide-results/polished-player-guide.html
+          cp content/player-guide-polish.css guide-results/guide.css
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js contract/sources/arboretum.move netlify/edge-functions/tester-gate.ts prelaunch/index.html prelaunch/shop-pool.html
+      - name: Prepare browser tooling and one-use public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[guide-polish-release]')
+        env:
+          GUIDE_RELEASE_MODE: key
+        run: |
+          python3 -m pip install --quiet requests beautifulsoup4 cryptography playwright
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-player-guide-polish.py
+      - name: Share public key only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[guide-polish-release]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: player-guide-polish-public-key
+          path: guide-results/public-key.json
+          retention-days: 1
+      - name: Verify isolated guide then publish and verify main-domain guide
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[guide-polish-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-player-guide-polish.py
+      - name: Preserve bounded evidence without credentials
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-player-guide-polish
+          path: |
+            guide-results/
+            scripts/polish-player-guide.mjs
+            scripts/check-player-guide-browser.py
+            content/player-guide-polish.css
+          retention-days: 14
