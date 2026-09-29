@@ -3,7 +3,7 @@
 A run-bound encrypted capability stays in runner memory, not Git or artifacts.
 """
 from pathlib import Path
-import base64, hashlib, io, json, os, shutil, subprocess, sys, time, traceback, urllib.parse, zipfile
+import base64, hashlib, io, json, os, shutil, subprocess, sys, time, traceback, urllib.parse, zipfile, difflib
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -78,14 +78,25 @@ production_before={}
 for path in ['/','/player-guide','/prelaunch/site.css','/guide/player-guide.css']:
  r=web.get(LIVE+path,timeout=(10,40)); assert r.status_code==200
  production_before[path]=r.content
-prior=session(); r=prior.post(LIVE+'/tester-access',headers={'Origin':LIVE},data={'password':packet['tester_password']},allow_redirects=False,timeout=(10,30)); assert r.status_code==303
-protected={}
+prior=session(); reference=session()
+for base,s in [(LIVE,prior),(APPROVED_URL,reference)]:
+ stage('Read-only tester authorization for hosted baseline')
+ r=s.post(base+'/tester-access',headers={'Origin':base},data={'password':packet['tester_password']},allow_redirects=False,timeout=(10,30)); assert r.status_code==303
+protected={}; rendered_differences=[]
 for name in ['game.html','wallet.js','garden.js','sui-sdk.bundle.js','tester-guide.html','guide/guide.css']:
- r=prior.get(LIVE+'/'+name,timeout=(10,40)); assert r.status_code==200 and len(r.content)>1000
+ stage('Compare current and approved protected response '+name)
+ r=prior.get(LIVE+'/'+name,timeout=(10,40)); a=reference.get(APPROVED_URL+'/'+name,timeout=(10,40))
+ assert r.status_code==200 and a.status_code==200 and len(r.content)>1000
  if name=='game.html': assert b'id="garden-sec"' in r.content
+ assert r.content==a.content, 'Current game differs from approved hosted baseline'
  protected[name]=r.content
- assert (ROOT/'dist'/name).read_bytes()==r.content, 'Original private file changed'
-prior.post(LIVE+'/tester-logout',headers={'Origin':LIVE},data={},allow_redirects=False,timeout=(10,30))
+ raw=(ROOT/'dist'/name).read_bytes()
+ if raw!=r.content:
+  # Netlify's hosted representation can differ from raw HTML. Preserve exact
+  # prior hosted bytes after publication; source and transform guards still run.
+  rendered_differences.append({'file':name,'raw_sha256':sha(raw),'hosted_sha256':sha(r.content),'approved_hosted_matches':True,'diff':list(difflib.unified_diff(raw.decode().splitlines(),r.text.splitlines(),fromfile='raw-build',tofile='prior-hosted',n=1))[:100]})
+for base,s in [(LIVE,prior),(APPROVED_URL,reference)]: s.post(base+'/tester-logout',headers={'Origin':base},data={},allow_redirects=False,timeout=(10,30))
+save('protected-rendering.json',rendered_differences)
 save('before.json',{'production_deploy':OLD_DEPLOY,'main':BASE,'public_hashes':{k:sha(v) for k,v in production_before.items()},'protected_hashes':{k:sha(v) for k,v in protected.items()}})
 def archive(ref):
  buffer=io.BytesIO()
