@@ -7,3 +7,6 @@
 @media(max-width:880px){.rf-partner{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:600px){.rf-hero,.rf-partners{grid-template-columns:minmax(0,1fr)}.rf-partner{grid-template-columns:119px minmax(0,1fr)}}
 @media(max-width:350px){.rf-partner{grid-template-columns:99px minmax(0,1fr)}}
+
+/* The legacy landing CSS hides h1 breaks on narrow screens; keep this headline readable. */
+.reward-landing #hero-title br{display:initial}
