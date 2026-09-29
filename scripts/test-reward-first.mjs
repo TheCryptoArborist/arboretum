@@ -8,7 +8,7 @@ import handbook,{publicGuidePaths,config as guideConfig} from '../netlify/edge-f
 const home=fs.readFileSync('dist/index.html','utf8'),guide=fs.readFileSync('dist/player-guide.html','utf8');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const base='781caf03d17bda0d4c618cdf486e1c77756d8e6a';
-const prior=p=>execFileSync('git',['show',base+':'+p]);
+const prior=p=>execFileSync('git',['show',base+':'+p],{maxBuffer:32*1024*1024});
 const env={ARBORETUM_TESTER_PASSWORD:'fixture-'+ 'p'.repeat(48),ARBORETUM_SESSION_SECRET:'fixture-'+ 's'.repeat(80)};
 globalThis.Netlify={env:{get:k=>env[k]}};
 const origin='https://review.example';let forwards=0;const context={next:async()=>{forwards++;return new Response('STATIC')}};
