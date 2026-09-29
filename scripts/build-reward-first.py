@@ -45,7 +45,7 @@ def build():
     newnav=''.join(links)
     guide=guide.replace(nav.group(1),newnav)
     for a,b in [('01 / GET STARTED','03 / GET STARTED'),('02 / THE DAILY LOOP','04 / THE DAILY LOOP'),('03 / BUILD YOUR LOADOUT','05 / BUILD YOUR LOADOUT'),('04 / PLAY WITH A PLAN','06 / PLAY WITH A PLAN'),('05 / KNOW WHAT YOU ARE OPENING','07 / KNOW WHAT YOU ARE OPENING'),('06 / GROW THE COMMUNITY','08 / GROW THE COMMUNITY'),('08 / NFTREE PRIVILEGES','09 / NFTREE PRIVILEGES'),('09 / QUICK ANSWERS','10 / QUICK ANSWERS')]:guide=guide.replace(a,b)
-    css=(SOURCE/'theme.css').read_text()
+    css=(SOURCE/'theme.css').read_text()+'\n'+(SOURCE/'responsive-fix.css').read_text()
     if '@@' in css:raise RuntimeError('Logo mask placeholder is unresolved')
     (DIST/'index.html').write_text(home)
     (DIST/'player-guide.html').write_text(guide)
