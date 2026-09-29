@@ -1,0 +1,106 @@
+name: Reward-first production release
+on:
+  push:
+    branches: [feature/reward-first-preview]
+    paths:
+      - '.github/workflows/reward-first-production.yml'
+      - 'scripts/release-reward-first.py'
+  pull_request:
+    paths:
+      - '.github/workflows/reward-first-production.yml'
+      - 'scripts/release-reward-first.py'
+      - 'scripts/build-reward-first.py'
+permissions:
+  contents: read
+concurrency:
+  group: reward-production-${{ github.event_name }}
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build baseline and approved candidate with retained checks
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p release-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          node --experimental-strip-types --test --test-skip-pattern='authentication byte-identical except two exact artwork URLs|game, handbook and contract sources unchanged' scripts/test-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs > release-results/baseline-tests.txt
+          python3 scripts/build-reward-first.py
+          node --experimental-strip-types --test --test-skip-pattern='player audience and no tester onboarding|homepage accurately distinguishes public guide and private game' scripts/test-prelaunch.mjs scripts/test-public-player-guide.mjs scripts/test-reward-first.mjs > release-results/candidate-tests.txt
+          cp reward-results/build.json release-results/candidate-build.json
+          for approval in unset false; do
+            if CONTEXT=production ARBORETUM_REWARD_FIRST_APPROVED="$approval" python3 scripts/build-reward-first.py > "release-results/approval-$approval.txt" 2>&1; then exit 1; fi
+            grep -q 'preview-only' "release-results/approval-$approval.txt"
+          done
+          python3 -m py_compile scripts/build-reward-first.py scripts/release-reward-first.py scripts/check-reward-first.py
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts netlify/edge-functions/public-player-guide.ts
+      - name: Build approved production output and verify metadata and private files
+        env:
+          CONTEXT: production
+          ARBORETUM_PRELAUNCH_APPROVED: 'true'
+          ARBORETUM_REWARD_FIRST_APPROVED: 'true'
+        run: |
+          set -euo pipefail
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          python3 scripts/build-reward-first.py
+          cp reward-results/build.json release-results/production-build.json
+          node --experimental-strip-types --test --test-skip-pattern='player audience and no tester onboarding|homepage accurately distinguishes public guide and private game|all protected build files match their pre-transform hashes' scripts/test-prelaunch.mjs scripts/test-public-player-guide.mjs scripts/test-reward-first.mjs > release-results/production-tests.txt
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          r=json.loads(Path('reward-results/build.json').read_text())
+          assert r['production_allowed'] is True
+          for name,value in r['protected_files_unchanged'].items():
+              assert hashlib.sha256((Path('dist')/name).read_bytes()).hexdigest()==value
+          for name in ['index.html','player-guide.html']:
+              text=(Path('dist')/name).read_text()
+              assert 'content="index,follow"' in text and 'content="noindex,nofollow"' not in text
+          assert 'Allow: /player-guide$' in Path('dist/robots.txt').read_text()
+          assert 'https://treegrow.xyz/player-guide' in Path('dist/sitemap.xml').read_text()
+          print('Production approval, metadata, sitemap and all protected-file hashes passed.')
+          PY
+          git diff 781caf03d17bda0d4c618cdf486e1c77756d8e6a --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js contract/sources/arboretum.move
+      - name: Prepare browser tooling and one-use release public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-production-release]')
+        env:
+          REWARD_RELEASE_MODE: key
+        run: |
+          python3 -m pip install --quiet playwright requests cryptography
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-reward-first.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-production-release]')
+        with:
+          name: reward-production-public-key
+          path: release-results/public-key.json
+          retention-days: 1
+      - name: Publish approved output and verify main-domain pages and native login
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-production-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-reward-first.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: arboretum-reward-first-production
+          path: |
+            release-results/
+            reward-results/hosted/browser-failure.json
+            handbook-results/reward-production/browser.json
+          retention-days: 14

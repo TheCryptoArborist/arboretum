@@ -1,0 +1,35 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import gate,{config as gateConfig} from '../netlify/edge-functions/tester-gate.ts';
+import handbook,{publicGuidePaths,config as guideConfig} from '../netlify/edge-functions/public-player-guide.ts';
+const home=fs.readFileSync('dist/index.html','utf8'),guide=fs.readFileSync('dist/player-guide.html','utf8');
+const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
+const base='781caf03d17bda0d4c618cdf486e1c77756d8e6a';
+const prior=p=>execFileSync('git',['show',base+':'+p],{maxBuffer:32*1024*1024});
+const env={ARBORETUM_TESTER_PASSWORD:'fixture-'+ 'p'.repeat(48),ARBORETUM_SESSION_SECRET:'fixture-'+ 's'.repeat(80)};
+globalThis.Netlify={env:{get:k=>env[k]}};
+const origin='https://review.example';let forwards=0;const context={next:async()=>{forwards++;return new Response('STATIC')}};
+const dispatch=path=>publicGuidePaths().includes(path)?handbook(new Request(origin+path),context):gate(new Request(origin+path),context);
+test('homepage has one reward-led headline and no gameplay CTA',()=>{assert.equal((home.match(/<h1\b/g)||[]).length,1);assert.match(home,/Compete for SUI/);assert.doesNotMatch(home,/Enter the Garden|Buy Now|Claim Reward/i);assert.match(home,/See how rewards work/)});
+test('reward explanation comes before purchases on both pages',()=>{assert.ok(home.indexOf('id="growth-pool"')<home.indexOf('id="item-shop"'));assert.ok(guide.indexOf('id="rewards"')<guide.indexOf('id="buy-first"'));assert.ok(guide.indexOf('id="buy-first"')<guide.indexOf('id="tools"'))});
+test('guide audience remains prospective players',()=>{assert.match(guide,/Play for your share/);assert.match(guide,/data-guide-audience="players"/);assert.doesNotMatch(guide,/Read this before testing|TESTER PREVIEW|verification notes|checkpoint/i)});
+for(const [name,html] of [['home',home],['guide',guide]]){
+ test(name+' qualifies example and funding',()=>{for(const text of ['EXAMPLE ONLY','NOT A LIVE BALANCE OR FORECAST','not committed launch funding','not expected or typical player outcomes','Planned 30-day season','To be announced'])assert.ok(html.includes(text),text);for(const [percent,sui] of [[1,10],[2,20],[5,50]]){assert.match(html,new RegExp(percent+'% point share'));assert.match(html,new RegExp('<strong>'+sui+' SUI</strong>'));assert.equal(1000*percent/100,sui)}});
+ test(name+' has no prices, wallet code, forms or inline events',()=>{assert.doesNotMatch(html,/<iframe|<form|\son\w+=|wallet\.js|garden\.js|0\.01 SUI|0\.02 SUI|ARBORETUM_TESTER_PASSWORD/)});
+ test(name+' fragments and IDs remain valid',()=>{const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size);for(const m of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.includes(m[1]),m[1]);for(const m of html.matchAll(/aria-labelledby="([^"]+)"/g))for(const id of m[1].split(' '))assert.ok(ids.includes(id),id)});
+ test(name+' referenced local resources exist',()=>{for(const m of html.matchAll(/(?:src|href)="(\/(?:prelaunch|guide)\/[^"?#]+)"/g))assert.ok(fs.existsSync('dist'+m[1]),m[1])});
+}
+test('original supplied logo equivalent and game art are copied, not regenerated',()=>{for(const [dest,src] of [['mark.png','arboretum-protocol-logo.png'],['hero.png','hero.png'],['boom-chest.png','assets/shop/crates/boom-chest.png'],['victory-chest.png','assets/shop/crates/victory-chest.png'],['supply-drop.jpg','assets/shop/crates/supply-drop.jpg'],['garden-preview.avif','prelaunch/garden-preview.avif']])assert.ok(fs.readFileSync('dist/prelaunch/'+dest).equals(prior(src)),src)});
+test('six regular artwork cards plus two original partners',()=>{assert.equal((home.match(/class="rf-crate"/g)||[]).length,6);assert.equal((home.match(/class="rf-partner rf-/g)||[]).length,2);for(const s of ['Seedling','Grove','Canopy','Ancient','Mythic','Supply Drop','$BOOM Chest','Victory Chest'])assert.ok(home.includes(s))});
+test('referral descriptions and planned holder perks retained',()=>{for(const s of ['When a direct invite plants through your link.','When your direct invites buy crates in the Item Shop.','10%','1%'])assert.ok(home.includes(s));assert.match(home,/Planned NFTree holder perks/);assert.match(guide,/PLANNED FOR LAUNCH/);assert.match(guide,/not active in the public game/)});
+test('tool directory and handbook script preserved',()=>{assert.equal((guide.match(/class="tool"/g)||[]).length,20);assert.ok(fs.readFileSync('dist/guide/player-guide.js').equals(prior('content/public-player-guide.js')));for(const id of ['tool-fertilizer','tool-bottomless-can','tool-forest-heart','boom-chest','victory-chest','holder-perks'])assert.ok(guide.includes('id="'+id+'"'))});
+test('homepage is entirely script-free',()=>{assert.doesNotMatch(home,/<script\b/i)});
+test('guide changes retain public/private access separation',()=>{assert.deepEqual(gateConfig.excludedPath,publicGuidePaths());assert.deepEqual(guideConfig.path,publicGuidePaths());assert.equal(publicGuidePaths().length,5)});
+for(const path of ['/game','/game.html','/wallet.js','/garden.js','/sui-sdk.bundle.js','/tester-guide','/tester-guide.html','/guide/guide.css','/.netlify/functions/calendar-reminder','/reward-preview/home.html','/prelaunch/other.jpg'])test('anonymous remains blocked '+path,async()=>{const before=forwards;assert.equal((await dispatch(path)).status,401);assert.equal(before,forwards)});
+for(const path of ['/','/prelaunch/supply-drop.jpg','/prelaunch/boom-chest.png','/prelaunch/victory-chest.png','/player-guide','/guide/player-guide.css','/guide/player-guide.js'])test('exact public destination '+path,async()=>{assert.equal((await dispatch(path)).status,200)});
+test('only one exact asset changes the original gate',()=>{const now=fs.readFileSync('netlify/edge-functions/tester-gate.ts','utf8');assert.equal(now.replace(', "/prelaunch/supply-drop.jpg"',''),prior('netlify/edge-functions/tester-gate.ts').toString())});
+test('game, wallet, Move, calendar and base handbook sources unchanged',()=>{for(const file of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','sdk-entry.js','contract/sources/arboretum.move','netlify/functions/calendar-reminder.js','netlify/edge-functions/public-player-guide.ts','content/public-player-guide.html','content/public-player-guide.js'])assert.ok(fs.readFileSync(file).equals(prior(file)),file)});
+test('all protected build files match their pre-transform hashes',()=>{const report=JSON.parse(fs.readFileSync('reward-results/build.json'));for(const [file,hash] of Object.entries(report.protected_files_unchanged))assert.equal(sha(fs.readFileSync('dist/'+file)),hash);assert.equal(report.production_allowed,false)});
