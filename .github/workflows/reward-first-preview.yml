@@ -35,13 +35,16 @@ jobs:
           node scripts/build-prelaunch.mjs
           node scripts/polish-player-guide.mjs
           python3 scripts/build-public-guide.py
-          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs > reward-results/baseline-tests.txt
+          # Two prior-release file-diff assertions assume the old build command
+          # and no Supply Drop asset. Current-base equivalents run below.
+          node --experimental-strip-types --test --test-name-pattern='^(?!(authentication byte-identical except two exact artwork URLs|game, handbook and contract sources unchanged)$)' scripts/test-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs > reward-results/baseline-tests.txt
       - name: Build and test reward-first candidate
         env:
           CONTEXT: branch-deploy
         run: |
           set -euo pipefail
           python3 scripts/build-reward-first.py
+          # Exact old Welcome/access-note copy is superseded, not audience/access checks.
           node --experimental-strip-types --test --test-name-pattern='^(?!(player audience and no tester onboarding|homepage accurately distinguishes public guide and private game)$)' scripts/test-prelaunch.mjs scripts/test-public-player-guide.mjs scripts/test-reward-first.mjs > reward-results/candidate-tests.txt
           python3 -m py_compile scripts/build-reward-first.py scripts/check-reward-first.py scripts/deploy-reward-first.py
           npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
