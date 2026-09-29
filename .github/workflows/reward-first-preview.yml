@@ -1,0 +1,42 @@
+name: Reward-first preview
+on:
+  push:
+    branches: [feature/reward-first-preview]
+    paths:
+      - '.github/workflows/reward-first-preview.yml'
+      - 'reward-preview/**'
+      - 'scripts/*reward-first*'
+permissions:
+  contents: read
+concurrency:
+  group: reward-first-preview
+  cancel-in-progress: false
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Build and export original website reference
+        run: |
+          set -euo pipefail
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          CONTEXT=branch-deploy node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          CONTEXT=branch-deploy python3 scripts/build-public-guide.py
+          mkdir -p reward-reference
+          cp -r prelaunch content scripts netlify reward-reference/
+          cp netlify.toml index.html hero.png arboretum-protocol-logo.png background6.jpg reward-reference/
+          mkdir -p reward-reference/assets
+          cp -r assets/shop reward-reference/assets/
+          cp -r dist/guide reward-reference/
+          cp dist/player-guide.html reward-reference/public-handbook-baseline.html
+          git rev-parse HEAD > reward-reference/source-commit.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: reward-first-original-reference
+          path: reward-reference/
+          retention-days: 7
