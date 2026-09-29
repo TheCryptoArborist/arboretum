@@ -1,0 +1,9 @@
+/* Keep original image dimensions from imposing an intrinsic grid minimum. */
+.rf-hero{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+.rf-hero>*,.rf-reward-top>*,.rf-reward-bottom>*,.rf-heading>*,.rf-partners>*,.rf-partner>*{min-width:0}
+.rf-partners{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rf-partner{min-width:0}
+.rf-partner img,.rf-garden img{min-width:0;max-width:100%}
+@media(max-width:880px){.rf-partner{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.rf-hero,.rf-partners{grid-template-columns:minmax(0,1fr)}.rf-partner{grid-template-columns:119px minmax(0,1fr)}}
+@media(max-width:350px){.rf-partner{grid-template-columns:99px minmax(0,1fr)}}
