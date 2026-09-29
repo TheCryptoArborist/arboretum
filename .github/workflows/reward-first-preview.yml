@@ -6,10 +6,14 @@ on:
       - '.github/workflows/reward-first-preview.yml'
       - 'reward-preview/**'
       - 'scripts/*reward-first*'
+  pull_request:
+    paths:
+      - 'reward-preview/**'
+      - 'scripts/*reward-first*'
 permissions:
   contents: read
 concurrency:
-  group: reward-first-preview
+  group: reward-first-${{ github.event_name }}
   cancel-in-progress: false
 jobs:
   review:
@@ -19,24 +23,67 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           persist-credentials: false
-      - name: Build and export original website reference
+          fetch-depth: 0
+      - name: Build original site and run retained baseline suite
+        env:
+          CONTEXT: branch-deploy
         run: |
           set -euo pipefail
+          mkdir -p reward-results
           python3 scripts/build-player-guide.py
           node scripts/build-guide-site.mjs
-          CONTEXT=branch-deploy node scripts/build-prelaunch.mjs
+          node scripts/build-prelaunch.mjs
           node scripts/polish-player-guide.mjs
-          CONTEXT=branch-deploy python3 scripts/build-public-guide.py
-          mkdir -p reward-reference
-          cp -r prelaunch content scripts netlify reward-reference/
-          cp netlify.toml index.html hero.png arboretum-protocol-logo.png background6.jpg reward-reference/
-          mkdir -p reward-reference/assets
-          cp -r assets/shop reward-reference/assets/
-          cp -r dist/guide reward-reference/
-          cp dist/player-guide.html reward-reference/public-handbook-baseline.html
-          git rev-parse HEAD > reward-reference/source-commit.txt
+          python3 scripts/build-public-guide.py
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs > reward-results/baseline-tests.txt
+      - name: Build and test reward-first candidate
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          python3 scripts/build-reward-first.py
+          node --experimental-strip-types --test --test-name-pattern='^(?!(player audience and no tester onboarding|homepage accurately distinguishes public guide and private game)$)' scripts/test-prelaunch.mjs scripts/test-public-player-guide.mjs scripts/test-reward-first.mjs > reward-results/candidate-tests.txt
+          python3 -m py_compile scripts/build-reward-first.py scripts/check-reward-first.py scripts/deploy-reward-first.py
+          npm install --no-save --ignore-scripts --package-lock=false @netlify/edge-functions typescript
+          npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts netlify/edge-functions/public-player-guide.ts
+          if CONTEXT=production python3 scripts/build-reward-first.py >reward-results/production-guard.txt 2>&1; then exit 1; fi
+          grep -q 'preview-only' reward-results/production-guard.txt
+          git diff 781caf03d17bda0d4c618cdf486e1c77756d8e6a --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js contract/sources/arboretum.move
+      - name: Prepare browser tools and one-use public key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-preview-deploy]')
+        env:
+          REWARD_MODE: key
+        run: |
+          python3 -m pip install --quiet playwright requests cryptography
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/deploy-reward-first.py
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-preview-deploy]')
         with:
-          name: reward-first-original-reference
-          path: reward-reference/
-          retention-days: 7
+          name: reward-first-public-key
+          path: reward-results/public-key.json
+          retention-days: 1
+      - name: Deploy branch preview and verify public pages and private game
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-preview-deploy]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/deploy-reward-first.py
+      - name: Collect the public review files only
+        if: success()
+        run: |
+          mkdir -p reward-results/preview-files/guide
+          cp dist/index.html dist/player-guide.html reward-results/preview-files/
+          cp dist/guide/player-guide.css dist/guide/player-guide.js reward-results/preview-files/guide/
+          cp -r dist/prelaunch reward-results/preview-files/
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: arboretum-reward-first-review
+          path: |
+            reward-results/
+            handbook-results/reward-first-preview/browser.json
+            reward-preview/
+            scripts/build-reward-first.py
+            scripts/test-reward-first.mjs
+            scripts/check-reward-first.py
+          retention-days: 14
