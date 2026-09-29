@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Preview-only reward-first presentation pass after the complete current build.
-No game, wallet, contract, authentication or economic changes. Production refuses.
+"""Reward-first presentation pass after the complete current build.
+Production requires the owner's separate website-release approval flag.
+No game, wallet, contract, authentication or economic changes.
 """
 from pathlib import Path
 import hashlib,json,os,re,shutil
@@ -14,7 +15,9 @@ def section(text,ident):
     if not found:raise RuntimeError('Missing guide section '+ident)
     return found.group()
 def build():
-    if os.environ.get('CONTEXT')=='production':raise SystemExit('Reward-first candidate is preview-only; production publication needs separate approval.')
+    production=os.environ.get('CONTEXT')=='production'
+    approved=os.environ.get('ARBORETUM_REWARD_FIRST_APPROVED')=='true'
+    if production and not approved:raise SystemExit('Reward-first candidate is preview-only without explicit production approval.')
     preserved=['game.html','wallet.js','garden.js','sui-sdk.bundle.js','tester-guide.html','guide/guide.css','guide/player-guide.js']
     prior={name:sha((DIST/name).read_bytes()) for name in preserved}
     if os.environ.get('CI') or os.environ.get('NETLIFY'):
@@ -47,6 +50,9 @@ def build():
     for a,b in [('01 / GET STARTED','03 / GET STARTED'),('02 / THE DAILY LOOP','04 / THE DAILY LOOP'),('03 / BUILD YOUR LOADOUT','05 / BUILD YOUR LOADOUT'),('04 / PLAY WITH A PLAN','06 / PLAY WITH A PLAN'),('05 / KNOW WHAT YOU ARE OPENING','07 / KNOW WHAT YOU ARE OPENING'),('06 / GROW THE COMMUNITY','08 / GROW THE COMMUNITY'),('08 / NFTREE PRIVILEGES','09 / NFTREE PRIVILEGES'),('09 / QUICK ANSWERS','10 / QUICK ANSWERS')]:guide=guide.replace(a,b)
     css=(SOURCE/'theme.css').read_text()+'\n'+(SOURCE/'responsive-fix.css').read_text()
     if '@@' in css:raise RuntimeError('Logo mask placeholder is unresolved')
+    if production:
+        home=once(home,'content="noindex,nofollow"','content="index,follow"')
+        assert 'content="index,follow"' in guide, 'Production base guide must be indexable'
     (DIST/'index.html').write_text(home)
     (DIST/'player-guide.html').write_text(guide)
     for name in ['prelaunch/site.css','guide/player-guide.css']:
@@ -58,7 +64,7 @@ def build():
     assert not re.search(r'<script\b|<form\b|\bon\w+=',home,re.I)
     assert home.index('id="growth-pool"')<home.index('id="item-shop"')
     assert guide.index('id="rewards"')<guide.index('id="buy-first"')<guide.index('id="tools"')
-    report={'scope':'preview-only presentation','protected_files_unchanged':prior,'homepage_sha256':sha(home.encode()),'guide_sha256':sha(guide.encode()),'original_artwork':{n:sha((DIST/'prelaunch'/n).read_bytes()) for n in ['mark.png','hero.png','boom-chest.png','victory-chest.png','supply-drop.jpg','garden-preview.avif']},'actual_pool_balance_displayed':False,'example_pool_sui':1000,'example_is_forecast':False,'production_allowed':False}
+    report={'scope':'approved production presentation' if production else 'preview-only presentation','protected_files_unchanged':prior,'homepage_sha256':sha(home.encode()),'guide_sha256':sha(guide.encode()),'original_artwork':{n:sha((DIST/'prelaunch'/n).read_bytes()) for n in ['mark.png','hero.png','boom-chest.png','victory-chest.png','supply-drop.jpg','garden-preview.avif']},'actual_pool_balance_displayed':False,'example_pool_sui':1000,'example_is_forecast':False,'production_allowed':production and approved}
     out=ROOT/'reward-results';out.mkdir(exist_ok=True)
     (out/'build.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))
