@@ -9,7 +9,7 @@ function publicPaths(): Set<string> {
     "/prelaunch/mark.png", "/prelaunch/ancient.jpg", "/prelaunch/garden-preview.avif",
     "/prelaunch/shop-pool.css", "/prelaunch/seedling-crate.jpg", "/prelaunch/grove-crate.jpg",
     "/prelaunch/canopy-crate.jpg", "/prelaunch/mythic-crate.jpg",
-    "/prelaunch/boom-chest.png", "/prelaunch/victory-chest.png"]);
+    "/prelaunch/boom-chest.png", "/prelaunch/victory-chest.png", "/prelaunch/supply-drop.jpg"]);
 }
 function secure(response: Response, publicPage = false): Response {
   const h = new Headers(response.headers);
