@@ -16,7 +16,20 @@ test('five standard crates and reward sections retained',()=>{assert.equal((html
 test('no public prices, checkout, invented odds or wallet scripts',()=>{assert.doesNotMatch(html,/<script\b|onclick=|Buy Now|Claim Reward|0\.01 SUI/i);const partner=html.split('id="partner-chests"')[1].split('</section>')[0];assert.doesNotMatch(partner,/\d+%|guaranteed/i)});
 for(const n of ['boom','victory'])test('original '+n+' artwork and exact public route',async()=>{assert.ok(fs.readFileSync('dist/prelaunch/'+n+'-chest.png').equals(fs.readFileSync('assets/shop/crates/'+n+'-chest.png')));assert.equal((await gate(new Request('https://preview.example/prelaunch/'+n+'-chest.png'),ctx)).status,200)});
 test('neighboring assets and game stay private',async()=>{for(const p of ['/prelaunch/boom-private.png','/prelaunch/victory-private.png','/assets/shop/crates/boom-chest.png','/game.html','/wallet.js','/tester-guide.html'])assert.equal((await gate(new Request('https://preview.example'+p),ctx)).status,401)});
-test('authentication byte-identical except two exact artwork URLs',()=>{const added=',\n    "/prelaunch/boom-chest.png", "/prelaunch/victory-chest.png"';assert.equal(fs.readFileSync('netlify/edge-functions/tester-gate.ts','utf8').replace(added,''),old('netlify/edge-functions/tester-gate.ts'))});
-test('game, handbook and contract sources unchanged',()=>{for(const p of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','contract/sources/arboretum.move','content/public-player-guide.html','content/public-player-guide.js','scripts/build-public-guide.py','netlify/edge-functions/public-player-guide.ts','netlify.toml'])assert.equal(fs.readFileSync(p,'utf8'),old(p),p)});
+test('authentication unchanged except the three approved original-artwork URLs',()=>{
+ const partner=',\n    "/prelaunch/boom-chest.png", "/prelaunch/victory-chest.png"';
+ const supply=', "/prelaunch/supply-drop.jpg"';
+ const current=fs.readFileSync('netlify/edge-functions/tester-gate.ts','utf8');
+ assert.equal(current.split(partner).length,2);
+ assert.equal(current.split(supply).length,2);
+ assert.equal(current.replace(supply,'').replace(partner,''),old('netlify/edge-functions/tester-gate.ts'));
+});
+test('game and handbook sources unchanged; only approved build pass added',()=>{
+ for(const p of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','contract/sources/arboretum.move','content/public-player-guide.html','content/public-player-guide.js','scripts/build-public-guide.py','netlify/edge-functions/public-player-guide.ts'])assert.equal(fs.readFileSync(p,'utf8'),old(p),p);
+ const current=fs.readFileSync('netlify.toml','utf8');
+ const pass=' && python3 scripts/build-reward-first.py';
+ assert.equal(current.split(pass).length,2);
+ assert.equal(current.replace(pass,''),old('netlify.toml'));
+});
 test('all local homepage anchors exist',()=>{const ids=new Set([...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]));for(const m of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(m[1]))});
 test('pool link accurately describes public guide',()=>{assert.match(html,/Player Guide <span>\(open to everyone\)<\/span>/);assert.doesNotMatch(html,/Player Guide <span>\(tester access\)<\/span>/)});
