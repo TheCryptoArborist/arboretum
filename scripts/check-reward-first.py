@@ -3,15 +3,32 @@
 from pathlib import Path
 from urllib.parse import urlsplit
 from playwright.sync_api import sync_playwright
-import json,os
+import json,os,sys,traceback
 ROOT=Path(__file__).resolve().parents[1];OUT=ROOT/'reward-results'/'hosted';OUT.mkdir(parents=True,exist_ok=True)
 BASE=os.environ['REWARD_PREVIEW_URL'].rstrip('/');checks=[]
+def browser_failure(kind,value,tb):
+ # This script visits public pages only; no credentials or private sessions.
+ report={'exception_type':kind.__name__,'message':str(value)[:8000],
+         'last_check':checks[-1]['check'] if checks else None,
+         'frames':[{'file':Path(f.filename).name,'line':f.lineno,'function':f.name}
+                   for f in traceback.extract_tb(tb)][-8:]}
+ (OUT/'browser-failure.json').write_text(json.dumps(report,indent=2))
+ print(kind.__name__+': '+str(value)[:2000],file=sys.stderr)
+sys.excepthook=browser_failure
 def ck(name,value):
  checks.append({'check':name,'passed':bool(value)})
  (OUT/'browser.json').write_text(json.dumps(checks,indent=2))
  if not value:raise AssertionError(name)
 def check_layout(page,label,kind):
- page.wait_for_function('Array.from(document.querySelectorAll("link[rel=stylesheet]")).every(e=>!!e.sheet)')
+ # Evaluate through the browser automation API rather than compiling a
+ # string predicate in page JavaScript: the public page disallows unsafe-eval.
+ for attempt in range(100):
+  styles=page.evaluate('Array.from(document.querySelectorAll("link[rel=stylesheet]")).map(e=>({href:e.href,loaded:!!e.sheet}))')
+  if styles and all(item['loaded'] for item in styles):break
+  page.wait_for_timeout(100)
+ else:
+  (OUT/(kind+'-'+label+'-styles.json')).write_text(json.dumps(styles,indent=2))
+  raise AssertionError(label+' '+kind+' stylesheets did not load')
  page.evaluate('document.fonts.ready')
  page.evaluate('Promise.all([...document.images].filter(i=>i.loading!=="lazy").map(i=>i.decode().catch(()=>null)))')
  page.evaluate('new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)))')
@@ -23,7 +40,7 @@ def check_layout(page,label,kind):
 with sync_playwright() as p:
  b=p.chromium.launch(headless=True)
  for w,h,label in [(1440,1000,'desktop'),(768,1024,'tablet'),(390,844,'mobile'),(320,740,'small-mobile')]:
-  c=b.new_context(viewport={'width':w,'height':h});page=c.new_page();errors=[];requested=[]
+  c=b.new_context(viewport={'width':w,'height':h});page=c.new_page();page.set_default_timeout(20000);errors=[];requested=[]
   page.on('pageerror',lambda e:errors.append(type(e).__name__));page.on('request',lambda r:requested.append(urlsplit(r.url).path))
   response=page.goto(BASE+'/',wait_until='domcontentloaded')
   ck(label+' homepage loads',response.status==200 and page.locator('body.reward-landing').count()==1)
