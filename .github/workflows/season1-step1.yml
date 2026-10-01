@@ -1,0 +1,100 @@
+name: Season 1 core controls
+on:
+  push:
+    branches: [fix/season1-watering-controls]
+    paths:
+      - '.github/workflows/season1-step1.yml'
+      - 'scripts/prepare-season1-step1.py'
+      - 'scripts/check-season1-regression.py'
+      - 'contract/season1-step1/**'
+  pull_request:
+    paths:
+      - 'scripts/prepare-season1-step1.py'
+      - 'scripts/check-season1-regression.py'
+      - 'contract/season1-step1/**'
+permissions:
+  contents: read
+concurrency:
+  group: season1-step1-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  move-tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Cache verified Sui compiler
+        id: sui-cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: ~/.local/sui-step1
+          key: sui-mainnet-v1.79.1-547b3091-ubuntu24
+      - name: Install pinned official compiler
+        if: steps.sui-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/.local/sui-step1"
+          curl --fail --location --retry 3 -o "$RUNNER_TEMP/sui.tgz" 'https://github.com/MystenLabs/sui/releases/download/mainnet-v1.79.1/sui-mainnet-v1.79.1-ubuntu-x86_64.tgz'
+          echo '547b3091e975b8a6b4078473a3868d86e985156b6715a8c4afb7fd7313a36abf  '"$RUNNER_TEMP/sui.tgz" | sha256sum -c -
+          python3 - <<'PY'
+          import tarfile,os,pathlib,shutil
+          with tarfile.open(os.environ['RUNNER_TEMP']+'/sui.tgz') as t:
+              m=[x for x in t.getmembers() if x.isfile() and pathlib.PurePosixPath(x.name).name=='sui']
+              assert len(m)==1
+              p=pathlib.Path.home()/'.local/sui-step1/sui'
+              with p.open('wb') as f:shutil.copyfileobj(t.extractfile(m[0]),f)
+              p.chmod(0o755)
+          PY
+          rm "$RUNNER_TEMP/sui.tgz"
+      - name: Configure empty keystore and non-serving local RPC
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          p=Path.home()/'.sui/sui_config';p.mkdir(parents=True,exist_ok=True)
+          k=p/'empty.keystore';k.write_text('[]');k.chmod(0o600)
+          config={'keystore':{'File':str(k)},'external_keys':None,'envs':[{'alias':'offline-tests','rpc':'http://127.0.0.1:9','ws':None,'basic_auth':None,'chain_id':'00000000'}],'active_env':'offline-tests','active_address':None}
+          (p/'client.yaml').write_text(json.dumps(config,indent=2))
+          PY
+      - name: Reproduce old failure, then test corrected Move code
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p step1-results
+          export PATH="$HOME/.local/sui-step1:$PATH"
+          sui --version | tee step1-results/compiler.txt
+          python3 scripts/check-season1-regression.py
+          CANDIDATE='contract/season1-step1/generated'
+          sui move test --build-env mainnet --path "$CANDIDATE" 2>&1 | tee step1-results/move-tests.txt
+          cp "$CANDIDATE/sources/arboretum.move" step1-results/candidate-arboretum.move
+          cp "$CANDIDATE/Move.toml" step1-results/Move.toml
+          if [ -f "$CANDIDATE/Move.lock" ]; then cp "$CANDIDATE/Move.lock" step1-results/Move.lock; fi
+          mkdir -p step1-results/reproduction/scripts step1-results/reproduction/contract/season1-step1 step1-results/reproduction/contract/sources
+          cp scripts/prepare-season1-step1.py scripts/check-season1-regression.py step1-results/reproduction/scripts/
+          cp contract/season1-step1/*.inc contract/season1-step1/README.md step1-results/reproduction/contract/season1-step1/
+          cp contract/sources/arboretum.move step1-results/reproduction/contract/sources/
+          cp .github/workflows/season1-step1.yml step1-results/reproduction/workflow.yml
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,re,hashlib
+          p=Path.home()/'.sui/sui_config/empty.keystore'
+          assert json.loads(p.read_text())==[], 'Test runner must not generate signing keys'
+          for filename in ['move-tests.txt','baseline-regression.txt']:
+              log=Path('step1-results',filename).read_text()
+              assert 'secret recovery phrase' not in log.lower() and 'Generated new keypair' not in log
+          log=Path('step1-results/move-tests.txt').read_text()
+          assert re.search(r'Total tests:\s*40;\s*passed:\s*40;\s*failed:\s*0',log), 'Missing exact expected test result'
+          report={'empty_keystore':True,'rpc_endpoint':'http://127.0.0.1:9','execution':'Local Move VM only','build_environment':'mainnet framework context; no chain submission','source_sha256':hashlib.sha256(Path('step1-results/candidate-arboretum.move').read_bytes()).hexdigest(),'test_count':40,'passed':40,'failed':0}
+          Path('step1-results/execution-scope.json').write_text(json.dumps(report,indent=2))
+          PY
+      - name: Preserve test results and reviewable source (no deployment)
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: arboretum-season1-step1
+          path: step1-results/
+          retention-days: 14
