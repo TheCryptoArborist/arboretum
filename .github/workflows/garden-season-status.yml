@@ -1,0 +1,90 @@
+name: Garden season status
+on:
+  push:
+    branches: [fix/garden-season-status]
+    paths: ['.github/workflows/garden-season-status.yml', 'season-status/**', 'scripts/*season-status*', 'netlify.toml']
+  pull_request:
+    paths: ['.github/workflows/garden-season-status.yml', 'season-status/**', 'scripts/*season-status*', 'netlify.toml']
+permissions:
+  contents: read
+concurrency:
+  group: garden-season-status-${{ github.event_name }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Build current website and retain public and gate tests
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          set -euo pipefail
+          mkdir -p season-status-results
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          node --experimental-strip-types --test scripts/test-prelaunch.mjs scripts/test-prelaunch-redesign.mjs scripts/test-prelaunch-showcases.mjs scripts/test-public-player-guide.mjs scripts/test-partner-preview.mjs > season-status-results/base-tests.txt
+          python3 scripts/build-reward-first.py
+          # These two assertions concern wording superseded by the published reward-first page.
+          node --experimental-strip-types --test --test-skip-pattern='player audience and no tester onboarding|homepage accurately distinguishes public guide and private game' scripts/test-prelaunch.mjs scripts/test-public-player-guide.mjs scripts/test-reward-first.mjs > season-status-results/public-tests.txt
+          node scripts/build-season-status.mjs
+          node --test scripts/test-season-status.mjs > season-status-results/unit-tests.txt
+          node --check season-status/garden-status.mjs
+          node --check season-status/model.mjs
+          python3 -m py_compile scripts/release-season-status.py scripts/check-season-status-hosted.py
+          git diff ab5e0fa0e70ede69af6450658c79591e7364dbaa --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js sdk-entry.js contract/sources/arboretum.move netlify/edge-functions netlify/functions
+          if CONTEXT=production ARBORETUM_SEASON_STATUS_APPROVED=false node scripts/build-season-status.mjs > season-status-results/approval-guard.txt 2>&1; then exit 1; fi
+          grep -q 'requires owner approval' season-status-results/approval-guard.txt
+      - name: Verify full approved production build
+        env:
+          CONTEXT: production
+          ARBORETUM_PRELAUNCH_APPROVED: 'true'
+          ARBORETUM_REWARD_FIRST_APPROVED: 'true'
+          ARBORETUM_SEASON_STATUS_APPROVED: '2026-10-01'
+        run: |
+          set -euo pipefail
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          python3 scripts/build-reward-first.py
+          node scripts/build-season-status.mjs
+          node --test scripts/test-season-status.mjs > season-status-results/production-unit-tests.txt
+      - name: Prepare hosted browser tools and run-bound encryption key
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[season-status-release]')
+        env:
+          SEASON_RELEASE_MODE: key
+        run: |
+          python3 -m pip install --quiet playwright requests cryptography
+          python3 -m playwright install --with-deps chromium
+          python3 scripts/release-season-status.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[season-status-release]')
+        with:
+          name: season-status-public-key
+          path: season-status-results/public-key.json
+          retention-days: 1
+      - name: Verify hosted preview then publish and verify production
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[season-status-release]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/release-season-status.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: garden-season-status-verified
+          path: |
+            season-status-results/
+            season-status/
+            scripts/build-season-status.mjs
+            scripts/test-season-status.mjs
+            scripts/check-season-status-hosted.py
+          retention-days: 14

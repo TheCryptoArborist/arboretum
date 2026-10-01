@@ -1,5 +1,5 @@
 [build]
-  command = "python3 scripts/build-player-guide.py && node scripts/build-guide-site.mjs && node scripts/build-prelaunch.mjs && node scripts/polish-player-guide.mjs && python3 scripts/build-public-guide.py && python3 scripts/build-reward-first.py"
+  command = "python3 scripts/build-player-guide.py && node scripts/build-guide-site.mjs && node scripts/build-prelaunch.mjs && node scripts/polish-player-guide.mjs && python3 scripts/build-public-guide.py && python3 scripts/build-reward-first.py && node scripts/build-season-status.mjs"
   publish = "dist"
 
 [functions]

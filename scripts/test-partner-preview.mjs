@@ -24,12 +24,14 @@ test('authentication unchanged except the three approved original-artwork URLs',
  assert.equal(current.split(supply).length,2);
  assert.equal(current.replace(supply,'').replace(partner,''),old('netlify/edge-functions/tester-gate.ts'));
 });
-test('game and handbook sources unchanged; only approved build pass added',()=>{
+test('game and handbook sources unchanged; only approved build passes added',()=>{
  for(const p of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','contract/sources/arboretum.move','content/public-player-guide.html','content/public-player-guide.js','scripts/build-public-guide.py','netlify/edge-functions/public-player-guide.ts'])assert.equal(fs.readFileSync(p,'utf8'),old(p),p);
  const current=fs.readFileSync('netlify.toml','utf8');
- const pass=' && python3 scripts/build-reward-first.py';
- assert.equal(current.split(pass).length,2);
- assert.equal(current.replace(pass,''),old('netlify.toml'));
+ const reward=' && python3 scripts/build-reward-first.py';
+ const season=' && node scripts/build-season-status.mjs';
+ assert.equal(current.split(reward).length,2);
+ assert.equal(current.split(season).length,2);
+ assert.equal(current.replace(season,'').replace(reward,''),old('netlify.toml'));
 });
 test('all local homepage anchors exist',()=>{const ids=new Set([...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]));for(const m of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(m[1]))});
 test('pool link accurately describes public guide',()=>{assert.match(html,/Player Guide <span>\(open to everyone\)<\/span>/);assert.doesNotMatch(html,/Player Guide <span>\(tester access\)<\/span>/)});
