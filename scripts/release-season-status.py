@@ -42,6 +42,7 @@ for _ in range(100):
  if r.ok:
   e=json.loads(base64.b64decode(r.json()['content']))
   if e.get('run_id')==RUN and e.get('attempt')==ATTEMPT:
+   if e.get('cancelled'):raise SystemExit('Release handoff withdrawn; no deployment attempted.')
    aes=key.decrypt(base64.b64decode(e['wrapped_key']),padding.OAEP(mgf=padding.MGF1(hashes.SHA256()),algorithm=hashes.SHA256(),label=None))
    packet=json.loads(AESGCM(aes).decrypt(base64.b64decode(e['nonce']),base64.b64decode(e['ciphertext']),(RUN+':'+ATTEMPT).encode()));break
  time.sleep(6)
@@ -49,13 +50,18 @@ KEY.unlink(missing_ok=True)
 if packet is None:raise SystemExit('No matching capability; no deploy attempted.')
 proxy=packet['proxy_url'].rstrip('/');u=urllib.parse.urlsplit(proxy)
 assert u.scheme=='https' and u.hostname in ['netlify-mcp.netlify.app','mcp.netlify.com','netlify-mcp.netlify.com'] and u.path.startswith('/proxy/')
-def current_deploy():
- stage('Verify currently published Netlify deployment')
- r=http.get(proxy+'/api/v1/sites/'+SITE,timeout=30)
- save('deployment-read-status.json',{'operation':'get-site','status':r.status_code,'ok':r.ok})
- assert r.ok,'Netlify site read rejected'
- return r.json()['published_deploy']['id']
-assert current_deploy()==OLD,'Production changed'
+# Deployment capabilities permit only build POSTs and individual deploy GETs.
+# Current-site identity is checked through the Netlify project connector, then
+# carried in this run-bound envelope. Served bytes are checked again below.
+assert packet.get('confirmed_deploy_id')==OLD,'Current deployment was not confirmed'
+def verify_pinned_deploy():
+ stage('Verify pinned prior deployment through the allowed deploy endpoint')
+ r=http.get(proxy+'/api/v1/deploys/'+OLD,timeout=30)
+ assert r.ok,'Prior deployment metadata unavailable'
+ d=r.json()
+ assert d['id']==OLD and d['site_id']==SITE and d['state']=='ready' and d['context']=='production' and d.get('published_at')
+ assert [x['n'] for x in d.get('available_functions',[])]==['calendar-reminder'] and d.get('function_schedules',[])==[]
+verify_pinned_deploy()
 pubpaths=['/','/player-guide','/prelaunch/site.css','/prelaunch/shop-pool.css','/guide/player-guide.css','/guide/player-guide.js','/prelaunch/mark.png','/prelaunch/hero.png','/prelaunch/boom-chest.png','/prelaunch/victory-chest.png']
 public={}
 for path in pubpaths:
@@ -65,9 +71,18 @@ private={}
 for name in ['game.html','wallet.js','garden.js','sui-sdk.bundle.js','tester-guide.html','guide/guide.css']:
  r=s.get(LIVE+'/'+name,timeout=40);assert r.status_code==200 and len(r.content)>1000;private[name]=r.content
 s.post(LIVE+'/tester-logout',headers={'Origin':LIVE},data={},allow_redirects=False,timeout=30)
+# Compare current responses with the connector-confirmed production permalink.
+PINNED='https://'+OLD+'--arboretum-sui-forest.netlify.app'
+pinned=session()
+r=pinned.post(PINNED+'/tester-access',headers={'Origin':PINNED},data={'password':packet['tester_password']},allow_redirects=False,timeout=30);assert r.status_code==303
+for path,before in public.items():
+ r=pinned.get(PINNED+path,timeout=40);assert r.status_code==200 and r.content==before,'Public production differs from pinned release'
+for name,before in private.items():
+ r=pinned.get(PINNED+'/'+name,timeout=40);assert r.status_code==200 and r.content==before,'Private production differs from pinned release'
+pinned.post(PINNED+'/tester-logout',headers={'Origin':PINNED},data={},allow_redirects=False,timeout=30)
 baseline_path=Path(os.environ['RUNNER_TEMP'])/'previous-game.html';baseline_path.write_bytes(private['game.html'])
 expected_game=subprocess.check_output(['node','scripts/build-season-status.mjs','--transform',str(baseline_path)],cwd=ROOT)
-save('baseline.json',{'main':BASE,'deploy':OLD,'public':{k:sha(v) for k,v in public.items()},'private':{k:sha(v) for k,v in private.items()},'expected_game_sha256':sha(expected_game)})
+save('baseline.json',{'main':BASE,'deploy_checked_via_project_connector':OLD,'pinned_response_parity':True,'public':{k:sha(v) for k,v in public.items()},'private':{k:sha(v) for k,v in private.items()},'expected_game_sha256':sha(expected_game)})
 def archive(ref):
  b=io.BytesIO()
  with zipfile.ZipFile(b,'w',zipfile.ZIP_DEFLATED) as z:
@@ -129,9 +144,13 @@ def verify(base,label,prod=False):
 stage('Deploy non-production candidate')
 p=deploy(source,'Approved My Garden season status — hosted verification','garden-season-status-20261001');report.update(preview_deploy=p['id'],preview_url=p['deploy_ssl_url']);save('release.json',report)
 verify(p['deploy_ssl_url'],'preview')
-stage('Check unchanged production before publication');check_main();assert current_deploy()==OLD
+stage('Check unchanged production before publication');check_main();verify_pinned_deploy()
 for path,before in public.items():
  r=http.get(LIVE+path,timeout=40);assert r.status_code==200 and r.content==before
+s=session();r=s.post(LIVE+'/tester-access',headers={'Origin':LIVE},data={'password':packet['tester_password']},allow_redirects=False,timeout=30);assert r.status_code==303
+for name,before in private.items():
+ r=s.get(LIVE+'/'+name,timeout=40);assert r.status_code==200 and r.content==before
+s.post(LIVE+'/tester-logout',headers={'Origin':LIVE},data={},allow_redirects=False,timeout=30)
 stage('Publish approved season-status update')
 d=deploy(source,'Approved My Garden season status, countdown and rewards navigation');report.update(production_deploy=d['id'],published_at=d['published_at']);save('release.json',report)
 try:
