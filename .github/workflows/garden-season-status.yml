@@ -1,0 +1,57 @@
+name: Garden season status
+on:
+  push:
+    branches: [fix/garden-season-status]
+    paths: ['.github/workflows/garden-season-status.yml', 'season-status/**', 'scripts/*season-status*']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Read season and Clock, never execute transactions
+        run: |
+          mkdir -p season-status-results
+          python3 - <<'PY'
+          import json, urllib.request, datetime, pathlib
+          out=pathlib.Path('season-status-results')
+          query='''query {
+            checkpoint { sequenceNumber timestamp }
+            registry: object(address: "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50") {
+              address version asMoveObject { contents { json } }
+            }
+            clock: object(address: "0x6") { asMoveObject { contents { json } } }
+          }'''
+          try:
+            req=urllib.request.Request('https://graphql.mainnet.sui.io/graphql', data=json.dumps({'query':query}).encode(),headers={'Content-Type':'application/json'})
+            with urllib.request.urlopen(req,timeout=30) as r: data=json.load(r)
+            data['retrieved_at']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+            (out/'chain-read.json').write_text(json.dumps(data,indent=2))
+            if data.get('errors'): print('GraphQL returned errors; inspect report, do not assume state.')
+            else:
+              f=data['data']['registry']['asMoveObject']['contents']['json']
+              c=data['data']['clock']['asMoveObject']['contents']['json']
+              start=int(f['season_start_ms']); now=int(c['timestamp_ms']); end=start+2592000000 if start else None
+              summary={'season_id':f['current_season_id'],'start_ms':start,'end_ms':end,'chain_now_ms':now,'ended':bool(start and now>=end),'paused':f['paused'],'checkpoint':data['data']['checkpoint'],'mutations':0,'transactions':0}
+              (out/'season-summary.json').write_text(json.dumps(summary,indent=2));print(json.dumps(summary,indent=2))
+          except Exception as e:
+            (out/'read-error.json').write_text(json.dumps({'error_type':type(e).__name__,'message':str(e)[:200],'verified':False}));print('Read failed; no transactions attempted.')
+          PY
+      - name: Preserve exact current source for scoped local review
+        run: |
+          git archive --format=tar HEAD index.html wallet.js garden.js sdk-entry.js sui-sdk.bundle.js netlify.toml scripts content contract/sources/arboretum.move netlify/edge-functions prelaunch reward-preview > season-status-results/current-source.tar
+          git rev-parse HEAD > season-status-results/source-sha.txt
+      - name: Run season-status tests when present
+        run: |
+          if test -f scripts/test-season-status.mjs; then node --test scripts/test-season-status.mjs > season-status-results/tests.txt; fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: garden-season-status-review
+          path: season-status-results/
+          retention-days: 14
