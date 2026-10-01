@@ -50,7 +50,11 @@ if packet is None:raise SystemExit('No matching capability; no deploy attempted.
 proxy=packet['proxy_url'].rstrip('/');u=urllib.parse.urlsplit(proxy)
 assert u.scheme=='https' and u.hostname in ['netlify-mcp.netlify.app','mcp.netlify.com','netlify-mcp.netlify.com'] and u.path.startswith('/proxy/')
 def current_deploy():
- r=http.get(proxy+'/api/v1/sites/'+SITE,timeout=30);assert r.ok;return r.json()['published_deploy']['id']
+ stage('Verify currently published Netlify deployment')
+ r=http.get(proxy+'/api/v1/sites/'+SITE,timeout=30)
+ save('deployment-read-status.json',{'operation':'get-site','status':r.status_code,'ok':r.ok})
+ assert r.ok,'Netlify site read rejected'
+ return r.json()['published_deploy']['id']
 assert current_deploy()==OLD,'Production changed'
 pubpaths=['/','/player-guide','/prelaunch/site.css','/prelaunch/shop-pool.css','/guide/player-guide.css','/guide/player-guide.js','/prelaunch/mark.png','/prelaunch/hero.png','/prelaunch/boom-chest.png','/prelaunch/victory-chest.png']
 public={}
