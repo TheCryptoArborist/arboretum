@@ -1,0 +1,63 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {validateSnapshot,seasonView,countdown,seasonAbortMessage,archiveNote,SEASON_DURATION_MS,SEASON_ENDED_MESSAGE,MAX_SNAPSHOT_AGE_MS} from '../season-status/model.mjs';
+const start=1788220806247, end=start+SEASON_DURATION_MS;
+const snap=(now=end,fields={})=>validateSnapshot({current_season_id:'3',season_start_ms:String(start),paused:false,...fields},now);
+const pkg='0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724';
+const error=new Error(`Transaction resolution failed: MoveAbort in 1st command, abort code: 6, in '${pkg}::arboretum::assert_season_active' (instruction 24)`);
+test('read live-shaped string fields',()=>assert.equal(snap().chainNowMs,end));
+test('confirmed October 1 cutoff, not next local midnight',()=>assert.equal(new Date(end).toISOString(),'2026-10-01T00:00:06.247Z'));
+test('one ms before cutoff is active',()=>assert.equal(seasonView(snap(end-1)).phase,'active'));
+test('exact cutoff is ended',()=>assert.equal(seasonView(snap(end)).phase,'ended'));
+test('one ms after cutoff remains ended',()=>assert.equal(seasonView(snap(end+1)).canWater,false));
+test('live-shaped season ended and not paused',()=>assert.equal(seasonView(snap(1790865578656)).title,'Season 3 ended'));
+test('countdown crosses end without another RPC',()=>assert.equal(seasonView(snap(end-1500),1500).phase,'ended'));
+test('active paused disallows water but clock keeps running',()=>{const s=seasonView(snap(end-3000,{paused:true}),1000);assert.equal(s.phase,'paused');assert.equal(s.remainingMs,2000);assert.equal(s.canWater,false);});
+test('ended paused does not announce claims available',()=>{const s=seasonView(snap(end,{paused:true}));assert.equal(s.phase,'ended-paused');assert.match(s.claimText,/claims are paused/);});
+test('no active season is not labeled already paid',()=>{const s=seasonView(snap(end,{season_start_ms:'0'}));assert.equal(s.phase,'inactive');assert.match(s.claimText,/previous-season/);assert.equal(s.canWater,false);});
+test('future start does not allow watering',()=>assert.equal(seasonView(snap(start-1)).phase,'scheduled'));
+test('missing state is unknown, not ended',()=>assert.equal(seasonView(null).phase,'unknown'));
+test('stale state fails closed',()=>assert.equal(seasonView(snap(end-1000),MAX_SNAPSHOT_AGE_MS+1).phase,'unknown'));
+test('invalid age fails closed',()=>assert.equal(seasonView(snap(),NaN).phase,'unknown'));
+test('invalid registry shape rejected',()=>assert.throws(()=>validateSnapshot({},end)));
+test('missing paused flag rejected',()=>assert.throws(()=>validateSnapshot({season_start_ms:start,current_season_id:3},end)));
+test('invalid clock rejected',()=>assert.throws(()=>validateSnapshot(snap().registry,'oops')));
+test('zero clock rejected',()=>assert.throws(()=>validateSnapshot(snap().registry,0)));
+test('negative clock rejected',()=>assert.throws(()=>validateSnapshot(snap().registry,-1)));
+test('unsafe integer rejected',()=>assert.throws(()=>validateSnapshot(snap().registry,Number.MAX_SAFE_INTEGER+1)));
+test('countdown never shows negative',()=>assert.equal(countdown(-1000),'0d 00h 00m 00s'));
+test('positive last millisecond remains 1s',()=>assert.equal(countdown(1),'0d 00h 00m 01s'));
+test('all countdown units',()=>assert.equal(countdown(90061000),'1d 01h 01m 01s'));
+test('exact reported abort gets plain language',()=>assert.equal(seasonAbortMessage(error,pkg),SEASON_ENDED_MESSAGE));
+test('code 6 in claim_reward is NOT an ended-water error',()=>assert.equal(seasonAbortMessage(error.message.replace('assert_season_active','claim_reward'),pkg),null));
+test('another package is NOT translated',()=>assert.equal(seasonAbortMessage(error,'0x1234'),null));
+test('code 60 is NOT translated',()=>assert.equal(seasonAbortMessage(error.message.replace('code: 6','code: 60'),pkg),null));
+test('paused abort is NOT translated as ended',()=>assert.equal(seasonAbortMessage(error.message.replace('code: 6','code: 12'),pkg),null));
+test('unrelated error preserves diagnostic',()=>assert.equal(seasonAbortMessage(new Error('InsufficientGas'),pkg),null));
+test('no archive does not invent claim deadline',()=>assert.equal(archiveNote(null,end),null));
+test('archive exact deadline is still open',()=>assert.equal(archiveNote({seasonId:2,claimDeadlineMs:end,swept:false},end).open,true));
+test('archive past deadline is closed',()=>assert.equal(archiveNote({seasonId:2,claimDeadlineMs:end,swept:false},end+1).open,false));
+test('swept archive is closed',()=>assert.equal(archiveNote({seasonId:2,claimDeadlineMs:end,swept:true},end-1).open,false));
+test('copy never claims rewards are being calculated automatically',()=>{for(const x of [null,snap(),snap(end,{paused:true}),snap(start+1),snap(end,{season_start_ms:'0'})])assert.doesNotMatch(JSON.stringify(seasonView(x)),/rewards are being calculated|rewards sent|paid automatically/i);});
+const module=fs.readFileSync('season-status/garden-status.mjs','utf8');
+test('presentation uses query, not mutation or signing',()=>{assert.match(module,/query GardenSeasonStatus/);assert.doesNotMatch(module,/\bmutation\b|signAndExecute|executeTransaction|\.claimReward\s*\(|\.claimArchivedReward\s*\(/);});
+test('chain request omits browser credentials and supports timeout',()=>{assert.match(module,/credentials:'omit'/);assert.match(module,/AbortController/);});
+if(fs.existsSync('dist/game.html')){
+ const html=fs.readFileSync('dist/game.html','utf8');
+ test('one My Garden panel and module',()=>{assert.equal((html.match(/id="garden-season-status"/g)||[]).length,1);assert.equal((html.match(/src="\/season-status\/garden-status.mjs"/g)||[]).length,1);});
+ test('correct existing claim navigation labels',()=>assert.match(html,/Rewards → Monthly Pool → Claim Reward/));
+ test('batch no longer dumps raw error text directly',()=>{assert.doesNotMatch(html,/toast\(`Batch water failed:/);assert.match(html,/friendlyTxError\('Batch Water',e\)/);});
+ for(const [name,args] of [['doWaterAll',[]],['doWaterSeed',['0xseed']]]){
+  const body=html.match(new RegExp(`async function ${name}\\([^]*?\\n}\\nwindow\\.${name}=`))[0].replace(new RegExp(`\\nwindow\\.${name}=$`),'');
+  test(name+' stopped before any transaction when season closed',async()=>{
+   let waterCalls=0,accessCalls=0;
+   const context={needWallet:()=>false,window:{arbSeasonStatus:{canWater:async()=>false},arb:{waterSeed:()=>waterCalls++,batchWaterAllSeeds:()=>waterCalls++}},requireGardenActive:async()=>{accessCalls++;return true;},toast:()=>{}};
+   vm.createContext(context);vm.runInContext(body,context);await context[name](...args);
+   assert.equal(waterCalls,0);assert.equal(accessCalls,0);
+  });
+ }
+}
+for(const bad of [null,'',true,[],{}])test('invalid numeric field rejected '+JSON.stringify(bad),()=>assert.throws(()=>validateSnapshot({...snap().registry,season_start_ms:bad},end)));
+test('archive missing current time does not invent availability',()=>assert.equal(archiveNote({seasonId:3,claimDeadlineMs:end},undefined),null));
