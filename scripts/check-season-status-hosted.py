@@ -64,6 +64,7 @@ with sync_playwright() as p:
   ck(label+' real game and wallet scripts loaded',page.evaluate("typeof window.arb.waterSeed==='function'&&typeof window.doClaimReward==='function'"))
   ck(label+' no wallet connected',page.evaluate("!window.arb.getAddress()"))
   ck(label+' network state actually read',bool(live_reads) and not live_reads[-1].get('errors'))
+  (OUT/('live-season-'+label+'.json')).write_text(json.dumps(live_reads[-1],indent=2))
   fields=live_reads[-1]['data']['registry']['asMoveObject']['contents']['json'];clock=int(live_reads[-1]['data']['clock']['asMoveObject']['contents']['json']['timestamp_ms'])
   start=int(fields['season_start_ms']);end=start+2592000000
   expected='inactive' if not start else ('ended-paused' if fields['paused'] else 'ended') if clock>=end else ('paused' if fields['paused'] else 'active')
@@ -95,8 +96,13 @@ with sync_playwright() as p:
    }
   }""")
   def refresh(phase):
-   page.evaluate('window.arbSeasonStatus.refresh()')
-   page.wait_for_function("(phase)=>document.getElementById('garden-season-status').dataset.phase===phase",arg=phase,timeout=15000)
+   # Error translation intentionally starts a read. Drain a coalesced older
+   # request, then require a fresh response under the newly selected fixture.
+   page.evaluate('async()=>{await window.arbSeasonStatus.refresh();await window.arbSeasonStatus.refresh();}')
+   try:
+    page.wait_for_function("(phase)=>document.getElementById('garden-season-status').dataset.phase===phase",arg=phase,timeout=15000)
+   except Exception:
+    (OUT/('fixture-failure-'+label+'.json')).write_text(json.dumps({'expected':phase,'fixture':fixture,'actual':page.locator('#garden-season-status').get_attribute('data-phase'),'panel':page.locator('#garden-season-status').inner_text(),'errors':errors,'blocked':blocked},indent=2));raise
   refresh('ended')
   ck(label+' expired batch and single controls disabled',page.locator('#fixture-single').is_disabled() and page.locator('#fixture-batch').is_disabled())
   page.evaluate("async()=>{await window.doWaterAll();await window.doWaterSeed('fixture');}")
