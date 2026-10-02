@@ -10,7 +10,7 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -37,6 +37,11 @@ jobs:
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
           git rev-parse HEAD > economy-review-results/source-sha.txt
+      - name: Inspect live read schema and state without signing
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-reader]')
+        run: |
+          python3 economy-review/inspect-live.py
+          git archive --format=tar HEAD | gzip > economy-review-results/review-source.tar.gz
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
