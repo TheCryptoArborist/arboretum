@@ -32,7 +32,7 @@ src=replace(src,'        let archive = SeasonArchive {\n            id: object::
 for name in ['mint_sapling','plant_seed','send_promo_crate']:
  src=change_body(src,name,'        abort E_LEGACY_ROUTE_DISABLED')
 # Only isolated candidate economics; no live price/config files are changed.
-for const,value in [('GROWTH_DEPOSIT_MIST',10_000_000_000),('REFERRAL_SHARE_MIST',1_000_000_000),('SUPPLY_PRICE_REVIVAL_KIT',8_000_000_000),('SUPPLY_PRICE_DROUGHT_SHIELD',6_000_000_000),('SUPPLY_PRICE_RAIN_BARREL',3_000_000_000),('SUPPLY_PRICE_MULCH',3_000_000_000),('SUPPLY_PRICE_WATERING_BOOST',1_500_000_000)]:
+for const,value in [('GROWTH_DEPOSIT_MIST',10_000_000_000),('REFERRAL_SHARE_MIST',1_000_000_000),('SUPPLY_PRICE_REVIVAL_KIT',15_000_000_000),('SUPPLY_PRICE_DROUGHT_SHIELD',10_000_000_000),('SUPPLY_PRICE_RAIN_BARREL',5_000_000_000),('SUPPLY_PRICE_MULCH',4_000_000_000),('SUPPLY_PRICE_WATERING_BOOST',2_000_000_000)]:
  src,n=re.subn(r'(const '+const+r':\s*u64\s*=\s*)[\d_]+;[^\n]*',r'\g<1>'+str(value)+'; // isolated Season 1 candidate only',src);assert n==1
 # These obsolete constants have no callers after buy_crate uses crate_price.
 src,n=re.subn(r'    const CRATE_PRICE_[0-4]:[^\n]*\n','',src);assert n==5
