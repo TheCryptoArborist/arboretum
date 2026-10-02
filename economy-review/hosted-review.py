@@ -48,25 +48,36 @@ s.post(LIVE+'/tester-logout',headers={'Origin':LIVE},data={},timeout=20)
 baseline_game=Path(os.environ['RUNNER_TEMP'])/'partner-before-game.html';baseline_game.write_bytes(baseline['/game.html'])
 expected_game=subprocess.check_output(['node','--input-type=module','-e',"import fs from 'node:fs';import {applyPartnerReport} from './economy-review/build-admin-preview.mjs';process.stdout.write(applyPartnerReport(fs.readFileSync(process.argv[1],'utf8')));",str(baseline_game)],cwd=ROOT)
 save('baseline.json',{'production_deploy':OLD,'main':BASE,'hashes':{k:sha(v) for k,v in baseline.items()}})
-# Only the build command in the uploaded preview source changes. Repo and
-# production netlify.toml remain byte-identical to the approved baseline.
-b=io.BytesIO()
-with zipfile.ZipFile(b,'w',zipfile.ZIP_DEFLATED) as z:
- for name in git('ls-tree','-r','--name-only','HEAD').decode().splitlines():
-  if name.startswith(('.git','.env','docs/')) or name.endswith('hosted-envelope.json') or '-results/' in name:continue
-  data=git('show','HEAD:'+name)
-  if name=='netlify.toml':
-   old=b' && node scripts/build-season-status.mjs"';assert data.count(old)==1
-   data=data.replace(old,b' && node scripts/build-season-status.mjs && node economy-review/build-admin-preview.mjs"')
-  z.writestr(name,data)
-operation='submitting branch-only preview build'
-r=requests.post(proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode({'branch':BRANCH,'title':'Seasonal partner archive accounting review'}),files={'zip':('source.zip',b.getvalue(),'application/zip')},timeout=(15,120));assert r.ok
-v=r.json();v=v[0] if isinstance(v,list) else v;deploy=v['deploy_id'];save('deployment.json',{'deploy_id':deploy,'source_sha':SHA,'branch':BRANCH,'production_changed':False,'verification_complete':False})
-for _ in range(120):
+# A previous branch build can be verified again without creating a new release.
+# Only this already-observed preview ID is accepted by the resume path.
+deploy=packet.get('verify_deploy_id')
+if deploy:
+ assert deploy=='6abf3e0f98877b551f673293'
+ operation='rechecking existing branch-only preview'
  r=requests.get(proxy+'/api/v1/deploys/'+deploy,timeout=30);assert r.ok;d=r.json()
- if d['state']=='error':raise RuntimeError('Preview build failed')
- if d['state']=='ready':break
- time.sleep(5)
+ assert d['site_id']==SITE
+else:
+ # Only the build command in the uploaded preview source changes. Repo and
+ # production netlify.toml remain byte-identical to the approved baseline.
+ b=io.BytesIO()
+ with zipfile.ZipFile(b,'w',zipfile.ZIP_DEFLATED) as z:
+  for name in git('ls-tree','-r','--name-only','HEAD').decode().splitlines():
+   if name.startswith(('.git','.env','docs/')) or name.endswith('hosted-envelope.json') or '-results/' in name:continue
+   data=git('show','HEAD:'+name)
+   if name=='netlify.toml':
+    old=b' && node scripts/build-season-status.mjs"';assert data.count(old)==1
+    data=data.replace(old,b' && node scripts/build-season-status.mjs && node economy-review/build-admin-preview.mjs"')
+   z.writestr(name,data)
+ operation='submitting branch-only preview build'
+ r=requests.post(proxy+'/api/v1/sites/'+SITE+'/builds?'+urllib.parse.urlencode({'branch':BRANCH,'title':'Seasonal partner archive accounting review'}),files={'zip':('source.zip',b.getvalue(),'application/zip')},timeout=(15,120));assert r.ok
+ v=r.json();v=v[0] if isinstance(v,list) else v;deploy=v['deploy_id'];save('deployment.json',{'deploy_id':deploy,'source_sha':SHA,'branch':BRANCH,'production_changed':False,'verification_complete':False})
+ for _ in range(120):
+  r=requests.get(proxy+'/api/v1/deploys/'+deploy,timeout=30);assert r.ok;d=r.json()
+  if d['state']=='error':raise RuntimeError('Preview build failed')
+  if d['state']=='ready':break
+  time.sleep(5)
+ assert d['state']=='ready' and d['context']=='branch-deploy' and not d.get('published_at')
+ assert [x['n'] for x in d.get('available_functions',[])]==expected_functions and not d.get('function_schedules')
 assert d['state']=='ready' and d['context']=='branch-deploy' and not d.get('published_at')
 assert [x['n'] for x in d.get('available_functions',[])]==expected_functions and not d.get('function_schedules')
 base='https://'+deploy+'--arboretum-sui-forest.netlify.app';alias='https://'+BRANCH+'--arboretum-sui-forest.netlify.app'

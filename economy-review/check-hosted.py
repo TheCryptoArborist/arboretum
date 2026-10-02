@@ -40,7 +40,7 @@ with sync_playwright() as p:
   ck(label+' disconnected Admin access denied','authorized wallet' in await_result)
   # This is an in-memory test identity, not a signed owner login. Never click
   # existing administrative write controls. All report operations are reads.
-  page.evaluate("""()=>{window.__originalAddress=window.arb.getAddress();window.arb.getAddress=()=>('0x'+'f'.repeat(64));window.arb.isAdmin=()=>true;const n=document.getElementById('admin-panel');n.style.display='block';n.classList.add('show');}""")
+  page.evaluate("""()=>{window.__originalAddress=window.arb.getAddress();window.arb.getAddress=()=>('0x'+'f'.repeat(64));window.arb.isAdmin=()=>true;const n=document.getElementById('admin-panel');n.style.display='block';n.classList.add('show');window.openAdminModal();}""")
   root=page.locator('#partner-revenue-mount')
   if live_report is None:
    root.get_by_role('button',name='Load seasons',exact=True).click()
