@@ -8,7 +8,7 @@ h=(ROOT/'production-economy/preview/index.html').read_text()
 assert 'GROWTH_DEPOSIT_MIST = 10_000_000_000n' in w
 for s in ['0: 5_000_000_000n','1: 10_000_000_000n','2: 25_000_000_000n','3: 50_000_000_000n','4: 100_000_000_000n','5: 30_000_000_000n','6: 30_000_000_000n']: assert s in w
 for s in ['0: 15_000_000_000n','1: 10_000_000_000n','2: 5_000_000_000n','3: 4_000_000_000n','4: 2_000_000_000n']: assert s in w
-for s in ['Seedling Crate for 5 SUI?','Grove Crate for 10 SUI?','Canopy Crate for 25 SUI?','Ancient Crate for 50 SUI?','Mythic Crate for 100 SUI?','$BOOM Chest for 30 SUI?','Victory Chest for 30 SUI?']: assert s in h
+for s in ['<div class="crate-name">Seedling</div><div class="crate-role">Starter Boost</div><div class="crate-price">5 SUI</div>','<div class="crate-name">Grove</div><div class="crate-role">Daily Helper</div><div class="crate-price">10 SUI</div>','<div class="crate-name">Canopy</div><div class="crate-role">Rank Climber</div><div class="crate-price">25 SUI</div>','<div class="crate-name">Ancient</div><div class="crate-role">Power Crate</div><div class="crate-price">50 SUI</div>','<div class="crate-name">Mythic</div><div class="crate-role">Cycle Changer</div><div class="crate-price">100 SUI</div>','$BOOM Chest for 30 SUI?','Victory Chest for 30 SUI?']: assert s in h
 for s in ["price:'15 SUI'","price:'10 SUI'","price:'5 SUI'","price:'4 SUI'","price:'2 SUI'"]: assert s in h
 assert 'PRODUCTION ECONOMY REVIEW' in h
 assert 'Connect your wallet and plant a Seed for 0.01 SUI.' not in h
