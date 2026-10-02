@@ -1,0 +1,45 @@
+name: Economy accounting review
+on:
+  push:
+    branches: [feature/economy-accounting-review]
+    paths: ['economy-review/**', '.github/workflows/economy-accounting-review.yml']
+  pull_request:
+    paths: ['economy-review/**', '.github/workflows/economy-accounting-review.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify additive-only scope and run offline accounting tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p economy-review-results
+          node --version > economy-review-results/node-version.txt
+          git diff --name-status 84b08fdb4bc0ec0417ced7be21f29aae914939f7 HEAD > economy-review-results/changed-files.txt
+          python3 - <<'PY'
+          import subprocess
+          lines=subprocess.check_output(['git','diff','--name-status','84b08fdb4bc0ec0417ced7be21f29aae914939f7','HEAD'],text=True).splitlines()
+          for line in lines:
+            status,path=line.split('\t')
+            assert status=='A' and (path.startswith('economy-review/') or path=='.github/workflows/economy-accounting-review.yml'),line
+          print('Only new review files; no production source, contract or deployment changes.')
+          PY
+          node --test economy-review/ledger.test.mjs | tee economy-review-results/tests.txt
+          node economy-review/example.mjs > economy-review-results/synthetic-summary.json
+          node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
+          cp -r economy-review/example-output economy-review-results/
+          for file in economy-review/*.mjs; do node --check "$file"; done
+          git rev-parse HEAD > economy-review-results/source-sha.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: economy-accounting-review
+          path: economy-review-results/
+          retention-days: 14

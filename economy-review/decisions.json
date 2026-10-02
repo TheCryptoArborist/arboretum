@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "status": "review_only_not_a_live_configuration",
+  "approvalRecord": "Owner conversation, October 1–2, 2026 (message timestamps in UTC)",
+  "deploymentAuthorized": false,
+  "tokenPurchasesAuthorized": false,
+  "planting": {"priceMist": "10000000000", "status": "approved_price_not_activated"},
+  "crates": [
+    {"tier": 0, "name": "Seedling", "priceMist": "5000000000", "status": "approved_price_not_activated"},
+    {"tier": 1, "name": "Grove", "priceMist": "10000000000", "status": "approved_price_not_activated"},
+    {"tier": 2, "name": "Canopy", "priceMist": "25000000000", "status": "approved_price_not_activated"},
+    {"tier": 3, "name": "Ancient", "priceMist": "50000000000", "status": "approved_price_not_activated"},
+    {"tier": 4, "name": "Mythic", "priceMist": "100000000000", "status": "approved_price_not_activated"},
+    {"tier": 5, "name": "BOOM", "priceMist": "30000000000", "status": "provisional_target"},
+    {"tier": 6, "name": "Victory", "priceMist": "30000000000", "status": "provisional_target"}
+  ],
+  "supplyDrops": [
+    {"name": "Watering Boost", "priceMist": null, "earlierCandidateMist": "1500000000", "uses": 1, "status": "awaiting_price_decision"},
+    {"name": "Mulch", "priceMist": null, "earlierCandidateMist": "3000000000", "uses": 1, "status": "awaiting_price_decision"},
+    {"name": "Rain Barrel", "priceMist": null, "earlierCandidateMist": "3000000000", "uses": 1, "status": "awaiting_price_decision"},
+    {"name": "Drought Shield", "priceMist": null, "earlierCandidateMist": "6000000000", "uses": 1, "status": "awaiting_price_decision"},
+    {"name": "Revival Kit", "priceMist": null, "earlierCandidateMist": "8000000000", "uses": 1, "status": "awaiting_price_decision"}
+  ],
+  "shopRouting": {
+    "referralBasisPoints": 100,
+    "poolBasisPointsAfterReferral": 7000,
+    "developerBasisPointsAfterReferral": 200,
+    "treasury": "exact_remainder_after_referral_pool_and_developer",
+    "scope": "ordinary_and_partner_crate_candidate; not_NFTree_sales_or_planting"
+  },
+  "funding": {
+    "TREE": {"source": "project_received_NFTree_revenue", "allocationBasisPoints": null, "status": "source_approved_percentage_unspecified"},
+    "BOOM": {"source": "BOOM_chest_treasury_proceeds", "allocationBasisPoints": null, "illustrativeBasisPoints": 2500, "status": "source_planned_percentage_pending"},
+    "VICTORY": {"source": "Victory_chest_treasury_proceeds", "allocationBasisPoints": null, "illustrativeBasisPoints": 2500, "status": "source_planned_percentage_pending"}
+  },
+  "partnerCoinTypes": {"BOOM": null, "VICTORY": null},
+  "guardrails": {
+    "count": "one_confirmed_paid_receipt_per_chest_not_openings",
+    "seasonAttribution": "confirmed_checkpoint_time_in_start_inclusive_end_exclusive_window",
+    "outsideSeason": "unassigned_requiring_review_not_next_season_revenue",
+    "fundingFromPool": false,
+    "treeBudgetFromGameReceipts": false,
+    "automaticSwaps": false,
+    "retroactiveTestInventoryGrants": false
+  }
+}
