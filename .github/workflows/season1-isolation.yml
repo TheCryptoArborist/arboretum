@@ -1,7 +1,7 @@
 name: Season 1 isolation
 on:
   push:
-    branches: [feature/season1-isolation]
+    branches: [feature/season1-isolation, feature/production-economy-isolation]
     paths: ['scripts/*season1*', 'contract/season1-isolation/**', '.github/workflows/season1-isolation.yml']
   pull_request:
     paths: ['scripts/*season1*', 'contract/season1-isolation/**', '.github/workflows/season1-isolation.yml']
