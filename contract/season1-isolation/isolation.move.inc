@@ -68,12 +68,12 @@
 
     fun crate_price(tier: u8): u64 {
         assert!(tier <= 6, E_INVALID_CRATE_TIER);
-        if (tier == 0) 2_000_000_000
-        else if (tier == 1) 4_000_000_000
-        else if (tier == 2) 10_000_000_000
-        else if (tier == 3) 25_000_000_000
-        else if (tier == 4) 50_000_000_000
-        else 20_000_000_000
+        if (tier == 0) 5_000_000_000
+        else if (tier == 1) 10_000_000_000
+        else if (tier == 2) 25_000_000_000
+        else if (tier == 3) 50_000_000_000
+        else if (tier == 4) 100_000_000_000
+        else 30_000_000_000
     }
 
     fun expected_receipt_price(product: u8): u64 {
