@@ -19,6 +19,7 @@ jobs:
           python3 scripts/check-production-economy-preview.py
           node --check production-economy/preview/wallet.js
           git diff --exit-code -- wallet.js garden.js index.html netlify.toml contract/sources/arboretum.move
+          git status --short
           mkdir -p production-economy-results
           cp production-economy/preview/index.html production-economy-results/
           cp production-economy/preview/wallet.js production-economy-results/
