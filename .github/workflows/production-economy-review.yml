@@ -16,7 +16,7 @@ jobs:
       - name: Generate isolated frontend and verify prices
         run: |
           set -euo pipefail
-          python3 scripts/check-production-economy-preview.py
+          python3 scripts/build-production-economy-preview.py
           node --check production-economy/preview/wallet.js
           git diff --exit-code -- wallet.js garden.js index.html netlify.toml contract/sources/arboretum.move
           git status --short
