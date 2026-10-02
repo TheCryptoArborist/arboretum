@@ -18,7 +18,7 @@ export function buildPreview(dist=path.join(root,'dist')){
  const before=Object.fromEntries(keep.map(n=>[n,hash(n)]));
  fs.writeFileSync(game,applyPartnerReport(fs.readFileSync(game,'utf8')));
  const target=path.join(dist,'economy-review');fs.mkdirSync(target,{recursive:true});
- for(const name of ['ledger.mjs','live-reader.mjs','partner-panel.mjs','partner-panel.css'])fs.copyFileSync(path.join(root,'economy-review',name),path.join(target,name));
+ for(const name of ['ledger.mjs','live-reader.mjs','read-queries.mjs','partner-panel.mjs','partner-panel.css'])fs.copyFileSync(path.join(root,'economy-review',name),path.join(target,name));
  for(const [n,h]of Object.entries(before))if(hash(n)!==h)throw Error('Unapproved protected-file change: '+n);
  return {reviewOnly:true,preserved:before,gameSha256:hash('game.html'),transactions:0};
 }
