@@ -12,9 +12,16 @@ test('approved standard ladder and planting target are exact',()=>{
  assert.equal(decisions.planting.priceMist,'10000000000');
  assert.ok(decisions.crates.slice(0,5).every(x=>x.status==='approved_price_not_activated'));
 });
-test('partner target is provisional and supply prices are not silently approved',()=>{
- assert.ok(decisions.crates.slice(5).every(x=>x.priceMist==='30000000000'&&x.status==='provisional_target'));
- assert.ok(decisions.supplyDrops.every(x=>x.priceMist===null));
+test('approved partner and direct Supply Drop prices are exact and not activated',()=>{
+ assert.ok(decisions.crates.slice(5).every(x=>x.priceMist==='30000000000'&&x.status==='approved_price_not_activated'));
+ assert.deepEqual(decisions.supplyDrops.map(x=>[x.name,x.priceMist,x.status]),[
+  ['Watering Boost','2000000000','approved_price_not_activated'],
+  ['Mulch','4000000000','approved_price_not_activated'],
+  ['Rain Barrel','5000000000','approved_price_not_activated'],
+  ['Drought Shield','10000000000','approved_price_not_activated'],
+  ['Revival Kit','15000000000','approved_price_not_activated'],
+ ]);
+ assert.equal(decisions.productionEconomy.status,'full_price_schedule_approved_not_activated');
 });
 test('NFTree funds TREE separately with no inferred percentage',()=>{
  assert.equal(decisions.funding.TREE.source,'project_received_NFTree_revenue');
