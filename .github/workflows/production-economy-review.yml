@@ -1,0 +1,32 @@
+name: Production economy frontend review
+on:
+  push:
+    branches: [feature/production-economy-isolation]
+    paths: ['production-economy/**','scripts/*production-economy*','.github/workflows/production-economy-review.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Generate isolated frontend and verify prices
+        run: |
+          set -euo pipefail
+          python3 scripts/check-production-economy-preview.py
+          node --check production-economy/preview/wallet.js
+          git diff --exit-code -- wallet.js garden.js index.html netlify.toml contract/sources/arboretum.move
+          mkdir -p production-economy-results
+          cp production-economy/preview/index.html production-economy-results/
+          cp production-economy/preview/wallet.js production-economy-results/
+          sha256sum production-economy/preview/index.html production-economy/preview/wallet.js > production-economy-results/sha256.txt
+          git rev-parse HEAD > production-economy-results/source-sha.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: production-economy-frontend-review
+          path: production-economy-results/
+          retention-days: 14
