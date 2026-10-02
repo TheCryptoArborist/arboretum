@@ -25,7 +25,23 @@ Direct Supply Drop prices remain unresolved. The earlier 1.5 / 3 / 3 / 6 / 8 SUI
 
 At the provisional 30 SUI price, the allocation is 0.84 SUI without a referral or 0.8316 SUI with the eligible 1% shop referral. Remaining treasury is 7.56 or 7.4844 SUI respectively; the player-pool amounts remain 21 or 20.79 SUI.
 
-**Still pending:** the NFTree allocation percentage is unspecified. BOOM and VICTORY canonical coin types and purchase destination/execution rules are not configured. Null means unresolved—not zero authorized spend or a promise to allocate 100% of NFTree receipts.
+**Still pending:** the NFTree allocation percentage is unspecified. BOOM and VICTORY canonical coin types and transaction execution rules are not configured. The existing-treasury accounting arrangement is now approved below. Null means unresolved—not zero authorized spend or a promise to allocate 100% of NFTree receipts.
+
+## Approved existing-treasury seasonal accounting
+
+Owner approval: October 2, 2026 at 02:11:38 UTC — "Yeah, I agree. We'll just do seasonal accounting to take into consideration what needs to be purchased."
+
+Retain the existing Arboretum treasury wallet:
+
+`0x6f1020c2fd6c91129f7cb5e0d651295e87f7245f96b7d090715c89b38197e77f`
+
+The treasury receives its ordinary share. BOOM and Victory budgets are separate accounting entries within that same wallet, not separate receiving wallets, automatic checkout transfers, or on-chain locked balances. The prior treasury, developer, referral and Growth Pool destinations are unchanged. Under the agreed arrangement, later manually reviewed partner-token purchases use this treasury and the purchased tokens return to it. No particular transaction or fixed execution schedule is authorized by this decision.
+
+For each planting season, reconcile paid chest sales and the actual treasury proceeds attributable to each chest type. Apply the approved 10% rate to those respective treasury proceeds, after the existing referral, Growth Pool and developer deductions. Attribute receipts to their purchase season, not the opening date. Report BOOM and Victory separately, with calculated purchase budget, transaction-evidenced SUI spent (including applicable execution costs), tokens received, and unspent allocation as distinct fields. A later purchase must not be counted against two season budgets. Actual spend and receipt fields must not be marked complete without evidence.
+
+This section records the accounting method for implementation. The current engine still accepts supplied data and does not independently fetch live sales, check treasury balances, record actual swaps or reconcile their receipts. An accounting allowance is not proof that cash has been segregated or that a token was bought. Unspent amounts must remain visible; a spending, release or carryover action is not silently inferred from season rollover.
+
+NFTree-to-TREE revenue accounting remains separate. Neither this decision nor the partner 10% rate sets the NFTree allocation percentage or changes the NFTree sales contract. No TREE allocation is deducted from Arboretum gameplay receipts.
 
 ## Implemented now
 
@@ -60,12 +76,12 @@ node economy-review/report.mjs economy-review/example-output/synthetic-input.jso
 
 ## Next integration gates
 
-1. The partner rate is approved at 10% of each respective chest's treasury proceeds. Finalize partner and Supply Drop prices and record the NFTree policy separately. Approval of this rate does not authorize a deployment or token purchases.
+1. The partner rate is approved at 10% of each respective chest's treasury proceeds, using the existing treasury and seasonal accounting. Finalize partner and Supply Drop prices and record the NFTree policy separately. Approval of this rate and method does not authorize a deployment or token purchases.
 2. Reconcile the pending Season 1 gameplay/holder/isolation work with current main; this branch does not replace or merge those candidates. Preserve legacy funded claims and exclude test-price inventory from the new competitive state.
 3. Supply a reviewed GraphQL/gRPC reader or a new versioned paid-sale event. For each chest, bind the canonical origin, registry, economy version, receipt, successful transaction, checkpoint, season, product, actual charged price and exact deductions. Do not count openings or rely on a generic event name. Paginate completely and retain checkpoint watermarks, errors and reconciliation evidence.
 4. For future seasons retain immutable price/allocation terms per receipt or season. The current isolated candidate's `validate_origin` compares receipts with `expected_receipt_price`; changing global constants without a versioned policy can invalidate older items. The read-side engine uses the frozen price of the purchase season. Contract carryover rules still need their separate review and tests.
 5. Integrate the read-only report into Admin / Partner Chest Revenue and the season snapshot JSON/CSV. Do not label any unverified input report as live or finalized.
-6. Only after explicit funding policy and execution authorization, design and test reservation/custody and spending reconciliation. Include actual token coin types, approved destinations, gas/route costs, quotes/minimum output, duplicate-execution protection and remaining budget. Keep transfers and swaps out of checkout and never use the Growth Pool. An accounting earmark alone does not lock funds.
+6. Implement and test the approved existing-treasury seasonal accounting and spending reconciliation, without separate partner wallets or automatic checkout transfers. Before any separately authorized purchase, verify token coin types, the treasury destination, gas/route costs, quotes/minimum output, duplicate-execution protection and remaining allocation. Reconcile actual spend and tokens received to transaction evidence. Keep swaps out of checkout and never use the Growth Pool. An accounting earmark alone does not lock funds; do not implement a new reserve contract as if one were requested.
 7. Before activation, verify exact contract-enforced prices, wallet amounts, referrals, premium holder benefits, inventory provenance, season cutoff and claims; synchronize the public guide only with implemented behavior. No activation or season start follows merely from merging a specification.
 
 ## Initial accounting-build evidence and guidance
@@ -84,3 +100,5 @@ Approval source: the owner's conversation, not an inferred financial-account rec
 ## October 2 rate-update verification scope
 
 The October 2 approval updates only the review decision record, synthetic example, report status label, documentation and regression tests. The ledger arithmetic and 70% player-pool / 2% developer split remain unchanged. The 25% inputs retained in generic rounding/validation tests are test cases, not policy defaults. Future live integration must bind the approved rate to the relevant season rather than retroactively change past records. No funds are reserved or spent by this offline review.
+
+The subsequent 02:11:38 UTC approval records the existing-treasury seasonal accounting method in decisions.json and this README only. It does not modify the ledger, tests, examples, live app, fee-routing code or any wallet. The current MystenLabs README was checked for this policy-record update; no new Sui implementation is introduced.
