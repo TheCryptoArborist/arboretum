@@ -211,13 +211,13 @@
         let mut scenario = sui::test_scenario::begin(@0xA);
         let mut r = test_registry(@0xA, 1, scenario.ctx());
         let initial = balance::value(&r.reward_pool);
-        let coin = coin::mint_for_testing<SUI>(25_000_000_000, scenario.ctx());
+        let coin = coin::mint_for_testing<SUI>(50_000_000_000, scenario.ctx());
         buy_crate(&mut r, 3, coin, scenario.ctx());
-        assert!(balance::value(&r.reward_pool) == initial + 17_500_000_000, 955);
+        assert!(balance::value(&r.reward_pool) == initial + 35_000_000_000, 955);
         scenario.next_tx(@0xA);
         let crate_obj = scenario.take_from_sender<Crate>();
         let rec = validate_origin(&r, &crate_obj.origin);
-        assert!(rec.product == 3 && rec.paid_mist == 25_000_000_000 && !rec.opened, 956);
+        assert!(rec.product == 3 && rec.paid_mist == 50_000_000_000 && !rec.opened, 956);
         consume_crate_receipt(&mut r, &crate_obj);
         assert!(validate_origin(&r, &crate_obj.origin).opened, 957);
         step2_destroy_crate(crate_obj); let _ = destroy_test_registry(r); scenario.end();
@@ -229,13 +229,13 @@
         let mut r = test_registry(@0xA, 1, scenario.ctx());
         table::add(&mut r.referrers, @0xA, @0xB);
         let initial = balance::value(&r.reward_pool);
-        let coin = coin::mint_for_testing<SUI>(25_000_000_000, scenario.ctx());
+        let coin = coin::mint_for_testing<SUI>(50_000_000_000, scenario.ctx());
         buy_crate(&mut r, 3, coin, scenario.ctx());
-        assert!(balance::value(&r.reward_pool) == initial + 17_325_000_000, 958);
-        assert!(*table::borrow(&r.referral_earnings, @0xB) == 250_000_000, 959);
+        assert!(balance::value(&r.reward_pool) == initial + 34_650_000_000, 958);
+        assert!(*table::borrow(&r.referral_earnings, @0xB) == 500_000_000, 959);
         scenario.next_tx(@0xA);
         let crate_obj = scenario.take_from_sender<Crate>();
-        assert!(validate_origin(&r, &crate_obj.origin).paid_mist == 25_000_000_000, 960);
+        assert!(validate_origin(&r, &crate_obj.origin).paid_mist == 50_000_000_000, 960);
         step2_destroy_crate(crate_obj); let _ = destroy_test_registry(r); scenario.end();
     }
 
