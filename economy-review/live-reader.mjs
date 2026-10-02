@@ -16,30 +16,11 @@ export const DEPLOYMENT = Object.freeze({
 const TYPE = `${DEPLOYMENT.typeOrigin}::arboretum::`;
 const SUI = '0x'+'2'.padStart(64,'0')+'::sui::SUI';
 const A = x => { if(typeof x!=='string'||!/^0x[0-9a-f]{1,64}$/i.test(x))throw Error('Invalid address');return '0x'+x.slice(2).toLowerCase().padStart(64,'0'); };
-const uint = x => {if(!/^(0|[1-9]\d*)$/.test(String(x))||BigInt(x)>18446744073709551615n)throw Error('Invalid unsigned value');return BigInt(x);};
+const uint = x => {if(typeof x==='number'&&!Number.isSafeInteger(x))throw Error('Unsafe integer');if(!/^(0|[1-9]\d*)$/.test(String(x))||BigInt(x)>18446744073709551615n)throw Error('Invalid unsigned value');return BigInt(x);};
 const seq = x => {if(!Number.isSafeInteger(x)||x<0)throw Error('Invalid checkpoint/index');return x;};
 const ms = x => {const n=Date.parse(x);if(!Number.isSafeInteger(n)||n<0)throw Error('Missing or invalid timestamp');return n;};
 const jsonSafe = x => JSON.parse(JSON.stringify(x,(_,v)=>typeof v==='bigint'?String(v):v));
-const Q = Object.freeze({
- state:`query PartnerState($registry:SuiAddress!) {
-  chainIdentifier checkpoint {sequenceNumber timestamp}
-  serviceConfig {availableRange(type:"Query",field:"events") {first {sequenceNumber timestamp} last {sequenceNumber timestamp}}}
-  registry:object(address:$registry) {address version asMoveObject {contents {json type {repr}}}}
- }`,
- events:`query PartnerEvents($type:String!,$before:String,$ceiling:UInt53!,$size:Int!) {
-  events(last:$size,before:$before,filter:{type:$type,beforeCheckpoint:$ceiling}) {
-   pageInfo {hasPreviousPage startCursor}
-   nodes {sequenceNumber contents {json type {repr}}
-    transaction {digest effects {status checkpoint {sequenceNumber timestamp}}}}
-  }
- }`,
- transaction:`query PartnerTransaction($digest:String!,$after:String) {
-  transaction(digest:$digest) {digest transactionJson effects {status checkpoint {sequenceNumber timestamp}
-   balanceChangesJson
-   events(first:50,after:$after) {pageInfo {hasNextPage endCursor} nodes {sequenceNumber contents {json type {repr}}}}
-  }}
- }`
-});
+import {READ_QUERIES as Q} from './read-queries.mjs';
 export {Q as READ_QUERIES};
 /** Only named, fixed read queries are accepted; callers cannot submit GraphQL text. */
 export function createReaderClient({fetchImpl=globalThis.fetch,signal,timeoutMs=20000}={}) {
@@ -150,7 +131,7 @@ async function getTransaction(read,digest,maxEventPages=10){
   for(let p=0;p<maxEventPages;p++){
     const data=await read('transaction',{digest,after}),t=data.transaction;
     if(!t||t.digest!==digest)throw Error('Transaction unavailable');
-    if(tx&&(JSON.stringify(tx.transactionJson)!==JSON.stringify(t.transactionJson)||JSON.stringify(tx.effects.checkpoint)!==JSON.stringify(t.effects.checkpoint)))throw Error('Transaction changed across pages');
+    if(tx&&(JSON.stringify(tx.transactionJson)!==JSON.stringify(t.transactionJson)||JSON.stringify(tx.effects.checkpoint)!==JSON.stringify(t.effects.checkpoint)||tx.effects.status!==t.effects.status||JSON.stringify(tx.effects.balanceChangesJson)!==JSON.stringify(t.effects.balanceChangesJson)))throw Error('Transaction changed across pages');
     tx??=t;const c=t.effects?.events;if(!Array.isArray(c?.nodes)||typeof c.pageInfo?.hasNextPage!=='boolean')throw Error('Malformed event connection');
     for(const e of c.nodes){const key=String(seq(e.sequenceNumber));if(seen.has(key))throw Error('Duplicate transaction event');seen.add(key);nodes.push(e);}
     if(!c.pageInfo.hasNextPage){tx.effects.events={nodes,pageInfo:{hasNextPage:false}};return tx;}
@@ -189,6 +170,7 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
   const started=await getTransaction(read,possible[0].transaction.digest);
   const startInput=started.transactionJson?.kind?.programmableTransaction?.inputs??[];
   if(!startInput.some(x=>x.kind==='SHARED'&&A(x.objectId)===DEPLOYMENT.registryId))throw Error('Season opening belongs to another registry');
+  if(started.effects.status!=='SUCCESS'||!started.effects.events.nodes.some(e=>e.sequenceNumber===possible[0].sequenceNumber&&JSON.stringify(e.contents)===JSON.stringify(possible[0].contents)))throw Error('Season opening transaction evidence mismatch');
   const eventStart=Number(uint(possible[0].contents.json.start_ms));
   const startMs=Math.max(season.storedStartMs,eventStart,ms(started.effects.checkpoint.timestamp));
   if(startMs>=season.endMs)throw Error('Invalid season boundary');
@@ -221,7 +203,7 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
     mode:'live_test',retrievedAt:new Date().toISOString(),deployment:DEPLOYMENT,season:{...season,startMs},
     coverage:{allPagesRead:scan.allPagesRead,providerCoversStart:season.earliestTimestampMs<=startMs,
       seasonEnded:season.throughTimestampMs>=season.endMs,throughCheckpoint:season.watermark.sequenceNumber,
-      throughTimestamp:season.watermark.timestamp,complete:readComplete,scope:'pinned_type_origin_registry_and_supported_purchase_paths'},
+      throughTimestamp:season.watermark.timestamp,earliestAvailableTimestamp:new Date(season.earliestTimestampMs).toISOString(),finalForSeason:readComplete&&season.throughTimestampMs>=season.endMs,complete:readComplete,scope:'pinned_type_origin_registry_and_supported_purchase_paths'},
     rows,receipts:[...receipts.values()],needsReview,unassignedEvents:outside,
     observedPartnerEventCount:candidates.length,excludedTestingReceipts:receipts.size,
     evidence:{state,seasonStartEvent:possible[0],seasonStartTransaction:started,purchaseEvents:scan.nodes,transactions:checked},
@@ -231,7 +213,8 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
     allocationEvidence:'Tendered exact price and treasury credit reconciled; pool/developer columns are routing-model allocations, not a full historical pool audit.'};
 }
 export function partnerReportCsv(report){
-  const fields=['status','seasonId','chest','paidChestCount','grossMist','referralMist','poolMist','developerMist','treasuryMist','purchaseBudgetMist','spentMist','tokensReceived','unspentMist','budgetStatus'];
+  const fields=['status','mode','retrievedAt','throughCheckpoint','throughTimestamp','earliestAvailableTimestamp','coverageComplete','finalForSeason','seasonId','chest','paidChestCount','grossMist','referralMist','poolMist','developerMist','treasuryMist','purchaseBudgetMist','spentMist','tokensReceived','unspentMist','budgetStatus'];
+  const common={status:report.status,mode:report.mode,retrievedAt:report.retrievedAt,throughCheckpoint:report.coverage?.throughCheckpoint,throughTimestamp:report.coverage?.throughTimestamp,earliestAvailableTimestamp:report.coverage?.earliestAvailableTimestamp,coverageComplete:report.coverage?.complete,finalForSeason:report.coverage?.finalForSeason};
   const cell=v=>'"'+String(v??'').replace(/^[=+@\-\t\r\n]/,"'$&").replaceAll('"','""')+'"';
-  return [fields.map(cell).join(','),...report.rows.map(r=>fields.map(k=>cell(k==='status'?report.status:r[k])).join(','))].join('\r\n')+'\r\n';
+  return [fields.map(cell).join(','),...report.rows.map(row=>{const r={...row,...common};return fields.map(k=>cell(r[k])).join(',');})].join('\r\n')+'\r\n';
 }
