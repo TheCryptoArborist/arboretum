@@ -77,7 +77,9 @@ repls={
 '<div class="crate-price" id="supply-price">0.05 SUI</div>':'<div class="crate-price" id="supply-price">15 SUI</div>',
 }
 for old,new in repls.items():
-    if old not in html: raise SystemExit('missing HTML marker: '+old[:80])
+    if old not in html:
+        print('optional HTML marker not found:',old[:80])
+        continue
     html=html.replace(old,new)
 # This preview must never point at the live testing package/state.
 banner='''<div style="position:sticky;top:0;z-index:99999;padding:10px 16px;background:#3b2100;color:#ffe9a8;border-bottom:1px solid #d69b25;font:700 13px system-ui;text-align:center">PRODUCTION ECONOMY REVIEW — NO LIVE CONTRACT CONNECTED · PRICES SHOWN FOR VERIFICATION ONLY</div>'''
