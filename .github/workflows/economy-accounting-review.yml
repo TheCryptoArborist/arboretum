@@ -37,6 +37,9 @@ jobs:
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
           git rev-parse HEAD > economy-review-results/source-sha.txt
+      - name: Inspect archive schema and evidence read-only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-archives]')
+        run: node economy-review/archive-probe.mjs
       - name: Build review-only admin overlay when requested
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[build-partners]')
         env:
