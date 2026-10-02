@@ -33,6 +33,23 @@
     "BOOM": {"source": "BOOM_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"},
     "VICTORY": {"source": "Victory_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"}
   },
+  "partnerAccounting": {
+    "status": "approved_method_not_activated",
+    "approvedAt": "2026-10-02T02:11:38Z",
+    "method": "seasonal_accounting_in_existing_treasury",
+    "treasuryWallet": "0x6f1020c2fd6c91129f7cb5e0d651295e87f7245f96b7d090715c89b38197e77f",
+    "purchasedTokenDestination": "same_existing_treasury",
+    "separatePartnerWallets": false,
+    "automaticPartnerTransfers": false,
+    "onChainSegregation": false,
+    "trackSeparatelyBy": ["purchaseSeason", "partnerChestType"],
+    "allocationBase": "actual_respective_chest_treasury_proceeds_after_referral_pool_and_developer",
+    "purchaseExecution": "manual_review_separate_from_checkout_exact_timing_not_fixed",
+    "reconciliation": "report_calculated_budget_verified_spend_tokens_received_and_unspent_balance_separately",
+    "reportFieldsDoNotProveCustodyOrExecution": true,
+    "doesNotChangeExistingFeeDestinations": true,
+    "NFTreeRevenueAccounting": "separate_TREE_funding_policy_percentage_unspecified"
+  },
   "partnerCoinTypes": {"BOOM": null, "VICTORY": null},
   "guardrails": {
     "count": "one_confirmed_paid_receipt_per_chest_not_openings",
