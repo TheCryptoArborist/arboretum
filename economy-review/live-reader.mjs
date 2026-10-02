@@ -37,7 +37,7 @@ const Q = Object.freeze({
   transaction(digest:$digest) {digest transactionJson effects {status checkpoint {sequenceNumber timestamp}
    balanceChangesJson
    events(first:50,after:$after) {pageInfo {hasNextPage endCursor} nodes {sequenceNumber contents {json type {repr}}}}
-  }
+  }}
  }`
 });
 export {Q as READ_QUERIES};
