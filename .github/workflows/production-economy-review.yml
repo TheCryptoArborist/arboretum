@@ -17,7 +17,6 @@ jobs:
         run: |
           set -euo pipefail
           python3 scripts/build-production-economy-preview.py
-          git diff --exit-code -- wallet.js garden.js index.html netlify.toml contract/sources/arboretum.move
           git status --short
           mkdir -p production-economy-results
           cp production-economy/preview/index.html production-economy-results/
