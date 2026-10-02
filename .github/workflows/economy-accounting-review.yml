@@ -27,8 +27,8 @@ jobs:
           import subprocess
           lines=subprocess.check_output(['git','diff','--name-status','84b08fdb4bc0ec0417ced7be21f29aae914939f7','HEAD'],text=True).splitlines()
           for line in lines:
-            status,path=line.split('\t')
-            assert status=='A' and (path.startswith('economy-review/') or path=='.github/workflows/economy-accounting-review.yml'),line
+              status,path=line.split('\t')
+              assert status=='A' and (path.startswith('economy-review/') or path=='.github/workflows/economy-accounting-review.yml'),line
           print('Only new review files; no production source, contract or deployment changes.')
           PY
           node --test economy-review/*.test.mjs | tee economy-review-results/tests.txt
@@ -37,10 +37,7 @@ jobs:
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
           git rev-parse HEAD > economy-review-results/source-sha.txt
-      - name: Read and reconcile live testing-season partner purchases
-        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
-        run: node economy-review/read-live.mjs
-      - name: Build review-only admin overlay when present
+      - name: Build review-only admin overlay when requested
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[build-partners]')
         env:
           CONTEXT: branch-deploy
@@ -53,6 +50,15 @@ jobs:
           python3 scripts/build-reward-first.py
           node scripts/build-season-status.mjs
           node economy-review/build-admin-preview.mjs > economy-review-results/admin-build.json
+      - name: Read and reconcile live testing-season partner purchases
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
+        run: node economy-review/read-live.mjs
+      - name: Preserve exact sources and review build for browser verification
+        if: always()
+        run: |
+          mkdir -p economy-review-results
+          git archive --format=tar HEAD economy-review scripts index.html wallet.js garden.js sdk-entry.js sui-sdk.bundle.js netlify.toml netlify contract/sources/arboretum.move .github/workflows/economy-accounting-review.yml | gzip > economy-review-results/review-source.tar.gz
+          if test -f dist/game.html; then tar -czf economy-review-results/review-dist.tar.gz dist; fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
