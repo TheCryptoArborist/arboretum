@@ -1,10 +1,10 @@
 import {readCurrentPartnerSeason,createReaderClient,partnerReportCsv,DEPLOYMENT} from './live-reader.mjs';
 import {formatSui} from './ledger.mjs';
 const money=v=>v==null?'—':formatSui(v).replace(/0+$/,'').replace(/\.$/,'');
-function el(tag,text,cls){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
+function el(tag,text,cls){const n=document.createElement(tag);if(tag==='button')n.type='button';if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function download(name,text,type){const u=URL.createObjectURL(new Blob([text],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
 export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=null,initialReport=null,requireAdmin=false,assetBase='/assets/shop/crates/'}={}){
- root.classList.add('partner-report');let report=null,generation=0,controller=null,failedRefresh=false;
+ root.classList.add('partner-report');let report=null,generation=0,controller=null,failedRefresh=false,disposed=false;
  const header=el('div',undefined,'pr-heading'),heading=el('div');heading.append(el('p','SEASONAL TREASURY ACCOUNTING','pr-eyebrow'),el('h3','Partner Chest Revenue'));
  header.append(heading,el('span','READ ONLY','pr-chip'));root.append(header);
  root.append(el('p','BOOM and VICTORY are tracked separately in the existing treasury. The approved partner rate is 10% of each chest’s treasury proceeds.','pr-intro'));
@@ -19,11 +19,14 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
  root.append(treasury);
  function clear(){report=null;csv.disabled=json.disabled=true;cards.replaceChildren();notes.replaceChildren();facts.textContent='';}
  function render(r){
+  if(disposed)throw Error('Report panel has been destroyed');
+  if(!r||!['live_test','demo'].includes(r.mode)||!Array.isArray(r.rows)||r.mode==='demo'&&!allowDemo)throw Error('Unsupported report source');
   clear();report=r;failedRefresh=false;const demo=r.mode==='demo';
   csv.disabled=json.disabled=false;root.dataset.mode=r.mode;
   status.className='pr-status '+(demo?'pr-demo':'pr-test');
   status.textContent=demo?'ILLUSTRATION ONLY · Fictional sales, not live revenue or token purchases.':r.coverage.complete?'TEST ECONOMY · Supported paid receipts reconciled. No production token-purchase budget applies.':'PARTIAL TEST REPORT · Some records or historical coverage require review. Do not treat these as final totals.';
   facts.textContent=demo?'Sample season · 30 SUI per chest · 20% of the sample purchases have a referral.':`Testing season ${r.season.id} · On-chain data through ${new Date(r.coverage.throughTimestamp).toLocaleString()} · Checkpoint ${r.coverage.throughCheckpoint}`;
+  if(!demo&&!r.coverage.providerCoversStart)notes.append(el('p',`Incomplete season history: the provider guarantees this query only from ${r.coverage.earliestAvailableTimestamp||new Date(r.season.earliestTimestampMs).toISOString()}, after this season began. Displayed counts are reconciled receipts found, not final season totals.`,'pr-coverage-warning'));
   if(!demo)facts.append(el('span',`Receipt window: ${new Date(r.season.startMs).toISOString()} to ${new Date(r.season.endMs).toISOString()} (end excluded).`,'pr-window'));
   for(const row of r.rows){
    const card=el('article',undefined,'pr-card'),top=el('div',undefined,'pr-card-title'),img=el('img');
@@ -46,25 +49,27 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
   }
  }
  async function load(){
+  if(disposed)return;
   if(requireAdmin&&!window.arb?.isAdmin(window.arb.getAddress())){status.textContent='Open the Admin Console with an authorized wallet to use this panel. No wallet connection is requested by this report.';return;}
   const ticket=++generation;controller?.abort();controller=new AbortController();refresh.disabled=true;csv.disabled=json.disabled=true;
   status.className='pr-status';status.textContent='Reading confirmed Sui data…';
   try{
-   const r=selector.value==='demo'?demoReport:await (readReport?readReport():readCurrentPartnerSeason({read:createReaderClient({signal:controller.signal}),onProgress:text=>{if(ticket===generation)status.textContent=text;}}));
+   const r=selector.value==='demo'?demoReport:await (readReport?readReport({signal:controller.signal}):readCurrentPartnerSeason({read:createReaderClient({signal:controller.signal}),onProgress:text=>{if(ticket===generation)status.textContent=text;}}));
    if(ticket!==generation)return;if(!r)throw Error('No sample report available');render(r);
-  }catch(e){if(ticket!==generation)return;failedRefresh=true;status.className='pr-status pr-error';status.textContent=`Read not completed: ${e.message}${report?' The displayed report is the previous saved read, not refreshed data.':''}`;csv.disabled=json.disabled=!report;}
+  }catch(e){if(ticket!==generation)return;failedRefresh=true;status.className='pr-status pr-error';status.textContent=`Read not completed: ${e.message}${report?' The displayed report is the previous saved read, not refreshed data.':''}`;csv.disabled=json.disabled=true;}
   finally{if(ticket===generation)refresh.disabled=false;}
  }
  refresh.addEventListener('click',load);
  selector.addEventListener('change',()=>{++generation;controller?.abort();refresh.disabled=false;clear();refresh.textContent=selector.value==='demo'?'Load sample report':'Read on-chain receipts';status.textContent='Report source changed. Load the selected source to see its results.';});
- json.addEventListener('click',()=>{if(report)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.json`,JSON.stringify(report,null,2),'application/json');});
- csv.addEventListener('click',()=>{if(report)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.csv`,partnerReportCsv(report),'text/csv');});
+ json.addEventListener('click',()=>{if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.json`,JSON.stringify(report,null,2),'application/json');});
+ csv.addEventListener('click',()=>{if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.csv`,partnerReportCsv(report),'text/csv');});
  if(initialReport)render(initialReport);
  return {load,render,snapshotAttachment(seasonId){
+  if(disposed)return {status:'panel_destroyed'};
   if(!report||report.mode!=='live_test'||String(seasonId)!==String(report.season.id))return {status:'not_loaded_for_snapshot_season'};
-  return {status:report.status,mode:report.mode,retrievedAt:report.retrievedAt,coverage:report.coverage,rows:report.rows,
+  return {status:failedRefresh?'STALE_PREVIOUS_READ':report.status,sourceStatus:report.status,mode:report.mode,retrievedAt:report.retrievedAt,coverage:report.coverage,rows:report.rows,
    refreshFailed:failedRefresh,stale:Date.now()-Date.parse(report.retrievedAt)>300000,productionBudgetApplicable:false,tokenPurchasesAuthorized:false};
- },destroy(){generation++;controller?.abort();root.replaceChildren();}};
+ },destroy(){disposed=true;generation++;controller?.abort();root.replaceChildren();}};
 }
 if(typeof document!=='undefined'){
  const root=document.getElementById('partner-revenue-mount');
