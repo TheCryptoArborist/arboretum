@@ -4,22 +4,97 @@
   "approvalRecord": "Owner conversation, October 1–2, 2026 (message timestamps in UTC)",
   "deploymentAuthorized": false,
   "tokenPurchasesAuthorized": false,
-  "planting": {"priceMist": "10000000000", "status": "approved_price_not_activated"},
+  "planting": {
+    "priceMist": "10000000000",
+    "status": "approved_price_not_activated"
+  },
   "crates": [
-    {"tier": 0, "name": "Seedling", "priceMist": "5000000000", "status": "approved_price_not_activated"},
-    {"tier": 1, "name": "Grove", "priceMist": "10000000000", "status": "approved_price_not_activated"},
-    {"tier": 2, "name": "Canopy", "priceMist": "25000000000", "status": "approved_price_not_activated"},
-    {"tier": 3, "name": "Ancient", "priceMist": "50000000000", "status": "approved_price_not_activated"},
-    {"tier": 4, "name": "Mythic", "priceMist": "100000000000", "status": "approved_price_not_activated"},
-    {"tier": 5, "name": "BOOM", "priceMist": "30000000000", "status": "provisional_target"},
-    {"tier": 6, "name": "Victory", "priceMist": "30000000000", "status": "provisional_target"}
+    {
+      "tier": 0,
+      "name": "Seedling",
+      "priceMist": "5000000000",
+      "status": "approved_price_not_activated"
+    },
+    {
+      "tier": 1,
+      "name": "Grove",
+      "priceMist": "10000000000",
+      "status": "approved_price_not_activated"
+    },
+    {
+      "tier": 2,
+      "name": "Canopy",
+      "priceMist": "25000000000",
+      "status": "approved_price_not_activated"
+    },
+    {
+      "tier": 3,
+      "name": "Ancient",
+      "priceMist": "50000000000",
+      "status": "approved_price_not_activated"
+    },
+    {
+      "tier": 4,
+      "name": "Mythic",
+      "priceMist": "100000000000",
+      "status": "approved_price_not_activated"
+    },
+    {
+      "tier": 5,
+      "name": "BOOM",
+      "priceMist": "30000000000",
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    },
+    {
+      "tier": 6,
+      "name": "Victory",
+      "priceMist": "30000000000",
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    }
   ],
   "supplyDrops": [
-    {"name": "Watering Boost", "priceMist": null, "earlierCandidateMist": "1500000000", "uses": 1, "status": "awaiting_price_decision"},
-    {"name": "Mulch", "priceMist": null, "earlierCandidateMist": "3000000000", "uses": 1, "status": "awaiting_price_decision"},
-    {"name": "Rain Barrel", "priceMist": null, "earlierCandidateMist": "3000000000", "uses": 1, "status": "awaiting_price_decision"},
-    {"name": "Drought Shield", "priceMist": null, "earlierCandidateMist": "6000000000", "uses": 1, "status": "awaiting_price_decision"},
-    {"name": "Revival Kit", "priceMist": null, "earlierCandidateMist": "8000000000", "uses": 1, "status": "awaiting_price_decision"}
+    {
+      "name": "Watering Boost",
+      "priceMist": "2000000000",
+      "earlierCandidateMist": "1500000000",
+      "uses": 1,
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    },
+    {
+      "name": "Mulch",
+      "priceMist": "4000000000",
+      "earlierCandidateMist": "3000000000",
+      "uses": 1,
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    },
+    {
+      "name": "Rain Barrel",
+      "priceMist": "5000000000",
+      "earlierCandidateMist": "3000000000",
+      "uses": 1,
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    },
+    {
+      "name": "Drought Shield",
+      "priceMist": "10000000000",
+      "earlierCandidateMist": "6000000000",
+      "uses": 1,
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    },
+    {
+      "name": "Revival Kit",
+      "priceMist": "15000000000",
+      "earlierCandidateMist": "8000000000",
+      "uses": 1,
+      "status": "approved_price_not_activated",
+      "approvedAt": "2026-10-02T22:51:45Z"
+    }
   ],
   "shopRouting": {
     "referralBasisPoints": 100,
@@ -29,9 +104,23 @@
     "scope": "ordinary_and_partner_crate_candidate; not_NFTree_sales_or_planting"
   },
   "funding": {
-    "TREE": {"source": "project_received_NFTree_revenue", "allocationBasisPoints": null, "status": "source_approved_percentage_unspecified"},
-    "BOOM": {"source": "BOOM_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"},
-    "VICTORY": {"source": "Victory_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"}
+    "TREE": {
+      "source": "project_received_NFTree_revenue",
+      "allocationBasisPoints": null,
+      "status": "source_approved_percentage_unspecified"
+    },
+    "BOOM": {
+      "source": "BOOM_chest_treasury_proceeds",
+      "allocationBasisPoints": 1000,
+      "status": "approved_rate_not_activated",
+      "approvedAt": "2026-10-02T01:50:52Z"
+    },
+    "VICTORY": {
+      "source": "Victory_chest_treasury_proceeds",
+      "allocationBasisPoints": 1000,
+      "status": "approved_rate_not_activated",
+      "approvedAt": "2026-10-02T01:50:52Z"
+    }
   },
   "partnerAccounting": {
     "status": "approved_method_not_activated",
@@ -42,7 +131,10 @@
     "separatePartnerWallets": false,
     "automaticPartnerTransfers": false,
     "onChainSegregation": false,
-    "trackSeparatelyBy": ["purchaseSeason", "partnerChestType"],
+    "trackSeparatelyBy": [
+      "purchaseSeason",
+      "partnerChestType"
+    ],
     "allocationBase": "actual_respective_chest_treasury_proceeds_after_referral_pool_and_developer",
     "purchaseExecution": "manual_review_separate_from_checkout_exact_timing_not_fixed",
     "reconciliation": "report_calculated_budget_verified_spend_tokens_received_and_unspent_balance_separately",
@@ -50,7 +142,10 @@
     "doesNotChangeExistingFeeDestinations": true,
     "NFTreeRevenueAccounting": "separate_TREE_funding_policy_percentage_unspecified"
   },
-  "partnerCoinTypes": {"BOOM": null, "VICTORY": null},
+  "partnerCoinTypes": {
+    "BOOM": null,
+    "VICTORY": null
+  },
   "guardrails": {
     "count": "one_confirmed_paid_receipt_per_chest_not_openings",
     "seasonAttribution": "confirmed_checkpoint_time_in_start_inclusive_end_exclusive_window",
@@ -59,5 +154,10 @@
     "treeBudgetFromGameReceipts": false,
     "automaticSwaps": false,
     "retroactiveTestInventoryGrants": false
+  },
+  "productionEconomy": {
+    "status": "full_price_schedule_approved_not_activated",
+    "approvedAt": "2026-10-02T22:51:45Z",
+    "note": "Approval records pricing only. Contract/frontend migration, test-inventory isolation, deployment, and public-season activation require separate verified steps."
   }
 }
