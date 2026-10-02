@@ -19,10 +19,8 @@ jobs:
           python3 scripts/build-production-economy-preview.py
           git status --short
           mkdir -p production-economy-results
-          cp production-economy/preview/index.html production-economy-results/
-          cp production-economy/preview/wallet.js production-economy-results/
-          sha256sum production-economy/preview/index.html production-economy/preview/wallet.js > production-economy-results/sha256.txt
-          git rev-parse HEAD > production-economy-results/source-sha.txt
+          test -f production-economy/preview/index.html
+          test -f production-economy/preview/wallet.js
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
