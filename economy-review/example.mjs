@@ -18,7 +18,8 @@ export function exampleInput(records) {
   return {mode:'fixture',domain,
     seasons:[{id:'DEMO-1',startMs:'1000',endMs:'2000',cratePricesMist:prices},
       {id:'DEMO-2',startMs:'3000',endMs:'4000',cratePricesMist:prices}],
-    scenarioTreasuryBasisPoints:2500,
+    // Approved rate; synthetic data remain projections, never spending authorization.
+    scenarioTreasuryBasisPoints:decisions.funding.BOOM.allocationBasisPoints,
     coverage:{fromTimestampMs:'1000',throughTimestampMs:'5000',throughCheckpoint:'999999',allPagesRead:true,queryErrors:false},
     records:records??[
       ...Array.from({length:100},(_,i)=>exampleSale(i,5,i>=80)),

@@ -19,9 +19,13 @@ The owner approved the middle-ground standard-crate prices and said NFTree reven
 
 Direct Supply Drop prices remain unresolved. The earlier 1.5 / 3 / 3 / 6 / 8 SUI proposal is retained as a comparison, not silently adopted. Crate contents, NFTree rarity entitlements and planting referral eligibility are not redesigned in this pass.
 
-**Revenue separation:** project-received NFTree revenue funds TREE purchases. A proposed share of BOOM chest treasury proceeds funds BOOM; a proposed share of Victory chest treasury proceeds funds VICTORY. No game-revenue TREE allocation is introduced, and no portion of the Growth Pool is available to this accounting module for token purchases.
+**Revenue separation:** project-received NFTree revenue funds TREE purchases. The approved share of BOOM chest treasury proceeds funds BOOM; the approved share of Victory chest treasury proceeds funds VICTORY. No game-revenue TREE allocation is introduced, and no portion of the Growth Pool is available to this accounting module for token purchases.
 
-**Still pending:** the NFTree allocation percentage is unspecified; the suggested 25% of partner-chest treasury proceeds is a scenario only. BOOM and VICTORY canonical coin types and purchase destination/execution rules are not configured. Null means unresolved—not zero authorized spend or a promise to allocate 100% of NFTree receipts.
+**Partner rate approved on October 2, 2026 at 01:50:52 UTC:** 10% of BOOM chest treasury proceeds funds BOOM purchases; 10% of Victory chest treasury proceeds funds VICTORY purchases. This supersedes the earlier 25% proposal and the later 15% recommendation. The base is treasury proceeds after the applicable referral, Growth Pool and developer deductions, not gross chest sales. The rate is recorded for implementation; it does not activate a contract or authorize a token trade.
+
+At the provisional 30 SUI price, the allocation is 0.84 SUI without a referral or 0.8316 SUI with the eligible 1% shop referral. Remaining treasury is 7.56 or 7.4844 SUI respectively; the player-pool amounts remain 21 or 20.79 SUI.
+
+**Still pending:** the NFTree allocation percentage is unspecified. BOOM and VICTORY canonical coin types and purchase destination/execution rules are not configured. Null means unresolved—not zero authorized spend or a promise to allocate 100% of NFTree receipts.
 
 ## Implemented now
 
@@ -31,14 +35,14 @@ Direct Supply Drop prices remain unresolved. The earlier 1.5 / 3 / 3 / 6 / 8 SUI
 - Attribution uses each purchase's supplied confirmed-checkpoint timestamp within the reviewed season's [start, end) window, not the current date or the chest's opening date. Out-of-season sales are shown separately as unassigned and flagged for review.
 - Opening, resale/transfer, promo, test-inventory and NFTree-revenue records do not become new paid game sales. Failed, unknown and insufficiently evidenced transactions are distinguished. Foreign registry/package/economy records are excluded visibly.
 - Missing evidence, payment mismatches and incomplete input coverage are reported—not silently assumed valid. A generic legacy CratePurchased event is not sufficient payment evidence.
-- Budget projections are distinct from authorized budget, actually reserved SUI, executed spend and tokens received. All actual allocation/execution fields remain null. Changing a scenario percentage cannot reduce the player-pool allocation.
+- Budget projections are distinct from authorized budget, actually reserved SUI, executed spend and tokens received. All actual per-report allocation/execution fields remain null; the approved 10% rate is recorded separately in decisions.json. Changing a scenario percentage cannot reduce the player-pool allocation.
 - JSON and formula-safe CSV export. Totals are decimal integer strings; the engine uses BigInt and never represents MIST with a floating-point Number.
 
 ## Important limits
 
 This module has **no live chain reader, wallet, signing method, swap executor, fund custody, or admin-page integration**. Input fields describe what a future reviewed reader must supply; accepting an input is not independent evidence that it occurred on-chain. Both imported and fixture reports explicitly state that source verification was not performed. An imported all-pages-read flag is not a certification of coverage.
 
-The 25% calculation is only a scenario. No SUI is actually reserved by generating a report. No token purchase, burn, liquidity position or token distribution is authorized. The example's 100 BOOM and 50 Victory sales are synthetic, not this season's sales. No package IDs in the example are production configuration.
+Report calculations are projections using supplied data, including when they use the approved 10% rate. No SUI is actually reserved by generating a report. No token purchase, burn, liquidity position or token distribution is authorized. The example's 100 BOOM and 50 Victory sales are synthetic, not this season's sales. No package IDs in the example are production configuration.
 
 This is JavaScript accounting testing, **not a Move VM test, paid-checkout test, demand forecast, or certification of season-end payouts**. A production connection remains blocked until the steps below are completed.
 
@@ -52,11 +56,11 @@ node economy-review/example.mjs
 node economy-review/report.mjs economy-review/example-output/synthetic-input.json /tmp/arboretum-report
 ```
 
-`example.mjs` generates explicitly labeled synthetic JSON and CSV under `economy-review/example-output/`. The demo contains 100 BOOM purchases and 50 Victory purchases at the provisional 30 SUI price; 20% of each group have the eligible shop referral. At a hypothetical 25%-of-treasury allocation, the projections are 209.58 SUI for BOOM and 104.79 SUI for VICTORY. Neither figure is actual sales, reserved money or a trade.
+`example.mjs` generates explicitly labeled synthetic JSON and CSV under `economy-review/example-output/`. The demo contains 100 BOOM purchases and 50 Victory purchases at the provisional 30 SUI price; 20% of each group have the eligible shop referral. At the approved 10%-of-treasury rate, the synthetic projections are 83.832 SUI for BOOM and 41.916 SUI for VICTORY. Neither figure is actual sales, reserved money or a trade.
 
 ## Next integration gates
 
-1. Approve or amend the partner rate, finalize partner and Supply Drop prices, and record the NFTree policy separately. Do not turn the 25% scenario into a commitment by default.
+1. The partner rate is approved at 10% of each respective chest's treasury proceeds. Finalize partner and Supply Drop prices and record the NFTree policy separately. Approval of this rate does not authorize a deployment or token purchases.
 2. Reconcile the pending Season 1 gameplay/holder/isolation work with current main; this branch does not replace or merge those candidates. Preserve legacy funded claims and exclude test-price inventory from the new competitive state.
 3. Supply a reviewed GraphQL/gRPC reader or a new versioned paid-sale event. For each chest, bind the canonical origin, registry, economy version, receipt, successful transaction, checkpoint, season, product, actual charged price and exact deductions. Do not count openings or rely on a generic event name. Paginate completely and retain checkpoint watermarks, errors and reconciliation evidence.
 4. For future seasons retain immutable price/allocation terms per receipt or season. The current isolated candidate's `validate_origin` compares receipts with `expected_receipt_price`; changing global constants without a versioned policy can invalidate older items. The read-side engine uses the frozen price of the purchase season. Contract carryover rules still need their separate review and tests.
@@ -64,7 +68,7 @@ node economy-review/report.mjs economy-review/example-output/synthetic-input.jso
 6. Only after explicit funding policy and execution authorization, design and test reservation/custody and spending reconciliation. Include actual token coin types, approved destinations, gas/route costs, quotes/minimum output, duplicate-execution protection and remaining budget. Keep transfers and swaps out of checkout and never use the Growth Pool. An accounting earmark alone does not lock funds.
 7. Before activation, verify exact contract-enforced prices, wallet amounts, referrals, premium holder benefits, inventory provenance, season cutoff and claims; synchronize the public guide only with implemented behavior. No activation or season start follows merely from merging a specification.
 
-## Evidence and guidance
+## Initial accounting-build evidence and guidance
 
 Current main read: `84b08fdb4bc0ec0417ced7be21f29aae914939f7`.
 The pending holder candidate was read at `3b57718a65023979808d8bdd7a5f83cf7b255be7`.
@@ -76,3 +80,7 @@ The pending holder candidate was read at `3b57718a65023979808d8bdd7a5f83cf7b255b
 - The current skill file's statement that GraphQL lacks subscriptions is superseded by the official September 21, 2026 announcement: https://www.sui.io/blog/graphql-on-sui-now-supports-real-time-subscriptions . No subscription implementation is assumed or required by this offline engine.
 
 Approval source: the owner's conversation, not an inferred financial-account record. No private credentials are included.
+
+## October 2 rate-update verification scope
+
+The October 2 approval updates only the review decision record, synthetic example, report status label, documentation and regression tests. The ledger arithmetic and 70% player-pool / 2% developer split remain unchanged. The 25% inputs retained in generic rounding/validation tests are test cases, not policy defaults. Future live integration must bind the approved rate to the relevant season rather than retroactively change past records. No funds are reserved or spent by this offline review.

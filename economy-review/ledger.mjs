@@ -168,7 +168,7 @@ export function buildReport(input) {
       tokenTarget: r.tier === 5 ? 'BOOM' : r.tier === 6 ? 'VICTORY' : null,
       scenarioBudgetMist: projectionBps !== null && period && r.tier >= 5 ? 0n : null,
       authorizedBudgetMist: null, actuallyReservedMist: null, spentMist: null, tokensReceived: null,
-      budgetStatus: r.tier >= 5 ? 'percentage_pending_not_reserved' : 'no_partner_budget',
+      budgetStatus: r.tier >= 5 ? 'projection_only_not_reserved' : 'no_partner_budget',
       sourceVerification: 'not_independently_verified'
     });
     const row = rows.get(key);

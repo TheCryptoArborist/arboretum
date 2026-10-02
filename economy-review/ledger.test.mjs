@@ -21,27 +21,29 @@ test('NFTree funds TREE separately with no inferred percentage',()=>{
  assert.equal(decisions.funding.TREE.allocationBasisPoints,null);
  assert.equal(decisions.guardrails.treeBudgetFromGameReceipts,false);
 });
-test('25 percent is an illustration only; no live allocations or trading enabled',()=>{
+test('10 percent of partner treasury is approved; no live allocation or trading enabled',()=>{
  for(const k of ['BOOM','VICTORY']){
-  assert.equal(decisions.funding[k].allocationBasisPoints,null);
-  assert.equal(decisions.funding[k].illustrativeBasisPoints,2500);
+  assert.equal(decisions.funding[k].allocationBasisPoints,1000);
+  assert.equal(decisions.funding[k].status,'approved_rate_not_activated');
+  assert.equal(decisions.funding[k].approvedAt,'2026-10-02T01:50:52Z');
+  assert.equal(decisions.funding[k].illustrativeBasisPoints,undefined);
   assert.equal(decisions.partnerCoinTypes[k],null);
  }
  assert.equal(decisions.deploymentAuthorized,false);assert.equal(decisions.tokenPurchasesAuthorized,false);
 });
 test('30 SUI no-referral allocation reconciles exactly',()=>{
  assert.deepEqual(splitShop('30000000000',false),{grossMist:30000000000n,referralMist:0n,poolMist:21000000000n,developerMist:600000000n,treasuryMist:8400000000n});
- assert.equal(scenarioBudget('8400000000',2500),2100000000n);
+ assert.equal(scenarioBudget('8400000000',1000),840000000n);
 });
 test('30 SUI referred allocation reconciles exactly',()=>{
  assert.deepEqual(splitShop('30000000000',true),{grossMist:30000000000n,referralMist:300000000n,poolMist:20790000000n,developerMist:594000000n,treasuryMist:8316000000n});
- assert.equal(scenarioBudget('8316000000',2500),2079000000n);
+ assert.equal(scenarioBudget('8316000000',1000),831600000n);
 });
 test('integer conservation and rounding hold across 10000 synthetic price cases',()=>{
  for(let i=0n;i<10000n;i++){
   const x=splitShop(i*7919n,i%2n===0n);
   assert.equal(x.grossMist,x.referralMist+x.poolMist+x.developerMist+x.treasuryMist);
-  for(const k of [0,1,2500,10000])assert.ok(scenarioBudget(x.treasuryMist,k)<=x.treasuryMist);
+  for(const k of [0,1,1000,2500,10000])assert.ok(scenarioBudget(x.treasuryMist,k)<=x.treasuryMist);
  }
 });
 test('u64 maximum stays exact without float conversion',()=>{
@@ -57,7 +59,7 @@ test('BOOM and Victory quantities and budgets stay separate',()=>{
  const x=report([noRef,ref,exampleSale(3,6)]);
  assert.equal(x.rows.length,2);assert.equal(x.rows[0].paidChestCount,'2');assert.equal(x.rows[1].paidChestCount,'1');
  assert.equal(x.rows[0].tokenTarget,'BOOM');assert.equal(x.rows[1].tokenTarget,'VICTORY');
- assert.equal(x.rows[0].scenarioBudgetMist,'4179000000');assert.equal(x.rows[1].scenarioBudgetMist,'2100000000');
+ assert.equal(x.rows[0].scenarioBudgetMist,'1671600000');assert.equal(x.rows[1].scenarioBudgetMist,'840000000');
 });
 test('regular crate gross is not a TREE or partner acquisition budget',()=>{
  const x=report([exampleSale(3,0)]);assert.equal(x.rows[0].tokenTarget,null);assert.equal(x.rows[0].scenarioBudgetMist,null);
@@ -155,7 +157,7 @@ test('pending is null, never misrepresented as money already reserved or spent',
  const x=report([noRef]);for(const k of ['authorizedBudgetMist','actuallyReservedMist','spentMist','tokensReceived'])assert.equal(x.rows[0][k],null);
  assert.equal(x.tokenPurchasesAllowed,false);assert.equal(x.liveDeploymentAllowed,false);assert.equal(x.nftreePercentage,null);
 });
-test('scenario omitted means no assumed 25 percent',()=>{
+test('scenario omitted means no implicitly activated policy',()=>{
  const x=report([noRef],i=>delete i.scenarioTreasuryBasisPoints);assert.equal(x.rows[0].scenarioBudgetMist,null);
 });
 test('activation or execution request is rejected',()=>{
@@ -176,13 +178,26 @@ test('JSON exports base-unit integers as exact strings',()=>{
 });
 test('CSV protects formula-like text and preserves missing budgets',()=>{
  const x=report([noRef]);x.rows[0].seasonId='=unsafe';const csv=reportCsv(x);
- assert.ok(csv.includes('"\'=unsafe"'));assert.ok(csv.includes('"percentage_pending_not_reserved"'));assert.ok(csv.includes('"","","",""'));
+ assert.ok(csv.includes('"\'=unsafe"'));assert.ok(csv.includes('"projection_only_not_reserved"'));assert.ok(csv.includes('"","","",""'));
 });
 test('synthetic example arithmetic for mixed referrals is exact',()=>{
  const x=buildReport(exampleInput());assert.equal(x.rows[0].paidChestCount,'100');assert.equal(x.rows[0].poolMist,'2095800000000');
- assert.equal(x.rows[0].scenarioBudgetMist,'209580000000');assert.equal(x.rows[1].scenarioBudgetMist,'104790000000');
+ assert.equal(x.rows[0].scenarioBudgetMist,'83832000000');assert.equal(x.rows[1].scenarioBudgetMist,'41916000000');
 });
 test('module contains no wallet signer or network request implementation',()=>{
  const text=readFileSync(new URL('./ledger.mjs',import.meta.url),'utf8');
  assert.doesNotMatch(text,/\bfetch\s*\(|signAndExecute|executeTransaction\s*\(|setPrivateKey/);
+});
+
+// Rate approval does not authorize spending and does not change the player allocation.
+test('approved 10 percent applies to treasury, not gross, without changing the pool',()=>{
+ for(const referred of [false,true]){
+  const row=report([exampleSale(1,5,referred)]).rows[0];
+  const original=splitShop('30000000000',referred);
+  assert.equal(BigInt(row.scenarioBudgetMist),original.treasuryMist/10n);
+  assert.equal(BigInt(row.poolMist),original.poolMist);
+  assert.equal(BigInt(row.developerMist),original.developerMist);
+  assert.equal(original.treasuryMist-BigInt(row.scenarioBudgetMist),referred?7484400000n:7560000000n);
+  assert.equal(row.authorizedBudgetMist,null);assert.equal(row.actuallyReservedMist,null);
+ }
 });

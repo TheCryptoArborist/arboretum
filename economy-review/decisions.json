@@ -30,8 +30,8 @@
   },
   "funding": {
     "TREE": {"source": "project_received_NFTree_revenue", "allocationBasisPoints": null, "status": "source_approved_percentage_unspecified"},
-    "BOOM": {"source": "BOOM_chest_treasury_proceeds", "allocationBasisPoints": null, "illustrativeBasisPoints": 2500, "status": "source_planned_percentage_pending"},
-    "VICTORY": {"source": "Victory_chest_treasury_proceeds", "allocationBasisPoints": null, "illustrativeBasisPoints": 2500, "status": "source_planned_percentage_pending"}
+    "BOOM": {"source": "BOOM_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"},
+    "VICTORY": {"source": "Victory_chest_treasury_proceeds", "allocationBasisPoints": 1000, "status": "approved_rate_not_activated", "approvedAt": "2026-10-02T01:50:52Z"}
   },
   "partnerCoinTypes": {"BOOM": null, "VICTORY": null},
   "guardrails": {
