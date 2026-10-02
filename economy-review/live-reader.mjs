@@ -126,7 +126,7 @@ export function validateState(state){
     currentRegistryVersion:String(r.version),watermark:{sequenceNumber:seq(watermark.sequenceNumber),timestamp:watermark.timestamp},
     earliestTimestampMs:ms(first.timestamp),throughTimestampMs:ms(watermark.timestamp)};
 }
-async function getTransaction(read,digest,maxEventPages=10){
+export async function getTransaction(read,digest,maxEventPages=10){
   let after=null,tx=null,nodes=[],seen=new Set();
   for(let p=0;p<maxEventPages;p++){
     const data=await read('transaction',{digest,after}),t=data.transaction;
@@ -174,9 +174,13 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
   const eventStart=Number(uint(possible[0].contents.json.start_ms));
   const startMs=Math.max(season.storedStartMs,eventStart,ms(started.effects.checkpoint.timestamp));
   if(startMs>=season.endMs)throw Error('Invalid season boundary');
-  const scan=await scanEvents(read,TYPE+'CratePurchased',{...options,startMs});
-  const candidates=scan.nodes.filter(e=>[5,6].includes(e.contents.json?.tier)&&ms(e.transaction.effects.checkpoint.timestamp)<season.endMs);
-  const outside=scan.nodes.filter(e=>[5,6].includes(e.contents.json?.tier)&&ms(e.transaction.effects.checkpoint.timestamp)>=season.endMs);
+  return readSeasonReceipts({read,onProgress,maxPages,state,season,startMs,seasonStartEvent:possible[0],seasonStartTransaction:started});
+}
+/** Shared receipt reconciliation, used only after the public reader validates its boundary. */
+export async function readSeasonReceipts({read,onProgress=()=>{},maxPages=30,state,season,startMs,seasonStartEvent,seasonStartTransaction,receiptEndMs=season.endMs,trackUnassigned=true}){
+  const scan=await scanEvents(read,TYPE+'CratePurchased',{watermark:season.watermark.sequenceNumber,maxPages,startMs});
+  const candidates=scan.nodes.filter(e=>[5,6].includes(e.contents.json?.tier)&&ms(e.transaction.effects.checkpoint.timestamp)<receiptEndMs);
+  const outside=trackUnassigned?scan.nodes.filter(e=>[5,6].includes(e.contents.json?.tier)&&ms(e.transaction.effects.checkpoint.timestamp)>=receiptEndMs):[];
   const checked=[],needsReview=[],receipts=new Map();
   for(const digest of new Set(candidates.map(e=>e.transaction.digest))){
     onProgress(`Checking purchase transaction ${checked.length+1}…`);
@@ -187,7 +191,7 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
     if(result.status==='review')needsReview.push({digest,reason:result.reason});
     for(const r of result.receipts){
       if(![5,6].includes(r.tier))continue;
-      if(Number(r.timestampMs)<startMs||Number(r.timestampMs)>=season.endMs||Number(r.checkpoint)>season.watermark.sequenceNumber)throw Error('Receipt escaped season boundary');
+      if(Number(r.timestampMs)<startMs||Number(r.timestampMs)>=receiptEndMs||Number(r.checkpoint)>season.watermark.sequenceNumber)throw Error('Receipt escaped season boundary');
       if(receipts.has(r.receiptId)&&JSON.stringify(receipts.get(r.receiptId))!==JSON.stringify(r))throw Error('Conflicting receipt');receipts.set(r.receiptId,r);
     }
   }
@@ -198,23 +202,23 @@ export async function readCurrentPartnerSeason({read=createReaderClient(),onProg
       purchaseBudgetMist:null,spentMist:null,tokensReceived:null,unspentMist:null,
       budgetStatus:'testing_receipts_excluded_from_production_allocation'};
   });
-  const readComplete=scan.allPagesRead&&starts.allPagesRead&&season.earliestTimestampMs<=startMs&&needsReview.length===0;
+  const readComplete=scan.allPagesRead&&season.earliestTimestampMs<=startMs&&needsReview.length===0;
   return {schemaVersion:1,kind:'arboretum-partner-season-read',status:readComplete?'TEST_RECEIPTS_RECONCILED':'PARTIAL_TEST_RECEIPTS_REVIEW_REQUIRED',
-    mode:'live_test',retrievedAt:new Date().toISOString(),deployment:DEPLOYMENT,season:{...season,startMs},
+    mode:'live_test',retrievedAt:new Date().toISOString(),deployment:DEPLOYMENT,season:{...season,startMs,receiptEndMs},
     coverage:{allPagesRead:scan.allPagesRead,providerCoversStart:season.earliestTimestampMs<=startMs,
-      seasonEnded:season.throughTimestampMs>=season.endMs,throughCheckpoint:season.watermark.sequenceNumber,
-      throughTimestamp:season.watermark.timestamp,earliestAvailableTimestamp:new Date(season.earliestTimestampMs).toISOString(),finalForSeason:readComplete&&season.throughTimestampMs>=season.endMs,complete:readComplete,scope:'pinned_type_origin_registry_and_supported_purchase_paths'},
+      seasonEnded:season.throughTimestampMs>=receiptEndMs,throughCheckpoint:season.watermark.sequenceNumber,
+      throughTimestamp:season.watermark.timestamp,earliestAvailableTimestamp:new Date(season.earliestTimestampMs).toISOString(),finalForSeason:readComplete&&season.throughTimestampMs>=receiptEndMs,complete:readComplete,scope:'pinned_type_origin_registry_and_supported_purchase_paths'},
     rows,receipts:[...receipts.values()],needsReview,unassignedEvents:outside,
     observedPartnerEventCount:candidates.length,excludedTestingReceipts:receipts.size,
-    evidence:{state,seasonStartEvent:possible[0],seasonStartTransaction:started,purchaseEvents:scan.nodes,transactions:checked},
+    evidence:{state,seasonStartEvent,seasonStartTransaction,purchaseEvents:scan.nodes,transactions:checked},
     policy:{partnerTreasuryBasisPoints:1000,status:'approved_not_activated',automaticSwaps:false,
       treasuryWallet:DEPLOYMENT.treasuryWallet,nftreeFunding:'separate_TREE_policy',productionBudgetApplicable:false},
     tokenPurchasesAuthorized:false,transactionsSubmitted:0,
     allocationEvidence:'Tendered exact price and treasury credit reconciled; pool/developer columns are routing-model allocations, not a full historical pool audit.'};
 }
 export function partnerReportCsv(report){
-  const fields=['status','mode','retrievedAt','throughCheckpoint','throughTimestamp','earliestAvailableTimestamp','coverageComplete','finalForSeason','seasonId','chest','paidChestCount','grossMist','referralMist','poolMist','developerMist','treasuryMist','purchaseBudgetMist','spentMist','tokensReceived','unspentMist','budgetStatus'];
-  const common={status:report.status,mode:report.mode,retrievedAt:report.retrievedAt,throughCheckpoint:report.coverage?.throughCheckpoint,throughTimestamp:report.coverage?.throughTimestamp,earliestAvailableTimestamp:report.coverage?.earliestAvailableTimestamp,coverageComplete:report.coverage?.complete,finalForSeason:report.coverage?.finalForSeason};
+  const fields=['status','mode','retrievedAt','throughCheckpoint','throughTimestamp','earliestAvailableTimestamp','coverageComplete','finalForSeason','seasonKind','archiveId','receiptStartMs','receiptEndMs','seasonId','chest','paidChestCount','grossMist','referralMist','poolMist','developerMist','treasuryMist','purchaseBudgetMist','spentMist','tokensReceived','unspentMist','budgetStatus'];
+  const common={seasonKind:report.season?.kind,archiveId:report.season?.archiveId,receiptStartMs:report.season?.startMs,receiptEndMs:report.season?.receiptEndMs??report.season?.endMs,status:report.status,mode:report.mode,retrievedAt:report.retrievedAt,throughCheckpoint:report.coverage?.throughCheckpoint,throughTimestamp:report.coverage?.throughTimestamp,earliestAvailableTimestamp:report.coverage?.earliestAvailableTimestamp,coverageComplete:report.coverage?.complete,finalForSeason:report.coverage?.finalForSeason};
   const cell=v=>'"'+String(v??'').replace(/^[=+@\-\t\r\n]/,"'$&").replaceAll('"','""')+'"';
   return [fields.map(cell).join(','),...report.rows.map(row=>{const r={...row,...common};return fields.map(k=>cell(r[k])).join(',');})].join('\r\n')+'\r\n';
 }

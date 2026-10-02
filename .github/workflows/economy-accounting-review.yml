@@ -10,7 +10,7 @@ permissions:
 jobs:
   review:
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -36,6 +36,7 @@ jobs:
           node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
+          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py
           git rev-parse HEAD > economy-review-results/source-sha.txt
       - name: Inspect archive schema and evidence read-only
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-archives]')
@@ -56,6 +57,24 @@ jobs:
       - name: Read and reconcile live testing-season partner purchases
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
         run: node economy-review/read-live.mjs
+      - name: Prepare hosted branch review environment
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        run: |
+          python3 -m pip install requests cryptography playwright
+          python3 -m playwright install --with-deps chromium
+          PARTNER_HOST_MODE=key python3 economy-review/hosted-review.py
+      - name: Publish ephemeral encryption public key only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: partner-preview-key
+          path: economy-review-results/hosted/public-key.json
+          retention-days: 1
+      - name: Deploy and verify isolated hosted preview only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 economy-review/hosted-review.py
       - name: Preserve exact sources and review build for browser verification
         if: always()
         run: |

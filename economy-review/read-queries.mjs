@@ -1,5 +1,11 @@
 /** Fixed GraphQL reads, verified against the current endpoint schema. */
 export const READ_QUERIES = Object.freeze({
+ archiveObjects:`query PartnerArchives($type:String!,$after:String) {
+  objects(first:25,after:$after,filter:{type:$type}) {
+   pageInfo {hasNextPage endCursor}
+   nodes {address version previousTransaction {digest} asMoveObject {contents {json type {repr}}}}
+  }
+ }`,
  state:`query PartnerState($registry:SuiAddress!) {
   chainIdentifier checkpoint {sequenceNumber timestamp}
   serviceConfig {availableRange(type:"Query",field:"events",filters:["type","beforeCheckpoint"]) {first {sequenceNumber timestamp} last {sequenceNumber timestamp}}}

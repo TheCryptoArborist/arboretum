@@ -1,9 +1,10 @@
+import {discoverPartnerSeasons,readSelectedPartnerSeason} from './season-reader.mjs';
 import {readCurrentPartnerSeason,createReaderClient,partnerReportCsv,DEPLOYMENT} from './live-reader.mjs';
 import {formatSui} from './ledger.mjs';
 const money=v=>v==null?'—':formatSui(v).replace(/0+$/,'').replace(/\.$/,'');
 function el(tag,text,cls){const n=document.createElement(tag);if(tag==='button')n.type='button';if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;}
 function download(name,text,type){const u=URL.createObjectURL(new Blob([text],{type})),a=el('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);}
-export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=null,initialReport=null,requireAdmin=false,assetBase='/assets/shop/crates/'}={}){
+export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=null,initialReport=null,requireAdmin=false,seasonSelection=false,listSeasons=discoverPartnerSeasons,readSeason=readSelectedPartnerSeason,assetBase='/assets/shop/crates/'}={}){
  root.classList.add('partner-report');let report=null,generation=0,controller=null,failedRefresh=false,disposed=false;
  const header=el('div',undefined,'pr-heading'),heading=el('div');heading.append(el('p','SEASONAL TREASURY ACCOUNTING','pr-eyebrow'),el('h3','Partner Chest Revenue'));
  header.append(heading,el('span','READ ONLY','pr-chip'));root.append(header);
@@ -13,6 +14,31 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
  if(allowDemo){const demo=el('option','Illustrative public season — sample data');demo.value='demo';selector.append(demo);}
  const refresh=el('button','Read on-chain receipts'),csv=el('button','Export CSV'),json=el('button','Export JSON');refresh.className='pr-primary';csv.disabled=json.disabled=true;
  bar.append(selector,refresh,csv,json);root.append(bar);
+ const seasonBar=el('div',undefined,'pr-toolbar'),seasonSelect=el('select'),seasonsButton=el('button','Load seasons');
+ seasonSelect.setAttribute('aria-label','Planting season');seasonSelect.disabled=true;
+ const initial=el('option','Load verified seasons first');initial.value='';seasonSelect.append(initial);
+ const catalogueNote=el('p','','pr-facts');
+ if(seasonSelection){seasonBar.append(seasonsButton,seasonSelect);root.append(seasonBar,catalogueNote);refresh.disabled=true;}
+ function isAllowed(){return !requireAdmin||Boolean(window.arb?.isAdmin(window.arb.getAddress()));}
+ function deny(){clear();status.textContent='Open the Admin Console with an authorized wallet to use this panel. No wallet connection is requested by this report.';}
+ async function loadSeasons(){
+  if(disposed)return;
+  if(!isAllowed()){deny();return;}
+  const ticket=++generation;controller?.abort();controller=new AbortController();clear();seasonsButton.disabled=refresh.disabled=true;seasonSelect.disabled=true;
+  catalogueNote.textContent='Discovering verified season and archive records…';
+  try{
+   const c=await listSeasons({read:createReaderClient({signal:controller.signal})});if(disposed||ticket!==generation)return;
+   seasonSelect.replaceChildren();for(const season of c.seasons){const o=el('option',`Season ${season.id} · ${season.kind==='archived'?'Archived':'Current registry'}${season.selectable?'':' · verification needed'}`);o.value=season.key;o.disabled=!season.selectable;seasonSelect.append(o);}
+   const first=c.seasons.find(x=>x.selectable);
+   if(first){seasonSelect.value=first.key;seasonSelect.disabled=false;refresh.disabled=false;}
+   else {const o=el('option','No selectable seasons found');o.value='';seasonSelect.append(o);refresh.disabled=true;}
+   catalogueNote.textContent=`${c.seasons.filter(x=>x.kind==='archived'&&x.selectable).length} verified archive(s) available. ${c.issues.length?c.issues.length+' record(s) need provenance review. ':''}${c.discovery.objectsComplete?'':'Archive listing is partial. '}Older events may be outside provider history; a listed season is not a complete sales audit.`;
+   status.textContent=first?'Select a planting season, then read its receipts.':'No verified selectable season is available. No season was started or archived.';
+  }catch(e){if(disposed||ticket!==generation)return;catalogueNote.textContent='Season discovery failed: '+e.message;refresh.disabled=true;}
+  finally{if(!disposed&&ticket===generation)seasonsButton.disabled=false;}
+ }
+ seasonsButton.addEventListener('click',loadSeasons);
+ seasonSelect.addEventListener('change',()=>{++generation;controller?.abort();clear();refresh.disabled=!seasonSelect.value;seasonsButton.disabled=false;status.textContent='Season changed. Read the selected season to load its receipts.';});
  const status=el('p','No report has been loaded. Reading receipts does not connect a wallet or move funds.','pr-status');status.setAttribute('role','status');status.setAttribute('aria-live','polite');
  const facts=el('p','', 'pr-facts'),cards=el('div',undefined,'pr-cards'),notes=el('div',undefined,'pr-notes');root.append(status,facts,cards,notes);
  const treasury=el('details'),summary=el('summary','Treasury and accounting rules');treasury.append(summary,el('p',DEPLOYMENT.treasuryWallet,'pr-address'),el('p','Funds remain in this wallet. This report does not reserve SUI or execute swaps. NFTree-to-TREE accounting is separate.'));
@@ -25,9 +51,9 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
   csv.disabled=json.disabled=false;root.dataset.mode=r.mode;
   status.className='pr-status '+(demo?'pr-demo':'pr-test');
   status.textContent=demo?'ILLUSTRATION ONLY · Fictional sales, not live revenue or token purchases.':r.coverage.complete?'TEST ECONOMY · Supported paid receipts reconciled. No production token-purchase budget applies.':'PARTIAL TEST REPORT · Some records or historical coverage require review. Do not treat these as final totals.';
-  facts.textContent=demo?'Sample season · 30 SUI per chest · 20% of the sample purchases have a referral.':`Testing season ${r.season.id} · On-chain data through ${new Date(r.coverage.throughTimestamp).toLocaleString()} · Checkpoint ${r.coverage.throughCheckpoint}`;
+  facts.textContent=demo?'Sample season · 30 SUI per chest · 20% of the sample purchases have a referral.':`Testing season ${r.season.id}${r.season.kind==='archived'?' (archived)':''} · On-chain data through ${new Date(r.coverage.throughTimestamp).toLocaleString()} · Checkpoint ${r.coverage.throughCheckpoint}`;
   if(!demo&&!r.coverage.providerCoversStart)notes.append(el('p',`Incomplete season history: the provider guarantees this query only from ${r.coverage.earliestAvailableTimestamp||new Date(r.season.earliestTimestampMs).toISOString()}, after this season began. Displayed counts are reconciled receipts found, not final season totals.`,'pr-coverage-warning'));
-  if(!demo)facts.append(el('span',`Receipt window: ${new Date(r.season.startMs).toISOString()} to ${new Date(r.season.endMs).toISOString()} (end excluded).`,'pr-window'));
+  if(!demo)facts.append(el('span',`Receipt window: ${new Date(r.season.startMs).toISOString()} to ${new Date(r.season.receiptEndMs??r.season.endMs).toISOString()} (end excluded).`,'pr-window'));
   for(const row of r.rows){
    const card=el('article',undefined,'pr-card'),top=el('div',undefined,'pr-card-title'),img=el('img');
    img.src=assetBase+(row.tier===5?'boom-chest.png':'victory-chest.png');img.alt=row.chest+' original chest artwork';img.width=68;img.height=68;
@@ -41,6 +67,7 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
    card.append(detail);cards.append(card);
   }
   notes.append(el('p',demo?'The example uses the approved 10% rate but creates no spending obligation. Actual spend and token receipts are deliberately not invented.':'Testing purchases stay outside the public-season partner allocation. Paid sales are counted at purchase—not at opening or resale.'));
+  if(r.season?.archiveId)notes.append(el('p',`Archive: ${r.season.archiveId} · Claim deadline: ${new Date(r.season.claimDeadlineMs).toISOString()}${r.season.swept?' · swept':''}. This report does not check individual reward eligibility or submit claims.`,'pr-address'));
   if(r.needsReview?.length){const detail=el('details');detail.append(el('summary',`${r.needsReview.length} item(s) need review`));for(const n of r.needsReview)detail.append(el('p',n.reason));notes.append(detail);}
   if(r.unassignedEvents?.length)notes.append(el('p',`${r.unassignedEvents.length} partner event(s) occurred after the growing period and remain unassigned.`));
   if(!demo&&r.receipts?.length){const detail=el('details');detail.append(el('summary','View checked purchase transactions'));
@@ -50,22 +77,24 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
  }
  async function load(){
   if(disposed)return;
-  if(requireAdmin&&!window.arb?.isAdmin(window.arb.getAddress())){status.textContent='Open the Admin Console with an authorized wallet to use this panel. No wallet connection is requested by this report.';return;}
+  if(!isAllowed()){deny();return;}
+  if(seasonSelection&&selector.value!=='demo'&&!seasonSelect.value){await loadSeasons();return;}
   const ticket=++generation;controller?.abort();controller=new AbortController();refresh.disabled=true;csv.disabled=json.disabled=true;
   status.className='pr-status';status.textContent='Reading confirmed Sui data…';
   try{
-   const r=selector.value==='demo'?demoReport:await (readReport?readReport({signal:controller.signal}):readCurrentPartnerSeason({read:createReaderClient({signal:controller.signal}),onProgress:text=>{if(ticket===generation)status.textContent=text;}}));
-   if(ticket!==generation)return;if(!r)throw Error('No sample report available');render(r);
+   const r=selector.value==='demo'?demoReport:await (readReport?readReport({signal:controller.signal}):seasonSelection?readSeason(seasonSelect.value,{read:createReaderClient({signal:controller.signal}),onProgress:text=>{if(ticket===generation)status.textContent=text;}}):readCurrentPartnerSeason({read:createReaderClient({signal:controller.signal}),onProgress:text=>{if(ticket===generation)status.textContent=text;}}));
+   if(disposed||ticket!==generation)return;if(!r)throw Error('No sample report available');if(seasonSelection&&selector.value!=='demo'&&r.season.selectionKey!==seasonSelect.value)throw Error('Returned report does not match selected season');render(r);
   }catch(e){if(ticket!==generation)return;failedRefresh=true;status.className='pr-status pr-error';status.textContent=`Read not completed: ${e.message}${report?' The displayed report is the previous saved read, not refreshed data.':''}`;csv.disabled=json.disabled=true;}
-  finally{if(ticket===generation)refresh.disabled=false;}
+  finally{if(!disposed&&ticket===generation)refresh.disabled=seasonSelection&&!seasonSelect.value&&selector.value!=='demo';}
  }
  refresh.addEventListener('click',load);
- selector.addEventListener('change',()=>{++generation;controller?.abort();refresh.disabled=false;clear();refresh.textContent=selector.value==='demo'?'Load sample report':'Read on-chain receipts';status.textContent='Report source changed. Load the selected source to see its results.';});
- json.addEventListener('click',()=>{if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.json`,JSON.stringify(report,null,2),'application/json');});
- csv.addEventListener('click',()=>{if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.csv`,partnerReportCsv(report),'text/csv');});
+ selector.addEventListener('change',()=>{++generation;controller?.abort();refresh.disabled=seasonSelection&&!seasonSelect.value&&selector.value!=='demo';clear();refresh.textContent=selector.value==='demo'?'Load sample report':'Read on-chain receipts';status.textContent='Report source changed. Load the selected source to see its results.';});
+ json.addEventListener('click',()=>{if(!isAllowed()){deny();return;}if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.json`,JSON.stringify(report,null,2),'application/json');});
+ csv.addEventListener('click',()=>{if(!isAllowed()){deny();return;}if(report&&!failedRefresh&&!disposed)download(`arboretum-partner-${report.mode}-${report.season?.id||'demo'}.csv`,partnerReportCsv(report),'text/csv');});
  if(initialReport)render(initialReport);
- return {load,render,snapshotAttachment(seasonId){
+ return {load,loadSeasons,render,snapshotAttachment(seasonId){
   if(disposed)return {status:'panel_destroyed'};
+  if(!isAllowed())return {status:'admin_unavailable'};
   if(!report||report.mode!=='live_test'||String(seasonId)!==String(report.season.id))return {status:'not_loaded_for_snapshot_season'};
   return {status:failedRefresh?'STALE_PREVIOUS_READ':report.status,sourceStatus:report.status,mode:report.mode,retrievedAt:report.retrievedAt,coverage:report.coverage,rows:report.rows,
    refreshFailed:failedRefresh,stale:Date.now()-Date.parse(report.retrievedAt)>300000,productionBudgetApplicable:false,tokenPurchasesAuthorized:false};
@@ -73,5 +102,5 @@ export function mountPartnerPanel(root,{readReport,allowDemo=false,demoReport=nu
 }
 if(typeof document!=='undefined'){
  const root=document.getElementById('partner-revenue-mount');
- if(root)window.arbPartnerReport=mountPartnerPanel(root,{requireAdmin:true});
+ if(root)window.arbPartnerReport=mountPartnerPanel(root,{requireAdmin:true,seasonSelection:true});
 }
