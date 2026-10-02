@@ -16,7 +16,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
-      - name: Verify additive-only scope and run offline accounting tests
+      - name: Verify additive-only scope and offline regressions
         shell: bash
         run: |
           set -euo pipefail
@@ -31,17 +31,28 @@ jobs:
             assert status=='A' and (path.startswith('economy-review/') or path=='.github/workflows/economy-accounting-review.yml'),line
           print('Only new review files; no production source, contract or deployment changes.')
           PY
-          node --test economy-review/ledger.test.mjs | tee economy-review-results/tests.txt
+          node --test economy-review/*.test.mjs | tee economy-review-results/tests.txt
           node economy-review/example.mjs > economy-review-results/synthetic-summary.json
           node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
           git rev-parse HEAD > economy-review-results/source-sha.txt
-      - name: Inspect live read schema and state without signing
-        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-reader]')
+      - name: Read and reconcile live testing-season partner purchases
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
+        run: node economy-review/read-live.mjs
+      - name: Build review-only admin overlay when present
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[build-partners]')
+        env:
+          CONTEXT: branch-deploy
         run: |
-          python3 economy-review/inspect-live.py
-          git archive --format=tar HEAD | gzip > economy-review-results/review-source.tar.gz
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          python3 scripts/build-reward-first.py
+          node scripts/build-season-status.mjs
+          node economy-review/build-admin-preview.mjs > economy-review-results/admin-build.json
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
