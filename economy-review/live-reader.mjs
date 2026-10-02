@@ -2,7 +2,7 @@
  * Exact-price simple purchase PTBs only; unsupported payments are held for review.
  * No keys, wallet connections, mutations, simulations, swaps, or custody.
  */
-import {splitShop, scenarioBudget, formatSui} from './ledger.mjs';
+import {splitShop} from './ledger.mjs';
 export const DEPLOYMENT = Object.freeze({
   endpoint:'https://graphql.mainnet.sui.io/graphql',
   chainIdentifier:'4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S',
@@ -23,7 +23,7 @@ const jsonSafe = x => JSON.parse(JSON.stringify(x,(_,v)=>typeof v==='bigint'?Str
 const Q = Object.freeze({
  state:`query PartnerState($registry:SuiAddress!) {
   chainIdentifier checkpoint {sequenceNumber timestamp}
-  serviceConfig {availableRange {first {sequenceNumber timestamp} last {sequenceNumber timestamp}}}
+  serviceConfig {availableRange(type:"Query",field:"events") {first {sequenceNumber timestamp} last {sequenceNumber timestamp}}}
   registry:object(address:$registry) {address version asMoveObject {contents {json type {repr}}}}
  }`,
  events:`query PartnerEvents($type:String!,$before:String,$ceiling:UInt53!,$size:Int!) {
@@ -55,7 +55,7 @@ export function createReaderClient({fetchImpl=globalThis.fetch,signal,timeoutMs=
       if([429,502,503,504].includes(r.status)&&attempt<2){await new Promise(resolve=>setTimeout(resolve,300*(attempt+1)));continue;}
       if(!r.ok)throw Error(`Sui read failed (HTTP ${r.status})`);
       const body=await r.json();
-      if(body.errors?.length||!body.data)throw Error('Sui returned a query error; partial data were not accepted');
+      if(body.errors?.length||!body.data)throw Error('Sui query '+name+' failed; partial data were not accepted: '+String(body.errors?.[0]?.message||'no data').slice(0,200));
       return body.data;
     }
     throw Error('Sui read retry limit');
