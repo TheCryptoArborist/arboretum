@@ -25,18 +25,19 @@ def seed(i,state,last,expiry=0):
  'last_watered_ms':str(last),'bottomless_can_expiry_ms':str(expiry),'growth_points':str(100*i),
  'watering_streak':str(i),'nft_id':'0x'+f'{i+100:064x}','fertilizer_charges':'0','revival_charges':'0',
  'planted_at_ms':str(NOW-DAY*10)}}}
-SEEDS=[seed(1,1,NOW-8*DAY),seed(2,2,NOW-DAY),seed(3,0,NOW-3600000),seed(4,0,NOW-8*DAY,NOW+2*DAY),seed(5,0,NOW-DAY)]
+SEEDS=[seed(1,1,NOW-8*DAY),seed(2,2,NOW-DAY),seed(3,0,NOW-3600000),seed(4,0,NOW-8*DAY,NOW+2*DAY),seed(5,0,NOW-DAY),seed(6,0,NOW-DAY),seed(7,0,NOW-DAY),seed(8,0,NOW-DAY)]
+TOOLS=[{'address':'0x'+f'{900+i:064x}','version':'1','contents':{'type':{'repr':TYPE+'Tool'},'json':{'id':'0x'+f'{900+i:064x}','kind':'fertilizer','charges':str(c)}}} for i,c in enumerate([3,2])]
 with sync_playwright() as p:
  opts={'headless':True}
  if os.environ.get('PLAYER_CHROMIUM'):opts['executable_path']=os.environ['PLAYER_CHROMIUM']
  browser=p.chromium.launch(**opts)
  for width in [1440,768,390,320]:
-  mode={'phase':'active','fail':False,'reverse':False,'empty':False};page_errors=[];reads=[]
+  mode={'phase':'active','fail':False,'reverse':False,'empty':False,'seedCount':5};page_errors=[];reads=[]
   def gql(q,v):
    page={'nodes':[],'pageInfo':{'hasNextPage':False,'endCursor':None,'hasPreviousPage':False,'startCursor':None}}
-   start=0 if mode['phase']=='inactive' else NOW+DAY if mode['phase']=='scheduled' else NOW-31*DAY if mode['phase']=='ended' else NOW-DAY
+   start=0 if mode['phase']=='inactive' else NOW+DAY if mode['phase']=='scheduled' else NOW-31*DAY if mode['phase'] in ['ended','ended-paused'] else NOW-DAY
    registry={'address':RID,'version':'1','asMoveObject':{'contents':{'type':{'repr':TYPE+'Registry'},'json':{
-    'current_season_id':'3','season_start_ms':str(start),'paused':mode['phase']=='paused','reward_pool':'0','treasury':'0','total_seeds':'5','total_growth_points':'1500'}}}}
+    'current_season_id':'3','season_start_ms':str(start),'paused':mode['phase'] in ['paused','ended-paused'],'reward_pool':'0','treasury':'0','total_seeds':'5','total_growth_points':'1500'}}}}
    if 'GardenSeasonStatus' in q:
     if mode['phase']=='unknown':raise ValueError('Controlled missing season status')
     return {'registry':registry,'clock':{'asMoveObject':{'contents':{'json':{'timestamp_ms':str(NOW)}}}}}
@@ -47,7 +48,13 @@ with sync_playwright() as p:
    if 'address(address:' in q and 'balance(' in q:return {'address':{'balance':{'totalBalance':'0'}}}
    if 'address(address:' in q and 'objects(' in q:
     if mode['fail']:raise ValueError('Controlled inventory read failure')
-    if v.get('type')==TYPE+'Seed' and not mode['empty']:page['nodes']=list(reversed(SEEDS)) if mode['reverse'] else SEEDS
+    if v.get('type')==TYPE+'Seed' and not mode['empty']:
+     subset=SEEDS[:mode['seedCount']]
+     if mode['seedCount']==2:
+      subset=[seed(1,0,NOW-DAY),seed(2,0,NOW-DAY)]
+      for item in subset:item['contents']['json']['growth_points']='172'
+     page['nodes']=list(reversed(subset)) if mode['reverse'] else subset
+    if v.get('type')==TYPE+'Tool' and not mode['empty']:page['nodes']=TOOLS
     return {'address':{'objects':page}}
    if 'events(' in q:return {'events':page}
    if 'objects(' in q:return {'objects':page}
@@ -119,6 +126,35 @@ with sync_playwright() as p:
    page.evaluate('scrollTo(0,0)');page.wait_for_timeout(150)
    page.screenshot(path=str(OUT/f'garden-ended-{width}.png'),full_page=True)
    page.screenshot(path=str(OUT/f'garden-ended-viewport-{width}.png'))
+   ck('ended counters replaced by loaded inventory summary',page.locator('#garden-ended-summary').is_visible() and page.locator('#garden-check>.garden-stat:visible').count()==0)
+   ck('summary reports loaded Seeds and exact GP',page.locator('#garden-ended-seeds').text_content()=='5' and page.locator('#garden-ended-growthPoints').text_content()=='1,500')
+   ck('summary reports item objects and remaining uses',page.locator('#garden-ended-items').text_content()=='2' and page.locator('#garden-ended-uses').text_content()=='5 uses remaining')
+   ck('summary is explicitly not a final reward statement','not final season results' in page.locator('#garden-ended-note').text_content())
+   ck('only one visible rewards prompt remains in My Garden',page.locator('#garden-sec button:visible').evaluate_all('(bs)=>bs.filter(b=>/view season rewards/i.test(b.textContent)).length')==1)
+   ck('ended rail and duplicate milestone removed from layout',not page.locator('.garden-daily-rail').is_visible() and not page.locator('#garden-next-growth').is_visible())
+   ck('ended cards suppress duplicate next-step and dry warnings',page.locator('#garden-grid .gc-stage-next:visible,#garden-grid .gc-dry:visible,#garden-grid .gc-status-hint:visible').count()==0)
+   ck('ended cards keep artwork, GP and streak visible',page.locator('#garden-grid .gc-nft-art:visible').count()==5 and page.locator('#garden-grid .gc-stat-line:visible').count()==5)
+   ck('unused slots become compact non-interactive labels',page.locator('#garden-grid .empty-slot:visible').count()==0 and page.locator('#garden-ended-unused li:visible').count()==3)
+   ck('unused strip has no action handlers',page.locator('#garden-ended-unused [onclick],#garden-ended-unused [role="button"],#garden-ended-unused button').count()==0)
+   page.select_option('#gfilter','dead')
+   ck('ended filtering preserves identity and full summary',page.locator('#garden-grid [data-seed-id]:visible .gc-slot-label').all_text_contents()==['Slot 2'] and page.locator('#garden-ended-seeds').text_content()=='5')
+   ck('ended filter never suggests unused planting space',not page.locator('#garden-ended-unused').is_visible())
+   page.select_option('#gfilter','all')
+   for amount,gp in [(2,'344'),(8,'3,600')]:
+    mode['seedCount']=amount;page.evaluate('refreshGarden()');page.wait_for_selector('#garden-sync[data-status="ready"]')
+    ck(f'ended {amount}-Seed garden has correct loaded total',page.locator('#garden-ended-seeds').text_content()==str(amount) and page.locator('#garden-ended-growthPoints').text_content()==gp)
+    ck(f'ended {amount}-Seed garden has compact true unused slots',page.locator('#garden-ended-unused li:visible').count()==8-amount)
+    ck(f'ended {amount}-Seed layout fits viewport',page.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+    page.evaluate('scrollTo(0,0)');page.screenshot(path=str(OUT/f'ended-{amount}-seeds-{width}.png'),full_page=True)
+   mode['fail']=True;page.evaluate('refreshGarden()');page.wait_for_selector('#garden-sync[data-status="error"]')
+   ck('ended failed refresh preserves last complete summary with warning',page.locator('#garden-ended-growthPoints').text_content()=='3,600' and page.locator('#garden-ended-summary').get_attribute('data-inventory')=='previous' and 'refresh needed' in page.locator('#garden-ended-note').text_content())
+   mode['fail']=False;mode['empty']=True;page.evaluate('refreshGarden()');page.wait_for_selector('#garden-sync[data-status="ready"]')
+   ck('ended genuinely empty garden shows verified zero',page.locator('#garden-ended-seeds').text_content()=='0' and page.locator('#garden-ended-growthPoints').text_content()=='0' and page.locator('#garden-ended-unused li:visible').count()==8)
+   mode['empty']=False;mode['seedCount']=5;page.evaluate('refreshGarden()');page.wait_for_selector('#garden-sync[data-status="ready"]')
+   phase('ended-paused');ck('ended-paused view preserves claim pause distinction','claims are paused' in page.locator('#garden-focus-copy').text_content() and page.locator('#garden-ended-care').text_content()=='Closed · claims paused')
+   phase('active')
+   ck('active season restores original care layout',not page.locator('#garden-ended-summary').is_visible() and page.locator('#garden-check>.garden-stat:visible').count()==5 and page.locator('.garden-daily-rail').is_visible() and page.locator('#garden-next-growth').is_visible())
+   ck('active season restores original slots and per-Seed hints',page.locator('#garden-grid .empty-slot:visible').count()==3 and page.locator('[data-seed-id$="0003"] .gc-status-hint').is_visible())
    for s in ['paused','inactive','scheduled','unknown']:
     phase(s);ck(s+' never recommends planting or watering',page.locator('#garden-primary-action').text_content() in ['Refresh Status','View Season Rewards'] and page.locator('#garden-grid .gc-actions button:enabled').count()==0)
    phase('active');mode['fail']=True;page.evaluate('refreshGarden()');page.wait_for_selector('#garden-sync[data-status="error"]')
@@ -135,6 +171,9 @@ with sync_playwright() as p:
    page.evaluate('doDisconnect()');ck('disconnect clears previous garden display',not page.locator('#garden-grid').is_visible())
    mode['fail']=True;page.evaluate('doConnect("Arboretum Local Test Wallet")');page.wait_for_selector('#garden-sync[data-status="error"]')
    ck('initial failed read never becomes empty garden',not page.locator('#garden-grid').is_visible() and 'Unable to load' in page.locator('#garden-load-placeholder').text_content())
+   phase('ended')
+   ck('ended initial failure never invents zero totals',page.locator('#garden-ended-seeds').text_content()=='—' and page.locator('#garden-ended-growthPoints').text_content()=='—' and page.locator('#garden-ended-summary').get_attribute('data-inventory')=='unavailable')
+   phase('active')
    mode['fail']=False;mode['empty']=False;page.locator('#garden-sync-refresh').click();page.wait_for_selector('#garden-sync[data-status="ready"]')
    # Test stale-response admission independent of transport timing.
    admission=page.evaluate('''()=>{const ux=window.arbGardenUX,a=window.arbGardenBridge.address();const old=ux.begin(a);ux.reset(a);const latest=ux.begin(a);const denied=!ux.current(old,a);ux.complete(old,a);const ignored=document.getElementById('garden-sync').dataset.status==='loading';ux.fail(latest,a);return denied&&ignored;}''')
