@@ -32,11 +32,12 @@ jobs:
           print('Only new review files; no production source, contract or deployment changes.')
           PY
           node --test economy-review/*.test.mjs | tee economy-review-results/tests.txt
+          python3 economy-review/test-stage-preview.py 2>&1 | tee economy-review-results/stage-tests.txt
           node economy-review/example.mjs > economy-review-results/synthetic-summary.json
           node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
-          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py
+          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py economy-review/stage-preview.py
           git rev-parse HEAD > economy-review-results/source-sha.txt
       - name: Inspect archive schema and evidence read-only
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-archives]')
@@ -58,13 +59,13 @@ jobs:
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
         run: node economy-review/read-live.mjs
       - name: Prepare hosted branch review environment
-        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        if: github.event_name == 'push' && (contains(github.event.head_commit.message, '[host-partners]') || contains(github.event.head_commit.message, '[stage-partners]'))
         run: |
           python3 -m pip install requests cryptography playwright
           python3 -m playwright install --with-deps chromium
           PARTNER_HOST_MODE=key python3 economy-review/hosted-review.py
       - name: Publish ephemeral encryption public key only
-        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        if: github.event_name == 'push' && (contains(github.event.head_commit.message, '[host-partners]') || contains(github.event.head_commit.message, '[stage-partners]'))
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: partner-preview-key
@@ -75,6 +76,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 economy-review/hosted-review.py
+      - name: Stage gated preview only - authenticated readiness NOT approved
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[stage-partners]') && !contains(github.event.head_commit.message, '[host-partners]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 economy-review/stage-preview.py
       - name: Preserve exact sources and review build for browser verification
         if: always()
         run: |
