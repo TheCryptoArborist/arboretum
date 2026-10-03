@@ -28,3 +28,13 @@ test('ambiguous HTML cannot be silently patched',()=>assert.throws(()=>applyPart
 test('production build remains blocked',()=>{const prior=process.env.CONTEXT;process.env.CONTEXT='production';try{assert.throws(()=>buildPreview(),/production build blocked/)}finally{if(prior===undefined)delete process.env.CONTEXT;else process.env.CONTEXT=prior}});
 test('build includes the read-query module imported by the runtime',()=>{const src=fs.readFileSync('economy-review/build-admin-preview.mjs','utf8');assert.match(src,/'read-queries.mjs'/)});
 test('all approved rate and existing treasury decisions preserved',()=>{const d=JSON.parse(fs.readFileSync('economy-review/decisions.json'));assert.equal(d.funding.BOOM.allocationBasisPoints,1000);assert.equal(d.funding.VICTORY.allocationBasisPoints,1000);assert.equal(d.guardrails.fundingFromPool,false);assert.equal(d.tokenPurchasesAuthorized,false);assert.equal(d.guardrails.treeBudgetFromGameReceipts,false)});
+
+test('admin preview includes fail-closed reconciliation status overlay',()=>{
+ const src=fs.readFileSync('economy-review/build-admin-preview.mjs','utf8');
+ assert.match(src,/partner-reconciliation-panel\.mjs/);
+ const overlay=fs.readFileSync('economy-review/partner-reconciliation-panel.mjs','utf8');
+ assert.match(overlay,/Not configured/);
+ assert.match(overlay,/Not reconciled/);
+ assert.match(overlay,/Matching balance changes alone are not proof/);
+ assert.doesNotMatch(overlay,/signAndExecute|executeTransaction|splitCoins|moveCall/);
+});
