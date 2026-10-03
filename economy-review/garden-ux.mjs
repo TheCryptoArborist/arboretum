@@ -7,7 +7,7 @@ let owner=null, serial=0, pending=null, loaded=false, lastSuccess=0, status='dis
 let tools=[],crates=[];
 const originals={};
 function view(){return window.arbSeasonStatus?.getView?.()||{phase:'unknown',canWater:false};}
-function fresh(){return loaded&&status!=='error'&&performance.now()-lastSuccess<=STALE_AFTER_MS;}
+function fresh(){return loaded&&status==='ready'&&performance.now()-lastSuccess<=STALE_AFTER_MS;}
 function current(ticket,address){return ticket===serial&&address===owner&&bridge.address()===address;}
 function clearPending(){if(pending?.timer)clearTimeout(pending.timer);pending=null;}
 function reset(address){clearPending();owner=address;serial++;loaded=false;lastSuccess=0;slots=new Map();status=address?'unloaded':'disconnected';tools=[];crates=[];paint();}
@@ -45,6 +45,7 @@ function setup(){
  const refresh=make('button','gbtn','Refresh Garden');refresh.id='garden-sync-refresh';refresh.type='button';refresh.onclick=retry;
  sync.append(statusText,refresh);root.querySelector('.sec-hdr').after(sync);
  const check=$('garden-check');root.insertBefore(check,root.querySelector('.garden-command-layout'));
+ const more=make('details','garden-more-actions');more.append(make('summary','','More garden actions'));more.append($('live-actions'));check.after(more);
  text('garden-watered','—');$('garden-watered').nextElementSibling.textContent='Waiting';
  $('garden-ready').nextElementSibling.textContent='Ready now';
  const p=make('div','garden-stat');const n=make('strong','','—');n.id='garden-protected';p.append(n,make('span','','Auto-protected'));$('garden-watered').parentElement.after(p);
@@ -87,7 +88,11 @@ function decorateGrid(){
   if(!seed){
    const number=emptyPositions.shift();card.dataset.gardenSlot=String(number||'');const label=card.querySelector('.gc-slot-label');if(label)label.textContent=`Slot ${number||''}`;
    card.hidden=filter!=='all'||!show;card.setAttribute('role','button');card.tabIndex=show&&v.phase==='active'&&fresh()?0:-1;
-   card.setAttribute('aria-disabled',String(v.phase!=='active'||!fresh()));card.setAttribute('aria-label',`Slot ${number}: empty${v.phase==='active'?' — check NFTree eligibility to plant':' — planting is not open'}`);continue;
+   const unavailable=v.phase!=='active'||!fresh();
+   const copy=card.querySelector('.empty-slot-copy'),cta=card.querySelector('.empty-slot-cta');
+   if(copy)copy.textContent=unavailable?'Empty slot. Planting requires an open season and refreshed inventory.':'Mint or use an NFTree to plant here.';
+   if(cta)cta.textContent=unavailable?'Planting unavailable':'Unlock / Plant';
+   card.setAttribute('aria-disabled',String(unavailable));card.setAttribute('aria-label',`Slot ${number}: empty${v.phase==='active'?' — check NFTree eligibility to plant':' — planting is not open'}`);continue;
   }
   const n=slots.get(seed.objectId);card.dataset.gardenSlot=String(n||'');const label=card.querySelector('.gc-slot-label');if(label)label.textContent=`Slot ${n}`;
   const isMatch=matches(seed,filter,v.nowMs);card.hidden=!show||!isMatch;if(isMatch)visible++;
@@ -106,7 +111,7 @@ function decorateGrid(){
  const ordered=[...grid.querySelectorAll('.gc')].sort((a,b)=>Number(a.dataset.gardenSlot)-Number(b.dataset.gardenSlot));
  if(ordered.some((c,i)=>grid.children[i]!==c))for(const card of ordered)grid.append(card);
  const empty=$('garden-filter-empty');empty.hidden=!show||filter==='all'||visible>0;
- if(!empty.hidden){const name={wilt:'wilting',dead:'dead',ready:'ready-to-water'}[filter]||'matching';text('garden-filter-message',`No ${name} Seeds in this loaded view. Other Seeds are hidden by the filter—not empty planting slots.`);}
+ if(!empty.hidden){const name={wilt:'wilting',dead:'dead',ready:'ready-to-water'}[filter]||'matching';text('garden-filter-message',seeds.length?`No ${name} Seeds in this loaded view. Other Seeds are hidden by the filter—not empty planting slots.`:'Your loaded garden has no Seeds. Show all slots to review planting availability.');}
 }
 function paintReminder(seeds,v){
  const wrap=$('daily-reminder');wrap.classList.toggle('show',Boolean(owner));bridge.clearCountdown();
