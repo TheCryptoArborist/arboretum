@@ -1,16 +1,17 @@
 /** Gated-preview presentation layer. Uses existing reads and existing user-click actions only. */
-import {care, counts, growth, advice, matches, slotOrder, STALE_AFTER_MS} from './garden-ux-model.mjs';
+import {care, counts, growth, advice, matches, slotOrder, STALE_AFTER_MS, loadedGardenTotals, isEndedView} from './garden-ux-model.mjs';
 const bridge=window.arbGardenBridge, $=id=>document.getElementById(id), root=$('garden-sec');
 const text=(id,value)=>{const e=$(id);if(e&&e.textContent!==String(value))e.textContent=String(value);};
 const make=(tag,cls,content)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(content)e.textContent=content;return e;};
 let owner=null, serial=0, pending=null, loaded=false, lastSuccess=0, status='disconnected', slots=new Map(), painting=false, disposed=false;
-let tools=[],crates=[];
+let tools=[],crates=[], loadedTotals=null;
+let closedLayout=false;
 const originals={};
 function view(){return window.arbSeasonStatus?.getView?.()||{phase:'unknown',canWater:false};}
 function fresh(){return loaded&&status==='ready'&&performance.now()-lastSuccess<=STALE_AFTER_MS;}
 function current(ticket,address){return ticket===serial&&address===owner&&bridge.address()===address;}
 function clearPending(){if(pending?.timer)clearTimeout(pending.timer);pending=null;}
-function reset(address){clearPending();owner=address;serial++;loaded=false;lastSuccess=0;slots=new Map();status=address?'unloaded':'disconnected';tools=[];crates=[];paint();}
+function reset(address){clearPending();owner=address;serial++;loaded=false;lastSuccess=0;slots=new Map();status=address?'unloaded':'disconnected';tools=[];crates=[];loadedTotals=null;paint();}
 function begin(address){
  if(owner!==address)reset(address);
  if(pending)return null;
@@ -19,7 +20,7 @@ function begin(address){
  paint();return ticket;
 }
 function accept(ticket,address,seeds){if(current(ticket,address))slots=slotOrder(seeds,slots);}
-function complete(ticket,address){if(!current(ticket,address))return;clearPending();loaded=true;lastSuccess=performance.now();status='ready';paint();}
+function complete(ticket,address){if(!current(ticket,address))return;clearPending();loadedTotals=loadedGardenTotals(bridge.seeds(),tools);loaded=true;lastSuccess=performance.now();status='ready';paint();}
 function fail(ticket,address){if(!current(ticket,address))return;clearPending();status='error';paint();}
 function retry(){void window.arbSeasonStatus?.refresh();void window.refreshGarden();}
 function openRewards(){window.setRewardTab?.('season');window.doc?.('rewards-sec');}
@@ -40,6 +41,7 @@ function currentAdvice(){return advice({address:bridge.address(),phase:view().ph
 function setAction(id,a){const button=$(id);if(!button)return;text(id,a.action);button.removeAttribute('onclick');button.onclick=()=>act(a.kind);button.disabled=Boolean(pending&&a.kind==='refresh');button.title=a.copy;}
 function setup(){
  root.classList.add('garden-ux');
+ setupEndedSummary();
  const sync=make('div','garden-sync');sync.id='garden-sync';
  const statusText=make('span');statusText.id='garden-sync-text';statusText.setAttribute('role','status');statusText.setAttribute('aria-live','polite');statusText.setAttribute('aria-atomic','true');
  const refresh=make('button','gbtn','Refresh Garden');refresh.id='garden-sync-refresh';refresh.type='button';refresh.onclick=retry;
@@ -87,7 +89,7 @@ function decorateGrid(){
   const seed=byId.get(card.dataset.seedId);
   if(!seed){
    const number=emptyPositions.shift();card.dataset.gardenSlot=String(number||'');const label=card.querySelector('.gc-slot-label');if(label)label.textContent=`Slot ${number||''}`;
-   card.hidden=filter!=='all'||!show;card.setAttribute('role','button');card.tabIndex=show&&v.phase==='active'&&fresh()?0:-1;
+   card.hidden=filter!=='all'||!show||isEndedView(v.phase);card.setAttribute('role','button');card.tabIndex=show&&v.phase==='active'&&fresh()?0:-1;
    const unavailable=v.phase!=='active'||!fresh();
    const copy=card.querySelector('.empty-slot-copy'),cta=card.querySelector('.empty-slot-cta');
    if(copy)copy.textContent=unavailable?'Empty slot. Planting requires an open season and refreshed inventory.':'Mint or use an NFTree to plant here.';
@@ -98,7 +100,7 @@ function decorateGrid(){
   const isMatch=matches(seed,filter,v.nowMs);card.hidden=!show||!isMatch;if(isMatch)visible++;
   const state=cardStatus(seed,v), stage=growth(seed);const set=(sel,value)=>{const e=card.querySelector(sel);if(e&&e.textContent!==value)e.textContent=value;};
   set('.gc-status',state.label);set('.gc-status-hint',state.hint||'');set('.gc-stage-next',stage.next);
-  card.title=`Slot ${n} · ${stage.label} · ${stage.requirement}. Visual progression does not determine reward eligibility.`;
+  card.title=isEndedView(v.phase)?`Slot ${n} · Loaded ${stage.label} appearance. Growing period closed; displayed GP and streak are not a finalized reward calculation.`:`Slot ${n} · ${stage.label} · ${stage.requirement}. Visual progression does not determine reward eligibility.`;
   const statusEl=card.querySelector('.gc-status');if(statusEl)statusEl.className=`gc-status ${state.kind==='ready'?'ready':state.kind==='dead'?'danger':state.wilting?'warn':'done'}`;
   for(const b of card.querySelectorAll('.gc-actions button')){
    const water=/\bdoWaterSeed\(/.test(b.getAttribute('onclick')||'');
@@ -141,6 +143,67 @@ function paintGrowth(seeds,v,a){
  }
  setAction('garden-next-growth-action',a);
 }
+/** A compact ended-season presentation of the last successfully loaded inventory.
+ * This code only formats existing state and changes visibility. It cannot claim,
+ * purchase, start a season, or convert the loaded totals into final results.
+ */
+function setupEndedSummary(){
+ const summary=make('section','garden-ended-summary');summary.id='garden-ended-summary';summary.hidden=true;
+ summary.setAttribute('aria-label','Loaded garden summary');
+ const metrics=make('dl','garden-ended-metrics');
+ for(const [key,label]of [['seeds','Seeds loaded'],['growthPoints','Loaded Growth Points'],['items','Arborist Items'],['care','Garden care']]){
+  const cell=make('div','garden-ended-metric');const term=make('dt','',label),value=make('dd','','—');value.id='garden-ended-'+key;cell.append(term,value);
+  if(key==='items'){const uses=make('span','garden-ended-uses','Uses unavailable');uses.id='garden-ended-uses';cell.append(uses);}
+  metrics.append(cell);
+ }
+ const note=make('p','garden-ended-note');note.id='garden-ended-note';summary.append(metrics,note);$('garden-check').append(summary);
+ const unused=make('div','garden-ended-unused');unused.id='garden-ended-unused';unused.hidden=true;
+ const title=make('p');title.id='garden-ended-unused-title';
+ const list=make('ul','garden-ended-slot-list');list.setAttribute('aria-label','Unused display slots');
+ for(let n=1;n<=8;n++){const li=make('li','',`Slot ${n}`);li.dataset.endedSlot=String(n);list.append(li);}
+ unused.append(title,list);$('garden-grid').after(unused);
+ originals.focusTitle=$('garden-check').querySelector('.garden-focus>strong').textContent;
+ originals.plantingCopy=root.querySelector('.garden-slots-copy').textContent;
+}
+function paintEndedSummary(seeds,v){
+ const ended=isEndedView(v.phase);root.dataset.uxEnded=String(ended);
+ const summary=$('garden-ended-summary');summary.hidden=!ended;
+ for(const stat of $('garden-check').querySelectorAll(':scope>.garden-stat'))stat.hidden=ended;
+ const rail=root.querySelector('.garden-daily-rail');rail.hidden=ended;
+ // Keep the original panels for active/paused/unknown states; remove only the
+ // duplicate ended-season prompts. Existing guards still disable every action.
+ $('garden-next-growth').hidden=ended;
+ const focus=$('garden-check').querySelector('.garden-focus>strong');
+ focus.textContent=ended&&owner?'Growing period complete':originals.focusTitle;
+ if(ended&&owner)text('garden-focus-copy',v.phase==='ended-paused'
+  ?'The growing period is closed. Current-season claims are paused; check Rewards for status and any eligible archived claims.'
+  :'Planting and watering are closed for this season. Review Rewards for eligibility and any available claims.');
+ const copy=root.querySelector('.garden-slots-copy');
+ copy.textContent=ended?'Loaded Seed artwork, Growth Points and streaks. These are not finalized season results.':originals.plantingCopy;
+ const format=value=>value===null||value===undefined?'—':BigInt(value).toLocaleString();
+ const totals=owner&&loaded?loadedTotals:null;
+ for(const key of ['seeds','growthPoints','items'])text('garden-ended-'+key,format(totals?.[key]));
+ text('garden-ended-uses',totals?.uses===null||totals?.uses===undefined?'Uses unavailable':`${format(totals.uses)} uses remaining`);
+ text('garden-ended-care',v.phase==='ended-paused'?'Closed · claims paused':'Closed');
+ const note=!owner?'Connect your wallet to load this summary.':!loaded
+  ?'Inventory has not loaded. Counts are not confirmed.':!fresh()
+  ?'Previously loaded inventory — refresh needed. Not final season results or confirmed claim amounts.'
+  :'Latest loaded inventory — not final season results or confirmed claim amounts.';
+ text('garden-ended-note',note);summary.dataset.inventory=totals?(fresh()?'loaded':'previous'):'unavailable';
+ const unused=$('garden-ended-unused'),used=new Set(slots.values());
+ const positions=Array.from({length:8},(_,i)=>i+1).filter(n=>!used.has(n));
+ unused.hidden=!ended||!owner||!loaded||$('gfilter').value!=='all'||!positions.length;
+ text('garden-ended-unused-title',`${positions.length} unused display slot${positions.length===1?'':'s'} · Planting is closed for this season.`);
+ for(const li of unused.querySelectorAll('li'))li.hidden=used.has(Number(li.dataset.endedSlot));
+ // Compact cards reflect the full, admitted inventory; filtering never changes
+ // identity or manufactures an open planting position.
+ const n=root.querySelectorAll('#garden-grid [data-seed-id]').length;
+ root.style.setProperty('--ended-columns',String(Math.max(1,Math.min(4,n))));
+ if(ended&&!closedLayout&&document.activeElement?.closest('.garden-daily-rail,.gc-actions,#garden-next-growth,#garden-season-rewards')){
+  $('garden-primary-action').focus({preventScroll:true});
+ }
+ closedLayout=ended;
+}
 function paint(){
  if(!root||!bridge||painting||disposed)return;painting=true;
  try{
@@ -156,7 +219,7 @@ function paint(){
   if(!loaded)for(const id of ['g-gp','g-wilt','g-dead'])text(id,'—');
   text('garden-focus-copy',a.copy);setAction('garden-primary-action',a);
   text('next-move-title',a.title);text('next-move-copy',a.copy);text('next-move-detail',a.copy);text('next-move-badge',v.phase==='active'?'Garden care':'Season status');setAction('next-move-action',a);
-  paintReminder(seeds,v);paintGrowth(seeds,v,a);decorateGrid();
+  paintReminder(seeds,v);paintGrowth(seeds,v,a);decorateGrid();paintEndedSummary(seeds,v);
   const water=$('btn-water-all');if(water){text('btn-water-all',live?`Water Ready Seeds · ${c?.ready||0}`:'Watering unavailable');water.disabled=!live||!c?.ready;}
   for(const b of root.querySelectorAll('#live-actions button,#garden-items-nudge button,#garden-slot-nudge button')){
    if(/\b(?:doPlant\w*|doApplyTool|doOpenCrate)\(/.test(b.getAttribute('onclick')||'')){
