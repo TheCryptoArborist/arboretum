@@ -72,3 +72,55 @@
 .garden-ux[data-ux-ready="false"] .next-move-grid,
 .garden-ux[data-ux-ready="false"] #next-move-kicker,
 .garden-ux[data-ux-ready="false"] #alert-bar{display:none!important}
+
+/* Ended seasons show loaded inventory once, rather than five unavailable care
+   counters and several copies of the same rewards prompt. Active view unchanged. */
+.garden-ux .garden-ended-summary{grid-column:1/-1;min-width:0}
+.garden-ux .garden-ended-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0}
+.garden-ux .garden-ended-metric{min-width:0;background:rgba(3,12,17,.65);border:1px solid #31594e;border-radius:12px;padding:14px}
+.garden-ux .garden-ended-metric dt{font-size:12px;line-height:1.5;color:#bfd5cd}
+.garden-ux .garden-ended-metric dd{margin:6px 0 0;font-size:25px;line-height:1.2;font-weight:700;color:#f4dc97;overflow-wrap:anywhere}
+.garden-ux #garden-ended-care{font-size:18px;line-height:1.5}
+.garden-ux .garden-ended-uses{display:block;font-size:12px;line-height:1.5;color:#bfd5cd;margin-top:5px}
+.garden-ux .garden-ended-note{font-size:12px;line-height:1.5;color:#afc7bd;margin:10px 0 0}
+.garden-ux .garden-ended-summary[data-inventory="previous"] .garden-ended-note{color:#ffe1a0}
+.garden-ux .garden-ended-unused{padding:12px 0 2px}
+.garden-ux .garden-ended-unused p{font-size:12px;line-height:1.6;margin:0 0 8px;color:#bdcec8}
+.garden-ux .garden-ended-slot-list{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+.garden-ux .garden-ended-slot-list li{padding:7px 12px;border:1px dashed #456359;border-radius:8px;font-size:12px;line-height:1.5;color:#abc4ba;background:rgba(3,12,17,.5)}
+.garden-ux[data-ux-ended="true"] .garden-command-layout{display:block}
+.garden-ux[data-ux-ended="true"] .garden-board-panel{width:100%;min-width:0}
+.garden-ux[data-ux-ended="true"] #garden-check{grid-template-columns:minmax(0,1fr);padding:12px 0}
+.garden-ux[data-ux-ended="true"] .garden-grid{grid-template-columns:repeat(var(--ended-columns,4),minmax(0,1fr));max-width:calc(var(--ended-columns,4)*340px);gap:12px;align-items:start}
+.garden-ux[data-ux-ended="true"] .gc.has-nft-image{min-height:290px;padding:12px;justify-content:flex-end}
+.garden-ux[data-ux-ended="true"] .gc .gc-readout{padding:10px 8px;gap:6px}
+.garden-ux[data-ux-ended="true"] .gc .gc-stage-name{font-size:14px}
+.garden-ux[data-ux-ended="true"] .gc .gc-meta{font-size:12px}
+.garden-ux[data-ux-ended="true"] .gc .gc-status{font-size:11px}
+.garden-ux[data-ux-ended="true"] .gc-lbl,
+.garden-ux[data-ux-ended="true"] .gc-stage-next,
+.garden-ux[data-ux-ended="true"] .gc-grow-track,
+.garden-ux[data-ux-ended="true"] .gc-status-hint,
+.garden-ux[data-ux-ended="true"] .gc-dry,
+.garden-ux[data-ux-ended="true"] .seed-effects,
+.garden-ux[data-ux-ended="true"] .gc-actions,
+.garden-ux[data-ux-ended="true"] #garden-season-rewards,
+.garden-ux[data-ux-ended="true"] #garden-season-copy,
+.garden-ux[data-ux-ended="true"] #garden-open-crates,
+.garden-ux[data-ux-ended="true"] #garden-items-apply{display:none!important}
+.garden-ux[data-ux-ended="true"] .garden-season-status{padding:12px 16px;gap:8px 16px}
+.garden-ux[data-ux-ended="true"] .garden-season-status h3{font-size:18px}
+.garden-ux[data-ux-ended="true"] .garden-season-clock{padding:0;border:0}
+.garden-ux[data-ux-ended="true"] .garden-season-clock>strong{font-size:16px}
+.garden-ux[data-ux-ended="true"] .garden-season-actions{margin-top:4px;display:block}
+.garden-ux[data-ux-ended="true"] #garden-items-nudge{width:100%;max-width:none;flex-direction:row;align-items:center;gap:14px}
+@media(max-width:680px){
+ .garden-ux .garden-ended-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .garden-ux .garden-ended-metric{padding:12px}.garden-ux .garden-ended-metric dd{font-size:23px}
+ .garden-ux[data-ux-ended="true"] .garden-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;gap:8px}
+ .garden-ux[data-ux-ended="true"] .gc.has-nft-image{min-height:260px;padding:8px 6px}
+ .garden-ux[data-ux-ended="true"] .gc .gc-stage-name{font-size:12px}
+ .garden-ux[data-ux-ended="true"] .gc .gc-meta{font-size:11px}
+ .garden-ux[data-ux-ended="true"] #garden-items-nudge{flex-direction:column;align-items:stretch}
+}
+@media(max-width:360px){.garden-ux[data-ux-ended="true"] .garden-grid{grid-template-columns:1fr}}
