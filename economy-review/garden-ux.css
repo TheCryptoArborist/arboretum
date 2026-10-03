@@ -1,0 +1,56 @@
+/* Isolated review styles: preserve NFTree art; make care information readable. */
+.garden-ux [hidden]{display:none!important}
+.garden-ux .garden-sync{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0;color:#b7d3c7;font-size:13px;line-height:1.5}
+.garden-ux .garden-sync[data-status="error"],.garden-ux .garden-sync[data-status="stale"]{color:#ffe1a0;border-left:3px solid #e1b756;padding-left:12px}
+.garden-ux .garden-mainnet-note{font-size:11px;line-height:1.5;color:#a8bec0;margin:0 0 10px}
+.garden-ux button,.garden-ux select,.garden-ux summary{min-height:44px}
+.garden-ux button:focus-visible,.garden-ux select:focus-visible,.garden-ux summary:focus-visible,.garden-ux [role="button"]:focus-visible{outline:3px solid #b5ffdf;outline-offset:3px}
+.garden-ux .garden-season-status{grid-template-columns:minmax(0,1.7fr) minmax(180px,1fr);gap:10px 20px;padding:16px 20px;margin:12px 0}
+.garden-ux .garden-season-status h3{font-size:21px;margin:0 0 4px}
+.garden-ux .garden-season-status p{margin:4px 0}
+.garden-ux .garden-season-actions{margin:10px 0 0}
+.garden-ux .garden-season-details{grid-column:1/-1;border-top:1px solid #31594e;font-size:12px;line-height:1.6}
+.garden-ux .garden-season-details>summary{display:list-item;align-content:center;cursor:pointer;color:#bdded0;padding:10px 0}
+.garden-ux #garden-check{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0 16px;padding:12px 14px}
+.garden-ux #garden-check .garden-focus{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px}
+.garden-ux #garden-check .garden-focus>strong{grid-column:1;font-size:15px}
+.garden-ux #garden-check .garden-focus>span{grid-column:1;font-size:13px;line-height:1.5}
+.garden-ux #garden-check .garden-focus>button{grid-column:2;grid-row:1/3;align-self:center;min-width:180px}
+.garden-ux .garden-stat{min-width:0;padding:10px 6px;text-align:center}
+.garden-ux .garden-stat>strong{font-size:21px}
+.garden-ux .garden-stat>span{font-size:12px;white-space:normal}
+.garden-ux .garden-load-placeholder,.garden-ux .garden-filter-empty{padding:20px 16px;border:1px dashed #4b7166;border-radius:12px;line-height:1.6;color:#bed4ce;margin:10px 0}
+.garden-ux .garden-filter-empty .gbtn{margin-top:10px;display:block}
+.garden-ux .garden-board-tools{margin:8px 0}
+.garden-ux #gfilter{font-size:13px!important;padding:8px 12px!important;min-width:170px}
+.garden-ux .gc{min-height:285px;padding:10px 8px;gap:4px}
+.garden-ux .gc.has-nft-image{min-height:330px;padding:10px 8px}
+.garden-ux .gc.has-nft-image .gc-lbl{font-size:10px;line-height:1.4;top:8px;right:8px}
+.garden-ux .gc.has-nft-image .gc-slot-label{font-size:11px;top:8px;left:8px}
+.garden-ux .gc .gc-readout{gap:6px;padding:8px 6px;background:rgba(3,12,17,.87)}
+.garden-ux .gc .gc-stage-name,.garden-ux .gc .gc-status{font-size:12px;line-height:1.4}
+.garden-ux .gc .gc-stage-next{font-size:10px;line-height:1.45;display:block;white-space:normal;overflow-wrap:anywhere}
+.garden-ux .gc .gc-stage-top{display:block}
+.garden-ux .gc .gc-meta{font-size:11px;line-height:1.5}
+.garden-ux .gc.has-nft-image .gc-status-hint,.garden-ux .gc .gc-status-hint{display:block;font-size:12px;line-height:1.5;color:#dfefe8;white-space:normal;text-align:center}
+.garden-ux .gc .gc-actions{display:flex;flex-wrap:wrap;gap:8px;width:100%;position:relative;z-index:3}
+.garden-ux .gc .gc-btn{width:100%;min-height:44px;padding:8px!important;font-size:12px!important;line-height:1.4;white-space:normal}
+.garden-ux [aria-disabled="true"].empty-slot{cursor:not-allowed;opacity:.55}
+.garden-ux .garden-next-growth-copy,.garden-ux .garden-next-growth-score{font-size:13px;line-height:1.6}
+.garden-ux .garden-next-growth-chip{white-space:normal;font-size:11px;line-height:1.4}
+@media(max-width:1100px){.garden-ux .garden-command-layout{display:flex;flex-direction:column}.garden-ux .garden-daily-rail{position:static;display:grid;grid-template-columns:1fr}.garden-ux .garden-board-panel{width:100%;min-width:0}}
+@media(max-width:680px){
+ .garden-ux .sec-hdr{gap:10px}.garden-ux #live-actions{gap:8px!important}.garden-ux #live-actions .gbtn{font-size:12px;flex:1 1 auto}
+ .garden-ux .garden-sync{align-items:flex-start;gap:8px}.garden-ux .garden-sync button{font-size:12px;min-width:110px}
+ .garden-ux .garden-season-status{grid-template-columns:minmax(0,1fr);padding:14px;gap:8px}
+ .garden-ux .garden-season-status .garden-season-kicker{font-size:10px;margin-bottom:4px}.garden-ux .garden-season-status h3{font-size:20px}
+ .garden-ux .garden-season-clock{border:0;padding:0;display:flex;flex-direction:row;gap:8px;align-items:center;justify-content:space-between}
+ .garden-ux .garden-season-clock>strong{font-size:16px;margin:0}.garden-ux .garden-season-clock>span{font-size:10px}
+ .garden-ux .garden-season-actions{display:flex;gap:8px;flex-wrap:wrap}.garden-ux .garden-season-actions button{width:auto;flex:1 1 auto;padding:8px;font-size:12px}
+ .garden-ux #garden-check{grid-template-columns:repeat(3,minmax(0,1fr));padding:12px;gap:6px}
+ .garden-ux #garden-check .garden-focus{display:block}.garden-ux #garden-check .garden-focus>button{width:100%;min-width:0;margin-top:8px}
+ .garden-ux .garden-stat{padding:7px 3px}.garden-ux .garden-stat>span{font-size:11px}
+ .garden-ux .gc.has-nft-image{min-height:335px}.garden-ux .garden-slots-copy{font-size:12px;line-height:1.5}
+ .garden-ux .garden-next-growth{min-width:0}.garden-ux .garden-next-growth-meta{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){.garden-ux *{animation:none!important;transition:none!important}}
