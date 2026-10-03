@@ -5,7 +5,7 @@ or bypass the write-only tester password. The full hosted-review.py path stays
 unchanged and its positive-login/browser checks remain required separately.
 """
 from pathlib import Path
-import base64, io, json, os, subprocess, sys, time, urllib.parse, zipfile, traceback
+import base64, hashlib, io, json, os, re, subprocess, sys, time, urllib.parse, zipfile, traceback
 
 SITE = 'a344fb31-10b4-4eea-9562-067d90a39607'
 OLD = '6abe81174b61a8e3dd53b333'
@@ -33,12 +33,14 @@ def validate_delta(lines):
 
 def validate_packet(packet, source_sha):
     require(set(packet) == {'proxy_url', 'source_sha', 'confirmed_deploy_id',
-                           'scope', 'expires_at'}, 'Unexpected capability fields')
+                           'scope', 'expires_at', 'production_checked_at'}, 'Unexpected capability fields')
     require(packet['scope'] == 'stage_gated_preview_only', 'Wrong capability scope')
     require(packet['source_sha'] == source_sha and packet['confirmed_deploy_id'] == OLD,
             'Capability is not bound to this source and production baseline')
     require(type(packet['expires_at']) is int and time.time() < packet['expires_at'] <= time.time() + 1800,
             'Capability expired or has an excessive lifetime')
+    require(type(packet['production_checked_at']) is int and 0 <= time.time() - packet['production_checked_at'] <= 300,
+            'Recent connected-project production confirmation is required')
     url = urllib.parse.urlsplit(packet['proxy_url'])
     require(url.scheme == 'https' and url.hostname in {
         'netlify-mcp.netlify.app', 'mcp.netlify.com', 'netlify-mcp.netlify.com'} and
@@ -94,26 +96,35 @@ def main():
         key_path.unlink(missing_ok=True)
     require(packet is not None, 'No run-bound deployment capability received')
     proxy = validate_packet(packet, source)
-    def netlify_json(path):
-        r = requests.get(proxy + '/api/v1' + path, timeout=30, allow_redirects=False)
-        require(r.ok and not r.is_redirect, 'Netlify read failed')
+    # The MCP deploy capability explicitly permits POST builds and GET deploys
+    # only. Site configuration/manifest reads use the connected project tool,
+    # never an out-of-scope proxy request or a path-normalization workaround.
+    def read_deploy(deploy_id):
+        require(bool(re.fullmatch(r'[0-9a-f]{24}', deploy_id)), 'Invalid deploy ID')
+        path = '/api/v1/deploys/' + deploy_id
+        r = requests.get(proxy + path, timeout=30, allow_redirects=False)
+        if not r.ok or r.is_redirect:
+            save('stage-http-error.json', {'method': 'GET', 'path': path, 'status': r.status_code})
+            raise ValueError('Deployment read failed; see sanitized HTTP status')
         return r.json()
-    def assert_production():
-        site = netlify_json('/sites/' + SITE)
-        require(site['id'] == SITE and site.get('published_deploy', {}).get('id') == OLD, 'Published production baseline changed')
-        require(BRANCH != site.get('build_settings', {}).get('repo_branch', 'main') and BRANCH != 'main', 'Production branch forbidden')
-        return site
-    operation = 'checking production and source preservation'
-    assert_production()
-    old = netlify_json('/deploys/' + OLD)
+    operation = 'checking pinned deploy and source preservation'
+    old = read_deploy(OLD)
     require(old['site_id'] == SITE and old['context'] == 'production' and old['state'] == 'ready', 'Invalid pinned production deploy')
+    require(BRANCH != 'main' and BRANCH != old.get('branch'), 'Production branch forbidden')
     expected_functions = sorted(x['n'] for x in old.get('available_functions', []))
     require(expected_functions == ['calendar-reminder'] and not old.get('function_schedules'), 'Unexpected backend inventory')
-    baseline_files = netlify_json('/sites/' + SITE + '/files')
-    require(isinstance(baseline_files, list) and baseline_files, 'Production file inventory unavailable')
-    manifest = lambda rows: sorted((x['path'], x['sha'], x['size']) for x in rows)
-    before = manifest(baseline_files)
-    save('stage-baseline.json', {'production_deploy': OLD, 'main': BASE, 'files': before})
+    def public_production_hashes():
+        result = {}
+        for path in ['/', '/player-guide', '/tester-access']:
+            response = requests.get('https://treegrow.xyz' + path, timeout=40, allow_redirects=False)
+            require(response.status_code == 200, 'Public production baseline unavailable')
+            result[path] = hashlib.sha256(response.content).hexdigest()
+        return result
+    before = public_production_hashes()
+    save('stage-baseline.json', {'production_deploy': OLD, 'main': BASE,
+        'public_hashes': before, 'publication_confirmation_source': 'connected_project_tool_before_encryption',
+        'publication_confirmation_at': packet['production_checked_at'],
+        'authenticated_content_checked': False})
     archive = io.BytesIO()
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as z:
         for name in git('ls-tree', '-r', '--name-only', 'HEAD').decode().splitlines():
@@ -122,9 +133,12 @@ def main():
             data = git('show', 'HEAD:' + name)
             z.writestr(name, preview_config(data) if name == 'netlify.toml' else data)
     operation = 'submitting isolated branch build'
-    assert_production()
+    require(time.time() - packet['production_checked_at'] <= 300, 'Production preflight confirmation expired')
+    require(github_json('/git/ref/heads/main')['object']['sha'] == BASE, 'Main baseline changed before build')
     r = requests.post(proxy + '/api/v1/sites/' + SITE + '/builds?' + urllib.parse.urlencode({'branch': BRANCH, 'title': 'Gated reconciliation preview - authenticated review pending'}), files={'zip': ('source.zip', archive.getvalue(), 'application/zip')}, timeout=(15, 120), allow_redirects=False)
-    require(r.ok and not r.is_redirect, 'Branch build request failed; do not blindly repeat an ambiguous request')
+    if not r.ok or r.is_redirect:
+        save('stage-http-error.json', {'method': 'POST', 'path': '/api/v1/sites/' + SITE + '/builds', 'status': r.status_code})
+        raise ValueError('Branch build request failed; do not blindly repeat an ambiguous request')
     created = r.json(); created = created[0] if isinstance(created, list) else created
     deploy_id = created['deploy_id']
     record = {'deploy_id': deploy_id, 'source_sha': source, 'branch': BRANCH,
@@ -133,7 +147,7 @@ def main():
     save('staged-deployment.json', record)
     operation = 'waiting for branch build'
     for _ in range(120):
-        d = netlify_json('/deploys/' + deploy_id)
+        d = read_deploy(deploy_id)
         require(d['state'] != 'error', 'Branch build failed')
         if d['state'] == 'ready':
             break
@@ -158,11 +172,12 @@ def main():
     r = s.post(preview + '/tester-access', headers={'Origin': preview}, data={'password': 'invalid-tester-code'}, allow_redirects=False, timeout=30)
     check('Invalid tester code rejected', r.status_code == 401)
     operation = 'checking production remains unchanged'
-    assert_production()
-    check('Production file inventory unchanged', before == manifest(netlify_json('/sites/' + SITE + '/files')))
+    check('Public production pages unchanged', before == public_production_hashes())
     check('Main unchanged', github_json('/git/ref/heads/main')['object']['sha'] == BASE)
-    record.update({'production_unchanged': True, 'public_gate_checks_passed': len(checks),
-                   'pending': ['Genuine tester login and logout', 'Authenticated hosted-module integrity', 'Updated reconciliation UI and wallet checks'],
+    record.update({'public_production_bytes_unchanged': True,
+                   'production_publication_check': 'pending_external_connected_project_read',
+                   'public_gate_checks_passed': len(checks),
+                   'pending': ['Post-build connected-project publication check', 'Genuine tester login and logout', 'Authenticated hosted-module integrity', 'Updated reconciliation UI and wallet checks'],
                    'full_hosted_verification_replaced': False})
     save('staged-deployment.json', record)
     print('Gated preview staged; authenticated review is PENDING:', record['preview_url'])
