@@ -33,11 +33,12 @@ jobs:
           PY
           node --test economy-review/*.test.mjs | tee economy-review-results/tests.txt
           python3 economy-review/test-stage-preview.py 2>&1 | tee economy-review-results/stage-tests.txt
+          python3 economy-review/test-stage-garden-ux.py 2>&1 | tee economy-review-results/garden-stage-tests.txt
           node economy-review/example.mjs > economy-review-results/synthetic-summary.json
           node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
           cp -r economy-review/example-output economy-review-results/
           for file in economy-review/*.mjs; do node --check "$file"; done
-          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py economy-review/stage-preview.py economy-review/player-smoke.py economy-review/garden-ux-smoke.py
+          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py economy-review/stage-preview.py economy-review/player-smoke.py economy-review/garden-ux-smoke.py economy-review/stage-garden-ux.py
           git rev-parse HEAD > economy-review-results/source-sha.txt
       - name: Inspect archive schema and evidence read-only
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-archives]')
@@ -99,7 +100,13 @@ jobs:
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[stage-partners]') && !contains(github.event.head_commit.message, '[host-partners]')
         env:
           GH_TOKEN: ${{ github.token }}
-        run: python3 economy-review/stage-preview.py
+          GARDEN_UX_REVIEW: ${{ contains(github.event.head_commit.message, '[garden-ux]') && '1' || '0' }}
+        run: |
+          if [ "$GARDEN_UX_REVIEW" = "1" ]; then
+            python3 economy-review/stage-garden-ux.py
+          else
+            python3 economy-review/stage-preview.py
+          fi
       - name: Preserve exact sources and review build for browser verification
         if: always()
         run: |
