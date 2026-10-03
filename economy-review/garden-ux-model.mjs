@@ -74,3 +74,26 @@ export function slotOrder(seeds, previous=new Map()) {
   }
   return slots;
 }
+
+/** Loaded inventory totals, not a finalized season statement or claim calculation.
+ * Reject missing, negative, fractional and already-imprecise numeric values.
+ * Totals stay decimal strings so a large valid sum never loses precision.
+ */
+export function loadedGardenTotals(seeds, tools) {
+  const sum = values => {
+    let total = 0n;
+    for (const value of values) {
+      if (!(typeof value === 'number' && Number.isSafeInteger(value) && value >= 0) &&
+          !(typeof value === 'string' && /^(0|[1-9]\d*)$/.test(value))) return null;
+      total += BigInt(value);
+    }
+    return total.toString();
+  };
+  return {
+    seeds: Array.isArray(seeds) ? String(seeds.length) : null,
+    growthPoints: Array.isArray(seeds) ? sum(seeds.map(s => s?.growthPoints)) : null,
+    items: Array.isArray(tools) ? String(tools.length) : null,
+    uses: Array.isArray(tools) ? sum(tools.map(t => t?.content?.fields?.charges)) : null,
+  };
+}
+export function isEndedView(phase) { return phase === 'ended' || phase === 'ended-paused'; }
