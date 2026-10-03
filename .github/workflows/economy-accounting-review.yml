@@ -1,0 +1,121 @@
+name: Economy accounting review
+on:
+  push:
+    branches: [feature/economy-accounting-review]
+    paths: ['economy-review/**', '.github/workflows/economy-accounting-review.yml']
+  pull_request:
+    paths: ['economy-review/**', '.github/workflows/economy-accounting-review.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify additive-only scope and offline regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p economy-review-results
+          node --version > economy-review-results/node-version.txt
+          git diff --name-status 84b08fdb4bc0ec0417ced7be21f29aae914939f7 HEAD > economy-review-results/changed-files.txt
+          python3 - <<'PY'
+          import subprocess
+          lines=subprocess.check_output(['git','diff','--name-status','84b08fdb4bc0ec0417ced7be21f29aae914939f7','HEAD'],text=True).splitlines()
+          for line in lines:
+              status,path=line.split('\t')
+              assert status=='A' and (path.startswith('economy-review/') or path=='.github/workflows/economy-accounting-review.yml'),line
+          print('Only new review files; no production source, contract or deployment changes.')
+          PY
+          node --test economy-review/*.test.mjs | tee economy-review-results/tests.txt
+          python3 economy-review/test-stage-preview.py 2>&1 | tee economy-review-results/stage-tests.txt
+          python3 economy-review/test-stage-garden-ux.py 2>&1 | tee economy-review-results/garden-stage-tests.txt
+          node economy-review/example.mjs > economy-review-results/synthetic-summary.json
+          node economy-review/report.mjs economy-review/example-output/synthetic-input.json economy-review-results/cli-output
+          cp -r economy-review/example-output economy-review-results/
+          for file in economy-review/*.mjs; do node --check "$file"; done
+          python3 -m py_compile economy-review/hosted-review.py economy-review/check-hosted.py economy-review/stage-preview.py economy-review/player-smoke.py economy-review/garden-ux-smoke.py economy-review/stage-garden-ux.py
+          git rev-parse HEAD > economy-review-results/source-sha.txt
+      - name: Inspect archive schema and evidence read-only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[inspect-archives]')
+        run: node economy-review/archive-probe.mjs
+      - name: Build review-only admin overlay when requested
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[build-partners]')
+        env:
+          CONTEXT: branch-deploy
+        run: |
+          python3 scripts/build-player-guide.py
+          node scripts/build-guide-site.mjs
+          node scripts/build-prelaunch.mjs
+          node scripts/polish-player-guide.mjs
+          python3 scripts/build-public-guide.py
+          python3 scripts/build-reward-first.py
+          node scripts/build-season-status.mjs
+          node economy-review/build-admin-preview.mjs > economy-review-results/admin-build.json
+      - name: Regular-player browser smoke checks - synthetic wallet and data only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[player-smoke]')
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium
+          python3 economy-review/player-smoke.py 2>&1 | tee economy-review-results/player-smoke.log
+      - name: Garden UX review - populated synthetic gardens and read failures
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[garden-ux]')
+        env:
+          CONTEXT: branch-deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          node economy-review/build-garden-ux-preview.mjs
+          python3 -m pip install playwright
+          python3 -m playwright install --with-deps chromium
+          python3 economy-review/garden-ux-smoke.py 2>&1 | tee economy-review-results/garden-ux.log
+      - name: Read and reconcile live testing-season partner purchases
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[read-partners]')
+        run: node economy-review/read-live.mjs
+      - name: Prepare hosted branch review environment
+        if: github.event_name == 'push' && (contains(github.event.head_commit.message, '[host-partners]') || contains(github.event.head_commit.message, '[stage-partners]'))
+        run: |
+          python3 -m pip install requests cryptography playwright
+          python3 -m playwright install --with-deps chromium
+          PARTNER_HOST_MODE=key python3 economy-review/hosted-review.py
+      - name: Publish ephemeral encryption public key only
+        if: github.event_name == 'push' && (contains(github.event.head_commit.message, '[host-partners]') || contains(github.event.head_commit.message, '[stage-partners]'))
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: partner-preview-key
+          path: economy-review-results/hosted/public-key.json
+          retention-days: 1
+      - name: Deploy and verify isolated hosted preview only
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[host-partners]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 economy-review/hosted-review.py
+      - name: Stage gated preview only - authenticated readiness NOT approved
+        if: github.event_name == 'push' && contains(github.event.head_commit.message, '[stage-partners]') && !contains(github.event.head_commit.message, '[host-partners]')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GARDEN_UX_REVIEW: ${{ contains(github.event.head_commit.message, '[garden-ux]') && '1' || '0' }}
+        run: |
+          if [ "$GARDEN_UX_REVIEW" = "1" ]; then
+            python3 economy-review/stage-garden-ux.py
+          else
+            python3 economy-review/stage-preview.py
+          fi
+      - name: Preserve exact sources and review build for browser verification
+        if: always()
+        run: |
+          mkdir -p economy-review-results
+          git archive --format=tar HEAD economy-review scripts index.html wallet.js garden.js sdk-entry.js sui-sdk.bundle.js netlify.toml netlify contract/sources/arboretum.move .github/workflows/economy-accounting-review.yml | gzip > economy-review-results/review-source.tar.gz
+          if test -f dist/game.html; then tar -czf economy-review-results/review-dist.tar.gz dist; fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: economy-accounting-review
+          path: economy-review-results/
+          retention-days: 14
