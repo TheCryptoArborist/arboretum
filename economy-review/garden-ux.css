@@ -54,3 +54,15 @@
  .garden-ux .garden-next-growth{min-width:0}.garden-ux .garden-next-growth-meta{flex-wrap:wrap}
 }
 @media(prefers-reduced-motion:reduce){.garden-ux *{animation:none!important;transition:none!important}}
+
+/* Keep secondary actions available without crowding the first mobile screen. */
+.garden-ux .garden-more-actions{margin:0 0 12px;border:1px solid #31594e;border-radius:12px;padding:0 12px}
+.garden-ux .garden-more-actions>summary{padding:10px 0;cursor:pointer;font-size:13px;align-content:center;color:#bdded0}
+.garden-ux .garden-more-actions #live-actions{padding:4px 0 12px}
+@media(max-width:680px){
+ .garden-ux .garden-season-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+ .garden-ux .garden-season-actions button{min-width:0;font-size:10px;letter-spacing:.04em;white-space:normal}
+ .garden-ux #garden-check{grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+ .garden-ux .garden-stat>span{font-size:9px;letter-spacing:0;overflow-wrap:normal;line-height:1.35}
+ .garden-ux .garden-stat>strong{font-size:18px}
+}
