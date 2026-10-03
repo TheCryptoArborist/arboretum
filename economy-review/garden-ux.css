@@ -66,3 +66,9 @@
  .garden-ux .garden-stat>span{font-size:9px;letter-spacing:0;overflow-wrap:normal;line-height:1.35}
  .garden-ux .garden-stat>strong{font-size:18px}
 }
+
+/* The primary advice is season-aware; suppress legacy secondary care copy
+   whenever that advice is closed, loading, or stale. */
+.garden-ux[data-ux-ready="false"] .next-move-grid,
+.garden-ux[data-ux-ready="false"] #next-move-kicker,
+.garden-ux[data-ux-ready="false"] #alert-bar{display:none!important}
