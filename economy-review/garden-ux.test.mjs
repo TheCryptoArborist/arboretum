@@ -29,3 +29,8 @@ test('transform rejects unknown source',()=>assert.throws(()=>transform('<html><
 test('season accessor addition rejects unexpected input',()=>assert.throws(()=>transformSeason('unknown'),/Unrecognized/));
 test('production and unset contexts fail before writes',()=>{const old=process.env.CONTEXT;for(const context of ['production','deploy-preview','']){process.env.CONTEXT=context;assert.throws(()=>build('/not-a-real-directory'),/branch-review only/);}if(old===undefined)delete process.env.CONTEXT;else process.env.CONTEXT=old;});
 test('new runtime does not construct, sign, execute or fetch transactions',()=>{const s=fs.readFileSync('economy-review/garden-ux.mjs','utf8');assert.doesNotMatch(s,/fetch\s*\(|new Transaction|signAndExecute|executeTransaction|moveCall\(|splitCoins\(/);});
+
+test('closed and unverified views hide legacy secondary care prompts',()=>{
+ const css=fs.readFileSync('economy-review/garden-ux.css','utf8');
+ for(const selector of ['.next-move-grid','#next-move-kicker','#alert-bar'])assert.ok(css.includes('.garden-ux[data-ux-ready="false"] '+selector));
+});
