@@ -6,7 +6,8 @@ class StageTests(unittest.TestCase):
     def packet(self):
         return {'proxy_url': 'https://netlify-mcp.netlify.app/proxy/fictional-offline-capability',
                 'source_sha': 'a'*40, 'confirmed_deploy_id': stage.OLD,
-                'scope': 'stage_gated_preview_only', 'expires_at': int(time.time())+300}
+                'scope': 'stage_gated_preview_only', 'expires_at': int(time.time())+300,
+                'production_checked_at': int(time.time())}
     def test_valid_packet(self):
         self.assertTrue(stage.validate_packet(self.packet(), 'a'*40).startswith('https://'))
     def test_plaintext_tester_password_not_accepted(self):
@@ -35,6 +36,15 @@ class StageTests(unittest.TestCase):
         self.assertIn(b'node economy-review/build-admin-preview.mjs',changed)
         self.assertRaises(ValueError,stage.preview_config,b'unknown build')
         self.assertRaises(ValueError,stage.preview_config,changed)
+    def test_stale_project_confirmation_rejected(self):
+        p=self.packet();p['production_checked_at']=int(time.time())-600
+        self.assertRaises(ValueError,stage.validate_packet,p,'a'*40)
+    def test_proxy_does_not_read_site_or_files_endpoints(self):
+        code=pathlib.Path(stage.__file__).read_text()
+        self.assertNotIn('netlify_json(',code)
+        self.assertNotIn('def assert_production',code)
+        self.assertIn("path = '/api/v1/deploys/' + deploy_id",code)
+        self.assertIn('pending_external_connected_project_read',code)
     def test_staged_does_not_equal_ready(self):
         code=pathlib.Path(stage.__file__).read_text()
         self.assertIn("'tester_ready': False",code)
