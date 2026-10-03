@@ -14,12 +14,32 @@ REGISTRY_ID='0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50'
 TYPE='0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry'
 REGISTRY={'address':REGISTRY_ID,'version':'1','asMoveObject':{'contents':{'type':{'repr':TYPE},'json':{'current_season_id':'3','season_start_ms':'1788220806247','paused':False,'reward_pool':'0','treasury':'0','total_seeds':'0','total_growth_points':'0'}}}}
 EXPECTED={'game.html':'1f927e9f3ac3ea79b43636f9fd3f455cdd34174adb902751cb28c89e7240a842','wallet.js':'e75087b0cfad4857932205f1aa827812d7ea06b4c9d833a062ab2ed3c1f08e17','sui-sdk.bundle.js':'8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44','economy-review/partner-reconciliation-panel.mjs':'90f2c57634d5fc32c722b0a2bfa9103134b1c17c4e2ba196164f5220ad655aac'}
-checks=[];blocked=[];missing=[]
+checks=[];blocked=[];missing=[];unavailable_backends=[]
 def ck(name,ok,detail=None):
     row={'check':name,'passed':bool(ok)}
     if detail is not None:row['detail']=detail
     checks.append(row);(OUT/'checks.json').write_text(json.dumps(checks,indent=2))
     print(('PASS ' if ok else 'FAIL ')+name,flush=True)
+
+
+def connection_snapshot(page):
+    # innerText reflects CSS text-transform. Check underlying label plus the
+    # actual disconnected state, error message, storage and provider call count.
+    return page.evaluate("""()=>{
+      const b=document.getElementById('wallet-btn');
+      return {address:window.arb.getAddress(),buttonText:b.textContent,
+        renderedText:b.innerText,loading:b.classList.contains('loading'),
+        connected:b.classList.contains('connected'),disabled:b.disabled,
+        lastError:[...document.querySelectorAll('#toast-wrap .toast.td')].at(-1)?.textContent||'',
+        storedAddress:localStorage.getItem('arb_addr'),sessionAddress:sessionStorage.getItem('arb_addr'),
+        connectCalls:window.__walletAudit.connect};
+    }""")
+
+def recovered_connection(s,expected_error,previous_calls):
+    return (s['address'] is None and s['buttonText']=='Connect Wallet' and
+        not s['loading'] and not s['connected'] and not s['disabled'] and
+        s['storedAddress'] is None and s['sessionAddress'] is None and
+        expected_error in s['lastError'] and s['connectCalls']==previous_calls+1)
 
 def graphql(q,v):
     page={'nodes':[],'pageInfo':{'hasNextPage':False,'endCursor':None,'hasPreviousPage':False,'startCursor':None}}
@@ -61,6 +81,10 @@ with sync_playwright() as p:
             req=r.request;u=urlsplit(req.url)
             requests.append({'host':u.netloc,'path':u.path,'method':req.method})
             if u.netloc==urlsplit(ORIGIN).netloc and req.method=='GET':
+                if u.path.startswith('/api/referral/'):
+                    # Deliberately exercise the existing unavailable-referral-API path.
+                    unavailable_backends.append({'width':width,'path':u.path,'status':404,'fixture':True})
+                    r.fulfill(status=404,json={'error':'Unavailable optional backend (offline fixture)'});return
                 name=unquote(u.path).lstrip('/') or 'index.html';f=(DIST/name).resolve()
                 if f.is_relative_to(DIST.resolve()) and f.is_file():
                     mime='text/javascript' if f.suffix=='.mjs' else mimetypes.guess_type(f.name)[0] or 'application/octet-stream'
@@ -124,10 +148,15 @@ with sync_playwright() as p:
             page.evaluate('doDisconnect()');page.wait_for_function('window.arb.getAddress()===null')
             ck(f'{width}: disconnect clears both session stores',page.evaluate('localStorage.getItem("arb_addr")===null && sessionStorage.getItem("arb_addr")===null'))
             ck(f'{width}: admin remains hidden after disconnect',not page.locator('#admin-nav').is_visible() and not page.locator('#admin-modal').is_visible())
+            prior_calls=page.evaluate('window.__walletAudit.connect')
             page.evaluate('window.__walletAudit.wrongNetwork=true');page.evaluate('doConnect("Arboretum Local Test Wallet")')
-            ck(f'{width}: wrong network rejected',page.evaluate('window.arb.getAddress()===null') and page.locator('#wallet-btn').inner_text()=='Connect Wallet')
+            wrong_network=connection_snapshot(page)
+            ck(f'{width}: wrong network rejected',recovered_connection(wrong_network,'Switch your wallet to Sui Mainnet.',prior_calls),wrong_network)
+            prior_calls=page.evaluate('window.__walletAudit.connect')
             page.evaluate('window.__walletAudit.wrongNetwork=false;window.__walletAudit.reject=true');page.evaluate('doConnect("Arboretum Local Test Wallet")')
-            ck(f'{width}: rejected connection recovers Connect button',page.evaluate('window.arb.getAddress()===null') and page.locator('#wallet-btn').inner_text()=='Connect Wallet')
+            rejected=connection_snapshot(page)
+            ck(f'{width}: rejected connection recovers Connect button',recovered_connection(rejected,'User rejected the connection (test fixture)',prior_calls),rejected)
+            page.screenshot(path=str(OUT/f'connection-recovery-{width}.png'))
             ck(f'{width}: no signing during connection scenarios',page.evaluate('window.__walletAudit.sign===0'))
             ck(f'{width}: no write or simulation attempted',not [x for x in blocked if x['width']==width])
             ck(f'{width}: no unhandled page exceptions',not errors,errors)
@@ -143,6 +172,6 @@ summary={'scope':'Offline Chromium UI checks with a synthetic non-signing Wallet
     'checked':len(checks),'passed':sum(x['passed'] for x in checks),'failed':sum(not x['passed'] for x in checks),
     'transactionsSubmitted':0,'realWalletsConnected':0,'testerReady':False,
     'pending':['Genuine hosted non-admin wallet check','Genuine tester logout and blocked re-entry'],
-    'missingLocalAssets':missing,'blockedWrites':blocked}
+    'missingLocalAssets':missing,'unavailableOptionalBackendFixtures':unavailable_backends,'blockedWrites':blocked}
 (OUT/'summary.json').write_text(json.dumps(summary,indent=2));print(json.dumps(summary,indent=2))
-sys.exit(1 if summary['failed'] or blocked else 0)
+sys.exit(1 if summary['failed'] or blocked or missing else 0)
