@@ -1,0 +1,12 @@
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+warning[WC09001]: unused alias
+  ┌─ ./sources/isolation_probe.move:3:20
+  │
+3 │     use arboretum::settlement;
+  │                    ^^^^^^^^^^ Unused 'use' of alias 'settlement'. Consider removing it
+  │
+  = This warning can be suppressed with '#[allow(unused_use)]' applied to the 'module' or module member ('const', 'fun', or 'struct')
+

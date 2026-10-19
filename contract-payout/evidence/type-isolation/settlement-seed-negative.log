@@ -1,0 +1,18 @@
+Failed to build Move modules: Compilation error.
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+error[EC04007]: incompatible types
+     ┌─ ./sources/isolation_probe.move:5:9
+     │
+   4 │     public fun probe(value: &legacy::Seed): u64 {
+     │                              ------------ Given: 'arboretum::arboretum::Seed'
+   5 │         settlement::seed_growth_points(value)
+     │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid call of 'arboretum::settlement::seed_growth_points'. Invalid argument for parameter 'seed'
+     │
+     ┌─ ./sources/settlement.move:1908:42
+     │
+1908 │     public fun seed_growth_points(seed: &Seed): u64          {
+     │                                          ---- Expected: 'arboretum::settlement::Seed'
+

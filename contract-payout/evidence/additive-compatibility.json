@@ -1,0 +1,3548 @@
+{
+  "schema_version": 1,
+  "status": "ADDITIVE_MODULE_WITH_BYTE_EXACT_LEGACY",
+  "completed_at_utc": "2026-10-19T21:48:00.453663+00:00",
+  "inspector_sha256": "d59d15150530cb678b7a299ae470bd2f33153da9298bf51bd4cb1770083441ce",
+  "legacy": {
+    "module_id": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum",
+    "sha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1",
+    "exact_v11_prepublication_match": true,
+    "functions_unchanged": 96,
+    "struct_layouts_unchanged": 32,
+    "every_binary_table_unchanged": true
+  },
+  "added_module": {
+    "module_id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement",
+    "sha256": "b7a04fde1df19d69cc09a2384f3abca0c4f8caa226ba738a6091dd7cda92f531",
+    "size_bytes": 22221,
+    "function_count": 118,
+    "struct_count": 39,
+    "struct_definitions": [
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "name": "current_season_id",
+            "type": "u64"
+          },
+          {
+            "name": "season_start_ms",
+            "type": "u64"
+          },
+          {
+            "name": "reward_pool",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::balance::Balance",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                  "type_arguments": []
+                }
+              ]
+            }
+          },
+          {
+            "name": "treasury",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::balance::Balance",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                  "type_arguments": []
+                }
+              ]
+            }
+          },
+          {
+            "name": "total_seeds",
+            "type": "u64"
+          },
+          {
+            "name": "total_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "eligible_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "settlement",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::option::Option",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SettlementState",
+                  "type_arguments": []
+                }
+              ]
+            }
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "seeds_by_owner",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                {
+                  "vector": {
+                    "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+                    "type_arguments": []
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "referrers",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                "address"
+              ]
+            }
+          },
+          {
+            "name": "referral_earnings",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                "u64"
+              ]
+            }
+          },
+          {
+            "name": "player_growth",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                "u64"
+              ]
+            }
+          },
+          {
+            "name": "player_growth_season",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                "u64"
+              ]
+            }
+          },
+          {
+            "name": "planted_saplings",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+                  "type_arguments": []
+                },
+                "u64"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Sapling",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "name",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::string::String",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "cycle_count",
+            "type": "u64"
+          },
+          {
+            "name": "total_sui_harvested",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "cutoff_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "reward_processed",
+            "type": "bool"
+          },
+          {
+            "name": "sapling_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "planted_at_ms",
+            "type": "u64"
+          },
+          {
+            "name": "last_watered_ms",
+            "type": "u64"
+          },
+          {
+            "name": "watering_streak",
+            "type": "u64"
+          },
+          {
+            "name": "growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "state",
+            "type": "u8"
+          },
+          {
+            "name": "fertilizer_charges",
+            "type": "u8"
+          },
+          {
+            "name": "miracle_grow_applied",
+            "type": "bool"
+          },
+          {
+            "name": "revival_charges",
+            "type": "u8"
+          },
+          {
+            "name": "bottomless_can_expiry_ms",
+            "type": "u64"
+          },
+          {
+            "name": "permanent_gp_bonus",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Tool",
+        "abilities": [
+          "store",
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "kind",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::string::String",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "charges",
+            "type": "u8"
+          },
+          {
+            "name": "rarity",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Crate",
+        "abilities": [
+          "store",
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "tier",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SettlementState",
+        "abilities": [
+          "store"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "season_end_ms",
+            "type": "u64"
+          },
+          {
+            "name": "claim_deadline_ms",
+            "type": "u64"
+          },
+          {
+            "name": "pool_mist",
+            "type": "u64"
+          },
+          {
+            "name": "eligible_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "paid_mist",
+            "type": "u64"
+          },
+          {
+            "name": "processed_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "processed_seeds",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "settlement",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SettlementState",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "season_start_ms",
+            "type": "u64"
+          },
+          {
+            "name": "season_end_ms",
+            "type": "u64"
+          },
+          {
+            "name": "finalized_at_ms",
+            "type": "u64"
+          },
+          {
+            "name": "claim_deadline_ms",
+            "type": "u64"
+          },
+          {
+            "name": "total_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "total_seeds",
+            "type": "u64"
+          },
+          {
+            "name": "reward_pool",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::balance::Balance",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                  "type_arguments": []
+                }
+              ]
+            }
+          },
+          {
+            "name": "swept",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "name": "current_challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "active_challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "active_end_ms",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+        "abilities": [
+          "key"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::UID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "version",
+            "type": "u64"
+          },
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "book_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "start_ms",
+            "type": "u64"
+          },
+          {
+            "name": "end_ms",
+            "type": "u64"
+          },
+          {
+            "name": "entry_fee_mist",
+            "type": "u64"
+          },
+          {
+            "name": "entry_count",
+            "type": "u64"
+          },
+          {
+            "name": "settled",
+            "type": "bool"
+          },
+          {
+            "name": "canceled",
+            "type": "bool"
+          },
+          {
+            "name": "pot",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::balance::Balance",
+              "type_arguments": [
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                  "type_arguments": []
+                }
+              ]
+            }
+          },
+          {
+            "name": "entries",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::table::Table",
+              "type_arguments": [
+                "address",
+                {
+                  "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeEntry",
+                  "type_arguments": []
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeEntry",
+        "abilities": [
+          "store"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "baseline_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "entered_at_ms",
+            "type": "u64"
+          },
+          {
+            "name": "refunded",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeedPlanted",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "sapling_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeedWatered",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "streak",
+            "type": "u64"
+          },
+          {
+            "name": "growth_points",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeedDied",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeedRevived",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeedAbandoned",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "sapling_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CratePurchased",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "crate_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "name": "tier",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CrateOpened",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "crate_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "opener",
+            "type": "address"
+          },
+          {
+            "name": "tool_kind",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::string::String",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "rarity",
+            "type": "u8"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SupplyDropPurchased",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "tool_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "buyer",
+            "type": "address"
+          },
+          {
+            "name": "drop",
+            "type": "u8"
+          },
+          {
+            "name": "tool_kind",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::string::String",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "price_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::RewardClaimed",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ReferralPaid",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "referrer",
+            "type": "address"
+          },
+          {
+            "name": "referee",
+            "type": "address"
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SaplingMinted",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "sapling_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonStarted",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "start_ms",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonReset",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "season_id",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchived",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "archive_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "finalized_at_ms",
+            "type": "u64"
+          },
+          {
+            "name": "claim_deadline_ms",
+            "type": "u64"
+          },
+          {
+            "name": "reward_pool_mist",
+            "type": "u64"
+          },
+          {
+            "name": "total_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "total_seeds",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ArchivedRewardClaimed",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "archive_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ArchivedRewardsSwept",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "archive_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBookCreated",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "book_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "admin",
+            "type": "address"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeOpened",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "challenge_object_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "start_ms",
+            "type": "u64"
+          },
+          {
+            "name": "end_ms",
+            "type": "u64"
+          },
+          {
+            "name": "entry_fee_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeEntered",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "baseline_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "entry_fee_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeFinalized",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "first",
+            "type": "address"
+          },
+          {
+            "name": "first_score",
+            "type": "u64"
+          },
+          {
+            "name": "first_payout_mist",
+            "type": "u64"
+          },
+          {
+            "name": "second",
+            "type": "address"
+          },
+          {
+            "name": "second_score",
+            "type": "u64"
+          },
+          {
+            "name": "second_payout_mist",
+            "type": "u64"
+          },
+          {
+            "name": "third",
+            "type": "address"
+          },
+          {
+            "name": "third_score",
+            "type": "u64"
+          },
+          {
+            "name": "third_payout_mist",
+            "type": "u64"
+          },
+          {
+            "name": "treasury_mist",
+            "type": "u64"
+          },
+          {
+            "name": "dev_fee_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeCanceled",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "entry_count",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeEntryRefunded",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "challenge_id",
+            "type": "u64"
+          },
+          {
+            "name": "player",
+            "type": "address"
+          },
+          {
+            "name": "refund_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SettlementRegistryCreated",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "name": "legacy_cap_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::RewardSettlementFinalized",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "season_end_ms",
+            "type": "u64"
+          },
+          {
+            "name": "claim_deadline_ms",
+            "type": "u64"
+          },
+          {
+            "name": "pool_mist",
+            "type": "u64"
+          },
+          {
+            "name": "eligible_growth_points",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::RewardEntitlementProcessed",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "seed_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "name": "eligible_growth_points",
+            "type": "u64"
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::GameplayPauseChanged",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SettlementAdminTransferred",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "previous_admin",
+            "type": "address"
+          },
+          {
+            "name": "new_admin",
+            "type": "address"
+          }
+        ]
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::PoolFunded",
+        "abilities": [
+          "copy",
+          "drop"
+        ],
+        "type_parameters": [],
+        "native": false,
+        "fields": [
+          {
+            "name": "registry_id",
+            "type": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+              "type_arguments": []
+            }
+          },
+          {
+            "name": "season_id",
+            "type": "u64"
+          },
+          {
+            "name": "amount_mist",
+            "type": "u64"
+          }
+        ]
+      }
+    ],
+    "public_and_entry_signatures": [
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::abandon_seed",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+            "type_arguments": []
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::apply_tool",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Tool",
+            "type_arguments": []
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_claim_deadline_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_finalized_at_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_is_swept",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_original_pool",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_pool_size",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_registry_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+            "type_arguments": []
+          }
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_rewards_paid",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_season_end_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_season_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_season_start_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_total_gp",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::archive_total_seeds",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::buy_boom_chest",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::buy_crate",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "u8",
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::buy_supply_drop",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "u8",
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::buy_victory_chest",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::cancel_canopy_sprint",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_end_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_entry_baseline",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_entry_count",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_entry_fee",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_entry_refunded",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_has_entry",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_is_canceled",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_is_settled",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_player_score",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_pot_size",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_season_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::canopy_challenge_start_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::challenge_book_active_end_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::challenge_book_active_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::challenge_book_admin",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "address"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::challenge_book_current_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::claim_archived_reward",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::claim_reward",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::create_challenge_book",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::create_settlement_registry",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::deposit_to_pool",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::enter_canopy_sprint",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::finalize_canopy_sprint",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "address",
+          "address",
+          "address",
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::finalize_reward_settlement",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::finalize_season_archive_now",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::mint_sapling",
+        "parameters": [
+          {
+            "vector": "u8"
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::open_canopy_sprint",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::ChallengeBook",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::open_crate",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Crate",
+            "type_arguments": []
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::random::Random",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::plant_seed",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Sapling",
+            "type_arguments": []
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::option::Option",
+            "type_arguments": [
+              "address"
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::plant_seed_with_nftree",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "type_parameter": 0
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin",
+            "type_arguments": [
+              {
+                "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+                "type_arguments": []
+              }
+            ]
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000001::option::Option",
+            "type_arguments": [
+              "address"
+            ]
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [
+          [
+            "key"
+          ]
+        ],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::player_growth_points",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::player_referral_earnings",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "address"
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::refund_canceled_canopy_sprint_entry",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::CanopyChallenge",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_claim_deadline_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_eligible_gp",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_is_paused",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_original_pool",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_pool_size",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_review_ready_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_rewards_paid",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_season_end_ms",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_settlement_finalized",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_total_gp",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::registry_total_seeds",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::reset_season",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::revive_seed",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::revive_seed_with_tool",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Tool",
+            "type_arguments": []
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::sapling_is_planted",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+            "type_arguments": []
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_bottomless_expiry",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_cutoff_growth_points",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_fertilizer_charges",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u8"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_growth_points",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_registry_id",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::object::ID",
+            "type_arguments": []
+          }
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_revival_charges",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u8"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_reward_processed",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "bool"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_state_live",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u8"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::seed_streak",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [
+          "u64"
+        ],
+        "type_parameters": [],
+        "visibility": "public",
+        "entry": false
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::send_promo_crate",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "address",
+          "u8",
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::set_paused",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "bool",
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::start_season",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::start_season_for_duration",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          "u64",
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::sweep_archived_rewards",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::transfer_admin",
+        "parameters": [
+          {
+            "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+            "type_arguments": []
+          },
+          "address",
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::water_seed",
+        "parameters": [
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock",
+              "type_arguments": []
+            }
+          },
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      },
+      {
+        "id": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::withdraw_treasury",
+        "parameters": [
+          {
+            "reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap",
+              "type_arguments": []
+            }
+          },
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry",
+              "type_arguments": []
+            }
+          },
+          "u64",
+          {
+            "mutable_reference": {
+              "datatype": "0x0000000000000000000000000000000000000000000000000000000000000002::tx_context::TxContext",
+              "type_arguments": []
+            }
+          }
+        ],
+        "returns": [],
+        "type_parameters": [],
+        "visibility": "private",
+        "entry": true
+      }
+    ]
+  },
+  "type_isolation": {
+    "core_type_identities": {
+      "Registry": {
+        "legacy": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::Registry",
+        "new": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Registry"
+      },
+      "Seed": {
+        "legacy": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::Seed",
+        "new": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::Seed"
+      },
+      "SeasonArchive": {
+        "legacy": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::SeasonArchive",
+        "new": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::SeasonArchive"
+      },
+      "AdminCap": {
+        "legacy": "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::AdminCap",
+        "new": "0x0000000000000000000000000000000000000000000000000000000000000000::settlement::AdminCap"
+      }
+    },
+    "overlapping_defined_type_ids": [],
+    "legacy_type_references": [
+      {
+        "function": "create_settlement_registry",
+        "parameters": [
+          "0x0000000000000000000000000000000000000000000000000000000000000000::arboretum::AdminCap"
+        ],
+        "immutable_capability_only": true
+      }
+    ],
+    "legacy_function_calls": [],
+    "legacy_types_in_new_object_fields": []
+  },
+  "signed_or_submitted_transactions": false,
+  "limitations": [
+    "This proves preservation of existing module bytes and separation of newly defined object types.",
+    "New settlement objects cannot be supplied where legacy Registry, Seed, or SeasonArchive types are required.",
+    "A legacy generic NFTree:key parameter can still borrow a new object as an opaque object ID; it cannot treat that object as a legacy Seed or mutate its settlement fields.",
+    "The legacy version-11 module remains callable for legacy objects and retains its existing payout behavior.",
+    "No existing object, historical claim, reward balance, published package, or frontend configuration is migrated by this build.",
+    "The new module requires an explicit bootstrap transaction after a separately reviewed deployment.",
+    "This is not a signed upgrade, an on-chain upgrade-capability check, a deployment simulation, or a security audit."
+  ]
+}

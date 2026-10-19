@@ -1,5 +1,13 @@
 # Next implementation: consistent season reward settlement
 
+**Implemented follow-up:** The separate
+[`contract-payout` candidate](../contract-payout/README.md) now implements and
+tests fixed cutoff eligibility and common direct/archive settlement for new,
+versioned objects. It preserves the deployed legacy module byte for byte and
+documents a separate treatment for existing seasons and processed claims. The
+policy below is realized as a review candidate; no on-chain activation or
+legacy payout migration has occurred.
+
 ## Problem established by execution
 
 The current direct claim can reclassify a Seed as dead after the season has ended

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "CANDIDATE_VERIFIED",
+  "completed_at_utc": "2026-10-19T21:48:22.894873+00:00",
+  "source_sha256": {
+    "arboretum.move": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+    "settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb"
+  },
+  "modules": [
+    {
+      "name": "arboretum",
+      "path": "/tmp/arboretum-payout-verifier-build/generated/build/arboretum/bytecode_modules/arboretum.mv",
+      "sha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1",
+      "size": 18034
+    },
+    {
+      "name": "settlement",
+      "path": "/tmp/arboretum-payout-verifier-build/generated/build/arboretum/bytecode_modules/settlement.mv",
+      "sha256": "b7a04fde1df19d69cc09a2384f3abca0c4f8caa226ba738a6091dd7cda92f531",
+      "size": 22221
+    }
+  ],
+  "legacy_exact_v11_prepublication_match": true,
+  "legacy_functions_unchanged": 96,
+  "legacy_struct_layouts_unchanged": 32,
+  "exact_linked_dependency_modules": 89,
+  "protected_non_error_constants_unchanged": 72,
+  "economics_and_care_functions_match_with_listed_changes": 21,
+  "move_tests": {
+    "total": 79,
+    "passed": 79,
+    "failed": 0
+  },
+  "type_isolation_positive_controls": 6,
+  "type_isolation_negative_probes": 6,
+  "legacy_comparator_tests": 20,
+  "framework_input_files_unchanged": 238,
+  "production_sources_unchanged_during_verification": true,
+  "isolated_keystore_stayed_empty": true,
+  "signed_or_submitted_transactions": false,
+  "deployment_or_existing_season_migration_performed": false
+}

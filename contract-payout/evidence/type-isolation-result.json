@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "status": "BOTH_DIRECTIONS_REJECT_LEGACY_NEW_TYPE_CONFUSION",
+  "completed_at_utc": "2026-10-19T21:48:20.627938+00:00",
+  "compiler": "sui 1.78.1-722ac4fcf484",
+  "framework_revision": "8b9163554164776bc3372d828f8d6ced55aa2b5e",
+  "positive_controls_passed": 6,
+  "negative_probes_rejected": 6,
+  "tests": [
+    {
+      "name": "legacy-registry",
+      "target_module": "arboretum::arboretum",
+      "type_name": "Registry",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "7540a30630aadfc095b615861c3c484dbb394a3d9d8e0e8dc619d190d47b806c",
+      "negative_probe_sha256": "4a5972d0ffa486415f38e5b5c5323e8f4947878a74f483cc88061c4718e65460",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::Registry): u64 {\n        legacy::registry_total_gp(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::Registry): u64 {\n        legacy::registry_total_gp(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/legacy-registry"
+      ]
+    },
+    {
+      "name": "legacy-seed",
+      "target_module": "arboretum::arboretum",
+      "type_name": "Seed",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "8059dfe3b252eb94cd323a6b0924e8c2caa40ca106a3884c809094821399ac0a",
+      "negative_probe_sha256": "b7be310327ac857ab6a30eecaabcd8a1f59dee0686a4a35142a65a0a8d48f569",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::Seed): u64 {\n        legacy::seed_growth_points(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::Seed): u64 {\n        legacy::seed_growth_points(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/legacy-seed"
+      ]
+    },
+    {
+      "name": "legacy-seasonarchive",
+      "target_module": "arboretum::arboretum",
+      "type_name": "SeasonArchive",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "56d295b577d35591c4250d4e590adb22735ffb010edba4e45dca0f2a0083e565",
+      "negative_probe_sha256": "a362e761eacc055d35ca0c4a78509781c4947b9b40d0adf59c34ca4a080deb5e",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::SeasonArchive): u64 {\n        legacy::archive_total_gp(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::SeasonArchive): u64 {\n        legacy::archive_total_gp(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/legacy-seasonarchive"
+      ]
+    },
+    {
+      "name": "settlement-registry",
+      "target_module": "arboretum::settlement",
+      "type_name": "Registry",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "ee4ae5baa3a0b9965cc2fcf71126ebf939d3d5a1a87c642d2bbc0ec1f5d80f7e",
+      "negative_probe_sha256": "634be645ac112fb9c33eb1cd48b651fe65b5fb37248b2c375bcd56003a46c4e8",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::Registry): u64 {\n        settlement::registry_total_gp(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::Registry): u64 {\n        settlement::registry_total_gp(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/settlement-registry"
+      ]
+    },
+    {
+      "name": "settlement-seed",
+      "target_module": "arboretum::settlement",
+      "type_name": "Seed",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "04789fa12ae597e67fe3f3f46c14f9a8fd7fb2a0ff3a1f6846c460109edb0042",
+      "negative_probe_sha256": "5a95a216c4f8c705b1cfa1cee07773f1cd32ba7f494db6055cc109f36249ccdf",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::Seed): u64 {\n        settlement::seed_growth_points(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::Seed): u64 {\n        settlement::seed_growth_points(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/settlement-seed"
+      ]
+    },
+    {
+      "name": "settlement-seasonarchive",
+      "target_module": "arboretum::settlement",
+      "type_name": "SeasonArchive",
+      "positive_control_exit_code": 0,
+      "negative_probe_exit_code": 1,
+      "negative_probe_compiler_errors": [
+        "EC04007"
+      ],
+      "both_distinct_type_identities_in_diagnostic": true,
+      "type_confusion_rejected": true,
+      "positive_probe_sha256": "889582f4181ac15b922119057271e51f351f5b111f4d47868a5f5b3b7eb43776",
+      "negative_probe_sha256": "434c768592c5d737ed2edb981df90180da405f4725bcbde3fe76a3c154646a4d",
+      "positive_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &settlement::SeasonArchive): u64 {\n        settlement::archive_total_gp(value)\n    }\n}\n",
+      "negative_probe_source": "module arboretum::isolation_probe {\n    use arboretum::arboretum as legacy;\n    use arboretum::settlement;\n    public fun probe(value: &legacy::SeasonArchive): u64 {\n        settlement::archive_total_gp(value)\n    }\n}\n",
+      "command": [
+        "/tmp/arboretum-v11-tools/sui",
+        "move",
+        "build",
+        "--build-env",
+        "mainnet",
+        "--path",
+        "/tmp/arboretum-payout-verifier-build/type-isolation/settlement-seasonarchive"
+      ]
+    }
+  ],
+  "method": "Each real public getter is compiled successfully with its own object type, then only the argument type is changed to the other module. The compiler must emit exactly the incompatible-type error and identify both module-qualified types.",
+  "limitation": "The legacy claim entries are private to their module, so these probes use its public getters with the same Registry, Seed, and SeasonArchive type identities. Exact preserved legacy bytecode separately proves that legacy claim signatures are unchanged.",
+  "signed_or_submitted_transactions": false
+}
