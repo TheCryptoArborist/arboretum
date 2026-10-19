@@ -1,0 +1,25 @@
+test_01_exact_deployed_binary_and_all_96_functions (__main__.ComparatorChecks.test_01_exact_deployed_binary_and_all_96_functions) ... ok
+test_02_prepublication_target_has_only_publisher_self_address_change (__main__.ComparatorChecks.test_02_prepublication_target_has_only_publisher_self_address_change) ... ok
+test_03_payment_constant_change_is_detected_in_buy_crate (__main__.ComparatorChecks.test_03_payment_constant_change_is_detected_in_buy_crate) ... ok
+test_04_constant_table_renumbering_resolves_values_without_hiding_changes (__main__.ComparatorChecks.test_04_constant_table_renumbering_resolves_values_without_hiding_changes) ... ok
+test_05_external_call_target_change_is_detected (__main__.ComparatorChecks.test_05_external_call_target_change_is_detected) ... ok
+test_06_valid_branch_target_change_is_detected (__main__.ComparatorChecks.test_06_valid_branch_target_change_is_detected) ... ok
+test_07_equality_instruction_changed_to_inequality_is_detected (__main__.ComparatorChecks.test_07_equality_instruction_changed_to_inequality_is_detected) ... ok
+test_08_ordered_struct_layout_change_is_detected (__main__.ComparatorChecks.test_08_ordered_struct_layout_change_is_detected) ... ok
+test_09_struct_ability_change_is_detected (__main__.ComparatorChecks.test_09_struct_ability_change_is_detected) ... ok
+test_10_signature_return_type_change_is_detected (__main__.ComparatorChecks.test_10_signature_return_type_change_is_detected) ... ok
+test_11_generic_function_constraint_change_is_detected (__main__.ComparatorChecks.test_11_generic_function_constraint_change_is_detected) ... ok
+test_12_phantom_type_parameter_change_is_detected (__main__.ComparatorChecks.test_12_phantom_type_parameter_change_is_detected) ... ok
+test_13_entry_flag_change_is_detected (__main__.ComparatorChecks.test_13_entry_flag_change_is_detected) ... ok
+test_14_unknown_binary_table_fails_closed (__main__.ComparatorChecks.test_14_unknown_binary_table_fails_closed) ... ok
+test_15_missing_function_signature_fails_closed (__main__.ComparatorChecks.test_15_missing_function_signature_fails_closed) ... ok
+test_16_unknown_instruction_fails_closed (__main__.ComparatorChecks.test_16_unknown_instruction_fails_closed) ... ok
+test_17_truncated_or_extra_binary_data_fails_closed (__main__.ComparatorChecks.test_17_truncated_or_extra_binary_data_fails_closed) ... ok
+test_18_disassembly_missing_generic_function_fails_closed (__main__.ComparatorChecks.test_18_disassembly_missing_generic_function_fails_closed) ... ok
+test_19_address_mapping_is_explicit_and_cannot_change_constants (__main__.ComparatorChecks.test_19_address_mapping_is_explicit_and_cannot_change_constants) ... ok
+test_20_evidence_tampering_fails_closed (__main__.ComparatorChecks.test_20_evidence_tampering_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 2.152s
+
+OK

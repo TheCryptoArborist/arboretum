@@ -1,0 +1,4119 @@
+{
+  "schema_version": 1,
+  "status": "EXISTING_CONSTANTS_AND_PROTECTED_ECONOMICS_PRESERVED",
+  "completed_at_utc": "2026-10-19T21:48:00.545556+00:00",
+  "auditor_sha256": "6d4598072938dd8ecc0f605f1b1bcc365c6545d345aff8df4c152d2ceffdf82a",
+  "baseline_source_sha256": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+  "candidate_source_sha256": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+  "protected_existing_non_error_constants": 72,
+  "protected_function_count": 21,
+  "existing_production_functions_with_identical_signature_and_body_tokens": 13,
+  "constants": [
+    {
+      "name": "BASE_WATER_POINTS",
+      "legacy_tokens": [
+        "const",
+        "BASE_WATER_POINTS",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "BASE_WATER_POINTS",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "BOTTOMLESS_DURATION_MS",
+      "legacy_tokens": [
+        "const",
+        "BOTTOMLESS_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "259_200_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "BOTTOMLESS_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "259_200_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "BPS_DENOMINATOR",
+      "legacy_tokens": [
+        "const",
+        "BPS_DENOMINATOR",
+        ":",
+        "u64",
+        "=",
+        "100",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "BPS_DENOMINATOR",
+        ":",
+        "u64",
+        "=",
+        "100",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CANOPY_CHALLENGE_DURATION_MS",
+      "legacy_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "ONE_DAY_MS",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "ONE_DAY_MS",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CANOPY_CHALLENGE_ENTRY_MIST",
+      "legacy_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_ENTRY_MIST",
+        ":",
+        "u64",
+        "=",
+        "250_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_ENTRY_MIST",
+        ":",
+        "u64",
+        "=",
+        "250_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CANOPY_CHALLENGE_MIN_ENTRIES",
+      "legacy_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_MIN_ENTRIES",
+        ":",
+        "u64",
+        "=",
+        "3",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_MIN_ENTRIES",
+        ":",
+        "u64",
+        "=",
+        "3",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CANOPY_CHALLENGE_UNLOCK_MS",
+      "legacy_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_UNLOCK_MS",
+        ":",
+        "u64",
+        "=",
+        "ONE_DAY_MS",
+        "*",
+        "14",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CANOPY_CHALLENGE_UNLOCK_MS",
+        ":",
+        "u64",
+        "=",
+        "ONE_DAY_MS",
+        "*",
+        "14",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CHALLENGE_FIRST_BPS",
+      "legacy_tokens": [
+        "const",
+        "CHALLENGE_FIRST_BPS",
+        ":",
+        "u64",
+        "=",
+        "70",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CHALLENGE_FIRST_BPS",
+        ":",
+        "u64",
+        "=",
+        "70",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CHALLENGE_PRIZE_BPS",
+      "legacy_tokens": [
+        "const",
+        "CHALLENGE_PRIZE_BPS",
+        ":",
+        "u64",
+        "=",
+        "90",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CHALLENGE_PRIZE_BPS",
+        ":",
+        "u64",
+        "=",
+        "90",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CHALLENGE_SECOND_BPS",
+      "legacy_tokens": [
+        "const",
+        "CHALLENGE_SECOND_BPS",
+        ":",
+        "u64",
+        "=",
+        "20",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CHALLENGE_SECOND_BPS",
+        ":",
+        "u64",
+        "=",
+        "20",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CHALLENGE_TREASURY_BPS",
+      "legacy_tokens": [
+        "const",
+        "CHALLENGE_TREASURY_BPS",
+        ":",
+        "u64",
+        "=",
+        "8",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CHALLENGE_TREASURY_BPS",
+        ":",
+        "u64",
+        "=",
+        "8",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CLAIM_GRACE_MS",
+      "legacy_tokens": [
+        "const",
+        "CLAIM_GRACE_MS",
+        ":",
+        "u64",
+        "=",
+        "604_800_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CLAIM_GRACE_MS",
+        ":",
+        "u64",
+        "=",
+        "604_800_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_ANCIENT",
+      "legacy_tokens": [
+        "const",
+        "CRATE_ANCIENT",
+        ":",
+        "u8",
+        "=",
+        "3",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_ANCIENT",
+        ":",
+        "u8",
+        "=",
+        "3",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_BOOM",
+      "legacy_tokens": [
+        "const",
+        "CRATE_BOOM",
+        ":",
+        "u8",
+        "=",
+        "5",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_BOOM",
+        ":",
+        "u8",
+        "=",
+        "5",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_CANOPY",
+      "legacy_tokens": [
+        "const",
+        "CRATE_CANOPY",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_CANOPY",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_GROVE",
+      "legacy_tokens": [
+        "const",
+        "CRATE_GROVE",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_GROVE",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_MYTHIC",
+      "legacy_tokens": [
+        "const",
+        "CRATE_MYTHIC",
+        ":",
+        "u8",
+        "=",
+        "4",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_MYTHIC",
+        ":",
+        "u8",
+        "=",
+        "4",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_0",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_0",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_0",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_1",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_1",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_1",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_2",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_2",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_2",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_3",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_3",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_3",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_4",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_4",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_4",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_5",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_5",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_5",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_PRICE_6",
+      "legacy_tokens": [
+        "const",
+        "CRATE_PRICE_6",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_PRICE_6",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_SEEDLING",
+      "legacy_tokens": [
+        "const",
+        "CRATE_SEEDLING",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_SEEDLING",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "CRATE_VICTORY",
+      "legacy_tokens": [
+        "const",
+        "CRATE_VICTORY",
+        ":",
+        "u8",
+        "=",
+        "6",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "CRATE_VICTORY",
+        ":",
+        "u8",
+        "=",
+        "6",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "DEATH_DAYS",
+      "legacy_tokens": [
+        "const",
+        "DEATH_DAYS",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "DEATH_DAYS",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "DEV_FEE_BPS",
+      "legacy_tokens": [
+        "const",
+        "DEV_FEE_BPS",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "DEV_FEE_BPS",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "DEV_FEE_WALLET",
+      "legacy_tokens": [
+        "const",
+        "DEV_FEE_WALLET",
+        ":",
+        "address",
+        "=",
+        "@",
+        "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "DEV_FEE_WALLET",
+        ":",
+        "address",
+        "=",
+        "@",
+        "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "DIRECT_INVITE_SHOP_BPS",
+      "legacy_tokens": [
+        "const",
+        "DIRECT_INVITE_SHOP_BPS",
+        ":",
+        "u64",
+        "=",
+        "1",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "DIRECT_INVITE_SHOP_BPS",
+        ":",
+        "u64",
+        "=",
+        "1",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "E_ALREADY_REFUNDED",
+      "legacy_tokens": [
+        "const",
+        "E_ALREADY_REFUNDED",
+        ":",
+        "u64",
+        "=",
+        "35",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_ALREADY_REFUNDED",
+        ":",
+        "u64",
+        "=",
+        "35",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_ALREADY_WATERED_TODAY",
+      "legacy_tokens": [
+        "const",
+        "E_ALREADY_WATERED_TODAY",
+        ":",
+        "u64",
+        "=",
+        "5",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_ALREADY_WATERED_TODAY",
+        ":",
+        "u64",
+        "=",
+        "5",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_ARCHIVE_CLAIM_ENDED",
+      "legacy_tokens": [
+        "const",
+        "E_ARCHIVE_CLAIM_ENDED",
+        ":",
+        "u64",
+        "=",
+        "36",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_ARCHIVE_CLAIM_ENDED",
+        ":",
+        "u64",
+        "=",
+        "36",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_ARCHIVE_SWEPT",
+      "legacy_tokens": [
+        "const",
+        "E_ARCHIVE_SWEPT",
+        ":",
+        "u64",
+        "=",
+        "37",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_ARCHIVE_SWEPT",
+        ":",
+        "u64",
+        "=",
+        "37",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_ACTIVE",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "24",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "24",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_ALREADY_ENTERED",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_ALREADY_ENTERED",
+        ":",
+        "u64",
+        "=",
+        "27",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_ALREADY_ENTERED",
+        ":",
+        "u64",
+        "=",
+        "27",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_CANCELED",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_CANCELED",
+        ":",
+        "u64",
+        "=",
+        "31",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_CANCELED",
+        ":",
+        "u64",
+        "=",
+        "31",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_MIN_ENTRIES",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_MIN_ENTRIES",
+        ":",
+        "u64",
+        "=",
+        "32",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_MIN_ENTRIES",
+        ":",
+        "u64",
+        "=",
+        "32",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_NOT_ACTIVE",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "25",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "25",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_NOT_ENDED",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ENDED",
+        ":",
+        "u64",
+        "=",
+        "29",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ENDED",
+        ":",
+        "u64",
+        "=",
+        "29",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_NOT_ENTERED",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ENTERED",
+        ":",
+        "u64",
+        "=",
+        "28",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_ENTERED",
+        ":",
+        "u64",
+        "=",
+        "28",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_NOT_OPEN",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_OPEN",
+        ":",
+        "u64",
+        "=",
+        "26",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_NOT_OPEN",
+        ":",
+        "u64",
+        "=",
+        "26",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CHALLENGE_SETTLED",
+      "legacy_tokens": [
+        "const",
+        "E_CHALLENGE_SETTLED",
+        ":",
+        "u64",
+        "=",
+        "30",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CHALLENGE_SETTLED",
+        ":",
+        "u64",
+        "=",
+        "30",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_CLAIM_WINDOW_ACTIVE",
+      "legacy_tokens": [
+        "const",
+        "E_CLAIM_WINDOW_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "21",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_CLAIM_WINDOW_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "21",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_CRATE_TIER",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_CRATE_TIER",
+        ":",
+        "u64",
+        "=",
+        "8",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_CRATE_TIER",
+        ":",
+        "u64",
+        "=",
+        "8",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_SCORE_ORDER",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_SCORE_ORDER",
+        ":",
+        "u64",
+        "=",
+        "34",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_SCORE_ORDER",
+        ":",
+        "u64",
+        "=",
+        "34",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_SEASON_DURATION",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_SEASON_DURATION",
+        ":",
+        "u64",
+        "=",
+        "23",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_SEASON_DURATION",
+        ":",
+        "u64",
+        "=",
+        "23",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_SUPPLY_DROP",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_SUPPLY_DROP",
+        ":",
+        "u64",
+        "=",
+        "22",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_SUPPLY_DROP",
+        ":",
+        "u64",
+        "=",
+        "22",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_TOOL_KIND",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_TOOL_KIND",
+        ":",
+        "u64",
+        "=",
+        "20",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_TOOL_KIND",
+        ":",
+        "u64",
+        "=",
+        "20",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_INVALID_WINNERS",
+      "legacy_tokens": [
+        "const",
+        "E_INVALID_WINNERS",
+        ":",
+        "u64",
+        "=",
+        "33",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_INVALID_WINNERS",
+        ":",
+        "u64",
+        "=",
+        "33",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_NOT_ADMIN",
+      "legacy_tokens": [
+        "const",
+        "E_NOT_ADMIN",
+        ":",
+        "u64",
+        "=",
+        "0",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_NOT_ADMIN",
+        ":",
+        "u64",
+        "=",
+        "0",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_NOT_REVIVAL_KIT",
+      "legacy_tokens": [
+        "const",
+        "E_NOT_REVIVAL_KIT",
+        ":",
+        "u64",
+        "=",
+        "18",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_NOT_REVIVAL_KIT",
+        ":",
+        "u64",
+        "=",
+        "18",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_NO_REVIVAL_CHARGES",
+      "legacy_tokens": [
+        "const",
+        "E_NO_REVIVAL_CHARGES",
+        ":",
+        "u64",
+        "=",
+        "11",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_NO_REVIVAL_CHARGES",
+        ":",
+        "u64",
+        "=",
+        "11",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_NO_SEEDS",
+      "legacy_tokens": [
+        "const",
+        "E_NO_SEEDS",
+        ":",
+        "u64",
+        "=",
+        "7",
+        ";"
+      ],
+      "candidate_tokens": null,
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_NO_TOOL_CHARGES",
+      "legacy_tokens": [
+        "const",
+        "E_NO_TOOL_CHARGES",
+        ":",
+        "u64",
+        "=",
+        "19",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_NO_TOOL_CHARGES",
+        ":",
+        "u64",
+        "=",
+        "19",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_PAUSED",
+      "legacy_tokens": [
+        "const",
+        "E_PAUSED",
+        ":",
+        "u64",
+        "=",
+        "12",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_PAUSED",
+        ":",
+        "u64",
+        "=",
+        "12",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_POOL_FUNDING_CLOSED",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_POOL_FUNDING_CLOSED",
+        ":",
+        "u64",
+        "=",
+        "105",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_REWARD_PROCESSED",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_REWARD_PROCESSED",
+        ":",
+        "u64",
+        "=",
+        "102",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SAPLING_ALREADY_USED",
+      "legacy_tokens": [
+        "const",
+        "E_SAPLING_ALREADY_USED",
+        ":",
+        "u64",
+        "=",
+        "14",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SAPLING_ALREADY_USED",
+        ":",
+        "u64",
+        "=",
+        "14",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEASON_ACTIVE",
+      "legacy_tokens": [
+        "const",
+        "E_SEASON_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "17",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEASON_ACTIVE",
+        ":",
+        "u64",
+        "=",
+        "17",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEASON_ENDED",
+      "legacy_tokens": [
+        "const",
+        "E_SEASON_ENDED",
+        ":",
+        "u64",
+        "=",
+        "6",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEASON_ENDED",
+        ":",
+        "u64",
+        "=",
+        "6",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEASON_NOT_STARTED",
+      "legacy_tokens": [
+        "const",
+        "E_SEASON_NOT_STARTED",
+        ":",
+        "u64",
+        "=",
+        "13",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEASON_NOT_STARTED",
+        ":",
+        "u64",
+        "=",
+        "13",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEED_ALIVE",
+      "legacy_tokens": [
+        "const",
+        "E_SEED_ALIVE",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEED_ALIVE",
+        ":",
+        "u64",
+        "=",
+        "10",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEED_DEAD",
+      "legacy_tokens": [
+        "const",
+        "E_SEED_DEAD",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEED_DEAD",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SEED_NOT_FOUND",
+      "legacy_tokens": [
+        "const",
+        "E_SEED_NOT_FOUND",
+        ":",
+        "u64",
+        "=",
+        "3",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_SEED_NOT_FOUND",
+        ":",
+        "u64",
+        "=",
+        "3",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SETTLEMENT_FINAL",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_SETTLEMENT_FINAL",
+        ":",
+        "u64",
+        "=",
+        "106",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_SETTLEMENT_INVARIANT",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_SETTLEMENT_INVARIANT",
+        ":",
+        "u64",
+        "=",
+        "104",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_WRONG_PAYMENT",
+      "legacy_tokens": [
+        "const",
+        "E_WRONG_PAYMENT",
+        ":",
+        "u64",
+        "=",
+        "4",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_WRONG_PAYMENT",
+        ":",
+        "u64",
+        "=",
+        "4",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_WRONG_REGISTRY",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_WRONG_REGISTRY",
+        ":",
+        "u64",
+        "=",
+        "101",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_WRONG_SEASON",
+      "legacy_tokens": [
+        "const",
+        "E_WRONG_SEASON",
+        ":",
+        "u64",
+        "=",
+        "15",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "E_WRONG_SEASON",
+        ":",
+        "u64",
+        "=",
+        "15",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "E_WRONG_VERSION",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "E_WRONG_VERSION",
+        ":",
+        "u64",
+        "=",
+        "100",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "GROWTH_DEPOSIT_MIST",
+      "legacy_tokens": [
+        "const",
+        "GROWTH_DEPOSIT_MIST",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "GROWTH_DEPOSIT_MIST",
+        ":",
+        "u64",
+        "=",
+        "10_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_ANCIENT_BARK",
+      "legacy_tokens": [
+        "const",
+        "ITEM_ANCIENT_BARK",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"ancient_bark\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_ANCIENT_BARK",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"ancient_bark\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_BOTTOMLESS_CAN",
+      "legacy_tokens": [
+        "const",
+        "ITEM_BOTTOMLESS_CAN",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"bottomless_can\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_BOTTOMLESS_CAN",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"bottomless_can\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_COMPOST",
+      "legacy_tokens": [
+        "const",
+        "ITEM_COMPOST",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"compost\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_COMPOST",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"compost\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_CRYSTAL_WATER",
+      "legacy_tokens": [
+        "const",
+        "ITEM_CRYSTAL_WATER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"crystal_water\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_CRYSTAL_WATER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"crystal_water\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_DOUBLE_DOSE",
+      "legacy_tokens": [
+        "const",
+        "ITEM_DOUBLE_DOSE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"double_dose\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_DOUBLE_DOSE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"double_dose\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_DROUGHT_SHIELD",
+      "legacy_tokens": [
+        "const",
+        "ITEM_DROUGHT_SHIELD",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"drought_shield\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_DROUGHT_SHIELD",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"drought_shield\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_EARTH_CORE",
+      "legacy_tokens": [
+        "const",
+        "ITEM_EARTH_CORE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"earth_core\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_EARTH_CORE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"earth_core\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_FERTILIZER",
+      "legacy_tokens": [
+        "const",
+        "ITEM_FERTILIZER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"fertilizer\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_FERTILIZER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"fertilizer\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_FOREST_HEART",
+      "legacy_tokens": [
+        "const",
+        "ITEM_FOREST_HEART",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"forest_heart\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_FOREST_HEART",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"forest_heart\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_GROWTH_TONIC",
+      "legacy_tokens": [
+        "const",
+        "ITEM_GROWTH_TONIC",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"growth_tonic\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_GROWTH_TONIC",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"growth_tonic\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_MIRACLE_GROW",
+      "legacy_tokens": [
+        "const",
+        "ITEM_MIRACLE_GROW",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"miracle_grow\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_MIRACLE_GROW",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"miracle_grow\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_MOON_WATER",
+      "legacy_tokens": [
+        "const",
+        "ITEM_MOON_WATER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"moon_water\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_MOON_WATER",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"moon_water\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_MULCH",
+      "legacy_tokens": [
+        "const",
+        "ITEM_MULCH",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"mulch\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_MULCH",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"mulch\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_PHILOSOPHERS_SOIL",
+      "legacy_tokens": [
+        "const",
+        "ITEM_PHILOSOPHERS_SOIL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"philosophers_soil\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_PHILOSOPHERS_SOIL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"philosophers_soil\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_RAIN_BARREL",
+      "legacy_tokens": [
+        "const",
+        "ITEM_RAIN_BARREL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"rain_barrel\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_RAIN_BARREL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"rain_barrel\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_REVIVAL_KIT",
+      "legacy_tokens": [
+        "const",
+        "ITEM_REVIVAL_KIT",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"revival_kit\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_REVIVAL_KIT",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"revival_kit\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_SUNSTONE",
+      "legacy_tokens": [
+        "const",
+        "ITEM_SUNSTONE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"sunstone\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_SUNSTONE",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"sunstone\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_SUPER_SOIL",
+      "legacy_tokens": [
+        "const",
+        "ITEM_SUPER_SOIL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"super_soil\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_SUPER_SOIL",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"super_soil\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_TIMELESS_SEED",
+      "legacy_tokens": [
+        "const",
+        "ITEM_TIMELESS_SEED",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"timeless_seed\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_TIMELESS_SEED",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"timeless_seed\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ITEM_WATERING_BOOST",
+      "legacy_tokens": [
+        "const",
+        "ITEM_WATERING_BOOST",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"watering_boost\"",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ITEM_WATERING_BOOST",
+        ":",
+        "vector",
+        "<",
+        "u8",
+        ">",
+        "=",
+        "b\"watering_boost\"",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "ONE_DAY_MS",
+      "legacy_tokens": [
+        "const",
+        "ONE_DAY_MS",
+        ":",
+        "u64",
+        "=",
+        "86_400_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "ONE_DAY_MS",
+        ":",
+        "u64",
+        "=",
+        "86_400_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "REFERRAL_SHARE_MIST",
+      "legacy_tokens": [
+        "const",
+        "REFERRAL_SHARE_MIST",
+        ":",
+        "u64",
+        "=",
+        "1_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "REFERRAL_SHARE_MIST",
+        ":",
+        "u64",
+        "=",
+        "1_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "REVIEW_WINDOW_MS",
+      "legacy_tokens": [
+        "const",
+        "REVIEW_WINDOW_MS",
+        ":",
+        "u64",
+        "=",
+        "86_400_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "REVIEW_WINDOW_MS",
+        ":",
+        "u64",
+        "=",
+        "86_400_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "REWARD_POOL_BPS",
+      "legacy_tokens": [
+        "const",
+        "REWARD_POOL_BPS",
+        ":",
+        "u64",
+        "=",
+        "70",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "REWARD_POOL_BPS",
+        ":",
+        "u64",
+        "=",
+        "70",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SEASON_DURATION_MS",
+      "legacy_tokens": [
+        "const",
+        "SEASON_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "2_592_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SEASON_DURATION_MS",
+        ":",
+        "u64",
+        "=",
+        "2_592_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "STATE_ALIVE",
+      "legacy_tokens": [
+        "const",
+        "STATE_ALIVE",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "STATE_ALIVE",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "STATE_DEAD",
+      "legacy_tokens": [
+        "const",
+        "STATE_DEAD",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "STATE_DEAD",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "STATE_WILTING",
+      "legacy_tokens": [
+        "const",
+        "STATE_WILTING",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "STATE_WILTING",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "STREAK_BONUS_PER_DAY",
+      "legacy_tokens": [
+        "const",
+        "STREAK_BONUS_PER_DAY",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "STREAK_BONUS_PER_DAY",
+        ":",
+        "u64",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_DROP_DROUGHT_SHIELD",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_DROP_DROUGHT_SHIELD",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_DROP_DROUGHT_SHIELD",
+        ":",
+        "u8",
+        "=",
+        "1",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_DROP_MULCH",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_DROP_MULCH",
+        ":",
+        "u8",
+        "=",
+        "3",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_DROP_MULCH",
+        ":",
+        "u8",
+        "=",
+        "3",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_DROP_RAIN_BARREL",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_DROP_RAIN_BARREL",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_DROP_RAIN_BARREL",
+        ":",
+        "u8",
+        "=",
+        "2",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_DROP_REVIVAL_KIT",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_DROP_REVIVAL_KIT",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_DROP_REVIVAL_KIT",
+        ":",
+        "u8",
+        "=",
+        "0",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_DROP_WATERING_BOOST",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_DROP_WATERING_BOOST",
+        ":",
+        "u8",
+        "=",
+        "4",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_DROP_WATERING_BOOST",
+        ":",
+        "u8",
+        "=",
+        "4",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_PRICE_DROUGHT_SHIELD",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_PRICE_DROUGHT_SHIELD",
+        ":",
+        "u64",
+        "=",
+        "40_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_PRICE_DROUGHT_SHIELD",
+        ":",
+        "u64",
+        "=",
+        "40_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_PRICE_MULCH",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_PRICE_MULCH",
+        ":",
+        "u64",
+        "=",
+        "25_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_PRICE_MULCH",
+        ":",
+        "u64",
+        "=",
+        "25_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_PRICE_RAIN_BARREL",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_PRICE_RAIN_BARREL",
+        ":",
+        "u64",
+        "=",
+        "30_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_PRICE_RAIN_BARREL",
+        ":",
+        "u64",
+        "=",
+        "30_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_PRICE_REVIVAL_KIT",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_PRICE_REVIVAL_KIT",
+        ":",
+        "u64",
+        "=",
+        "50_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_PRICE_REVIVAL_KIT",
+        ":",
+        "u64",
+        "=",
+        "50_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "SUPPLY_PRICE_WATERING_BOOST",
+      "legacy_tokens": [
+        "const",
+        "SUPPLY_PRICE_WATERING_BOOST",
+        ":",
+        "u64",
+        "=",
+        "20_000_000",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "SUPPLY_PRICE_WATERING_BOOST",
+        ":",
+        "u64",
+        "=",
+        "20_000_000",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "TREASURY_WALLET",
+      "legacy_tokens": [
+        "const",
+        "TREASURY_WALLET",
+        ":",
+        "address",
+        "=",
+        "@",
+        "0x6f1020c2fd6c91129f7cb5e0d651295e87f7245f96b7d090715c89b38197e77f",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "TREASURY_WALLET",
+        ":",
+        "address",
+        "=",
+        "@",
+        "0x6f1020c2fd6c91129f7cb5e0d651295e87f7245f96b7d090715c89b38197e77f",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    },
+    {
+      "name": "VERSION",
+      "legacy_tokens": null,
+      "candidate_tokens": [
+        "const",
+        "VERSION",
+        ":",
+        "u64",
+        "=",
+        "1",
+        ";"
+      ],
+      "unchanged": false,
+      "protected_existing_non_error_constant": false
+    },
+    {
+      "name": "WILT_DAYS",
+      "legacy_tokens": [
+        "const",
+        "WILT_DAYS",
+        ":",
+        "u64",
+        "=",
+        "7",
+        ";"
+      ],
+      "candidate_tokens": [
+        "const",
+        "WILT_DAYS",
+        ":",
+        "u64",
+        "=",
+        "7",
+        ";"
+      ],
+      "unchanged": true,
+      "protected_existing_non_error_constant": true
+    }
+  ],
+  "protected_functions": [
+    {
+      "name": "route_paid_action",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "0d33a39aa6cb5be631ab73be984469ce4305a14626e94512a64b7ec0916ac6c0",
+      "candidate_body_tokens_sha256": "0d33a39aa6cb5be631ab73be984469ce4305a14626e94512a64b7ec0916ac6c0",
+      "normalized_candidate_body_tokens_sha256": "0d33a39aa6cb5be631ab73be984469ce4305a14626e94512a64b7ec0916ac6c0",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "pay_direct_invite_shop_bonus",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "3b2beda97110ea16bfe1c8f3f448c2a244bdeae4c9c9345b307e3f0b41f2c7a8",
+      "candidate_body_tokens_sha256": "3b2beda97110ea16bfe1c8f3f448c2a244bdeae4c9c9345b307e3f0b41f2c7a8",
+      "normalized_candidate_body_tokens_sha256": "3b2beda97110ea16bfe1c8f3f448c2a244bdeae4c9c9345b307e3f0b41f2c7a8",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "payout_from_challenge_pot",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "9f26d80364588c0f1b9a4e9a68b0e32e4d42d40ade9249e178767a56c2da1860",
+      "candidate_body_tokens_sha256": "9f26d80364588c0f1b9a4e9a68b0e32e4d42d40ade9249e178767a56c2da1860",
+      "normalized_candidate_body_tokens_sha256": "9f26d80364588c0f1b9a4e9a68b0e32e4d42d40ade9249e178767a56c2da1860",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "add_growth_points",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "e0017c641250462c214c9deb37a9904912699d3522e4d982ee8c35655201b946",
+      "candidate_body_tokens_sha256": "e0017c641250462c214c9deb37a9904912699d3522e4d982ee8c35655201b946",
+      "normalized_candidate_body_tokens_sha256": "e0017c641250462c214c9deb37a9904912699d3522e4d982ee8c35655201b946",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "supply_drop_details",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "746397c4663c8e62c14fcae303f23cfc57a6221e3c05f3504b581579db1f5420",
+      "candidate_body_tokens_sha256": "746397c4663c8e62c14fcae303f23cfc57a6221e3c05f3504b581579db1f5420",
+      "normalized_candidate_body_tokens_sha256": "746397c4663c8e62c14fcae303f23cfc57a6221e3c05f3504b581579db1f5420",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "roll_common",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "8fecc5895b793e61d13f631b1b96327745612fa0fedc153a2011c0fc0bce05f2",
+      "candidate_body_tokens_sha256": "8fecc5895b793e61d13f631b1b96327745612fa0fedc153a2011c0fc0bce05f2",
+      "normalized_candidate_body_tokens_sha256": "8fecc5895b793e61d13f631b1b96327745612fa0fedc153a2011c0fc0bce05f2",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "roll_uncommon",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "1234955a5dd90eb3319ae45cade318cefcd1c44c82f4f0994fca4fee463b1d8d",
+      "candidate_body_tokens_sha256": "1234955a5dd90eb3319ae45cade318cefcd1c44c82f4f0994fca4fee463b1d8d",
+      "normalized_candidate_body_tokens_sha256": "1234955a5dd90eb3319ae45cade318cefcd1c44c82f4f0994fca4fee463b1d8d",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "roll_rare",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "3215dcde87de0c406b04a29fef6d022a0e094f07a9389b57738b27e0d2b95f87",
+      "candidate_body_tokens_sha256": "3215dcde87de0c406b04a29fef6d022a0e094f07a9389b57738b27e0d2b95f87",
+      "normalized_candidate_body_tokens_sha256": "3215dcde87de0c406b04a29fef6d022a0e094f07a9389b57738b27e0d2b95f87",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "roll_legendary",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "b8609f176018faec581a227b7622cde0c2a3c9793a448c508bbd077ecf037048",
+      "candidate_body_tokens_sha256": "b8609f176018faec581a227b7622cde0c2a3c9793a448c508bbd077ecf037048",
+      "normalized_candidate_body_tokens_sha256": "b8609f176018faec581a227b7622cde0c2a3c9793a448c508bbd077ecf037048",
+      "reviewed_candidate_to_legacy_token_replacements": [],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "mint_crate_tool",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "b0a353d578c81f0c481f129cf100e491f905fb06b70e77c442a8729c2bd4c1d8",
+      "candidate_body_tokens_sha256": "04f18af1e7a79a1162f62c4eef789f908116236fd9f5fd5affdd6ec32df6b4d9",
+      "normalized_candidate_body_tokens_sha256": "b0a353d578c81f0c481f129cf100e491f905fb06b70e77c442a8729c2bd4c1d8",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "version: VERSION,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "return_or_delete_tool",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "b1a0fab21e101dc4b54381006b89fe4a6962632d588198b29503bb6cdc7ade5e",
+      "candidate_body_tokens_sha256": "635d161f43a7f5914d0cdc37174811cd2cb7ae6596fedb37bdbef7c0d16d415f",
+      "normalized_candidate_body_tokens_sha256": "b1a0fab21e101dc4b54381006b89fe4a6962632d588198b29503bb6cdc7ade5e",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert!(tool.version == VERSION, E_WRONG_VERSION);",
+          "to": ""
+        },
+        {
+          "from": "version: _,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "buy_crate",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "73359221354763d6b2243e352ae4ea146837d80bb937bd2f2f48a11b4533730b",
+      "candidate_body_tokens_sha256": "b5bfbec714ab2a3169a9062f91ff9b98f10e4e997fc4419537795ef5bcc4bf20",
+      "normalized_candidate_body_tokens_sha256": "73359221354763d6b2243e352ae4ea146837d80bb937bd2f2f48a11b4533730b",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert_pool_funding_open(registry, clock);",
+          "to": "assert!(!registry.paused, E_PAUSED);"
+        },
+        {
+          "from": "version: VERSION,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": true
+    },
+    {
+      "name": "send_promo_crate",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "dcdf46263c565a39efc209f42d9ad1be65ded29da309bfa36ba596146df3c075",
+      "candidate_body_tokens_sha256": "a2fb789e35f189d53b23355c1aa16c98df6dc8b76b544b58037df69257e36075",
+      "normalized_candidate_body_tokens_sha256": "dcdf46263c565a39efc209f42d9ad1be65ded29da309bfa36ba596146df3c075",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert_admin_cap(registry, _cap, ctx);",
+          "to": "assert_admin(registry, ctx);"
+        },
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "version: VERSION,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "buy_boom_chest",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "e2124f04a91ab96f10cf446bf1990a3cbc2b4905b19250a657af12fdb1722bec",
+      "candidate_body_tokens_sha256": "2205e5365a903859302ebd1fe4be711bb23de6ee5b5eda8ef1a9c776ff153eaa",
+      "normalized_candidate_body_tokens_sha256": "e2124f04a91ab96f10cf446bf1990a3cbc2b4905b19250a657af12fdb1722bec",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "buy_crate(registry, CRATE_BOOM, payment, clock, ctx);",
+          "to": "buy_crate(registry, CRATE_BOOM, payment, ctx);"
+        }
+      ],
+      "new_clock_parameter": true
+    },
+    {
+      "name": "buy_victory_chest",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "e5b48dc440774c498511153b4cd05c66ea8ea55a54c62b18699e51618b20cf55",
+      "candidate_body_tokens_sha256": "442e39e502b8aef1928c054723ab1038fbe1cb35fe3371f84924cdd00d8ed3e6",
+      "normalized_candidate_body_tokens_sha256": "e5b48dc440774c498511153b4cd05c66ea8ea55a54c62b18699e51618b20cf55",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "buy_crate(registry, CRATE_VICTORY, payment, clock, ctx);",
+          "to": "buy_crate(registry, CRATE_VICTORY, payment, ctx);"
+        }
+      ],
+      "new_clock_parameter": true
+    },
+    {
+      "name": "buy_supply_drop",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "f96858b6d2810fde2405fb428d36179cdbee0151ea712e0520957a24c70119f6",
+      "candidate_body_tokens_sha256": "10a26ecf997db7de5b8013b4e715adb3a6599ac9039c8712b659c144157eaba9",
+      "normalized_candidate_body_tokens_sha256": "f96858b6d2810fde2405fb428d36179cdbee0151ea712e0520957a24c70119f6",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert_pool_funding_open(registry, clock);",
+          "to": "assert!(!registry.paused, E_PAUSED);"
+        },
+        {
+          "from": "version: VERSION,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": true
+    },
+    {
+      "name": "open_crate",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "6184e44ebf12b490acea7672b283ac0b2869e280c1d341936fee1c552964e1ee",
+      "candidate_body_tokens_sha256": "288b7412ef0259dc09a8f765b352490b66669f9883165476502bab82364b3aa7",
+      "normalized_candidate_body_tokens_sha256": "6184e44ebf12b490acea7672b283ac0b2869e280c1d341936fee1c552964e1ee",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert!(crate_obj.version == VERSION, E_WRONG_VERSION);",
+          "to": ""
+        },
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "version: _,",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "plant_seed",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "c2e0b875d684d2fdfe14d6d8c023d2670ea484829f6fe168457d99ea3b855c20",
+      "candidate_body_tokens_sha256": "81ab11258a5c4ecd866ff156fef37ffaf5ca5657380fc9db9da3d8aeeb957ad2",
+      "normalized_candidate_body_tokens_sha256": "c2e0b875d684d2fdfe14d6d8c023d2670ea484829f6fe168457d99ea3b855c20",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert!(sapling.version == VERSION, E_WRONG_VERSION);",
+          "to": ""
+        },
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "version: VERSION, registry_id: object::id(registry), cutoff_growth_points: 0, reward_processed: false,",
+          "to": ""
+        },
+        {
+          "from": "sync_cutoff_points(registry, &mut seed);",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "plant_seed_with_nftree",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "8ee130672b2208c448f528945a7ce23b7cba81869fec2ae2fc48d5c207aa0df6",
+      "candidate_body_tokens_sha256": "4892161302cfffa1ac3307a79661ddfb71c2b72a405732bd765d6d60ec6171f5",
+      "normalized_candidate_body_tokens_sha256": "8ee130672b2208c448f528945a7ce23b7cba81869fec2ae2fc48d5c207aa0df6",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "version: VERSION, registry_id: object::id(registry), cutoff_growth_points: 0, reward_processed: false,",
+          "to": ""
+        },
+        {
+          "from": "sync_cutoff_points(registry, &mut seed);",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "water_seed",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "767d19861e0c8f5d8650aa405df16be66dbf0766c339dc02c5ec888fd739fef5",
+      "candidate_body_tokens_sha256": "54b1681b4a2a3441764afc148c4fb6e81e6408da6e4635e991624f7da667ce58",
+      "normalized_candidate_body_tokens_sha256": "767d19861e0c8f5d8650aa405df16be66dbf0766c339dc02c5ec888fd739fef5",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "sync_cutoff_points(registry, seed);",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    },
+    {
+      "name": "apply_tool",
+      "body_tokens_equal_after_listed_changes": true,
+      "signature_tokens_equal_after_listed_clock_parameter": true,
+      "legacy_body_tokens_sha256": "f634d163b068fb6e5dc2031817e42c733cb416b3637d34902f51c48da23e7ef3",
+      "candidate_body_tokens_sha256": "b783a7d2364645b543e41163a98ca3486a960e4c17244bc97c8df185d6215d72",
+      "normalized_candidate_body_tokens_sha256": "f634d163b068fb6e5dc2031817e42c733cb416b3637d34902f51c48da23e7ef3",
+      "reviewed_candidate_to_legacy_token_replacements": [
+        {
+          "from": "assert!(tool.version == VERSION, E_WRONG_VERSION);",
+          "to": ""
+        },
+        {
+          "from": "assert_registry_version(registry);",
+          "to": ""
+        },
+        {
+          "from": "sync_cutoff_points(registry, seed);",
+          "to": ""
+        }
+      ],
+      "new_clock_parameter": false
+    }
+  ],
+  "production_function_inventory": [
+    {
+      "name": "abandon_seed",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "f18be822de20b9ece533fc924f5f0f901c168c0132f81ce781cae5452745cc47",
+      "candidate_tokens_sha256": "3cdbfdb88da424cd7d0dd438bc895765eb3bb9c8634e2bcf93577ddc96dff6c7",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "add_growth_points",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "f6c08a58cfea43637f9d098ec893966d0911892f770c8e48fcedb471c387ea74",
+      "candidate_tokens_sha256": "f6c08a58cfea43637f9d098ec893966d0911892f770c8e48fcedb471c387ea74",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "apply_tool",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "fbaea15feb82b8dc9f6370b7dcaec7c090dd9d36421c644fef5d0b68d2f96c76",
+      "candidate_tokens_sha256": "99a53f984b13c70ef326e89c72aee3cb00447a05926af631be563d078394d63f",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "archive_claim_deadline_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "b0a527125ff1bd32f790c349d8748d588c7d0e33a1fb6f97ab1c7a0e7b810e85",
+      "candidate_tokens_sha256": "557b34da69f2ad63e06250b8050e255bd2faa72506a4929544d9a81731fc380f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_current_season",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "be98182064bd6e39f98f57d5687d67a100fdd25b0a01fcffe385f28ad9bfa114",
+      "candidate_tokens_sha256": "4292deaa5a980fcf081d710772729c359e2a9eb352dc7d677549581d2cb53cdd",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_finalized_at_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "0936bc17110e8ded6549c54fd9bfc457d9af862c45d62c89c252f6b6b1561402",
+      "candidate_tokens_sha256": "c970ca386cc76b25479271ebdcb11a9c04e2ebff219f901ce38d3180e74c6071",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_is_swept",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "18a1316dbf790b61686e2f5f296455a0851022387d8f34ee70b72c10bb414d03",
+      "candidate_tokens_sha256": "271ae3de755f29fb83ea72a7c1699bb87be993955359b323e9476cb920da7872",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_original_pool",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "34b2e9cd3ed960542bc73f0cef5c06f0957e0d3b5d12f2915f2d49d4f0b5ea17",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_pool_size",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "541beb7519e27fb32094b148e8aed2c167ceef14e080c1a0a9097f270d7bbb54",
+      "candidate_tokens_sha256": "974859aafa5dcb9b03f5bf9baf248376d17bf8110ee4ba653b9316b1989e699b",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_registry_id",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "5b230a0fe59af4f9c761ed08f6a1b08f185bc9f18e10514947fd99cbb1677d3f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_rewards_paid",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "78f6b742aaad00006d3beba2613c42c4af1852e06ef744319dec92b014900f36",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_season_end_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "f456f1a4d7d4d907cae3b3cd822f87d982d5f54bdcad33d22c7d1164c9b2300d",
+      "candidate_tokens_sha256": "c40349b703345957e99f480ed986b7f6fb9f14df5b5b7a879cf6cd1c3adb2e75",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_season_id",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "9a76313df829551225553cec0a54c688aa477aa0b6002dd6963eaedb06461751",
+      "candidate_tokens_sha256": "8d10313bcaf7d088e87e29817608431207e4dbe04ae64972ac01e70ba94a0440",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_season_start_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "ce9821d9661f0c02e0db6b96c4026a29a0db28d57577ccc92950e6e5cc3c20a2",
+      "candidate_tokens_sha256": "dbbbbf9cf9eda4b52db1fa1146802949989a517edeb92d66f405e11a0c323d00",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_total_gp",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "d43730f865aa122643e539620a4cd58cfc6679b86489e3aa73081c859a016a3f",
+      "candidate_tokens_sha256": "9c3c8be8437b6b62d0aa3966bf43e3310b52bd883414845bd6cb387e592d9dac",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "archive_total_seeds",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "169a62146ac4adce77e66ccdc75f391755f32bb10533b024d1f9b318b50d0596",
+      "candidate_tokens_sha256": "8a3b9680ebc5d4c274caf0df7ec9ff9be630487a5880153f6a97db62fec77d27",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_admin",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "11235243587248e04ec335588a04a7411567458a69cf944cde10adb78d621b66",
+      "candidate_tokens_sha256": "d784c47211616b2325477338235509e2329eda7cf7bb690b3c02603506cf423f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_admin_cap",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "a3e9dcb46fae7d7a76658d1898e474c6365d4471cc588cc043de5765ddc5cd5f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_archive_version",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "556b391d87bfadc41a5bbbd0aa30e88c26183d35c692a096d219d610b91dce21",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_challenge_admin",
+      "legacy_present": true,
+      "candidate_present": false,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "02655e31702bdd8ce0a8d60bea74990419f2bdd8c84a44cc990bcd615a98e333",
+      "candidate_tokens_sha256": null,
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_challenge_book",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "8d6c9817ad479542d9394e2fff2abc0347ae660f424ab76dd2e965e78457cd51",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_challenge_cap",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "99e89a8bb0093c38c920623b114b5accabaac0164a46f1cfcf3783b500f341a2",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_challenge_registry",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "2d9c6a00df7087e7321a1411593f2c41d01ebda14e5689871690c89b7db541bc",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_pool_funding_open",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "a8128b94266c6478c3ba0c1f4285110d438d91b4a3cf6578c6c7dcf50e7bacd0",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_registry_version",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "59781c22a6d6d66e71b8ddd5e389ec9cb06a335c8142775aa929f739ce5cca66",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_season_active",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4847b78ccf0fd3e9cd10be398ab179fca8019bd60064e80a249b045b719226b3",
+      "candidate_tokens_sha256": "a00865e4afdd99c565bb7aed4c25a14c707426b695a56433ec4d2f323cbfadd0",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_seed_current",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "aba49f4f8c9188351fdfabdc0a42c53a9365213e65ffbdd8f123706ce360c7d3",
+      "candidate_tokens_sha256": "11ce29621ee875df98db040e4b1f49c6557536a59af64d97404a25e38c88b41f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_seed_owner",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "29be8697c6761e6605ed78092a07854d86644c8674e0a9df854d934ab7f15949",
+      "candidate_tokens_sha256": "cb9d06aabcbc59d854472430f30dc73c35a9c7d72c5e96f635f2524ee137553b",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "assert_seed_version",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "95612be82a874ba9e23da130d923d9902e042e6ff892877091984ff2154be418",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "buy_boom_chest",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "27d6e1bda172b05a661f87a5616856dd996fc833960a7b139d3576301706fd0c",
+      "candidate_tokens_sha256": "4156dd9cf312452342c6583254dfe7f13a348662a7eaf482d51f7012facf6b49",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "buy_crate",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "3761272eec4ef423ad82dbe21227b9c3003a9b341e8d9312566b323f163c23fb",
+      "candidate_tokens_sha256": "cb333f5873da9a544d525c940fa46eeaaced0247bfc4625b46474b8fcf52f450",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "buy_supply_drop",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "5cef1cf0a55051ea79a4126b5e7299118e0b555125c70424ad2594a423000bf4",
+      "candidate_tokens_sha256": "80fb080bfa8ae39788c4ca2f0669625628606297f854a7d9e4952a42ec725574",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "buy_victory_chest",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "d3109e410cf589c7840ece0faa5d078e32c4df5466171ea21a3cb4e701c8c282",
+      "candidate_tokens_sha256": "c57736f34bba31c1cfb13efa3874651b041765eebaaeeaeb6f417c0ce05aa895",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "cancel_canopy_sprint",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "05c9d2ef044799b9044f2f012cd222612d913be30e881901c2a14f3be84955b9",
+      "candidate_tokens_sha256": "ea62065e6b7edb0b194b687351629a67389a7d5796f36ae5cc438bd5ecf63bfd",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_end_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "93c1d2022dfa39a35f03efa4e51b46069bc6932ae8d35ac22c81c7b947b14155",
+      "candidate_tokens_sha256": "45eec0bf378517eb452e56e386df99b4868d3018317ccb14f098ebb5dce8751b",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_entry_baseline",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "b3e6ac90a0cb2e71327ba18074c513cbdeecb273b724a748dc6863fb48faa3f9",
+      "candidate_tokens_sha256": "cec711a6117aa1cdaae87df2a7fb7e1d0ffde61220efe12d1c6d139c351f2899",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_entry_count",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "c980dcbac797ba633ae7b413daf1c697660cbc041cadf266339d55ba1fe6fc39",
+      "candidate_tokens_sha256": "bb2864cbc4b3e0208e1187bc318df2ff0c45663f72b9772c112c3302b0720c52",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_entry_fee",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "3bec0ab5f4107c3587c0b7112978d22294f4c404215b47147b7b5b6725320f41",
+      "candidate_tokens_sha256": "f77039b4c65840c2f9f86acccb7426970bc951997de560d49a5b40f7865ff600",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_entry_refunded",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "0ebb89405ca1e5f45ee21407b645ce943fac16d7e19a068ac89f7cabd4eb0be6",
+      "candidate_tokens_sha256": "4522516fee040381ba7174ea3ce20c6063e6114060af7ec9223f923eebc159ad",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_has_entry",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "d03cefe1209872cefcd414419704c086fb496d68590e4a315d0e53b82ccee637",
+      "candidate_tokens_sha256": "1dc5e9e101c9ca08e2b5a14b463ae2b2614d4172a251694e001b24b43f8f4d36",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_id",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "40966ffb93f374cf80938ff3ca9ce8ebe96c9b594498893bd38b65e67028047a",
+      "candidate_tokens_sha256": "bb49e8c74cb10edd6ebdf80aed6ed57fb2dab7ef9d00ce84005dc927aaadbbde",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_is_canceled",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "eeac5555c7a9b7e3675632d59141af34f9ab52685995d1ce0308bbe389ae2fbb",
+      "candidate_tokens_sha256": "b6334f7996d3bf1127d5f15934886d279cf62323baa3db355c18cd13ef1b902e",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_is_settled",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "a8576758b52fc6750d9afa427b2a37ed249af684efb828cf4cfd34319f6b51fa",
+      "candidate_tokens_sha256": "894cd91204d790a6f2823ed4c6d8b7cd26039d87ef124f595113f3e832752d3a",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_player_score",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "25159e260994d87b8bb9a5f7fe37b2e6d08a233556d9fb0a9c1ab1afdf8d24e2",
+      "candidate_tokens_sha256": "f55c2f73944fa5a1dc4f6b7eee0de8395e4aee5f659be50e276794c044ddb158",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_pot_size",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "865c8511a9d6637a83a878ecb848265428977fef2257f311fa46c0805dde8f34",
+      "candidate_tokens_sha256": "b9f4e4051f6e1a6f1a706ba57bf7098bb049d0651496cbc2498c923a29a9078c",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_season_id",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "da35c79a28613f704bc53092756cd120b903cc2b821156c66b20bc192ceaf230",
+      "candidate_tokens_sha256": "eeb123208824ec8102bf8147be0bfd1710481240587743638217d6fdbc7154a4",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "canopy_challenge_start_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "f17d8b1ea2ebc349a9d1ccd8a5e55e2eb104a9b3572ea0cfb3b3f2e5a24b88ad",
+      "candidate_tokens_sha256": "4b92a69d0286fa1a3d6ffc10b3a85f986b037d9b625522cc1f91c977e3be0511",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "challenge_book_active_end_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "433f88f319093a83fa76499938effd0b79b69fcc695b7625beca9524700641cb",
+      "candidate_tokens_sha256": "b5f2956664f41ec63689cebf08c257cc6fb3a8f3f665254b5aae4742ec69a308",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "challenge_book_active_id",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "3fc77d07910b198fcd9f40f739b1821450832e0bbb17b2873a6600ed07b60c2f",
+      "candidate_tokens_sha256": "ca310c6378621c43aca07464641af3ad83333f5e7c546816bb8ff1432fe4a69c",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "challenge_book_admin",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "2cb01c67706f2159031ef14c4a8a1e6770f40a715de8221508130ddf0bd8caa8",
+      "candidate_tokens_sha256": "55599fb30a016c93677f7f95a787de56cd25cb4909a6a8750fb744f75676842b",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "challenge_book_current_id",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "aa0f24f02a2c046443d5a280ce3a8fb04bf69cb44d1cef2536415e51cd3d69e5",
+      "candidate_tokens_sha256": "d34c086c6107f8730af51bd508baca2392ae5b8869739fdb31c380ead4df5054",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "claim_archived_reward",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "22e5fa1cd419b560a72cb0900b9d2c9cb45c7f0096b4f2c1bde4c640d612a013",
+      "candidate_tokens_sha256": "39cd986d01a9c36a10165a0bff6ef27726f1dcaf089c96f5c872bf0672b24d50",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "claim_reward",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "fa6ed10bb9892dbec9255b3c1efa773068b6884b3e62c29f328c3ae310d14ea7",
+      "candidate_tokens_sha256": "fa7a30834e720e9992bc3fd5b319a43c2c9364f04bd80cd9c8f31ea4973b6929",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "create_challenge_book",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "1645daf487ad42614bfa3e6a99fc460501ff7eb731214dec7254cc96536fc357",
+      "candidate_tokens_sha256": "d181b6ae17aef944141a0c563a889ee4f23f59b5a8b1baa5eb9353a4536c0395",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "create_settlement_registry",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "ecc86b590ec531526205c829992561a15bbb618f06f58148712701b213186494",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "cutoff_points",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "b63626cb8dfd3ec64ef9cfc70976bb1ebde4b2df7f391c216be1d9a0defecbef",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "deposit_to_pool",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4eb10d771c86a5f6f92223f89ef34cee9cd8544c5039081444adc3da8371692d",
+      "candidate_tokens_sha256": "c12d4ba70e2f4fed54e8ec14952542ddb21babfb5c5287915ee3491d0cc0dc06",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "enter_canopy_sprint",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "df4e6fa80b01fa3337cfff5faa1ec107bf0344c317eee9680ccff9bd755c2116",
+      "candidate_tokens_sha256": "516cb91ae3ddcf4db06112509b11f33098c14b0dd45d9af91c8018a2c5eb7774",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "finalize_canopy_sprint",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "e2e28a491a66394072a56d640c659559fc9c39a90fb9ba6a181cf80caab8325f",
+      "candidate_tokens_sha256": "a576ad38231dff9b083b3d6bd56491d43ecc6958589abe756a1fd5a0e448ee73",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "finalize_reward_settlement",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "89b85fe92011380b2b170729d14567dddbaf914a3c702da1ff87eb6f40eecd83",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "finalize_season_archive_now",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "1be506e7305f1cf42d03b8190b738edf5c8e83396dbc61ef9d7592a73a971b06",
+      "candidate_tokens_sha256": "6e592ee256b4fdfff9b9c96ccdd8d0962bc807c9fbe9b991c19f3da0d792bf7a",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "finalize_settlement_at",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "b9beafb702c7852bf423d8f2bb35c94ad47a373e0fba27cd491a07dc787f47b8",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "init",
+      "legacy_present": true,
+      "candidate_present": false,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "ed482e74efe40fa71b5794aafde7853c744deea6e73e2a016cf98cbb22ce4a28",
+      "candidate_tokens_sha256": null,
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "mark_seed_dead",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "9d601776a60466c443be850e91789ace66af19311fa383f90ea988411862fbb5",
+      "candidate_tokens_sha256": "c3ee2fc9ca91102c2e64fd786adc065ec30b73eabc23a39660323ff0e13c4c04",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "mint_crate_tool",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "f138282e826cd74c9b033b2cbd15f2380fbc2406ae6001a9b5762f967358811c",
+      "candidate_tokens_sha256": "45e4fc681158c62504e8f0a0b3dc9670cadbb149816ab147810abf01799887b4",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "mint_sapling",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "7325c96922b9decd4d6ef59884538b126c66bb53b08803f32128921d3986d14e",
+      "candidate_tokens_sha256": "83071090f41abb036e83da2c17a044d9e0bee3825c72c720f90d2cf63bc10df7",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "open_canopy_sprint",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "072f6cff9efead6900d902ce919ad24eb6d0316f8bd9f5f1fb626a595a8104f1",
+      "candidate_tokens_sha256": "7ea9b3a93bc86d15a73aa642b6995d37965ea681d26851c98184814b911ed5fe",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "open_crate",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "82ceb9eb01ca45da96b339c5f2f7018c961af9eac15ba9231c795963ddf02e3a",
+      "candidate_tokens_sha256": "1f2a785c14eaa63090ee6da1406454a7a63a384d494e67045b4611b53d0c8cf7",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "pay_direct_invite_shop_bonus",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "f37eddc019ae18df22f5052f67811da9e16d2c5f9a77dfdce6f04917e1144c1f",
+      "candidate_tokens_sha256": "f37eddc019ae18df22f5052f67811da9e16d2c5f9a77dfdce6f04917e1144c1f",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "payout_from_challenge_pot",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "3bcee133982f758eadb31031dd8c016526752568f529ad53754b8320653589be",
+      "candidate_tokens_sha256": "3bcee133982f758eadb31031dd8c016526752568f529ad53754b8320653589be",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "plant_seed",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "f2454e3eb2cbc6d92ecaa0a9127ac9523747c70fb70db93f7d5e83c64e68329c",
+      "candidate_tokens_sha256": "c1eb7f371c682fe6175345755f2faec759b4edad08887834cfb71b3903eb52a3",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "plant_seed_with_nftree",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "aa362f9356b7461b180848bce1320a425a31b784e0fea0dc35d2a9e947f5e786",
+      "candidate_tokens_sha256": "849289d3a916ff478ecb9e54a36dc7a774d67f8c707f0ff0d44d5a66398c28c2",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "player_challenge_score",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "941f428fe51e8fe2f86de8154d8a7ed92b1273ea16d0e3814850232fae316f6d",
+      "candidate_tokens_sha256": "941f428fe51e8fe2f86de8154d8a7ed92b1273ea16d0e3814850232fae316f6d",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "player_growth_points",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "af067d5b8e81a5afc4dad892e1aca1b6594284e9c6a60f38e8d7e2cdec298a99",
+      "candidate_tokens_sha256": "ac50b21c0789caecc359c399755fc28153767113ba8926c41534b21855ec9cef",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "player_referral_earnings",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4042d809cdda6ce9f65ad5d10b836a9a8600b7d635054a65825ed8ab529106a7",
+      "candidate_tokens_sha256": "b46d0bdb19bb82059a946a773bad4ad962152df10f2b3dbea572e84d711acbd5",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "refund_canceled_canopy_sprint_entry",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "adbac3b898354f30410e873a61ef25440758edb828a3a52e660383e1b7965bda",
+      "candidate_tokens_sha256": "6cd7b16e516dd91c8fe55a7c5464e7c2b76c68c6e3386fe6225abeb35377b463",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_claim_deadline_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4ac2797b6b8fbeed1e7613a3d3aa1feb5ef7e96b72c48001b4a4f86ebf6141d6",
+      "candidate_tokens_sha256": "8da7c894bd7391d3e368713b93ac4ab434234a1ef157c5d244064bd6d3babf8e",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_eligible_gp",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "cc2448a442d12326fe8ed30f1ad2f75f523abebeb8cfabee470404f0b0be1c13",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_is_paused",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "65f3932faee642e9447be050adaed0c75c7af44605a0450229ffee03a9fe46c4",
+      "candidate_tokens_sha256": "ac2bf46a43cc4a7b8a4a37d4a248e70d32b0d8bd6028f40023a1c57a71493482",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_original_pool",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "dabe007e9c0daf6d4973ee8fe053c4d3bfd3aeda42872d45cf91285f607a255c",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_pool_size",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "5cec62aba1e303e16114a2f3dff4a31263a1dca4fb59fcb3dae80c73b38972e5",
+      "candidate_tokens_sha256": "70b6648ae72314aec4f7a2d19f09b14ab2d5f8ddbbc5231e0001641116f33682",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_review_ready_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "38a25412a0488019427bfed7e6a7309b718e77bc62a6980a3163c3f5151cacd9",
+      "candidate_tokens_sha256": "77c6b9c0817196992bef7e50f680bdb5ac978aaaeadb10730b35e98b3246e1ae",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_rewards_paid",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "63e7d8b4b5a9e50c3982fb8722366bae2a6ea224dcd28f247fd0894a118952c7",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_season_end_ms",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "92e3f63b13ecf3a728dfd5306dca672b7839b5306725805f08ded4e33c721f2a",
+      "candidate_tokens_sha256": "bfb04829aa7c0ee7eaf73205238443a86a61dd46557490446bc647f3137f69cb",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_settlement_finalized",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "d3467e116ecf13f3fc7fa97ffc004965ba3829aaf2fc2cfdbd3379e248cddef9",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_total_gp",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "311ab3ba0eb4aeb1fafd2a3e4a9387b85e17664cb97a4f8a1a47da33f4d23920",
+      "candidate_tokens_sha256": "e40f1bdb879fc7e739685cca62362105dc439296fe60ab3204f1aa09aa032cab",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "registry_total_seeds",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "702e98dd52327daaf0ca88cb74ea81a58291f3df78733f5f57769292cb6cdaef",
+      "candidate_tokens_sha256": "6da66d98d0acf93c5c6282610574bfa50d9e8d172a8b36ec6bbe2be8357bbd06",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "remove_seed_from_owner",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "90d4ee8bdbd0747378daa6e71924157e19c0991b621591c430d42fc8c1c617e3",
+      "candidate_tokens_sha256": "90d4ee8bdbd0747378daa6e71924157e19c0991b621591c430d42fc8c1c617e3",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "remove_seed_growth_points",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "17a511419471bc5e870f0fb92a8138c375626945180c01be1c79c8485350bbb9",
+      "candidate_tokens_sha256": "17a511419471bc5e870f0fb92a8138c375626945180c01be1c79c8485350bbb9",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "reset_season",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "8f2f4edfaa8aa1a7a0b03891a28ef901aa53d41823334ca309148137e382e3ff",
+      "candidate_tokens_sha256": "a02dd1481da39c11b947c56e47d8f108888c89ba62acf1231416b9e22dfa5db0",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "return_or_delete_tool",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "ba81932f2df85e3ae6aea93658fcf124a936586cac267df5582109c852e3eefc",
+      "candidate_tokens_sha256": "5e2e47f803374b9791c1fed2f770b7854fb3c54875685a51a95e35e28b81cf9d",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "revive_seed",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "94730c62d6b3324b56787c3953a7e45f5ffcdba0689d3ea65f327544eddf55e0",
+      "candidate_tokens_sha256": "10d14d0777e9e8411697be7eb8abe2080fafd1e326651111226ed9ffdf4c549d",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "revive_seed_with_tool",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "81a6bfcffc098c5ff40c4313ab776e7b2c31c71c61a391edab397bcf5fad245b",
+      "candidate_tokens_sha256": "b34e1652916e5e8989cc90bdbdbbe51a876a16f4a25bdd8cc4a606189f7507b0",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "roll_common",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "9fc6c67f68339d352f41c007c2ce4acc4a6171ad4697afd2d4ba388a63415aa9",
+      "candidate_tokens_sha256": "9fc6c67f68339d352f41c007c2ce4acc4a6171ad4697afd2d4ba388a63415aa9",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "roll_legendary",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "62c43b3bcb38a90716a7a3fa822b494e6976a9ff38cbb1c8f1a75405b8aaa72c",
+      "candidate_tokens_sha256": "62c43b3bcb38a90716a7a3fa822b494e6976a9ff38cbb1c8f1a75405b8aaa72c",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "roll_rare",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "d25437278f4fdacd54c698f089462770610e4888b8abffa975b98e2ba6e0738b",
+      "candidate_tokens_sha256": "d25437278f4fdacd54c698f089462770610e4888b8abffa975b98e2ba6e0738b",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "roll_uncommon",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "d9cac66a220d2515925df9c4cb92d6897d984de7ab2f7a6ffca900f74845c5fc",
+      "candidate_tokens_sha256": "d9cac66a220d2515925df9c4cb92d6897d984de7ab2f7a6ffca900f74845c5fc",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "route_paid_action",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "6601a00e33051e03d608db0eafe6064d0e5378d2d98023d8710f62b4ca49416d",
+      "candidate_tokens_sha256": "6601a00e33051e03d608db0eafe6064d0e5378d2d98023d8710f62b4ca49416d",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "sapling_is_planted",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4b93d0df25969f01e1b9860bd5d6c71b7fadebc0f47aba592f12ce1b42c4f464",
+      "candidate_tokens_sha256": "5ade76d197c8ff3a052bfc4e9eb8d996d3eedb316991bd7830bdb534c4234520",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_bottomless_expiry",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "2e4621c542a1d29f3b35b1b9bddb9bf7184c8355c5cded612d4db285838ec15d",
+      "candidate_tokens_sha256": "34fefe545405e4e96395cd5f7bb3f507bd7e194f0935e4573e7471dcfaf5f8ab",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_cutoff_growth_points",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "c9db8cbbacef3b57b37d80d1ced7469e07598d809a692038d3760a4d7bff3d1f",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_fertilizer_charges",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "a01afaa8a3c805e89605a57c34705eb27414c0a1284e876739bfaec534800057",
+      "candidate_tokens_sha256": "347c27714d5f0841c9eef9c65e37c3c45b6a564f171fff52eff14cfa3e044625",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_growth_points",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "87c82d181c9adf8f351fa86c9c754cb2aecdc5cfacb4ae1cb384412cd34eddb7",
+      "candidate_tokens_sha256": "4a837ba643484320e90eef9f453c09d3470bee39ae353d22c7132b9e69aff31e",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_is_dead_by_time",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "8a5e96c7ac0837cdc1b168e935ae8083f20d0321a2e1d22607b815c42a1d0b38",
+      "candidate_tokens_sha256": "8a5e96c7ac0837cdc1b168e935ae8083f20d0321a2e1d22607b815c42a1d0b38",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_registry_id",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "da03f22165a6cef9c448453c6e7016376e649caa2e3fb5b6f2b3a1071835816c",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_revival_charges",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "4375f139f1f1808790958f2cedd5fa92dce77acf6607750698abac9fcbbdc45a",
+      "candidate_tokens_sha256": "e1e149f4031abe10d9aa0d661bbdf210c5a48f1a3ec2d416b49cd37c9137ce56",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_reward_processed",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "5f404b8882b0a47532c51b75de5caff423ebe4f56f8cf1e6b20c766c3c57fe08",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_state_live",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "907a2e04b8191fd2e374c75dd0019e15adc908f8126532456f5705e003eec156",
+      "candidate_tokens_sha256": "2476fc5a6125c1c87188b67111a028fdd4b150403414be7fdaf81c9cdd393897",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "seed_streak",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "8e7eb5676cea473f0b1abdb5091c09788c910641d355254ed1a4efa9624ef86a",
+      "candidate_tokens_sha256": "99e93b72ccae4cf92e62498c927f450fb89467d787371faca84daf25d5244274",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "send_promo_crate",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "0ff8f3042537bed9a979660e6d7c1111d4ff233549fa979594f2bd0ac58b0a8b",
+      "candidate_tokens_sha256": "5ea6eed61630421b167aa8cc5cf2a55177064fa6ea50b623d800a80a1863b7d5",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "set_paused",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "74eefecc8f4d828fd4b84be7bc53b4bd0cdd2fb55fc2c869f255e6b906a420bd",
+      "candidate_tokens_sha256": "899a09e27e08f05484810e6ae83ac9b2ebd7c46fc04430c1c59c801186e04b23",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "settle_seed_reward",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "d2d6f0e037760bc7aa17d9519aa40656191f0e83e7de12b07395e73b719ecd20",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "start_season",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "b44f3309e65ce70ef651733664dffa920138dceb271f1ba795771163a43a7623",
+      "candidate_tokens_sha256": "2771fd985d7c3a9677fc0c80599766fe64dc045d1458380e3d151821fe5c00cb",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "start_season_for_duration",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "57f49de83043817f57196a04780de7e1b8cef3cf5064f4865d0acf854286a1d2",
+      "candidate_tokens_sha256": "fbc1b437473ddf83ae3af108af469fcde5832992e04cd8fee5fb3bab4032a14a",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "supply_drop_details",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": true,
+      "legacy_tokens_sha256": "065e20eaf2f94108374038e276818096239a2b730aba2bbe7427138855cb241c",
+      "candidate_tokens_sha256": "065e20eaf2f94108374038e276818096239a2b730aba2bbe7427138855cb241c",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "sweep_archived_rewards",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "d02bb28b248fab90ab140d8bd9bd283763151836ddebbb368f2990c70b839524",
+      "candidate_tokens_sha256": "5eb25f18ca40cad8e396e7432cf153a1099cb004483ef3a81cfe77fe0f2507f8",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "sync_cutoff_points",
+      "legacy_present": false,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": null,
+      "candidate_tokens_sha256": "c24a495969de8fbfee7737b67a81a685c8bd9396b717a8c3a80f61709f480cd6",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "transfer_admin",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "db190e20ea862e74c355baaa4374f6471a9591d4d71eeeb02b26e358187532e5",
+      "candidate_tokens_sha256": "4f94be8527aed4c20a05acbecf728d67a51eada633537ace7b28fe6247912eb1",
+      "protected_economics_or_care_function": false
+    },
+    {
+      "name": "water_seed",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "85c95cb2619231267a7146b8b5ef800a421d7c0a58d81abdf3667289e7e15b0f",
+      "candidate_tokens_sha256": "0844690662db522b58100f0bc1c8b84e3a38b62b29475fb8d59d8876727b3770",
+      "protected_economics_or_care_function": true
+    },
+    {
+      "name": "withdraw_treasury",
+      "legacy_present": true,
+      "candidate_present": true,
+      "source_signature_and_body_tokens_identical": false,
+      "legacy_tokens_sha256": "3aae1b64f5b96c7126477127397c55642c9e352dc33c2a8d8944b1f2dc151045",
+      "candidate_tokens_sha256": "4aa04e70ec017c69214bdfeae12ee90606c3f294e7904f0b42606c2b58050dd7",
+      "protected_economics_or_care_function": false
+    }
+  ],
+  "limitations": [
+    "Whitespace/comments are ignored; remaining tokens, literal values, arithmetic, call order, and branches are compared.",
+    "The new module has different type identities. A token-identical local body can call helpers that gained version, registry, or settlement checks.",
+    "Only the 21 explicitly listed economics and care functions are restricted to the listed substitutions; other changed or added production functions remain visible in the inventory and require settlement review.",
+    "Legacy bytecode identity is a separate, stronger check and is not established by this source comparison."
+  ]
+}

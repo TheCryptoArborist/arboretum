@@ -143,6 +143,15 @@ repository permissions and no deployment or transaction step.
 
 ## Next implementation
 
+**Implemented follow-up:** The separate
+[`contract-payout` candidate](../contract-payout/README.md) adds a versioned
+settlement module, cutoff eligibility accounting, fixed entitlements, and actual
+VM tests. The legacy module still passes the byte-exact comparison. New object
+types are required because the deployed objects lack version guards and old
+package versions remain callable. Existing legacy seasons and inventory are
+explicitly outside automatic migration. See the candidate's policy and
+verification evidence before considering activation.
+
 Use this verified source as the reference for a separate payout candidate.
 The proposed correction determines eligibility at the season cutoff, finalizes
 eligible Growth Points before claims, and uses common entitlement rules for

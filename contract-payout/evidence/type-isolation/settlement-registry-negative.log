@@ -1,0 +1,18 @@
+Failed to build Move modules: Compilation error.
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+error[EC04007]: incompatible types
+     ┌─ ./sources/isolation_probe.move:5:9
+     │
+   4 │     public fun probe(value: &legacy::Registry): u64 {
+     │                              ---------------- Given: 'arboretum::arboretum::Registry'
+   5 │         settlement::registry_total_gp(value)
+     │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Invalid call of 'arboretum::settlement::registry_total_gp'. Invalid argument for parameter 'r'
+     │
+     ┌─ ./sources/settlement.move:1948:38
+     │
+1948 │     public fun registry_total_gp(r: &Registry): u64          {
+     │                                      -------- Expected: 'arboretum::settlement::Registry'
+

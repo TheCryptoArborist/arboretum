@@ -1,0 +1,36 @@
+name: Settlement payout candidate
+on:
+  push:
+    branches: [feature/season-payout-settlement-20261019]
+    paths: ['contract-payout/**', 'contract-reconstruction/**', 'contract/sources/arboretum.move', 'gameplay-verification/deployed-probe/**', '.github/workflows/contract-payout.yml']
+  pull_request:
+    paths: ['contract-payout/**', 'contract-reconstruction/**', 'contract/sources/arboretum.move', 'gameplay-verification/deployed-probe/**', '.github/workflows/contract-payout.yml']
+permissions:
+  contents: read
+concurrency:
+  group: contract-payout-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Verify exact public compiler and framework inputs
+        run: python3 contract-reconstruction/prepare_toolchain.py --work-dir "$RUNNER_TEMP/arboretum-v11-tools"
+      - name: Verify additive bytecode, execute settlement scenarios, and reject cross-module type confusion
+        run: |
+          python3 contract-payout/verify_candidate.py \
+            --compiler "$RUNNER_TEMP/arboretum-v11-tools/sui" \
+            --compiler-archive "$RUNNER_TEMP/arboretum-v11-tools/sui-mainnet-v1.78.1-ubuntu-x86_64.tgz" \
+            --framework-dir "$RUNNER_TEMP/arboretum-v11-tools/framework-8b9163554164776bc3372d828f8d6ced55aa2b5e" \
+            --framework-archive "$RUNNER_TEMP/arboretum-v11-tools/framework-8b9163554164776bc3372d828f8d6ced55aa2b5e.tar.gz" \
+            --work-dir "$RUNNER_TEMP/arboretum-payout-build"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: settlement-payout-candidate
+          path: contract-payout/evidence/
+          retention-days: 30
