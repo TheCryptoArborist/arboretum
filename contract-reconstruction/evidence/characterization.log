@@ -1,0 +1,13 @@
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+Running Move unit tests
+[ PASS    ] arboretum::arboretum::canopy_entry_records_baseline_and_pot
+[ PASS    ] arboretum::arboretum::canopy_entry_rejects_double_entry
+[ PASS    ] arboretum::arboretum::canopy_finalize_splits_side_pot_without_touching_growth_pool
+[ PASS    ] arboretum::arboretum::canopy_underfilled_challenge_can_cancel_and_refund
+[ PASS    ] arboretum::arboretum::payout_direct_and_archived_routes_diverge_after_cutoff_drought
+[ PASS    ] arboretum::arboretum::payout_direct_claim_order_changes_eligible_payment_with_time_dead_seed
+[ PASS    ] arboretum::arboretum::payout_partial_direct_then_archive_conserves_funds_and_rejects_replay
+Test result: OK. Total tests: 7; passed: 7; failed: 0
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.

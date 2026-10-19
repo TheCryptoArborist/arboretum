@@ -1,5 +1,11 @@
 # Deployed-source preflight — 19 October 2026
 
+**Follow-up completed:** [the version-11 reconstruction](../contract-reconstruction/README.md)
+now reproduces the actual upgrade bytecode exactly, with all 96 functions,
+32 structs, and matching linked framework modules. The initial findings below
+are retained as the preflight history; their source-reconciliation blocker is
+resolved. The payout correction remains the next implementation.
+
 ## Outcome
 
 **The saved production source is not yet reconciled with the configured deployed
