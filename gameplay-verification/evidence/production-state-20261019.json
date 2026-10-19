@@ -1,0 +1,11 @@
+{
+  "observedDate": "2026-10-19",
+  "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+  "name": "arboretum-sui-forest",
+  "primarySite": "https://treegrow.xyz",
+  "productionDeploy": {
+    "id": "6abe81174b61a8e3dd53b333",
+    "state": "ready"
+  },
+  "scope": "Connected project metadata only; not a new authenticated preview audit"
+}

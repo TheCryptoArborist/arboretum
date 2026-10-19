@@ -228,6 +228,128 @@ export async function initializeWallet(){
 }
 
 // ── SIGN & EXECUTE ────────────────────────────────────────────────────────────
+function transactionOutcomeError(code, message, digest = null, cause = undefined) {
+  const error = new Error(`${message}${digest ? ` Transaction: ${digest}.` : ''}`, { cause });
+  error.code = code;
+  error.digest = digest;
+  return error;
+}
+
+const TRANSACTION_CONFIRMATION_QUERY = `query ConfirmArboretumTransaction(
+  $digest: String!, $eventCursor: String, $objectCursor: String,
+  $readEvents: Boolean!, $readObjects: Boolean!
+) {
+  transaction(digest: $digest) {
+    digest
+    effects {
+      digest status executionError { message }
+      checkpoint { sequenceNumber timestamp }
+      events(first: 50, after: $eventCursor) @include(if: $readEvents) {
+        nodes { sequenceNumber sender { address } contents { type { repr } json } }
+        pageInfo { hasNextPage endCursor }
+      }
+      objectChanges(first: 50, after: $objectCursor) @include(if: $readObjects) {
+        nodes { address idCreated idDeleted outputState { version digest asMoveObject { contents { type { repr } } } } }
+        pageInfo { hasNextPage endCursor }
+      }
+    }
+  }
+}`;
+
+async function waitForIndexedTransaction(digest) {
+  const deadline = performance.now() + 45_000;
+  const events = { nodes: [], cursor: null, done: false, seen: new Set() };
+  const objects = { nodes: [], cursor: null, done: false, seen: new Set() };
+  let confirmed = null, lastError = null, pages = 0;
+  const incomplete = cause => transactionOutcomeError(
+    confirmed ? 'TRANSACTION_DETAILS_UNAVAILABLE' : 'TRANSACTION_UNCONFIRMED',
+    confirmed
+      ? 'Transaction succeeded on Sui, but its receipt details could not be loaded. Refresh your garden; do not repeat this transaction.'
+      : 'Transaction submitted, but its outcome could not be confirmed. Check this transaction in your wallet before trying again.',
+    digest, cause
+  );
+  function appendPage(target, page) {
+    if (target.done) return;
+    if (!Array.isArray(page?.nodes) || typeof page?.pageInfo?.hasNextPage !== 'boolean') {
+      throw incomplete(new Error('Transaction receipt page is incomplete.'));
+    }
+    if (page.pageInfo.hasNextPage) {
+      const cursor = page.pageInfo.endCursor;
+      if (typeof cursor !== 'string' || !cursor || target.seen.has(cursor)) {
+        throw incomplete(new Error('Transaction receipt pagination did not advance.'));
+      }
+      target.seen.add(cursor);
+      target.cursor = cursor;
+    } else target.done = true;
+    target.nodes.push(...page.nodes);
+  }
+
+  while (performance.now() < deadline && pages < 10) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), Math.min(12_000, deadline - performance.now()));
+    let transaction;
+    try {
+      const response = await fetch(GRAPHQL_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        cache: 'no-store', credentials: 'omit', signal: controller.signal,
+        body: JSON.stringify({ query: TRANSACTION_CONFIRMATION_QUERY, variables: {
+          digest, eventCursor: events.cursor, objectCursor: objects.cursor,
+          readEvents: !events.done, readObjects: !objects.done,
+        } }),
+      });
+      if (!response.ok) throw new Error(`Transaction confirmation request failed (${response.status}).`);
+      const json = await response.json();
+      transaction = json.data?.transaction;
+      // A failed optional receipt field can coexist with a known execution
+      // outcome. Preserve that outcome instead of treating it as unknown.
+      if (json.errors?.length) lastError = new Error(json.errors.map(e => e.message).join('; '));
+    } catch (error) {
+      lastError = error;
+    } finally { clearTimeout(timeout); }
+
+    if (transaction) {
+      const effects = transaction.effects;
+      if (transaction.digest !== digest || (effects?.digest && effects.digest !== digest)) {
+        throw incomplete(new Error('The confirmation did not match the submitted transaction.'));
+      }
+      if (effects?.status === 'FAILURE') {
+        throw transactionOutcomeError('TRANSACTION_FAILED', effects.executionError?.message || 'Transaction failed on Sui.', digest);
+      }
+      // The checkpoint establishes that the indexed read has caught up to this tx.
+      if (effects?.status === 'SUCCESS' && effects.digest === digest && Number.isSafeInteger(effects.checkpoint?.sequenceNumber)) {
+        confirmed = transaction;
+        appendPage(events, effects.events);
+        appendPage(objects, effects.objectChanges);
+        pages++;
+        if (events.done && objects.done) {
+          return {
+            digest,
+            effects: { status: { status: 'success' }, transactionDigest: digest },
+            checkpoint: String(effects.checkpoint.sequenceNumber),
+            timestampMs: String(Date.parse(effects.checkpoint.timestamp)),
+            events: events.nodes.map(event => ({
+              id: { txDigest: digest, eventSeq: String(event.sequenceNumber) },
+              sender: event.sender?.address, type: event.contents?.type?.repr,
+              parsedJson: event.contents?.json,
+            })),
+            // Current gameplay consumers use created object IDs/types for crate reveals.
+            objectChanges: objects.nodes.map(change => ({
+              type: change.idCreated === true ? 'created' : change.idDeleted === true ? 'deleted' : 'mutated',
+              objectId: change.address, objectType: change.outputState?.asMoveObject?.contents?.type?.repr,
+              version: change.outputState?.version == null ? undefined : String(change.outputState.version),
+              digest: change.outputState?.digest,
+            })),
+          };
+        }
+        continue;
+      }
+    }
+    const remaining = deadline - performance.now();
+    if (remaining > 0) await _sleep(Math.min(2_000, remaining));
+  }
+  throw incomplete(lastError);
+}
+
 export async function signAndExecute(tx) {
   if (!_wallet || !_account) throw new Error('Wallet not connected');
 
@@ -245,19 +367,23 @@ export async function signAndExecute(tx) {
     options: { showEffects: true, showEvents: true, showObjectChanges: true },
   });
 
-  if (result?.digest && (!Array.isArray(result.events) || !Array.isArray(result.objectChanges))) {
-    try {
-      const full = await _client().waitForTransaction({
-        digest: result.digest,
-        options: { showEffects: true, showEvents: true, showObjectChanges: true },
-      });
-      return { ...result, ...full, digest: result.digest };
-    } catch (err) {
-      console.warn('Could not hydrate transaction result', err);
-    }
+  const digest = typeof result?.digest === 'string' && result.digest.trim() ? result.digest : null;
+  const walletStatus = result?.effects?.status;
+  if (walletStatus?.status === 'failure') {
+    throw transactionOutcomeError('TRANSACTION_FAILED', walletStatus.error || 'Transaction failed on Sui.', digest);
+  }
+  if (!digest) {
+    throw transactionOutcomeError('TRANSACTION_UNCONFIRMED', 'The wallet did not return a transaction digest. Check your wallet activity before trying again.');
   }
 
-  return result;
+  // Raw Wallet Standard returns BCS effects, not dApp Kit's result union.
+  // Use the live GraphQL read API: the former JSON-RPC confirmation is retired.
+  // Never sign or submit again while waiting for this digest to become indexed.
+  const full = await waitForIndexedTransaction(digest);
+
+  // Keep wallet-specific fields (such as bytes/signature), with indexed effects
+  // and any available event/object details in the shape existing callers expect.
+  return { ...result, ...full, effects: { ...(typeof result.effects === 'object' ? result.effects : {}), ...full.effects }, digest };
 }
 
 // ── HELPERS ───────────────────────────────────────────────────────────────────
@@ -1083,20 +1209,62 @@ export async function openCrate(crateObjectId){
   return signAndExecute(tx);
 }
 
+// Archive events retain the defining package of the upgrade that introduced
+// them, as verified in the deployed package's typeOrigins (not PACKAGE_ID).
+const ARCHIVED_REWARD_EVENT_TYPE = '0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum::ArchivedRewardClaimed';
+
+function sameClaimAddress(actual, expected) {
+  const canonical = value => typeof value === 'string' && /^0x[0-9a-fA-F]{1,64}$/.test(value)
+    ? value.slice(2).toLowerCase().padStart(64, '0') : null;
+  const address = canonical(actual);
+  return address !== null && address === canonical(expected);
+}
+
+function canonicalClaimMist(value) {
+  if (typeof value === 'number') return Number.isSafeInteger(value) && value >= 0 ? BigInt(value) : null;
+  if (typeof value !== 'string' || !/^(0|[1-9][0-9]{0,19})$/.test(value)) return null;
+  const amount = BigInt(value);
+  return amount <= 18_446_744_073_709_551_615n ? amount : null;
+}
+
+function requireRewardReceipt(result, owner, seedObjectId, archiveObjectId = null) {
+  const eventType = archiveObjectId ? ARCHIVED_REWARD_EVENT_TYPE : currentObjectType('RewardClaimed');
+  const receipts = (result.events || []).filter(event => event.type === eventType
+    && sameClaimAddress(event.parsedJson?.owner, owner)
+    && (!archiveObjectId || (sameClaimAddress(event.parsedJson?.seed_id, seedObjectId)
+      && sameClaimAddress(event.parsedJson?.archive_id, archiveObjectId))));
+  if (receipts.some(event => (canonicalClaimMist(event.parsedJson.amount_mist) ?? 0n) > 0n)) return result;
+
+  const seedDied = (result.events || []).some(event => event.type === currentObjectType('SeedDied')
+    && sameClaimAddress(event.parsedJson?.owner, owner)
+    && sameClaimAddress(event.parsedJson?.seed_id, seedObjectId));
+  const zeroPayment = receipts.some(event => canonicalClaimMist(event.parsedJson.amount_mist) === 0n);
+  const message = seedDied
+    ? 'Transaction confirmed on Sui. No reward was paid: this Seed was marked dead.'
+    : zeroPayment ? 'Transaction confirmed on Sui, but no reward was paid.'
+      : 'Transaction confirmed on Sui, but a positive reward payment could not be verified.';
+  throw transactionOutcomeError(seedDied || zeroPayment ? 'CLAIM_NO_PAYOUT' : 'CLAIM_PAYOUT_UNCONFIRMED',
+    `${message} Refresh your garden and check the transaction before another claim.`, result.digest);
+}
+
 export async function claimReward(seedObjectId){
   if(!seedObjectId)throw new Error('Choose a Seed to claim rewards for.');
+  const owner=_account?.address;
   const tx=new Transaction();
   tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::claim_reward`,arguments:[tx.object(CONTRACT.REGISTRY_ID),tx.object(seedObjectId),tx.object(CONTRACT.CLOCK_ID)]});
-  return signAndExecute(tx);
+  const result=await signAndExecute(tx);
+  return requireRewardReceipt(result,owner,seedObjectId);
 }
 
 export async function claimArchivedReward(seedObjectId,archiveObjectId=getConfiguredSeasonArchiveId()){
   if(!CONTRACT.SUPPORTS_ARCHIVED_SEASON_CLAIMS)throw new Error('Previous-season claims are waiting on the contract upgrade.');
   if(!archiveObjectId)throw new Error('No previous-season archive is configured yet.');
   if(!seedObjectId)throw new Error('Choose a Seed to claim rewards for.');
+  const owner=_account?.address;
   const tx=new Transaction();
   tx.moveCall({target:`${CONTRACT.PACKAGE_ID}::${CONTRACT.MODULE}::claim_archived_reward`,arguments:[tx.object(archiveObjectId),tx.object(seedObjectId),tx.object(CONTRACT.CLOCK_ID)]});
-  return signAndExecute(tx);
+  const result=await signAndExecute(tx);
+  return requireRewardReceipt(result,owner,seedObjectId,archiveObjectId);
 }
 
 export async function batchWaterAllSeeds(){

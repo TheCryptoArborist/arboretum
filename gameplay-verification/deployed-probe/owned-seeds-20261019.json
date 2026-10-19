@@ -1,0 +1,368 @@
+{
+  "retrievedAt": "2026-10-19T17:19:16.527316+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query OwnedSeeds($owner: SuiAddress!, $type: String!, $registry: SuiAddress!) {\n  checkpoint { sequenceNumber timestamp }\n  registry: object(address: $registry) { address version digest owner {\n    __typename ... on Shared { initialSharedVersion }\n  } asMoveObject { contents { json type { repr } } } }\n  clock: object(address: \"0x6\") { address version digest owner {\n    __typename ... on Shared { initialSharedVersion }\n  } asMoveObject { contents { json } } }\n  objects(first: 8, filter: {owner: $owner, type: $type}) {\n    nodes { address version digest owner {\n      __typename ... on AddressOwner { address { address } }\n    } asMoveObject { contents { json type { repr } } } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+  "variables": {
+    "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "type": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed",
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50"
+  },
+  "transactionsSubmitted": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 335821115,
+        "timestamp": "2026-10-19T17:19:14.877Z"
+      },
+      "registry": {
+        "address": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "version": 995549548,
+        "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 922820085
+        },
+        "asMoveObject": {
+          "contents": {
+            "json": {
+              "id": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "3",
+              "season_start_ms": "1788220806247",
+              "reward_pool": "209720000",
+              "treasury": "0",
+              "total_seeds": "20",
+              "total_growth_points": "2498",
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x93277cbe2f6683d9ecaab8f5dde5086600e6e95c41ce094409b8e8b437a24a48",
+                "size": "8"
+              },
+              "referrers": {
+                "id": "0x0ca07d058dd75c756611819f547e13ac48f22112a2565521c2723aaf8f980661",
+                "size": "2"
+              },
+              "referral_earnings": {
+                "id": "0xc93da9448da77d684700d1c7d11c5dd59f836a0e7cb90a131191c09c99570ea7",
+                "size": "2"
+              },
+              "player_growth": {
+                "id": "0xe5e0e2985ecb99ed5fec053c7e6aae67820db446d7c1c1c7b716825e1985c92f",
+                "size": "8"
+              },
+              "player_growth_season": {
+                "id": "0xf2475714439da494caf3d01f9f0c4d4ccaf0da35fbdebed8e31fc6bc61d4a53e",
+                "size": "8"
+              },
+              "planted_saplings": {
+                "id": "0x7d09331b32ab8723c58ee09f592c38d66a11e5798d8f68e2fee1bf05830009e2",
+                "size": "20"
+              }
+            },
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry"
+            }
+          }
+        }
+      },
+      "clock": {
+        "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "version": 997809111,
+        "digest": "DwhwFPxAzfZ9PzFfYcXu5BH38DkFA4HwRNFhY272Ge4H",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 1
+        },
+        "asMoveObject": {
+          "contents": {
+            "json": {
+              "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "timestamp_ms": "1792430354877"
+            }
+          }
+        }
+      },
+      "objects": {
+        "nodes": [
+          {
+            "address": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+            "version": 995549547,
+            "digest": "3R8AifzywfyG1f1kxWm6K3woT7FqPuCRhWkSg49KhWWE",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+                  "sapling_id": "0x01c35cf3c1b0d9e6a00a9b3d295e343635d91f9bb20965b302c32ccf8a0bc0b6",
+                  "season_id": "3",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1788383941401",
+                  "last_watered_ms": "1790548022735",
+                  "watering_streak": "2",
+                  "growth_points": "188",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x01a2d0f6dce66b166640f2a9702259f3e4db1eee498c4b5f11018a324c5e2fb4",
+            "version": 995549547,
+            "digest": "9f3hpEd176zvinpWqBYz3Pr2xQ2Lot4hXZ1KgzvfA7s3",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x01a2d0f6dce66b166640f2a9702259f3e4db1eee498c4b5f11018a324c5e2fb4",
+                  "sapling_id": "0x046da2a9e15bd822ba0491d978947cc1bfb1fd30e6f813a5fb10b9b2b1d6a6ba",
+                  "season_id": "3",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1788383941401",
+                  "last_watered_ms": "1790548022735",
+                  "watering_streak": "2",
+                  "growth_points": "188",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x1de82af569c7eba6c24ac86b8609766b8278c0e252402d9ffb19ab195c96f26e",
+            "version": 986499442,
+            "digest": "GQndA9VTZ4RXB83HoNNJEKcAhCTXL4T1JD5fU41fD2De",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x1de82af569c7eba6c24ac86b8609766b8278c0e252402d9ffb19ab195c96f26e",
+                  "sapling_id": "0x046da2a9e15bd822ba0491d978947cc1bfb1fd30e6f813a5fb10b9b2b1d6a6ba",
+                  "season_id": "2",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1787699137367",
+                  "last_watered_ms": "1788315691853",
+                  "watering_streak": "3",
+                  "growth_points": "66",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x28d1b47cfbbdb58b70ac84bb115b308002942c76e502ff3976f5c24f1865b5c0",
+            "version": 973314724,
+            "digest": "E4c5yQCoxb4LCt5GfLQQ1iptZw3DXgu4E9MNXHbJFeYZ",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x28d1b47cfbbdb58b70ac84bb115b308002942c76e502ff3976f5c24f1865b5c0",
+                  "sapling_id": "0x046da2a9e15bd822ba0491d978947cc1bfb1fd30e6f813a5fb10b9b2b1d6a6ba",
+                  "season_id": "1",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1787451007656",
+                  "last_watered_ms": "1787606847842",
+                  "watering_streak": "2",
+                  "growth_points": "24",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x314527146a508878632c28642daf186f6efe9a1e99ab1f5d34e557b7bfc4be0c",
+            "version": 973314725,
+            "digest": "GT1diHmC6t61xqmTHfNcKrcwjTnLJ6GbV5R1NK6GWCn8",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x314527146a508878632c28642daf186f6efe9a1e99ab1f5d34e557b7bfc4be0c",
+                  "sapling_id": "0x0446f8942cab5e443d82f7efa401d153646a1349737b07bc7ab6ae4708502cd3",
+                  "season_id": "1",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1787451007656",
+                  "last_watered_ms": "1787606874666",
+                  "watering_streak": "2",
+                  "growth_points": "24",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x40f18026283a227359d4db98b361330743b06284ab344573f59d26aaf9acb7e1",
+            "version": 995549547,
+            "digest": "Ajg37HWvYEfdY3XbAwuUA7QSKeqR7Zvg4TjhhiuwpgvJ",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x40f18026283a227359d4db98b361330743b06284ab344573f59d26aaf9acb7e1",
+                  "sapling_id": "0x0540c7809d0837116caea4526b18ae339d83f901a62c4a07c59ff31337070442",
+                  "season_id": "3",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1788383941401",
+                  "last_watered_ms": "1790548022735",
+                  "watering_streak": "2",
+                  "growth_points": "188",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x49507822a9cb68e154b692df949b7be35dedb61a25398f2e4b7318843b05e104",
+            "version": 986499442,
+            "digest": "EEPJxz8nFVpt7VgH3zyVkjseJhqbvnQcwxmYknqad6YA",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x49507822a9cb68e154b692df949b7be35dedb61a25398f2e4b7318843b05e104",
+                  "sapling_id": "0x0534466055db9bae1f3ea2580e74cd9372a5352aeb27935db35c425f850f3891",
+                  "season_id": "2",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1787699137367",
+                  "last_watered_ms": "1788315691853",
+                  "watering_streak": "3",
+                  "growth_points": "66",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          },
+          {
+            "address": "0x53706555bc0de8d3bca6a929ac97e34592ebc00b8cf066110708c26750a79aa0",
+            "version": 973314726,
+            "digest": "4bh184WbPTiKqHEMKM4wDqg2kBiGFCFm4KHsptDA9vgh",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "json": {
+                  "id": "0x53706555bc0de8d3bca6a929ac97e34592ebc00b8cf066110708c26750a79aa0",
+                  "sapling_id": "0x0c74d26982b4b5fbe06c29956df22e7f2a6214b95603bf9d313d3b59b1168371",
+                  "season_id": "1",
+                  "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "planted_at_ms": "1787451007656",
+                  "last_watered_ms": "1787606920445",
+                  "watering_streak": "2",
+                  "growth_points": "24",
+                  "state": 0,
+                  "fertilizer_charges": 0,
+                  "miracle_grow_applied": false,
+                  "revival_charges": 0,
+                  "bottomless_can_expiry_ms": "0",
+                  "permanent_gp_bonus": "0"
+                },
+                "type": {
+                  "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+                }
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": true,
+          "endCursor": "OzkEFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxG8T/v6xERSpfDF3t9Soz9rNW0AXSrP4CwdCC0VtRporAAAAAAAAAAlhcmJvcmV0dW0AAAAAAAAABFNlZWQAAAAAAAAAAABTcGVVvA3o07ymqSmsl+NFkuvAC4zwZhEHCMJnUKeaoA=="
+        }
+      }
+    }
+  }
+}

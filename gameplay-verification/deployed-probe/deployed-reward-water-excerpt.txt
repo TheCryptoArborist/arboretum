@@ -1,0 +1,696 @@
+// Original disassembly lines 322 through 358
+assert_season_active(Arg0: &Registry, Arg1: &Clock): u64 {
+L2:	loc0: u64
+B0:
+	0: MoveLoc[1](Arg1: &Clock)
+	1: Call clock::timestamp_ms(&Clock): u64
+	2: StLoc[2](loc0: u64)
+	3: CopyLoc[0](Arg0: &Registry)
+	4: ImmBorrowField[3](Registry.season_start_ms: u64)
+	5: ReadRef
+	6: LdU64(0)
+	7: Gt
+	8: BrFalse(10)
+B1:
+	9: Branch(14)
+B2:
+	10: MoveLoc[0](Arg0: &Registry)
+	11: Pop
+	12: LdConst[11](u64: 13)
+	13: Abort
+B3:
+	14: CopyLoc[2](loc0: u64)
+	15: MoveLoc[0](Arg0: &Registry)
+	16: ImmBorrowField[3](Registry.season_start_ms: u64)
+	17: ReadRef
+	18: Sub
+	19: LdConst[47](u64: 2592..)
+	20: Lt
+	21: BrFalse(23)
+B4:
+	22: Branch(25)
+B5:
+	23: LdConst[5](u64: 6)
+	24: Abort
+B6:
+	25: MoveLoc[2](loc0: u64)
+	26: Ret
+}
+
+// Original disassembly lines 737 through 837
+remove_seed_growth_points(Arg0: &mut Registry, Arg1: &mut Seed, Arg2: address) {
+L3:	loc0: bool
+L4:	loc1: u64
+L5:	loc2: u64
+L6:	loc3: u64
+L7:	loc4: u64
+B0:
+	0: CopyLoc[1](Arg1: &mut Seed)
+	1: ImmBorrowField[6](Seed.growth_points: u64)
+	2: ReadRef
+	3: StLoc[7](loc4: u64)
+	4: CopyLoc[7](loc4: u64)
+	5: LdU64(0)
+	6: Eq
+	7: BrFalse(13)
+B1:
+	8: MoveLoc[1](Arg1: &mut Seed)
+	9: Pop
+	10: MoveLoc[0](Arg0: &mut Registry)
+	11: Pop
+	12: Ret
+B2:
+	13: CopyLoc[0](Arg0: &mut Registry)
+	14: ImmBorrowField[7](Registry.player_growth: Table<address, u64>)
+	15: CopyLoc[2](Arg2: address)
+	16: Call table::contains<address, u64>(&Table<address, u64>, address): bool
+	17: BrFalse(29)
+B3:
+	18: CopyLoc[0](Arg0: &mut Registry)
+	19: ImmBorrowField[8](Registry.player_growth_season: Table<address, u64>)
+	20: CopyLoc[2](Arg2: address)
+	21: Call table::borrow<address, u64>(&Table<address, u64>, address): &u64
+	22: ReadRef
+	23: CopyLoc[0](Arg0: &mut Registry)
+	24: ImmBorrowField[5](Registry.current_season_id: u64)
+	25: ReadRef
+	26: Eq
+	27: StLoc[3](loc0: bool)
+	28: Branch(31)
+B4:
+	29: LdFalse
+	30: StLoc[3](loc0: bool)
+B5:
+	31: MoveLoc[3](loc0: bool)
+	32: BrFalse(56)
+B6:
+	33: CopyLoc[0](Arg0: &mut Registry)
+	34: ImmBorrowField[7](Registry.player_growth: Table<address, u64>)
+	35: CopyLoc[2](Arg2: address)
+	36: Call table::borrow<address, u64>(&Table<address, u64>, address): &u64
+	37: ReadRef
+	38: StLoc[6](loc3: u64)
+	39: CopyLoc[6](loc3: u64)
+	40: CopyLoc[7](loc4: u64)
+	41: Gt
+	42: BrFalse(48)
+B7:
+	43: MoveLoc[6](loc3: u64)
+	44: CopyLoc[7](loc4: u64)
+	45: Sub
+	46: StLoc[4](loc1: u64)
+	47: Branch(50)
+B8:
+	48: LdU64(0)
+	49: StLoc[4](loc1: u64)
+B9:
+	50: MoveLoc[4](loc1: u64)
+	51: CopyLoc[0](Arg0: &mut Registry)
+	52: MutBorrowField[7](Registry.player_growth: Table<address, u64>)
+	53: MoveLoc[2](Arg2: address)
+	54: Call table::borrow_mut<address, u64>(&mut Table<address, u64>, address): &mut u64
+	55: WriteRef
+B10:
+	56: CopyLoc[0](Arg0: &mut Registry)
+	57: ImmBorrowField[9](Registry.total_growth_points: u64)
+	58: ReadRef
+	59: CopyLoc[7](loc4: u64)
+	60: Gt
+	61: BrFalse(69)
+B11:
+	62: CopyLoc[0](Arg0: &mut Registry)
+	63: ImmBorrowField[9](Registry.total_growth_points: u64)
+	64: ReadRef
+	65: MoveLoc[7](loc4: u64)
+	66: Sub
+	67: StLoc[5](loc2: u64)
+	68: Branch(71)
+B12:
+	69: LdU64(0)
+	70: StLoc[5](loc2: u64)
+B13:
+	71: MoveLoc[5](loc2: u64)
+	72: MoveLoc[0](Arg0: &mut Registry)
+	73: MutBorrowField[9](Registry.total_growth_points: u64)
+	74: WriteRef
+	75: LdU64(0)
+	76: MoveLoc[1](Arg1: &mut Seed)
+	77: MutBorrowField[6](Seed.growth_points: u64)
+	78: WriteRef
+	79: Ret
+}
+
+// Original disassembly lines 839 through 860
+mark_seed_dead(Arg0: &mut Registry, Arg1: &mut Seed, Arg2: address) {
+B0:
+	0: LdConst[39](u8: 2)
+	1: CopyLoc[1](Arg1: &mut Seed)
+	2: MutBorrowField[17](Seed.state: u8)
+	3: WriteRef
+	4: LdU64(0)
+	5: CopyLoc[1](Arg1: &mut Seed)
+	6: MutBorrowField[18](Seed.watering_streak: u64)
+	7: WriteRef
+	8: MoveLoc[0](Arg0: &mut Registry)
+	9: CopyLoc[1](Arg1: &mut Seed)
+	10: CopyLoc[2](Arg2: address)
+	11: Call remove_seed_growth_points(&mut Registry, &mut Seed, address)
+	12: MoveLoc[1](Arg1: &mut Seed)
+	13: FreezeRef
+	14: Call object::id<Seed>(&Seed): ID
+	15: MoveLoc[2](Arg2: address)
+	16: Pack[12](SeedDied)
+	17: Call event::emit<SeedDied>(SeedDied)
+	18: Ret
+}
+
+// Original disassembly lines 862 through 891
+seed_is_dead_by_time(Arg0: &Seed, Arg1: u64): bool {
+L2:	loc0: bool
+B0:
+	0: CopyLoc[1](Arg1: u64)
+	1: CopyLoc[0](Arg0: &Seed)
+	2: ImmBorrowField[19](Seed.last_watered_ms: u64)
+	3: ReadRef
+	4: Sub
+	5: LdConst[48](u64: 8640..)
+	6: Div
+	7: LdConst[8](u64: 10)
+	8: Ge
+	9: BrFalse(17)
+B1:
+	10: MoveLoc[0](Arg0: &Seed)
+	11: ImmBorrowField[20](Seed.bottomless_can_expiry_ms: u64)
+	12: ReadRef
+	13: MoveLoc[1](Arg1: u64)
+	14: Lt
+	15: StLoc[2](loc0: bool)
+	16: Branch(21)
+B2:
+	17: MoveLoc[0](Arg0: &Seed)
+	18: Pop
+	19: LdFalse
+	20: StLoc[2](loc0: bool)
+B3:
+	21: MoveLoc[2](loc0: bool)
+	22: Ret
+}
+
+// Original disassembly lines 2983 through 3239
+entry water_seed(Arg0: &mut Registry, Arg1: &mut Seed, Arg2: &Clock, Arg3: &TxContext) {
+L4:	loc0: bool
+L5:	loc1: bool
+L6:	loc2: u8
+L7:	loc3: u64
+L8:	loc4: u64
+L9:	loc5: u64
+L10:	loc6: u64
+L11:	loc7: u64
+L12:	loc8: u64
+L13:	loc9: address
+L14:	loc10: u64
+B0:
+	0: CopyLoc[0](Arg0: &mut Registry)
+	1: ImmBorrowField[24](Registry.paused: bool)
+	2: ReadRef
+	3: Not
+	4: BrFalse(6)
+B1:
+	5: Branch(16)
+B2:
+	6: MoveLoc[1](Arg1: &mut Seed)
+	7: Pop
+	8: MoveLoc[0](Arg0: &mut Registry)
+	9: Pop
+	10: MoveLoc[3](Arg3: &TxContext)
+	11: Pop
+	12: MoveLoc[2](Arg2: &Clock)
+	13: Pop
+	14: LdConst[10](u64: 12)
+	15: Abort
+B3:
+	16: CopyLoc[1](Arg1: &mut Seed)
+	17: FreezeRef
+	18: CopyLoc[3](Arg3: &TxContext)
+	19: Call assert_seed_owner(&Seed, &TxContext)
+	20: CopyLoc[0](Arg0: &mut Registry)
+	21: FreezeRef
+	22: CopyLoc[1](Arg1: &mut Seed)
+	23: FreezeRef
+	24: Call assert_seed_current(&Registry, &Seed)
+	25: MoveLoc[3](Arg3: &TxContext)
+	26: Call tx_context::sender(&TxContext): address
+	27: StLoc[13](loc9: address)
+	28: CopyLoc[0](Arg0: &mut Registry)
+	29: FreezeRef
+	30: MoveLoc[2](Arg2: &Clock)
+	31: Call assert_season_active(&Registry, &Clock): u64
+	32: StLoc[12](loc8: u64)
+	33: CopyLoc[1](Arg1: &mut Seed)
+	34: ImmBorrowField[17](Seed.state: u8)
+	35: ReadRef
+	36: LdConst[39](u8: 2)
+	37: Neq
+	38: BrFalse(40)
+B4:
+	39: Branch(46)
+B5:
+	40: MoveLoc[1](Arg1: &mut Seed)
+	41: Pop
+	42: MoveLoc[0](Arg0: &mut Registry)
+	43: Pop
+	44: LdConst[1](u64: 2)
+	45: Abort
+B6:
+	46: CopyLoc[12](loc8: u64)
+	47: CopyLoc[1](Arg1: &mut Seed)
+	48: ImmBorrowField[19](Seed.last_watered_ms: u64)
+	49: ReadRef
+	50: Sub
+	51: StLoc[9](loc5: u64)
+	52: CopyLoc[9](loc5: u64)
+	53: LdConst[48](u64: 8640..)
+	54: Div
+	55: StLoc[8](loc4: u64)
+	56: CopyLoc[8](loc4: u64)
+	57: LdConst[8](u64: 10)
+	58: Ge
+	59: BrFalse(67)
+B7:
+	60: CopyLoc[1](Arg1: &mut Seed)
+	61: ImmBorrowField[20](Seed.bottomless_can_expiry_ms: u64)
+	62: ReadRef
+	63: CopyLoc[12](loc8: u64)
+	64: Lt
+	65: StLoc[4](loc0: bool)
+	66: Branch(69)
+B8:
+	67: LdFalse
+	68: StLoc[4](loc0: bool)
+B9:
+	69: MoveLoc[4](loc0: bool)
+	70: BrFalse(76)
+B10:
+	71: MoveLoc[0](Arg0: &mut Registry)
+	72: MoveLoc[1](Arg1: &mut Seed)
+	73: MoveLoc[13](loc9: address)
+	74: Call mark_seed_dead(&mut Registry, &mut Seed, address)
+	75: Ret
+B11:
+	76: LdConst[48](u64: 8640..)
+	77: LdConst[48](u64: 8640..)
+	78: LdU64(10)
+	79: Div
+	80: Sub
+	81: StLoc[11](loc7: u64)
+	82: MoveLoc[9](loc5: u64)
+	83: MoveLoc[11](loc7: u64)
+	84: Ge
+	85: BrFalse(89)
+B12:
+	86: LdTrue
+	87: StLoc[5](loc1: bool)
+	88: Branch(95)
+B13:
+	89: CopyLoc[1](Arg1: &mut Seed)
+	90: ImmBorrowField[20](Seed.bottomless_can_expiry_ms: u64)
+	91: ReadRef
+	92: CopyLoc[12](loc8: u64)
+	93: Ge
+	94: StLoc[5](loc1: bool)
+B14:
+	95: MoveLoc[5](loc1: bool)
+	96: BrFalse(98)
+B15:
+	97: Branch(104)
+B16:
+	98: MoveLoc[1](Arg1: &mut Seed)
+	99: Pop
+	100: MoveLoc[0](Arg0: &mut Registry)
+	101: Pop
+	102: LdConst[4](u64: 5)
+	103: Abort
+B17:
+	104: CopyLoc[8](loc4: u64)
+	105: LdConst[6](u64: 7)
+	106: Ge
+	107: BrFalse(111)
+B18:
+	108: LdConst[38](u8: 1)
+	109: StLoc[6](loc2: u8)
+	110: Branch(113)
+B19:
+	111: LdConst[37](u8: 0)
+	112: StLoc[6](loc2: u8)
+B20:
+	113: MoveLoc[6](loc2: u8)
+	114: CopyLoc[1](Arg1: &mut Seed)
+	115: MutBorrowField[17](Seed.state: u8)
+	116: WriteRef
+	117: MoveLoc[8](loc4: u64)
+	118: LdU64(2)
+	119: Ge
+	120: BrFalse(126)
+B21:
+	121: LdU64(1)
+	122: CopyLoc[1](Arg1: &mut Seed)
+	123: MutBorrowField[18](Seed.watering_streak: u64)
+	124: WriteRef
+	125: Branch(134)
+B22:
+	126: CopyLoc[1](Arg1: &mut Seed)
+	127: ImmBorrowField[18](Seed.watering_streak: u64)
+	128: ReadRef
+	129: LdU64(1)
+	130: Add
+	131: CopyLoc[1](Arg1: &mut Seed)
+	132: MutBorrowField[18](Seed.watering_streak: u64)
+	133: WriteRef
+B23:
+	134: CopyLoc[1](Arg1: &mut Seed)
+	135: ImmBorrowField[18](Seed.watering_streak: u64)
+	136: ReadRef
+	137: LdU64(25)
+	138: Gt
+	139: BrFalse(143)
+B24:
+	140: LdU64(50)
+	141: StLoc[7](loc3: u64)
+	142: Branch(149)
+B25:
+	143: CopyLoc[1](Arg1: &mut Seed)
+	144: ImmBorrowField[18](Seed.watering_streak: u64)
+	145: ReadRef
+	146: LdConst[1](u64: 2)
+	147: Mul
+	148: StLoc[7](loc3: u64)
+B26:
+	149: MoveLoc[7](loc3: u64)
+	150: StLoc[14](loc10: u64)
+	151: LdConst[8](u64: 10)
+	152: CopyLoc[1](Arg1: &mut Seed)
+	153: ImmBorrowField[39](Seed.permanent_gp_bonus: u64)
+	154: ReadRef
+	155: Add
+	156: MoveLoc[14](loc10: u64)
+	157: Add
+	158: StLoc[10](loc6: u64)
+	159: CopyLoc[1](Arg1: &mut Seed)
+	160: ImmBorrowField[40](Seed.miracle_grow_applied: bool)
+	161: ReadRef
+	162: BrFalse(171)
+B27:
+	163: MoveLoc[10](loc6: u64)
+	164: LdU64(2)
+	165: Mul
+	166: StLoc[10](loc6: u64)
+	167: LdFalse
+	168: CopyLoc[1](Arg1: &mut Seed)
+	169: MutBorrowField[40](Seed.miracle_grow_applied: bool)
+	170: WriteRef
+B28:
+	171: CopyLoc[1](Arg1: &mut Seed)
+	172: ImmBorrowField[41](Seed.fertilizer_charges: u8)
+	173: ReadRef
+	174: LdU8(0)
+	175: Gt
+	176: BrFalse(191)
+B29:
+	177: CopyLoc[10](loc6: u64)
+	178: MoveLoc[10](loc6: u64)
+	179: LdU64(2)
+	180: Div
+	181: Add
+	182: StLoc[10](loc6: u64)
+	183: CopyLoc[1](Arg1: &mut Seed)
+	184: ImmBorrowField[41](Seed.fertilizer_charges: u8)
+	185: ReadRef
+	186: LdU8(1)
+	187: Sub
+	188: CopyLoc[1](Arg1: &mut Seed)
+	189: MutBorrowField[41](Seed.fertilizer_charges: u8)
+	190: WriteRef
+B30:
+	191: MoveLoc[0](Arg0: &mut Registry)
+	192: CopyLoc[1](Arg1: &mut Seed)
+	193: CopyLoc[13](loc9: address)
+	194: MoveLoc[10](loc6: u64)
+	195: Call add_growth_points(&mut Registry, &mut Seed, address, u64)
+	196: MoveLoc[12](loc8: u64)
+	197: CopyLoc[1](Arg1: &mut Seed)
+	198: MutBorrowField[19](Seed.last_watered_ms: u64)
+	199: WriteRef
+	200: CopyLoc[1](Arg1: &mut Seed)
+	201: FreezeRef
+	202: Call object::id<Seed>(&Seed): ID
+	203: MoveLoc[13](loc9: address)
+	204: CopyLoc[1](Arg1: &mut Seed)
+	205: ImmBorrowField[18](Seed.watering_streak: u64)
+	206: ReadRef
+	207: MoveLoc[1](Arg1: &mut Seed)
+	208: ImmBorrowField[6](Seed.growth_points: u64)
+	209: ReadRef
+	210: Pack[11](SeedWatered)
+	211: Call event::emit<SeedWatered>(SeedWatered)
+	212: Ret
+}
+
+// Original disassembly lines 5179 through 5410
+entry claim_reward(Arg0: &mut Registry, Arg1: &mut Seed, Arg2: &Clock, Arg3: &mut TxContext) {
+L4:	loc0: bool
+L5:	loc1: u8
+L6:	loc2: bool
+L7:	loc3: address
+L8:	loc4: u64
+L9:	loc5: u64
+L10:	loc6: u64
+L11:	loc7: Coin<SUI>
+L12:	loc8: u64
+L13:	loc9: u64
+L14:	loc10: u64
+B0:
+	0: CopyLoc[0](Arg0: &mut Registry)
+	1: ImmBorrowField[24](Registry.paused: bool)
+	2: ReadRef
+	3: Not
+	4: BrFalse(6)
+B1:
+	5: Branch(16)
+B2:
+	6: MoveLoc[1](Arg1: &mut Seed)
+	7: Pop
+	8: MoveLoc[0](Arg0: &mut Registry)
+	9: Pop
+	10: MoveLoc[3](Arg3: &mut TxContext)
+	11: Pop
+	12: MoveLoc[2](Arg2: &Clock)
+	13: Pop
+	14: LdConst[10](u64: 12)
+	15: Abort
+B3:
+	16: CopyLoc[3](Arg3: &mut TxContext)
+	17: FreezeRef
+	18: Call tx_context::sender(&TxContext): address
+	19: StLoc[7](loc3: address)
+	20: CopyLoc[1](Arg1: &mut Seed)
+	21: FreezeRef
+	22: CopyLoc[3](Arg3: &mut TxContext)
+	23: FreezeRef
+	24: Call assert_seed_owner(&Seed, &TxContext)
+	25: CopyLoc[0](Arg0: &mut Registry)
+	26: FreezeRef
+	27: CopyLoc[1](Arg1: &mut Seed)
+	28: FreezeRef
+	29: Call assert_seed_current(&Registry, &Seed)
+	30: MoveLoc[2](Arg2: &Clock)
+	31: Call clock::timestamp_ms(&Clock): u64
+	32: StLoc[9](loc5: u64)
+	33: CopyLoc[0](Arg0: &mut Registry)
+	34: ImmBorrowField[3](Registry.season_start_ms: u64)
+	35: ReadRef
+	36: LdU64(0)
+	37: Gt
+	38: BrFalse(40)
+B4:
+	39: Branch(48)
+B5:
+	40: MoveLoc[1](Arg1: &mut Seed)
+	41: Pop
+	42: MoveLoc[0](Arg0: &mut Registry)
+	43: Pop
+	44: MoveLoc[3](Arg3: &mut TxContext)
+	45: Pop
+	46: LdConst[11](u64: 13)
+	47: Abort
+B6:
+	48: CopyLoc[9](loc5: u64)
+	49: CopyLoc[0](Arg0: &mut Registry)
+	50: ImmBorrowField[3](Registry.season_start_ms: u64)
+	51: ReadRef
+	52: Sub
+	53: LdConst[47](u64: 2592..)
+	54: Ge
+	55: BrFalse(57)
+B7:
+	56: Branch(65)
+B8:
+	57: MoveLoc[1](Arg1: &mut Seed)
+	58: Pop
+	59: MoveLoc[0](Arg0: &mut Registry)
+	60: Pop
+	61: MoveLoc[3](Arg3: &mut TxContext)
+	62: Pop
+	63: LdConst[5](u64: 6)
+	64: Abort
+B9:
+	65: CopyLoc[1](Arg1: &mut Seed)
+	66: ImmBorrowField[17](Seed.state: u8)
+	67: ReadRef
+	68: LdConst[39](u8: 2)
+	69: Eq
+	70: BrFalse(78)
+B10:
+	71: MoveLoc[3](Arg3: &mut TxContext)
+	72: Pop
+	73: MoveLoc[0](Arg0: &mut Registry)
+	74: MoveLoc[1](Arg1: &mut Seed)
+	75: MoveLoc[7](loc3: address)
+	76: Call remove_seed_growth_points(&mut Registry, &mut Seed, address)
+	77: Ret
+B11:
+	78: CopyLoc[9](loc5: u64)
+	79: CopyLoc[1](Arg1: &mut Seed)
+	80: ImmBorrowField[19](Seed.last_watered_ms: u64)
+	81: ReadRef
+	82: Sub
+	83: LdConst[48](u64: 8640..)
+	84: Div
+	85: StLoc[8](loc4: u64)
+	86: CopyLoc[8](loc4: u64)
+	87: LdConst[8](u64: 10)
+	88: Ge
+	89: BrFalse(97)
+B12:
+	90: CopyLoc[1](Arg1: &mut Seed)
+	91: ImmBorrowField[20](Seed.bottomless_can_expiry_ms: u64)
+	92: ReadRef
+	93: MoveLoc[9](loc5: u64)
+	94: Lt
+	95: StLoc[4](loc0: bool)
+	96: Branch(99)
+B13:
+	97: LdFalse
+	98: StLoc[4](loc0: bool)
+B14:
+	99: MoveLoc[4](loc0: bool)
+	100: BrFalse(108)
+B15:
+	101: MoveLoc[3](Arg3: &mut TxContext)
+	102: Pop
+	103: MoveLoc[0](Arg0: &mut Registry)
+	104: MoveLoc[1](Arg1: &mut Seed)
+	105: MoveLoc[7](loc3: address)
+	106: Call mark_seed_dead(&mut Registry, &mut Seed, address)
+	107: Ret
+B16:
+	108: MoveLoc[8](loc4: u64)
+	109: LdConst[6](u64: 7)
+	110: Ge
+	111: BrFalse(115)
+B17:
+	112: LdConst[38](u8: 1)
+	113: StLoc[5](loc1: u8)
+	114: Branch(117)
+B18:
+	115: LdConst[37](u8: 0)
+	116: StLoc[5](loc1: u8)
+B19:
+	117: MoveLoc[5](loc1: u8)
+	118: CopyLoc[1](Arg1: &mut Seed)
+	119: MutBorrowField[17](Seed.state: u8)
+	120: WriteRef
+	121: CopyLoc[1](Arg1: &mut Seed)
+	122: ImmBorrowField[6](Seed.growth_points: u64)
+	123: ReadRef
+	124: StLoc[12](loc8: u64)
+	125: CopyLoc[12](loc8: u64)
+	126: LdU64(0)
+	127: Gt
+	128: BrFalse(130)
+B20:
+	129: Branch(138)
+B21:
+	130: MoveLoc[1](Arg1: &mut Seed)
+	131: Pop
+	132: MoveLoc[0](Arg0: &mut Registry)
+	133: Pop
+	134: MoveLoc[3](Arg3: &mut TxContext)
+	135: Pop
+	136: LdConst[6](u64: 7)
+	137: Abort
+B22:
+	138: CopyLoc[0](Arg0: &mut Registry)
+	139: ImmBorrowField[9](Registry.total_growth_points: u64)
+	140: ReadRef
+	141: StLoc[14](loc10: u64)
+	142: CopyLoc[0](Arg0: &mut Registry)
+	143: ImmBorrowField[10](Registry.reward_pool: Balance<SUI>)
+	144: Call balance::value<SUI>(&Balance<SUI>): u64
+	145: StLoc[10](loc6: u64)
+	146: CopyLoc[10](loc6: u64)
+	147: LdU64(0)
+	148: Eq
+	149: BrFalse(153)
+B23:
+	150: LdTrue
+	151: StLoc[6](loc2: bool)
+	152: Branch(157)
+B24:
+	153: CopyLoc[14](loc10: u64)
+	154: LdU64(0)
+	155: Eq
+	156: StLoc[6](loc2: bool)
+B25:
+	157: MoveLoc[6](loc2: bool)
+	158: BrFalse(166)
+B26:
+	159: MoveLoc[3](Arg3: &mut TxContext)
+	160: Pop
+	161: MoveLoc[0](Arg0: &mut Registry)
+	162: MoveLoc[1](Arg1: &mut Seed)
+	163: MoveLoc[7](loc3: address)
+	164: Call remove_seed_growth_points(&mut Registry, &mut Seed, address)
+	165: Ret
+B27:
+	166: MoveLoc[12](loc8: u64)
+	167: MoveLoc[10](loc6: u64)
+	168: Mul
+	169: MoveLoc[14](loc10: u64)
+	170: Div
+	171: StLoc[13](loc9: u64)
+	172: CopyLoc[0](Arg0: &mut Registry)
+	173: MoveLoc[1](Arg1: &mut Seed)
+	174: CopyLoc[7](loc3: address)
+	175: Call remove_seed_growth_points(&mut Registry, &mut Seed, address)
+	176: MoveLoc[0](Arg0: &mut Registry)
+	177: MutBorrowField[10](Registry.reward_pool: Balance<SUI>)
+	178: CopyLoc[13](loc9: u64)
+	179: Call balance::split<SUI>(&mut Balance<SUI>, u64): Balance<SUI>
+	180: MoveLoc[3](Arg3: &mut TxContext)
+	181: Call coin::from_balance<SUI>(Balance<SUI>, &mut TxContext): Coin<SUI>
+	182: StLoc[11](loc7: Coin<SUI>)
+	183: CopyLoc[7](loc3: address)
+	184: MoveLoc[13](loc9: u64)
+	185: Pack[18](RewardClaimed)
+	186: Call event::emit<RewardClaimed>(RewardClaimed)
+	187: MoveLoc[11](loc7: Coin<SUI>)
+	188: MoveLoc[7](loc3: address)
+	189: Call transfer::public_transfer<Coin<SUI>>(Coin<SUI>, address)
+	190: Ret
+}
+
+// Relevant constants from the complete deployed disassembly
+6 => u64: 7
+8 => u64: 10
+47 => u64: 2592000000
+48 => u64: 86400000

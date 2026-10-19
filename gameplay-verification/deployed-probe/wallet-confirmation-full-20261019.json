@@ -1,0 +1,142 @@
+{
+  "retrievedAt": "2026-10-19T17:21:58.012015+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query ConfirmArboretumTransaction(\n  $digest: String!, $eventCursor: String, $objectCursor: String,\n  $readEvents: Boolean!, $readObjects: Boolean!\n) {\n  transaction(digest: $digest) {\n    digest\n    effects {\n      digest status executionError { message }\n      checkpoint { sequenceNumber timestamp }\n      events(first: 50, after: $eventCursor) @include(if: $readEvents) {\n        nodes { sequenceNumber sender { address } contents { type { repr } json } }\n        pageInfo { hasNextPage endCursor }\n      }\n      objectChanges(first: 50, after: $objectCursor) @include(if: $readObjects) {\n        nodes { address idCreated idDeleted outputState { version digest asMoveObject { contents { type { repr } } } } }\n        pageInfo { hasNextPage endCursor }\n      }\n    }\n  }\n}",
+  "variables": {
+    "digest": "GPXAb93pyvhRtSCQn6cRB1YcxR2hGp8iqmYQNyPVhNNB",
+    "eventCursor": null,
+    "objectCursor": null,
+    "readEvents": true,
+    "readObjects": true
+  },
+  "transactionsSubmitted": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "transaction": {
+        "digest": "GPXAb93pyvhRtSCQn6cRB1YcxR2hGp8iqmYQNyPVhNNB",
+        "effects": {
+          "digest": "GPXAb93pyvhRtSCQn6cRB1YcxR2hGp8iqmYQNyPVhNNB",
+          "status": "SUCCESS",
+          "executionError": null,
+          "checkpoint": {
+            "sequenceNumber": 319586398,
+            "timestamp": "2026-09-06T22:20:12.959Z"
+          },
+          "events": {
+            "nodes": [
+              {
+                "sequenceNumber": 0,
+                "sender": {
+                  "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                },
+                "contents": {
+                  "type": {
+                    "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::CratePurchased"
+                  },
+                  "json": {
+                    "crate_id": "0x8faa3bbb9ac7a9c2d92bb16acc4f9b8bed64a2bf01140a6fbdc4ada5cb0b1073",
+                    "buyer": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "tier": 6
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "MA=="
+            }
+          },
+          "objectChanges": {
+            "nodes": [
+              {
+                "address": "0x069e2cf1fe57932de6b2761476d4a9e039984751d2d82d669e6a723fe441d049",
+                "idCreated": true,
+                "idDeleted": false,
+                "outputState": {
+                  "version": 990522283,
+                  "digest": "8myp9DAR1ggVu5DBitfhEHf8JDC5v7TMWs2of5n2jWt4",
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0x60f6a7d98c73f1d13be4f9e6f07156156e78b7fb88c1fe307184d8aa5a464d85",
+                "idCreated": false,
+                "idDeleted": false,
+                "outputState": {
+                  "version": 990522283,
+                  "digest": "2iMXW7n8fAQc4paWQbzo4Cu3vheFBtfAGCisHQnnX1BP",
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+                "idCreated": false,
+                "idDeleted": false,
+                "outputState": {
+                  "version": 990522283,
+                  "digest": "DwNtw4NvD9Lff37eZJpKpMds6gEzj2GtDafH5NWZhPtp",
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0x8faa3bbb9ac7a9c2d92bb16acc4f9b8bed64a2bf01140a6fbdc4ada5cb0b1073",
+                "idCreated": true,
+                "idDeleted": false,
+                "outputState": {
+                  "version": 990522283,
+                  "digest": "F6YJvoLk2sJxDnfrJjjBuDJmWkn5D6BjkZXCENmv77YY",
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Crate"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0xc1b49a122cebaa6808b1903f336e2802beb25a5efb3b9a86e718b9c5c00a5dd4",
+                "idCreated": true,
+                "idDeleted": false,
+                "outputState": {
+                  "version": 990522283,
+                  "digest": "WAkWBN9eyQe9DJRkz3r9MZpq3DftSmdkgCaAuvzoG44",
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "NA=="
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "retrievedAt": "2026-10-19T17:21:58.014349+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query PostSimulationState($registry:SuiAddress!,$seed:SuiAddress!) {\n checkpoint {sequenceNumber timestamp}\n registry:object(address:$registry) {address version digest asMoveObject {contents {json}}}\n seed:object(address:$seed) {address version digest asMoveObject {contents {json}}}\n}",
+  "variables": {
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "seed": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc"
+  },
+  "transactionsSubmitted": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 335821829,
+        "timestamp": "2026-10-19T17:21:55.901Z"
+      },
+      "registry": {
+        "address": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "version": 995549548,
+        "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+        "asMoveObject": {
+          "contents": {
+            "json": {
+              "id": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "3",
+              "season_start_ms": "1788220806247",
+              "reward_pool": "209720000",
+              "treasury": "0",
+              "total_seeds": "20",
+              "total_growth_points": "2498",
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x93277cbe2f6683d9ecaab8f5dde5086600e6e95c41ce094409b8e8b437a24a48",
+                "size": "8"
+              },
+              "referrers": {
+                "id": "0x0ca07d058dd75c756611819f547e13ac48f22112a2565521c2723aaf8f980661",
+                "size": "2"
+              },
+              "referral_earnings": {
+                "id": "0xc93da9448da77d684700d1c7d11c5dd59f836a0e7cb90a131191c09c99570ea7",
+                "size": "2"
+              },
+              "player_growth": {
+                "id": "0xe5e0e2985ecb99ed5fec053c7e6aae67820db446d7c1c1c7b716825e1985c92f",
+                "size": "8"
+              },
+              "player_growth_season": {
+                "id": "0xf2475714439da494caf3d01f9f0c4d4ccaf0da35fbdebed8e31fc6bc61d4a53e",
+                "size": "8"
+              },
+              "planted_saplings": {
+                "id": "0x7d09331b32ab8723c58ee09f592c38d66a11e5798d8f68e2fee1bf05830009e2",
+                "size": "20"
+              }
+            }
+          }
+        }
+      },
+      "seed": {
+        "address": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+        "version": 995549547,
+        "digest": "3R8AifzywfyG1f1kxWm6K3woT7FqPuCRhWkSg49KhWWE",
+        "asMoveObject": {
+          "contents": {
+            "json": {
+              "id": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+              "sapling_id": "0x01c35cf3c1b0d9e6a00a9b3d295e343635d91f9bb20965b302c32ccf8a0bc0b6",
+              "season_id": "3",
+              "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "planted_at_ms": "1788383941401",
+              "last_watered_ms": "1790548022735",
+              "watering_streak": "2",
+              "growth_points": "188",
+              "state": 0,
+              "fertilizer_charges": 0,
+              "miracle_grow_applied": false,
+              "revival_charges": 0,
+              "bottomless_can_expiry_ms": "0",
+              "permanent_gp_bonus": "0"
+            }
+          }
+        }
+      }
+    }
+  }
+}
