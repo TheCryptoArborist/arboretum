@@ -124,6 +124,11 @@ authoritative deployed source and the eligibility/denominator policy before
 preparing an upgrade. Another test of the already accepted interface will not
 resolve these contract behaviors.
 
+The subsequent [deployed-source preflight](source-baseline-preflight.md) identifies
+two missing partner purchase functions and three partner-related body differences
+in the saved source. It records the reconstruction and comparison work required
+before preparing the payout correction; whole-module equivalence remains unverified.
+
 No production publication, new preview deployment, merge, price activation,
 treasury allocation, payout, or on-chain administrative operation is part of this
 verification change. A connected Netlify read on October 19 still identified
