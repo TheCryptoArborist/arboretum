@@ -1,0 +1,43 @@
+{
+  "verifiedAt": "2026-10-19T17:29:59.228Z",
+  "acceptedSourceCommit": "bea71961a1ec9c1b0fec63535c90c6eb941a8c03",
+  "buildContext": "branch-deploy",
+  "commands": [
+    "python3 scripts/build-player-guide.py",
+    "node scripts/build-guide-site.mjs",
+    "node scripts/build-prelaunch.mjs",
+    "node scripts/polish-player-guide.mjs",
+    "python3 scripts/build-public-guide.py",
+    "python3 scripts/build-reward-first.py",
+    "node scripts/build-season-status.mjs",
+    "node economy-review/build-admin-preview.mjs",
+    "node economy-review/build-garden-ux-preview.mjs"
+  ],
+  "sourceUnchangedByBuild": {
+    "index.html": "d097ef796f14380c0d2e9e3dcfecab0fead13808d6c26a20497b5b9bd0123701",
+    "wallet.js": "ce600b052fcb87098ec001ebb57e33709d676d8d0562d7092e5d5081b295119f",
+    "garden.js": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+    "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+    "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
+    "netlify/edge-functions/tester-gate.ts": "8ec9b6f9946ade8b8b834f70eec3d55f85e88434b858777884cbb52237bc8d09",
+    "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
+    "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
+  },
+  "shipped": {
+    "index.html": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+    "player-guide.html": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+    "game.html": "f3d31988b4b0330e062ee2ffd3f3052806dc326eb84863105822340455af2433",
+    "wallet.js": "ce600b052fcb87098ec001ebb57e33709d676d8d0562d7092e5d5081b295119f",
+    "garden.js": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+    "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+    "season-status/garden-status.mjs": "dfd2fcc650ca474ebb67c6c6030b77846f0cdffb0d0e8d09fcc6012f76ead134",
+    "economy-review/garden-ux.mjs": "e0b55d5f0c216c75865c6b2219ef31d62cc25f423623199ede5bc2d5a3d08613"
+  },
+  "walletModuleDependencies": [
+    "sui-sdk.bundle.js",
+    "wallet.js"
+  ],
+  "acceptedReviewOverlaysPresent": true,
+  "transactionsSubmitted": 0,
+  "deploymentsCreated": 0
+}

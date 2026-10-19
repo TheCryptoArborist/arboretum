@@ -1,0 +1,77 @@
+{
+  "status": "BASELINE_BEHAVIOR_REPRODUCED_REVIEW_REQUIRED",
+  "started_at_utc": "2026-10-19T17:24:10.629057+00:00",
+  "completed_at_utc": "2026-10-19T17:24:19.762819+00:00",
+  "baseline_source_sha256": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
+  "baseline_unchanged": true,
+  "generated_source_sha256": "226e1650dabcbfb16ed9e2a395f9d0ae3c9d4487e612222fe9b8a5317ba5ce43",
+  "test_include_sha256": "91caf7fd980656b5691e06b71a2934d4ed4d06f153571489f7b503333305b7c0",
+  "runner_sha256": "660c41a8c2a4d65781288407768d6e4524106c8ef67b7c8571cd9cb2735f9e33",
+  "compiler": "sui 1.79.1-808640d9b49a",
+  "compiler_binary_sha256": "042b9fcaaeff95cef083795e577cc30b28f52bd9d71a0e38b2e51c38d2977d8b",
+  "compiler_archive_sha256": "547b3091e975b8a6b4078473a3868d86e985156b6715a8c4afb7fd7313a36abf",
+  "compiler_archive_verified": true,
+  "framework_revision": "58386edc269ef88ff0f40ab0a9d50e87cba80ca8",
+  "framework_source_mode": "local packages downloaded from pinned GitHub revision",
+  "command": [
+    "/workspace/scratch/984c533ea14d/arboretum-payout-vm/compiler/sui",
+    "move",
+    "test",
+    "--build-env",
+    "mainnet",
+    "--path",
+    "/workspace/scratch/984c533ea14d/arboretum-payout-vm/work/generated",
+    "--threads",
+    "1",
+    "payout_"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "tests": [
+    "payout_direct_and_archived_routes_diverge_after_cutoff_drought",
+    "payout_direct_claim_order_changes_eligible_payment_with_time_dead_seed",
+    "payout_partial_direct_then_archive_conserves_funds_and_rejects_replay"
+  ],
+  "evidence_level": "Actual local Sui Move VM using synthetic state and funds",
+  "characterization_only": true,
+  "new_economic_policy_selected": false,
+  "deployed_source_equivalence_established": false,
+  "wallet_connected": false,
+  "signed_or_submitted_transactions": false,
+  "synthetic_fixture_assertions": {
+    "direct_vs_archived": {
+      "pool_mist": 1000,
+      "seed_gp": 100,
+      "last_watered_relative_to_cutoff_days": -9,
+      "claim_relative_to_cutoff_days": 2,
+      "direct_payment_mist": 0,
+      "direct_remaining_pool_mist": 1000,
+      "archived_payment_mist": 1000,
+      "archived_remaining_pool_mist": 0
+    },
+    "claim_order": {
+      "pool_mist": 1000,
+      "eligible_gp": 40,
+      "time_dead_gp": 60,
+      "eligible_claims_first_payment_mist": 400,
+      "time_dead_claims_first_eligible_payment_mist": 1000,
+      "funds_conserved_in_both_orders": true
+    },
+    "partial_claim_then_archive": {
+      "direct_payment_mist": 400,
+      "archived_payment_mist": 600,
+      "remaining_pool_mist": 0,
+      "replay_expected_abort": "E_NO_SEEDS (7)"
+    }
+  },
+  "limits": [
+    "Passing characterization tests confirm baseline inconsistencies; this is not release approval.",
+    "Synthetic seeds, clocks, balances and scenario senders are fixtures, not real wallet activity.",
+    "The test copy preserves all production functions and appends test-only helpers and tests.",
+    "No real package was published, upgraded, called, simulated, paused, reset, archived or funded."
+  ]
+}

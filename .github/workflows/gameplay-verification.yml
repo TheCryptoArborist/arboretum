@@ -1,0 +1,45 @@
+name: Gameplay transaction verification
+on:
+  push:
+    branches: [feature/gameplay-verification-20261019]
+    paths: ['wallet.js', 'scripts/test-wallet-transactions.mjs', 'gameplay-verification/**', '.github/workflows/gameplay-verification.yml']
+  pull_request:
+    paths: ['wallet.js', 'scripts/test-wallet-transactions.mjs', 'gameplay-verification/**', '.github/workflows/gameplay-verification.yml']
+permissions:
+  contents: read
+concurrency:
+  group: gameplay-verification-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install the locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Build the accepted gated review with the corrected wallet
+        run: |
+          set -euo pipefail
+          mkdir -p gameplay-verification-results
+          node --version > gameplay-verification-results/node-version.txt
+          npm run lint
+          node gameplay-verification/verify-review-build.mjs | tee gameplay-verification-results/build.txt
+          cp gameplay-verification/evidence/build-verification.json gameplay-verification-results/build-verification.json
+      - name: Verify execution and payout reporting without a signer or network requests
+        run: |
+          set -euo pipefail
+          python3 gameplay-verification/verify_offline.py | tee gameplay-verification-results/offline-tests.txt
+          cp gameplay-verification/evidence/offline-verification.json gameplay-verification-results/offline-verification.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: gameplay-transaction-verification
+          path: gameplay-verification-results/
+          retention-days: 14

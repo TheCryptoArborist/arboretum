@@ -1,0 +1,64 @@
+{
+  "purpose": "Unsigned simulation of claim_reward; no on-chain submission",
+  "sourceEvidence": "owned-seeds-20261019.json",
+  "seed": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+  "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "sdkVersion": "2.19.0",
+  "transaction": {
+    "version": 1,
+    "kind": {
+      "programmableTransaction": {
+        "inputs": [
+          {
+            "kind": "SHARED",
+            "objectId": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+            "version": "922820085",
+            "mutable": true
+          },
+          {
+            "kind": "IMMUTABLE_OR_OWNED",
+            "objectId": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+            "version": "995549547",
+            "digest": "3R8AifzywfyG1f1kxWm6K3woT7FqPuCRhWkSg49KhWWE"
+          },
+          {
+            "kind": "SHARED",
+            "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+            "version": "1",
+            "mutable": false
+          }
+        ],
+        "commands": [
+          {
+            "moveCall": {
+              "package": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+              "module": "arboretum",
+              "function": "claim_reward",
+              "arguments": [
+                {
+                  "kind": "INPUT",
+                  "input": 0
+                },
+                {
+                  "kind": "INPUT",
+                  "input": 1
+                },
+                {
+                  "kind": "INPUT",
+                  "input": 2
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "gasPayment": {
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+    }
+  },
+  "checksEnabled": true,
+  "doGasSelection": true,
+  "transactionsSubmitted": 0
+}

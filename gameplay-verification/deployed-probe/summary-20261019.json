@@ -1,0 +1,63 @@
+{
+  "scope": "Two unsigned simulations of one current-season Seed, plus bounded read-only package and receipt queries",
+  "package": {
+    "address": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+    "version": 11,
+    "digest": "G55ZRNKoCDhAgunVDzHgqeiVHgdofsq4FjJuBp984iia"
+  },
+  "deployedDisassemblySha256": "2e7dd587e996abe010106d822099b8194bf61f7357a79fc558d42521eef39604",
+  "seed": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+  "seasonId": "3",
+  "seasonStartMs": 1788220806247,
+  "seasonStartUtc": "2026-09-01T00:00:06.247000+00:00",
+  "seasonDurationMs": 2592000000,
+  "seasonCutoffMs": 1790812806247,
+  "seasonCutoffUtc": "2026-10-01T00:00:06.247000+00:00",
+  "lastWateredMs": 1790548022735,
+  "lastWateredUtc": "2026-09-27T22:27:02.735000+00:00",
+  "deathDays": 10,
+  "droughtDaysAtCutoff": 3,
+  "droughtDaysAtProbeClock": 21,
+  "bottomlessCanExpiryMs": 0,
+  "cutoffInterpretation": "Applying the deployed drought formula to the stored last-watered timestamp at season cutoff gives three complete drought days, below the seven-day wilt and ten-day death thresholds. This is a derived interpretation of current stored fields, not a historical eligibility or payout proof.",
+  "waterSimulation": {
+    "status": "FAILURE",
+    "error": "Error in 1st command, from '0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724::arboretum::assert_season_active' (instruction 24), abort code: 6",
+    "eventCount": 0
+  },
+  "claimSimulation": {
+    "status": "SUCCESS",
+    "eventTypes": [
+      "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::SeedDied"
+    ],
+    "rewardClaimedEvents": 0,
+    "seedStateBefore": 0,
+    "seedStateSimulatedAfter": 2,
+    "seedGrowthBefore": "188",
+    "seedGrowthSimulatedAfter": "0",
+    "registryGrowthBefore": "2498",
+    "registryGrowthSimulatedAfter": "2310",
+    "rewardPoolBeforeMist": "209720000",
+    "rewardPoolSimulatedAfterMist": "209720000",
+    "balanceChanges": [
+      {
+        "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        "coinType": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+        "amount": "-100765"
+      }
+    ],
+    "interpretation": "Successful Move execution records Seed death and removes points; it does not establish a successful reward payout."
+  },
+  "unchangedLiveStateAfterSimulations": true,
+  "postSimulationCheckpoint": {
+    "sequenceNumber": 335821829,
+    "timestamp": "2026-10-19T17:21:55.901Z"
+  },
+  "confirmedLiveRegistryVersion": 995549548,
+  "confirmedLiveSeedVersion": 995549547,
+  "transactionValidationChecksEnabled": true,
+  "simulations": 2,
+  "transactionsSubmitted": 0,
+  "walletsInvoked": 0,
+  "signaturesCreated": 0
+}
