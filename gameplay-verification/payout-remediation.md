@@ -37,6 +37,13 @@ execution, with bounded processing that fits actual on-chain object/gas limits.
 
 ## Source reconciliation comes first
 
+**Completed follow-up:** [the verified reconstruction](../contract-reconstruction/README.md)
+reproduces the version-11 upgrade's exact module bytes and all linked framework
+modules. Use `contract-reconstruction/source/arboretum.move` with its pinned build
+inputs as the reference for the separate payout candidate. The historical saved
+production source/manifests described below remain unchanged. Seven Move tests on
+the reconstructed baseline now reproduce the original characterization results.
+
 The configured deployed package is version 11 at
 `0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724`.
 The accepted repository's Move source/manifests do not establish a reproducible

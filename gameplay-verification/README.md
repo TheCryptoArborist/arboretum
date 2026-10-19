@@ -124,10 +124,12 @@ authoritative deployed source and the eligibility/denominator policy before
 preparing an upgrade. Another test of the already accepted interface will not
 resolve these contract behaviors.
 
-The subsequent [deployed-source preflight](source-baseline-preflight.md) identifies
-two missing partner purchase functions and three partner-related body differences
-in the saved source. It records the reconstruction and comparison work required
-before preparing the payout correction; whole-module equivalence remains unverified.
+The subsequent [deployed-source preflight](source-baseline-preflight.md) identified
+two missing partner purchase functions and three partner-related body differences.
+[The completed reconstruction](../contract-reconstruction/README.md) now reproduces
+the actual version-11 upgrade bytecode exactly and matches the linked framework
+modules. Seven Move tests on that verified baseline reproduce the payout issues.
+The source-reconciliation blocker is resolved; payout remediation remains next.
 
 No production publication, new preview deployment, merge, price activation,
 treasury allocation, payout, or on-chain administrative operation is part of this

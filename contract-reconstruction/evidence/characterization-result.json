@@ -1,0 +1,40 @@
+{
+  "status": "DEPLOYED_BASELINE_BEHAVIOR_REPRODUCED",
+  "completed_at_utc": "2026-10-19T21:14:27.316771+00:00",
+  "source_sha256": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+  "test_include_sha256": "91caf7fd980656b5691e06b71a2934d4ed4d06f153571489f7b503333305b7c0",
+  "generated_test_source_sha256": "4f572764981eb7faab8fbd57fc4377362cec18e5a48d74d2675be899f4112966",
+  "production_source_unchanged": true,
+  "test_only_insertion": true,
+  "compiler": "sui 1.78.1-722ac4fcf484",
+  "framework_revision": "8b9163554164776bc3372d828f8d6ced55aa2b5e",
+  "command": [
+    "/tmp/arboretum-v11-tools/sui",
+    "move",
+    "test",
+    "--build-env",
+    "mainnet",
+    "--path",
+    "/tmp/arboretum-v11-matched-build/characterization",
+    "--threads",
+    "1"
+  ],
+  "exit_code": 0,
+  "counts": {
+    "total": 7,
+    "passed": 7,
+    "failed": 0
+  },
+  "tests": [
+    "arboretum::arboretum::canopy_entry_records_baseline_and_pot",
+    "arboretum::arboretum::canopy_entry_rejects_double_entry",
+    "arboretum::arboretum::canopy_finalize_splits_side_pot_without_touching_growth_pool",
+    "arboretum::arboretum::canopy_underfilled_challenge_can_cancel_and_refund",
+    "arboretum::arboretum::payout_direct_and_archived_routes_diverge_after_cutoff_drought",
+    "arboretum::arboretum::payout_direct_claim_order_changes_eligible_payment_with_time_dead_seed",
+    "arboretum::arboretum::payout_partial_direct_then_archive_conserves_funds_and_rejects_replay"
+  ],
+  "payout_tests_reproduce_existing_problems": true,
+  "new_payout_policy_implemented": false,
+  "signed_or_submitted_transactions": false
+}
