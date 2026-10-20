@@ -71,13 +71,17 @@ node settlement-integration/build-review.mjs
 
 The builder accepts local review, branch-deploy, and deploy-preview contexts and rejects production. It requires REVIEW_ONLY to stay true, emits the exact module import graph, checks every inline script, verifies source preservation, and records asset hashes in [verification/build.json](verification/build.json).
 
+The exact `feature/settlement-app-integration-20261020` branch context in `netlify.toml` selects this builder and Node 24. The default production build command is unchanged. The existing `dist` publish directory and `netlify/functions` directory still apply; both edge functions retain their inline route declarations. A branch context selects build configuration but does not itself enable Netlify branch deployments.
+
 Validation includes **149 app tests** (22 model, 62 reader, 65 generated-wallet), **50 existing wallet-confirmation tests**, **19 release-input/packet tests**, and **14 legacy reconciliation tests**. Test fixtures never request a real wallet signature or submit a transaction. The [app test log](verification/model-wallet-reader.log) records all named cases. The new GitHub workflow rebuilds the candidate and stores its exact review distribution as an artifact.
 
 The [offline browser review](verification/browser/README.md) passed **75 of 75 checks** at 1440px and 390px widths. Eight final screenshots were visually inspected. The exact compiled wallet connected a synthetic provider, displayed the legacy reward state, cleared stale results when a read failed, recovered after refresh, and kept New seasons unavailable. No signature, transaction, simulation, uncaught page exception, or missing compiled asset was observed. These checks use intercepted fixture reads and establish local UI behavior; authenticated Netlify access and real wallet execution remain unverified.
 
 ## Hosted preview and release boundary
 
-The Netlify connector currently provides deployment inspection but no preview-build/upload operation. The attempted Netlify browser-control session timed out. A newly hosted integration preview has therefore not been verified by this package. The current production deploy remains **6abe81174b61a8e3dd53b333**; the previously accepted tester preview is a different, earlier build.
+The Netlify connector currently provides deployment inspection but no preview-build/upload operation. Both the initial browser-control attempt and the subsequent session-reset attempt timed out. A newly hosted integration preview has therefore not been verified by this package. The current production deploy remains **6abe81174b61a8e3dd53b333**; the previously accepted tester preview is a different, earlier build.
+
+For an existing Git connection, enable only `feature/settlement-app-integration-20261020` under **Project configuration > Developer settings > Continuous deployment > Branches and deploy contexts**, then trigger that branch's build. The committed branch context supplies the reviewed command. If the project has no Git connection, use an authenticated source-ZIP build with this explicit non-production branch; do not upload `dist` alone or omit the branch. No new hosted URL should be treated as this integration build until its deployment and asset checks succeed.
 
 A preview deployment must run this builder and include the unchanged Netlify edge functions and calendar-reminder function. A static-only upload does not establish tester access control. Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions.
 

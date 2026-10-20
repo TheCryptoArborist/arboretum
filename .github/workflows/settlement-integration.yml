@@ -2,9 +2,9 @@ name: Settlement app integration review
 on:
   push:
     branches: [feature/settlement-app-integration-20261020]
-    paths: ['settlement-integration/**', '.github/workflows/settlement-integration.yml']
+    paths: ['settlement-integration/**', '.github/workflows/settlement-integration.yml', 'netlify.toml']
   pull_request:
-    paths: ['settlement-integration/**', '.github/workflows/settlement-integration.yml']
+    paths: ['settlement-integration/**', '.github/workflows/settlement-integration.yml', 'netlify.toml']
 permissions:
   contents: read
 jobs:
