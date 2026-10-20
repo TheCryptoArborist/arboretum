@@ -1,0 +1,67 @@
+{
+  "retrievedAt": "2026-10-20T01:35:19.932069+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyObjectPoint($object: SuiAddress!, $checkpoint: UInt53!) {\n  checkpoint(sequenceNumber:$checkpoint) { sequenceNumber timestamp }\n  object(address:$object, atCheckpoint:$checkpoint) { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } }\n }\n}",
+    "variables": {
+      "object": "0x30d15930647f31b2922b093ca88bb0a2b6ce23fb3356c14bb094eb669c945ff5",
+      "checkpoint": 328848276
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 328848276,
+        "timestamp": "2026-10-01T00:00:06.086Z"
+      },
+      "object": {
+        "address": "0x30d15930647f31b2922b093ca88bb0a2b6ce23fb3356c14bb094eb669c945ff5",
+        "version": 995549542,
+        "digest": "9gfPatz7ry8GMv7t4y264UvhfLNSVA6SUJqAxoASfFeJ",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016"
+          }
+        },
+        "previousTransaction": {
+          "digest": "26WSYRn9CZNKgErhebUYDHDTqeBokwwm2QmrbihKduMn",
+          "effects": {
+            "checkpoint": {
+              "sequenceNumber": 322991346,
+              "timestamp": "2026-09-15T16:38:11.421Z"
+            }
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed"
+            },
+            "json": {
+              "id": "0x30d15930647f31b2922b093ca88bb0a2b6ce23fb3356c14bb094eb669c945ff5",
+              "sapling_id": "0xaaf5cdeed990a1781ca8ac6427142353b78bd6decd4ba4660195f6a245f28834",
+              "season_id": "3",
+              "owner": "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016",
+              "planted_at_ms": "1788385436387",
+              "last_watered_ms": "1789490291346",
+              "watering_streak": "1",
+              "growth_points": "126",
+              "state": 0,
+              "fertilizer_charges": 0,
+              "miracle_grow_applied": false,
+              "revival_charges": 1,
+              "bottomless_can_expiry_ms": "0",
+              "permanent_gp_bonus": "0"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responseSha256": "ae019f56aa78bebd2cc45304574bba548b84af328188c3318a60c4de4dd5aa7c"
+}

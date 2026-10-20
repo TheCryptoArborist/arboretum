@@ -1,0 +1,195 @@
+{
+  "retrievedAt": "2026-10-20T01:36:06.138831+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query FilterArgumentType { __type(name:\"ServiceConfig\") { fields { name args { name type { kind name ofType { kind name ofType { kind name } } } } } } }",
+    "variables": {}
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "fields": [
+          {
+            "name": "mutationTimeoutMs",
+            "args": []
+          },
+          {
+            "name": "queryTimeoutMs",
+            "args": []
+          },
+          {
+            "name": "maxQueryDepth",
+            "args": []
+          },
+          {
+            "name": "maxQueryNodes",
+            "args": []
+          },
+          {
+            "name": "maxOutputNodes",
+            "args": []
+          },
+          {
+            "name": "maxTransactionPayloadSize",
+            "args": []
+          },
+          {
+            "name": "maxQueryPayloadSize",
+            "args": []
+          },
+          {
+            "name": "defaultPageSize",
+            "args": [
+              {
+                "name": "type",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "field",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "maxPageSize",
+            "args": [
+              {
+                "name": "type",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "field",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "maxMultiGetSize",
+            "args": []
+          },
+          {
+            "name": "maxTypeArgumentDepth",
+            "args": []
+          },
+          {
+            "name": "maxTypeArgumentWidth",
+            "args": []
+          },
+          {
+            "name": "maxTypeNodes",
+            "args": []
+          },
+          {
+            "name": "maxMoveValueDepth",
+            "args": []
+          },
+          {
+            "name": "maxMoveValueBound",
+            "args": []
+          },
+          {
+            "name": "maxDisplayFieldDepth",
+            "args": []
+          },
+          {
+            "name": "maxDisplayFormatNodes",
+            "args": []
+          },
+          {
+            "name": "maxDisplayObjectLoads",
+            "args": []
+          },
+          {
+            "name": "maxDisplayOutputSize",
+            "args": []
+          },
+          {
+            "name": "maxDisassembledModuleSize",
+            "args": []
+          },
+          {
+            "name": "maxRichQueries",
+            "args": []
+          },
+          {
+            "name": "availableRange",
+            "args": [
+              {
+                "name": "type",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              },
+              {
+                "name": "field",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "filters",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "String"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "d9ff107f193b86ff306ada68cb0cdea2bf4d36d078c7b0fdfd5daea90995cdad"
+}

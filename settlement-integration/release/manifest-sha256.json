@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "hashAlgorithm": "SHA256",
+  "files": {
+    "README.md": "543d9004cc55c9145ad1ce25cb3a434588053ac772206d5f03908c28dc95ae84",
+    "build-upgrade.mjs": "b64c9bb1254ecf01a75ba31edeedf2f1d0053a802d56ee7e592798184a08f7c6",
+    "capture_inputs.py": "699227fb04e157fe06250c30d8719ed5f810f9bea0da3639782f07aea41d7926",
+    "evidence/20261020-initial/chain-inputs.json": "ca0f3054571aa9f612b98143e79897c6ae1cb3b73b7220241587cb93b04f7ab2",
+    "evidence/20261020-initial/checkpoint.json": "daa4e902a146cfeba69de175caa0bc0d57b17f8c4e41636bfc9e8a0ecf4ccbb5",
+    "evidence/20261020-initial/historical-upgrade-bcs-control-result.json": "316bb1b97f4ea2739afcd4fc6bf4b253647a4adabd77ca7477a09b4ae30ec0af",
+    "evidence/20261020-initial/historical-upgrade-bcs-control.json": "04e784c5d205a2eb16bdf2706afcb40403bbee47cfa6464ef4ac91d0b56ce0a2",
+    "evidence/20261020-initial/post-simulation-state.json": "5f2ec8f80b119742197d6fdda4f1880d1c4ffe6e6cbef306ee3cee941763315b",
+    "evidence/20261020-initial/simulation-summary.json": "2142b7a09e6c2d8e53d746adc1c42b8eb136a683c3934b6bf879b410cd6f4416",
+    "evidence/20261020-initial/unsigned-upgrade.json": "adec0873d65a5346b18b1c622d58054a0c9a4ab3e0f9da95fd5180d999ddd837",
+    "evidence/20261020-initial/upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563",
+    "evidence/20261020-initial/upgrade-simulation.json": "8b51148d5cfc11148a21d540ee647a7edc40bfc4028d8d3787f2a281af7a4855",
+    "evidence/20261020-initial/verified-inputs.json": "5fa8c19b185459afa7d3adf7e458c9f00735d224a715f400b0310f3a26ae8c3b",
+    "prepare-setup.mjs": "17b03b1af951057be34de77df66d7dea119975a1c665c43e2b072716d0fc9286",
+    "release-packet.test.mjs": "92a9f812eba4e4988db2a2a9072c858bf7c50f67ef4747480f65d3a5804f9257",
+    "simulate_upgrade.py": "f6f69f7a34b537d441941d93d9f906e5fac8d4206aa2032af343a1e05b480a63",
+    "test_release_inputs.py": "54e34151eaa1e8952a488bfccc63c3ff05c36ce733571a4674ae49a043386d1f",
+    "verify_inputs.py": "8fd9606bfdd4bb895a4ca9027c8a3cd7a9460e9d6febbc3fbe03fdab78475691",
+    "verify_simulation.py": "28eb82f638399ce9a71fa06f6f16bfd4f23c01da370eef96b988041e1010da2b"
+  },
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}
