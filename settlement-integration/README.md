@@ -75,15 +75,27 @@ The exact `feature/settlement-app-integration-20261020` branch context in `netli
 
 Validation includes **149 app tests** (22 model, 62 reader, 65 generated-wallet), **50 existing wallet-confirmation tests**, **19 release-input/packet tests**, and **14 legacy reconciliation tests**. Test fixtures never request a real wallet signature or submit a transaction. The [app test log](verification/model-wallet-reader.log) records all named cases. The new GitHub workflow rebuilds the candidate and stores its exact review distribution as an artifact.
 
-The [offline browser review](verification/browser/README.md) passed **75 of 75 checks** at 1440px and 390px widths. Eight final screenshots were visually inspected. The exact compiled wallet connected a synthetic provider, displayed the legacy reward state, cleared stale results when a read failed, recovered after refresh, and kept New seasons unavailable. No signature, transaction, simulation, uncaught page exception, or missing compiled asset was observed. These checks use intercepted fixture reads and establish local UI behavior; authenticated Netlify access and real wallet execution remain unverified.
+The [offline browser review](verification/browser/README.md) passed **75 of 75 checks** at 1440px and 390px widths. Eight final screenshots were visually inspected. The exact compiled wallet connected a synthetic provider, displayed the legacy reward state, cleared stale results when a read failed, recovered after refresh, and kept New seasons unavailable. No signature, transaction, simulation, uncaught page exception, or missing compiled asset was observed. These checks use intercepted fixture reads and establish local UI behavior. Hosted HTTP and artifact verification is recorded below; genuine tester login and interactive hosted wallet checks remain unverified.
 
 ## Hosted preview and release boundary
 
-The Netlify connector currently provides deployment inspection but no preview-build/upload operation. Both the initial browser-control attempt and the subsequent session-reset attempt timed out. A newly hosted integration preview has therefore not been verified by this package. The current production deploy remains **6abe81174b61a8e3dd53b333**; the previously accepted tester preview is a different, earlier build.
+**Protected preview:** [Open tester access](https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access).
 
-For an existing Git connection, enable only `feature/settlement-app-integration-20261020` under **Project configuration > Developer settings > Continuous deployment > Branches and deploy contexts**, then trigger that branch's build. The committed branch context supplies the reviewed command. If the project has no Git connection, use an authenticated source-ZIP build with this explicit non-production branch; do not upload `dist` alone or omit the branch. No new hosted URL should be treated as this integration build until its deployment and asset checks succeed.
+The exact review source at commit **1dc540414d0e4060343ee68a005cecb16e404991** was deployed on October 20, 2026 UTC as Netlify branch deploy **6ad6eb2abca3f4d4579e6522**. Netlify reports the build ready, the explicit `feature/settlement-app-integration-20261020` branch, and no production publication timestamp. The production deploy remains **6abe81174b61a8e3dd53b333**.
 
-A preview deployment must run this builder and include the unchanged Netlify edge functions and calendar-reminder function. A static-only upload does not establish tester access control. Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions.
+The [hosted verification record](verification/hosted/netlify-preview-20261020.json) records:
+
+- **30/30 public and anonymous-access checks passed** on the exact immutable preview host. The native tester form is configured; game and settlement assets are gated; HTML game navigation redirects to tester access; the public homepage and handbook retain their reviewed hashes.
+- **All 11 critical emitted files match their reviewed SHA-256 hashes**, including the transformed wallet, game, settlement SDK, panel, configuration, model, and reader. These bytes were read through Netlify's authorized per-deploy file API without a tester cookie or password.
+- All 82 non-internal inventory records are accounted for: 81 review distribution files and the exact committed Netlify configuration. The inventory lists `backgroundA.jpg` with lowercase casing; its bytes match. All ten listed exclusions are absent, including the disabled settlement wallet and internal source/evidence files.
+- The two deployed edge functions are `tester-gate` and `public-player-guide`. The only serverless function is `calendar-reminder`; no function schedules are deployed.
+- The downloaded source ZIP matches the exact submitted Git archive. No signatures or blockchain transactions were requested.
+
+Use the immutable preview link above. Netlify's generated branch alias has a 65-character first hostname label and did not resolve through the verification network; the immutable deploy URL passed all checks.
+
+A genuine tester login and interactive hosted wallet/gameplay checks have not been exercised by this verification. The protected asset bytes were independently verified through Netlify's authorized admin API, and the existing offline browser review remains the visual/UI evidence. The review build keeps transaction submission disabled and New seasons unavailable.
+
+Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions. This documentation-only verification record does not change the deployed app source.
 
 Current implementation guidance was read from MystenLabs/skills at commit e31b38016723e2dcee36161d59c50e028e13b52a, including frontend-apps, accessing-data, ptbs, sui-publish, and installed version-matched SDK documentation. See the linked reconciliation and release reports for exact reference files and captured evidence.
 
