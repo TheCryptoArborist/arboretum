@@ -1,0 +1,14 @@
+{
+  "cutoffMs": 1790812806247,
+  "atOrBefore": {
+    "sequenceNumber": 328848276,
+    "digest": "CWdYgJ2XCPZxuPK8BGxVGui8eG8RBSahKzY3spN4dMND",
+    "timestamp": "2026-10-01T00:00:06.086Z"
+  },
+  "immediatelyAfter": {
+    "sequenceNumber": 328848277,
+    "digest": "EgiX354FTTR6NvetGpweAf3hMHxiWMLJGiRcofmroJ3Q",
+    "timestamp": "2026-10-01T00:00:06.299Z"
+  },
+  "lookupCount": 28
+}

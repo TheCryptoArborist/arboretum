@@ -4,3 +4,8 @@
 
 [functions]
   directory = "netlify/functions"
+
+# Isolated settlement review; the default production build stays above.
+[context."feature/settlement-app-integration-20261020"]
+  command = "node settlement-integration/build-review.mjs"
+  environment = { NODE_VERSION = "24" }

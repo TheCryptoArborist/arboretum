@@ -1,0 +1,133 @@
+{
+  "retrievedAt": "2026-10-20T01:33:24.244756+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaTransaction($name: String!) { __type(name:$name) { name fields { name description type { kind name ofType { kind name } } args { name type { kind name ofType { kind name } } } } } }",
+    "variables": {
+      "name": "Transaction"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "Transaction",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The transaction's globally unique identifier, which can be passed to `Query.node` to refetch it.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "digest",
+            "description": "A 32-byte hash that uniquely identifies the transaction contents, encoded in Base58.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "effects",
+            "description": "The results to the chain of executing this transaction.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "TransactionEffects",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "kind",
+            "description": "The type of this transaction as well as the commands and/or parameters comprising the transaction of this kind.",
+            "type": {
+              "kind": "UNION",
+              "name": "TransactionKind",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "expiration",
+            "description": "This field is set by senders of a transaction block. It is an epoch reference that sets a deadline after which validators will no longer consider the transaction valid. By default, there is no deadline for when a transaction must execute.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Epoch",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "gasInput",
+            "description": "The gas input field provides information on what objects were used as gas as well as the owner of the gas object(s) and information on the gas price and budget.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "GasInput",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "sender",
+            "description": "The address corresponding to the public key that signed this transaction. System transactions do not have senders.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Address",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "transactionBcs",
+            "description": "The Base64-encoded BCS serialization of this transaction, as a `TransactionData`.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Base64",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "transactionJson",
+            "description": "The transaction as a JSON blob, matching the gRPC proto format (excluding BCS).",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "signatures",
+            "description": "User signatures for this transaction.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null
+              }
+            },
+            "args": []
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "737ae66425675e8070816eace91a3de6571da08fe5a184d2800b36ba094aaf8e"
+}

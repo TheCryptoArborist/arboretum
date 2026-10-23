@@ -1,0 +1,62 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.328778+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "CheckpointFilter"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "CheckpointFilter",
+        "description": null,
+        "inputFields": [
+          {
+            "name": "atEpoch",
+            "description": "Limit query results to checkpoints at this epoch.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          },
+          {
+            "name": "afterCheckpoint",
+            "description": "Limit query results to checkpoints that occured strictly after the given checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          },
+          {
+            "name": "atCheckpoint",
+            "description": "Limit query results to checkpoints that occured at the given checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          },
+          {
+            "name": "beforeCheckpoint",
+            "description": "Limit query results to checkpoints that occured strictly before the given checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          }
+        ],
+        "fields": null
+      }
+    }
+  },
+  "responseSha256": "d7d829cdd542d91e40a9b5a4eb84a9a1199cacc45815fadc88dddf13af643559"
+}

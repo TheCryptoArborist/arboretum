@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "status": "VERIFIED_UNSIGNED_RELEASE_INPUTS",
+  "network": "mainnet",
+  "chainIdentifier": "35834a8a",
+  "checkpoint": {
+    "sequenceNumber": 335949689,
+    "timestamp": "2026-10-20T01:32:27.884Z",
+    "digest": "A5ZHipBtwvRGtc6sR1o8H2R785wTESWnFEMJ8nziDARJ"
+  },
+  "sourceEvidence": {
+    "chain-inputs.json": "ca0f3054571aa9f612b98143e79897c6ae1cb3b73b7220241587cb93b04f7ab2",
+    "candidateBuild": {
+      "path": "contract-payout/evidence/build-result.json",
+      "sha256": "1eb627602ba0ae40f67e5581e3cff30aeabefa142e3601d964fec2764c51cb63"
+    },
+    "sources": {
+      "contract-reconstruction/source/arboretum.move": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+      "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb"
+    }
+  },
+  "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "packageId": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+  "packageVersion": 11,
+  "originalPackageId": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b",
+  "upgradeCap": {
+    "objectId": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "version": "990522281",
+    "digest": "AL8rz2UmVAVijA5KiDufAKsn4VbYjDMFaYyHQ8kzPB22"
+  },
+  "upgradePolicy": 0,
+  "upgradePolicyName": "compatible",
+  "changesUpgradeCapPolicy": false,
+  "legacyAdminCap": {
+    "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "version": "986499447",
+    "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN"
+  },
+  "legacyRegistry": {
+    "objectId": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "version": "995549548",
+    "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf"
+  },
+  "dependencies": [
+    "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "0x0000000000000000000000000000000000000000000000000000000000000002"
+  ],
+  "dependencyObservations": [
+    {
+      "address": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "version": 25,
+      "digest": "9kbT8AW15PCizPLMWACFi6vppCc9bQsVb47zYuYeThD8"
+    },
+    {
+      "address": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "version": 60,
+      "digest": "2as1MRHQTtx6d82cQL8fyS1XX8Fh3hTRZS1Z4tTeij9m"
+    }
+  ],
+  "modules": [
+    {
+      "name": "arboretum",
+      "sha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1",
+      "size": 18034
+    },
+    {
+      "name": "settlement",
+      "sha256": "b7a04fde1df19d69cc09a2384f3abca0c4f8caa226ba738a6091dd7cda92f531",
+      "size": 22221
+    }
+  ],
+  "packageDigestHex": "a4f84de8007a0d8b8f79ab9d0fa8bdb03a1926dc954b1d72d626783be04c29df",
+  "digestAlgorithm": "Blake2b-256(sorted(Blake2b-256(each module), each 32-byte dependency ID))",
+  "historicalDigestControlPassed": true,
+  "settlementTypeOrigin": null,
+  "newRegistryId": null,
+  "newAdminCapId": null,
+  "postUpgradeSetup": {
+    "function": "settlement::create_settlement_registry",
+    "packageId": null,
+    "requiresSuccessfulUpgradeEffects": true,
+    "input": "immutable reference to the refreshed legacyAdminCap",
+    "startsSeason": false,
+    "fundsPool": false,
+    "importsLegacyState": false
+  },
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}

@@ -1,0 +1,44 @@
+{
+  "retrievedAt": "2026-10-20T01:33:24.369951+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaTransaction($name: String!) { __type(name:$name) { name fields { name description type { kind name ofType { kind name } } args { name type { kind name ofType { kind name } } } } } }",
+    "variables": {
+      "name": "AvailableRange"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "AvailableRange",
+        "fields": [
+          {
+            "name": "first",
+            "description": "Inclusive lower checkpoint for which data is available.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Checkpoint",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "last",
+            "description": "Inclusive upper checkpoint for which data is available.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Checkpoint",
+              "ofType": null
+            },
+            "args": []
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "6b0379f008013ae73f1e68364ba744289dbbc8f2f02943acbf65ca838580261e"
+}
