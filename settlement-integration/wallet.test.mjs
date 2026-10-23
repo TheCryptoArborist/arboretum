@@ -10,6 +10,7 @@ import { promisify } from 'node:util';
 import { Transaction } from '@mysten/sui/transactions';
 import { bcs } from '@mysten/sui/bcs';
 import * as model from './model.mjs';
+import { applyPartnerReport } from '../economy-review/build-admin-preview.mjs';
 
 // The actual emitted wallet is executed with the installed Transaction SDK.
 // Only fixture Wallet Standard methods and fixture reads are available here.
@@ -567,5 +568,68 @@ test('emitted sources import modern read APIs and keep review configuration expl
     assert.match(source, /import \{ getWallets, SuiGrpcClient, Transaction, bcs \}/);
     assert.match(source, /import \{ SETTLEMENT_DEPLOYMENT, REVIEW_ONLY \}/);
     assert.doesNotMatch(source, /\bSuiClient\b|\.getOwnedObjects\(|\.multiGetObjects\(|\.getDynamicFieldObject\(/);
+  }
+});
+
+// The NFTree helper bypasses the Arboretum wallet module. Exercise the actual
+// emitted HTML action as well, with fixtures that record every external effect.
+async function emittedReviewGame(route, source = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8')) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'arboretum-mint-review-'));
+  const target = path.join(directory, 'game.html');
+  try {
+    fs.writeFileSync(target, applyPartnerReport(source));
+    await promisify(execFile)('python3', [path.join(ROOT, 'settlement-integration/ui/transform_game.py'), target, route]);
+    return fs.readFileSync(target, 'utf8');
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
+for (const route of ['legacy', 'settlement']) {
+  test(route + ' review blocks the independent NFTree mint path before any external effect', async () => {
+    const html = await emittedReviewGame(route);
+    for (const script of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi)) {
+      if (!/\bsrc\s*=|type\s*=\s*["']module/.test(script[1])) new vm.Script(script[2]);
+    }
+    const start = html.indexOf('async function mintNftreeInArboretum(){');
+    const end = html.indexOf('async function doMint(){', start);
+    assert.ok(start >= 0 && end > start);
+    assert.doesNotMatch(html, /NFTREE_MINT_SCRIPT|loadNftreeMintScript|mintWithConnectedWallet|connectAndMint|nftree-wallet-mint\.js/);
+    assert.match(html, /<button[^>]+id="mint-here-btn"[^>]+disabled[^>]*>Minting disabled in review<\/button>/);
+    assert.match(html, /id="mint-review-notice">NFTree minting is disabled/);
+
+    for (const connected of [true, false]) {
+      const calls = { helperLoads: 0, network: 0, wallet: 0, connectionChecks: 0 };
+      const notices = [];
+      const mint = async () => { calls.wallet++; return { digest: 'fixture-only' }; };
+      const helper = { mintWithConnectedWallet: mint, connectAndMint: mint };
+      const context = vm.createContext({
+        window: { NFTreeWalletMint: helper }, PA: connected ? '0x' + 'd'.repeat(64) : null,
+        WALLET_NAME: 'Offline mint regression fixture',
+        needWallet() { calls.connectionChecks++; return !connected; },
+        loadNftreeMintScript: async () => { calls.helperLoads++; return helper; },
+        fetchNftreeSaleStatus: async () => { calls.network++; return { mintPriceMist: '25000000000', pools: [] }; },
+        fetch: async () => { calls.network++; throw Error('Network is forbidden in this fixture'); },
+        document: { createElement() { calls.helperLoads++; throw Error('Script loading is forbidden in this fixture'); } },
+        $: () => ({ textContent: 'Mint NFTree Here', disabled: false }),
+        formatMistAsSui: () => '25 SUI', toast: message => notices.push(message),
+        updateNftreeAccess: async () => {}, refreshGardenAfterTx() {}, closeAModal2() {}, setActivePanel() {},
+        console,
+      });
+      new vm.Script(html.slice(start, end)).runInContext(context);
+      const result = await context.window.mintNftreeInArboretum();
+      assert.equal(result.submitted, false); assert.equal(result.reason, 'REVIEW_ONLY');
+      assert.deepEqual(calls, { helperLoads: 0, network: 0, wallet: 0, connectionChecks: 0 });
+      assert.equal(notices.length, 1); assert.match(notices[0], /minting is disabled.*No wallet transaction/);
+    }
+  });
+}
+
+test('review transform fails closed if the independent mint source anchors change', async () => {
+  const original = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  for (const anchor of ['async function loadNftreeMintScript(){', 'async function mintNftreeInArboretum(){']) {
+    assert.ok(original.includes(anchor));
+    await assert.rejects(emittedReviewGame('legacy', original.replace(anchor, anchor.replace('(){', '() {'))),
+      /Review UI section is not unique/);
   }
 });

@@ -84,6 +84,33 @@ def transform(source, route_id="legacy"):
     once('</head>', '<link rel="stylesheet" href="/settlement-panel.css">\n</head>')
     once('<body>', '<body>\n' + BANNER)
     once('</body>', '<script type="module" src="/settlement-panel.mjs"></script>\n</body>')
+    # NFTree minting uses an independent remote wallet helper, so the emitted
+    # wallet's signAndExecute guard cannot protect it. Remove that path from
+    # both review routes before any wallet connection or remote script load.
+    once("let NFTREE_MINT_SCRIPT_PROMISE=null;\n", '')
+    once("const NFTREE_SALE_POOL_API='https://nftree.net/api/nftree-sale-pools';\n", '')
+    once("const NFTREE_MINT_SCRIPT='https://nftree.net/assets/nftree-wallet-mint.js';\n", '')
+    section('async function loadNftreeMintScript(){', 'function formatMistAsSui(mist){', '')
+    section('async function mintNftreeInArboretum(){', 'window.mintNftreeInArboretum=mintNftreeInArboretum;', '''async function mintNftreeInArboretum(){
+  toast('NFTree minting is disabled in this review. No wallet transaction will be requested.','ti',9000);
+  return {submitted:false,reason:'REVIEW_ONLY'};
+}''')
+    section('<div class="amodal-overlay" id="mint-modal">', '<div class="amodal-overlay" id="eco-modal">', '''<div class="amodal-overlay" id="mint-modal">
+  <div class="amodal-box">
+    <h3>NFTree access review</h3>
+    <p id="mint-review-notice">NFTree minting is disabled in this review. No wallet transaction will be requested.</p>
+    <p>You can check the NFTrees already in your wallet and review your garden access.</p>
+    <div class="amodal-acts">
+      <button class="gbtn" id="mint-here-btn" type="button" disabled aria-describedby="mint-review-notice">Minting disabled in review</button>
+      <button class="gbtn" onclick="checkMintAndReturn()">Check existing NFTree access</button>
+      <button class="gbtn" onclick="closeAModal2('mint-modal')">Close</button>
+    </div>
+  </div>
+</div>
+''')
+    section('function openMintModal(){', 'window.openMintModal=openMintModal;', '''function openMintModal(){
+  $('mint-modal')?.classList.add('open');
+}''')
     once('<div class="reward-tab-panel active" id="reward-tab-season" role="tabpanel" aria-labelledby="reward-tab-season-btn">',
          '<div class="reward-tab-panel active" id="reward-tab-season" role="tabpanel" aria-labelledby="reward-tab-season-btn">' + PANEL)
     # Keep legacy IDs for the existing game scripts, but remove the old payout

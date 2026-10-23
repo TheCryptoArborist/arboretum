@@ -2,6 +2,16 @@
 
 This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the app integration, a complete legacy Season 3 reconciliation, and the exact unsigned upgrade review. It does not activate the new protocol.
 
+## Preview security review — October 23, 2026
+
+**Wallet testing on the October 20 hosted preview is paused.** A malicious-site warning was reported; its provider and exact wording have not yet been identified. The warning has not been cleared or established as a false positive.
+
+The investigation found a separate review-build gap: the original NFTree mint action can load an external wallet helper and call it directly, outside the generated Arboretum wallet's submission guard. Reconstructing `game.html` from the deployed source produced SHA-256 `4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78`, matching the authenticated artifact record below, and confirmed that this path survives into that deployment. This is not evidence that the helper is malicious or caused the warning.
+
+The follow-up change disables that mint action in the review-only HTML transform and removes its external loader. A regression invokes the generated action with a mock connected wallet and checks that no helper, network, or wallet call occurs. Original production source is preserved.
+
+**Deployment status:** this source correction has not been deployed to Netlify. The October 20 immutable preview still serves its original build. A new hosted build and verification are required before describing the correction as live. No production deployment, real signature, or blockchain transaction is part of this change.
+
 ## Review behavior
 
 The build produces an **Existing garden** route using the verified legacy deployment. **New seasons** remains unavailable because the actual upgrade package, new Registry, and new AdminCap do not exist yet. Those IDs must be taken from real confirmed deployment effects and type origins; a URL parameter, browser global, local-storage entry, or simulated package cannot configure the route.
@@ -79,7 +89,7 @@ The [offline browser review](verification/browser/README.md) passed **75 of 75 c
 
 ## Hosted preview and release boundary
 
-**Protected preview:** [Open tester access](https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access).
+**Historical protected deployment (wallet testing paused):** [Tester access](https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access).
 
 The exact review source at commit **1dc540414d0e4060343ee68a005cecb16e404991** was deployed on October 20, 2026 UTC as Netlify branch deploy **6ad6eb2abca3f4d4579e6522**. Netlify reports the build ready, the explicit `feature/settlement-app-integration-20261020` branch, and no production publication timestamp. The production deploy remains **6abe81174b61a8e3dd53b333**.
 
@@ -91,11 +101,11 @@ The [hosted verification record](verification/hosted/netlify-preview-20261020.js
 - The two deployed edge functions are `tester-gate` and `public-player-guide`. The only serverless function is `calendar-reminder`; no function schedules are deployed.
 - The downloaded source ZIP matches the exact submitted Git archive. No signatures or blockchain transactions were requested.
 
-Use the immutable preview link above. Netlify's generated branch alias has a 65-character first hostname label and did not resolve through the verification network; the immutable deploy URL passed all checks.
+The immutable URL above is retained as deployment evidence. Netlify's generated branch alias has a 65-character first hostname label and did not resolve through the verification network; the immutable deploy URL passed all checks.
 
-A genuine tester login and interactive hosted wallet/gameplay checks have not been exercised by this verification. The protected asset bytes were independently verified through Netlify's authorized admin API, and the existing offline browser review remains the visual/UI evidence. The review build keeps transaction submission disabled and New seasons unavailable.
+A genuine tester login and interactive hosted wallet/gameplay checks have not been exercised by this verification. The protected asset bytes were independently verified through Netlify's authorized admin API, and the existing offline browser review remains the visual/UI evidence. The October 20 checks did not exercise the independent NFTree mint path identified above. The source correction disables it, but the hosted preview has not yet received that correction. New seasons remains unavailable.
 
-Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions. This documentation-only verification record does not change the deployed app source.
+Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions. The October 20 verification record describes the original deployed app; the follow-up source correction is awaiting a new protected deployment.
 
 Current implementation guidance was read from MystenLabs/skills at commit e31b38016723e2dcee36161d59c50e028e13b52a, including frontend-apps, accessing-data, ptbs, sui-publish, and installed version-matched SDK documentation. See the linked reconciliation and release reports for exact reference files and captured evidence.
 
