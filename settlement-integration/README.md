@@ -2,15 +2,17 @@
 
 This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the app integration, a complete legacy Season 3 reconciliation, and the exact unsigned upgrade review. It does not activate the new protocol.
 
-## Preview security review — October 23, 2026
+## Preview security review and deployed correction
 
-**Wallet testing on the October 20 hosted preview is paused.** A malicious-site warning was reported; its provider and exact wording have not yet been identified. The warning has not been cleared or established as a false positive.
+**The corrected protected preview is deployed and verified.** Source commit `9d8514ffb86c591c80faa51db84de4f798810468` is live at [the current tester entrance](https://6adea7f6c988a798a41ea3e2--arboretum-sui-forest.netlify.app/tester-access). The deployment completed on October 26, 2026 UTC (October 25 in America/Chicago). Production remains unchanged.
 
-The investigation found a separate review-build gap: the original NFTree mint action can load an external wallet helper and call it directly, outside the generated Arboretum wallet's submission guard. Reconstructing `game.html` from the deployed source produced SHA-256 `4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78`, matching the authenticated artifact record below, and confirmed that this path survives into that deployment. This is not evidence that the helper is malicious or caused the warning.
+The supplied screenshot identifies the earlier warning as a **Slush wallet** alert over the October 20 preview in Brave. It reads “Malicious website” and “This site has been flagged for malicious behavior.” The classification trigger remains unknown. No Slush clearance or false-positive determination has been received, and the new preview has not undergone a genuine hosted wallet session. Wallet testing remains paused pending that review.
+
+The investigation found a separate review-build gap: the original NFTree mint action can load an external wallet helper and call it directly, outside the generated Arboretum wallet's submission guard. Reconstructing `game.html` from the October 20 deployed source produced SHA-256 `4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78`, matching the [October 20 authenticated artifact record](verification/hosted/netlify-preview-20261020.json), and confirmed that this path survives in that old deployment. This is not evidence that the helper is malicious or caused the warning.
 
 The follow-up change disables that mint action in the review-only HTML transform and removes its external loader. A regression invokes the generated action with a mock connected wallet and checks that no helper, network, or wallet call occurs. Original production source is preserved.
 
-**Deployment status:** this source correction has not been deployed to Netlify. The October 20 immutable preview still serves its original build. A new hosted build and verification are required before describing the correction as live. No production deployment, real signature, or blockchain transaction is part of this change.
+**Hosted correction verified:** the new `game.html` has SHA-256 `c89fd7de0f7e0aee642d3e64b6bc177e29c058a9e11065e02e4ea258c274a5c0`, matching the reviewed corrected build. The external helper URL, loader, and helper calls are absent, and the review-only action guard is present. This establishes the code correction; it does not establish the cause or resolution of the Slush warning. No production deployment, real signature, or blockchain transaction is part of this change.
 
 ## Review behavior
 
@@ -83,29 +85,31 @@ The builder accepts local review, branch-deploy, and deploy-preview contexts and
 
 The exact `feature/settlement-app-integration-20261020` branch context in `netlify.toml` selects this builder and Node 24. The default production build command is unchanged. The existing `dist` publish directory and `netlify/functions` directory still apply; both edge functions retain their inline route declarations. A branch context selects build configuration but does not itself enable Netlify branch deployments.
 
-Validation includes **149 app tests** (22 model, 62 reader, 65 generated-wallet), **50 existing wallet-confirmation tests**, **19 release-input/packet tests**, and **14 legacy reconciliation tests**. Test fixtures never request a real wallet signature or submit a transaction. The [app test log](verification/model-wallet-reader.log) records all named cases. The new GitHub workflow rebuilds the candidate and stores its exact review distribution as an artifact.
+The original integration validation records **149 app tests** (22 model, 62 reader, 65 generated-wallet), **50 existing wallet-confirmation tests**, **19 release-input/packet tests**, and **14 legacy reconciliation tests**. The correction adds three focused mint-path regression cases. All eight CI runs passed for the deployed correction at `9d8514ffb86c591c80faa51db84de4f798810468`, including the [complete settlement integration review](https://github.com/TheCryptoArborist/arboretum/actions/runs/40006219263). Test fixtures never request a real wallet signature or submit a transaction. The original [app test log](verification/model-wallet-reader.log) remains historical evidence; the GitHub workflow rebuilds each candidate and stores its exact review distribution as an artifact.
 
 The [offline browser review](verification/browser/README.md) passed **75 of 75 checks** at 1440px and 390px widths. Eight final screenshots were visually inspected. The exact compiled wallet connected a synthetic provider, displayed the legacy reward state, cleared stale results when a read failed, recovered after refresh, and kept New seasons unavailable. No signature, transaction, simulation, uncaught page exception, or missing compiled asset was observed. These checks use intercepted fixture reads and establish local UI behavior. Hosted HTTP and artifact verification is recorded below; genuine tester login and interactive hosted wallet checks remain unverified.
 
 ## Hosted preview and release boundary
 
-**Historical protected deployment (wallet testing paused):** [Tester access](https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access).
+**Current protected deployment:** [Tester access](https://6adea7f6c988a798a41ea3e2--arboretum-sui-forest.netlify.app/tester-access).
 
-The exact review source at commit **1dc540414d0e4060343ee68a005cecb16e404991** was deployed on October 20, 2026 UTC as Netlify branch deploy **6ad6eb2abca3f4d4579e6522**. Netlify reports the build ready, the explicit `feature/settlement-app-integration-20261020` branch, and no production publication timestamp. The production deploy remains **6abe81174b61a8e3dd53b333**.
+The exact corrected source at commit **9d8514ffb86c591c80faa51db84de4f798810468** was deployed as Netlify branch deploy **6adea7f6c988a798a41ea3e2**, build **6adea7f6c988a798a41ea3e0**. Netlify reports the build ready, the explicit `feature/settlement-app-integration-20261020` branch, and no production publication timestamp. The production deploy remains **6abe81174b61a8e3dd53b333**.
 
-The [hosted verification record](verification/hosted/netlify-preview-20261020.json) records:
+The [current hosted verification record](verification/hosted/netlify-preview-20261026.json) records:
 
 - **30/30 public and anonymous-access checks passed** on the exact immutable preview host. The native tester form is configured; game and settlement assets are gated; HTML game navigation redirects to tester access; the public homepage and handbook retain their reviewed hashes.
-- **All 11 critical emitted files match their reviewed SHA-256 hashes**, including the transformed wallet, game, settlement SDK, panel, configuration, model, and reader. These bytes were read through Netlify's authorized per-deploy file API without a tester cookie or password.
+- **All 11 critical emitted files plus `netlify.toml` match their reviewed SHA-256 hashes**, including the corrected game, transformed wallet, settlement SDK, panel, configuration, model, and reader. These bytes were read through Netlify's authorized per-deploy file API without a tester cookie or password. The corrected game has no external NFTree mint helper.
 - All 82 non-internal inventory records are accounted for: 81 review distribution files and the exact committed Netlify configuration. The inventory lists `backgroundA.jpg` with lowercase casing; its bytes match. All ten listed exclusions are absent, including the disabled settlement wallet and internal source/evidence files.
 - The two deployed edge functions are `tester-gate` and `public-player-guide`. The only serverless function is `calendar-reminder`; no function schedules are deployed.
-- The downloaded source ZIP matches the exact submitted Git archive. No signatures or blockchain transactions were requested.
+- The downloaded source ZIP matches the exact submitted Git archive: SHA-256 `21b8e977c3a75d367fdfcdf0ebff71b02d4cd51d321acabf65e3192c1d9304ed`, 30,608,083 bytes. No signatures or blockchain transactions were requested.
 
-The immutable URL above is retained as deployment evidence. Netlify's generated branch alias has a 65-character first hostname label and did not resolve through the verification network; the immutable deploy URL passed all checks.
+The immutable URL above is retained as deployment evidence. Netlify's generated branch alias has a 65-character first hostname label and did not resolve through the network during the previous verification. The alias was not rechecked in this run; the new immutable deploy URL passed all checks.
 
-A genuine tester login and interactive hosted wallet/gameplay checks have not been exercised by this verification. The protected asset bytes were independently verified through Netlify's authorized admin API, and the existing offline browser review remains the visual/UI evidence. The October 20 checks did not exercise the independent NFTree mint path identified above. The source correction disables it, but the hosted preview has not yet received that correction. New seasons remains unavailable.
+A genuine tester login and interactive hosted wallet/gameplay checks have not been exercised by this verification. The protected asset bytes were independently verified through Netlify's authorized admin API, and the existing offline browser review remains the visual/UI evidence. The corrected source is now hosted, but Slush clearance remains unresolved. New seasons remains unavailable.
 
-Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions. The October 20 verification record describes the original deployed app; the follow-up source correction is awaiting a new protected deployment.
+The [October 20 verification record](verification/hosted/netlify-preview-20261020.json) remains historical evidence for deploy `6ad6eb2abca3f4d4579e6522` and source `1dc540414d0e4060343ee68a005cecb16e404991`. Those checks did not exercise the independent NFTree mint path, and that old immutable deploy still contains the original build. Use the current tester entrance above for the corrected preview. The follow-up documentation/evidence commit does not change the deployed source.
+
+Production publication, signing the real upgrade, creating and activating the new Registry, and deciding legacy compensation remain separate release actions.
 
 Current implementation guidance was read from MystenLabs/skills at commit e31b38016723e2dcee36161d59c50e028e13b52a, including frontend-apps, accessing-data, ptbs, sui-publish, and installed version-matched SDK documentation. See the linked reconciliation and release reports for exact reference files and captured evidence.
 
