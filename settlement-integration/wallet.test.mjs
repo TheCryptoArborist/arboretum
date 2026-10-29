@@ -48,7 +48,7 @@ try {
   fs.rmSync(generatedDirectory, { recursive: true, force: true });
 }
 const exposedNames = [
-  'CONTRACT', 'connectWallet', 'signAndExecute', 'buyCrate', 'buyBoomChest', 'buyVictoryChest',
+  'CONTRACT', 'connectWallet', 'initializeWallet', 'signAndExecute', 'buyCrate', 'buyBoomChest', 'buyVictoryChest',
   'buySupplyDrop', 'adminDepositToPool', 'claimReward', 'claimArchivedReward',
   'getProtocolRoutes', 'getIntegrationStatus', 'getRewardOptions', 'getProjectedReward',
   'getOwnedObjects', 'getAllObjectsByStructType', 'getObjectById', 'getObjectsByIds',
@@ -125,6 +125,7 @@ function storage(initial = {}) {
 function harness({ mode = 'settlement', reviewOnly = false, deployment = DEPLOYMENT,
   data = fixture(), reader = {}, response = confirmedResponse(), windowOverrides = {},
   stored = {}, accountAddress = OWNER, grpcResult = { dynamicField: { fieldId: FIELD_ID } },
+  wallets = null,
 } = {}) {
   const calls = { sign: [], confirmation: [], reader: [], grpc: [], clients: [], timers: new Map() };
   let now = 0, timerId = 0;
@@ -151,7 +152,7 @@ function harness({ mode = 'settlement', reviewOnly = false, deployment = DEPLOYM
   const context = vm.createContext({
     ...model, Transaction, bcs, createReader: () => integrationReader,
     SETTLEMENT_DEPLOYMENT: deployment, REVIEW_ONLY: reviewOnly,
-    getWallets: () => ({ get: () => [wallet] }),
+    getWallets: () => ({ get: () => typeof wallets === 'function' ? wallets() : wallets ?? [wallet] }),
     SuiGrpcClient: class {
       constructor(options) {
         calls.clients.push(options);
@@ -209,6 +210,126 @@ function oneMoveCall(data) {
   const calls = data.commands.filter(command => command.MoveCall).map(command => command.MoveCall);
   assert.equal(calls.length, 1);
   return calls[0];
+}
+
+function connectionWallet(name, addresses, calls, onConnect = null) {
+  const wallet = { name, accounts: addresses.map(address => ({ address, chains: ['sui:mainnet'] })), features: {
+    'sui:signAndExecuteTransaction': { async signAndExecuteTransaction() {
+      assert.fail('Connection fixtures must never request a signature');
+    } },
+    'standard:connect': { async connect(options) {
+      calls.push({ name, silent: options?.silent === true });
+      if (onConnect) onConnect(wallet);
+    } },
+  } };
+  return wallet;
+}
+function savedWallet(name, address = OWNER) {
+  return { arb_name: name, arb_addr: address, arb_expiry: String(Date.now() + 60_000) };
+}
+function assertNoConnectionDataRequests(h) {
+  assert.equal(h.calls.sign.length, 0);
+  assert.equal(h.calls.confirmation.length, 0);
+  assert.equal(h.calls.reader.length, 0);
+  assert.equal(h.calls.grpc.length, 0);
+}
+
+for (const mode of ['legacy', 'settlement']) {
+  test(mode + ' review connects only the explicitly selected wallet', async () => {
+    const calls = [];
+    const chosen = connectionWallet('Chosen Fixture', [OWNER], calls);
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [other, chosen] });
+    const result = await h.api.connectWallet(chosen.name);
+    assert.equal(result.walletName, chosen.name); assert.equal(result.address, OWNER);
+    assert.equal(h.context.window.currentWallet, chosen);
+    assert.deepEqual(calls, [{ name: chosen.name, silent: false }]);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(mode + ' review rejects missing or invalid named wallets without contacting another wallet', async () => {
+    const calls = [];
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [other] });
+    for (const name of ['Missing Chosen Fixture', '', false, 0]) {
+      await assert.rejects(h.api.connectWallet(name), /selected wallet is no longer available/);
+    }
+    assert.deepEqual(calls, []);
+    assert.equal(h.context.window.currentWallet, undefined);
+    assert.equal(h.context.window.playerAddress, undefined);
+    assert.equal(h.calls.clients.length, 0);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(mode + ' review retains auto-detection when no wallet was explicitly selected', async () => {
+    const calls = [];
+    const wallet = connectionWallet('Auto-detected Fixture', [OWNER], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [wallet] });
+    assert.equal((await h.api.connectWallet()).walletName, wallet.name);
+    assert.deepEqual(calls, [{ name: wallet.name, silent: false }]);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(mode + ' review rejects ambiguous wallet names before connecting or restoring', async () => {
+    const calls = [];
+    const first = connectionWallet('Duplicate Fixture', [OWNER], calls);
+    const second = connectionWallet('Duplicate Fixture', [OTHER_ID], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [second, first], stored: savedWallet(first.name) });
+    await assert.rejects(h.api.connectWallet(first.name), /More than one wallet uses the selected name/);
+    assert.equal(await h.api.initializeWallet(), null);
+    assert.deepEqual(calls, []);
+    assert.equal(h.context.window.currentWallet, undefined);
+    assert.equal(h.context.window.playerAddress, undefined);
+    assert.equal(h.calls.clients.length, 0);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(mode + ' review restores the exact saved account even when it is not first', async () => {
+    const calls = [];
+    const saved = connectionWallet('Saved Fixture', [OTHER_ID, OWNER], calls);
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [other, saved], stored: savedWallet(saved.name) });
+    const result = await h.api.initializeWallet();
+    assert.equal(result.address, OWNER); assert.equal(result.walletName, saved.name);
+    assert.equal(h.context.window.currentWallet, saved);
+    assert.equal(h.context.window.currentAccount, saved.accounts[1]);
+    assert.deepEqual(calls, []);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(mode + ' review does not restore a different wallet or account when the saved choice disappears', async () => {
+    for (const missing of ['wallet', 'account', 'account after silent connect']) {
+      const calls = [];
+      const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+      const saved = connectionWallet('Saved Fixture', missing === 'account after silent connect' ? [] : [OTHER_ID], calls,
+        wallet => { wallet.accounts = other.accounts; });
+      const stored = savedWallet(saved.name);
+      const h = harness({ mode, reviewOnly: true, wallets: missing === 'wallet' ? [other] : [other, saved], stored });
+      assert.equal(await h.api.initializeWallet(), null, missing);
+      assert.equal(h.context.window.currentWallet, undefined, missing);
+      assert.equal(h.context.window.currentAccount, undefined, missing);
+      assert.equal(h.context.window.playerAddress, undefined, missing);
+      assert.equal(h.context.localStorage.getItem('arb_addr'), OWNER, 'Do not replace the saved address');
+      assert.equal(h.context.localStorage.getItem('arb_name'), saved.name, 'Do not replace the saved wallet');
+      assert.deepEqual(calls, missing === 'account after silent connect' ? [{ name: saved.name, silent: true }] : []);
+      assert.equal(h.calls.clients.length, 0);
+      assertNoConnectionDataRequests(h);
+    }
+  });
+
+  test(mode + ' review can silently restore the exact saved account from its saved wallet', async () => {
+    const calls = [];
+    const saved = connectionWallet('Saved Fixture', [], calls, wallet => {
+      wallet.accounts = [{ address: OTHER_ID, chains: ['sui:mainnet'] }, { address: OWNER, chains: ['sui:mainnet'] }];
+    });
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    const h = harness({ mode, reviewOnly: true, wallets: [other, saved], stored: savedWallet(saved.name) });
+    assert.equal((await h.api.initializeWallet()).address, OWNER);
+    assert.equal(h.context.window.currentWallet, saved);
+    assert.equal(h.context.window.currentAccount, saved.accounts[1]);
+    assert.deepEqual(calls, [{ name: saved.name, silent: true }]);
+    assertNoConnectionDataRequests(h);
+  });
 }
 
 const funding = [
@@ -583,6 +704,167 @@ async function emittedReviewGame(route, source = fs.readFileSync(path.join(ROOT,
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
+}
+
+const pickerScripts = new Map();
+async function pickerHarness(route, registry) {
+  if (!pickerScripts.has(route)) {
+    const html = await emittedReviewGame(route);
+    const start = html.indexOf('let walletPickerChoices=[];');
+    const marker = 'window.triggerConnectIndex=triggerConnectIndex;';
+    const end = html.indexOf(marker, start);
+    assert.ok(start >= 0 && end > start, 'Exercise the picker functions emitted into the actual review HTML');
+    const connectStart = html.indexOf('async function doConnect(walletName=null,expectedWallet=null){');
+    const connectEnd = html.indexOf('async function doDisconnect(){', connectStart);
+    assert.ok(connectStart >= 0 && connectEnd > connectStart, 'Exercise the actual connection handoff as well');
+    pickerScripts.set(route, new vm.Script(html.slice(start, end + marker.length) + '\n' +
+      html.slice(connectStart, connectEnd) +
+      '\nglobalThis.pickerTestApi={walletOptionsMarkup,triggerConnectIndex,refreshWalletModal};'));
+  }
+  const h = harness({ mode: route, reviewOnly: true, wallets: registry });
+  const notices = [], selections = [], expectedWallets = [], modalActions = [], connected = [];
+  const elements = new Map(['wallet-modal', 'wallet-list', 'wallet-btn'].map(name => [name, {
+    innerHTML: '', classList: { add() {}, remove(value) { modalActions.push({ name, value }); } },
+  }]));
+  Object.assign(h.context, {
+    $: name => elements.get(name),
+    safeImageUrl: () => '', escHTML: value => String(value),
+    renderWalletDiagnostics() {}, waitForWalletConnectReady: async () => true,
+    toast: message => notices.push(message),
+    PA: null, afterConnect: result => connected.push(result),
+  });
+  h.context.window._getInstalledWallets = registry;
+  h.context.window._walletReady = true;
+  h.context.window.connectWallet = async (name, expectedWallet) => {
+    selections.push(name); expectedWallets.push(expectedWallet);
+    return h.api.connectWallet(name, expectedWallet);
+  };
+  pickerScripts.get(route).runInContext(h.context);
+  return { ...h, picker: h.context.pickerTestApi, notices, selections, expectedWallets, modalActions, connected };
+}
+
+for (const route of ['legacy', 'settlement']) {
+  test(route + ' review picker connects the displayed wallet after registry reordering', async () => {
+    const calls = [];
+    const chosen = connectionWallet('Displayed Fixture', [OWNER], calls);
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    let registry = [chosen, other];
+    const h = await pickerHarness(route, () => registry);
+    const markup = h.picker.walletOptionsMarkup(registry);
+    assert.ok(markup.indexOf(chosen.name) < markup.indexOf(other.name));
+    registry = [other, chosen];
+    await h.picker.triggerConnectIndex(0);
+    assert.deepEqual(h.selections, [chosen.name]);
+    assert.deepEqual(h.expectedWallets, [chosen]);
+    assert.deepEqual(calls, [{ name: chosen.name, silent: false }]);
+    assert.equal(h.context.window.currentWallet, chosen);
+    assert.equal(h.context.window.playerAddress, OWNER);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(route + ' review picker never substitutes another wallet when the displayed wallet disappears', async () => {
+    const calls = [];
+    const chosen = connectionWallet('Displayed Fixture', [OWNER], calls);
+    const other = connectionWallet('Other Fixture', [OTHER_ID], calls);
+    let registry = [chosen, other];
+    const h = await pickerHarness(route, () => registry);
+    h.picker.walletOptionsMarkup(registry);
+    registry = [other];
+    await h.picker.triggerConnectIndex(0);
+    assert.match(h.notices.at(-1), /selected wallet is no longer available/);
+    assert.deepEqual(h.selections, [chosen.name]);
+    assert.deepEqual(calls, []);
+    assert.equal(h.context.window.currentWallet, undefined);
+    assert.equal(h.context.window.playerAddress, undefined);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(route + ' review picker rejects a single replacement provider with the same displayed name', async () => {
+    const calls = [];
+    const chosen = connectionWallet('Displayed Fixture', [OWNER], calls);
+    const replacement = connectionWallet('Displayed Fixture', [OTHER_ID], calls);
+    let registry = [chosen];
+    const h = await pickerHarness(route, () => registry);
+    h.picker.walletOptionsMarkup(registry);
+    registry = [replacement];
+    await h.picker.triggerConnectIndex(0);
+    assert.deepEqual(h.selections, [chosen.name]);
+    assert.deepEqual(h.expectedWallets, [chosen]);
+    assert.deepEqual(calls, []);
+    assert.deepEqual(h.connected, []);
+    assert.match(h.notices.at(-1), /selected wallet is no longer available/);
+    assert.equal(h.context.window.currentWallet, undefined);
+    assert.equal(h.context.window.playerAddress, undefined);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(route + ' review rechecks provider identity after asynchronous wallet detection', async () => {
+    for (const emptyPolls of [0, 1]) {
+      const calls = [];
+      const chosen = connectionWallet('Displayed Fixture', [OWNER], calls);
+      const replacement = connectionWallet('Displayed Fixture', [OTHER_ID], calls);
+      let registry = [chosen], reads = 0;
+      const h = await pickerHarness(route, () => {
+        reads++;
+        if (reads <= emptyPolls) return [];
+        const detected = registry;
+        if (reads === emptyPolls + 1) queueMicrotask(() => { registry = [replacement]; });
+        return detected;
+      });
+      h.picker.walletOptionsMarkup([chosen]);
+      await h.picker.triggerConnectIndex(0);
+      assert.equal(reads, emptyPolls + 2, 'Validate the current registry again after detection resolves');
+      assert.deepEqual(h.expectedWallets, [chosen]);
+      assert.deepEqual(calls, []);
+      assert.deepEqual(h.connected, []);
+      assert.match(h.notices.at(-1), /selected wallet is no longer available/);
+      assert.equal(h.context.window.currentWallet, undefined);
+      assert.equal(h.context.window.playerAddress, undefined);
+      assert.equal(h.calls.clients.length, 0);
+      assertNoConnectionDataRequests(h);
+    }
+  });
+
+  test(route + ' review picker refuses invalid or stale cards instead of auto-selecting', async () => {
+    const calls = [];
+    const wallet = connectionWallet('Displayed Fixture', [OWNER], calls);
+    const h = await pickerHarness(route, () => [wallet]);
+    h.picker.walletOptionsMarkup([wallet]);
+    for (const index of [-1, 1, 0.5, '0', null, undefined]) await h.picker.triggerConnectIndex(index);
+    h.picker.walletOptionsMarkup([]);
+    await h.picker.triggerConnectIndex(0);
+    h.picker.walletOptionsMarkup([{ ...wallet, name: '' }]);
+    await h.picker.triggerConnectIndex(0);
+    h.picker.walletOptionsMarkup([wallet]);
+    let finishRefresh;
+    h.context.waitForWalletConnectReady = () => new Promise(resolve => { finishRefresh = resolve; });
+    const refresh = h.picker.refreshWalletModal();
+    await h.picker.triggerConnectIndex(0);
+    finishRefresh(); await refresh;
+    assert.deepEqual(h.selections, []);
+    assert.deepEqual(calls, []);
+    assert.deepEqual(h.modalActions, [], 'Keep the wallet picker open for a new choice');
+    assert.equal(h.notices.length, 9);
+    assert.ok(h.notices.every(message => /wallet choice is no longer available/.test(message)));
+    assert.equal(h.context.window.currentWallet, undefined);
+    assertNoConnectionDataRequests(h);
+  });
+
+  test(route + ' review picker fails closed if another provider registers the displayed name', async () => {
+    const calls = [];
+    const chosen = connectionWallet('Displayed Fixture', [OWNER], calls);
+    const duplicate = connectionWallet('Displayed Fixture', [OTHER_ID], calls);
+    let registry = [chosen];
+    const h = await pickerHarness(route, () => registry);
+    h.picker.walletOptionsMarkup(registry);
+    registry = [duplicate, chosen];
+    await h.picker.triggerConnectIndex(0);
+    assert.match(h.notices.at(-1), /More than one wallet uses the selected name/);
+    assert.deepEqual(calls, []);
+    assert.equal(h.context.window.currentWallet, undefined);
+    assert.equal(h.context.window.playerAddress, undefined);
+    assertNoConnectionDataRequests(h);
+  });
 }
 
 for (const route of ['legacy', 'settlement']) {

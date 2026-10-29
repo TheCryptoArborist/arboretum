@@ -4,7 +4,7 @@ This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arbor
 
 ## Preview security review and deployed correction
 
-**The corrected protected preview is deployed and verified.** Source commit `9d8514ffb86c591c80faa51db84de4f798810468` is live at [the current tester entrance](https://6adea7f6c988a798a41ea3e2--arboretum-sui-forest.netlify.app/tester-access). The deployment completed on October 26, 2026 UTC (October 25 in America/Chicago). Production remains unchanged.
+**The mint-helper correction is deployed and verified.** Source commit `9d8514ffb86c591c80faa51db84de4f798810468` is live at [the current tester entrance](https://6adea7f6c988a798a41ea3e2--arboretum-sui-forest.netlify.app/tester-access). The deployment completed on October 26, 2026 UTC (October 25 in America/Chicago). Production remains unchanged. The October 29 wallet-selection follow-up below is a separate source correction and is not yet in that hosted build.
 
 The supplied screenshot identifies the earlier warning as a **Slush wallet** alert over the October 20 preview in Brave. It reads “Malicious website” and “This site has been flagged for malicious behavior.” The classification trigger remains unknown. No Slush clearance or false-positive determination has been received, and the new preview has not undergone a genuine hosted wallet session. Wallet testing remains paused pending that review.
 
@@ -13,6 +13,24 @@ The investigation found a separate review-build gap: the original NFTree mint ac
 The follow-up change disables that mint action in the review-only HTML transform and removes its external loader. A regression invokes the generated action with a mock connected wallet and checks that no helper, network, or wallet call occurs. Original production source is preserved.
 
 **Hosted correction verified:** the new `game.html` has SHA-256 `c89fd7de0f7e0aee642d3e64b6bc177e29c058a9e11065e02e4ea258c274a5c0`, matching the reviewed corrected build. The external helper URL, loader, and helper calls are absent, and the review-only action guard is present. This establishes the code correction; it does not establish the cause or resolution of the Slush warning. No production deployment, real signature, or blockchain transaction is part of this change.
+
+## Wallet selection correction — October 29, 2026
+
+The earlier review could silently select a different wallet when the registry order changed or a requested wallet disappeared. Saved-session restoration could also substitute another available account for the saved account. These cases were reproduced with synthetic Wallet Standard providers; they are not established as the cause of the Slush warning.
+
+The review transforms now require the selected wallet and account to remain available:
+
+- The picker retains the provider represented by each displayed card instead of resolving its index against a later registry list.
+- Explicit selection rejects a missing or ambiguous wallet, including a different provider replacing the displayed provider under the same name. It never falls back to another extension.
+- Missing, invalid, and stale picker choices require a fresh selection instead of automatic wallet selection.
+- Saved sessions restore only the uniquely named saved wallet and its exact saved account. An absent saved account leaves the application disconnected.
+- Automatic selection remains available when it is explicitly requested without a particular wallet choice.
+
+The regression tests exercise the generated review wallet and generated picker functions with synthetic providers, including registry reordering, provider replacement, removed accounts, and valid reconnection. Original production inputs, NFTree access requirements, and the review transaction guard remain unchanged.
+
+**Local verification:** all 94 named generated-wallet tests pass, including 26 new selection/restoration regressions, with zero failures or skips. A fresh review build passes its source-preservation, module, and inline-script checks. Independent code review also reproduced and verified the same-name replacement fix. No real wallet, signature, or transaction was used for these checks.
+
+**Deployment status:** this follow-up is not yet deployed. The current hosted preview still serves the mint-helper correction at `9d8514ffb86c591c80faa51db84de4f798810468`. A successful local build or CI run does not establish hosted deployment or Slush clearance.
 
 ## Review behavior
 
@@ -39,7 +57,7 @@ New funding calls include the required Clock argument. Legacy call signatures re
 
 The generated app uses the current Sui GraphQL and gRPC clients. Reward views pin the Registry, Clock, owned Seeds, and matching archives to one checkpoint. Every inventory is paginated to completion; duplicate identities, incomplete pages, and inconsistent fields fail explicitly. Observed payout totals are scoped to indexed receipts, with provider-history limits disclosed.
 
-The existing Wallet Standard connection and transaction-confirmation adapter are retained. This bounded integration does not change the application's wallet framework. Original production HTML, wallet, Garden, SDK, Move sources, access gate, and calendar-reminder function are preserved and hashed by the review builder.
+The existing Wallet Standard framework and transaction-confirmation adapter are retained; the review transforms add strict wallet selection and account restoration. Original production HTML, wallet, Garden, SDK, Move sources, access gate, and calendar-reminder function are preserved and hashed by the review builder.
 
 The public landing and public guide keep their accepted build output. New application assets remain behind the existing tester gate. Source code, reconciliation records, release bytes, and verification evidence are excluded from the website's published assets.
 

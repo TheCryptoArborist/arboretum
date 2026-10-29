@@ -43,6 +43,28 @@ const SETTLEMENT_MODE = CONTRACT.id === 'settlement';
 
 export const NFTREE = {""")
     once("new SuiClient({url:RPC_URL})", "new SuiGrpcClient({network:NETWORK,baseUrl:RPC_URL})")
+    # A choice made in the wallet picker is binding, not a preference. Do not
+    # contact another extension if the chosen wallet is no longer registered.
+    once("export async function connectWallet(walletName=null){",
+         "export async function connectWallet(walletName=null,expectedWallet=null){")
+    once("  const ws=await _signingWallets(15000);", """  const detected=await _signingWallets(15000);
+  // Registration can change while detection is awaited. A displayed choice
+  // must still be the exact same provider when connection is requested.
+  const ws=expectedWallet===null?detected:getWallets().get().filter(w=>_signFeat(w)!==null);
+  if(expectedWallet!==null&&!ws.includes(expectedWallet))throw new Error('The selected wallet is no longer available. Refresh the wallet list and choose again.');""")
+    once("""  // If a specific wallet name was requested (from picker UI), prefer it
+  const w=walletName
+    ? (ws.find(x=>x.name===walletName)||ws.find(x=>(x.accounts||[]).length>0)||ws[0])
+    : (ws.find(x=>(x.accounts||[]).length>0)||ws[0]);""", """  const matches=typeof walletName==='string'&&walletName?ws.filter(x=>x.name===walletName):[];
+  if(walletName!==null&&matches.length>1)throw new Error('More than one wallet uses the selected name. Keep only the intended wallet enabled and refresh the wallet list.');
+  const w=walletName===null?(ws.find(x=>(x.accounts||[]).length>0)||ws[0]):matches[0];
+  if(!w||(expectedWallet!==null&&w!==expectedWallet))throw new Error('The selected wallet is no longer available. Refresh the wallet list and choose again.');""")
+    # Session restoration may reuse only the saved account. Choosing a new
+    # account requires an explicit connection instead of an automatic fallback.
+    once("    const w=ws.find(x=>x.name===s.name);if(!w)return null;",
+         "    const matches=ws.filter(x=>x.name===s.name);if(matches.length!==1)return null;\n    const w=matches[0];")
+    once("    const a=_pick(w.accounts||[],s.address);if(!a)return null;",
+         "    const a=(w.accounts||[]).find(account=>account.address===s.address);if(!a)return null;")
     once("export async function signAndExecute(tx) {\n",
          """export async function signAndExecute(tx) {
   if (REVIEW_ONLY) throw new Error('This integration preview does not submit transactions.');

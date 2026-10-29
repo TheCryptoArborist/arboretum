@@ -84,6 +84,28 @@ def transform(source, route_id="legacy"):
     once('</head>', '<link rel="stylesheet" href="/settlement-panel.css">\n</head>')
     once('<body>', '<body>\n' + BANNER)
     once('</body>', '<script type="module" src="/settlement-panel.mjs"></script>\n</body>')
+    # Pin the providers and names represented by the visible cards. Registration can
+    # change between rendering and clicking; a fresh registry index may refer
+    # to a different extension, even one with the same name.
+    once('function walletOptionsMarkup(wallets=[]){', '''let walletPickerChoices=[];
+function walletOptionsMarkup(wallets=[]){
+  walletPickerChoices=wallets.map(wallet=>({wallet,name:wallet.name}));''')
+    once("  list.innerHTML='<div class=\"ach-empty\">Searching for Sui wallet extensions...</div>';",
+         "  walletPickerChoices=[];\n  list.innerHTML='<div class=\"ach-empty\">Searching for Sui wallet extensions...</div>';")
+    section('async function triggerConnectIndex(i){', 'window.triggerConnectIndex=triggerConnectIndex;', '''async function triggerConnectIndex(i){
+  const choice=Number.isInteger(i)?walletPickerChoices[i]:null;
+  const name=choice?.name;
+  if(typeof name!=='string'||!name){
+    toast('That wallet choice is no longer available. Refresh the wallet list and choose again.','td',7000);
+    return;
+  }
+  closeWalletModal();
+  await doConnect(name,choice.wallet);
+}''')
+    once('async function doConnect(walletName=null){',
+         'async function doConnect(walletName=null,expectedWallet=null){')
+    once('    const r=await window.connectWallet(walletName);',
+         '    const r=await window.connectWallet(walletName,expectedWallet);')
     # NFTree minting uses an independent remote wallet helper, so the emitted
     # wallet's signAndExecute guard cannot protect it. Remove that path from
     # both review routes before any wallet connection or remote script load.
