@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "recordType": "user-reported-wallet-warning-observation",
+  "reportedDate": "2026-10-29",
+  "reportingTimezone": "America/Chicago",
+  "screenshotCaptureTimestamp": null,
+  "reviewSourceCommit": "a3096b4f4e0d6b357949505f706b4afe88f85009",
+  "deployId": "6ae37c04102ccbfac41d20b4",
+  "previewUrl": "https://6ae37c04102ccbfac41d20b4--arboretum-sui-forest.netlify.app/game.html",
+  "testerAccessUrl": "https://6ae37c04102ccbfac41d20b4--arboretum-sui-forest.netlify.app/tester-access",
+  "deploymentProvenanceRecord": "netlify-preview-20261029.json",
+  "deploymentProvenanceRecordPreserved": true,
+  "evidence": {
+    "type": "user-provided screenshot",
+    "reportedOn": "2026-10-29",
+    "visuallyReviewed": true,
+    "browserVisible": "Brave",
+    "walletWindowVisible": "Slush",
+    "warningTitle": "Malicious website",
+    "warningDescription": "This site has been flagged for malicious behavior.",
+    "alertId": "6e50192e-9671-4050-8a8c-6461c2a62980",
+    "alertIdCompleteAndVisible": true,
+    "affectedUrlVisible": true,
+    "reviewBannerIndicatesTransactionsDisabled": true,
+    "captureTimestampVisible": false,
+    "extensionVersionVisible": false,
+    "screenshotCommittedToRepository": false
+  },
+  "warningProvider": "Slush",
+  "warningObservedOnCurrentPreview": true,
+  "installedExtensionVersion": null,
+  "causeEstablished": false,
+  "falsePositiveEstablished": false,
+  "clearanceReceived": false,
+  "accountApprovalEstablished": false,
+  "signatureEstablished": false,
+  "transactionEstablished": false,
+  "scanFeedbackSubmissionEstablished": false,
+  "supportRequest": {
+    "status": "prepared-not-submitted",
+    "submitted": false,
+    "ticketId": null
+  },
+  "testingBeyondWarningPaused": true,
+  "limits": [
+    "The screenshot was supplied on October 29; it does not display a capture timestamp or the installed Slush extension version.",
+    "The screenshot establishes the displayed warning, complete Alert ID, affected preview URL, and visible review banner; it is not a provider-side lookup of the alert.",
+    "The screenshot does not establish wallet account approval, a requested or completed signature, a blockchain transaction, or successful submission of scan feedback.",
+    "Neither the warning's underlying classification trigger nor a false-positive determination or Slush clearance has been established.",
+    "The separate Netlify verification record preserves earlier functional, source, artifact, and access-control checks; those checks did not establish Slush clearance.",
+    "The support request is prepared and unsent; no support ticket or provider response is established by this record."
+  ]
+}
