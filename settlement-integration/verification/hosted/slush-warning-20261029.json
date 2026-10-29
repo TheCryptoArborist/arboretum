@@ -37,17 +37,28 @@
   "transactionEstablished": false,
   "scanFeedbackSubmissionEstablished": false,
   "supportRequest": {
-    "status": "form-sent-pending-email-verification",
+    "status": "email-verified-by-user-awaiting-acknowledgement",
     "authorized": true,
     "formSubmitClicked": true,
     "submitAttempts": 1,
     "screenshotAttachmentUploaded": true,
-    "submitted": false,
-    "emailVerificationRequired": true,
+    "submitted": null,
+    "emailVerificationRequired": false,
+    "emailVerificationUserReported": true,
+    "emailVerificationUserReportedDate": "2026-10-29",
+    "emailVerificationIndependentlyConfirmed": false,
+    "ticketAcknowledgementReceived": false,
+    "providerResponseReceived": false,
     "ticketId": null,
     "responseText": "Request not yet submitted. Check your email to verify your address. Once verified, your request will be submitted (automatically).",
     "responseDate": "2026-10-29",
-    "responseTimezone": "America/Chicago"
+    "responseTimezone": "America/Chicago",
+    "postVerificationBrowserCheck": {
+      "date": "2026-10-29",
+      "observedPage": "Public Slush help homepage with Sign in",
+      "ticketConfirmationVisible": false,
+      "additionalSubmitAttempts": 0
+    }
   },
   "testingBeyondWarningPaused": true,
   "limits": [
@@ -56,7 +67,7 @@
     "The screenshot does not establish wallet account approval, a requested or completed signature, a blockchain transaction, or successful submission of scan feedback.",
     "Neither the warning's underlying classification trigger nor a false-positive determination or Slush clearance has been established.",
     "The separate Netlify verification record preserves earlier functional, source, artifact, and access-control checks; those checks did not establish Slush clearance.",
-    "The authorized support form was sent once with the approved screenshot; Slush requires contact-email verification before automatically submitting the ticket. No completed ticket or provider diagnosis is confirmed."
+    "The authorized support form's Submit button was clicked once with the approved screenshot. Slush initially required email verification and stated that submission would occur automatically afterward. The user reports completing verification on October 29; a subsequent browser check showed no ticket confirmation. Verification and backend ticket creation are not independently confirmed, and ticket acknowledgement or a provider response is awaited. No additional submission was attempted."
   ],
   "diagnosticReport": "slush-diagnostic-20261029.md"
 }

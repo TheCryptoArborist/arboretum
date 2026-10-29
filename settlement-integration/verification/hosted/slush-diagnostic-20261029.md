@@ -1,6 +1,6 @@
 # Slush warning: change history and classification mechanism
 
-Investigation date: **October 29, 2026, America/Chicago**. Status: **cause unresolved; support request pending email verification**.
+Investigation date: **October 29, 2026, America/Chicago**. Status: **cause unresolved; email verification reported complete by the user; awaiting ticket acknowledgement or support response**.
 
 ## Principal finding
 
@@ -89,11 +89,11 @@ All three byte counts and hashes were independently rechecked. No extension bund
 
 ## Support status and next discriminating evidence
 
-The authorized official support form's Submit button was clicked once with the approved attachment and contact details. Its resulting page explicitly requires email-address verification before automatically submitting the request. **Email verification is pending; successful ticket creation and a ticket number are not confirmed.** This is not a completed support submission or a Slush clearance.
+The authorized official support form's Submit button was clicked once with the approved attachment and contact details. Its initial response required email-address verification and stated that submission would follow automatically. **The user reports receiving the verification email and completing verification on October 29. The request is now awaiting ticket acknowledgement or a support response.** A subsequent check of the existing Slush browser page, including one refresh, showed the public help homepage with Sign in and no ticket confirmation. The user's verification and backend ticket creation have not been independently confirmed; a ticket number and provider diagnosis remain unavailable. No additional form submission was attempted, and no Slush clearance has been established.
 
 The useful next evidence is specific:
 
-- Complete the service's email-verification step, then establish actual ticket acceptance.
+- Establish ticket acceptance from an acknowledgement or support response following the user's reported email verification.
 - Ask Slush to resolve the complete Alert ID to the classification rule, flagged resource, first-flag time, and scope: exact origin, site family, URL, or script/content finding.
 - Ask whether that assessment was fresh or cached, and what evidence is required to distinguish the accepted preview from the flagged preview without bypassing protection.
 - Obtain the user's installed extension version if needed for a version-matched comparison. Do not attribute onset to a release merely because its date is recent.
