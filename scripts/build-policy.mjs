@@ -8,7 +8,7 @@ import { REVIEW_ONLY, SETTLEMENT_DEPLOYMENT } from '../settlement-integration/de
 
 export const DEDICATED_PREVIEW = Object.freeze({
   siteId: 'd425445d-4980-49be-8ab2-12e7527ba281',
-  origin: 'https://preview.treegrow.xyz',
+  origin: 'https://www.treegrow.xyz',
 });
 const deployment = Object.freeze({ reviewOnly: REVIEW_ONLY, settlementEnabled: SETTLEMENT_DEPLOYMENT.enabled });
 

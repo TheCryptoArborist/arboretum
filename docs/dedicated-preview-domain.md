@@ -1,23 +1,23 @@
-# Arboretum preview under treegrow.xyz
+# Arboretum preview at www.treegrow.xyz
 
-The protected review application has a dedicated Netlify project so it can use a stable hostname under the intended production domain.
+The protected review application is attached to the owner's requested exact hostname, **www.treegrow.xyz**, through the dedicated `arboretum-preview` Netlify project. This is now the version served by the main website.
 
 | Setting | Value |
 | --- | --- |
-| Preview hostname | `preview.treegrow.xyz` |
-| Tester entrance | `https://preview.treegrow.xyz/tester-access` |
+| Preview hostname | `www.treegrow.xyz` |
+| Tester entrance | `https://www.treegrow.xyz/tester-access` |
 | Netlify project | `arboretum-preview` |
 | Netlify site ID | `d425445d-4980-49be-8ab2-12e7527ba281` |
 | Default Netlify hostname | `arboretum-preview.netlify.app` |
-| Existing production site ID | `a344fb31-10b4-4eea-9562-067d90a39607` |
+| Retained original project ID | `a344fb31-10b4-4eea-9562-067d90a39607` |
 
 ## Hosted status — 2026-10-31 UTC
 
-The protected preview is deployed and verified at [the Netlify tester entrance](https://arboretum-preview.netlify.app/tester-access). Its source commit is `9aacd99d42d89e43ccdc216daefdfbaefd4ce265`; the ready, published preview deployment is `6ae53e7c96ded9882ad844c8` on the dedicated preview project.
+The protected preview is deployed and verified at [the requested www tester entrance](https://www.treegrow.xyz/tester-access). Its source commit is `9aacd99d42d89e43ccdc216daefdfbaefd4ce265`; the ready, published preview deployment is `6ae53e7c96ded9882ad844c8` on the dedicated preview project. The domain reassignment reused this verified deployment without rebuilding application code.
 
-Verification passed for all 11 critical raw deployed assets, 30 anonymous/public route cases, and 11 tester login, content, cookie, and logout checks. Both edge functions and the calendar function are present. The served game HTML differs from the raw artifact only through Netlify Pretty URLs normalizing six internal anchor links and their serialization; the remaining parsed markup, text, and scripts match. The original site's published deployment remains `6abe81174b61a8e3dd53b333`.
+Verification on the exact www origin passed for all 11 critical raw deployed assets, 30 anonymous/public route cases, and 11 tester login, content, cookie, and logout checks. Both edge functions and the calendar function are present. The served game HTML differs from the raw artifact only through Netlify Pretty URLs normalizing six internal anchor links and their serialization; the remaining parsed markup, text, and scripts match. The original project's deployment `6abe81174b61a8e3dd53b333` is retained, but the main domain now serves the preview project's deployment.
 
-At verification time, `preview.treegrow.xyz` had no DNS record and the custom-domain certificate was not yet provisioned. The CNAME below is the outstanding connection step. See [the complete hosted verification record](../settlement-integration/verification/hosted/branded-preview-20261031.json).
+HTTPS is valid for both `www.treegrow.xyz` and `treegrow.xyz`, with the existing same-team certificate reused. HTTPS is enforced. The apex domain redirects to www. See [the completed www verification record](../settlement-integration/verification/hosted/www-preview-20261031.json). The earlier [subdomain preparation record](../settlement-integration/verification/hosted/branded-preview-20261031.json) is historical and has been superseded by the owner's request for exact www.
 
 ## Build policy
 
@@ -33,17 +33,19 @@ The preview project uses `NODE_VERSION=24` in the Builds scope for production co
 
 Bundle both edge functions and `calendar-reminder` with the full source deployment. A static-only upload is insufficient. Existing tester sessions are bound to their hostname, so testers enter the code again on the new hostname.
 
-## DNS connection
+## Domain assignment and existing DNS
 
-The custom domain is assigned to the preview project in Netlify. Add the following record at the authoritative external DNS provider:
+The original project released the apex/www domain pair, and the prepared preview project took `www.treegrow.xyz` as its primary domain. Netlify automatically redirects the apex domain to the www primary. Both projects remain in the same team.
 
-| Type | Host | Value | TTL |
-| --- | --- | --- | --- |
-| CNAME | `preview` | `arboretum-preview.netlify.app` | Automatic/default |
+No external DNS change was needed. The existing record remains:
 
-In Namecheap this is **Domain List → Manage → Advanced DNS → Host Records → Add New Record**. The host field is `preview`. This record does not require replacing the apex or `www` records or changing nameservers.
+| Type | Host | Existing value |
+| --- | --- | --- |
+| CNAME | `www` | `arboretum-sui-forest.netlify.app` |
 
-The custom URL is ready only after DNS resolves to this project and its HTTPS certificate is valid. Until then, the assigned domain is a pending connection, not a verified live address. Verification evidence records the actual deployment and observed DNS/TLS state separately.
+Netlify's same-team hostname assignment selects the preview project even though that existing CNAME names the original project. Retain the original project and its `arboretum-sui-forest` name while this CNAME references it. No nameserver or registrar changes were made.
+
+The earlier request to add a `preview` CNAME is withdrawn. The unused `preview.treegrow.xyz` assignment was removed before the transfer. It is not an alias on the requested www preview.
 
 ## Verification
 
@@ -59,10 +61,15 @@ Local simulation of the dedicated Netlify target:
 NETLIFY=true CONTEXT=production SITE_ID=d425445d-4980-49be-8ab2-12e7527ba281 node scripts/build-site.mjs
 ```
 
-This local simulation does not establish hosted availability. Hosted verification must separately confirm the deployed edge gate, tester login, artifact hashes, disabled transactions, and unchanged original production deploy. A branded hostname is a distinct wallet origin and does not establish wallet-provider clearance.
+This local simulation does not establish hosted availability. The hosted record separately confirms the edge gate, tester login, artifact hashes, disabled transactions, valid HTTPS, and actual domain assignment. No wallet session or wallet-provider classification was tested.
+
+The source policy's reporting origin is now `https://www.treegrow.xyz` for future builds. This metadata-only adjustment does not change the live application artifacts or the pinned preview site identity. Historical build records retain the origin configured when those builds ran.
 
 ## Provider references
 
 - [External DNS configuration](https://docs.netlify.com/manage/domains/configure-domains/configure-external-dns/)
 - [Managed HTTPS](https://docs.netlify.com/manage/domains/secure-domains-with-https/https-ssl/)
 - [Edge Functions environment variables](https://docs.netlify.com/build/edge-functions/environment-variables/)
+- [Same-team domain reassignment without DNS changes](https://answers.netlify.com/t/guidance-on-launching-a-new-site-to-replace-existing-site-on-same-netlify-account-with-a-custom-domain/126832)
+- [Same-team certificate reuse](https://answers.netlify.com/t/switching-domain-between-sites/56238)
+- [Automatic apex/www pairing](https://docs.netlify.com/manage/domains/manage-domains/manage-multiple-domains/)

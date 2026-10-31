@@ -1,0 +1,823 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T01:53:41.857904+00:00",
+  "sourceUpload": {
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "siteName": "arboretum-preview",
+    "customDomain": "preview.treegrow.xyz",
+    "sourceCommit": "9aacd99d42d89e43ccdc216daefdfbaefd4ce265",
+    "archiveSha256": "2c473354b9160e9b2cfae20d868b95bf1c3f146d0dae686a69589a49a10a5dd8",
+    "archiveBytes": 30657202,
+    "requestedAt": "2026-10-31T01:03:54.665482+00:00",
+    "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+    "submissionAttempted": true,
+    "buildId": "6ae53e7c96ded9882ad844c6",
+    "deployId": "6ae53e7c96ded9882ad844c8",
+    "responseReceived": true
+  },
+  "deployment": {
+    "id": "6ae53e7c96ded9882ad844c8",
+    "state": "ready",
+    "context": "production",
+    "branch": null,
+    "created_at": "2026-10-31T01:03:56.097Z",
+    "published_at": "2026-10-31T01:04:16.504Z"
+  },
+  "atomicTesterUrl": "https://6ae53e7c96ded9882ad844c8--arboretum-preview.netlify.app/tester-access",
+  "testerAccessUrl": "https://www.treegrow.xyz/tester-access",
+  "httpOriginTested": "https://www.treegrow.xyz",
+  "stableNetlifyTesterUrl": "https://arboretum-preview.netlify.app/tester-access",
+  "stableNetlifyEntranceVerified": true,
+  "customTesterUrl": "https://www.treegrow.xyz/tester-access",
+  "customDomainAssigned": "www.treegrow.xyz",
+  "dns": {
+    "status": 0,
+    "cnameAnswers": [
+      "arboretum-sui-forest.netlify.app."
+    ],
+    "dnsChanged": false,
+    "existingCnameTargetRetained": "arboretum-sui-forest.netlify.app"
+  },
+  "certificate": {
+    "state": "issued",
+    "domains": [
+      "treegrow.xyz",
+      "www.treegrow.xyz"
+    ],
+    "created_at": "2026-08-18T03:20:00.552Z",
+    "updated_at": "2026-10-17T02:22:19.880Z",
+    "expires_at": "2027-01-15T01:23:47.000Z"
+  },
+  "customDomainHttpsVerified": true,
+  "domainReassignment": {
+    "requestedHostname": "www.treegrow.xyz",
+    "preparedAt": "2026-10-31T01:50:57.248038+00:00",
+    "originalBefore": {
+      "id": "a344fb31-10b4-4eea-9562-067d90a39607",
+      "name": "arboretum-sui-forest",
+      "accountId": "69800888d1a3d0483003ae9e",
+      "customDomain": "treegrow.xyz",
+      "domainAliases": [],
+      "forceSsl": true,
+      "publishedDeployId": "6abe81174b61a8e3dd53b333"
+    },
+    "previewBefore": {
+      "id": "d425445d-4980-49be-8ab2-12e7527ba281",
+      "name": "arboretum-preview",
+      "accountId": "69800888d1a3d0483003ae9e",
+      "customDomain": "preview.treegrow.xyz",
+      "domainAliases": [],
+      "forceSsl": null,
+      "publishedDeployId": "6ae53e7c96ded9882ad844c8"
+    },
+    "certificateBefore": {
+      "state": "issued",
+      "domains": [
+        "treegrow.xyz",
+        "www.treegrow.xyz"
+      ],
+      "created_at": "2026-08-18T03:20:00.552Z",
+      "expires_at": "2027-01-15T01:23:47.000Z"
+    },
+    "httpsBefore": [
+      {
+        "host": "www.treegrow.xyz",
+        "status": 301,
+        "location": "https://treegrow.xyz/tester-access",
+        "tlsValidated": true
+      },
+      {
+        "host": "treegrow.xyz",
+        "status": 200,
+        "location": null,
+        "tlsValidated": true
+      }
+    ],
+    "dnsChangeRequired": false,
+    "originalProjectWillBeRetained": true,
+    "validatedClearingValue": null,
+    "pendingPreviewSubdomainRemoved": true,
+    "preparedPreview": {
+      "id": "d425445d-4980-49be-8ab2-12e7527ba281",
+      "name": "arboretum-preview",
+      "accountId": "69800888d1a3d0483003ae9e",
+      "customDomain": null,
+      "domainAliases": [],
+      "forceSsl": null,
+      "publishedDeployId": "6ae53e7c96ded9882ad844c8"
+    },
+    "handoffStartedAt": "2026-10-31T01:51:42.257066+00:00",
+    "originalDomainReleased": true,
+    "attachedAt": "2026-10-31T01:51:44.712245+00:00",
+    "previewAfter": {
+      "id": "d425445d-4980-49be-8ab2-12e7527ba281",
+      "name": "arboretum-preview",
+      "customDomain": "www.treegrow.xyz",
+      "domainAliases": [],
+      "forceSsl": true,
+      "ssl": true,
+      "publishedDeployId": "6ae53e7c96ded9882ad844c8"
+    },
+    "originalAfter": {
+      "id": "a344fb31-10b4-4eea-9562-067d90a39607",
+      "name": "arboretum-sui-forest",
+      "customDomain": null,
+      "domainAliases": [],
+      "forceSsl": true,
+      "ssl": true,
+      "publishedDeployId": "6abe81174b61a8e3dd53b333"
+    },
+    "domainAssignmentComplete": true,
+    "certificateAfter": {
+      "state": "issued",
+      "domains": [
+        "treegrow.xyz",
+        "www.treegrow.xyz"
+      ],
+      "created_at": "2026-08-18T03:20:00.552Z",
+      "expires_at": "2027-01-15T01:23:47.000Z"
+    },
+    "httpsEnforcedAt": "2026-10-31T01:52:49.952378+00:00"
+  },
+  "originalProject": {
+    "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+    "publishedDeployId": "6abe81174b61a8e3dd53b333",
+    "deploymentRetained": true,
+    "customDomain": null
+  },
+  "criticalApplicationAssets": [
+    {
+      "path": "index.html",
+      "expectedSha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "matches": true
+    },
+    {
+      "path": "player-guide.html",
+      "expectedSha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "matches": true
+    },
+    {
+      "path": "game.html",
+      "expectedSha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "sha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "matches": true
+    },
+    {
+      "path": "settlement-game.html",
+      "expectedSha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "sha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "matches": true
+    },
+    {
+      "path": "wallet.js",
+      "expectedSha256": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
+      "sha256": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
+      "matches": true
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "expectedSha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "expectedSha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "sha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.css",
+      "expectedSha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "sha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "expectedSha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "expectedSha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "sha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "expectedSha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "sha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "matches": true
+    }
+  ],
+  "edgeFunctions": {
+    "names": [
+      "public-player-guide",
+      "tester-gate"
+    ],
+    "routes": [
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide/?$",
+        "excluded_patterns": [],
+        "path": "/player-guide"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide\\.html/?$",
+        "excluded_patterns": [],
+        "path": "/player-guide.html"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide//?$",
+        "excluded_patterns": [],
+        "path": "/player-guide/"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/guide/player-guide\\.css/?$",
+        "excluded_patterns": [],
+        "path": "/guide/player-guide.css"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/guide/player-guide\\.js/?$",
+        "excluded_patterns": [],
+        "path": "/guide/player-guide.js"
+      },
+      {
+        "function": "tester-gate",
+        "pattern": "^(?:/(.*))/?$",
+        "excluded_patterns": [
+          "^/player-guide/?$",
+          "^/player-guide\\.html/?$",
+          "^/player-guide//?$",
+          "^/guide/player-guide\\.css/?$",
+          "^/guide/player-guide\\.js/?$"
+        ],
+        "path": "/*"
+      }
+    ]
+  },
+  "serverlessFunctionNames": [
+    "calendar-reminder"
+  ],
+  "functionSchedules": [],
+  "anonymousChecks": [
+    {
+      "path": "/",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/.netlify/functions/calendar-reminder",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/economy-review/partner-panel.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/game.html",
+      "kind": "html_redirect",
+      "status": 303,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "localRedirect": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/game.html",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/garden.js",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/guide/guide.css",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/guide/player-guide.css",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/guide/player-guide.js",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/index.html",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/player-guide",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/player-guide.html",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/player-guide/",
+      "kind": "public",
+      "status": 308,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "localRedirect": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/player-guide/private",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/prelaunch/hero.png",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/prelaunch/mark.png",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/prelaunch/site.css",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/robots.txt",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/season-status/garden-status.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-game.html",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-integration/deployment-config.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-integration/model.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-integration/reader.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-panel.css",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-panel.mjs",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/settlement-sdk.bundle.js",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/sui-sdk.bundle.js",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/tester-access",
+      "kind": "public",
+      "status": 200,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "gateConfigured": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/tester-guide.html",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    },
+    {
+      "path": "/wallet.js",
+      "kind": "protected",
+      "status": 401,
+      "checks": {
+        "status": true,
+        "bodySha256": true,
+        "noCookie": true,
+        "noStore": true,
+        "noSniff": true,
+        "frameDenied": true,
+        "noIndex": true
+      },
+      "passed": true
+    }
+  ],
+  "testerLoginChecks": {
+    "sameTesterCodeAccepted": true,
+    "localGameRedirect": true,
+    "hostCookie": true,
+    "secureCookie": true,
+    "httpOnlyCookie": true,
+    "strictSameSite": true,
+    "game.htmlAccessibleAndMatches": true,
+    "wallet.jsAccessibleAndMatches": true,
+    "logoutClearsSession": true,
+    "gameProtectedAfterLogout": true,
+    "canonicalGameProtectedAfterLogout": true
+  },
+  "authenticatedRedirects": [],
+  "liveGameHtml": {
+    "rawByteMatch": false,
+    "sourceSha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+    "servedSha256": "6e6787c575c71102ebaa1dc10007a1523a46282ce1998501b698a5a748680781",
+    "sameAfterPrettyUrlNormalization": true,
+    "rewrittenLinks": 6,
+    "note": "Netlify Pretty URLs changes only the six observed internal anchor hrefs and their serialization; all other parsed markup, text, and script content matches."
+  },
+  "localBuildVerification": {
+    "schemaVersion": 1,
+    "verifiedAt": "2026-10-31T00:44:13.327Z",
+    "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
+    "buildContext": "production",
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "deploymentRole": "dedicated-preview",
+    "previewOrigin": "https://preview.treegrow.xyz",
+    "reviewOnly": true,
+    "newSeasonsConfigured": false,
+    "preservedSourceSha256": {
+      "index.html": "d097ef796f14380c0d2e9e3dcfecab0fead13808d6c26a20497b5b9bd0123701",
+      "wallet.js": "ce600b052fcb87098ec001ebb57e33709d676d8d0562d7092e5d5081b295119f",
+      "garden.js": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+      "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+      "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
+      "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+      "netlify/edge-functions/tester-gate.ts": "8ec9b6f9946ade8b8b834f70eec3d55f85e88434b858777884cbb52237bc8d09",
+      "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
+      "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
+    },
+    "publicPagesUnchanged": true,
+    "inlineScriptsParsed": 3,
+    "walletModuleDependencies": [
+      "season-status/garden-status.mjs",
+      "season-status/model.mjs",
+      "settlement-integration/deployment-config.mjs",
+      "settlement-integration/model.mjs",
+      "settlement-integration/reader.mjs",
+      "settlement-panel.mjs",
+      "settlement-sdk.bundle.js",
+      "wallet.js"
+    ],
+    "emittedSha256": {
+      "index.html": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "player-guide.html": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "game.html": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "settlement-game.html": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "wallet.js": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
+      "settlement-sdk.bundle.js": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "settlement-panel.mjs": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "settlement-panel.css": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "settlement-integration/reader.mjs": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "settlement-integration/model.mjs": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "settlement-integration/deployment-config.mjs": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39"
+    },
+    "transactionSubmissionEnabled": false,
+    "evidencePublished": false,
+    "hostedPreviewVerified": false,
+    "gateRequirement": "The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient."
+  },
+  "reviewOnly": true,
+  "settlementActivationEnabled": false,
+  "transactionSubmissionEnabled": false,
+  "walletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limits": [
+    "The domain now serves the protected preview; this is not a transaction-enabled release.",
+    "No wallet session or wallet-provider classification was tested.",
+    "Original project name must be retained while the external CNAME references it."
+  ],
+  "canonicalRedirectChecks": [
+    {
+      "url": "http://www.treegrow.xyz/tester-access",
+      "status": 301,
+      "location": "https://www.treegrow.xyz/tester-access"
+    },
+    {
+      "url": "https://treegrow.xyz/tester-access",
+      "status": 301,
+      "location": "https://www.treegrow.xyz/tester-access"
+    }
+  ],
+  "independentPublicVerification": {
+    "observedAt": "2026-10-31T01:53:03Z",
+    "tlsCertificateAndHostnameValidation": true,
+    "sentCredentials": false,
+    "sentCookies": false,
+    "checks": {
+      "wwwHomepage200AndPreviewHash": true,
+      "wwwTesterForm200": true,
+      "robotsDisallowAll": true,
+      "walletJs401": true,
+      "apex301ToWww": true
+    }
+  },
+  "reportingOriginSourceUpdate": {
+    "origin": "https://www.treegrow.xyz",
+    "affects": "future build report metadata only",
+    "liveApplicationDeploymentUnchanged": true
+  }
+}
