@@ -4,15 +4,23 @@ This isolated page implements the owner's approved Arboretum Sui mainnet version
 
 The canonical route is **https://www.treegrow.xyz/admin/settlement-upgrade/**, behind the existing tester gate on the dedicated `arboretum-preview` Netlify project (`d425445d-4980-49be-8ab2-12e7527ba281`). The route will not initialize its wallet controller on another origin. The existing game review continues to disable gameplay transactions.
 
-## Published handoff — October 30, 2026, America/Chicago
+## Tester entrance for the upgrade
 
-The page is deployed from source commit `c20c181b5651c1818aa02e1cccbd3058cdcac4d6` as Netlify deployment `6ae5576912763ca45cca5a76`, published at **2026-10-31 02:50:37 UTC / October 30, 9:50 p.m. CDT**. The [hosted verification record](verification/hosted-20261031.json) confirms all 15 raw deployed asset hashes, including the 11 accepted gameplay assets, the published file inventory, 13 public/access-denial checks, both edge functions, and the calendar function inventory. The original Netlify project remains unchanged.
+The direct upgrade entrance is **https://www.treegrow.xyz/tester-access?next=settlement-upgrade**. Its login button says **Continue to upgrade review** and returns to the canonical upgrade page after successful authentication. An unauthenticated visit to the canonical upgrade URL now retains the same fixed destination through login, including a failed-password retry. Ordinary tester entry continues to open the garden.
+
+This corrects the reported navigation defect: the previous gate discarded the requested page and always returned to `/game.html`. A cross-site link can omit the existing `SameSite=Strict` cookie, so asking the owner to click the same external link again did not reliably resolve the problem. The fixed route preserves the existing cookie/security policy and accepts only one opaque `settlement-upgrade` marker, never an arbitrary return URL.
+
+The owner supplied no new credential: the existing code was recovered from their earlier conversation and successfully verified against the live tester entrance and administrator page. The earlier masked-secret verification limit below describes the initial deployment check; it no longer prevents authenticated testing. No tester code belongs in repository files or verification reports.
+
+## Initial administrator release — October 30, 2026, America/Chicago
+
+The initial page was deployed from source commit `c20c181b5651c1818aa02e1cccbd3058cdcac4d6` as Netlify deployment `6ae5576912763ca45cca5a76`, published at **2026-10-31 02:50:37 UTC / October 30, 9:50 p.m. CDT**. The [hosted verification record](verification/hosted-20261031.json) confirms all 15 raw deployed asset hashes, including the 11 accepted gameplay assets, the published file inventory, 13 public/access-denial checks, both edge functions, and the calendar function inventory. The original Netlify project remains unchanged.
 
 All [28 focused core/controller checks](verification/local-checks-20261031.json) and [46 synthetic browser checks across 13 scenarios](verification/browser-review-20261031.json) passed. The [live GraphQL queries and browser CORS check](verification/live-query-check.json) passed, including the successful checked simulation at **0.337998763 SUI**. The two Settlement app integration CI runs passed. Five older preview workflows remain red on unchanged baseline/scope assertions; their exact causes and skipped deployment stages are recorded in [the CI triage](verification/ci-20261031.json).
 
 The final [read-only mainnet observation](verification/final-chain-state-20261031.json), checkpoint **339991221** at **2026-10-31 02:55:22 UTC**, still records version 11 and the original reviewed UpgradeCap reference. **No real signature or upgrade transaction has been submitted by this work. The next action is the owner's explicit Slush approval through the deployed page.**
 
-The existing tester password is a Netlify write-only secret. Its API value is masked and cannot authenticate, so a fresh authenticated browser login and calendar invocation were not repeated. No credential, session setting, or gate was changed or bypassed. The previous owner-confirmed tester session remains the accepted login checkpoint. Netlify generated a new calendar bundle digest; its source and runtime are unchanged, but this record does not claim byte-identical bundles or a new authenticated function-output test.
+At that initial release, the only available tester-password value was the masked, write-only Netlify API value, so a fresh authenticated browser login and calendar invocation were not repeated. This historical verification limit was subsequently resolved using the existing code from the owner's earlier conversation. No credential, session setting, or gate was changed or bypassed. The previous owner-confirmed tester session remains the accepted login checkpoint. Netlify generated a new calendar bundle digest; its source and runtime are unchanged, but this record does not claim byte-identical bundles or a new authenticated function-output test.
 
 ## Scope
 
@@ -28,7 +36,7 @@ The route contains no setup, funding, claiming, season activation, compensation,
 
 ## Owner flow
 
-1. Enter the existing tester code at `/tester-access`, if needed. The login returns to the garden; reopen the administrator URL afterward.
+1. Open the canonical administrator URL or `/tester-access?next=settlement-upgrade`. Enter the existing tester code if needed and choose **Continue to upgrade review**; the login returns directly to the upgrade page.
 2. Connect the Slush browser extension, explicitly select the required administrator account, and choose **Use selected account**.
 3. Choose **Check upgrade readiness**. The page verifies fresh mainnet inputs and simulates the exact approved kind without requesting a signature.
 4. Read the current fee, acknowledge the release, and choose **Review upgrade in Slush**. The page checks the chain and simulates again, then makes at most one wallet request with the explicitly selected account and mainnet network.
@@ -56,8 +64,10 @@ Runtime dependencies preserve the existing preview's locked packages. The new in
 
 ```sh
 node --test settlement-admin/*.test.mjs scripts/build-policy.test.mjs
+node --test --test-isolation=none scripts/test-tester-return.mjs
 NETLIFY=true CONTEXT=production SITE_ID=d425445d-4980-49be-8ab2-12e7527ba281 node scripts/build-site.mjs
 python3 settlement-admin/browser-review.py
+python3 scripts/test-tester-return-browser.py
 ```
 
 The browser review uses a runtime-owned Playwright install. Set `ARBORETUM_REVIEW_CHROMIUM` to an installed Chromium executable when Playwright's default browser is unavailable; the accepted run used Playwright 1.62.1 and Chromium 156.0.8078.4.
