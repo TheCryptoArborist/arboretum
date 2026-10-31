@@ -70,6 +70,34 @@ html[data-settlement-review="true"] #reward-tab-season>.reward-zone.claim{displa
 .sr-awaiting h1{font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.2;margin:.6rem 0 1rem;}
 .sr-awaiting p{color:#b7c5cc;margin:.8rem 0;}
 .sr-awaiting .sr-button{display:inline-block;text-decoration:none;margin-top:1rem;}
+/* The new route is a public Registry review. Keep compatibility DOM for the
+   existing game scripts, but expose no economy or administration surfaces. */
+html[data-review-protocol="settlement"] #game-tabs>:not(#garden-sec):not(#rewards-sec),
+html[data-review-protocol="settlement"] #garden-sec>:not(.sec-hdr):not(#sr-registry),
+html[data-review-protocol="settlement"] #garden-sec>.sec-hdr .sec-sub,
+html[data-review-protocol="settlement"] #garden-sec>.sec-hdr>div:not(:first-child),
+html[data-review-protocol="settlement"] #nav-links>li:not(:has(a[href="#garden-sec"])):not(:has(a[href="#rewards-sec"])):not(:has(a.home-link)),
+html[data-review-protocol="settlement"] .mobile-quick-nav>a:not([href="#garden-sec"]):not([href="#rewards-sec"]):not(.home-link),
+html[data-review-protocol="settlement"] #admin-nav,
+html[data-review-protocol="settlement"] #admin-modal,
+html[data-review-protocol="settlement"] #admin-panel,
+html[data-review-protocol="settlement"] [data-review-disabled],
+html[data-review-protocol="settlement"] #reward-tab-season>:not(#settlement-rewards),
+html[data-review-protocol="settlement"] #rewards-sec>.reward-tabs,
+html[data-review-protocol="settlement"] #rewards-sec>.reward-tab-panel:not(#reward-tab-season),
+html[data-review-protocol="settlement"] #rewards-sec>.sec-hdr>.sec-sub,
+html[data-review-protocol="settlement"] #rewards-sec>.sec-hdr .sec-sub,
+html[data-review-protocol="settlement"] #rewards-sec>.sec-hdr>div:not(:first-child){display:none!important;}
+html[data-review-protocol="settlement"] #reward-tab-season{display:block!important;}
+.sr-registry{margin:.5rem 0 1.2rem;}
+.sr-registry-overview{grid-template-columns:repeat(4,minmax(0,1fr));}
+.sr-garden-state{display:flex;gap:1rem;align-items:center;padding:1.25rem;margin:1.2rem 0;background:#61ffca07;border-color:#61ffca2b;}
+.sr-garden-state strong{color:#dcf6e8;}
+.sr-garden-leaf{font-size:2rem;flex:none;}
+.sr-registry-note{color:var(--sr-muted);font-size:.67rem;line-height:1.6;}
+.sr-registry .sr-button{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;}
+.sr-registry[data-state="unavailable"] .sr-garden-state{border-color:#f3ab7c40;background:#f3ab7c08;}
+.sr-registry[data-state="unavailable"] .sr-garden-state strong{color:#ffcdb0;}
 @media(max-width:1000px){.sr-banner{margin:1rem 1.3rem .5rem;flex-wrap:wrap;}.sr-banner-copy{flex-basis:100%;}.sr-routes{width:100%;}.sr-route{flex:1;max-width:none;}.sr-entries{grid-template-columns:1fr;}}
 @media(max-width:560px){.sr-banner{margin:.75rem .7rem .5rem;padding:.9rem;}.sr-routes{flex-wrap:wrap;}.sr-route{min-width:125px;padding:.55rem .65rem;}.sr-panel{padding:1rem .8rem;}.sr-panel-heading{gap:.5rem;}.sr-panel-heading p{font-size:.77rem;}.sr-overview{grid-template-columns:1fr;}.sr-overview>div{padding:.6rem .75rem;display:flex;justify-content:space-between;gap:.8rem;align-items:baseline;}.sr-overview span{margin:0;}.sr-overview strong{text-align:right;font-size:.8rem;}.sr-toolbar{align-items:flex-start;flex-direction:column;}.sr-actions{width:100%;}.sr-button{min-height:44px;}.sr-actions .sr-button{flex:1;}.sr-seed{padding:.85rem .75rem;}.sr-seed-heading{flex-wrap:wrap;}.sr-seed-metrics{grid-template-columns:1fr 1fr;}.sr-seed-metrics dd{font-size:.9rem;}.sr-evidence dl>div{grid-template-columns:1fr;gap:0;margin:.5rem 0;}.sr-awaiting{margin:1rem;padding:1.4rem;}}
 @media(prefers-reduced-motion:reduce){html[data-settlement-review="true"]{scroll-behavior:auto;}.sr-panel{scroll-behavior:auto;}}

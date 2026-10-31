@@ -20,6 +20,8 @@ const dist = path.join(root, 'dist');
 const read = name => fs.readFileSync(path.join(root, name));
 const sha = value => crypto.createHash('sha256').update(value).digest('hex');
 const buildPolicy = assertReviewBuild();
+const newSeasonsReviewAvailable = SETTLEMENT_DEPLOYMENT.reviewEnabled === true;
+assert.equal(SETTLEMENT_DEPLOYMENT.enabled, false, 'The review build must not activate settlement gameplay.');
 
 const preserved = ['index.html','wallet.js','garden.js','sui-sdk.bundle.js',
   'contract/sources/arboretum.move','contract-payout/source/settlement.move',
@@ -65,7 +67,7 @@ for(const [source,target] of [['panel.mjs','settlement-panel.mjs'],['panel.css',
   fs.copyFileSync(path.join(root,'settlement-integration/ui',source),path.join(dist,target));
 await run('python3',['settlement-integration/ui/transform_season.py',path.join(dist,'season-status/garden-status.mjs')]);
 await run('python3',['settlement-integration/ui/transform_game.py',path.join(dist,'game.html'),'legacy']);
-if(SETTLEMENT_DEPLOYMENT.enabled===true) {
+if(newSeasonsReviewAvailable) {
   const nextGame=acceptedGame.replace(
     /src="wallet\.js(?:\?[^"]*)?"/,
     'src="settlement-wallet.js?v=settlement-integration-20261020"');
@@ -104,7 +106,7 @@ async function verifyModule(relative) {
 await verifyModule('wallet.js');
 await verifyModule('settlement-panel.mjs');
 await verifyModule('season-status/garden-status.mjs');
-if(SETTLEMENT_DEPLOYMENT.enabled===true)await verifyModule('settlement-wallet.js');
+if(newSeasonsReviewAvailable)await verifyModule('settlement-wallet.js');
 let inlineCount=0;
 for(const file of ['game.html','settlement-game.html']) {
   const html=fs.readFileSync(path.join(dist,file),'utf8');
@@ -138,14 +140,16 @@ for(const route of ['/settlement-game.html','/settlement-panel.mjs','/settlement
 const files=['index.html','player-guide.html','game.html','settlement-game.html','wallet.js',
   'settlement-sdk.bundle.js','settlement-panel.mjs','settlement-panel.css',
   'settlement-integration/reader.mjs','settlement-integration/model.mjs','settlement-integration/deployment-config.mjs'];
-if(SETTLEMENT_DEPLOYMENT.enabled===true)files.push('settlement-wallet.js');
+if(newSeasonsReviewAvailable)files.push('settlement-wallet.js');
 const report={
   schemaVersion:1,verifiedAt:new Date().toISOString(),
   parentCommit:'ba6faff6de7c446599a605ffa95369a325a12e3e',
   buildContext:buildPolicy.providerContext,siteId:buildPolicy.siteId,
   deploymentRole:buildPolicy.dedicatedPreview?'dedicated-preview':'isolated-review',
   previewOrigin:buildPolicy.dedicatedPreview?DEDICATED_PREVIEW.origin:null,
-  reviewOnly:REVIEW_ONLY,newSeasonsConfigured:SETTLEMENT_DEPLOYMENT.enabled===true,
+  reviewOnly:REVIEW_ONLY,newSeasonsConfigured:newSeasonsReviewAvailable,
+  newSeasonsReviewAvailable,newSeasonsReadOnly:newSeasonsReviewAvailable,
+  settlementActivationEnabled:SETTLEMENT_DEPLOYMENT.enabled===true,
   preservedSourceSha256:before,publicPagesUnchanged:true,inlineScriptsParsed:inlineCount,
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),

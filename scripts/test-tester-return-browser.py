@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Native-browser regression for tester login returning to the admin page.
+"""Native-browser regression for tester login returning to its fixed review page.
 
 Offline mode transpiles both the known pre-fix gate and the working gate and
 invokes the real handlers using browser-generated request headers. All HTTPS
@@ -44,8 +44,8 @@ const { chromium } = require(config.playwright);
 const password = config.hosted ? fs.readFileSync(0, 'utf8').trim() : 'SYNTHETIC-ONLY-tester-return-' + 'p'.repeat(48);
 assert(password.length >= 32 && password.length <= 256, 'A tester code of the expected length must be supplied via stdin');
 const ORIGIN = 'https://www.treegrow.xyz';
-const INTENT = config.review === 'setup' ? 'settlement-setup' : 'settlement-upgrade';
-const ADMIN = '/admin/' + INTENT + '/';
+const INTENT = config.review === 'new-seasons' ? 'new-seasons' : config.review === 'setup' ? 'settlement-setup' : 'settlement-upgrade';
+const ADMIN = config.review === 'new-seasons' ? '/settlement-game.html' : '/admin/' + INTENT + '/';
 const EXTERNAL = 'https://chatgpt.com/offline-arboretum-return-fixture';
 const GATE_PATH = 'netlify/edge-functions/tester-gate.ts';
 const rows = [], requests = [], screenshots = [], gateHashes = {}, contexts = [];
@@ -187,6 +187,9 @@ async function localProxy(label, gate, adminTarget) {
     }
   });
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  // Late browser CONNECT requests can arrive during context teardown, after
+  // server.address() becomes null. Keep the fixture's original port instead.
+  const fixturePort = server.address().port;
   const proxy = http.createServer((request, response) => { response.writeHead(403); response.end(); });
   proxy.on('connect', (request, client, head) => {
     const allowed = ['www.treegrow.xyz:443', 'chatgpt.com:443'].includes(request.url);
@@ -195,7 +198,7 @@ async function localProxy(label, gate, adminTarget) {
       if (/sui\.io:|graphql|fullnode/.test(request.url)) requestStats.chainAttempts += 1;
       client.end('HTTP/1.1 403 Forbidden\r\n\r\n'); return;
     }
-    const upstream = net.connect(server.address().port, '127.0.0.1', () => {
+    const upstream = net.connect(fixturePort, '127.0.0.1', () => {
       client.write('HTTP/1.1 200 Connection Established\r\n\r\n');
       if (head.length) upstream.write(head);
       client.pipe(upstream); upstream.pipe(client);
@@ -368,7 +371,7 @@ try {
       const page = await externalEntry(context, label, true);
       assert.equal(await page.locator('input[name="next"]').inputValue(), INTENT);
       assert.match(await page.locator('form[action="/tester-access"] button[type="submit"]').innerText(),
-        config.review === 'setup' ? /setup review/i : /upgrade review/i);
+        config.review === 'new-seasons' ? /new seasons/i : config.review === 'setup' ? /setup review/i : /upgrade review/i);
       const bad = await submit(page, 'synthetic-wrong-access-code-for-regression');
       assert.equal(bad.status(), 401);
       await page.locator('[role="alert"]').waitFor({ state: 'visible' });
@@ -377,9 +380,15 @@ try {
       const good = await submit(page, password, ADMIN);
       assert.equal(good.status(), 303);
       assert.equal((await good.allHeaders()).location, ORIGIN + ADMIN);
-      assert.match(await page.locator('#page-title').innerText(), config.review === 'setup' ?
-        /Set up the\s+rewards system\./ : /Publish the\s+settlement upgrade\./);
-      assert.equal(await page.locator('#garden-sec').count(), 0);
+      if (config.review === 'new-seasons') {
+        assert.equal(await page.locator('html').getAttribute('data-review-protocol'), 'settlement');
+        assert.equal(await page.locator('#garden-sec').count(), 1);
+        assert.match(await page.locator('#sr-routes').innerText(), /New seasons/i);
+      } else {
+        assert.match(await page.locator('#page-title').innerText(), config.review === 'setup' ?
+          /Set up the\s+rewards system\./ : /Publish the\s+settlement upgrade\./);
+        assert.equal(await page.locator('#garden-sec').count(), 0);
+      }
       await verifyCookie(context, label);
       await screenshot(page, label + '-admin-after-login.png');
       await context.close();
@@ -446,7 +455,7 @@ try {
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hosted", action="store_true")
-    parser.add_argument("--review", choices=["upgrade", "setup"], default="upgrade")
+    parser.add_argument("--review", choices=["upgrade", "setup", "new-seasons"], default="upgrade")
     parser.add_argument("--baseline-ref", default=DEFAULT_BASELINE)
     parser.add_argument("--dist", type=Path, default=ROOT / "dist")
     parser.add_argument("--output", type=Path)

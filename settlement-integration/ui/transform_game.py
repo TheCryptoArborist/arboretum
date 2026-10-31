@@ -57,6 +57,81 @@ PANEL = '''
     </section>
 '''
 
+REGISTRY_PANEL = '''
+  <section id="sr-registry" class="sr-panel sr-registry" data-state="loading" aria-labelledby="sr-registry-title">
+    <div class="sr-panel-heading">
+      <div><span class="sr-eyebrow">New seasons · Sui mainnet</span><h3 id="sr-registry-title">Checking the new garden</h3>
+        <p id="sr-registry-copy" role="status">Reading the selected Registry. You do not need to connect a wallet.</p></div>
+      <span class="sr-badge sr-badge-review">Read only</span>
+    </div>
+    <div class="sr-overview sr-registry-overview" aria-label="Verified Registry totals">
+      <div><span>Reward pool</span><strong id="sr-registry-pool">Checking…</strong></div>
+      <div><span>Treasury</span><strong id="sr-registry-treasury">Checking…</strong></div>
+      <div><span>Planted Seeds</span><strong id="sr-registry-seeds">Checking…</strong></div>
+      <div><span>Growth Points</span><strong id="sr-registry-gp">Checking…</strong></div>
+    </div>
+    <div class="sr-state sr-garden-state" id="sr-garden-state">
+      <span class="sr-garden-leaf" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#61ffca" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a7 7 0 0 1-1.2-13.9C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 22c0-6 6-12 9-13"/></svg></span>
+      <div><strong id="sr-garden-title">Checking the garden</strong><p id="sr-garden-copy">Reading the Registry on Sui mainnet.</p></div>
+    </div>
+    <div class="sr-toolbar">
+      <div class="sr-actions"><button type="button" class="sr-button sr-button-primary" id="sr-registry-refresh">Refresh season status</button>
+        <a class="sr-button" href="#rewards-sec" onclick="doc('rewards-sec');return false">Review owned Seeds</a></div>
+      <span class="sr-registry-note">Public network read · no wallet approval</span>
+    </div>
+    <details id="sr-registry-evidence" class="sr-evidence" hidden><summary>Read verification</summary>
+      <dl><div><dt>Checkpoint</dt><dd id="sr-registry-checkpoint">Unavailable</dd></div>
+        <div><dt>Network time</dt><dd id="sr-registry-time">Unavailable</dd></div>
+        <div><dt>Registry</dt><dd id="sr-registry-id">Unavailable</dd></div></dl>
+      <p>The Registry and network clock were verified at the same checkpoint. Refresh for a new snapshot.</p>
+    </details>
+    <p class="sr-footnote">This page is for review. Season activation, planting, purchases, funding, and claims are disabled.</p>
+  </section>
+'''
+
+
+def transform_settlement_view(source):
+    """Expose the public review and preserve hidden legacy IDs for existing scripts."""
+    code = source
+
+    def once(before, after):
+        nonlocal code
+        if code.count(before) != 1:
+            raise ValueError("New seasons presentation anchor is not unique: " + before[:90])
+        code = code.replace(before, after, 1)
+
+    once('<div id="garden-guide" class="player-path">', REGISTRY_PANEL + '\n  <div id="garden-guide" class="player-path">')
+    once('<span class="logo-sub">Monthly SUI Growth Cycles</span>', '<span class="logo-sub">New seasons · Read only</span>')
+    once("const PANEL_IDS=['hero-sec','demo-sec','rewards-sec','leaderboard-sec','garden-sec','tools-sec','market-sec','info-sec'];",
+         "const PANEL_IDS=['garden-sec','rewards-sec'];")
+    once("const initial=normalizePanelId(location.hash?.replace('#','')||'hero-sec');",
+         "const initial=normalizePanelId(location.hash?.replace('#','')||'garden-sec');")
+    once("setActivePanel(PANEL_IDS.includes(panelFor(initial))?initial:'hero-sec',{push:false,scroll:false});",
+         "setActivePanel(PANEL_IDS.includes(panelFor(initial))?initial:'garden-sec',{push:false,scroll:false});")
+    once("window.addEventListener('popstate',()=>setActivePanel(normalizePanelId(location.hash?.replace('#','')||'hero-sec'),{push:false,scroll:false}));",
+         "window.addEventListener('popstate',()=>{const id=normalizePanelId(location.hash?.replace('#','')||'garden-sec');setActivePanel(PANEL_IDS.includes(panelFor(id))?id:'garden-sec',{push:false,scroll:false});});")
+    once('onclick="setRewardTab(\'season\')">Monthly Pool</button>', 'onclick="setRewardTab(\'season\')">Seed rewards</button>')
+    # The existing tab scripts retain their DOM nodes. On this route the CSS
+    # exposes only the Registry review and the owned-Seed reward reader.
+    # Remove static economic dispatch too; the compiled wallet independently
+    # rejects every transaction entry point before it constructs a transaction.
+    economic = re.compile(r'\b(?:doPlant\w*|doWater\w*|doRevive\w*|doResetSeed|doApplyTool|doOpenCrate|doBuy\w*|doClaim\w*|doMint|mintNftreeInArboretum|openMintModal|openAdminModal|aStart|aReset|aTogglePause|aDeposit|aWithdraw\w*|aPromoCrate|aCreateChallengeBook|aOpenCanopySprint|aCancelCanopySprint|aFinalizeCanopySprint|doEnterCanopy\w*|doRefundCanopy\w*)\s*\(')
+    button_tag = re.compile(r'''<button\b(?:[^>"']|"[^"]*"|'[^']*')*>''', re.S)
+    handler = re.compile(r'''\bonclick\s*=\s*("[^"]*"|'[^']*')''', re.S)
+
+    def disable(match):
+        tag = match[0]
+        action = handler.search(tag)
+        if not action or not economic.search(action[1]):
+            return tag
+        tag = tag[:action.start()] + 'onclick="return false"' + tag[action.end():]
+        attrs = ' data-review-disabled="true" hidden'
+        if not re.search(r'\sdisabled(?:\s|=|>)', tag):
+            attrs += ' disabled'
+        return tag[:-1] + attrs + '>'
+
+    return button_tag.sub(disable, code)
+
 
 def transform(source, route_id="legacy"):
     if route_id not in ("legacy", "settlement"):
@@ -82,7 +157,11 @@ def transform(source, route_id="legacy"):
 
     once('<html lang="en">', '<html lang="en" ' + MARKER + ' data-review-protocol="' + route_id + '">')
     once('</head>', '<link rel="stylesheet" href="/settlement-panel.css">\n</head>')
-    once('<body>', '<body>\n' + BANNER)
+    banner = BANNER if route_id == 'legacy' else BANNER.replace(
+        'Explore your garden. Review the reward state.', 'New seasons · Read-only review').replace(
+        'This review build connects to wallets and reads the Sui network. Transactions are disabled.',
+        'Check the new garden on Sui mainnet. Connect a wallet only to review its owned Seeds. Transactions are disabled.')
+    once('<body>', '<body>\n' + banner)
     once('</body>', '<script type="module" src="/settlement-panel.mjs"></script>\n</body>')
     # Pin the providers and names represented by the visible cards. Registration can
     # change between rendering and clicking; a fresh registry index may refer
@@ -205,6 +284,8 @@ function walletOptionsMarkup(wallets=[]){
     once('    const balanceSui=(Number(balanceMist||0n)/1e9).toFixed(4);', "    const balanceSui=balanceMist==null||!Number.isFinite(Number(balanceMist))||Number(balanceMist)<0?'Unavailable':(Number(balanceMist)/1e9).toFixed(4);\n    const collectedSui=collected==null||!Number.isFinite(Number(collected))||Number(collected)<0?'Unavailable':Number(collected).toFixed(4);")
     once('${Number(collected||0).toFixed(4)}</strong><span>SUI claimed', '${collectedSui}</strong><span>Observed SUI payouts')
     once('<span class="adm-chip danger">Lookup failed</span>', '<span class="adm-chip danger">Wallet data unavailable</span>')
+    if route_id == 'settlement':
+        code = transform_settlement_view(code)
     return code
 
 

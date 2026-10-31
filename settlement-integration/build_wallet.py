@@ -40,6 +40,15 @@ const PROTOCOL_ROUTES = makeRoutes({...LEGACY_CONTRACT, TYPE_ORIGINS: {
 }}, SETTLEMENT_DEPLOYMENT);
 export const CONTRACT = selectRoute(PROTOCOL_ROUTES, '""" + route_id + """');
 const SETTLEMENT_MODE = CONTRACT.id === 'settlement';
+function assertTransactionsAllowed() {
+  if (CONTRACT.READ_ONLY === true || REVIEW_ONLY) {
+    const error = new Error(CONTRACT.READ_ONLY === true
+      ? 'New seasons is available for read-only review. Transactions are not enabled.'
+      : 'This integration preview does not submit transactions.');
+    error.code = CONTRACT.READ_ONLY === true ? 'CONTRACT_ROUTE_READ_ONLY' : 'REVIEW_ONLY';
+    throw error;
+  }
+}
 
 export const NFTREE = {""")
     once("new SuiClient({url:RPC_URL})", "new SuiGrpcClient({network:NETWORK,baseUrl:RPC_URL})")
@@ -67,7 +76,7 @@ export const NFTREE = {""")
          "    const a=(w.accounts||[]).find(account=>account.address===s.address);if(!a)return null;")
     once("export async function signAndExecute(tx) {\n",
          """export async function signAndExecute(tx) {
-  if (REVIEW_ONLY) throw new Error('This integration preview does not submit transactions.');
+  assertTransactionsAllowed();
 """)
     section("async function gql(query,variables={})", "function gqlObjectToSuiData(", """
 async function gql(query,variables={}) { return integrationReader.query(query,variables); }
@@ -178,6 +187,8 @@ export async function getAllObjectsByStructType(structType,limit=10000) {
   if(SETTLEMENT_MODE) {
     const n=normalizeSettlementFields(snap.registry,{route:CONTRACT,nowMs:snap.nowMs});
     return {
+      registryId:CONTRACT.REGISTRY_ID,nowMs:snap.nowMs,readOnly:CONTRACT.READ_ONLY===true,
+      remainingPoolMist:n.remainingPoolMist.toString(),treasuryMist:u64(f.treasury,'Treasury').toString(),
       totalSeeds:Number(f.total_seeds),totalGrowthPoints:Number(n.frozen?n.eligibleGP:n.totalGP),
       rewardPoolSui:formatSuiFromMist(n.remainingPoolMist),treasurySui:formatSuiFromMist(f.treasury),
       currentSeasonId:Number(n.seasonId),seasonStartMs:Number(n.seasonStartMs),seasonEndMs:Number(n.seasonEndMs),
@@ -262,6 +273,28 @@ export async function getPlayerCurrentGrowthPoints(addr=_address) {
          "      getProtocolRoutes,getRewardOptions,getIntegrationStatus,\n      CONTRACT,NFTREE,ADMIN_WALLETS,ITEMS,CRATES,")
     additions=(ROOT/"settlement-integration/wallet-extra.js.inc").read_text()
     once("// ── WINDOW EXPORTS", additions+"\n// ── WINDOW EXPORTS")
+    once("export function getIntegrationStatus() { return {reviewOnly:REVIEW_ONLY,protocol:CONTRACT.id}; }",
+         "export function getIntegrationStatus() { return {reviewOnly:REVIEW_ONLY,readOnly:CONTRACT.READ_ONLY===true,protocol:CONTRACT.id}; }")
+    once("    id:route.id,label:route.label,available:route.available,reason:route.reason,",
+         "    id:route.id,label:route.label,available:route.available,reason:route.reason,readOnly:route.READ_ONLY===true,")
+    # Block every callable mutation before account checks, reads or PTB creation.
+    # The common signing boundary remains guarded as a second independent gate.
+    transaction_functions = (
+        "plantSeed", "batchPlantSeeds", "waterSeed", "applyTool", "reviveSeed",
+        "reviveSeedWithTool", "abandonSeed", "buyCrate", "buyPartnerChest",
+        "buyBoomChest", "buyVictoryChest", "buySupplyDrop", "openCrate",
+        "claimReward", "claimArchivedReward", "batchWaterAllSeeds",
+        "adminStartSeason", "adminStartSeasonForDuration", "adminResetSeason",
+        "adminSetPaused", "adminDepositToPool", "adminWithdrawTreasury", "adminSendPromoCrate",
+        "adminCreateChallengeBook", "adminOpenCanopySprint", "enterCanopySprint",
+        "adminFinalizeCanopySprint", "adminCancelCanopySprint", "refundCanopySprintEntry",
+    )
+    for name in transaction_functions:
+        matches = list(re.finditer(r"(?:export )?async function " + name + r"\([^{}\n]*\)\s*\{", code))
+        if len(matches) != 1:
+            raise ValueError("Transaction function anchor is not unique: " + name)
+        end = matches[0].end()
+        code = code[:end] + "\n  assertTransactionsAllowed();" + code[end:]
     if re.search(r"\bSuiClient\b|\.getOwnedObjects\(|\.multiGetObjects\(|\.getDynamicFieldObject\(",code):
         raise ValueError("Retired read API survived the integration transform")
     return code

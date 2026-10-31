@@ -150,6 +150,77 @@ test('HEAD login preserves headers and has no body', async () => {
   assert.equal(response.headers.get('referrer-policy'), 'same-origin');
 });
 
+test('new-season document variants retain their fixed read-only destination', async () => {
+  for (const path of ['/settlement-game', '/settlement-game/', '/settlement-game.html']) {
+    const before = originCalls;
+    const response = await gate(navigate(path + '?next=settlement-upgrade'), context);
+    assert.equal(response.status, 303);
+    assert.equal(response.headers.get('location'), origin + '/tester-access?next=new-seasons');
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.equal(originCalls, before);
+  }
+});
+
+test('new-season native login and incorrect-code retry preserve intent and the Strict session', async () => {
+  const marker = /<input type="hidden" name="next" value="new-seasons">/;
+  const page = await gate(request('/tester-access?next=new-seasons'), context);
+  const html = await page.text();
+  assert.match(html, marker);
+  assert.match(html, /Continue to new seasons/);
+  assert.doesNotMatch(html, /<script/i);
+  assert.equal(page.headers.get('referrer-policy'), 'same-origin');
+  const wrong = await gate(post({ password: 'wrong', next: 'new-seasons' }), context);
+  assert.equal(wrong.status, 401);
+  assert.equal(wrong.headers.get('set-cookie'), null);
+  assert.match(await wrong.text(), marker);
+  const success = await gate(post({ password, next: 'new-seasons' }, '/tester-access?next=settlement-setup'), context);
+  assert.equal(success.status, 303);
+  assert.equal(success.headers.get('location'), origin + '/settlement-game.html');
+  const cookie = success.headers.get('set-cookie');
+  assert.match(cookie, /^__Host-arboretum_tester=/);
+  assert.match(cookie, /; Path=\/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200$/);
+  const authenticated = await gate(request('/settlement-game.html', { headers: { Cookie: cookie.split(';')[0] } }), context);
+  assert.equal(authenticated.status, 200);
+  assert.equal(await authenticated.text(), 'PROTECTED CONTENT');
+  assert.match(authenticated.headers.get('cache-control'), /no-store/);
+});
+
+test('new-season marker cannot authenticate assets or bypass origin checks', async () => {
+  for (const path of ['/settlement-wallet.js', '/settlement-panel.mjs', '/settlement-integration/deployment-config.mjs']) {
+    const response = await gate(request(path + '?next=new-seasons'), context);
+    assert.equal(response.status, 401);
+    assert.equal(response.headers.get('set-cookie'), null);
+    const asDocument = await gate(navigate(path), context);
+    assert.equal(asDocument.headers.get('location'), origin + '/tester-access');
+  }
+  for (const headers of [{ Origin: 'null' }, { Origin: 'https://attacker.example' }, { 'Sec-Fetch-Site': 'cross-site' }]) {
+    const response = await gate(post({ password, next: 'new-seasons' }, '/tester-access', headers), context);
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get('set-cookie'), null);
+  }
+});
+
+test('duplicate, mixed, malformed or query-only new-season intents fall back to the garden', async () => {
+  for (const markers of [
+    [['next', 'new-seasons'], ['next', 'new-seasons']],
+    [['next', 'new-seasons'], ['next', 'settlement-setup']],
+    [['next', 'new-seasons'], ['next', 'https://attacker.example']],
+  ]) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams(markers)), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post([['password', password], ...markers]), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  const queryOnly = await gate(post({ password }, '/tester-access?next=new-seasons'), context);
+  assert.equal(queryOnly.headers.get('location'), origin + '/game.html');
+  for (const next of ['/settlement-game.html', 'new-seasons/anything', ' new-seasons', '%6eew-seasons']) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams({ next })), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post({ password, next }), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+});
+
 test('setup page navigation preserves the separately approved setup destination', async () => {
   for (const path of ['/admin/settlement-setup', '/admin/settlement-setup/', '/admin/settlement-setup/index.html']) {
     const before = originCalls;

@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { SETTLEMENT_DEPLOYMENT, REVIEW_ONLY } from './deployment-config.mjs';
 import {
   makeRoutes, selectRoute, routeType, objectMatchesRoute, normalizeSettlementFields,
   rewardState, canonicalAddress, u64, SEASON_DURATION_MS, CLAIM_GRACE_MS,
@@ -70,6 +72,41 @@ test('legacy is the default; incomplete or non-boolean settlement activation is 
   assert.throws(() => selectRoute(inactive, '__proto__'), { code: 'CONTRACT_ROUTE_UNAVAILABLE' });
   assert.equal(makeRoutes(legacyConfig, { ...settlementConfig, enabled: 'true' }).settlement.available, false);
   assert.throws(() => makeRoutes(legacyConfig, { enabled: true }), { code: 'CONTRACT_ROUTE_INVALID' });
+});
+
+test('compiled read-only availability uses the real setup receipt without activating settlement', () => {
+  const confirmed = JSON.parse(fs.readFileSync(new URL('./release/confirmed-deployment.json', import.meta.url), 'utf8'));
+  assert.equal(REVIEW_ONLY, true);
+  assert.equal(SETTLEMENT_DEPLOYMENT.enabled, false);
+  assert.equal(SETTLEMENT_DEPLOYMENT.reviewEnabled, true);
+  const reviewed = makeRoutes(legacyConfig, SETTLEMENT_DEPLOYMENT);
+  const selected = selectRoute(reviewed, 'settlement');
+  assert.equal(selectRoute(reviewed).id, 'legacy');
+  assert.equal(reviewed.legacy.READ_ONLY, false);
+  assert.equal(selected.available, true);
+  assert.equal(selected.enabled, false);
+  assert.equal(selected.READ_ONLY, true);
+  assert.equal(selected.PACKAGE_ID, confirmed.packageId);
+  assert.equal(selected.TYPE_PACKAGE_ID, confirmed.typeOrigin);
+  assert.equal(selected.REGISTRY_ID, confirmed.registryId);
+  assert.equal(selected.ADMIN_CAP_ID, confirmed.adminCapId);
+  assert.equal(routeType(selected, 'Registry'), confirmed.typeOrigin + '::settlement::Registry');
+  assert.ok(Object.isFrozen(selected) && Object.isFrozen(selected.TYPE_ORIGINS));
+});
+
+test('read-only route flags are strict, mutually exclusive and cannot be weakened by extra config fields', () => {
+  const config = { ...settlementConfig, enabled: false, reviewEnabled: true, READ_ONLY: false };
+  const selected = selectRoute(makeRoutes(legacyConfig, config), 'settlement');
+  assert.equal(selected.READ_ONLY, true);
+  assert.throws(() => { selected.READ_ONLY = false; }, TypeError);
+  for (const value of ['true', 1, {}, null]) {
+    assert.equal(makeRoutes(legacyConfig, { ...config, reviewEnabled: value }).settlement.available, false);
+  }
+  assert.throws(() => makeRoutes(legacyConfig, { ...config, enabled: true }),
+    error => error.code === 'CONTRACT_ROUTE_INVALID' && /mutually exclusive/.test(error.message));
+  assert.throws(() => makeRoutes(legacyConfig, { enabled: false, reviewEnabled: true }), { code: 'CONTRACT_ROUTE_INVALID' });
+  assert.throws(() => makeRoutes(legacyConfig, { ...config, REGISTRY_ID: legacyConfig.REGISTRY_ID }), { code: 'CONTRACT_ROUTE_INVALID' });
+  assert.throws(() => makeRoutes(legacyConfig, { ...config, NETWORK: 'testnet' }), { code: 'CONTRACT_ROUTE_INVALID' });
 });
 
 test('configuration is detached and deeply frozen, including per-type origins', () => {

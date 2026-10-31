@@ -10,6 +10,8 @@ import { promisify } from 'node:util';
 import { Transaction } from '@mysten/sui/transactions';
 import { bcs } from '@mysten/sui/bcs';
 import * as model from './model.mjs';
+import { objectData } from './reader.mjs';
+import { SETTLEMENT_DEPLOYMENT as COMPILED_DEPLOYMENT, REVIEW_ONLY as COMPILED_REVIEW_ONLY } from './deployment-config.mjs';
 import { applyPartnerReport } from '../economy-review/build-admin-preview.mjs';
 
 // The actual emitted wallet is executed with the installed Transaction SDK.
@@ -37,6 +39,15 @@ const legacyType = name => (name === 'SeasonArchive' || name === 'ArchivedReward
 const page = nodes => ({ nodes, pageInfo: { hasNextPage: false, endCursor: null } });
 
 const emittedSources = {};
+const transactionMethods = [
+  'signAndExecute', 'plantSeed', 'batchPlantSeeds', 'waterSeed', 'applyTool', 'reviveSeed',
+  'reviveSeedWithTool', 'abandonSeed', 'buyCrate', 'buyPartnerChest', 'buyBoomChest', 'buyVictoryChest',
+  'buySupplyDrop', 'openCrate', 'claimReward', 'claimArchivedReward', 'batchWaterAllSeeds',
+  'adminStartSeason', 'adminStartSeasonForDuration', 'adminResetSeason', 'adminSetPaused',
+  'adminDepositToPool', 'adminWithdrawTreasury', 'adminSendPromoCrate', 'adminCreateChallengeBook',
+  'adminOpenCanopySprint', 'enterCanopySprint', 'adminFinalizeCanopySprint', 'adminCancelCanopySprint',
+  'refundCanopySprintEntry',
+];
 const generatedDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'arboretum-wallet-fixtures-'));
 try {
   for (const route of ['legacy', 'settlement']) {
@@ -48,6 +59,7 @@ try {
   fs.rmSync(generatedDirectory, { recursive: true, force: true });
 }
 const exposedNames = [
+  ...transactionMethods,
   'CONTRACT', 'connectWallet', 'initializeWallet', 'signAndExecute', 'buyCrate', 'buyBoomChest', 'buyVictoryChest',
   'buySupplyDrop', 'adminDepositToPool', 'claimReward', 'claimArchivedReward',
   'getProtocolRoutes', 'getIntegrationStatus', 'getRewardOptions', 'getProjectedReward',
@@ -125,7 +137,7 @@ function storage(initial = {}) {
 function harness({ mode = 'settlement', reviewOnly = false, deployment = DEPLOYMENT,
   data = fixture(), reader = {}, response = confirmedResponse(), windowOverrides = {},
   stored = {}, accountAddress = OWNER, grpcResult = { dynamicField: { fieldId: FIELD_ID } },
-  wallets = null,
+  wallets = null, transactionClass = Transaction,
 } = {}) {
   const calls = { sign: [], confirmation: [], reader: [], grpc: [], clients: [], timers: new Map() };
   let now = 0, timerId = 0;
@@ -150,7 +162,7 @@ function harness({ mode = 'settlement', reviewOnly = false, deployment = DEPLOYM
     return (reader[name] ?? defaults[name])(...args);
   }]));
   const context = vm.createContext({
-    ...model, Transaction, bcs, createReader: () => integrationReader,
+    ...model, Transaction: transactionClass, bcs, createReader: () => integrationReader,
     SETTLEMENT_DEPLOYMENT: deployment, REVIEW_ONLY: reviewOnly,
     getWallets: () => ({ get: () => typeof wallets === 'function' ? wallets() : wallets ?? [wallet] }),
     SuiGrpcClient: class {
@@ -587,6 +599,73 @@ test('review-only preview refuses every funding path and claim before wallet sig
   await assert.rejects(h.api.claimReward(SEED_ID), /preview does not submit/);
   await assert.rejects(h.api.signAndExecute(new Transaction()), /preview does not submit/);
   assert.equal(h.calls.sign.length, 0); assert.equal(h.calls.confirmation.length, 0);
+});
+
+test('compiled read-only route exposes the confirmed empty Registry snapshot without wallet connection', async () => {
+  const captured = JSON.parse(fs.readFileSync(new URL('./release/evidence/20261031-confirmed-setup/receipt.json', import.meta.url), 'utf8')).response.data;
+  const object = objectData(captured.registries.nodes[0]);
+  const snapshot = { checkpoint: captured.checkpoint.sequenceNumber,
+    nowMs: Date.parse(captured.checkpoint.timestamp), registry: object };
+  const h = harness({ deployment: COMPILED_DEPLOYMENT, reviewOnly: COMPILED_REVIEW_ONLY,
+    data: { snapshot, seeds: [], archives: [] },
+    windowOverrides: { SETTLEMENT_DEPLOYMENT: DEPLOYMENT, REVIEW_ONLY: false, READ_ONLY: false,
+      ARBORETUM_REGISTRY_ID: OTHER_ID, ARBORETUM_ADMIN_CAP: OTHER_ID, ARBORETUM_SETTLEMENT_ENABLED: true },
+    stored: { arb_protocol: 'legacy', arb_settlement_enabled: 'true', ARBORETUM_READ_ONLY: 'false' },
+  });
+  const stats = await h.api.getSeasonStats();
+  assert.equal(stats.registryId, COMPILED_DEPLOYMENT.REGISTRY_ID);
+  assert.equal(stats.checkpoint, snapshot.checkpoint); assert.equal(stats.nowMs, snapshot.nowMs);
+  assert.equal(stats.readOnly, true); assert.equal(stats.currentSeasonId, 0);
+  assert.equal(stats.seasonStartMs, 0); assert.equal(stats.seasonEndMs, 0);
+  assert.equal(stats.remainingPoolMist, '0'); assert.equal(stats.treasuryMist, '0');
+  assert.equal(stats.claimable, false); assert.equal(stats.finalized, false);
+  assert.equal(h.api.CONTRACT.ADMIN_CAP_ID, COMPILED_DEPLOYMENT.ADMIN_CAP_ID);
+  assert.equal(h.api.CONTRACT.enabled, false);
+  assert.equal(h.api.getIntegrationStatus().readOnly, true);
+  assert.equal(h.api.getProtocolRoutes().find(route => route.id === 'settlement').readOnly, true);
+  assert.equal(h.context.window.currentWallet, undefined);
+  assert.deepEqual(h.calls.reader.map(call => call.name), ['state']);
+  assert.deepEqual(h.calls.reader[0].args, [COMPILED_DEPLOYMENT.REGISTRY_ID]);
+  assert.equal(h.calls.sign.length, 0); assert.equal(h.calls.confirmation.length, 0);
+  assert.equal(h.calls.clients.length, 0);
+});
+
+test('read-only state failures and identity mismatches never become an empty or funded snapshot', async () => {
+  const config = { ...DEPLOYMENT, enabled: false, reviewEnabled: true };
+  const failure = new Error('fixture Registry unavailable');
+  const unavailable = harness({ deployment: config, reviewOnly: true, reader: { state: async () => { throw failure; } } });
+  await assert.rejects(unavailable.api.getSeasonStats(), error => error === failure);
+  for (const badRegistry of [registry({ id: OTHER_ID }), registry({ version: '2' }),
+    moveObject('Registry', contentFields(registry()), { type: legacyType('Registry') }),
+    registry({ reward_pool: undefined }), registry({ treasury: undefined })]) {
+    const h = harness({ deployment: config, reviewOnly: true, data: { ...fixture(),
+      snapshot: { checkpoint: CP, nowMs: Number(NOW), registry: badRegistry } } });
+    await assert.rejects(h.api.getSeasonStats());
+    assert.equal(h.calls.sign.length, 0); assert.equal(h.calls.confirmation.length, 0);
+  }
+});
+
+function contentFields(object) { return structuredClone(object.content.fields); }
+
+for (const [name, options, code] of [
+  ['read-only route with compiled review guard', { deployment: COMPILED_DEPLOYMENT, reviewOnly: true }, 'CONTRACT_ROUTE_READ_ONLY'],
+  ['read-only route independently of the review guard', { deployment: COMPILED_DEPLOYMENT, reviewOnly: false }, 'CONTRACT_ROUTE_READ_ONLY'],
+  ['legacy review route', { mode: 'legacy', reviewOnly: true }, 'REVIEW_ONLY'],
+]) test(name + ' rejects all transaction entry points before reads, PTB construction or wallet access', async () => {
+  let constructions = 0;
+  class CountingTransaction extends Transaction {
+    constructor(...args) { constructions++; super(...args); }
+  }
+  const h = harness({ ...options, transactionClass: CountingTransaction,
+    windowOverrides: { REVIEW_ONLY: false, READ_ONLY: false, ARBORETUM_SETTLEMENT_ENABLED: true },
+    stored: { arb_settlement_enabled: 'true', ARBORETUM_READ_ONLY: 'false' } });
+  for (const method of transactionMethods) {
+    await assert.rejects(h.api[method](), error => error.code === code, method);
+  }
+  assert.equal(constructions, 0);
+  assert.equal(h.calls.reader.length, 0); assert.equal(h.calls.sign.length, 0);
+  assert.equal(h.calls.confirmation.length, 0); assert.equal(h.calls.grpc.length, 0);
+  assert.equal(h.calls.clients.length, 0);
 });
 
 test('object batches and names use the modern GraphQL reader without retired client calls', async () => {

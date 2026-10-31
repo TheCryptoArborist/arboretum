@@ -49,6 +49,27 @@ test('dedicated preview fails closed if transactions or settlement activation ch
   assert.throws(() => getBuildPolicy({ ...previewEnv, CONTEXT: 'dev' }), /real Netlify deploy context/);
 });
 
+test('read-only route availability is permitted on the dedicated preview and never activates gameplay', () => {
+  const config = { ...reviewConfig, settlementReviewEnabled: true };
+  assert.equal(assertReviewBuild(previewEnv, config).dedicatedPreview, true);
+  assert.equal(assertReviewBuild({}, config).publicProduction, false);
+  for (const env of [previewEnv, {}, { NETLIFY: 'true', SITE_ID: originalSite, CONTEXT: 'branch-deploy' }]) {
+    assert.throws(() => assertReviewBuild(env, { ...config, settlementEnabled: true }), /mutually exclusive/);
+    assert.throws(() => assertReviewBuild(env, { ...config, settlementReviewEnabled: false, settlementEnabled: true }),
+      /settlement activation to stay disabled/);
+    assert.throws(() => assertReviewBuild(env, { ...config, reviewOnly: false }), /transactions to stay disabled/);
+  }
+  assert.throws(() => assertReviewBuild(envFor(originalSite), config), /production build blocked/);
+  assert.throws(() => assertReviewBuild(envFor(unknownSite), config), /production build blocked/);
+});
+
+test('environment flags cannot turn compiled read-only review availability into activation or change site policy', () => {
+  const attemptedOverrides = { SETTLEMENT_ENABLED: 'true', SETTLEMENT_REVIEW_ENABLED: 'false',
+    REVIEW_ONLY: 'false', ARBORETUM_SETTLEMENT_ENABLED: 'true', ARBORETUM_READ_ONLY: 'false' };
+  assert.deepEqual(assertReviewBuild({ ...previewEnv, ...attemptedOverrides }), assertReviewBuild(previewEnv));
+  assert.throws(() => assertReviewBuild({ ...envFor(originalSite), ...attemptedOverrides }), /production build blocked/);
+});
+
 test('real branch and pull-request contexts are preserved for child builders', () => {
   for (const context of ['branch-deploy', 'deploy-preview']) {
     const env = { ...envFor(originalSite), CONTEXT: context };

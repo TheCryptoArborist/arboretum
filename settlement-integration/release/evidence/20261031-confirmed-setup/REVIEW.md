@@ -1,5 +1,7 @@
 # Confirmed empty settlement Registry — Sui mainnet
 
+This record preserves the confirmed setup and initial disabled-binding preparation at commit `136309ba6640d86b25f671718fcdb1d682085659`. The later [read-only New seasons release](../../../verification/new-seasons-20261031/README.md) supersedes its application-availability handoff. The binding verifier and commands below describe that historical source revision; current application verification belongs to the later release.
+
 The owner approved the exact empty-Registry setup in Slush. The transaction succeeded at **2026-10-31T04:27:02.091Z / October 30, 2026, 11:27 p.m. CDT**, checkpoint **340013815**. Its actual net fee was **5,632,932 MIST / 0.005632932 SUI**.
 
 ## Actual deployment identities

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:48:37.360380Z",
+  "sourceHead": "136309ba6640d86b25f671718fcdb1d682085659",
+  "scope": "One final wallet-suite compatibility rerun after the UI agent froze its transforms.",
+  "command": "node --test --test-isolation=none --test-reporter=tap settlement-integration/wallet.test.mjs",
+  "observedExitCode": 0,
+  "results": {
+    "tests": 99,
+    "suites": 0,
+    "pass": 99,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 1426.264266
+  },
+  "rawLogPath": "/tmp/arboretum-readonly-wallet-final.log",
+  "rawLogSha256": "f9e5b965a7fd2f53ad9cf0aaa2cef0c7bfca23a421a42074490ef5f6225571d4",
+  "sourceSha256": {
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-integration/model.mjs": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+    "settlement-integration/model.test.mjs": "967a8d86775576bea242855be3310d991b0354aacc72ab3b706a3c383b1401c9",
+    "settlement-integration/build_wallet.py": "7ba4307442ac8645a7d20b69cd2d7c23d309944cc9c99ee92d06acb2e00625a0",
+    "settlement-integration/wallet.test.mjs": "568f93e535103fade4ac66e67ea85f15d57c3c1819b38ed126bbe03d1873edaf",
+    "settlement-integration/build-review.mjs": "01aebd59127f8fd5524349dde757a7fe70cae89d008669679419ba83a2539c21",
+    "scripts/build-policy.mjs": "1ca71cb942a790d64aabd52b552e928d0a354966fa443390fc28a0cc7de9fc94",
+    "scripts/build-policy.test.mjs": "322088cbfdbbfd21b34af3f300e8441ceed47bc6809db66db22781fc9bfbb351",
+    "settlement-integration/ui/panel.mjs": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+    "settlement-integration/ui/panel.css": "bcc8165ce351dc818a9c13560b2cde8843c92f384b89b421ae21df988c9d430e",
+    "settlement-integration/ui/panel.test.mjs": "d8070494d26b4ddd4a1c8a2f42f2ed913eccef15a160186d76b668d9e6bf89bb",
+    "settlement-integration/ui/transform_game.py": "33ac67baecce5d13a66bf5ced1d24e75d3607639255c849e15b985c3533eb74a",
+    "settlement-integration/ui/transform_season.py": "1fdfdc109f785ec823898de44d0310294406ac1d07a5184615942af5755d182a",
+    "wallet.js": "ce600b052fcb87098ec001ebb57e33709d676d8d0562d7092e5d5081b295119f",
+    "settlement-integration/wallet-extra.js.inc": "8e19cd524e78768649817c1d3f3298fda87a513cde440a83905d00a495b7a7cc",
+    "index.html": "d097ef796f14380c0d2e9e3dcfecab0fead13808d6c26a20497b5b9bd0123701",
+    "garden.js": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8"
+  },
+  "fullSiteBuildRunByThisCheck": false,
+  "walletSignatures": 0,
+  "blockchainSubmissions": 0,
+  "notes": [
+    "Earlier 99 wallet tests are not added again to distinct test totals.",
+    "UI and core sources were frozen for this rerun. The parent is separately running the full site build and hosted verification."
+  ]
+}

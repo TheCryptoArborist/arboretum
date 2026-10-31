@@ -2,7 +2,13 @@
 
 This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the app integration, a complete legacy Season 3 reconciliation, and the exact unsigned upgrade review. It does not activate the new protocol.
 
-## Current handoff — October 30, 2026, America/Chicago
+## Read-only New seasons update — October 31, 2026 UTC
+
+The [read-only release](verification/new-seasons-20261031/README.md) connects the verified v12 Registry to **New seasons**. Its public Registry status works without a wallet and displays **No active season** for the confirmed empty state. Source configuration now uses `reviewEnabled:true`, `enabled:false` and `REVIEW_ONLY:true`; route visibility does not activate gameplay. Wallet transaction entry points and the signing boundary independently enforce the read-only mode. Failed, stale or mismatched reads show **Unavailable**.
+
+The dedicated entry is [New seasons tester access](https://www.treegrow.xyz/tester-access?next=new-seasons). The fixed marker retains that destination through login and incorrect-code retries while preserving the existing session policy. The local implementation and verification are ready; final hosted publication is recorded in the release handoff. The setup deployment described below is the preceding accepted release.
+
+## Accepted setup handoff — October 30, 2026, America/Chicago
 
 The accepted preview is now **[www.treegrow.xyz/tester-access](https://www.treegrow.xyz/tester-access)**,
 on the dedicated preview project. The accepted gameplay checkpoint was
@@ -62,7 +68,7 @@ The regression tests exercise the generated review wallet and generated picker f
 
 ## Review behavior
 
-The build produces an **Existing garden** route using the verified legacy deployment. The actual version-12 package and new Registry/AdminCap are confirmed and recorded in source. **New seasons** remains unavailable until its read-only route integration is completed; `enabled:false` and `REVIEW_ONLY:true` remain in place. No season is active in the new Registry. The route accepts only source-pinned actual deployment identities; a URL parameter, browser global, local-storage entry, or simulation cannot configure it.
+The build produces an **Existing garden** route using the verified legacy deployment and a **New seasons** read-only route using the confirmed v12 Registry. `reviewEnabled:true` makes the new view available; `enabled:false` and `REVIEW_ONLY:true` retain the transaction restrictions. No season was started by this integration. The route accepts only source-pinned actual deployment identities; a URL parameter, browser global, local-storage entry, or simulation cannot configure it.
 
 Every generated gameplay review wallet refuses transaction submission before requesting a signature. The separately approved administrator routes accept only their exact reviewed upgrade or empty Registry setup. Wallet connections and public Sui reads remain available. The gameplay review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
 

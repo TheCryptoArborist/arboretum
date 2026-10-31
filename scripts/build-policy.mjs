@@ -12,9 +12,12 @@ export const DEDICATED_PREVIEW = Object.freeze({
   siteId: 'd425445d-4980-49be-8ab2-12e7527ba281',
   origin: 'https://www.treegrow.xyz',
 });
-const deployment = Object.freeze({ reviewOnly: REVIEW_ONLY, settlementEnabled: SETTLEMENT_DEPLOYMENT.enabled });
+const deployment = Object.freeze({ reviewOnly: REVIEW_ONLY, settlementEnabled: SETTLEMENT_DEPLOYMENT.enabled,
+  settlementReviewEnabled: SETTLEMENT_DEPLOYMENT.reviewEnabled });
 
 export function getBuildPolicy(env = process.env, config = deployment) {
+  assert.ok(!(config.settlementEnabled === true && config.settlementReviewEnabled === true),
+    'Settlement activation and read-only review modes are mutually exclusive.');
   const providerContext = env.CONTEXT || null;
   const dedicatedPreview = env.NETLIFY === 'true' && env.SITE_ID === DEDICATED_PREVIEW.siteId;
   if (dedicatedPreview) {
@@ -39,6 +42,7 @@ export function assertReviewBuild(env = process.env, config = deployment) {
       'A Netlify review must be an isolated branch or pull-request preview.');
   }
   assert.equal(config.reviewOnly, true, 'This build requires transactions to stay disabled.');
+  assert.equal(config.settlementEnabled, false, 'This review build requires settlement activation to stay disabled.');
   return policy;
 }
 

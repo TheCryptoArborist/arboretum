@@ -95,9 +95,12 @@ function validateOrigins(origins = {}) {
 /** Deployment configuration is supplied by the build; no runtime activation source is consulted. */
 export function makeRoutes(legacyContract, settlementConfig = {}) {
   if (!record(legacyContract) || !record(settlementConfig)) fail('Route configuration is missing.', 'CONTRACT_ROUTE_INVALID');
+  if (settlementConfig.enabled === true && settlementConfig.reviewEnabled === true) {
+    fail('Settlement activation and read-only review modes are mutually exclusive.', 'CONTRACT_ROUTE_INVALID');
+  }
   const legacy = {
     ...clone(legacyContract),
-    id: 'legacy', label: 'Existing garden', available: true, reason: null,
+    id: 'legacy', label: 'Existing garden', available: true, reason: null, READ_ONLY: false,
     MODULE: 'arboretum', NETWORK: legacyContract.NETWORK ?? 'mainnet',
     EXPECTED_VERSION: null, SUPPORTS_SETTLEMENT: false,
     PACKAGE_ID: deploymentAddress(legacyContract.PACKAGE_ID, 'Legacy call package'),
@@ -112,11 +115,11 @@ export function makeRoutes(legacyContract, settlementConfig = {}) {
   let settlement = {
     id: 'settlement', label: 'New seasons', available: false,
     reason: 'New seasons are not active yet.', MODULE: 'settlement', NETWORK: legacy.NETWORK,
-    EXPECTED_VERSION: 1, SUPPORTS_SETTLEMENT: true,
+    EXPECTED_VERSION: 1, SUPPORTS_SETTLEMENT: true, READ_ONLY: true,
     PACKAGE_ID: null, TYPE_PACKAGE_ID: null, TYPE_PACKAGE_IDS: [], TYPE_ORIGINS: {},
     REGISTRY_ID: null, ADMIN_CAP_ID: null,
   };
-  if (settlementConfig.enabled === true) {
+  if (settlementConfig.enabled === true || settlementConfig.reviewEnabled === true) {
     const cfg = clone(settlementConfig);
     if (cfg.MODULE != null && cfg.MODULE !== 'settlement') fail('The new-season module must be settlement.', 'CONTRACT_ROUTE_INVALID');
     if (cfg.NETWORK != null && cfg.NETWORK !== legacy.NETWORK) fail('Route networks must match.', 'CONTRACT_ROUTE_INVALID');
@@ -135,6 +138,7 @@ export function makeRoutes(legacyContract, settlementConfig = {}) {
     }
     settlement = {
       ...cfg, ...settlement, available: true, reason: null,
+      READ_ONLY: cfg.enabled !== true,
       PACKAGE_ID: deploymentAddress(cfg.PACKAGE_ID, 'Settlement call package'),
       TYPE_PACKAGE_ID: origin, TYPE_PACKAGE_IDS: [...new Set([origin, ...Object.values(origins)])],
       TYPE_ORIGINS: origins, REGISTRY_ID: registry, ADMIN_CAP_ID: cap,
@@ -207,7 +211,7 @@ function option(value) {
 
 /** Normalize an indexed Registry or Archive. Missing fields and broken invariants throw. */
 export function normalizeSettlementFields(input, { archive = false, nowMs, route } = {}) {
-  if (route?.available !== true || route.id !== 'settlement') fail('An active settlement route is required.');
+  if (route?.available !== true || route.id !== 'settlement') fail('A configured settlement route is required.');
   const fields = moveFields(input);
   const type = objectType(input);
   if (type && !objectMatchesRoute(input, route, archive ? 'SeasonArchive' : 'Registry')) fail('Object type or Registry does not match the selected garden.');

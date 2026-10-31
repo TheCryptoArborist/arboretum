@@ -21,14 +21,36 @@ REPLACEMENT = '''function currentView() {
   }else if(view.phase==='inactive'||view.phase==='scheduled'){
     claimText='Current-season rewards are not available yet. Open Rewards to review any matching previous-season archive.';
   }
-  return {...view,claimText};
+  const readOnly=window.arb?.getIntegrationStatus?.().readOnly===true;
+  if(readOnly&&view.phase==='inactive')return {...view,title:'No active season',
+    copy:'The rewards system is set up. A new season has not started.',canWater:false,claimText};
+  return {...view,canWater:readOnly?false:view.canWater,claimText};
 }'''
+
+READ_ANCHOR = 'async function readSnapshot() {'
+READ_REPLACEMENT = '''async function readSnapshot() {
+  if(window.arb?.getIntegrationStatus?.().protocol==='settlement'){
+    // Reuse the typed, checkpoint-bound reader. A failed or mismatched Registry
+    // must not leave a second season panel displaying an unverified zero state.
+    const api=window.arb,registryId=api.CONTRACT?.REGISTRY_ID;
+    const stats=await api.getSeasonStats();
+    if(window.arb!==api||stats.protocol!=='settlement'||stats.registryId!==registryId
+        ||stats.readOnly!==true||api.CONTRACT?.READ_ONLY!==true
+        ||stats.checkpoint==null||!Number.isSafeInteger(stats.nowMs)||stats.nowMs<=0
+        ||Date.now()-stats.nowMs>120000||stats.nowMs-Date.now()>15000){
+      throw new Error('The New seasons snapshot could not be verified.');
+    }
+    return validateSnapshot({current_season_id:stats.currentSeasonId,
+      season_start_ms:stats.seasonStartMs,paused:stats.paused},stats.nowMs);
+  }'''
 
 
 def transform(source):
     if source.count(ANCHOR) != 1:
         raise ValueError('Unrecognized or already transformed season-status currentView')
-    return source.replace(ANCHOR, REPLACEMENT, 1)
+    if source.count(READ_ANCHOR) != 1:
+        raise ValueError('Unrecognized or already transformed season-status reader')
+    return source.replace(ANCHOR, REPLACEMENT, 1).replace(READ_ANCHOR, READ_REPLACEMENT, 1)
 
 
 if __name__ == '__main__':

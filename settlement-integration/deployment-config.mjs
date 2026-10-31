@@ -1,9 +1,11 @@
 // Verified public bindings from release/confirmed-deployment.json.
 // Setup receipt: 87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp
-// Route availability and gameplay transactions remain disabled.
+// The verified Registry is available for read-only review. Activation and all
+// gameplay transactions remain disabled; these flags are compiled, not runtime overrides.
 const TYPE_ORIGIN = "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a";
 export const SETTLEMENT_DEPLOYMENT = Object.freeze({
   enabled: false,
+  reviewEnabled: true,
   NETWORK: "mainnet",
   MODULE: "settlement",
   EXPECTED_VERSION: 1,

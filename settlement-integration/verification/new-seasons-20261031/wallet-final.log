@@ -1,0 +1,604 @@
+TAP version 13
+# Subtest: legacy review connects only the explicitly selected wallet
+ok 1 - legacy review connects only the explicitly selected wallet
+  ---
+  duration_ms: 10.712771
+  type: 'test'
+  ...
+# Subtest: legacy review rejects missing or invalid named wallets without contacting another wallet
+ok 2 - legacy review rejects missing or invalid named wallets without contacting another wallet
+  ---
+  duration_ms: 3.182148
+  type: 'test'
+  ...
+# Subtest: legacy review retains auto-detection when no wallet was explicitly selected
+ok 3 - legacy review retains auto-detection when no wallet was explicitly selected
+  ---
+  duration_ms: 2.109709
+  type: 'test'
+  ...
+# Subtest: legacy review rejects ambiguous wallet names before connecting or restoring
+ok 4 - legacy review rejects ambiguous wallet names before connecting or restoring
+  ---
+  duration_ms: 2.616698
+  type: 'test'
+  ...
+# Subtest: legacy review restores the exact saved account even when it is not first
+ok 5 - legacy review restores the exact saved account even when it is not first
+  ---
+  duration_ms: 1.778907
+  type: 'test'
+  ...
+# Subtest: legacy review does not restore a different wallet or account when the saved choice disappears
+ok 6 - legacy review does not restore a different wallet or account when the saved choice disappears
+  ---
+  duration_ms: 4.923626
+  type: 'test'
+  ...
+# Subtest: legacy review can silently restore the exact saved account from its saved wallet
+ok 7 - legacy review can silently restore the exact saved account from its saved wallet
+  ---
+  duration_ms: 2.265925
+  type: 'test'
+  ...
+# Subtest: settlement review connects only the explicitly selected wallet
+ok 8 - settlement review connects only the explicitly selected wallet
+  ---
+  duration_ms: 2.94054
+  type: 'test'
+  ...
+# Subtest: settlement review rejects missing or invalid named wallets without contacting another wallet
+ok 9 - settlement review rejects missing or invalid named wallets without contacting another wallet
+  ---
+  duration_ms: 3.547891
+  type: 'test'
+  ...
+# Subtest: settlement review retains auto-detection when no wallet was explicitly selected
+ok 10 - settlement review retains auto-detection when no wallet was explicitly selected
+  ---
+  duration_ms: 4.003746
+  type: 'test'
+  ...
+# Subtest: settlement review rejects ambiguous wallet names before connecting or restoring
+ok 11 - settlement review rejects ambiguous wallet names before connecting or restoring
+  ---
+  duration_ms: 1.644998
+  type: 'test'
+  ...
+# Subtest: settlement review restores the exact saved account even when it is not first
+ok 12 - settlement review restores the exact saved account even when it is not first
+  ---
+  duration_ms: 1.953258
+  type: 'test'
+  ...
+# Subtest: settlement review does not restore a different wallet or account when the saved choice disappears
+ok 13 - settlement review does not restore a different wallet or account when the saved choice disappears
+  ---
+  duration_ms: 4.42676
+  type: 'test'
+  ...
+# Subtest: settlement review can silently restore the exact saved account from its saved wallet
+ok 14 - settlement review can silently restore the exact saved account from its saved wallet
+  ---
+  duration_ms: 1.36888
+  type: 'test'
+  ...
+# Subtest: legacy crate emits the correct payment and Clock signature
+ok 15 - legacy crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 6.422654
+  type: 'test'
+  ...
+# Subtest: legacy Boom Chest emits the correct payment and Clock signature
+ok 16 - legacy Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 3.209413
+  type: 'test'
+  ...
+# Subtest: legacy Victory Chest emits the correct payment and Clock signature
+ok 17 - legacy Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.225818
+  type: 'test'
+  ...
+# Subtest: legacy Supply Drop emits the correct payment and Clock signature
+ok 18 - legacy Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.125851
+  type: 'test'
+  ...
+# Subtest: legacy admin pool deposit emits the correct payment and Clock signature
+ok 19 - legacy admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.842924
+  type: 'test'
+  ...
+# Subtest: settlement crate emits the correct payment and Clock signature
+ok 20 - settlement crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.939656
+  type: 'test'
+  ...
+# Subtest: settlement Boom Chest emits the correct payment and Clock signature
+ok 21 - settlement Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 6.295103
+  type: 'test'
+  ...
+# Subtest: settlement Victory Chest emits the correct payment and Clock signature
+ok 22 - settlement Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.43243
+  type: 'test'
+  ...
+# Subtest: settlement Supply Drop emits the correct payment and Clock signature
+ok 23 - settlement Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.817671
+  type: 'test'
+  ...
+# Subtest: settlement admin pool deposit emits the correct payment and Clock signature
+ok 24 - settlement admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 4.530884
+  type: 'test'
+  ...
+# Subtest: default legacy route cannot be switched by storage, page globals, or URL values
+ok 25 - default legacy route cannot be switched by storage, page globals, or URL values
+  ---
+  duration_ms: 2.419066
+  type: 'test'
+  ...
+# Subtest: emitted settlement route refuses to initialize without verified compiled deployment
+ok 26 - emitted settlement route refuses to initialize without verified compiled deployment
+  ---
+  duration_ms: 3.720435
+  type: 'test'
+  ...
+# Subtest: settlement route and admin capability stay immutable after initialization
+ok 27 - settlement route and admin capability stay immutable after initialization
+  ---
+  duration_ms: 3.231219
+  type: 'test'
+  ...
+# Subtest: owned settlement Seeds require the new origin, Registry, and version
+ok 28 - owned settlement Seeds require the new origin, Registry, and version
+  ---
+  duration_ms: 2.93481
+  type: 'test'
+  ...
+# Subtest: a foreign Seed owner invalidates wallet inventory and claim preflight
+ok 29 - a foreign Seed owner invalidates wallet inventory and claim preflight
+  ---
+  duration_ms: 2.945882
+  type: 'test'
+  ...
+# Subtest: legacy inventory queries historical type origins and never treats its call package as a type origin
+ok 30 - legacy inventory queries historical type origins and never treats its call package as a type origin
+  ---
+  duration_ms: 4.080102
+  type: 'test'
+  ...
+# Subtest: reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+ok 31 - reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+  ---
+  duration_ms: 3.898509
+  type: 'test'
+  ...
+# Subtest: archive matching excludes other Registries and origins before choosing a unique season
+ok 32 - archive matching excludes other Registries and origins before choosing a unique season
+  ---
+  duration_ms: 1.962922
+  type: 'test'
+  ...
+# Subtest: missing season archive produces unknown entitlement
+ok 33 - missing season archive produces unknown entitlement
+  ---
+  duration_ms: 3.040013
+  type: 'test'
+  ...
+# Subtest: ambiguous season archive produces unknown entitlement
+ok 34 - ambiguous season archive produces unknown entitlement
+  ---
+  duration_ms: 2.177499
+  type: 'test'
+  ...
+# Subtest: changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+ok 35 - changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+  ---
+  duration_ms: 1.983115
+  type: 'test'
+  ...
+# Subtest: early-season projected rewards are estimates and cannot enter claim preflight
+ok 36 - early-season projected rewards are estimates and cannot enter claim preflight
+  ---
+  duration_ms: 3.083916
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact positive receipt
+ok 37 - direct settlement verifies an exact positive receipt
+  ---
+  duration_ms: 3.403841
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact zero-value receipt
+ok 38 - direct settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 2.616034
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact positive receipt
+ok 39 - archived settlement verifies an exact positive receipt
+  ---
+  duration_ms: 2.490112
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact zero-value receipt
+ok 40 - archived settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 2.558439
+  type: 'test'
+  ...
+# Subtest: no receipt cannot confirm a settlement payout or cause a second signature
+ok 41 - no receipt cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 3.811168
+  type: 'test'
+  ...
+# Subtest: legacy origin cannot confirm a settlement payout or cause a second signature
+ok 42 - legacy origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 3.334462
+  type: 'test'
+  ...
+# Subtest: call package used as event origin cannot confirm a settlement payout or cause a second signature
+ok 43 - call package used as event origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.999124
+  type: 'test'
+  ...
+# Subtest: another Registry cannot confirm a settlement payout or cause a second signature
+ok 44 - another Registry cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 3.44195
+  type: 'test'
+  ...
+# Subtest: another Seed cannot confirm a settlement payout or cause a second signature
+ok 45 - another Seed cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 3.885515
+  type: 'test'
+  ...
+# Subtest: another wallet cannot confirm a settlement payout or cause a second signature
+ok 46 - another wallet cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.771033
+  type: 'test'
+  ...
+# Subtest: another season cannot confirm a settlement payout or cause a second signature
+ok 47 - another season cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.916977
+  type: 'test'
+  ...
+# Subtest: different eligible GP cannot confirm a settlement payout or cause a second signature
+ok 48 - different eligible GP cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.678739
+  type: 'test'
+  ...
+# Subtest: different payment cannot confirm a settlement payout or cause a second signature
+ok 49 - different payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.109159
+  type: 'test'
+  ...
+# Subtest: missing payment cannot confirm a settlement payout or cause a second signature
+ok 50 - missing payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.031305
+  type: 'test'
+  ...
+# Subtest: zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+ok 51 - zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.590593
+  type: 'test'
+  ...
+# Subtest: two matching receipts cannot confirm a settlement payout or cause a second signature
+ok 52 - two matching receipts cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.388113
+  type: 'test'
+  ...
+# Subtest: a positive receipt cannot mislabel a genuine zero preflight as paid
+ok 53 - a positive receipt cannot mislabel a genuine zero preflight as paid
+  ---
+  duration_ms: 2.030002
+  type: 'test'
+  ...
+# Subtest: a u64 season ID and u64 payment are checked exactly without Number rounding
+ok 54 - a u64 season ID and u64 payment are checked exactly without Number rounding
+  ---
+  duration_ms: 2.22758
+  type: 'test'
+  ...
+# Subtest: expired deadline is refused before a fixture wallet signature
+ok 55 - expired deadline is refused before a fixture wallet signature
+  ---
+  duration_ms: 2.049944
+  type: 'test'
+  ...
+# Subtest: already processed Seed is refused before a fixture wallet signature
+ok 56 - already processed Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 4.626983
+  type: 'test'
+  ...
+# Subtest: missing eligibility field is refused before a fixture wallet signature
+ok 57 - missing eligibility field is refused before a fixture wallet signature
+  ---
+  duration_ms: 3.180952
+  type: 'test'
+  ...
+# Subtest: unsupported Seed version is refused before a fixture wallet signature
+ok 58 - unsupported Seed version is refused before a fixture wallet signature
+  ---
+  duration_ms: 5.420479
+  type: 'test'
+  ...
+# Subtest: foreign Registry Seed is refused before a fixture wallet signature
+ok 59 - foreign Registry Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.72068
+  type: 'test'
+  ...
+# Subtest: archived claim requires the exact matching archive before signing
+ok 60 - archived claim requires the exact matching archive before signing
+  ---
+  duration_ms: 1.565735
+  type: 'test'
+  ...
+# Subtest: legacy direct claims keep their original positive-payment semantics
+ok 61 - legacy direct claims keep their original positive-payment semantics
+  ---
+  duration_ms: 3.027898
+  type: 'test'
+  ...
+# Subtest: legacy archived claims keep their original positive-payment semantics
+ok 62 - legacy archived claims keep their original positive-payment semantics
+  ---
+  duration_ms: 3.242396
+  type: 'test'
+  ...
+# Subtest: legacy zero-payment success is still reported as no payout
+ok 63 - legacy zero-payment success is still reported as no payout
+  ---
+  duration_ms: 2.847774
+  type: 'test'
+  ...
+# Subtest: review-only preview refuses every funding path and claim before wallet signing
+ok 64 - review-only preview refuses every funding path and claim before wallet signing
+  ---
+  duration_ms: 2.373134
+  type: 'test'
+  ...
+# Subtest: compiled read-only route exposes the confirmed empty Registry snapshot without wallet connection
+ok 65 - compiled read-only route exposes the confirmed empty Registry snapshot without wallet connection
+  ---
+  duration_ms: 7.589884
+  type: 'test'
+  ...
+# Subtest: read-only state failures and identity mismatches never become an empty or funded snapshot
+ok 66 - read-only state failures and identity mismatches never become an empty or funded snapshot
+  ---
+  duration_ms: 7.481039
+  type: 'test'
+  ...
+# Subtest: read-only route with compiled review guard rejects all transaction entry points before reads, PTB construction or wallet access
+ok 67 - read-only route with compiled review guard rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 3.710468
+  type: 'test'
+  ...
+# Subtest: read-only route independently of the review guard rejects all transaction entry points before reads, PTB construction or wallet access
+ok 68 - read-only route independently of the review guard rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 2.147755
+  type: 'test'
+  ...
+# Subtest: legacy review route rejects all transaction entry points before reads, PTB construction or wallet access
+ok 69 - legacy review route rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 2.86076
+  type: 'test'
+  ...
+# Subtest: object batches and names use the modern GraphQL reader without retired client calls
+ok 70 - object batches and names use the modern GraphQL reader without retired client calls
+  ---
+  duration_ms: 1.659514
+  type: 'test'
+  ...
+# Subtest: dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+ok 71 - dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+  ---
+  duration_ms: 2.183138
+  type: 'test'
+  ...
+# Subtest: a verified balance is returned exactly in MIST through the GraphQL reader
+ok 72 - a verified balance is returned exactly in MIST through the GraphQL reader
+  ---
+  duration_ms: 1.370728
+  type: 'test'
+  ...
+# Subtest: missing balance is unavailable rather than a fabricated zero balance
+ok 73 - missing balance is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.495691
+  type: 'test'
+  ...
+# Subtest: missing amount is unavailable rather than a fabricated zero balance
+ok 74 - missing amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.06479
+  type: 'test'
+  ...
+# Subtest: null address is unavailable rather than a fabricated zero balance
+ok 75 - null address is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.155813
+  type: 'test'
+  ...
+# Subtest: negative amount is unavailable rather than a fabricated zero balance
+ok 76 - negative amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 3.42668
+  type: 'test'
+  ...
+# Subtest: unsafe numeric amount is unavailable rather than a fabricated zero balance
+ok 77 - unsafe numeric amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.827726
+  type: 'test'
+  ...
+# Subtest: an explicit zero balance remains a verified zero
+ok 78 - an explicit zero balance remains a verified zero
+  ---
+  duration_ms: 2.098059
+  type: 'test'
+  ...
+# Subtest: Registry read failure cannot become zero player Growth Points
+ok 79 - Registry read failure cannot become zero player Growth Points
+  ---
+  duration_ms: 2.179061
+  type: 'test'
+  ...
+# Subtest: network failure propagates through reward views and aggregate projections
+ok 80 - network failure propagates through reward views and aggregate projections
+  ---
+  duration_ms: 1.3334
+  type: 'test'
+  ...
+# Subtest: corrupt reward fields keep the aggregate projection unknown
+ok 81 - corrupt reward fields keep the aggregate projection unknown
+  ---
+  duration_ms: 1.827327
+  type: 'test'
+  ...
+# Subtest: collected settlement rewards use only exact matching owner, Registry, type, and event identity
+ok 82 - collected settlement rewards use only exact matching owner, Registry, type, and event identity
+  ---
+  duration_ms: 1.83902
+  type: 'test'
+  ...
+# Subtest: unavailable or corrupt reward history is an error rather than zero collected
+ok 83 - unavailable or corrupt reward history is an error rather than zero collected
+  ---
+  duration_ms: 2.376548
+  type: 'test'
+  ...
+# Subtest: emitted sources import modern read APIs and keep review configuration explicit
+ok 84 - emitted sources import modern read APIs and keep review configuration explicit
+  ---
+  duration_ms: 0.588312
+  type: 'test'
+  ...
+# Subtest: legacy review picker connects the displayed wallet after registry reordering
+ok 85 - legacy review picker connects the displayed wallet after registry reordering
+  ---
+  duration_ms: 157.557011
+  type: 'test'
+  ...
+# Subtest: legacy review picker never substitutes another wallet when the displayed wallet disappears
+ok 86 - legacy review picker never substitutes another wallet when the displayed wallet disappears
+  ---
+  duration_ms: 2.138601
+  type: 'test'
+  ...
+# Subtest: legacy review picker rejects a single replacement provider with the same displayed name
+ok 87 - legacy review picker rejects a single replacement provider with the same displayed name
+  ---
+  duration_ms: 1.619212
+  type: 'test'
+  ...
+# Subtest: legacy review rechecks provider identity after asynchronous wallet detection
+ok 88 - legacy review rechecks provider identity after asynchronous wallet detection
+  ---
+  duration_ms: 3.372706
+  type: 'test'
+  ...
+# Subtest: legacy review picker refuses invalid or stale cards instead of auto-selecting
+ok 89 - legacy review picker refuses invalid or stale cards instead of auto-selecting
+  ---
+  duration_ms: 2.030286
+  type: 'test'
+  ...
+# Subtest: legacy review picker fails closed if another provider registers the displayed name
+ok 90 - legacy review picker fails closed if another provider registers the displayed name
+  ---
+  duration_ms: 1.938589
+  type: 'test'
+  ...
+# Subtest: settlement review picker connects the displayed wallet after registry reordering
+ok 91 - settlement review picker connects the displayed wallet after registry reordering
+  ---
+  duration_ms: 156.025194
+  type: 'test'
+  ...
+# Subtest: settlement review picker never substitutes another wallet when the displayed wallet disappears
+ok 92 - settlement review picker never substitutes another wallet when the displayed wallet disappears
+  ---
+  duration_ms: 1.995103
+  type: 'test'
+  ...
+# Subtest: settlement review picker rejects a single replacement provider with the same displayed name
+ok 93 - settlement review picker rejects a single replacement provider with the same displayed name
+  ---
+  duration_ms: 1.555391
+  type: 'test'
+  ...
+# Subtest: settlement review rechecks provider identity after asynchronous wallet detection
+ok 94 - settlement review rechecks provider identity after asynchronous wallet detection
+  ---
+  duration_ms: 2.93242
+  type: 'test'
+  ...
+# Subtest: settlement review picker refuses invalid or stale cards instead of auto-selecting
+ok 95 - settlement review picker refuses invalid or stale cards instead of auto-selecting
+  ---
+  duration_ms: 2.232073
+  type: 'test'
+  ...
+# Subtest: settlement review picker fails closed if another provider registers the displayed name
+ok 96 - settlement review picker fails closed if another provider registers the displayed name
+  ---
+  duration_ms: 1.780856
+  type: 'test'
+  ...
+# Subtest: legacy review blocks the independent NFTree mint path before any external effect
+ok 97 - legacy review blocks the independent NFTree mint path before any external effect
+  ---
+  duration_ms: 151.846717
+  type: 'test'
+  ...
+# Subtest: settlement review blocks the independent NFTree mint path before any external effect
+ok 98 - settlement review blocks the independent NFTree mint path before any external effect
+  ---
+  duration_ms: 161.653331
+  type: 'test'
+  ...
+# Subtest: review transform fails closed if the independent mint source anchors change
+ok 99 - review transform fails closed if the independent mint source anchors change
+  ---
+  duration_ms: 156.970153
+  type: 'test'
+  ...
+1..99
+# tests 99
+# suites 0
+# pass 99
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1426.264266

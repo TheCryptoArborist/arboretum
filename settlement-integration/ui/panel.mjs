@@ -73,7 +73,122 @@ export function validateRewardOptions(value, protocol) {
   return value;
 }
 
+/** Only completed, current reads from the selected read-only Registry render totals. */
+export function registryPresentation(value, expectedRegistryId, {now=Date.now(),maxAgeMs=MAX_AGE_MS}={}) {
+  const address=/^0x[0-9a-f]{64}$/i;
+  if(!address.test(expectedRegistryId||'')||!value||value.protocol!=='settlement'||value.readOnly!==true
+      ||typeof value.registryId!=='string'||value.registryId.toLowerCase()!==expectedRegistryId.toLowerCase()){
+    throw Error('The selected New seasons Registry could not be verified.');
+  }
+  const names=['checkpoint','nowMs','currentSeasonId','seasonStartMs','seasonEndMs','totalSeeds','totalGrowthPoints','remainingPoolMist','treasuryMist'];
+  const fields=Object.fromEntries(names.map(name=>[name,uint(value[name])]));
+  if(Object.values(fields).some(amount=>amount===null)||fields.nowMs===0n||fields.nowMs>BigInt(Number.MAX_SAFE_INTEGER)
+      ||typeof value.paused!=='boolean')throw Error('The Registry snapshot is incomplete. No totals have been assumed.');
+  const chainTime=Number(fields.nowMs);
+  if(!Number.isFinite(now)||!Number.isFinite(maxAgeMs)||maxAgeMs<0||now-chainTime>maxAgeMs||chainTime-now>15_000){
+    throw Error('This Registry snapshot is no longer current. Refresh to read the network again.');
+  }
+  const start=fields.seasonStartMs,end=fields.seasonEndMs;
+  if((start===0n&&end!==0n)||(start>0n&&end<=start))throw Error('The Registry season timing is inconsistent.');
+  let status,title,copy;
+  if(start===0n){
+    status='inactive';title='No active season';
+    copy='The rewards system is set up. A new season has not started.';
+  }else if(fields.nowMs<start){
+    status='scheduled';title=`Season ${fields.currentSeasonId} has not started`;
+    copy='The configured season start is still ahead. This page is available for read-only review.';
+  }else if(fields.nowMs>=end){
+    status='ended';title=`Season ${fields.currentSeasonId} ended`;
+    copy='The growing period has ended. Open Rewards to review owned Seeds and their recorded reward state.';
+  }else{
+    status=value.paused?'paused':'active';title=`Season ${fields.currentSeasonId} ${value.paused?'paused':'is growing'}`;
+    copy='This page shows the recorded season state. Transactions remain disabled in this review.';
+  }
+  return Object.freeze({status,title,copy,registryId:expectedRegistryId,checkpoint:fields.checkpoint.toString(),nowMs:chainTime,
+    time:new Date(chainTime).toISOString().replace('T',' ').replace('Z',' UTC'),
+    pool:formatMist(fields.remainingPoolMist),treasury:formatMist(fields.treasuryMist),
+    seeds:points(fields.totalSeeds),growthPoints:points(fields.totalGrowthPoints),
+    gardenTitle:fields.totalSeeds===0n?'The new garden is empty':'Seeds are recorded in this garden',
+    gardenCopy:fields.totalSeeds===0n
+      ?'The verified Registry contains no planted Seeds. Your existing garden and its history are available through Existing garden above.'
+      :'Connect a wallet and open Rewards to review its owned Seeds. The existing garden has a separate history.'});
+}
+
+/** Public read controller: deliberately does not access any wallet or transaction API. */
+export function createRegistryReview({document:doc,getApi,now=Date.now,timeoutMs=25_000}={}) {
+  const panel=doc?.getElementById('sr-registry');
+  if(!panel)return null;
+  const $=id=>doc.getElementById(id);
+  const text=(id,value)=>{const el=$(id);if(el)el.textContent=String(value);};
+  let snapshot=null,receivedAt=0,inFlight=null;
+  function configuration(){
+    const api=getApi?.(),status=api?.getIntegrationStatus?.();
+    if(!api||status?.protocol!=='settlement'||status.reviewOnly!==true||status.readOnly!==true
+        ||api.CONTRACT?.READ_ONLY!==true||typeof api.getSeasonStats!=='function'
+        ||!/^0x[0-9a-f]{64}$/i.test(api.CONTRACT.REGISTRY_ID||'')){
+      throw Error('The read-only New seasons configuration is not available yet.');
+    }
+    return {api,registryId:api.CONTRACT.REGISTRY_ID};
+  }
+  function clear(status,message){
+    snapshot=null;receivedAt=0;panel.dataset.state=status;
+    const loading=status==='loading';
+    text('sr-registry-title',loading?'Checking the new garden':'Season status unavailable');
+    text('sr-registry-copy',message);
+    for(const id of ['pool','treasury','seeds','gp'])text('sr-registry-'+id,loading?'Checking…':'Unavailable');
+    text('sr-registry-checkpoint','Unavailable');text('sr-registry-time','Unavailable');text('sr-registry-id','Unavailable');
+    text('sr-garden-title',loading?'Checking the garden':'Garden state unavailable');
+    text('sr-garden-copy',loading?'Reading the Registry on Sui mainnet. You do not need to connect a wallet.':'The garden has not been confirmed empty. Refresh to verify its state.');
+    if($('sr-registry-evidence'))$('sr-registry-evidence').hidden=true;
+  }
+  function render(view){
+    snapshot=view;receivedAt=now();panel.dataset.state=view.status;
+    for(const [key,value]of Object.entries({title:view.title,copy:view.copy,pool:view.pool,treasury:view.treasury,
+      seeds:view.seeds,gp:view.growthPoints,checkpoint:view.checkpoint,time:view.time,id:view.registryId}))text('sr-registry-'+key,value);
+    text('sr-garden-title',view.gardenTitle);text('sr-garden-copy',view.gardenCopy);
+    if($('sr-registry-evidence'))$('sr-registry-evidence').hidden=false;
+  }
+  async function refresh(){
+    if(inFlight)return inFlight;
+    clear('loading','Reading the selected Registry and network clock at one checkpoint.');
+    const button=$('sr-registry-refresh');if(button)button.disabled=true;
+    // Deferring the read also makes the in-flight record exist before a
+    // synchronous provider failure reaches cleanup.
+    const promise=Promise.resolve().then(async()=>{
+      let timeout;
+      try{
+        const selected=configuration();
+        const value=await Promise.race([selected.api.getSeasonStats(),new Promise((_,reject)=>{
+          timeout=setTimeout(()=>reject(Error('The Registry read timed out. Refresh to try again.')),timeoutMs);
+        })]);
+        const current=configuration();
+        if(current.api!==selected.api||current.registryId!==selected.registryId)throw Error('The selected garden changed during the read. Refresh to verify it again.');
+        render(registryPresentation(value,selected.registryId,{now:now()}));return true;
+      }catch(error){
+        clear('unavailable',error?.message||'The Registry could not be verified. Refresh to try again.');return false;
+      }finally{clearTimeout(timeout);if(button)button.disabled=false;inFlight=null;}
+    });
+    inFlight=promise;return promise;
+  }
+  function expire(){
+    if(snapshot&&(now()-receivedAt>MAX_AGE_MS||now()-snapshot.nowMs>MAX_AGE_MS||now()<receivedAt)){
+      clear('unavailable','This Registry snapshot is no longer current. Refresh to read the network again.');return true;
+    }
+    return false;
+  }
+  $('sr-registry-refresh')?.addEventListener('click',()=>void refresh());
+  return Object.freeze({refresh,expire});
+}
+
 if(typeof document!=='undefined'&&typeof window!=='undefined'){
+  const registry=createRegistryReview({document,getApi:()=>window.arb});
+  if(registry){
+    window.arbSettlementRegistry=registry;
+    document.addEventListener('wallet-sdk-ready',()=>void registry.refresh());
+    document.addEventListener('visibilitychange',()=>{registry.expire();if(!document.hidden)void registry.refresh();});
+    setInterval(()=>{registry.expire();if(!document.hidden)void registry.refresh();},30000);
+    void registry.refresh();
+  }
   const $=id=>document.getElementById(id);
   const panel=$('settlement-rewards');
   if(panel){
@@ -119,8 +234,8 @@ if(typeof document!=='undefined'&&typeof window!=='undefined'){
         control.append(node('strong','',protocolLabel(id)));
         if(available){control.href=ROUTE_PATHS[id];if(selected)control.setAttribute('aria-current','page');}
         else control.setAttribute('aria-disabled','true');
-        const detail=selected?'Selected · '+(id==='legacy'?'existing protocol':'new protocol')
-          :available?'Open garden':route.reason||'Unavailable · awaiting activation';
+        const detail=selected?'Selected · '+(id==='legacy'?'existing protocol':route.readOnly?'read only':'new protocol')
+          :available?(route.readOnly?'Open read-only view':'Open garden'):route.reason||'Unavailable · awaiting activation';
         control.append(node('small','',detail));
         root.append(control);
       }
