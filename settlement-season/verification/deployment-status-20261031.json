@@ -1,0 +1,15 @@
+{
+  "id": "6ae58697bc817a22d602d1be",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6ae58697bc817a22d602d1bc",
+  "state": "ready",
+  "context": "production",
+  "title": "Add owner review for first 24-hour test season \u00b7 5c1b45dca0cc",
+  "created_at": "2026-10-31T06:11:35.898Z",
+  "published_at": "2026-10-31T06:11:53.168Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}

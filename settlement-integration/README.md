@@ -4,7 +4,7 @@ This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull
 
 ## Owner-wallet first-test review — October 31, 2026, America/Chicago
 
-The [first-season owner review](../settlement-season/verification/README.md) prepares the exact 24-hour version-1 start on the existing Registry at `/admin/season-test/`, with the fixed [tester entrance](https://www.treegrow.xyz/tester-access?next=season-test). It adds a separate explicit wallet review, receipt recovery and duplicate-request protection. The 53 core/controller tests, 68 compiled browser checks, native-login checks and unsigned mainnet rehearsal passed. The actual Registry remains unstarted and unfunded; the owner must approve the real start in Slush. General gameplay remains read-only. See the dated handoff for the actual publication record.
+The [first-season owner review](../settlement-season/verification/README.md) is published at `/admin/season-test/`, with the fixed [tester entrance](https://www.treegrow.xyz/tester-access?next=season-test). Source **`5c1b45dca0ccd87fd53f0c82053cf0c508029909`** is live as Netlify deployment **`6ae58697bc817a22d602d1be`**, published **2026-10-31T06:11:53.168Z**. It adds an explicit review of the exact 24-hour version-1 start, receipt recovery and duplicate-request protection. All 53 core/controller tests, 68 compiled browser checks, 49 hosted HTTP checks, desktop/mobile login and live JavaScript checks passed. All 90 prior application files and the backend identities are preserved. The actual Registry remains unstarted and unfunded; the owner must approve the real start in Slush. General gameplay remains read-only.
 
 ## Inventory boundary candidate — October 31, 2026, America/Chicago
 
