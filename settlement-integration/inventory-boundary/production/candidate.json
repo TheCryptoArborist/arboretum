@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "status": "PRODUCTION_INVENTORY_BOUNDARY_CANDIDATE_NOT_PUBLISHED",
+  "baselinePackageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "baselinePackageVersion": 12,
+  "baselineInventoryVersion": 1,
+  "candidateInventoryVersion": 2,
+  "productionRequiresFreshRegistry": true,
+  "existingRegistryRemainsTestVersion": true,
+  "existingInventoryConverted": false,
+  "newMigrationOrGrantFunctions": 0,
+  "newStructsOrFields": 0,
+  "approvedPrices": [
+    {
+      "constant": "GROWTH_DEPOSIT_MIST",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "10000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_0",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "5000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_1",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "10000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_2",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "25000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_3",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "50000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_4",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "100000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_5",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "30000000000"
+    },
+    {
+      "constant": "CRATE_PRICE_6",
+      "testPriceMist": "10000000",
+      "productionPriceMist": "30000000000"
+    },
+    {
+      "constant": "SUPPLY_PRICE_WATERING_BOOST",
+      "testPriceMist": "20000000",
+      "productionPriceMist": "2000000000"
+    },
+    {
+      "constant": "SUPPLY_PRICE_MULCH",
+      "testPriceMist": "25000000",
+      "productionPriceMist": "4000000000"
+    },
+    {
+      "constant": "SUPPLY_PRICE_RAIN_BARREL",
+      "testPriceMist": "30000000",
+      "productionPriceMist": "5000000000"
+    },
+    {
+      "constant": "SUPPLY_PRICE_DROUGHT_SHIELD",
+      "testPriceMist": "40000000",
+      "productionPriceMist": "10000000000"
+    },
+    {
+      "constant": "SUPPLY_PRICE_REVIVAL_KIT",
+      "testPriceMist": "50000000",
+      "productionPriceMist": "15000000000"
+    }
+  ],
+  "fixedPlantingReferralMist": "1000000",
+  "baselineSource": "contract-payout/source/settlement.move",
+  "baselineSourceSha256": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+  "approvedDecisions": "economy-review/decisions.json",
+  "approvedDecisionsSha256": "ac7833719724023d1f8703cb7d3092e41f5328bfa909bc7f903fbbbffccd2852",
+  "candidateSourceSha256": "091f774707d28a299bd85a0744d61187b16c9b7fe8997886c796c1db62b94df8",
+  "reviewPatchSha256": "4f934854a3143c30b476c82e7c94e70ef64b8ada742b920ed94562c51547f33c",
+  "limits": [
+    "This candidate is not a deployed upgrade, active production Registry or live price change.",
+    "All v2 paid acquisition must use this approved schedule from its first publication.",
+    "Old test Tools and Crates cannot be consumed as v2 items; there is no conversion path.",
+    "Same-version production items may still cross production Registries.",
+    "The generic NFT-reference planting path remains generic, charges the full production fee and creates fresh Seed state.",
+    "Administrator promotions remain an explicit trusted capability; their events alone do not prove paid revenue."
+  ]
+}

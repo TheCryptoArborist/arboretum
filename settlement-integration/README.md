@@ -2,6 +2,10 @@
 
 This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the separate legacy garden and read-only v12 Registry view, a complete legacy Season 3 reconciliation, and the retained upgrade/setup release records. The upgrade and empty Registry setup are complete; economic activation and gameplay transactions remain disabled.
 
+## Inventory boundary candidate — October 31, 2026, America/Chicago
+
+The [inventory-boundary handoff](verification/inventory-boundary-20261031/README.md) records a verified production candidate using inventory version 2 and all 13 approved production prices from its first purchase. It requires a fresh v2 production Registry and adds no conversion or migration of v1 test inventory/history. All 67 focused Move tests passed, including tests against the frozen v1 implementation, and the exact candidate passed a checked unsigned mainnet upgrade simulation. The live package remains v12 and its Registry remains inventory version 1, empty and unstarted. No actual upgrade, signature, spending or website deployment occurred. The candidate resolves the prior isolation finding for the intended production transition; preparing the owner-wallet v1 test season remains the next live-testing step.
+
 ## First-season test update — October 31, 2026, America/Chicago
 
 The [first-season test handoff](verification/season-test-20261031/README.md) records 19 passing Move VM tests and a successful checked, unsigned 24-hour start-season simulation. A later mainnet read confirms the actual Registry remains empty and unstarted. No signature, transaction, real gas payment or website deployment occurred in this test step. The tests also demonstrate that v12 Tools and Crates can cross Registry boundaries, so a second Registry alone cannot isolate cheap test inventory from a future same-version production economy. The handoff identifies the required isolation work before paid live testing. The current website remains the read-only release below.
