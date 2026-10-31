@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-31T03:10:00.087Z",
+  "verifiedAt": "2026-10-31T04:15:30.643Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
   "buildContext": "production",
   "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
@@ -15,7 +15,7 @@
     "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
     "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
     "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
-    "netlify/edge-functions/tester-gate.ts": "ce60f208d49a68c8d02c458b8b4a1e28e5309f5a62a7357d2b377645e6c65650",
+    "netlify/edge-functions/tester-gate.ts": "79348403aca97f0840d407c40de6e41615dad60f897f8d3bab468dd680d8380b",
     "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
     "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
   },
@@ -56,8 +56,27 @@
     "emittedSha256": {
       "admin/settlement-upgrade/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
       "admin/settlement-upgrade/admin.mjs": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
-      "admin/settlement-upgrade/index.html": "7cd4a4e32d2f81d84678c274bfc3d6ef9ecb2fa34a4fab0cd1a23966e09cc03d",
+      "admin/settlement-upgrade/index.html": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
       "admin/settlement-upgrade/upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563"
+    }
+  },
+  "administratorSetup": {
+    "route": "/admin/settlement-setup/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactSetupKindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+    "exactSetupKindBytes": 154,
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "confirmedUpgradeDigest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+    "ownerWalletApprovalRequired": true,
+    "emptyRegistrySetupEnabled": true,
+    "gameplayTransactionsEnabled": false,
+    "seasonStartEnabled": false,
+    "fundingEnabled": false,
+    "emittedSha256": {
+      "admin/settlement-setup/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "admin/settlement-setup/admin.mjs": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
+      "admin/settlement-setup/index.html": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
+      "admin/settlement-setup/setup-kind.b64": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849"
     }
   },
   "evidencePublished": false,

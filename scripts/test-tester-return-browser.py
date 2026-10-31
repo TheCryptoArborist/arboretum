@@ -44,7 +44,8 @@ const { chromium } = require(config.playwright);
 const password = config.hosted ? fs.readFileSync(0, 'utf8').trim() : 'SYNTHETIC-ONLY-tester-return-' + 'p'.repeat(48);
 assert(password.length >= 32 && password.length <= 256, 'A tester code of the expected length must be supplied via stdin');
 const ORIGIN = 'https://www.treegrow.xyz';
-const ADMIN = '/admin/settlement-upgrade/';
+const INTENT = config.review === 'setup' ? 'settlement-setup' : 'settlement-upgrade';
+const ADMIN = '/admin/' + INTENT + '/';
 const EXTERNAL = 'https://chatgpt.com/offline-arboretum-return-fixture';
 const GATE_PATH = 'netlify/edge-functions/tester-gate.ts';
 const rows = [], requests = [], screenshots = [], gateHashes = {}, contexts = [];
@@ -86,7 +87,7 @@ async function loadGate(source, label) {
 function localResponse(url) {
   let filename = decodeURIComponent(url.pathname).replace(/^\//, '');
   if (!filename) filename = 'index.html';
-  if (filename === 'admin/settlement-upgrade') filename += '/index.html';
+  if (['admin/settlement-upgrade', 'admin/settlement-setup'].includes(filename)) filename += '/index.html';
   else if (filename.endsWith('/')) filename += 'index.html';
   const target = path.resolve(config.dist, filename);
   if (!target.startsWith(path.resolve(config.dist) + path.sep) || !fs.existsSync(target) || !fs.statSync(target).isFile()) {
@@ -100,7 +101,7 @@ function localResponse(url) {
 function externalHtml(adminTarget) {
   return '<!doctype html><html lang="en"><meta name="viewport" content="width=device-width"><title>Offline external entry fixture</title>' +
     '<h1>External conversation link fixture</h1><p>No real ChatGPT session is accessed.</p>' +
-    '<a id="admin-link" target="_blank" rel="noopener noreferrer" href="' + ORIGIN + adminTarget + '">Open administrator upgrade review</a></html>';
+    '<a id="admin-link" target="_blank" rel="noopener noreferrer" href="' + ORIGIN + adminTarget + '">Open administrator review</a></html>';
 }
 function recordDocument(label, url, method, headers) {
   const row = { case: label, origin: url.origin, path: url.pathname, method,
@@ -282,7 +283,7 @@ async function externalEntry(context, label, expectedIntent) {
   await observePage(context, page);
   await page.waitForURL(url => url.origin === ORIGIN && url.pathname === '/tester-access', { waitUntil: 'domcontentloaded' });
   const target = new URL(page.url());
-  assert.equal(target.searchParams.get('next'), expectedIntent ? 'settlement-upgrade' : null);
+  assert.equal(target.searchParams.get('next'), expectedIntent ? INTENT : null);
   const entry = requests.find(row => row.case === label && row.path === ADMIN && row.method === 'GET');
   assert(entry, 'Actual external-link administrator navigation was observed');
   assert.equal(entry.hasTesterCookie, false, 'SameSite Strict cookie must be omitted on cross-site entry');
@@ -365,17 +366,19 @@ try {
       // external link still needs a login because the cookie stays Strict.
       await defaultLogin(context, label + ' default login');
       const page = await externalEntry(context, label, true);
-      assert.equal(await page.locator('input[name="next"]').inputValue(), 'settlement-upgrade');
-      assert.match(await page.locator('form[action="/tester-access"] button[type="submit"]').innerText(), /upgrade review/i);
+      assert.equal(await page.locator('input[name="next"]').inputValue(), INTENT);
+      assert.match(await page.locator('form[action="/tester-access"] button[type="submit"]').innerText(),
+        config.review === 'setup' ? /setup review/i : /upgrade review/i);
       const bad = await submit(page, 'synthetic-wrong-access-code-for-regression');
       assert.equal(bad.status(), 401);
       await page.locator('[role="alert"]').waitFor({ state: 'visible' });
-      assert.equal(await page.locator('input[name="next"]').inputValue(), 'settlement-upgrade');
+      assert.equal(await page.locator('input[name="next"]').inputValue(), INTENT);
       check(label + ': rejected password preserves only the approved administrator intent', true);
       const good = await submit(page, password, ADMIN);
       assert.equal(good.status(), 303);
       assert.equal((await good.allHeaders()).location, ORIGIN + ADMIN);
-      assert.match(await page.locator('#page-title').innerText(), /Publish the\s+settlement upgrade\./);
+      assert.match(await page.locator('#page-title').innerText(), config.review === 'setup' ?
+        /Set up the\s+rewards system\./ : /Publish the\s+settlement upgrade\./);
       assert.equal(await page.locator('#garden-sec').count(), 0);
       await verifyCookie(context, label);
       await screenshot(page, label + '-admin-after-login.png');
@@ -398,22 +401,22 @@ try {
     });
     await scenario('Duplicate return markers fall back to the game', async () => {
       const context = await newContext('duplicate-return', currentGate);
-      const page = await newPage(context, ORIGIN + '/tester-access?next=settlement-upgrade');
-      await page.evaluate(() => {
-        const input = document.createElement('input'); input.type = 'hidden'; input.name = 'next'; input.value = 'settlement-upgrade';
+      const page = await newPage(context, ORIGIN + '/tester-access?next=' + INTENT);
+      await page.evaluate(intent => {
+        const input = document.createElement('input'); input.type = 'hidden'; input.name = 'next'; input.value = intent;
         document.querySelector('form[action="/tester-access"]').append(input);
-      });
+      }, INTENT);
       const response = await submit(page, password, '/game.html');
       assert.equal((await response.allHeaders()).location, ORIGIN + '/game.html');
       await context.close();
     });
     await scenario('Login POST query alone cannot choose an administrator return target', async () => {
       const context = await newContext('query-only-return', currentGate);
-      const page = await newPage(context, ORIGIN + '/tester-access?next=settlement-upgrade');
-      await page.evaluate(() => {
+      const page = await newPage(context, ORIGIN + '/tester-access?next=' + INTENT);
+      await page.evaluate(intent => {
         document.querySelector('input[name="next"]').remove();
-        document.querySelector('form[action="/tester-access"]').action = '/tester-access?next=settlement-upgrade';
-      });
+        document.querySelector('form[action="/tester-access"]').action = '/tester-access?next=' + intent;
+      }, INTENT);
       const response = await submit(page, password, '/game.html');
       assert.equal((await response.allHeaders()).location, ORIGIN + '/game.html');
       await context.close();
@@ -426,7 +429,7 @@ try {
 } finally {
   const summary = { schemaVersion: 1, hosted: config.hosted, javascriptEnabled: false,
     walletUsed: false, signaturesCreated: 0, broadcasts: 0, credentialsWritten: false,
-    canonicalOrigin: ORIGIN, externalEntryOrigin: new URL(EXTERNAL).origin,
+    canonicalOrigin: ORIGIN, administratorPath: ADMIN, returnIntent: INTENT, externalEntryOrigin: new URL(EXTERNAL).origin,
     baselineRef: config.hosted ? null : config.baselineRef, gateSha256: gateHashes,
     playwrightVersion: require(path.join(config.playwright, 'package.json')).version,
     browserVersion: browser?.version() || null, passed: rows.every(row => row.passed), checks: rows,
@@ -443,6 +446,7 @@ try {
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hosted", action="store_true")
+    parser.add_argument("--review", choices=["upgrade", "setup"], default="upgrade")
     parser.add_argument("--baseline-ref", default=DEFAULT_BASELINE)
     parser.add_argument("--dist", type=Path, default=ROOT / "dist")
     parser.add_argument("--output", type=Path)
@@ -454,7 +458,7 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=False)
     runtime_modules = os.environ.get("CODEX_PRIMARY_RUNTIME_NODE_MODULES", "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/node_modules")
     config = {"root": str(ROOT), "dist": str(args.dist.resolve()), "output": str(output),
-              "hosted": args.hosted, "baselineRef": args.baseline_ref,
+              "hosted": args.hosted, "review": args.review, "baselineRef": args.baseline_ref,
               "playwright": os.environ.get("ARBORETUM_PLAYWRIGHT_MODULE", str(Path(runtime_modules) / "playwright")),
               "chromium": os.environ.get("ARBORETUM_REVIEW_CHROMIUM", "/tmp/arboretum-admin-browser-review/browsers/chrome-headless-shell-linux64/chrome-headless-shell")}
     runner = output / "native-return-runner.mjs"

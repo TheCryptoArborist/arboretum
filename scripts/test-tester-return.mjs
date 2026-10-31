@@ -149,3 +149,75 @@ test('HEAD login preserves headers and has no body', async () => {
   assert.equal(await response.text(), '');
   assert.equal(response.headers.get('referrer-policy'), 'same-origin');
 });
+
+test('setup page navigation preserves the separately approved setup destination', async () => {
+  for (const path of ['/admin/settlement-setup', '/admin/settlement-setup/', '/admin/settlement-setup/index.html']) {
+    const before = originCalls;
+    const response = await gate(navigate(path + '?next=settlement-upgrade'), context);
+    assert.equal(response.status, 303);
+    assert.equal(response.headers.get('location'), origin + '/tester-access?next=settlement-setup');
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.equal(originCalls, before);
+  }
+});
+
+test('native setup login and wrong-code retry retain setup intent and the existing cookie protections', async () => {
+  const marker = /<input type="hidden" name="next" value="settlement-setup">/;
+  const entry = '/tester-access?next=settlement-setup';
+  const page = await gate(request(entry), context);
+  assert.match(await page.text(), marker);
+  assert.equal(page.headers.get('referrer-policy'), 'same-origin');
+  const wrong = await gate(post({ password: 'wrong', next: 'settlement-setup' }), context);
+  assert.equal(wrong.status, 401);
+  assert.equal(wrong.headers.get('set-cookie'), null);
+  const retry = await wrong.text();
+  assert.match(retry, marker);
+  assert.match(retry, /Continue to setup review/);
+  assert.doesNotMatch(retry, /<script/i);
+  const success = await gate(post({ password, next: 'settlement-setup' }, '/tester-access?next=settlement-upgrade'), context);
+  assert.equal(success.status, 303);
+  assert.equal(success.headers.get('location'), origin + '/admin/settlement-setup/');
+  const cookie = success.headers.get('set-cookie');
+  assert.match(cookie, /^__Host-arboretum_tester=/);
+  assert.match(cookie, /; Path=\/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200$/);
+  const authenticated = await gate(request('/admin/settlement-setup/', { headers: { Cookie: cookie.split(';')[0] } }), context);
+  assert.equal(authenticated.status, 200);
+  assert.equal(await authenticated.text(), 'PROTECTED CONTENT');
+  assert.match(authenticated.headers.get('cache-control'), /no-store/);
+});
+
+test('setup intent cannot authenticate assets or bypass same-origin POST checks', async () => {
+  for (const name of ['admin.mjs', 'admin.css', 'setup-kind.b64']) {
+    const response = await gate(request('/admin/settlement-setup/' + name + '?next=settlement-setup'), context);
+    assert.equal(response.status, 401);
+    assert.equal(response.headers.get('set-cookie'), null);
+    const asDocument = await gate(navigate('/admin/settlement-setup/' + name), context);
+    assert.equal(asDocument.headers.get('location'), origin + '/tester-access');
+  }
+  for (const headers of [{ Origin: 'null' }, { Origin: 'https://attacker.example' }, { 'Sec-Fetch-Site': 'cross-site' }]) {
+    const response = await gate(post({ password, next: 'settlement-setup' }, '/tester-access', headers), context);
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get('set-cookie'), null);
+  }
+});
+
+test('duplicate or mixed setup intents fail closed to the ordinary garden destination', async () => {
+  for (const markers of [
+    [['next', 'settlement-setup'], ['next', 'settlement-setup']],
+    [['next', 'settlement-setup'], ['next', 'settlement-upgrade']],
+    [['next', 'settlement-setup'], ['next', 'https://attacker.example']],
+  ]) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams(markers)), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post([['password', password], ...markers]), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  const queryOnly = await gate(post({ password }, '/tester-access?next=settlement-setup'), context);
+  assert.equal(queryOnly.headers.get('location'), origin + '/game.html');
+  for (const next of ['/admin/settlement-setup/', 'settlement-setup/anything', ' settlement-setup', '%73ettlement-setup']) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams({ next })), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post({ password, next }), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+});

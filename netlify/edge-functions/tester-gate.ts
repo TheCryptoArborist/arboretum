@@ -29,14 +29,20 @@ function publicCsp(response: Response): Response {
   result.headers.set("Content-Security-Policy", "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
   return result;
 }
-function settlementReturn(params: URLSearchParams): boolean {
+type SettlementReturn = "settlement-upgrade" | "settlement-setup" | null;
+function settlementReturn(params: URLSearchParams): SettlementReturn {
   const values = params.getAll("next");
-  return values.length === 1 && values[0] === "settlement-upgrade";
+  if (values.length !== 1) return null;
+  if (values[0] === "settlement-upgrade") return "settlement-upgrade";
+  if (values[0] === "settlement-setup") return "settlement-setup";
+  return null;
 }
-function htmlPage(message = "", configured = true, status = 200, returnToSettlement = false): Response {
+function htmlPage(message = "", configured = true, status = 200, returnToSettlement: SettlementReturn = null): Response {
   // All interpolated strings below are fixed server messages, never request input.
-  const returnField = returnToSettlement ? '<input type="hidden" name="next" value="settlement-upgrade">' : "";
-  const submitLabel = returnToSettlement ? "Continue to upgrade review" : "Enter the testing garden";
+  const returnField = returnToSettlement === "settlement-upgrade" ? '<input type="hidden" name="next" value="settlement-upgrade">' :
+    returnToSettlement === "settlement-setup" ? '<input type="hidden" name="next" value="settlement-setup">' : "";
+  const submitLabel = returnToSettlement === "settlement-upgrade" ? "Continue to upgrade review" :
+    returnToSettlement === "settlement-setup" ? "Continue to setup review" : "Enter the testing garden";
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Tester access | Arboretum</title><link rel="stylesheet" href="/prelaunch/site.css"><link rel="icon" href="/prelaunch/mark.png"></head><body><header class="header wrap"><a class="brand" href="/"><span class="brand-mark"><img src="/prelaunch/mark.png" alt="" width="52" height="52"></span><span>ARBORETUM<small>PRIVATE TESTING</small></span></a><a class="text-link" href="/">Back to preview ↗</a></header><main class="access"><section class="access-card"><p class="eyebrow">THE TESTER ENTRANCE</p><h1>Welcome back<br>to your garden.</h1><p>This entrance is for invited testers. Public access will be announced through the community.</p>${message ? `<p class="error" role="alert">${message}</p>` : ""}${configured ? `<form method="post" action="/tester-access" autocomplete="on">${returnField}<label for="password">Tester access code</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="256" spellcheck="false" autocapitalize="none"><button class="button primary" type="submit">${submitLabel} <span aria-hidden="true">→</span></button></form>` : `<p class="error">Tester access has not been activated on this preview. The existing live testing site has not been changed.</p>`}<p class="micro">Use only the website access code provided by the project. Never enter your wallet recovery phrase or private key here.</p><a class="text-link back" href="https://t.me/cryptoarborist" rel="noopener noreferrer" target="_blank">Community &amp; launch updates ↗</a><form class="logout-form" method="post" action="/tester-logout"><button class="button" type="submit">End this browser's tester session</button></form></section></main></body></html>`;
   const response = publicCsp(new Response(html, {status, headers: {"Content-Type": "text/html; charset=utf-8"}}));
   response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
@@ -141,7 +147,8 @@ export default async function testerGate(request: Request, context: Context): Pr
       const key = await sessionKey(secret, password);
       const payload = b64(new TextEncoder().encode(JSON.stringify({v:1, host:url.host, iat:now, exp:now+43_200, nonce:crypto.randomUUID()})));
       const signature = b64(new Uint8Array(await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(payload))));
-      const destination = returnToSettlement ? "/admin/settlement-upgrade/" : "/game.html";
+      const destination = returnToSettlement === "settlement-upgrade" ? "/admin/settlement-upgrade/" :
+        returnToSettlement === "settlement-setup" ? "/admin/settlement-setup/" : "/game.html";
       const response = secure(Response.redirect(`${url.origin}${destination}`, 303));
       response.headers.set("Set-Cookie", `__Host-arboretum_tester=${payload}.${signature}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200`);
       return response;
@@ -149,10 +156,12 @@ export default async function testerGate(request: Request, context: Context): Pr
     if (!configured) return text("Tester access is not configured on this deployment.", 503);
     if (!await validSession(request, await sessionKey(secret,password), now)) {
       if (request.method === "GET" && (request.headers.get("accept") ?? "").includes("text/html")) {
-        // Only this reviewed page has a return destination. Never echo a path
+        // Only these reviewed pages have return destinations. Never echo a path
         // or URL from the request into the login form or the post-login redirect.
         const entrance = ["/admin/settlement-upgrade", "/admin/settlement-upgrade/", "/admin/settlement-upgrade/index.html"].includes(path) ?
-          "/tester-access?next=settlement-upgrade" : "/tester-access";
+          "/tester-access?next=settlement-upgrade" :
+          ["/admin/settlement-setup", "/admin/settlement-setup/", "/admin/settlement-setup/index.html"].includes(path) ?
+            "/tester-access?next=settlement-setup" : "/tester-access";
         return secure(Response.redirect(`${url.origin}${entrance}`,303));
       }
       return text("Tester authorization required",401);
