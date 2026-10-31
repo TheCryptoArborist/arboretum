@@ -11,6 +11,14 @@ The protected review application has a dedicated Netlify project so it can use a
 | Default Netlify hostname | `arboretum-preview.netlify.app` |
 | Existing production site ID | `a344fb31-10b4-4eea-9562-067d90a39607` |
 
+## Hosted status — 2026-10-31 UTC
+
+The protected preview is deployed and verified at [the Netlify tester entrance](https://arboretum-preview.netlify.app/tester-access). Its source commit is `9aacd99d42d89e43ccdc216daefdfbaefd4ce265`; the ready, published preview deployment is `6ae53e7c96ded9882ad844c8` on the dedicated preview project.
+
+Verification passed for all 11 critical raw deployed assets, 30 anonymous/public route cases, and 11 tester login, content, cookie, and logout checks. Both edge functions and the calendar function are present. The served game HTML differs from the raw artifact only through Netlify Pretty URLs normalizing six internal anchor links and their serialization; the remaining parsed markup, text, and scripts match. The original site's published deployment remains `6abe81174b61a8e3dd53b333`.
+
+At verification time, `preview.treegrow.xyz` had no DNS record and the custom-domain certificate was not yet provisioned. The CNAME below is the outstanding connection step. See [the complete hosted verification record](../settlement-integration/verification/hosted/branded-preview-20261031.json).
+
 ## Build policy
 
 Netlify calls the primary deployment of each project `production`. The dedicated project's primary deployment is still a protected review, so `scripts/build-policy.mjs` distinguishes the provider's context from the application's deployment role. The exception requires both `NETLIFY=true` and the exact preview site ID above. It also requires `REVIEW_ONLY=true` and settlement activation disabled.
