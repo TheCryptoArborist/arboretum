@@ -25,6 +25,46 @@ const post = (values, path = '/tester-access', headers = {}) => request(path, {
 });
 const hiddenMarker = /<input type="hidden" name="next" value="settlement-upgrade">/;
 
+test('first watering preserves the intended route through native login and rejects cross-origin access', async () => {
+  for (const path of ['/admin/watering-test', '/admin/watering-test/', '/admin/watering-test/index.html']) {
+    const response = await gate(navigate(path + '?next=https://attacker.example'), context);
+    assert.equal(response.status, 303);
+    assert.equal(response.headers.get('location'), origin + '/tester-access?next=watering-test');
+  }
+  const page = await gate(request('/tester-access?next=watering-test'), context);
+  assert.match(await page.text(), /name="next" value="watering-test"/);
+  const retry = await gate(post({ password: 'wrong', next: 'watering-test' }), context);
+  assert.equal(retry.status, 401);
+  assert.match(await retry.text(), /Continue to first watering/);
+  const login = await gate(post({ password, next: 'watering-test' }), context);
+  assert.equal(login.headers.get('location'), origin + '/admin/watering-test/');
+  const cookie = login.headers.get('set-cookie');
+  assert.match(cookie, /; Path=\/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200$/);
+  const inside = await gate(request('/admin/watering-test/', { headers: { Cookie: cookie.split(';')[0] } }), context);
+  assert.equal(inside.status, 200);
+  for (const name of ['admin.mjs', 'admin.css']) {
+    assert.equal((await gate(request('/admin/watering-test/' + name), context)).status, 401);
+  }
+  for (const headers of [{ Origin: 'null' }, { Origin: 'https://attacker.example' }, { 'Sec-Fetch-Site': 'cross-site' }]) {
+    const blocked = await gate(post({ password, next: 'watering-test' }, '/tester-access', headers), context);
+    assert.equal(blocked.status, 403);
+    assert.equal(blocked.headers.get('set-cookie'), null);
+  }
+});
+
+test('watering return markers cannot become arbitrary destinations or authenticate a request', async () => {
+  for (const other of ['watering-test', 'gameplay-test', 'new-seasons', 'https://attacker.example']) {
+    const values = [['password', password], ['next', 'watering-test'], ['next', other]];
+    const response = await gate(post(values), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  for (const next of ['/admin/watering-test/', 'watering-test/anything', ' watering-test', 'Watering-Test']) {
+    const response = await gate(post({ password, next }), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  assert.equal((await gate(request('/admin/watering-test/?next=watering-test'), context)).status, 401);
+});
+
 test('external entry to the three fixed upgrade-page variants retains only the opaque destination', async () => {
   for (const path of ['/admin/settlement-upgrade', adminPath, adminPath + 'index.html']) {
     const before = originCalls;

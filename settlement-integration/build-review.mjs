@@ -16,6 +16,7 @@ import { buildAdministratorUpgrade } from '../settlement-admin/build.mjs';
 import { buildAdministratorSetup } from '../settlement-setup/build.mjs';
 import { buildAdministratorSeason } from '../settlement-season/build.mjs';
 import { buildOwnerGameplay } from '../settlement-gameplay/build.mjs';
+import { buildOwnerWatering } from '../settlement-watering/build.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -124,6 +125,7 @@ const administratorUpgrade = await buildAdministratorUpgrade();
 const administratorSetup = await buildAdministratorSetup();
 const administratorSeason = await buildAdministratorSeason();
 const ownerGameplay = await buildOwnerGameplay();
+const ownerWatering = await buildOwnerWatering();
 const allFiles=[];
 function list(dir) {
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -158,7 +160,7 @@ const report={
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
   transactionSubmissionEnabled:false,transactionSubmissionScope:'gameplay-review',
-  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,evidencePublished:false,
+  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,evidencePublished:false,
   hostedPreviewVerified:false,
   gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };

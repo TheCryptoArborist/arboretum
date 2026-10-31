@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-31T22:11:24.013Z",
+  "verifiedAt": "2026-10-31T23:13:00.821Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
-  "buildContext": "production",
-  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
-  "deploymentRole": "dedicated-preview",
-  "previewOrigin": "https://www.treegrow.xyz",
+  "buildContext": null,
+  "siteId": null,
+  "deploymentRole": "isolated-review",
+  "previewOrigin": null,
   "reviewOnly": true,
   "newSeasonsConfigured": true,
   "newSeasonsReviewAvailable": true,
@@ -18,7 +18,7 @@
     "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
     "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
     "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
-    "netlify/edge-functions/tester-gate.ts": "cc8759bc04590128a3625f3f1be605532d02dd8a197fd0799e0f7f5ac6421ce8",
+    "netlify/edge-functions/tester-gate.ts": "af9471f430f623f361b6091e33db3521725089085de6cd2f468d0cb9b6e607f7",
     "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
     "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
   },
@@ -122,7 +122,25 @@
     "emittedSha256": {
       "admin/gameplay-test/admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
       "admin/gameplay-test/admin.mjs": "2af356dbadf893778dd6e1f267b07a5f40678cd290b3c23ce5dd826cba323235",
-      "admin/gameplay-test/index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b"
+      "admin/gameplay-test/index.html": "c911bcd94abb304b3b952f4bfead6cd90bd1213bba86b9a45d807f87f2ed5f2c"
+    }
+  },
+  "ownerWatering": {
+    "route": "/admin/watering-test/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "seedId": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+    "plantingDigest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB",
+    "inventoryVersion": 1,
+    "seasonId": 1,
+    "ownerWalletApprovalRequired": true,
+    "transactionScope": "single-first-owner-seed-watering",
+    "wateringPaymentMist": "0",
+    "generalGameplayEnabled": false,
+    "productionUpgradeEnabled": false,
+    "emittedSha256": {
+      "admin/watering-test/admin.css": "d5b33f602baf0a125ff42d08e2fc3fbc2776eaae37961035f33bf3140741aebe",
+      "admin/watering-test/admin.mjs": "019fa55b076f94d1adc18db2972c7a7210551cce391100c0b3e6bdca73f57a4f",
+      "admin/watering-test/index.html": "33390d82fef4a7f6ce379358e6475c577b0f4236e8863d9422903560be55096b"
     }
   },
   "evidencePublished": false,

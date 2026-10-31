@@ -29,7 +29,7 @@ function publicCsp(response: Response): Response {
   result.headers.set("Content-Security-Policy", "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'");
   return result;
 }
-type SettlementReturn = "settlement-upgrade" | "settlement-setup" | "new-seasons" | "season-test" | "gameplay-test" | null;
+type SettlementReturn = "settlement-upgrade" | "settlement-setup" | "new-seasons" | "season-test" | "gameplay-test" | "watering-test" | null;
 function settlementReturn(params: URLSearchParams): SettlementReturn {
   const values = params.getAll("next");
   if (values.length !== 1) return null;
@@ -38,6 +38,7 @@ function settlementReturn(params: URLSearchParams): SettlementReturn {
   if (values[0] === "new-seasons") return "new-seasons";
   if (values[0] === "season-test") return "season-test";
   if (values[0] === "gameplay-test") return "gameplay-test";
+  if (values[0] === "watering-test") return "watering-test";
   return null;
 }
 function htmlPage(message = "", configured = true, status = 200, returnToSettlement: SettlementReturn = null): Response {
@@ -46,12 +47,14 @@ function htmlPage(message = "", configured = true, status = 200, returnToSettlem
     returnToSettlement === "settlement-setup" ? '<input type="hidden" name="next" value="settlement-setup">' :
     returnToSettlement === "new-seasons" ? '<input type="hidden" name="next" value="new-seasons">' :
     returnToSettlement === "season-test" ? '<input type="hidden" name="next" value="season-test">' :
-    returnToSettlement === "gameplay-test" ? '<input type="hidden" name="next" value="gameplay-test">' : "";
+    returnToSettlement === "gameplay-test" ? '<input type="hidden" name="next" value="gameplay-test">' :
+    returnToSettlement === "watering-test" ? '<input type="hidden" name="next" value="watering-test">' : "";
   const submitLabel = returnToSettlement === "settlement-upgrade" ? "Continue to upgrade review" :
     returnToSettlement === "settlement-setup" ? "Continue to setup review" :
     returnToSettlement === "new-seasons" ? "Continue to new seasons" :
     returnToSettlement === "season-test" ? "Continue to test season review" :
-    returnToSettlement === "gameplay-test" ? "Continue to first Seed review" : "Enter the testing garden";
+    returnToSettlement === "gameplay-test" ? "Continue to first Seed review" :
+    returnToSettlement === "watering-test" ? "Continue to first watering" : "Enter the testing garden";
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Tester access | Arboretum</title><link rel="stylesheet" href="/prelaunch/site.css"><link rel="icon" href="/prelaunch/mark.png"></head><body><header class="header wrap"><a class="brand" href="/"><span class="brand-mark"><img src="/prelaunch/mark.png" alt="" width="52" height="52"></span><span>ARBORETUM<small>PRIVATE TESTING</small></span></a><a class="text-link" href="/">Back to preview ↗</a></header><main class="access"><section class="access-card"><p class="eyebrow">THE TESTER ENTRANCE</p><h1>Welcome back<br>to your garden.</h1><p>This entrance is for invited testers. Public access will be announced through the community.</p>${message ? `<p class="error" role="alert">${message}</p>` : ""}${configured ? `<form method="post" action="/tester-access" autocomplete="on">${returnField}<label for="password">Tester access code</label><input id="password" name="password" type="password" autocomplete="current-password" required maxlength="256" spellcheck="false" autocapitalize="none"><button class="button primary" type="submit">${submitLabel} <span aria-hidden="true">→</span></button></form>` : `<p class="error">Tester access has not been activated on this preview. The existing live testing site has not been changed.</p>`}<p class="micro">Use only the website access code provided by the project. Never enter your wallet recovery phrase or private key here.</p><a class="text-link back" href="https://t.me/cryptoarborist" rel="noopener noreferrer" target="_blank">Community &amp; launch updates ↗</a><form class="logout-form" method="post" action="/tester-logout"><button class="button" type="submit">End this browser's tester session</button></form></section></main></body></html>`;
   const response = publicCsp(new Response(html, {status, headers: {"Content-Type": "text/html; charset=utf-8"}}));
   response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
@@ -160,7 +163,8 @@ export default async function testerGate(request: Request, context: Context): Pr
         returnToSettlement === "settlement-setup" ? "/admin/settlement-setup/" :
         returnToSettlement === "new-seasons" ? "/settlement-game.html" :
         returnToSettlement === "season-test" ? "/admin/season-test/" :
-        returnToSettlement === "gameplay-test" ? "/admin/gameplay-test/" : "/game.html";
+        returnToSettlement === "gameplay-test" ? "/admin/gameplay-test/" :
+        returnToSettlement === "watering-test" ? "/admin/watering-test/" : "/game.html";
       const response = secure(Response.redirect(`${url.origin}${destination}`, 303));
       response.headers.set("Set-Cookie", `__Host-arboretum_tester=${payload}.${signature}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200`);
       return response;
@@ -179,7 +183,9 @@ export default async function testerGate(request: Request, context: Context): Pr
               ["/admin/season-test", "/admin/season-test/", "/admin/season-test/index.html"].includes(path) ?
                 "/tester-access?next=season-test" :
                 ["/admin/gameplay-test", "/admin/gameplay-test/", "/admin/gameplay-test/index.html"].includes(path) ?
-                  "/tester-access?next=gameplay-test" : "/tester-access";
+                  "/tester-access?next=gameplay-test" :
+                  ["/admin/watering-test", "/admin/watering-test/", "/admin/watering-test/index.html"].includes(path) ?
+                    "/tester-access?next=watering-test" : "/tester-access";
         return secure(Response.redirect(`${url.origin}${entrance}`,303));
       }
       return text("Tester authorization required",401);

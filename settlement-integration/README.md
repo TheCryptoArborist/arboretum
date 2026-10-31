@@ -4,6 +4,14 @@ This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull
 
 ## First test Seed owner review — published October 31, 2026
 
+**Latest continuation:** the owner has now planted the first Seed in transaction
+`FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB`. The next isolated owner page is
+the [first-watering review](../settlement-watering/README.md), with a live Seed
+countdown, gas-only transaction review and verified receipt recovery. Its first
+eligible window is November 1, 2026, **2:16:41.252–3:57:28.277 p.m. CST**. The
+expected first watering changes 10 to 24 GP and streak 1 to 2. The planting-page
+publication and empty-state observations below remain their historical records.
+
 The [first-Seed planting review](../settlement-gameplay/README.md) is now live at the fixed [tester entrance](https://www.treegrow.xyz/tester-access?next=gameplay-test). It prepares one explicitly selected NFTree-backed 0.01-SUI planting in the already started version-1 Season 1, with 10 initial GP and its existing payment allocation. The owner approves the real transaction in Slush and copies its verified receipt for the watering step. The next watering is eligible 21 hours, 36 minutes after actual planting; plant before October 31 at 7:21:28.277 p.m. CDT to leave a watering window before the November 1 cutoff.
 
 Published source **`05f67fc9a3c489bef4502be885d91e7cf0446522`** is live as deployment **`6ae66915a1c6f7918ba01600`**, published **2026-10-31T22:18:13.185Z**. All 94 prior application files are preserved exactly, with three new runtime files. The [verification record](../settlement-gameplay/verification/README.md) includes 50 passing core/controller tests, 58 compiled browser checks, 19 hosted HTTP checks, 12 native login checks, eight live JavaScript/read-only checks, both passing exact-source Settlement CI runs, and the accurate inventory of other workflow results. The latest real read at 22:21:33.150Z still has zero Seeds, GP and reward pool. No planting was submitted by development or verification.
