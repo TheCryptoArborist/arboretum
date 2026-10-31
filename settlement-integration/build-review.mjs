@@ -1,4 +1,5 @@
-// Produce an isolated, transaction-disabled integration review.
+// Produce an isolated integration review with gameplay transactions disabled.
+// The owner's separately approved exact upgrade has its own administrator route.
 // The established public build and original production inputs are preserved.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -11,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { SETTLEMENT_DEPLOYMENT, REVIEW_ONLY } from './deployment-config.mjs';
 import { assertReviewBuild, DEDICATED_PREVIEW } from '../scripts/build-policy.mjs';
+import { buildAdministratorUpgrade } from '../settlement-admin/build.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -113,6 +115,7 @@ for(const file of ['game.html','settlement-game.html']) {
     inlineCount++;
   }
 }
+const administratorUpgrade = await buildAdministratorUpgrade();
 const allFiles=[];
 function list(dir) {
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -144,11 +147,12 @@ const report={
   preservedSourceSha256:before,publicPagesUnchanged:true,inlineScriptsParsed:inlineCount,
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
-  transactionSubmissionEnabled:false,evidencePublished:false,
+  transactionSubmissionEnabled:false,transactionSubmissionScope:'gameplay-review',
+  administratorUpgrade,evidencePublished:false,
   hostedPreviewVerified:false,
   gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };
 fs.mkdirSync(path.join(root,'settlement-integration/verification'),{recursive:true});
 fs.writeFileSync(path.join(root,'settlement-integration/verification/build.json'),JSON.stringify(report,null,2)+'\n');
-console.log('Verified review build: '+inlineCount+' inline scripts, '+visited.size+' module files; transaction submission disabled.');
+console.log('Verified review build: '+inlineCount+' inline scripts, '+visited.size+' module files; gameplay submission disabled; exact administrator upgrade isolated.');
 

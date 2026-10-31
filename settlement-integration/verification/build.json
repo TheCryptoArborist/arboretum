@@ -1,8 +1,11 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-20T03:11:54.411Z",
+  "verifiedAt": "2026-10-31T02:46:39.921Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
-  "buildContext": "branch-deploy",
+  "buildContext": "production",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "deploymentRole": "dedicated-preview",
+  "previewOrigin": "https://www.treegrow.xyz",
   "reviewOnly": true,
   "newSeasonsConfigured": false,
   "preservedSourceSha256": {
@@ -31,9 +34,9 @@
   "emittedSha256": {
     "index.html": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
     "player-guide.html": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
-    "game.html": "4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78",
+    "game.html": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
     "settlement-game.html": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
-    "wallet.js": "71a57477b8066a704396448d7279e56cf04d3e1f25b9f4e7aa4f13115b70ad80",
+    "wallet.js": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
     "settlement-sdk.bundle.js": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
     "settlement-panel.mjs": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
     "settlement-panel.css": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
@@ -42,7 +45,22 @@
     "settlement-integration/deployment-config.mjs": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39"
   },
   "transactionSubmissionEnabled": false,
+  "transactionSubmissionScope": "gameplay-review",
+  "administratorUpgrade": {
+    "route": "/admin/settlement-upgrade/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactUpgradeKindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+    "gameplayTransactionsEnabled": false,
+    "ownerWalletApprovalRequired": true,
+    "registrySetupEnabled": false,
+    "emittedSha256": {
+      "admin/settlement-upgrade/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "admin/settlement-upgrade/admin.mjs": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "admin/settlement-upgrade/index.html": "7cd4a4e32d2f81d84678c274bfc3d6ef9ecb2fa34a4fab0cd1a23966e09cc03d",
+      "admin/settlement-upgrade/upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563"
+    }
+  },
   "evidencePublished": false,
   "hostedPreviewVerified": false,
-  "gateRequirement": "The existing Netlify edge functions must be bundled and verified on a branch preview. A static upload alone is insufficient."
+  "gateRequirement": "The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient."
 }

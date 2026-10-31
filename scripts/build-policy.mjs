@@ -1,6 +1,8 @@
 // The dedicated preview project's primary deploy is called "production" by
 // Netlify. Its role is still a gated, transaction-disabled review. Pin its
 // provider-assigned identity instead of adding a general production override.
+// REVIEW_ONLY governs gameplay. The separately approved administrator upgrade
+// route permits only its pinned transaction on the owner's www origin.
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

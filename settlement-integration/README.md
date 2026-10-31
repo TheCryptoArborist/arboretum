@@ -14,8 +14,12 @@ The **[current unsigned upgrade review](release/evidence/20261031-review/REVIEW.
 contains refreshed public inputs, the exact three-command version-12 upgrade,
 wallet-ready SDK JSON, and a successful checked simulation with estimated net
 gas of **0.337998763 SUI**. The live contract and Registry remain unchanged.
-Real upgrade signing and subsequent empty Registry setup are the next release
-steps; transaction submission in the review app remains disabled.
+The owner has authorized proceeding with this exact upgrade. The isolated
+**[administrator signing route](../settlement-admin/README.md)** adds explicit
+Slush approval and actual receipt verification at
+`https://www.treegrow.xyz/admin/settlement-upgrade/`. Gameplay transaction
+submission remains disabled. The empty Registry setup is a later step that
+requires the real confirmed upgrade digest.
 
 The October 29 Netlify-hostname warning/deployment sections below are preserved
 historical observations. Their statements about paused testing and the old
@@ -61,7 +65,7 @@ The regression tests exercise the generated review wallet and generated picker f
 
 The build produces an **Existing garden** route using the verified legacy deployment. **New seasons** remains unavailable because the actual upgrade package, new Registry, and new AdminCap do not exist yet. Those IDs must be taken from real confirmed deployment effects and type origins; a URL parameter, browser global, local-storage entry, or simulated package cannot configure the route.
 
-Every generated review wallet refuses transaction submission before requesting a signature. Wallet connections and public Sui reads remain available. The review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
+Every generated gameplay review wallet refuses transaction submission before requesting a signature. The separately approved administrator route accepts only the exact reviewed upgrade. Wallet connections and public Sui reads remain available. The gameplay review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
 
 | State | What the review shows |
 | --- | --- |
@@ -84,7 +88,7 @@ The generated app uses the current Sui GraphQL and gRPC clients. Reward views pi
 
 The existing Wallet Standard framework and transaction-confirmation adapter are retained; the review transforms add strict wallet selection and account restoration. Original production HTML, wallet, Garden, SDK, Move sources, access gate, and calendar-reminder function are preserved and hashed by the review builder.
 
-The public landing and public guide keep their accepted build output. New application assets remain behind the existing tester gate. Source code, reconciliation records, release bytes, and verification evidence are excluded from the website's published assets.
+The public landing and public guide keep their accepted build output. New application assets remain behind the existing tester gate. Source code, reconciliation records, and verification evidence are excluded from the website's published assets. The isolated administrator route includes one exact approved transaction-kind packet as a protected runtime asset.
 
 ## Verified legacy Season 3
 
@@ -124,7 +128,7 @@ node --test --test-isolation=none --test-reporter=tap \
 node settlement-integration/build-review.mjs
 ```
 
-The builder accepts local review, branch-deploy, and deploy-preview contexts and rejects production. It requires REVIEW_ONLY to stay true, emits the exact module import graph, checks every inline script, verifies source preservation, and records asset hashes in [verification/build.json](verification/build.json).
+The builder accepts local review, branch-deploy, and deploy-preview contexts. Production context is allowed only for the exact dedicated preview project with `NETLIFY=true`; it remains rejected on the original or unknown projects. It requires REVIEW_ONLY to stay true, emits the exact module import graph, checks every inline script, verifies source preservation, and records gameplay and isolated administrator asset hashes in [verification/build.json](verification/build.json).
 
 The exact `feature/settlement-app-integration-20261020` branch context in `netlify.toml` selects this builder and Node 24. The default production build command is unchanged. The existing `dist` publish directory and `netlify/functions` directory still apply; both edge functions retain their inline route declarations. A branch context selects build configuration but does not itself enable Netlify branch deployments.
 
