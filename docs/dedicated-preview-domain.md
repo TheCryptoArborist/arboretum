@@ -6,14 +6,23 @@ The protected review application is attached to the owner's requested exact host
 | --- | --- |
 | Preview hostname | `www.treegrow.xyz` |
 | Tester entrance | `https://www.treegrow.xyz/tester-access` |
+| Approved upgrade administrator route | `https://www.treegrow.xyz/admin/settlement-upgrade/` |
 | Netlify project | `arboretum-preview` |
 | Netlify site ID | `d425445d-4980-49be-8ab2-12e7527ba281` |
 | Default Netlify hostname | `arboretum-preview.netlify.app` |
 | Retained original project ID | `a344fb31-10b4-4eea-9562-067d90a39607` |
 
-## Hosted status — 2026-10-31 UTC
+## Current administrator release — 2026-10-31 UTC
 
-The protected preview is deployed and verified at [the requested www tester entrance](https://www.treegrow.xyz/tester-access). Its source commit is `9aacd99d42d89e43ccdc216daefdfbaefd4ce265`; the ready, published preview deployment is `6ae53e7c96ded9882ad844c8` on the dedicated preview project. The domain reassignment reused this verified deployment without rebuilding application code.
+The owner-approved administrator signing page is published at **https://www.treegrow.xyz/admin/settlement-upgrade/**. Current deployment **`6ae5576912763ca45cca5a76`** uses source **`c20c181b5651c1818aa02e1cccbd3058cdcac4d6`** and was published at 02:50:37 UTC (October 30, 9:50 p.m. America/Chicago). Its isolated route accepts only the exact reviewed v11-to-v12 transaction, with explicit administrator account selection, fresh mainnet simulation, Slush approval, duplicate-request protection, and actual receipt verification. Gameplay submission remains disabled.
+
+All 15 raw deployed asset hashes match the tested build; the 11 existing gameplay assets match the previously accepted preview byte for byte. The configured tester entrance, anonymous protection, published inventory, both edge functions, and calendar function inventory passed the current hosted checks. The gate, its credentials, and session settings were preserved. A fresh authenticated login and calendar invocation were not repeated because Netlify masks the stored production tester secret. The calendar function source and runtime are unchanged; its newly generated bundle digest differs. See the [current hosted record](../settlement-admin/verification/hosted-20261031.json) for the exact verification scope.
+
+The [administrator handoff](../settlement-admin/README.md) records 28 passing focused tests, 46 passing synthetic browser checks, two successful Settlement integration CI runs, and the pre-existing failures in five historical preview workflows. The final read-only mainnet check still records version 11; the website deployment does not itself publish the contract. The next action is the owner's Slush signature.
+
+## Accepted gameplay checkpoint — earlier on 2026-10-31 UTC
+
+The protected preview was deployed and verified at [the requested www tester entrance](https://www.treegrow.xyz/tester-access). That accepted checkpoint used source commit `9aacd99d42d89e43ccdc216daefdfbaefd4ce265` and preview deployment `6ae53e7c96ded9882ad844c8` on the dedicated preview project. The domain reassignment reused that verified deployment without rebuilding application code. The current administrator release above preserves its gameplay assets.
 
 Verification on the exact www origin passed for all 11 critical raw deployed assets, 30 anonymous/public route cases, and 11 tester login, content, cookie, and logout checks. Both edge functions and the calendar function are present. The served game HTML differs from the raw artifact only through Netlify Pretty URLs normalizing six internal anchor links and their serialization; the remaining parsed markup, text, and scripts match. The original project's deployment `6abe81174b61a8e3dd53b333` is retained, but the main domain now serves the preview project's deployment.
 
@@ -25,7 +34,7 @@ On October 30, 2026 (America/Chicago), the owner reported successfully entering 
 
 The owner subsequently confirmed both requested acceptance checks: the Arboretum wallet address matches the selected Slush account, and the existing garden, NFTree holdings, and season information load as expected. The tester access, wallet connection, account selection, and data-loading checkpoint is therefore passed by user confirmation.
 
-No transaction execution was verified, and transaction submission remains disabled by the review build. The user did not separately report whether a warning appeared. These results do not establish the cause of the earlier warning or clearance of the old Netlify preview hostnames.
+No gameplay transaction execution was verified, and gameplay submission remains disabled by the review build. The later administrator route is the separately approved, exact-upgrade exception. The user did not separately report whether a warning appeared. These results do not establish the cause of the earlier warning or clearance of the old Netlify preview hostnames.
 
 ## Build policy
 

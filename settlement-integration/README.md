@@ -5,7 +5,10 @@ This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arbor
 ## Current handoff — October 30, 2026, America/Chicago
 
 The accepted preview is now **[www.treegrow.xyz/tester-access](https://www.treegrow.xyz/tester-access)**,
-deployment `6ae53e7c96ded9882ad844c8` on the dedicated preview project. The owner
+on the dedicated preview project. The accepted gameplay checkpoint was
+deployment `6ae53e7c96ded9882ad844c8`; the administrator page is now deployed as
+`6ae5576912763ca45cca5a76` from source `c20c181b5651c1818aa02e1cccbd3058cdcac4d6`,
+with all 11 accepted gameplay assets unchanged. The owner
 confirmed successful Slush connection, the selected wallet address, and correct
 loading of the existing garden, NFTree holdings, and season information. See
 the [current domain handoff](../docs/dedicated-preview-domain.md).
@@ -14,12 +17,16 @@ The **[current unsigned upgrade review](release/evidence/20261031-review/REVIEW.
 contains refreshed public inputs, the exact three-command version-12 upgrade,
 wallet-ready SDK JSON, and a successful checked simulation with estimated net
 gas of **0.337998763 SUI**. The live contract and Registry remain unchanged.
-The owner has authorized proceeding with this exact upgrade. The isolated
+The owner has authorized proceeding with this exact upgrade. The deployed isolated
 **[administrator signing route](../settlement-admin/README.md)** adds explicit
 Slush approval and actual receipt verification at
 `https://www.treegrow.xyz/admin/settlement-upgrade/`. Gameplay transaction
 submission remains disabled. The empty Registry setup is a later step that
-requires the real confirmed upgrade digest.
+requires the real confirmed upgrade digest. The final mainnet check at checkpoint
+339991221 still records version 11; no real signature or upgrade has been submitted.
+The [administrator handoff](../settlement-admin/README.md) records the passing
+28 unit checks, 46 synthetic browser checks, 15 deployed asset hashes, current CI
+assessment, and the masked-secret limit on repeating authenticated login.
 
 The October 29 Netlify-hostname warning/deployment sections below are preserved
 historical observations. Their statements about paused testing and the old
