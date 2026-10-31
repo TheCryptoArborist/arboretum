@@ -786,8 +786,9 @@
   "realSignaturesRequested": 0,
   "realTransactionsSubmitted": 0,
   "limits": [
-    "The domain now serves the protected preview; this is not a transaction-enabled release.",
-    "No wallet session or wallet-provider classification was tested.",
+    "The domain now serves the protected preview; transaction submission remains disabled.",
+    "Automated checks did not connect a wallet. A subsequent successful Slush connection is recorded as user-reported verification.",
+    "The earlier warning cause and Slush classification of other origins are not established by this successful connection.",
     "Original project name must be retained while the external CNAME references it."
   ],
   "canonicalRedirectChecks": [
@@ -819,5 +820,23 @@
     "origin": "https://www.treegrow.xyz",
     "affects": "future build report metadata only",
     "liveApplicationDeploymentUnchanged": true
-  }
+  },
+  "userWalletVerification": {
+    "recordedAt": "2026-10-31T02:06:50.425810+00:00",
+    "reportedLocalDate": "2026-10-30",
+    "clientTimezone": "America/Chicago",
+    "source": "User report in the project conversation following the www domain connection",
+    "origin": "https://www.treegrow.xyz",
+    "testerAccessSucceeded": true,
+    "walletProvider": "Slush",
+    "walletConnectionSucceeded": true,
+    "independentlyObservedByAutomation": false,
+    "warningPresenceOrAbsenceReported": null,
+    "walletAddressVerified": false,
+    "gardenAndNftreeDataVerified": false,
+    "transactionExecutionVerified": false,
+    "providerClearanceOfOtherOriginsEstablished": false,
+    "earlierWarningRootCauseEstablished": false
+  },
+  "automatedWalletCounterScope": "walletConnections, realSignaturesRequested, and realTransactionsSubmitted above describe the automated hosted verification only; the later user-reported connection is recorded separately."
 }

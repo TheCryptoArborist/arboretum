@@ -19,6 +19,12 @@ Verification on the exact www origin passed for all 11 critical raw deployed ass
 
 HTTPS is valid for both `www.treegrow.xyz` and `treegrow.xyz`, with the existing same-team certificate reused. HTTPS is enforced. The apex domain redirects to www. See [the completed www verification record](../settlement-integration/verification/hosted/www-preview-20261031.json). The earlier [subdomain preparation record](../settlement-integration/verification/hosted/branded-preview-20261031.json) is historical and has been superseded by the owner's request for exact www.
 
+### User-confirmed Slush connection
+
+On October 30, 2026 (America/Chicago), the owner reported successfully entering the tester access page and connecting Slush Wallet after the preview was attached to `www.treegrow.xyz`. The exact-domain tester and wallet connection flow therefore has a successful user-reported result. This confirmation is recorded separately from the automated HTTP checks, which did not operate a wallet.
+
+The user did not separately report whether a warning appeared, whether the expected wallet address and garden data loaded, or whether any transaction was attempted. Transaction submission remains disabled by the review build. The successful connection does not establish the cause of the earlier warning or clearance of the old Netlify preview hostnames.
+
 ## Build policy
 
 Netlify calls the primary deployment of each project `production`. The dedicated project's primary deployment is still a protected review, so `scripts/build-policy.mjs` distinguishes the provider's context from the application's deployment role. The exception requires both `NETLIFY=true` and the exact preview site ID above. It also requires `REVIEW_ONLY=true` and settlement activation disabled.
@@ -61,7 +67,7 @@ Local simulation of the dedicated Netlify target:
 NETLIFY=true CONTEXT=production SITE_ID=d425445d-4980-49be-8ab2-12e7527ba281 node scripts/build-site.mjs
 ```
 
-This local simulation does not establish hosted availability. The hosted record separately confirms the edge gate, tester login, artifact hashes, disabled transactions, valid HTTPS, and actual domain assignment. No wallet session or wallet-provider classification was tested.
+This local simulation does not establish hosted availability. The hosted record separately confirms the edge gate, tester login, artifact hashes, disabled transactions, valid HTTPS, and actual domain assignment. Automated checks did not operate a wallet; the subsequent successful Slush connection was reported by the owner and is recorded above. Wallet-provider classification of other origins remains unverified.
 
 The source policy's reporting origin is now `https://www.treegrow.xyz` for future builds. This metadata-only adjustment does not change the live application artifacts or the pinned preview site identity. Historical build records retain the origin configured when those builds ran.
 
