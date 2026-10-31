@@ -10,15 +10,13 @@ import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { SETTLEMENT_DEPLOYMENT, REVIEW_ONLY } from './deployment-config.mjs';
+import { assertReviewBuild, DEDICATED_PREVIEW } from '../scripts/build-policy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
 const read = name => fs.readFileSync(path.join(root, name));
 const sha = value => crypto.createHash('sha256').update(value).digest('hex');
-assert.notEqual(process.env.CONTEXT, 'production', 'Settlement review cannot build in production.');
-if (process.env.NETLIFY) assert.ok(['branch-deploy','deploy-preview'].includes(process.env.CONTEXT),
-  'A Netlify review must be an isolated branch or pull-request preview.');
-assert.equal(REVIEW_ONLY, true, 'This build requires transactions to stay disabled.');
+const buildPolicy = assertReviewBuild();
 
 const preserved = ['index.html','wallet.js','garden.js','sui-sdk.bundle.js',
   'contract/sources/arboretum.move','contract-payout/source/settlement.move',
@@ -39,7 +37,7 @@ const commands = [
   ['node','economy-review/build-garden-ux-preview.mjs'],
 ];
 const run = (executable,args) => promisify(execFile)(executable,args,{
-  cwd:root,env:{...process.env,CONTEXT:'branch-deploy'},
+  cwd:root,env:process.env,
   stdio:['ignore','pipe','pipe'],maxBuffer:8*1024*1024,
 });
 fs.rmSync(dist,{recursive:true,force:true});
@@ -139,13 +137,16 @@ if(SETTLEMENT_DEPLOYMENT.enabled===true)files.push('settlement-wallet.js');
 const report={
   schemaVersion:1,verifiedAt:new Date().toISOString(),
   parentCommit:'ba6faff6de7c446599a605ffa95369a325a12e3e',
-  buildContext:'branch-deploy',reviewOnly:true,newSeasonsConfigured:SETTLEMENT_DEPLOYMENT.enabled===true,
+  buildContext:buildPolicy.providerContext,siteId:buildPolicy.siteId,
+  deploymentRole:buildPolicy.dedicatedPreview?'dedicated-preview':'isolated-review',
+  previewOrigin:buildPolicy.dedicatedPreview?DEDICATED_PREVIEW.origin:null,
+  reviewOnly:REVIEW_ONLY,newSeasonsConfigured:SETTLEMENT_DEPLOYMENT.enabled===true,
   preservedSourceSha256:before,publicPagesUnchanged:true,inlineScriptsParsed:inlineCount,
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
   transactionSubmissionEnabled:false,evidencePublished:false,
   hostedPreviewVerified:false,
-  gateRequirement:'The existing Netlify edge functions must be bundled and verified on a branch preview. A static upload alone is insufficient.',
+  gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };
 fs.mkdirSync(path.join(root,'settlement-integration/verification'),{recursive:true});
 fs.writeFileSync(path.join(root,'settlement-integration/verification/build.json'),JSON.stringify(report,null,2)+'\n');
