@@ -16,7 +16,7 @@ the [current domain handoff](../docs/dedicated-preview-domain.md).
 
 The owner signed the reviewed version-12 upgrade. **[The real upgrade is confirmed](release/evidence/20261031-confirmed-upgrade/verification.json)** at checkpoint **340000251**, October 30, 2026 at **10:31 p.m. CDT**. Transaction `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU` published package `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a` with an actual fee of **0.337998763 SUI**. Exact receipt verification confirms the approved bytes, legacy type origins, new settlement types, administrator ownership and upgrade policy. The administrator page now detects the completed upgrade and prevents repeating it.
 
-The **[empty settlement Registry review](release/evidence/20261031-empty-registry-review/REVIEW.md)** is the next separate transaction. Its unsigned packet is tied to the real package and receipt. The owner-authorized **[setup approval page is now deployed and verified](../settlement-setup/README.md)** at [the setup tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-setup). It creates empty state and a bound administrator capability through the owner's final Slush approval. No setup signature or transaction was submitted by this implementation; simulation IDs are not deployment configuration. Season start, funding, legacy import, compensation, and gameplay activation remain separate decisions.
+The owner also completed the **[empty settlement Registry setup](release/evidence/20261031-confirmed-setup/REVIEW.md)**. Transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp` succeeded at checkpoint **340013815**, October 30 at **11:27 p.m. CDT**, with an actual fee of **0.005632932 SUI**. Primary and independent receipt checks confirm the actual shared Registry, its owned and bound AdminCap, and empty state. The [confirmed deployment record](release/confirmed-deployment.json) and [disabled application configuration](deployment-config.mjs) now contain those real IDs and type origins. Do not repeat setup. The [setup page](../settlement-setup/README.md) remains available for receipt recovery. No season has started; its pool and treasury are zero. Read-only route integration, season timing, funding, production pricing, legacy import and compensation remain subsequent work.
 
 The [administrator handoff](../settlement-admin/README.md) records the accepted website, login correction, current deployment and verification evidence. The [upgrade tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-upgrade) remains the route to the completed upgrade/receipt page.
 
@@ -62,7 +62,7 @@ The regression tests exercise the generated review wallet and generated picker f
 
 ## Review behavior
 
-The build produces an **Existing garden** route using the verified legacy deployment. The actual version-12 package is confirmed. **New seasons** remains unavailable while the new Registry/AdminCap setup and later season activation are pending. New object IDs must come from real confirmed effects; a URL parameter, browser global, local-storage entry, or simulation cannot configure the route.
+The build produces an **Existing garden** route using the verified legacy deployment. The actual version-12 package and new Registry/AdminCap are confirmed and recorded in source. **New seasons** remains unavailable until its read-only route integration is completed; `enabled:false` and `REVIEW_ONLY:true` remain in place. No season is active in the new Registry. The route accepts only source-pinned actual deployment identities; a URL parameter, browser global, local-storage entry, or simulation cannot configure it.
 
 Every generated gameplay review wallet refuses transaction submission before requesting a signature. The separately approved administrator routes accept only their exact reviewed upgrade or empty Registry setup. Wallet connections and public Sui reads remain available. The gameplay review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
 
@@ -79,7 +79,7 @@ Every generated gameplay review wallet refuses transaction submission before req
 
 New-season claims use the fixed cutoff and seven-day claim window. Later gameplay drought and gameplay pause do not rewrite that cutoff entitlement or extend its deadline. Current-Registry and archived claims share the permanent processed marker. Direct and archived positive/zero processing are verified against the exact event type, Registry, Seed, owner, season, eligible GP, and MIST amount.
 
-New funding calls include the required Clock argument. Legacy call signatures remain separate. New types are anchored to the future package that first introduces the settlement module; they are not assigned the original legacy type origin.
+New funding calls include the required Clock argument. Legacy call signatures remain separate. New types are anchored to the confirmed v12 package that first introduced the settlement module, with the original legacy type origins preserved.
 
 ## Current data access and preservation
 

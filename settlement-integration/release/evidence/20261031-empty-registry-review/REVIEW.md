@@ -4,7 +4,7 @@
 
 The owner-completed version-12 upgrade is confirmed. Its transaction is `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU`, at mainnet checkpoint 340000251 on October 30, 2026 at 10:31 p.m. CDT. The actual package is `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`. The [upgrade verification](../20261031-confirmed-upgrade/verification.json) records the approved kind, module hashes, type origins and authority checks.
 
-This document reviews the **next separate transaction**. It remains unsigned. At the time of this capture, the administrator page had only upgrade/receipt controls. The subsequently authorized [separate setup page](../../../../settlement-setup/README.md) is now deployed and verified; final setup approval remains with the owner in Slush.
+**This unsigned review is now historical.** The owner subsequently approved the exact setup through the [separate setup page](../../../../settlement-setup/README.md). Transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp` succeeded at checkpoint **340013815**, **2026-10-31T04:27:02.091Z**, with an actual fee of **0.005632932 SUI**. The [confirmed setup record](../20261031-confirmed-setup/REVIEW.md) contains the real Registry/AdminCap IDs and current empty-state verification. Do not repeat setup or reuse the old legacy-capability reference below. The simulation and original preparation observations in this document are retained as historical evidence.
 
 ## Exact proposed action
 
@@ -55,13 +55,13 @@ This call does not fund a reward pool, move treasury funds, import legacy Seeds 
 
 The [post-simulation public read](post-simulation-state.json) confirms that the legacy AdminCap, UpgradeCap and legacy Registry are unchanged on chain, no settlement Registry exists, and the simulated Registry/AdminCap IDs do not exist. `newRegistryId` and `newAdminCapId` remain **null** in the unsigned packet. Simulated IDs must never be copied into application deployment configuration.
 
-## Next owner flow
+## Original owner flow — completed
 
 The protected [setup tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-setup) now leads to the separately implemented approval control. Before requesting a signature it revalidates the actual upgrade, current package/authority, exact legacy capability reference, absence of an existing settlement Registry, exact setup bytes and a checked simulation. It retains explicit Slush/provider/account/mainnet selection and a persistent unresolved-request lock. The [implementation and hosted evidence](../../../../settlement-setup/README.md) record its verification.
 
 The contract permits creating additional empty Registries; uniqueness is an operational check, not an onchain one-shot guarantee. Do not automatically retry an uncertain setup request or build a second Registry when a first one exists. After owner approval and real confirmation, verify the transaction bytes, event and effects and use the actual new Registry and AdminCap IDs. Only then can deployment configuration be prepared for subsequent season decisions.
 
-This review created **zero signatures and submitted zero transactions**. The owner-completed package upgrade is the only newly confirmed onchain action in this handoff.
+This original review created **zero signatures and submitted zero transactions**. At its capture, the owner-completed package upgrade was the only newly confirmed onchain action; the later confirmed setup is recorded at the top of this document.
 
 ## Offline verification
 

@@ -1,12 +1,12 @@
 # Unsigned settlement upgrade and setup review
 
-## Confirmed upgrade and next setup review — October 30, 2026, America/Chicago
+## Confirmed upgrade and empty Registry — October 30, 2026, America/Chicago
 
 **Version 12 is now published and verified on Sui mainnet.** Owner transaction `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU` succeeded at checkpoint **340000251**, October 30 at **10:31 p.m. CDT** (2026-10-31T03:31:58.538Z). The actual package is **`0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`**. Its actual fee was **0.337998763 SUI**.
 
 The [confirmed receipt verification](evidence/20261031-confirmed-upgrade/verification.json), [raw public receipt](evidence/20261031-confirmed-upgrade/receipt.json), and [independent verification](evidence/20261031-confirmed-upgrade/independent-verification.json) establish the exact approved three-command kind, matching module bytes, all 32 preserved legacy type origins, all 39 new settlement origins, and unchanged upgrade authority/policy. The same UpgradeCap now records this package and version 12. Do not repeat the upgrade.
 
-**[Open the concrete empty Registry setup review](evidence/20261031-empty-registry-review/REVIEW.md).** It is tied to this real receipt and package, and remains an unsigned transaction for the owner's final approval. The separately authorized **[setup page is now deployed and verified](../../settlement-setup/README.md)** at [the setup tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-setup). No Registry setup, season activation, pool funding, legacy import or compensation has been submitted by this work.
+**[The owner also completed the empty Registry setup](evidence/20261031-confirmed-setup/REVIEW.md).** Transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp` succeeded at checkpoint **340013815**, **11:27 p.m. CDT** (2026-10-31T04:27:02.091Z), for an actual fee of **0.005632932 SUI**. Its actual Registry and bound AdminCap are independently verified and saved in [confirmed-deployment.json](confirmed-deployment.json) and the disabled review configuration. The new Registry has no active season, funds, Seeds or GP. Do not repeat setup. The [setup page](../../settlement-setup/README.md) now provides receipt recovery; its [unsigned review](evidence/20261031-empty-registry-review/REVIEW.md) remains historical evidence. No season start, pool funding, legacy import or compensation occurred.
 
 The [October 31 unsigned upgrade review](evidence/20261031-review/REVIEW.md) is retained as the approved input packet, with kind SHA-256 `1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0`. Its estimate matched the real fee. The original October 20 observations below are historical evidence.
 

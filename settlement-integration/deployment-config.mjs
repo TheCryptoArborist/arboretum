@@ -1,4 +1,57 @@
-// Review build configuration. Addresses must come from verified deployment
-// effects/type origins; neither browser storage nor URL input can provide them.
-export const SETTLEMENT_DEPLOYMENT = Object.freeze({ enabled: false });
+// Verified public bindings from release/confirmed-deployment.json.
+// Setup receipt: 87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp
+// Route availability and gameplay transactions remain disabled.
+const TYPE_ORIGIN = "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a";
+export const SETTLEMENT_DEPLOYMENT = Object.freeze({
+  enabled: false,
+  NETWORK: "mainnet",
+  MODULE: "settlement",
+  EXPECTED_VERSION: 1,
+  PACKAGE_ID: "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  TYPE_PACKAGE_ID: TYPE_ORIGIN,
+  REGISTRY_ID: "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+  ADMIN_CAP_ID: "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+  TYPE_ORIGINS: Object.freeze({
+    Registry: TYPE_ORIGIN,
+    Sapling: TYPE_ORIGIN,
+    Seed: TYPE_ORIGIN,
+    Tool: TYPE_ORIGIN,
+    Crate: TYPE_ORIGIN,
+    AdminCap: TYPE_ORIGIN,
+    SettlementState: TYPE_ORIGIN,
+    SeasonArchive: TYPE_ORIGIN,
+    ChallengeBook: TYPE_ORIGIN,
+    CanopyChallenge: TYPE_ORIGIN,
+    ChallengeEntry: TYPE_ORIGIN,
+    SeedPlanted: TYPE_ORIGIN,
+    SeedWatered: TYPE_ORIGIN,
+    SeedDied: TYPE_ORIGIN,
+    SeedRevived: TYPE_ORIGIN,
+    SeedAbandoned: TYPE_ORIGIN,
+    CratePurchased: TYPE_ORIGIN,
+    CrateOpened: TYPE_ORIGIN,
+    SupplyDropPurchased: TYPE_ORIGIN,
+    RewardClaimed: TYPE_ORIGIN,
+    ReferralPaid: TYPE_ORIGIN,
+    SaplingMinted: TYPE_ORIGIN,
+    SeasonStarted: TYPE_ORIGIN,
+    SeasonReset: TYPE_ORIGIN,
+    SeasonArchived: TYPE_ORIGIN,
+    ArchivedRewardClaimed: TYPE_ORIGIN,
+    ArchivedRewardsSwept: TYPE_ORIGIN,
+    ChallengeBookCreated: TYPE_ORIGIN,
+    ChallengeOpened: TYPE_ORIGIN,
+    ChallengeEntered: TYPE_ORIGIN,
+    ChallengeFinalized: TYPE_ORIGIN,
+    ChallengeCanceled: TYPE_ORIGIN,
+    ChallengeEntryRefunded: TYPE_ORIGIN,
+    SettlementRegistryCreated: TYPE_ORIGIN,
+    RewardSettlementFinalized: TYPE_ORIGIN,
+    RewardEntitlementProcessed: TYPE_ORIGIN,
+    GameplayPauseChanged: TYPE_ORIGIN,
+    SettlementAdminTransferred: TYPE_ORIGIN,
+    PoolFunded: TYPE_ORIGIN,
+  }),
+  SUPPORTS_CANOPY_CHALLENGES: false,
+});
 export const REVIEW_ONLY = true;

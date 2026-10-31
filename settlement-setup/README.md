@@ -4,6 +4,15 @@ The owner authorized this next step after the confirmed version-12 upgrade. The 
 
 This page handles one exact transaction: `settlement::create_settlement_registry` in package `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`. It creates an empty shared Registry and a new Registry-bound administrator capability. The season remains unstarted. No funding, legacy import, compensation, claim, or gameplay activation is included.
 
+## Owner setup completed — October 30, 2026, 11:27 p.m. CDT
+
+The owner approved setup in Slush. Transaction **`87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp`** succeeded at checkpoint **340013815**, timestamp **2026-10-31T04:27:02.091Z**, for an actual net fee of **0.005632932 SUI**. The [confirmed receipt and independent verification](../settlement-integration/release/evidence/20261031-confirmed-setup/REVIEW.md) establish the exact approved kind, event and effects, shared Registry, and administrator-owned bound capability.
+
+- Registry: `0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9`
+- Settlement AdminCap: `0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835`
+
+The Registry is empty, with season ID/start `0`, no active season, and zero pool or treasury. The actual IDs and type origins are saved in the [confirmed deployment record](../settlement-integration/release/confirmed-deployment.json) and disabled application configuration. The legacy AdminCap reference has advanced, so **do not repeat setup or reuse the old input packet**. The page detects the existing Registry and supports read-only receipt recovery. No subsequent season, funding or gameplay action is included in this confirmation.
+
 ## Published and verified — October 30, 2026, 11:19 p.m. CDT
 
 Source **`c4789ec647e522857f4166021a3f9d3220e4cf7c`** is published as Netlify deployment **`6ae56c55b4f726c32698bd38`**, at **2026-10-31T04:19:49.905Z**, on the dedicated `arboretum-preview` project. The [hosted record](verification/hosted-20261031.json) confirms all **19 deployed application asset hashes** and **23 HTTP checks**. The 11 accepted game assets and three old upgrade signing assets are unchanged; the old upgrade HTML now links to setup. Both edge functions and the unchanged calendar bundle/output are verified. The existing tester code, session policy, and retained original Netlify project are preserved.
@@ -14,7 +23,7 @@ The [offline native-login regression](verification/tester-return-browser-offline
 
 Both exact-source **Settlement app integration review** CI runs passed: [push](https://github.com/TheCryptoArborist/arboretum/actions/runs/41168065064) and [pull request](https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068968). Five older preview workflows still fail their separate byte-equality or additive-only scope guards, including the intentional administrator-return gate changes. Their deployment stages were skipped; the [exact-source triage](verification/ci-legacy-triage-20261031.json) records the causes. This release does not claim every repository workflow is green.
 
-The [final read-only mainnet check](verification/mainnet-20261031/summary.json) passed at **04:12:47 UTC**, with simulation checkpoint **340010293**, no existing settlement Registry, and an estimated fee of **0.005632932 SUI**. All public queries and CORS checks passed, and the real upgrade receipt was correctly rejected as a setup receipt. These are time-stamped observations; the page repeats them before signing. **No real setup signature or transaction was created by this implementation or verification.** The owner's Slush approval is still the next action.
+The [final pre-release read-only mainnet check](verification/mainnet-20261031/summary.json) passed at **04:12:47 UTC**, with simulation checkpoint **340010293**, no existing settlement Registry, and an estimated fee of **0.005632932 SUI**. All public queries and CORS checks passed, and the real upgrade receipt was correctly rejected as a setup receipt. These are historical pre-signing observations, superseded by the owner's confirmed setup above. The implementation and verification requested no real signature and submitted no transaction; the owner later approved the actual transaction through Slush.
 
 ## Owner flow
 
