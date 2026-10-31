@@ -1,0 +1,598 @@
+{
+  "schemaVersion": 1,
+  "verifiedAtUtc": "2026-10-31T05:02:08.715Z",
+  "repository": "TheCryptoArborist/arboretum",
+  "sourceCommit": "20271661083263cc2e87bbaae2c9f5bf93973382",
+  "sourceTree": "c86d71f3962770b1838612a37e3868de1c908b57",
+  "sourceBranch": "feature/settlement-app-integration-20261020",
+  "sourceEvidence": {
+    "runsQuery": "https://api.github.com/repos/TheCryptoArborist/arboretum/actions/runs?head_sha=20271661083263cc2e87bbaae2c9f5bf93973382&per_page=100",
+    "allReturnedRunsMatchSource": true,
+    "totalRuns": 12,
+    "allRunsCompleted": true,
+    "prMergeCommit": "94131e15b6843d45235026dc9fc3341833cbfb0a",
+    "prMergeTree": "c86d71f3962770b1838612a37e3868de1c908b57",
+    "prMergeTreeEqualsSourceTree": true
+  },
+  "scopedSettlementGatePassed": true,
+  "generalCIstillred": true,
+  "noNewReadOnlyRuntimeBlockerIdentified": true,
+  "assessment": "Both exact-source Settlement app integration runs passed tests and build. Five older workflows remain failed on inspected historical byte-equality or isolated-review scope guards; all their deployment steps were skipped. This is not an all-CI-green result. These failures do not identify a new New seasons runtime issue; the intentional gate change is not described as unchanged from its parent.",
+  "successfulSettlementRuns": [
+    {
+      "runId": 41170767033,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767033",
+      "name": "Settlement app integration review",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:11Z",
+      "jobs": [
+        {
+          "id": 124448056032,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767033/job/124448056032",
+          "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+          "startedAt": "2026-10-31T04:59:50Z",
+          "completedAt": "2026-10-31T05:00:11Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify reward, route, reader, wallet, and unsigned packet behavior",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build the protected review and isolated approved administrator operations",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "runId": 41170762067,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170762067",
+      "name": "Settlement app integration review",
+      "event": "push",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:42Z",
+      "updatedAt": "2026-10-31T05:00:02Z",
+      "jobs": [
+        {
+          "id": 124448040655,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170762067/job/124448040655",
+          "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+          "startedAt": "2026-10-31T04:59:45Z",
+          "completedAt": "2026-10-31T05:00:02Z",
+          "steps": [
+            {
+              "name": "Set up job",
+              "number": 1,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 2,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 3,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "number": 4,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify reward, route, reader, wallet, and unsigned packet behavior",
+              "number": 5,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build the protected review and isolated approved administrator operations",
+              "number": 6,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "number": 7,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "number": 13,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "number": 14,
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "number": 15,
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "failedRuns": [
+    {
+      "runId": 41170767059,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767059",
+      "name": "Economy accounting review",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T04:59:58Z",
+      "job": {
+        "id": 124448056732,
+        "name": "review",
+        "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767059/job/124448056732",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "firstFailureStep": {
+        "name": "Verify additive-only scope and offline regressions",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3
+      },
+      "deploymentSteps": [
+        {
+          "name": "Deploy and verify isolated hosted preview only",
+          "number": 11,
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Stage gated preview only - authenticated readiness NOT approved",
+          "number": 12,
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0,
+      "failures": [
+        {
+          "cause": "The additive-only guard compares branch changes against 84b08fdb4bc0ec0417ced7be21f29aae914939f7 and allows only added economy-review/ files or its own workflow. It stops before tests with AssertionError: A\\t.github/workflows/contract-payout.yml.",
+          "classification": "pre-existing isolated-review scope guard"
+        }
+      ],
+      "testsNotReached": true,
+      "evidence": {
+        "source": "GitHub job log",
+        "jobId": 124448056732,
+        "firstError": "AssertionError: A\\t.github/workflows/contract-payout.yml",
+        "logLine": 181
+      }
+    },
+    {
+      "runId": 41170767032,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767032",
+      "name": "Garden season status",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T04:59:58Z",
+      "job": {
+        "id": 124448056245,
+        "name": "verify",
+        "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767032/job/124448056245",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "firstFailureStep": {
+        "name": "Build current website and retain public and gate tests",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3
+      },
+      "deploymentSteps": [
+        {
+          "name": "Verify hosted preview then publish and verify production",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0,
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The strict tester-gate byte-equality guard permits only three artwork URL additions relative to historical baseline e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the intentional fixed settlement-upgrade, settlement-setup and new-seasons return handling.",
+          "classification": "historical byte-equality guard; current intentional gate change also differs from its fixed baseline"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "The pinned baseline expects scripts/build-public-guide.py to use os.environ.get('CONTEXT')=='production'; current code uses get_build_policy()['publicProduction']. This source file is unchanged in this commit.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "evidence": {
+        "source": "Downloaded exact-run GitHub Actions artifact",
+        "artifactId": 13030433672,
+        "reportPath": "season-status-results/base-tests.txt",
+        "zipSha256": "9a90126739ab2cb646ba692927b43b33a89b2eb139d6bda6be6a840fc987201d",
+        "reportSha256": "196629cfb4d87baf6d00efeaf1e7581b59024e8bc35d775255f843c7c93c6b7c",
+        "firstFailureLine": 55,
+        "secondFailureLine": 487
+      }
+    },
+    {
+      "runId": 41170767068,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767068",
+      "name": "Partner chest preview",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T04:59:59Z",
+      "job": {
+        "id": 124448056386,
+        "name": "preview",
+        "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767068/job/124448056386",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "firstFailureStep": {
+        "name": "Build and run retained plus partner preview tests",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3
+      },
+      "deploymentSteps": [
+        {
+          "name": "Verify preview then publish and verify production",
+          "number": 6,
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0,
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The strict tester-gate byte-equality guard permits only three artwork URL additions relative to historical baseline e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the intentional fixed settlement-upgrade, settlement-setup and new-seasons return handling.",
+          "classification": "historical byte-equality guard; current intentional gate change also differs from its fixed baseline"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "The pinned baseline expects scripts/build-public-guide.py to use os.environ.get('CONTEXT')=='production'; current code uses get_build_policy()['publicProduction']. This source file is unchanged in this commit.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 127,
+        "passed": 125,
+        "failed": 2,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "evidence": {
+        "source": "GitHub job log",
+        "jobId": 124448056386,
+        "firstFailureLine": 272,
+        "secondFailureLine": 704
+      }
+    },
+    {
+      "runId": 41170767058,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767058",
+      "name": "Reward-first production release",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:00Z",
+      "job": {
+        "id": 124448056491,
+        "name": "publish",
+        "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767058/job/124448056491",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "firstFailureStep": {
+        "name": "Build baseline and approved candidate with retained checks",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3
+      },
+      "deploymentSteps": [
+        {
+          "name": "Publish approved output and verify main-domain pages and native login",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0,
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The strict tester-gate byte-equality guard permits only three artwork URL additions relative to historical baseline e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the intentional fixed settlement-upgrade, settlement-setup and new-seasons return handling.",
+          "classification": "historical byte-equality guard; current intentional gate change also differs from its fixed baseline"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "The pinned baseline expects scripts/build-public-guide.py to use os.environ.get('CONTEXT')=='production'; current code uses get_build_policy()['publicProduction']. This source file is unchanged in this commit.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "evidence": {
+        "source": "Downloaded exact-run GitHub Actions artifact",
+        "artifactId": 13031181674,
+        "reportPath": "release-results/baseline-tests.txt",
+        "zipSha256": "d08777f66bc565fcc2b90df9db78bdb838bb91258f082e7371fb26b28c36ae3d",
+        "reportSha256": "ac8e87bcacf059ef81e5b7320edaf59ab673ddfbc3411a12393dfae331d6a489",
+        "firstFailureLine": 55,
+        "secondFailureLine": 487
+      }
+    },
+    {
+      "runId": 41170767043,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767043",
+      "name": "Reward-first preview",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "failure",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:02Z",
+      "job": {
+        "id": 124448056393,
+        "name": "review",
+        "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767043/job/124448056393",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      "firstFailureStep": {
+        "name": "Build original site and run retained baseline suite",
+        "status": "completed",
+        "conclusion": "failure",
+        "number": 3
+      },
+      "deploymentSteps": [
+        {
+          "name": "Deploy branch preview and verify public pages and private game",
+          "number": 7,
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0,
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The strict tester-gate byte-equality guard permits only three artwork URL additions relative to historical baseline e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the intentional fixed settlement-upgrade, settlement-setup and new-seasons return handling.",
+          "classification": "historical byte-equality guard; current intentional gate change also differs from its fixed baseline"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "The pinned baseline expects scripts/build-public-guide.py to use os.environ.get('CONTEXT')=='production'; current code uses get_build_policy()['publicProduction']. This source file is unchanged in this commit.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0,
+        "cancelled": 0
+      },
+      "evidence": {
+        "source": "Downloaded exact-run GitHub Actions artifact",
+        "artifactId": 13031380681,
+        "reportPath": "reward-results/baseline-tests.txt",
+        "zipSha256": "31fe9e87f83a0a3205aeaa93a79432c0dc36ac1bf596a6b310558836e2f17d9b",
+        "reportSha256": "a4dbb097e6c80f003e320a2863649949f7dca0dbef4e31c853714ad44eb1e41e",
+        "firstFailureLine": 55,
+        "secondFailureLine": 487
+      }
+    }
+  ],
+  "otherSuccessfulRuns": [
+    {
+      "runId": 41170767037,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767037",
+      "name": "Player guide checks",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:00Z",
+      "inspectionScope": "Run status only; no additional log review was necessary."
+    },
+    {
+      "runId": 41170767034,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767034",
+      "name": "Item Shop and Growth Pool previews",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:07Z",
+      "inspectionScope": "Run status only; no additional log review was necessary."
+    },
+    {
+      "runId": 41170767102,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767102",
+      "name": "Public Player Handbook",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:08Z",
+      "inspectionScope": "Run status only; no additional log review was necessary."
+    },
+    {
+      "runId": 41170767027,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767027",
+      "name": "Arboretum prelaunch preview",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:09Z",
+      "inspectionScope": "Run status only; no additional log review was necessary."
+    },
+    {
+      "runId": 41170767112,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41170767112",
+      "name": "Arboretum rewards-led redesign",
+      "event": "pull_request",
+      "headSha": "20271661083263cc2e87bbaae2c9f5bf93973382",
+      "status": "completed",
+      "conclusion": "success",
+      "createdAt": "2026-10-31T04:59:47Z",
+      "updatedAt": "2026-10-31T05:00:09Z",
+      "inspectionScope": "Run status only; no additional log review was necessary."
+    }
+  ],
+  "parentSourceComparison": {
+    "source": "20271661083263cc2e87bbaae2c9f5bf93973382",
+    "parent": "136309ba6640d86b25f671718fcdb1d682085659",
+    "files": [
+      {
+        "path": "scripts/test-partner-preview.mjs",
+        "unchangedFromParent": true,
+        "sha256": "cc4f0fbe0dcea2a1bd8f7372b3b1a4d300914b28bef2b265e9ad818459c1c191"
+      },
+      {
+        "path": "scripts/build-public-guide.py",
+        "unchangedFromParent": true,
+        "sha256": "1e215baf871f3bb09dd3ce861945b74662616bc7f0a7d2d7249595838f031e8e"
+      },
+      {
+        "path": ".github/workflows/economy-accounting-review.yml",
+        "unchangedFromParent": true,
+        "sha256": "17c0efca7c8805583e75f416ff248c3db9bd9456bc4cdc57894ed3fbddbf7cfb"
+      },
+      {
+        "path": ".github/workflows/contract-payout.yml",
+        "unchangedFromParent": true,
+        "sha256": "7d0161853c4aa9ec807af54770bafb42f0b30a033ea4a2b1e02b8821c5a5954f"
+      }
+    ]
+  },
+  "historicalEvidence": {
+    "sourceCommit": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+    "report": "settlement-setup/verification/ci-legacy-triage-20261031.json",
+    "sameFailureCategoriesPreviouslyDocumented": true,
+    "note": "Current-run logs/artifacts were independently inspected; the historical report is comparison context, not a substitute for current evidence."
+  },
+  "actionsTaken": {
+    "readOnlyGitHubRequests": true,
+    "workflowReruns": 0,
+    "workflowOrSourceEdits": 0,
+    "commentsOrMessagesPostedToGitHub": 0,
+    "deployments": 0
+  },
+  "sanitization": "Contains public run/job metadata, test descriptions and source/artifact hashes only. No credentials, cookies, author email addresses, signed artifact URLs or raw request headers."
+}

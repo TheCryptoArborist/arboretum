@@ -1,4 +1,4 @@
-# Unsigned settlement upgrade and setup review
+# Settlement upgrade and setup release records
 
 ## Confirmed upgrade and empty Registry — October 30, 2026, America/Chicago
 
@@ -6,7 +6,9 @@
 
 The [confirmed receipt verification](evidence/20261031-confirmed-upgrade/verification.json), [raw public receipt](evidence/20261031-confirmed-upgrade/receipt.json), and [independent verification](evidence/20261031-confirmed-upgrade/independent-verification.json) establish the exact approved three-command kind, matching module bytes, all 32 preserved legacy type origins, all 39 new settlement origins, and unchanged upgrade authority/policy. The same UpgradeCap now records this package and version 12. Do not repeat the upgrade.
 
-**[The owner also completed the empty Registry setup](evidence/20261031-confirmed-setup/REVIEW.md).** Transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp` succeeded at checkpoint **340013815**, **11:27 p.m. CDT** (2026-10-31T04:27:02.091Z), for an actual fee of **0.005632932 SUI**. Its actual Registry and bound AdminCap are independently verified and saved in [confirmed-deployment.json](confirmed-deployment.json) and the disabled review configuration. The new Registry has no active season, funds, Seeds or GP. Do not repeat setup. The [setup page](../../settlement-setup/README.md) now provides receipt recovery; its [unsigned review](evidence/20261031-empty-registry-review/REVIEW.md) remains historical evidence. No season start, pool funding, legacy import or compensation occurred.
+**[The owner also completed the empty Registry setup](evidence/20261031-confirmed-setup/REVIEW.md).** Transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp` succeeded at checkpoint **340013815**, **11:27 p.m. CDT** (2026-10-31T04:27:02.091Z), for an actual fee of **0.005632932 SUI**. Its actual Registry and bound AdminCap are independently verified and saved in [confirmed-deployment.json](confirmed-deployment.json) and the review configuration. Setup created a Registry with no active season, funds, Seeds or GP. Do not repeat setup. The [setup page](../../settlement-setup/README.md) now provides receipt recovery; its [unsigned review](evidence/20261031-empty-registry-review/REVIEW.md) remains historical evidence. No season start, pool funding, legacy import or compensation occurred.
+
+The subsequent **[read-only New seasons release](../verification/new-seasons-20261031/README.md)** is published at www.treegrow.xyz. Its canonical handoff records the current source, deployment and verification evidence. `reviewEnabled:true` makes the verified Registry view available, while `enabled:false` and `REVIEW_ONLY:true` retain the activation and transaction restrictions. Production pricing is already approved but remains unimplemented; season timing, funding and economic activation are separate work.
 
 The [October 31 unsigned upgrade review](evidence/20261031-review/REVIEW.md) is retained as the approved input packet, with kind SHA-256 `1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0`. Its estimate matched the real fee. The original October 20 observations below are historical evidence.
 
@@ -111,9 +113,9 @@ on-chain. Fields named `simulatedPackageIdNeverDeployed` in the evidence must
 never be copied into application configuration. The actual new package,
 Registry, and AdminCap IDs remain `null` in the review manifest.
 
-## Exact transaction 2: create the empty settlement Registry
+## Historical transaction 2 review: create the empty settlement Registry
 
-Setup requires a real successful upgrade first. Its sole Move call will be:
+Setup required a real successful upgrade first. Its sole reviewed Move call was:
 
 ```text
 <actual confirmed new package>::settlement::create_settlement_registry(
@@ -135,10 +137,10 @@ module hashes and type origins, verifies the current UpgradeCap and refreshed
 legacy AdminCap, and rejects an already-created settlement Registry. It then
 emits the setup kind and unsigned review packet. It has no signing or execution
 method. It was originally tested with synthetic fixtures and has now been run against
-the real verified version-12 receipt above. The current setup packet and checked
-simulation are recorded in the linked setup review.
+the real verified version-12 receipt above. The reviewed setup packet and checked
+simulation are retained in the linked historical setup review.
 
-The reproducible preparation command for the confirmed upgrade is:
+The historical preparation command used after the confirmed upgrade was:
 
 ```bash
 node --use-env-proxy settlement-integration/release/prepare-setup.mjs \
@@ -147,17 +149,20 @@ node --use-env-proxy settlement-integration/release/prepare-setup.mjs \
   /tmp/arboretum-setup-review
 ```
 
-The actual setup output must then be simulated and reviewed before signing.
-After it succeeds, read `SettlementRegistryCreated` and the created object
-types from its real effects to obtain the new Registry and AdminCap IDs. Setup
-replay protection is operational here: the contract permits creating another
-empty Registry, so the helper refuses to prepare another when one of this new
-type already exists.
+The unsigned setup output was simulated and reviewed before the owner signed.
+The confirmed receipt's `SettlementRegistryCreated` event and created object types identify
+the real Registry and AdminCap IDs. Setup replay protection is operational here:
+the contract permits creating another empty Registry, so the helper refuses to
+prepare another when one of this new type already exists. Setup is now complete;
+the historical command is not an instruction to prepare or sign another Registry.
 
-## Reproduce the current review
+## Reproduce the historical pre-upgrade review
 
-Run these from the repository root. Captures require a new output directory and
-never overwrite a prior on-chain observation:
+These commands describe the original v11 review and its unused-input requirements.
+The mainnet upgrade and Registry setup are complete, so fresh current state no
+longer satisfies those historical preconditions. Do not repeat either transaction.
+The commands run from the repository root; captures require a new output directory
+and never overwrite a prior on-chain observation:
 
 ```bash
 python3 settlement-integration/release/capture_inputs.py --output /tmp/arboretum-release-fresh
@@ -174,10 +179,10 @@ is entirely offline and uses the repository's installed `@mysten/sui` 2.19.0.
 It uses the installed API's `upgrade({ package: ... })` parameter, verified
 against the version-matched documentation and source.
 
-Offline verification passes **11 Python tests and 8 Node tests**, covering
+The original offline verification passed **11 Python tests and 8 Node tests**, covering
 wrong network, changed owner/policy/package, modified source/module bytes,
 incomplete inventory, digest control, transaction command/data flow, rejection
-of simulation IDs as deployment evidence, and the future setup route:
+of simulation IDs as deployment evidence, and the then-future setup route:
 
 ```bash
 python3 -m unittest discover -s settlement-integration/release -p 'test_*.py' -v
@@ -185,9 +190,9 @@ node --test --test-isolation=none --test-reporter=tap \
   settlement-integration/release/release-packet.test.mjs
 ```
 
-## Guidance and sources
+## Historical guidance and sources
 
-The current MystenLabs skill repository was read at commit
+The then-current MystenLabs skill repository was read at commit
 `e31b38016723e2dcee36161d59c50e028e13b52a`:
 
 - `sui-publish/SKILL.md`: compatible upgrades, explicit setup, type anchoring, simulation.
@@ -201,6 +206,7 @@ Official references: [package upgrades](https://docs.sui.io/develop/publish-upgr
 [GraphQL RPC](https://docs.sui.io/concepts/data-access/graphql-rpc), and
 [the package digest implementation](https://github.com/MystenLabs/sui/blob/mainnet-v1.78.1/crates/sui-types/src/move_package.rs).
 
-The real approved upgrade is complete. Empty Registry setup remains unsigned;
-its approval/signing, later economic activation and any legacy compensation
-are distinct steps. The current verified setup preparation is linked above.
+The approved upgrade and empty Registry setup are complete; neither should be
+repeated. The current read-only website release is linked above. Starting or
+funding a season, implementing the already approved production pricing, economic
+activation and any legacy compensation remain separate work.

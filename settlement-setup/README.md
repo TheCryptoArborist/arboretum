@@ -1,6 +1,8 @@
 # Empty rewards Registry setup
 
-The owner authorized this next step after the confirmed version-12 upgrade. The protected route is **https://www.treegrow.xyz/admin/settlement-setup/**, with a direct tester entrance at **https://www.treegrow.xyz/tester-access?next=settlement-setup**. The owner gives final transaction approval in the Slush browser extension.
+The owner completed this separately reviewed setup after the confirmed version-12 upgrade, approving the transaction in the Slush browser extension. The protected route remains **https://www.treegrow.xyz/admin/settlement-setup/**, with a direct tester entrance at **https://www.treegrow.xyz/tester-access?next=settlement-setup**. It now detects the existing Registry and supports read-only receipt recovery; do not repeat setup.
+
+The current website release exposes that Registry through **[read-only New seasons](../settlement-integration/verification/new-seasons-20261031/README.md)**. Its canonical handoff records the published source, deployment and current verification evidence. Route availability is enabled for review; settlement activation and gameplay transactions remain disabled. Production pricing is already approved but remains unimplemented, and season timing, funding and legacy compensation remain separate work.
 
 This page handles one exact transaction: `settlement::create_settlement_registry` in package `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`. It creates an empty shared Registry and a new Registry-bound administrator capability. The season remains unstarted. No funding, legacy import, compensation, claim, or gameplay activation is included.
 
@@ -11,11 +13,11 @@ The owner approved setup in Slush. Transaction **`87FdmWtG7aGWzLaQ1deEdf39xwSasP
 - Registry: `0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9`
 - Settlement AdminCap: `0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835`
 
-The Registry is empty, with season ID/start `0`, no active season, and zero pool or treasury. The actual IDs and type origins are saved in the [confirmed deployment record](../settlement-integration/release/confirmed-deployment.json) and disabled application configuration. The legacy AdminCap reference has advanced, so **do not repeat setup or reuse the old input packet**. The page detects the existing Registry and supports read-only receipt recovery. No subsequent season, funding or gameplay action is included in this confirmation.
+Setup created an empty Registry, with season ID/start `0`, no active season, and zero pool or treasury. The actual IDs and type origins are saved in the [confirmed deployment record](../settlement-integration/release/confirmed-deployment.json) and read-only review configuration. The legacy AdminCap reference has advanced, so **do not repeat setup or reuse the old input packet**. The page detects the existing Registry and supports read-only receipt recovery. No subsequent season, funding or gameplay action is included in this confirmation.
 
-## Published and verified — October 30, 2026, 11:19 p.m. CDT
+## Original setup publication and verification — October 30, 2026, 11:19 p.m. CDT
 
-Source **`c4789ec647e522857f4166021a3f9d3220e4cf7c`** is published as Netlify deployment **`6ae56c55b4f726c32698bd38`**, at **2026-10-31T04:19:49.905Z**, on the dedicated `arboretum-preview` project. The [hosted record](verification/hosted-20261031.json) confirms all **19 deployed application asset hashes** and **23 HTTP checks**. The 11 accepted game assets and three old upgrade signing assets are unchanged; the old upgrade HTML now links to setup. Both edge functions and the unchanged calendar bundle/output are verified. The existing tester code, session policy, and retained original Netlify project are preserved.
+Source **`c4789ec647e522857f4166021a3f9d3220e4cf7c`** was published as Netlify deployment **`6ae56c55b4f726c32698bd38`**, at **2026-10-31T04:19:49.905Z**, on the dedicated `arboretum-preview` project. That release's [hosted record](verification/hosted-20261031.json) confirms all **19 deployed application asset hashes** and **23 HTTP checks**. It preserved the 11 accepted game assets and three old upgrade signing assets; the old upgrade HTML gained a link to setup. Both edge functions and the unchanged calendar bundle/output were verified. The existing tester code, session policy, and retained original Netlify project were preserved.
 
 The final build passed **38 core/controller tests**, **67 synthetic browser checks**, **14 return-routing tests**, **47 gate-policy tests**, **10 form-origin tests**, and **9 build-policy tests**. The 28 existing upgrade tests also passed. The final synthetic browser record pins setup JavaScript SHA-256 **`1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef`**. The [local test record](verification/local-checks-20261031.json) and [browser record](verification/browser-review-20261031.json) describe their scopes.
 
@@ -25,7 +27,11 @@ Both exact-source **Settlement app integration review** CI runs passed: [push](h
 
 The [final pre-release read-only mainnet check](verification/mainnet-20261031/summary.json) passed at **04:12:47 UTC**, with simulation checkpoint **340010293**, no existing settlement Registry, and an estimated fee of **0.005632932 SUI**. All public queries and CORS checks passed, and the real upgrade receipt was correctly rejected as a setup receipt. These are historical pre-signing observations, superseded by the owner's confirmed setup above. The implementation and verification requested no real signature and submitted no transaction; the owner later approved the actual transaction through Slush.
 
-## Owner flow
+## Historical owner signing flow
+
+The owner has completed this flow. Retain these steps as the original approval
+record; use the current page for existing-Registry detection and receipt recovery,
+not another setup request.
 
 1. Open the setup tester entrance and enter the existing code if requested. The login button says **Continue to setup review** and returns to **Set up the rewards system.**
 2. Connect the Slush browser extension. Explicitly select the administrator ending in **45c4**, then choose **Use selected account**.

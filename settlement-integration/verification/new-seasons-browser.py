@@ -73,6 +73,8 @@ function freeze(dir, prefix = '') {
 }
 freeze(config.dist);
 const assetHashes = new Map();
+const servedAssetHashes = new Map();
+let hostedHtmlVerification = null;
 let browser;
 
 function check(name, passed, detail) {
@@ -527,6 +529,64 @@ function verifyHostedAllowlist() {
   ]) assert.equal(allowPublicRead(body), null, 'Host allowlist accepted an unapproved request');
 }
 
+// The hosting layer rewrites these seven static .html anchors to pretty paths
+// and reserializes only their attributes. The authenticated edge gate forwards
+// the body unchanged. This is an exact observed exception, not HTML/whitespace
+// normalization: all seven complete anchors must occur once in each document,
+// and every byte outside these replacements must equal the frozen build.
+const HOSTED_HTML_ANCHORS = Object.freeze([
+  {
+    source: `<a class="sr-route" href="/game.html">Existing garden <small>Default route</small></a>`,
+    served: `<a class='sr-route' href='/game'>Existing garden <small>Default route</small></a>`,
+  },
+  {
+    source: `<a href="player-guide.html" class="nav-a home-link player-guide-link" target="_blank" rel="noopener noreferrer" aria-label="How to Play — opens player guide in a new tab">How to Play</a>`,
+    served: `<a aria-label='How to Play — opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play</a>`,
+  },
+  {
+    source: `<a href="player-guide.html" class="home-link player-guide-link" target="_blank" rel="noopener noreferrer">How to Play ↗</a>`,
+    served: `<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play ↗</a>`,
+  },
+  {
+    source: `<a class="gbtn guide-context-link" href="player-guide.html#watering" target="_blank" rel="noopener noreferrer">Garden help ↗</a>`,
+    served: `<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>Garden help ↗</a>`,
+  },
+  {
+    source: `<a class="gbtn guide-context-link" href="player-guide.html#tools" target="_blank" rel="noopener noreferrer">Tool guide ↗</a>`,
+    served: `<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>Tool guide ↗</a>`,
+  },
+  {
+    source: `<a class="gbtn guide-context-link" href="player-guide.html#crates" target="_blank" rel="noopener noreferrer">Player Guide: crates &amp; chests ↗</a>`,
+    served: `<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>Player Guide: crates &amp; chests ↗</a>`,
+  },
+  {
+    source: `<a href="/game.html">Open the existing garden</a>`,
+    served: `<a href='/game'>Open the existing garden</a>`,
+  },
+]);
+
+function verifyHostedHtml(sourceBytes, servedBytes) {
+  assert(Buffer.isBuffer(sourceBytes) && Buffer.isBuffer(servedBytes), 'Both frozen and served HTML bytes are required');
+  const source = sourceBytes.toString('utf8'), served = servedBytes.toString('utf8');
+  assert(Buffer.from(source, 'utf8').equals(sourceBytes), 'Frozen HTML is not exact UTF-8');
+  assert(Buffer.from(served, 'utf8').equals(servedBytes), 'Served HTML is not exact UTF-8');
+  let expected = source;
+  const transforms = [];
+  for (const [index, anchor] of HOSTED_HTML_ANCHORS.entries()) {
+    const sourceOccurrences = source.split(anchor.source).length - 1;
+    const servedOccurrences = served.split(anchor.served).length - 1;
+    assert.equal(sourceOccurrences, 1, `Frozen anchor ${index + 1} must occur exactly once`);
+    assert.equal(servedOccurrences, 1, `Served anchor ${index + 1} must occur exactly once`);
+    expected = expected.replace(anchor.source, anchor.served);
+    transforms.push({ ...anchor, sourceOccurrences, servedOccurrences });
+  }
+  assert(Buffer.from(expected, 'utf8').equals(servedBytes),
+    'Served HTML differs outside the seven exact reviewed anchor rewrites');
+  return { sourceSha256: sha(sourceBytes), servedSha256: sha(servedBytes),
+    sourceBytes: sourceBytes.length, servedBytes: servedBytes.length,
+    allOtherBytesEqual: true, transforms };
+}
+
 async function runHosted() {
   verifyHostedAllowlist();
   check('Hosted transport permits only the selected Registry public reads and rejects write/simulation/signing requests', true);
@@ -536,6 +596,9 @@ async function runHosted() {
     pageErrors: [], consoleErrors: [], walletActions: [], snapshots: {}, tlsVerification: 'normal', walletProviderInjected: false };
   contexts.push(record);
   const publicResponses = [], responseTasks = [], hostedHashes = new Map();
+  const requiredAssets = new Set(['settlement-game.html', 'settlement-wallet.js', 'settlement-panel.mjs',
+    'settlement-integration/deployment-config.mjs', 'settlement-integration/reader.mjs', 'settlement-integration/model.mjs']);
+  let servedHtml = null;
   const publicOps = new WeakMap();
   await context.routeWebSocket('**/*', socket => {
     record.blocked.push({ websocket: socket.url() }); socket.close({ code: 1008, reason: 'Read-only smoke' });
@@ -585,7 +648,15 @@ async function runHosted() {
       }
       if (url.origin === ORIGIN && request.method() === 'GET' && response.status() === 200) {
         const filename = decodeURIComponent(url.pathname).replace(/^\//, '') || 'index.html';
-        if (compiled.has(filename)) hostedHashes.set(filename, sha(await response.body()));
+        // Observe only the authenticated app document and its required module
+        // dependencies. Login CSS/images can finish just before navigation and
+        // lose their CDP bodies; they are outside this app-byte verification.
+        // Any body-read error for a required app asset still fails below.
+        if (requiredAssets.has(filename)) {
+          const body = await response.body();
+          hostedHashes.set(filename, sha(body));
+          if (filename === 'settlement-game.html') servedHtml = body;
+        }
       }
     })().catch(error => { record.unexpected.push({ observationError: redact(error.message) }); }));
   });
@@ -626,12 +697,15 @@ async function runHosted() {
     check('Hosted periodic updates preserve no-active-season state', true);
     await capture(page, 'hosted-new-seasons-read-only.png');
     await Promise.all(responseTasks);
-    for (const filename of ['settlement-game.html', 'settlement-wallet.js', 'settlement-panel.mjs',
-      'settlement-integration/deployment-config.mjs', 'settlement-integration/reader.mjs', 'settlement-integration/model.mjs']) {
-      assert.equal(hostedHashes.get(filename), sha(compiled.get(filename)), 'Hosted asset differs from frozen dist: ' + filename);
-      assetHashes.set(filename, hostedHashes.get(filename));
+    hostedHtmlVerification = verifyHostedHtml(compiled.get('settlement-game.html'), servedHtml);
+    check('Served HTML has exactly seven reviewed anchor rewrites and all other bytes equal the frozen build', true, hostedHtmlVerification);
+    for (const filename of requiredAssets) {
+      const sourceHash = sha(compiled.get(filename));
+      if (filename !== 'settlement-game.html') assert.equal(hostedHashes.get(filename), sourceHash, 'Hosted asset differs from frozen dist: ' + filename);
+      assetHashes.set(filename, sourceHash);
+      servedAssetHashes.set(filename, hostedHashes.get(filename));
     }
-    check('Hosted route and loaded wallet/config/model/reader/panel bytes match the frozen local build', true);
+    check('Hosted wallet/config/model/reader/panel bytes exactly match the frozen local build', true);
     assert(publicResponses.some(response => response.operation === 'IntegrationState' && response.status === 200 && response.response.data));
     assert.equal(record.blocked.length, 0); assert.equal(record.unexpected.length, 0);
     assert.equal(record.pageErrors.length, 0); assert.equal(record.consoleErrors.length, 0);
@@ -658,6 +732,8 @@ try {
     walletSigningRequests: contexts.reduce((total, context) => total + context.walletActions.filter(event => event.signing).length, 0),
     playwrightVersion: require(path.join(config.playwright, 'package.json')).version, browserVersion: browser?.version() || null,
     compiledSha256: Object.fromEntries([...assetHashes].sort(([a], [b]) => a.localeCompare(b))),
+    servedSha256: Object.fromEntries([...servedAssetHashes].sort(([a], [b]) => a.localeCompare(b))),
+    hostedHtmlVerification,
     fixtureSources: Object.fromEntries([SETUP_CAPTURE, LEGACY_CAPTURE].map(file => [file, sha(fs.readFileSync(path.join(config.root, file)))])),
     binding, passed: checks.length > 0 && checks.every(check => check.passed), checks, screenshots, contexts,
     limits: [config.hosted ? 'Hosted mode verifies public mainnet reads with no connected wallet; it cannot test private wallet behavior.' : 'Offline fixtures verify browser behavior, not live RPC availability or actual wallet signing.',

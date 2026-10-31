@@ -1,0 +1,844 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-31T05:09:05.797Z",
+  "hosted": true,
+  "syntheticOnly": false,
+  "liveNetworkAllowed": true,
+  "realWalletsUsed": 0,
+  "signaturesCreated": 0,
+  "transactionsSubmitted": 0,
+  "walletSigningRequests": 0,
+  "playwrightVersion": "1.62.1",
+  "browserVersion": "156.0.8078.4",
+  "compiledSha256": {
+    "settlement-game.html": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-integration/model.mjs": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+    "settlement-integration/reader.mjs": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+    "settlement-panel.mjs": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+    "settlement-wallet.js": "712901808debd5f36965b9fbc1e0d7ca3d2c26911c16e92b2c486ad8f3367ace"
+  },
+  "servedSha256": {
+    "settlement-game.html": "604113521ca6bfff974cc6e0eb8020352d7fd84aaa538ae7e16a22bb82c60c36",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-integration/model.mjs": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+    "settlement-integration/reader.mjs": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+    "settlement-panel.mjs": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+    "settlement-wallet.js": "712901808debd5f36965b9fbc1e0d7ca3d2c26911c16e92b2c486ad8f3367ace"
+  },
+  "hostedHtmlVerification": {
+    "sourceSha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+    "servedSha256": "604113521ca6bfff974cc6e0eb8020352d7fd84aaa538ae7e16a22bb82c60c36",
+    "sourceBytes": 580715,
+    "servedBytes": 580685,
+    "allOtherBytesEqual": true,
+    "transforms": [
+      {
+        "source": "<a class=\"sr-route\" href=\"/game.html\">Existing garden <small>Default route</small></a>",
+        "served": "<a class='sr-route' href='/game'>Existing garden <small>Default route</small></a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play — opens player guide in a new tab\">How to Play</a>",
+        "served": "<a aria-label='How to Play — opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">How to Play ↗</a>",
+        "served": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">Garden help ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>Garden help ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">Tool guide ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>Tool guide ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">Player Guide: crates &amp; chests ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>Player Guide: crates &amp; chests ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"/game.html\">Open the existing garden</a>",
+        "served": "<a href='/game'>Open the existing garden</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      }
+    ]
+  },
+  "fixtureSources": {
+    "settlement-integration/release/evidence/20261031-confirmed-setup/receipt.json": "4e8e1655bbea8c333f1c7c950c722e31e1c0e06f8aca14613d4f3ece8532da89",
+    "settlement-integration/release/evidence/20261020-initial/chain-inputs.json": "ca0f3054571aa9f612b98143e79897c6ae1cb3b73b7220241587cb93b04f7ab2"
+  },
+  "binding": {
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "administrator": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "check": "Hosted transport permits only the selected Registry public reads and rejects write/simulation/signing requests",
+      "passed": true
+    },
+    {
+      "check": "Hosted tester login reaches the actual JavaScript-enabled New seasons route",
+      "passed": true
+    },
+    {
+      "check": "Actual mainnet response shows the exact Registry, no active season, and verified zero pool/treasury without a wallet",
+      "passed": true
+    },
+    {
+      "check": "Live public getter binds current checkpoint, network clock and exact empty-state amounts",
+      "passed": true
+    },
+    {
+      "check": "Hosted periodic updates preserve no-active-season state",
+      "passed": true
+    },
+    {
+      "check": "Served HTML has exactly seven reviewed anchor rewrites and all other bytes equal the frozen build",
+      "passed": true,
+      "detail": {
+        "sourceSha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+        "servedSha256": "604113521ca6bfff974cc6e0eb8020352d7fd84aaa538ae7e16a22bb82c60c36",
+        "sourceBytes": 580715,
+        "servedBytes": 580685,
+        "allOtherBytesEqual": true,
+        "transforms": [
+          {
+            "source": "<a class=\"sr-route\" href=\"/game.html\">Existing garden <small>Default route</small></a>",
+            "served": "<a class='sr-route' href='/game'>Existing garden <small>Default route</small></a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play — opens player guide in a new tab\">How to Play</a>",
+            "served": "<a aria-label='How to Play — opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">How to Play ↗</a>",
+            "served": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play ↗</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">Garden help ↗</a>",
+            "served": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>Garden help ↗</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">Tool guide ↗</a>",
+            "served": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>Tool guide ↗</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">Player Guide: crates &amp; chests ↗</a>",
+            "served": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>Player Guide: crates &amp; chests ↗</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          },
+          {
+            "source": "<a href=\"/game.html\">Open the existing garden</a>",
+            "served": "<a href='/game'>Open the existing garden</a>",
+            "sourceOccurrences": 1,
+            "servedOccurrences": 1
+          }
+        ]
+      }
+    },
+    {
+      "check": "Hosted wallet/config/model/reader/panel bytes exactly match the frozen local build",
+      "passed": true
+    },
+    {
+      "check": "Hosted app has no console/page errors, forbidden network request, or unexpected wallet popup",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "hosted-new-seasons-read-only.png",
+      "sha256": "06a630a96998a0785bee6d0e8ac0301b01fed626ebff4f613f57bb1f24d24152"
+    }
+  ],
+  "contexts": [
+    {
+      "name": "hosted-public-mainnet",
+      "width": 1440,
+      "requests": [
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-game.html",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/site.css",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/tester-access",
+          "method": "POST",
+          "allowed": "Native tester login"
+        },
+        {
+          "origin": "https://fonts.googleapis.com",
+          "path": "/css2",
+          "method": "GET",
+          "fixture": "Empty optional font stylesheet; local fallback fonts"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/season-status/panel.css",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/partner-panel.css",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/garden-ux.css",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-panel.css",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-wallet.js",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/season-status/garden-status.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/partner-panel.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/partner-reconciliation-panel.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/garden-ux.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-panel.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/background6.jpg",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/arboretum-protocol-logo.png",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-sdk.bundle.js",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-integration/reader.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-integration/model.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/settlement-integration/deployment-config.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/season-status/model.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/season-reader.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/live-reader.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/ledger.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/garden-ux-model.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "allowed": "Public mainnet read",
+          "operation": "IntegrationState"
+        },
+        {
+          "origin": "https://www.treegrow.xyz",
+          "path": "/economy-review/read-queries.mjs",
+          "method": "GET",
+          "allowed": "Canonical hosted document or asset"
+        },
+        {
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "allowed": "Public mainnet read",
+          "operation": "IntegrationState"
+        },
+        {
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "allowed": "Public mainnet read",
+          "operation": "IntegrationState"
+        },
+        {
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "allowed": "Public mainnet read",
+          "operation": "IntegrationState"
+        },
+        {
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "allowed": "Public mainnet read",
+          "operation": "IntegrationAll"
+        }
+      ],
+      "blocked": [],
+      "unexpected": [],
+      "pageErrors": [],
+      "consoleErrors": [],
+      "walletActions": [],
+      "snapshots": {
+        "initial": {
+          "protocol": {
+            "reviewOnly": true,
+            "readOnly": true,
+            "protocol": "settlement"
+          },
+          "account": null,
+          "registryState": "inactive",
+          "registryTitle": "No active season",
+          "registryCopy": "The rewards system is set up. A new season has not started.",
+          "pool": "0 SUI",
+          "treasury": "0 SUI",
+          "registrySeeds": "0",
+          "growthPoints": "0",
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "checkpoint": "340024190",
+          "rewardsState": "Connect your walletUse Connect wallet to read the Seeds you own in this garden. Connecting does not submit a transaction.",
+          "ownedCount": "Unavailable",
+          "rewardReadStatus": "Wallet not connected",
+          "rewardRows": [],
+          "projections": [
+            "Connect wallet",
+            "Connect wallet",
+            "Connect wallet"
+          ],
+          "viewport": 1440,
+          "pageWidth": 1440,
+          "lockedControls": [
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "btn-plant-all",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "btn-water-all",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "garden-next-growth-action",
+              "tag": "BUTTON",
+              "disabled": false,
+              "hidden": true,
+              "handler": null,
+              "visible": false,
+              "handlerSource": "()=>act(a.kind)"
+            },
+            {
+              "id": "garden-open-crates",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "garden-items-apply",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "garden-slot-primary",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "garden-slot-secondary",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "garden-nudge-secondary",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "admin-open-btn",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "adm-pause-toggle",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            },
+            {
+              "id": "",
+              "tag": "BUTTON",
+              "disabled": true,
+              "hidden": true,
+              "handler": "return false",
+              "visible": false,
+              "handlerSource": "function onclick(event) {\nreturn false\n}"
+            }
+          ]
+        },
+        "livePublicGetter": {
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "nowMs": 1793423340221,
+          "readOnly": true,
+          "remainingPoolMist": "0",
+          "treasuryMist": "0",
+          "totalSeeds": 0,
+          "totalGrowthPoints": 0,
+          "rewardPoolSui": "0.0000",
+          "treasurySui": "0.0000",
+          "currentSeasonId": 0,
+          "seasonStartMs": 0,
+          "seasonEndMs": 0,
+          "claimDeadlineMs": 0,
+          "reviewReadyMs": 86400000,
+          "paused": false,
+          "daysLeft": 0,
+          "progressPct": "0.0",
+          "claimable": false,
+          "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "protocol": "settlement",
+          "originalPoolMist": "0",
+          "eligibleGrowthPoints": "0",
+          "finalized": false,
+          "checkpoint": 340024190
+        }
+      },
+      "tlsVerification": "normal",
+      "walletProviderInjected": false
+    }
+  ],
+  "limits": [
+    "Hosted mode verifies public mainnet reads with no connected wallet; it cannot test private wallet behavior.",
+    "No season activation, funding, purchase, gameplay, or reward transaction was executed.",
+    "Optional remote fonts use local fallback fonts. Hosted authentication is verified separately."
+  ]
+}

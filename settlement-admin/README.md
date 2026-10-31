@@ -1,8 +1,10 @@
 # Approved settlement upgrade administration
 
-This isolated page implements the owner's approved Arboretum Sui mainnet version-11 to version-12 upgrade. The owner authorized proceeding after reviewing the [exact unsigned release](../settlement-integration/release/evidence/20261031-review/REVIEW.md). Wallet approval remains an explicit action in the owner's Slush extension.
+This isolated page implements the owner's approved Arboretum Sui mainnet version-11 to version-12 upgrade. The owner completed it after reviewing the [exact unsigned release](../settlement-integration/release/evidence/20261031-review/REVIEW.md) and approving the transaction in Slush. The page now detects the completed upgrade and verifies its receipt; do not repeat it.
 
 The canonical route is **https://www.treegrow.xyz/admin/settlement-upgrade/**, behind the existing tester gate on the dedicated `arboretum-preview` Netlify project (`d425445d-4980-49be-8ab2-12e7527ba281`). The route will not initialize its wallet controller on another origin. The existing game review continues to disable gameplay transactions.
+
+The current website release exposes the confirmed Registry through **[read-only New seasons](../settlement-integration/verification/new-seasons-20261031/README.md)**. Its canonical handoff records the published source, deployment and current verification evidence. Upgrade and setup are complete; route availability does not activate gameplay. Production pricing is already approved but remains unimplemented, and season timing, funding and legacy compensation remain separate work.
 
 ## Owner upgrade completed — October 30, 2026, 10:31 p.m. CDT
 
@@ -10,7 +12,7 @@ The owner signed the approved upgrade. Transaction **`GY23E3FJnMkg9VgZnqABEyWrKs
 
 The [confirmed receipt verification](../settlement-integration/release/evidence/20261031-confirmed-upgrade/verification.json) and independent verification establish the exact approved kind/digest, both module hashes, 32 preserved legacy type origins, 39 new settlement type origins, unchanged administrator ownership and policy, and the current version-12 UpgradeCap. The existing page detects `already-upgraded` and verifies the receipt; this upgrade must not be submitted again.
 
-The owner subsequently completed the **[separately reviewed empty Registry setup](../settlement-integration/release/evidence/20261031-confirmed-setup/REVIEW.md)** at **11:27 p.m. CDT**, transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp`, checkpoint **340013815**, actual fee **0.005632932 SUI**. Its real Registry and bound AdminCap are verified and recorded for application integration. No season has started and the new pool is zero. Do not repeat either completed transaction. The upgrade receipt links to the **[separate setup/receipt page](../settlement-setup/README.md)**, published as deployment `6ae56c55b4f726c32698bd38` from source `c4789ec647e522857f4166021a3f9d3220e4cf7c`. This upgrade route retains its existing signing code; setup has a separate controller, journal and exact kind. The assistant's implementation and verification submitted no transactions.
+The owner subsequently completed the **[separately reviewed empty Registry setup](../settlement-integration/release/evidence/20261031-confirmed-setup/REVIEW.md)** at **11:27 p.m. CDT**, transaction `87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp`, checkpoint **340013815**, actual fee **0.005632932 SUI**. Its real Registry and bound AdminCap are verified and recorded for application integration. Setup left the season unstarted and the new pool at zero. Do not repeat either completed transaction. The upgrade receipt links to the **[separate setup/receipt page](../settlement-setup/README.md)**, initially published as deployment `6ae56c55b4f726c32698bd38` from source `c4789ec647e522857f4166021a3f9d3220e4cf7c`. This upgrade route retains its existing signing code; setup has a separate controller, journal and exact kind. The assistant's implementation and verification submitted no transactions.
 
 ## Tester entrance for the upgrade
 
@@ -22,7 +24,7 @@ The owner supplied no new credential: the existing code was recovered from their
 
 ## Earlier navigation correction — 2026-10-31 UTC
 
-Source `5abbe0930fd61639c37addd7a7a745b57a12db32` is published as deployment `6ae55e069ac28a1658ed0d65`, at **2026-10-31 03:18:45 UTC / October 30, 10:18 p.m. CDT**. The [authenticated hosted record](verification/tester-return-hosted-20261031.json) confirms 21 passing checks: the fixed return after login and rejected-code retry, protected administrator assets, ordinary garden login, logout, and calendar output. All 15 application asset hashes and the calendar function bundle digest match the initial administrator release. Only the gate's fixed return handling changed executable behavior; credentials, session security, application and signing bytes are preserved.
+Source `5abbe0930fd61639c37addd7a7a745b57a12db32` was published as deployment `6ae55e069ac28a1658ed0d65`, at **2026-10-31 03:18:45 UTC / October 30, 10:18 p.m. CDT**. That release's [authenticated hosted record](verification/tester-return-hosted-20261031.json) confirms 21 passing checks: the fixed return after login and rejected-code retry, protected administrator assets, ordinary garden login, logout, and calendar output. All 15 application asset hashes and the calendar function bundle digest matched the initial administrator release. Only the gate's fixed return handling changed executable behavior in that correction; credentials, session security, application and signing bytes were preserved.
 
 The focused return suite passed all 10 tests. The [native-browser regression](verification/tester-return-browser-offline-20261031.json) passed 20 checks using the actual old and new handlers behind local HTTPS fixtures. Chromium reproduced the old cross-site Strict-cookie destination loss, then confirmed the corrected desktop/mobile forms and rejected-code retry. Both exact-source [Settlement integration CI runs](verification/tester-return-ci-20261031.json) passed. Older byte-equality guards may reject the intentional gate-source edit; the prior release's legacy CI results do not establish those workflows' status for this source.
 
@@ -38,7 +40,7 @@ All [28 focused core/controller checks](verification/local-checks-20261031.json)
 
 The initial [read-only mainnet observation](verification/final-chain-state-20261031.json), checkpoint **339991221** at **2026-10-31 02:55:22 UTC**, recorded version 11 before owner signing. The later confirmed upgrade above supersedes that pending-signature handoff.
 
-At that initial release, the available Netlify tester-password value was masked, so authenticated browser login and calendar invocation were not repeated. No credential, session setting, or gate was changed by that initial release. The existing owner-confirmed tester session was its accepted login checkpoint. Netlify generated a different calendar bundle digest while its source and runtime remained unchanged. Those limits apply to the initial hosted record. The current navigation correction above uses the existing code from the owner's earlier conversation and records new authenticated login, administrator content, and calendar checks.
+At that initial release, the available Netlify tester-password value was masked, so authenticated browser login and calendar invocation were not repeated. No credential, session setting, or gate was changed by that initial release. The existing owner-confirmed tester session was its accepted login checkpoint. Netlify generated a different calendar bundle digest while its source and runtime remained unchanged. Those limits apply to the initial hosted record. The later navigation correction above used the existing code from the owner's earlier conversation and recorded authenticated login, administrator content, and calendar checks.
 
 ## Scope
 
@@ -52,7 +54,11 @@ The exact kind SHA-256 is `1b62257103c3a67c36607a7471180cee64159115274b774149282
 
 The route contains no setup, funding, claiming, season activation, compensation, or arbitrary transaction builder. The SDK leaves gas selection and budget to the wallet. A fresh simulation must estimate no more than 0.40 SUI; that review ceiling is not a transaction gas budget or a promised final fee. Any change in the displayed estimate requires the owner to acknowledge the new estimate before opening Slush.
 
-## Owner flow
+## Historical owner signing flow
+
+The owner has completed this flow. Retain these steps as the original approval
+record; use the current page for completed-upgrade detection and receipt
+verification, not another upgrade request.
 
 1. Open the canonical administrator URL or `/tester-access?next=settlement-upgrade`. Enter the existing tester code if needed and choose **Continue to upgrade review**; the login returns directly to the upgrade page.
 2. Connect the Slush browser extension, explicitly select the required administrator account, and choose **Use selected account**.

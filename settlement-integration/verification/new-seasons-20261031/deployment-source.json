@@ -1,0 +1,16 @@
+{
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "siteName": "arboretum-preview",
+  "customDomain": "www.treegrow.xyz",
+  "sourceCommit": "20271661083263cc2e87bbaae2c9f5bf93973382",
+  "archiveSha256": "58a7766edff27fc91455861d12c8f506f89eab7f42bd3265cf7a24dc96d5447a",
+  "archiveBytes": 31466984,
+  "requestedAt": "2026-10-31T05:00:49.297453+00:00",
+  "previousPublishedDeployId": "6ae56c55b4f726c32698bd38",
+  "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+  "submissionAttempted": true,
+  "responseReceived": true,
+  "responseHttpStatus": 200,
+  "buildId": "6ae57602f4f0e531f67877e5",
+  "deployId": "6ae57602f4f0e531f67877e7"
+}

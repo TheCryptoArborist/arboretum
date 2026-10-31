@@ -1,0 +1,962 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T05:04:19.609014+00:00",
+  "sourceUpload": {
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "siteName": "arboretum-preview",
+    "customDomain": "www.treegrow.xyz",
+    "sourceCommit": "20271661083263cc2e87bbaae2c9f5bf93973382",
+    "archiveSha256": "58a7766edff27fc91455861d12c8f506f89eab7f42bd3265cf7a24dc96d5447a",
+    "archiveBytes": 31466984,
+    "requestedAt": "2026-10-31T05:00:49.297453+00:00",
+    "previousPublishedDeployId": "6ae56c55b4f726c32698bd38",
+    "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+    "submissionAttempted": true,
+    "responseReceived": true,
+    "responseHttpStatus": 200,
+    "buildId": "6ae57602f4f0e531f67877e5",
+    "deployId": "6ae57602f4f0e531f67877e7"
+  },
+  "deployment": {
+    "id": "6ae57602f4f0e531f67877e7",
+    "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "build_id": "6ae57602f4f0e531f67877e5",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-10-31T05:01:12.083Z",
+    "deploy_source": "api",
+    "has_source_zip": true
+  },
+  "entryUrl": "https://www.treegrow.xyz/tester-access?next=new-seasons",
+  "newSeasonsUrl": "https://www.treegrow.xyz/settlement-game.html",
+  "rawDeployedAssets": [
+    {
+      "path": "index.html",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "matches": true
+    },
+    {
+      "path": "player-guide.html",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "matches": true
+    },
+    {
+      "path": "game.html",
+      "sha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "matches": true
+    },
+    {
+      "path": "settlement-game.html",
+      "sha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+      "matches": true
+    },
+    {
+      "path": "wallet.js",
+      "sha256": "4d4486b9f39cdedcc6adfafafd9ae51e00514b08fa68926076bf4854ccdef043",
+      "matches": true
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "sha256": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.css",
+      "sha256": "bcc8165ce351dc818a9c13560b2cde8843c92f384b89b421ae21df988c9d430e",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "sha256": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "sha256": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+      "matches": true
+    },
+    {
+      "path": "settlement-wallet.js",
+      "sha256": "712901808debd5f36965b9fbc1e0d7ca3d2c26911c16e92b2c486ad8f3367ace",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.css",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.mjs",
+      "sha256": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "sha256": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/upgrade-kind.b64",
+      "sha256": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/admin.css",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/admin.mjs",
+      "sha256": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/index.html",
+      "sha256": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/setup-kind.b64",
+      "sha256": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849",
+      "matches": true
+    },
+    {
+      "path": "garden.js",
+      "sha256": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+      "matches": true
+    },
+    {
+      "path": "season-status/garden-status.mjs",
+      "sha256": "e25886590696cd29017a0e9d338661303d7dc4aaf12ce265c5bc7f0986dc728c",
+      "matches": true
+    },
+    {
+      "path": "economy-review/garden-ux.mjs",
+      "sha256": "e0b55d5f0c216c75865c6b2219ef31d62cc25f423623199ede5bc2d5a3d08613",
+      "matches": true
+    },
+    {
+      "path": "economy-review/partner-panel.mjs",
+      "sha256": "5380b9bcc5def7ade2ae5401bad825cc07f8fed869d1b06cd49b72b422ae5ffb",
+      "matches": true
+    }
+  ],
+  "completePublishedInventory": [
+    {
+      "path": "admin/settlement-setup/admin.css",
+      "deployedPath": "admin/settlement-setup/admin.css",
+      "sha1": "8c14bc11642f09151a330aa1b893e99cd297c5c6",
+      "bytes": 9027,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/admin.mjs",
+      "deployedPath": "admin/settlement-setup/admin.mjs",
+      "sha1": "e7ad162696b795bffe7fd02321fa63ab084596ce",
+      "bytes": 411217,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/index.html",
+      "deployedPath": "admin/settlement-setup/index.html",
+      "sha1": "a2026170f3e2c55824048f40553c0b94e17cbddb",
+      "bytes": 9421,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/setup-kind.b64",
+      "deployedPath": "admin/settlement-setup/setup-kind.b64",
+      "sha1": "7cd7f894c298178d7b954e7646f097c7511770e9",
+      "bytes": 209,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.css",
+      "deployedPath": "admin/settlement-upgrade/admin.css",
+      "sha1": "8c14bc11642f09151a330aa1b893e99cd297c5c6",
+      "bytes": 9027,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.mjs",
+      "deployedPath": "admin/settlement-upgrade/admin.mjs",
+      "sha1": "b5c83310c69d994c136ff59a95cdfecc3bbbf5be",
+      "bytes": 393912,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "deployedPath": "admin/settlement-upgrade/index.html",
+      "sha1": "cdc21e1a063b7211641bc699821e55bbc57dc1fa",
+      "bytes": 8921,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/upgrade-kind.b64",
+      "deployedPath": "admin/settlement-upgrade/upgrade-kind.b64",
+      "sha1": "b630ee75f08dc2bd5455228d12f48ffaa0dcf587",
+      "bytes": 54157,
+      "matches": true
+    },
+    {
+      "path": "arboretum-protocol-logo.png",
+      "deployedPath": "arboretum-protocol-logo.png",
+      "sha1": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "bytes": 1817978,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/ancient-oak-frame.png",
+      "deployedPath": "assets/cosmetics/frames/ancient-oak-frame.png",
+      "sha1": "150ff5d3172258d26e51e1c5a031f6998f50cac4",
+      "bytes": 251920,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/first-growth-ring-frame.png",
+      "deployedPath": "assets/cosmetics/frames/first-growth-ring-frame.png",
+      "sha1": "5fcf1596a3e6c679ea2a7090c4b6200a4dcb8aa5",
+      "bytes": 201969,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/frame-contact-sheet.png",
+      "deployedPath": "assets/cosmetics/frames/frame-contact-sheet.png",
+      "sha1": "a8a949c5e2b9762772774618ef3e435d918a644e",
+      "bytes": 225552,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/legendary-canopy-frame.png",
+      "deployedPath": "assets/cosmetics/frames/legendary-canopy-frame.png",
+      "sha1": "3c13e0b1e8f2c5c55b23058a1c479fa91b37104f",
+      "bytes": 363521,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/mythic-living-crown.png",
+      "deployedPath": "assets/cosmetics/frames/mythic-living-crown.png",
+      "sha1": "e9c05f0596ed1d18d1e260355be6d70eb0c8e473",
+      "bytes": 366663,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "deployedPath": "assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "sha1": "5fb8a363d10c73ffc0a1f7aad4e6ac8f685c8ac8",
+      "bytes": 290825,
+      "matches": true
+    },
+    {
+      "path": "assets/cosmetics/frames/starter-emerald-nursery.png",
+      "deployedPath": "assets/cosmetics/frames/starter-emerald-nursery.png",
+      "sha1": "964157ebf0dad82bc474cc4696802f1b27da78ed",
+      "bytes": 241300,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/ancient-growth.png",
+      "deployedPath": "assets/growth/ancient-growth.png",
+      "sha1": "85381457a27f639b07a77b3e2a6f41e2a2956f9d",
+      "bytes": 199829,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/branching-out.png",
+      "deployedPath": "assets/growth/branching-out.png",
+      "sha1": "7ee87afd45f2c28bd5780faa6189aae695a1bc5b",
+      "bytes": 102765,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/canopy-rise.png",
+      "deployedPath": "assets/growth/canopy-rise.png",
+      "sha1": "a9e8623d26335bfe096a33e38007e4bbfd30d2c7",
+      "bytes": 133420,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/first-growth-ring.png",
+      "deployedPath": "assets/growth/first-growth-ring.png",
+      "sha1": "7c1485835ac2b63e2659efe1a7c17d5f26ae73f6",
+      "bytes": 188809,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/first-planting.png",
+      "deployedPath": "assets/growth/first-planting.png",
+      "sha1": "795084b4eaadae0c88a1a6d7f01fa6ae7aec0449",
+      "bytes": 29237,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/season-harvest.png",
+      "deployedPath": "assets/growth/season-harvest.png",
+      "sha1": "8e4b9ccf58bdcb6d5d09715ba1dfa3587c0a60d6",
+      "bytes": 131203,
+      "matches": true
+    },
+    {
+      "path": "assets/growth/taking-root.png",
+      "deployedPath": "assets/growth/taking-root.png",
+      "sha1": "b2ca8cce48ddd68f8bb9296c9ac0773745d9447c",
+      "bytes": 42920,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/ancient-crate.jpg",
+      "deployedPath": "assets/shop/crates/ancient-crate.jpg",
+      "sha1": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "bytes": 591531,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/boom-chest.png",
+      "deployedPath": "assets/shop/crates/boom-chest.png",
+      "sha1": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "bytes": 2716812,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/canopy-crate.jpg",
+      "deployedPath": "assets/shop/crates/canopy-crate.jpg",
+      "sha1": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "bytes": 444971,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/grove-crate.jpg",
+      "deployedPath": "assets/shop/crates/grove-crate.jpg",
+      "sha1": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "bytes": 474164,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/mythic-crate.jpg",
+      "deployedPath": "assets/shop/crates/mythic-crate.jpg",
+      "sha1": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "bytes": 535874,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/seedling-crate.jpg",
+      "deployedPath": "assets/shop/crates/seedling-crate.jpg",
+      "sha1": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "bytes": 389653,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/supply-drop.jpg",
+      "deployedPath": "assets/shop/crates/supply-drop.jpg",
+      "sha1": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "bytes": 409209,
+      "matches": true
+    },
+    {
+      "path": "assets/shop/crates/victory-chest.png",
+      "deployedPath": "assets/shop/crates/victory-chest.png",
+      "sha1": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "bytes": 2505790,
+      "matches": true
+    },
+    {
+      "path": "background.jpg",
+      "deployedPath": "background.jpg",
+      "sha1": "dbe94587737e82f5844397f47d32a81557527c03",
+      "bytes": 163001,
+      "matches": true
+    },
+    {
+      "path": "background4.jpg",
+      "deployedPath": "background4.jpg",
+      "sha1": "b107c052150c2772c14ef6155a073a4c7104e183",
+      "bytes": 63275,
+      "matches": true
+    },
+    {
+      "path": "background5.jpg",
+      "deployedPath": "background5.jpg",
+      "sha1": "a17f6f9093e29987959856286d065611db3b3373",
+      "bytes": 887261,
+      "matches": true
+    },
+    {
+      "path": "background6.jpg",
+      "deployedPath": "background6.jpg",
+      "sha1": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "bytes": 157821,
+      "matches": true
+    },
+    {
+      "path": "backgroundA.jpg",
+      "deployedPath": "backgrounda.jpg",
+      "sha1": "69f13c3a040232bb560513044db3e165c6594247",
+      "bytes": 855525,
+      "matches": true
+    },
+    {
+      "path": "economy-review/garden-ux-model.mjs",
+      "deployedPath": "economy-review/garden-ux-model.mjs",
+      "sha1": "ea54ed3dc838109c36757b28fec60a17110a8fa7",
+      "bytes": 7696,
+      "matches": true
+    },
+    {
+      "path": "economy-review/garden-ux.css",
+      "deployedPath": "economy-review/garden-ux.css",
+      "sha1": "c15dc7bf4ba23e70c0437b4b3ac31af3e9e8b51f",
+      "bytes": 10829,
+      "matches": true
+    },
+    {
+      "path": "economy-review/garden-ux.mjs",
+      "deployedPath": "economy-review/garden-ux.mjs",
+      "sha1": "e8f13e05a31c271e5a6e11c7a2caa61e30d222a8",
+      "bytes": 22379,
+      "matches": true
+    },
+    {
+      "path": "economy-review/ledger.mjs",
+      "deployedPath": "economy-review/ledger.mjs",
+      "sha1": "6d90ac8b52ca6fcaf43e652080322d3c82283a81",
+      "bytes": 12282,
+      "matches": true
+    },
+    {
+      "path": "economy-review/live-reader.mjs",
+      "deployedPath": "economy-review/live-reader.mjs",
+      "sha1": "24ef6d65e67f17c8423a2e6bfe65af59990b1f68",
+      "bytes": 19797,
+      "matches": true
+    },
+    {
+      "path": "economy-review/partner-panel.css",
+      "deployedPath": "economy-review/partner-panel.css",
+      "sha1": "b1a0897fbaa7d69db67035bd719bcbdb93fa89dd",
+      "bytes": 4143,
+      "matches": true
+    },
+    {
+      "path": "economy-review/partner-panel.mjs",
+      "deployedPath": "economy-review/partner-panel.mjs",
+      "sha1": "2fe1d2ed11efbc589dff1a15e884589074083bbf",
+      "bytes": 13345,
+      "matches": true
+    },
+    {
+      "path": "economy-review/partner-reconciliation-panel.mjs",
+      "deployedPath": "economy-review/partner-reconciliation-panel.mjs",
+      "sha1": "4147540161f78af262170a42f1e3a46de6629982",
+      "bytes": 2273,
+      "matches": true
+    },
+    {
+      "path": "economy-review/read-queries.mjs",
+      "deployedPath": "economy-review/read-queries.mjs",
+      "sha1": "e17213c0e0fe109ce50e1dfa79585f585ffdcf5a",
+      "bytes": 1455,
+      "matches": true
+    },
+    {
+      "path": "economy-review/season-reader.mjs",
+      "deployedPath": "economy-review/season-reader.mjs",
+      "sha1": "df66d5fdaa9f7ddb35031c4dcd3893a56c42dbc6",
+      "bytes": 10926,
+      "matches": true
+    },
+    {
+      "path": "game.html",
+      "deployedPath": "game.html",
+      "sha1": "61b870c3044aa336fc88bfc8a6a72cd002775e3e",
+      "bytes": 576478,
+      "matches": true
+    },
+    {
+      "path": "garden-battles-cosmetics-concept.png",
+      "deployedPath": "garden-battles-cosmetics-concept.png",
+      "sha1": "ed0ed2a430cc3dcf847a758a159b78a5c333064e",
+      "bytes": 2088628,
+      "matches": true
+    },
+    {
+      "path": "garden.js",
+      "deployedPath": "garden.js",
+      "sha1": "7a45fb40201fdb9f72ab60a66fe73c69b8d6003b",
+      "bytes": 15258,
+      "matches": true
+    },
+    {
+      "path": "garden.png",
+      "deployedPath": "garden.png",
+      "sha1": "f18c4f1ff42a1f3be19f8632c579de3faebbcdeb",
+      "bytes": 392706,
+      "matches": true
+    },
+    {
+      "path": "guide/guide.css",
+      "deployedPath": "guide/guide.css",
+      "sha1": "d7b6abdd7c5b0bdcdd58cb83f9641b80db45f4c3",
+      "bytes": 14355,
+      "matches": true
+    },
+    {
+      "path": "guide/player-guide.css",
+      "deployedPath": "guide/player-guide.css",
+      "sha1": "2eae9ec0aeee7ea33beb1abd2e9d86b364091299",
+      "bytes": 48829,
+      "matches": true
+    },
+    {
+      "path": "guide/player-guide.js",
+      "deployedPath": "guide/player-guide.js",
+      "sha1": "bd664112639378f8e84542ca533f3a7a236decc3",
+      "bytes": 3045,
+      "matches": true
+    },
+    {
+      "path": "hero.png",
+      "deployedPath": "hero.png",
+      "sha1": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "bytes": 634915,
+      "matches": true
+    },
+    {
+      "path": "index.html",
+      "deployedPath": "index.html",
+      "sha1": "5b877381838492b003e196496e47ee99aa6795ca",
+      "bytes": 13362,
+      "matches": true
+    },
+    {
+      "path": "mascot.png",
+      "deployedPath": "mascot.png",
+      "sha1": "9f5e5db66e2f6c3eee41d70b1800094fe014a473",
+      "bytes": 666831,
+      "matches": true
+    },
+    {
+      "path": "player-guide.html",
+      "deployedPath": "player-guide.html",
+      "sha1": "414be1bd853c757a8b09c9f951610a0376dd1633",
+      "bytes": 35657,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/ancient.jpg",
+      "deployedPath": "prelaunch/ancient.jpg",
+      "sha1": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "bytes": 591531,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/boom-chest.png",
+      "deployedPath": "prelaunch/boom-chest.png",
+      "sha1": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "bytes": 2716812,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/canopy-crate.jpg",
+      "deployedPath": "prelaunch/canopy-crate.jpg",
+      "sha1": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "bytes": 444971,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/forest.jpg",
+      "deployedPath": "prelaunch/forest.jpg",
+      "sha1": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "bytes": 157821,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/garden-preview.avif",
+      "deployedPath": "prelaunch/garden-preview.avif",
+      "sha1": "e0704dd3a2825c591772568f87580a031c0ce0b2",
+      "bytes": 14439,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/grove-crate.jpg",
+      "deployedPath": "prelaunch/grove-crate.jpg",
+      "sha1": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "bytes": 474164,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/hero.png",
+      "deployedPath": "prelaunch/hero.png",
+      "sha1": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "bytes": 634915,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/mark.png",
+      "deployedPath": "prelaunch/mark.png",
+      "sha1": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "bytes": 1817978,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/mythic-crate.jpg",
+      "deployedPath": "prelaunch/mythic-crate.jpg",
+      "sha1": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "bytes": 535874,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/seedling-crate.jpg",
+      "deployedPath": "prelaunch/seedling-crate.jpg",
+      "sha1": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "bytes": 389653,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/shop-pool.css",
+      "deployedPath": "prelaunch/shop-pool.css",
+      "sha1": "72bad803daa2ded9e8f5d12a14dbae799b94d0b7",
+      "bytes": 7537,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/site.css",
+      "deployedPath": "prelaunch/site.css",
+      "sha1": "c8bfa58ea4d6788f8a311f441872acf9cf05862b",
+      "bytes": 39019,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/supply-drop.jpg",
+      "deployedPath": "prelaunch/supply-drop.jpg",
+      "sha1": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "bytes": 409209,
+      "matches": true
+    },
+    {
+      "path": "prelaunch/victory-chest.png",
+      "deployedPath": "prelaunch/victory-chest.png",
+      "sha1": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "bytes": 2505790,
+      "matches": true
+    },
+    {
+      "path": "robots.txt",
+      "deployedPath": "robots.txt",
+      "sha1": "63657cbb7d7086c56b0cd4e5c6999bb683664868",
+      "bytes": 26,
+      "matches": true
+    },
+    {
+      "path": "sdk-entry.js",
+      "deployedPath": "sdk-entry.js",
+      "sha1": "ab95bd4a4e0417444e648decf6880f713103561a",
+      "bytes": 317,
+      "matches": true
+    },
+    {
+      "path": "season-status/garden-status.mjs",
+      "deployedPath": "season-status/garden-status.mjs",
+      "sha1": "f0f032675b7cb0571915af9fd4c1ff55123a8103",
+      "bytes": 8560,
+      "matches": true
+    },
+    {
+      "path": "season-status/model.mjs",
+      "deployedPath": "season-status/model.mjs",
+      "sha1": "c7187b1405032118191a95c30fa8f58d4549cc50",
+      "bytes": 4843,
+      "matches": true
+    },
+    {
+      "path": "season-status/panel.css",
+      "deployedPath": "season-status/panel.css",
+      "sha1": "4a8489448ae29685c6b1a58e9eabd2ae361d18f8",
+      "bytes": 2227,
+      "matches": true
+    },
+    {
+      "path": "settlement-game.html",
+      "deployedPath": "settlement-game.html",
+      "sha1": "5d517f817e4e0ac3b80c1d6a43aabd61b37531a1",
+      "bytes": 580715,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "deployedPath": "settlement-integration/deployment-config.mjs",
+      "sha1": "432f22d8f8bc793a9fff75d92d586482bb53058c",
+      "bytes": 2255,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "deployedPath": "settlement-integration/model.mjs",
+      "sha1": "dc992cd4445c72d74365510f371f5074d5c9e69f",
+      "bytes": 21666,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "deployedPath": "settlement-integration/reader.mjs",
+      "sha1": "4c56cc6e89d4c46540630db5eea1a101a0a11c76",
+      "bytes": 9588,
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.css",
+      "deployedPath": "settlement-panel.css",
+      "sha1": "0cd7fa3b537b905baa4666b81791917feb425df2",
+      "bytes": 10804,
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "deployedPath": "settlement-panel.mjs",
+      "sha1": "1a2012e27e454c94b460880db50bfba8ed079740",
+      "bytes": 24961,
+      "matches": true
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "deployedPath": "settlement-sdk.bundle.js",
+      "sha1": "3f6dbcbaf0fabcd8fd5724ffea91b62f82cd6d66",
+      "bytes": 265139,
+      "matches": true
+    },
+    {
+      "path": "settlement-wallet.js",
+      "deployedPath": "settlement-wallet.js",
+      "sha1": "644bbcd2c75426bcf72c21262225ee71265e0f28",
+      "bytes": 77070,
+      "matches": true
+    },
+    {
+      "path": "sitemap.xml",
+      "deployedPath": "sitemap.xml",
+      "sha1": "d58a642e0be10a910d2cded1240c152c0d4bdef4",
+      "bytes": 150,
+      "matches": true
+    },
+    {
+      "path": "sui-sdk.bundle.js",
+      "deployedPath": "sui-sdk.bundle.js",
+      "sha1": "853fd2da7f3e5e00688fd591c2a2f01a486c6c41",
+      "bytes": 152351,
+      "matches": true
+    },
+    {
+      "path": "tester-guide.html",
+      "deployedPath": "tester-guide.html",
+      "sha1": "4fccae59ed56919548eed2c5e59a9662e8d508fb",
+      "bytes": 59488,
+      "matches": true
+    },
+    {
+      "path": "thick.png",
+      "deployedPath": "thick.png",
+      "sha1": "ad280e7b551f15631f84ffe01bc5373746590da6",
+      "bytes": 1004336,
+      "matches": true
+    },
+    {
+      "path": "tree.jpg",
+      "deployedPath": "tree.jpg",
+      "sha1": "5ca16c779edf1d559e5be5a02a6edd2e626d9c2f",
+      "bytes": 37233,
+      "matches": true
+    },
+    {
+      "path": "wallet.js",
+      "deployedPath": "wallet.js",
+      "sha1": "8b6dc45675b0e92e8b41c5c4db39288725457022",
+      "bytes": 77066,
+      "matches": true
+    }
+  ],
+  "publishedInventoryPathMapping": {
+    "backgroundA.jpg": "backgrounda.jpg"
+  },
+  "additionalPublishedSourceConfig": {
+    "path": "netlify.toml",
+    "sha256": "fb10df6b1a49ce69f130cc3103a4816a785f5bbab2781738af07bb195331c1f7",
+    "bytes": 353,
+    "matchesSource": true
+  },
+  "preservedAssetPaths": [
+    "index.html",
+    "player-guide.html",
+    "settlement-sdk.bundle.js",
+    "settlement-integration/reader.mjs",
+    "admin/settlement-upgrade/admin.css",
+    "admin/settlement-upgrade/admin.mjs",
+    "admin/settlement-upgrade/index.html",
+    "admin/settlement-upgrade/upgrade-kind.b64",
+    "admin/settlement-setup/admin.css",
+    "admin/settlement-setup/admin.mjs",
+    "admin/settlement-setup/index.html",
+    "admin/settlement-setup/setup-kind.b64"
+  ],
+  "httpChecks": [
+    {
+      "check": "New seasons return retained /settlement-game.html",
+      "passed": true
+    },
+    {
+      "check": "New seasons return retained /settlement-game",
+      "passed": true
+    },
+    {
+      "check": "New seasons return retained /settlement-game/",
+      "passed": true
+    },
+    {
+      "check": "Existing administrator return retained upgrade",
+      "passed": true
+    },
+    {
+      "check": "Existing administrator return retained setup",
+      "passed": true
+    },
+    {
+      "check": "Existing garden retains normal tester entrance",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-panel.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-panel.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-integration/deployment-config.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-integration/model.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous new-view asset protected settlement-integration/reader.mjs",
+      "passed": true
+    },
+    {
+      "check": "New-seasons native login form",
+      "passed": true
+    },
+    {
+      "check": "Native form origin protections",
+      "passed": true
+    },
+    {
+      "check": "Incorrect-code retry retains new-seasons intent",
+      "passed": true
+    },
+    {
+      "check": "Valid login opens New seasons",
+      "passed": true
+    },
+    {
+      "check": "Secure Strict session retained",
+      "passed": true
+    },
+    {
+      "check": "Authenticated new-season document",
+      "passed": true
+    },
+    {
+      "check": "New-season document is private and unindexed",
+      "passed": true
+    },
+    {
+      "check": "New-season document allows the protected app to run",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-panel.mjs",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-panel.css",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-integration/deployment-config.mjs",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-integration/model.mjs",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact new-view asset settlement-integration/reader.mjs",
+      "passed": true
+    },
+    {
+      "check": "Existing garden remains the legacy route",
+      "passed": true
+    },
+    {
+      "check": "Completed administrator receipt page retained upgrade",
+      "passed": true
+    },
+    {
+      "check": "Completed administrator receipt page retained setup",
+      "passed": true
+    },
+    {
+      "check": "Calendar response matches its preserved function",
+      "passed": true
+    },
+    {
+      "check": "Tester logout retained",
+      "passed": true
+    },
+    {
+      "check": "Default login still opens existing garden",
+      "passed": true
+    }
+  ],
+  "readOnlyReview": true,
+  "settlementActivationEnabled": false,
+  "gameplayTransactionsEnabled": false,
+  "authenticatedLoginVerified": true,
+  "bothAdministratorRoutesUnchanged": true,
+  "calendarBundleDigestUnchanged": true,
+  "retainedOriginalProjectUnchanged": true,
+  "edgeFunctionNames": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "serverlessFunctionNames": [
+    "calendar-reminder"
+  ],
+  "functionSchedules": [],
+  "credentialsChanged": false,
+  "cookieSameSite": "Strict",
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limits": [
+    "HTTP checks do not establish live JavaScript rendering or native cookie behavior; separate browser records cover those cases."
+  ]
+}
