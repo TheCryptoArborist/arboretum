@@ -1,0 +1,15 @@
+{
+  "id": "6ae66915a1c6f7918ba01600",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6ae66914a1c6f7918ba015fe",
+  "state": "ready",
+  "context": "production",
+  "title": "Add owner review for first test Seed \u00b7 05f67fc9a3c4",
+  "created_at": "2026-10-31T22:17:57.059Z",
+  "published_at": "2026-10-31T22:18:13.185Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}

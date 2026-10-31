@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-31T22:13:21.970288+00:00",
-  "status": "PREPUBLICATION_VERIFIED",
+  "verifiedAt": "2026-10-31T22:22:34.080298+00:00",
+  "status": "PUBLISHED_VERIFIED_OWNER_PLANTING_PENDING",
   "baseCommit": "21f7a2e0198b30f2c3ba091bbf4b5d8b46604609",
   "actualStartReceipt": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
   "actualStartVerified": true,
@@ -33,5 +33,67 @@
     "desktop": "browser/desktop-ready.png",
     "mobile": "browser/mobile-ready.png",
     "passed": true
-  }
+  },
+  "publishedSourceCommit": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+  "publishedSourceTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+  "publishedDeployId": "6ae66915a1c6f7918ba01600",
+  "sourceUploadCount": 1,
+  "publishedAt": "2026-10-31T22:18:13.185Z",
+  "hostedHTTPChecksPassed": 19,
+  "hostedNativeBrowserChecksPassed": 12,
+  "hostedCompiledBrowserChecksPassed": 8,
+  "hostedCriticalAssetBytesMatched": 31,
+  "hostedCompleteApplicationInventoryMatched": 97,
+  "exactSourceRequiredCIRunsPassed": [
+    41247516366,
+    41247511882
+  ],
+  "allRepositoryCIGreen": false,
+  "otherWorkflowFailures": 5,
+  "normalBrowserTLS": true,
+  "browserTrustRestored": true,
+  "hostedVisualReviewPassed": true,
+  "latestActualState": [
+    {
+      "width": 1440,
+      "checkpoint": {
+        "sequenceNumber": 340281199,
+        "timestamp": "2026-10-31T22:21:28.563Z",
+        "digest": "3cf1DY8Z79QKeBFRjY3WJYLdwqHB1vyWbccH67Et5eSi"
+      },
+      "state": {
+        "seasonId": "1",
+        "storedStartMs": "1790978248277",
+        "rewardPoolMist": "0",
+        "treasuryMist": "0",
+        "totalSeeds": "0",
+        "growthPoints": "0",
+        "eligibleGrowthPoints": "0",
+        "paused": false
+      },
+      "ownedNFTreeCount": 1077,
+      "inventoryPages": 22
+    },
+    {
+      "width": 390,
+      "checkpoint": {
+        "sequenceNumber": 340281218,
+        "timestamp": "2026-10-31T22:21:33.150Z",
+        "digest": "7HJBm6EU8a4fzHoW3fndG9xq2RWwyWWGPkVLorscqQ7W"
+      },
+      "state": {
+        "seasonId": "1",
+        "storedStartMs": "1790978248277",
+        "rewardPoolMist": "0",
+        "treasuryMist": "0",
+        "totalSeeds": "0",
+        "growthPoints": "0",
+        "eligibleGrowthPoints": "0",
+        "paused": false
+      },
+      "ownedNFTreeCount": 1077,
+      "inventoryPages": 22
+    }
+  ],
+  "publicationEvidenceIsFollowupOnly": true
 }

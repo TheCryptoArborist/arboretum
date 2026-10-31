@@ -6,10 +6,13 @@ The actual first test season is confirmed on Sui mainnet. The next owner action
 is one paid NFTree-backed planting in the same version-1 Season 1. The protected
 entrance is <https://www.treegrow.xyz/tester-access?next=gameplay-test>.
 
-This source snapshot is prepared for publication. The deployment, hosted checks
-and exact-source CI results will be recorded in an evidence-only follow-up after
-the saved source is published. No real planting was executed during development
-or verification. Only the owner can approve that transaction in Slush.
+Published on **October 31, 2026 at 22:18:13.185 UTC**, from source commit
+[`05f67fc9a3c489bef4502be885d91e7cf0446522`](https://github.com/TheCryptoArborist/arboretum/commit/05f67fc9a3c489bef4502be885d91e7cf0446522),
+tree `cb4b67de409ceac42acaebb46db13d6820b14521`, with one journaled source upload.
+The published Netlify deployment is **`6ae66915a1c6f7918ba01600`**. Publication
+evidence is saved in an evidence-only follow-up; it does not cause a second
+deployment. No real planting was executed during development or verification.
+Only the owner can approve that transaction in Slush.
 
 ## Actual season-start receipt
 
@@ -151,3 +154,62 @@ version-2 candidate are unchanged. Hosted verification checks native login,
 actual JavaScript loading, complete public inventory and exact deployed bytes
 without a wallet, simulation, signing or execution. Tester credentials are
 supplied through stdin and are excluded from files and reports.
+
+## Published-byte and HTTP results
+
+The published deployment matches all **97 application files** in the complete
+inventory. Its **31 critical assets** were also downloaded and compared byte for
+byte with the verified build. The calendar function bundle, runtime and region,
+both edge-function names, empty schedules, disconnected Git continuous
+deployment and retained original site's published deployment were verified
+again after publication. See `hosted/hosted-assets.json`.
+
+All **19 HTTP checks** passed: protected document returns, anonymous asset denial,
+fixed login destination, bad-code retry, existing-code success, Strict host-only
+cookie attributes, live heading, exact authenticated assets, logout and denial
+after logout. See `hosted/hosted-http.json`. Native browser behavior and live
+JavaScript are recorded separately because HTTP checks alone do not prove them.
+
+The live native-browser suite passed **12/12 checks** at desktop and mobile
+widths, including entry from an external ChatGPT-origin link with a Strict
+cookie already stored, bad-code retry and the correct gameplay destination.
+See `hosted/native-browser/summary.json`.
+
+The live JavaScript-enabled suite passed **8/8 checks** across two widths. It
+loaded the exact published bundle, performed the fixed public proof/input reads
+and all 22 pinned NFT inventory pages, and confirmed 1,077 matching NFTs,
+Season 1, zero Seeds, zero GP and zero pool. Both page layouts were visually
+reviewed. There were no console errors, horizontal overflow, wallet connections,
+simulations, signatures or execution requests. See
+`hosted/compiled-browser/summary.json`; its final check completed at
+**2026-10-31T22:21:37.533Z**.
+
+The first fresh-browser attempts stopped before login because this workspace's
+Chromium NSS store lacked its existing runtime HTTPS CA. Those attempts remain
+under `hosted/initial-browser-trust-failure/`. The accepted runs used normal TLS
+after adding only one named entry for that already system-trusted CA. That entry
+was removed immediately after the tests, and the prior trust listing was
+restored exactly. No certificate-verification bypass, website trust change or
+global package installation was used. The extracted official Ubuntu tool's
+signed metadata/package verification and cleanup are retained in
+`hosted/browser-tools-restoration.json` and `hosted/browser-trust-cleanup.json`.
+
+## Exact published-source CI
+
+Both required **Settlement app integration review** runs passed for source
+`05f67fc9a3c489bef4502be885d91e7cf0446522`:
+
+- [Push run 41247511882](https://github.com/TheCryptoArborist/arboretum/actions/runs/41247511882)
+- [Pull-request run 41247516366](https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516366)
+
+The push job checked out the exact source commit. The pull-request job checked
+out GitHub's synthetic merge `657def6ca228402ffbffed6d7ea33b8c95a7145f`, whose
+tree is exactly the published source tree. Both verification and build steps
+passed, and their artifacts were listed with GitHub-provided digests. The PR
+was not merged. See `hosted/ci.json` for job/step and checkout evidence.
+
+This is not an all-repository-green claim: the current inventory has seven
+successful runs and five failed older scope/baseline workflows. Their deployment
+steps were skipped. The record identifies observed failure stages and preserves
+the limits where detailed redirected assertion artifacts were not downloaded.
+No failed workflow was rerun, bypassed or used to deploy this page.
