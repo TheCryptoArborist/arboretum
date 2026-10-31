@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T05:30:06.518887+00:00",
+  "status": "TEST_STEP_COMPLETE_LIVE_INVENTORY_ISOLATION_REQUIRED",
+  "sourceBaseCommit": "1ab88ccc2301bd3aae8012bd7b9733f406957d80",
+  "branch": "feature/settlement-app-integration-20261020",
+  "scope": "First-season contract entrypoint tests, unsigned mainnet start rehearsal, offline evidence-validator regressions and documentation only",
+  "moveTests": {
+    "total": 19,
+    "passed": 19,
+    "failed": 0
+  },
+  "validatorTests": {
+    "tests": 30,
+    "pass": 30,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "mainnetRehearsal": {
+    "durationHours": 24,
+    "durationChosenForSimulationOnly": true,
+    "status": "SIMULATION_ONLY_SUCCESS",
+    "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "gasEstimateMist": "100553",
+    "gasEstimateSui": "0.000100553",
+    "record": "mainnet/summary.json"
+  },
+  "actualAfterRehearsal": {
+    "actualRegistryUnchanged": true,
+    "actualAdminCapUnchanged": true,
+    "upgradeAndLegacyObjectsUnchanged": true,
+    "actualSeasonId": "0",
+    "actualSeasonStartMs": "0",
+    "actualRewardPoolMist": "0",
+    "actualTreasuryMist": "0",
+    "observedAtOrAfterSimulatedClock": true,
+    "simulatedClockMs": "1793424475440",
+    "checkpoint": {
+      "sequenceNumber": 340028868,
+      "timestamp": "2026-10-31T05:27:56.614Z",
+      "digest": "G8qAxGvC7EcMLMT3kyEWJyYzyffWar8jsnKYB3MUwFrZ"
+    }
+  },
+  "actualSignaturesRequested": 0,
+  "actualTransactionsSubmitted": 0,
+  "actualGasSpentMist": "0",
+  "actualFundsDepositedMist": "0",
+  "productionContractAndApplicationChanged": false,
+  "websiteDeploymentPerformed": false,
+  "unchangedPublishedSource": "20271661083263cc2e87bbaae2c9f5bf93973382",
+  "unchangedWebsiteDeployment": "6ae57602f4f0e531f67877e7",
+  "findings": [
+    {
+      "id": "SAME_VERSION_INVENTORY_CROSSES_REGISTRIES",
+      "status": "REPRODUCED_NOT_FIXED",
+      "evidence": "move/first-season-tests.log",
+      "description": "Tools bought in Registry A can be applied in Registry B; Crates bought in A can be opened through unstarted B. Another Registry alone does not isolate test-price inventory from later use under the same module/version."
+    }
+  ],
+  "nextLiveTestPrerequisite": "Review and verify inventory/version/economy isolation before opening paid mainnet testing; the approved production price schedule does not need reapproval.",
+  "independentReview": {
+    "validatorAndDriver": "No remaining correctness blocker found",
+    "evidenceAndScope": "Recorded results and unchanged-source scope confirmed"
+  },
+  "fileHashScope": "All candidate source, evidence and documentation files except this self-referential summary.",
+  "files": [
+    {
+      "path": "settlement-integration/README.md",
+      "bytes": 26545,
+      "sha256": "3352d433b04bb3d32260b12ba7781c04579f8cbddae316313762025bd72426d1"
+    },
+    {
+      "path": "settlement-integration/season-test/README.md",
+      "bytes": 3961,
+      "sha256": "e54cc2a66003fdcc84c0d57aff6c62342bf053f0fc6c18a3fa463b66be8a3939"
+    },
+    {
+      "path": "settlement-integration/season-test/check-live.mjs",
+      "bytes": 5673,
+      "sha256": "ee5e821254dfc30143f577df0ac5a1ef30f8c459f10246ba1be2b7cd0ad8335a"
+    },
+    {
+      "path": "settlement-integration/season-test/move/README.md",
+      "bytes": 3514,
+      "sha256": "f5464afd3c6873b7525958b17b7a2f7a33cf008ee570e68241fa209349015764"
+    },
+    {
+      "path": "settlement-integration/season-test/move/first-season-tests.move.inc",
+      "bytes": 18137,
+      "sha256": "ae59f51ca909c51838a52b913fb3781fe2eab95bb29530ee66be05d5bfb94a3a"
+    },
+    {
+      "path": "settlement-integration/season-test/run-move-tests.py",
+      "bytes": 10087,
+      "sha256": "512697ccad13f75bf6141f2d6bfd5b0128118cb175ac23a5ce3c4ffcaf5db567"
+    },
+    {
+      "path": "settlement-integration/season-test/start-core.mjs",
+      "bytes": 21636,
+      "sha256": "710826322c9bafd4fa2278e90ba7935a3e91f7b583caf5b88d49fed5268ecf30"
+    },
+    {
+      "path": "settlement-integration/season-test/start-core.test.mjs",
+      "bytes": 16005,
+      "sha256": "b684590b10bc0fd6a69a0ca261eed43951c9b27500dcc34b7dcc530a11411503"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/README.md",
+      "bytes": 12039,
+      "sha256": "6eff9ed55f9002e9ff225e1e3305ea7a43c28a57cf40a4d9f32cdb0ff300ed28"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/after-observation-1.json",
+      "bytes": 12972,
+      "sha256": "65598fce7f5cbaf4fba7b7520b232fcd19705754de27d96cce458944666f3b13"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/after-observation-2.json",
+      "bytes": 12973,
+      "sha256": "a778aee6b7a27c825e6d315c5805b8815f94ea4f5afec6eee40a42e26df96733"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/after-observation-3.json",
+      "bytes": 12973,
+      "sha256": "8130fbe9143a2b55280e5a6ff09769b9b9861b61baa2c043736534aecc8c20b6"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/after.json",
+      "bytes": 12973,
+      "sha256": "8130fbe9143a2b55280e5a6ff09769b9b9861b61baa2c043736534aecc8c20b6"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/confirmed-proof.json",
+      "bytes": 145352,
+      "sha256": "1d8b9b173c33d8d5eb92e22202478d37dc66ba488c759ac05e597b85ee13e9cc"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/inputs.json",
+      "bytes": 12973,
+      "sha256": "8174d242ff3db40149340d8795f4843de834b110ed93926ebf894f7e88946e96"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/simulation.json",
+      "bytes": 27766,
+      "sha256": "5bce1495988c5a1ffb6e698f7c5e9917aac622e91a78893e5f23759312b4cba0"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/summary.json",
+      "bytes": 5057,
+      "sha256": "fb506c578c6a4b0336cd76ccc346f64222a6383d8d682160cfe1a30c859f1d30"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/unsigned-packet.json",
+      "bytes": 4545,
+      "sha256": "e9dbd9a3f14656c20c60b2755de2b1579d449c3987978cf750798d6760d66f26"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/mainnet/unsigned-start-kind.b64",
+      "bytes": 345,
+      "sha256": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/move/first-season-tests.log",
+      "bytes": 2117,
+      "sha256": "9507d16e0632571eef944dbba87722a974668b798f7534bc0d0f12f445cfcbce"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/move/production-build.log",
+      "bytes": 347,
+      "sha256": "285d818379634a50f7c739d0a43fb5b90f649c7d200334c03f7ae078a89c365c"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/move/summary.json",
+      "bytes": 4990,
+      "sha256": "00f6f7d1fe4d444ce1e8a100f52d358a09346291bbb87a226b2eb2fbc330f5f8"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/validators/node-tests.log",
+      "bytes": 6583,
+      "sha256": "ce56bba049874011e970b0925c73850f44c950a96b06cb32bf7ca4ddd9597eec"
+    },
+    {
+      "path": "settlement-integration/verification/season-test-20261031/validators/summary.json",
+      "bytes": 2347,
+      "sha256": "95b020dce6c24d3a7d92b8cbe1439f90e6128b8aec8d628fa39f496cf4155a36"
+    }
+  ]
+}

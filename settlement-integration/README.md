@@ -2,6 +2,10 @@
 
 This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the separate legacy garden and read-only v12 Registry view, a complete legacy Season 3 reconciliation, and the retained upgrade/setup release records. The upgrade and empty Registry setup are complete; economic activation and gameplay transactions remain disabled.
 
+## First-season test update — October 31, 2026, America/Chicago
+
+The [first-season test handoff](verification/season-test-20261031/README.md) records 19 passing Move VM tests and a successful checked, unsigned 24-hour start-season simulation. A later mainnet read confirms the actual Registry remains empty and unstarted. No signature, transaction, real gas payment or website deployment occurred in this test step. The tests also demonstrate that v12 Tools and Crates can cross Registry boundaries, so a second Registry alone cannot isolate cheap test inventory from a future same-version production economy. The handoff identifies the required isolation work before paid live testing. The current website remains the read-only release below.
+
 ## Read-only New seasons update — October 31, 2026 UTC
 
 The [read-only release](verification/new-seasons-20261031/README.md) connects the verified v12 Registry to **New seasons**. Its public Registry status works without a wallet and displays **No active season** for the confirmed empty state. Source configuration now uses `reviewEnabled:true`, `enabled:false` and `REVIEW_ONLY:true`; route visibility does not activate gameplay. Wallet transaction entry points and the signing boundary independently enforce the read-only mode. Failed, stale or mismatched reads show **Unavailable**.

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-31T05:28:44.059261+00:00",
+  "command": [
+    "node",
+    "--test",
+    "--test-isolation=none",
+    "--test-reporter=tap",
+    "settlement-integration/season-test/start-core.test.mjs"
+  ],
+  "exitCode": 0,
+  "counts": {
+    "tests": 30,
+    "pass": 30,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "passed": true,
+  "sourceSha256": {
+    "settlement-integration/season-test/start-core.mjs": "710826322c9bafd4fa2278e90ba7935a3e91f7b583caf5b88d49fed5268ecf30",
+    "settlement-integration/season-test/check-live.mjs": "ee5e821254dfc30143f577df0ac5a1ef30f8c459f10246ba1be2b7cd0ad8335a",
+    "settlement-integration/season-test/start-core.test.mjs": "b684590b10bc0fd6a69a0ca261eed43951c9b27500dcc34b7dcc530a11411503"
+  },
+  "sourceUnchanged": true,
+  "fixtureSource": "settlement-integration/verification/season-test-20261031/mainnet",
+  "fixtureSha256": {
+    "after-observation-1.json": "65598fce7f5cbaf4fba7b7520b232fcd19705754de27d96cce458944666f3b13",
+    "after-observation-2.json": "a778aee6b7a27c825e6d315c5805b8815f94ea4f5afec6eee40a42e26df96733",
+    "after-observation-3.json": "8130fbe9143a2b55280e5a6ff09769b9b9861b61baa2c043736534aecc8c20b6",
+    "after.json": "8130fbe9143a2b55280e5a6ff09769b9b9861b61baa2c043736534aecc8c20b6",
+    "confirmed-proof.json": "1d8b9b173c33d8d5eb92e22202478d37dc66ba488c759ac05e597b85ee13e9cc",
+    "inputs.json": "8174d242ff3db40149340d8795f4843de834b110ed93926ebf894f7e88946e96",
+    "simulation.json": "5bce1495988c5a1ffb6e698f7c5e9917aac622e91a78893e5f23759312b4cba0",
+    "summary.json": "fb506c578c6a4b0336cd76ccc346f64222a6383d8d682160cfe1a30c859f1d30",
+    "unsigned-packet.json": "e9dbd9a3f14656c20c60b2755de2b1579d449c3987978cf750798d6760d66f26"
+  },
+  "networkRequests": 0,
+  "signatureRequests": 0,
+  "transactionsSubmitted": 0,
+  "credentialsUsed": false,
+  "logSha256": "ce56bba049874011e970b0925c73850f44c950a96b06cb32bf7ca4ddd9597eec",
+  "earlierAttempt": {
+    "path": "/tmp/arboretum-first-season-validator-review-20261031T052827106882Z",
+    "tests": 30,
+    "passed": 29,
+    "failed": 1,
+    "reason": "Wrong-upgrade-version mutation was correctly rejected by the earlier reused receipt-capability guard; the test expected the later package-version error wording. Only the test expectation changed."
+  }
+}
