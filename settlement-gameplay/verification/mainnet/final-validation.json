@@ -1,0 +1,26 @@
+{
+  "verifiedAt": "2026-10-31T22:11:03.414319+00:00",
+  "sourceSha256": {
+    "plant-core.mjs": "c0ebf4c3d019aacda83d22fb3b653da2b66b47cf0467320b2eb963e4a739f4c5",
+    "plant-core.test.mjs": "2f631aad16fd94a584b1f782e0d418f7a4fff1a82fa7a48279420a33669a9951",
+    "plant-fixtures.mjs": "ae9ede9aa6b2987063fe8ad1e11ae6967ebdd8011be9afa0b406c8a094f0882e",
+    "check-live.mjs": "b4903b711d8815c52b850c6d8872dd6630db75fe95d341d4eac12f62de6537c3"
+  },
+  "coreTests": {
+    "passed": 27,
+    "failed": 0,
+    "skipped": 0,
+    "networkAttempts": 0
+  },
+  "capturedSimulationRevalidatedOffline": true,
+  "successfulUnsignedSimulationCount": 1,
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "actualSuiSpent": "0",
+  "gasReservationReference": "@mysten/sui 2.19.0 src/utils/coin-reservation.ts",
+  "gasReservationReferenceSha256": "a833f26024318b6f7d949d2736e524296062479989d0083be7be566d058ed82b",
+  "lateObservationCheckpoint": 340278131,
+  "lateObservationTimestamp": "2026-10-31T22:09:00.071Z",
+  "simulationCompletedAt": "2026-10-31T22:06:37.349Z",
+  "note": "Source hashes here identify final validators after strict identity and historical-recovery checks. The one successful simulation was captured earlier and revalidated offline; it was not repeated."
+}

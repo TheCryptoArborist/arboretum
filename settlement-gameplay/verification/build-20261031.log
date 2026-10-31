@@ -1,0 +1,32 @@
+Built scripts/build-player-guide.py
+Built scripts/build-guide-site.mjs
+Built scripts/build-prelaunch.mjs
+Built scripts/polish-player-guide.mjs
+Built scripts/build-public-guide.py
+Built scripts/build-reward-first.py
+Built scripts/build-season-status.mjs
+Built economy-review/build-admin-preview.mjs
+Built economy-review/build-garden-ux-preview.mjs
+Verified review build: 6 inline scripts, 9 module files; gameplay submission disabled; exact administrator operations isolated.
+
+Refreshed only the three owner gameplay assets after final page copy/controller updates.
+{
+  "route": "/admin/gameplay-test/",
+  "authorizedOrigin": "https://www.treegrow.xyz",
+  "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+  "confirmedSeasonStartDigest": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
+  "inventoryVersion": 1,
+  "seasonId": 1,
+  "ownerWalletApprovalRequired": true,
+  "ownerGameplayEnabled": true,
+  "transactionScope": "single-first-owner-seed-plant",
+  "generalGameplayEnabled": false,
+  "fundingOperationsEnabled": false,
+  "productionUpgradeEnabled": false,
+  "emittedSha256": {
+    "admin/gameplay-test/admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+    "admin/gameplay-test/admin.mjs": "946676b9f09c17a7c989ff28ca6cce74b6790f1d2d0c096a4b550903274e520c",
+    "admin/gameplay-test/index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b"
+  }
+}

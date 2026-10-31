@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T22:13:21.970288+00:00",
+  "status": "PREPUBLICATION_VERIFIED",
+  "baseCommit": "21f7a2e0198b30f2c3ba091bbf4b5d8b46604609",
+  "actualStartReceipt": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
+  "actualStartVerified": true,
+  "successfulUnsignedSimulationCount": 1,
+  "actualPlantingsSubmitted": 0,
+  "actualSignatures": 0,
+  "requiredLocalCIGroupsPassed": 12,
+  "gameplayTestsPassed": 50,
+  "routingGateOriginTestsPassed": 83,
+  "nativeOfflineBrowserChecksPassed": 20,
+  "compiledBrowserChecksPassed": 58,
+  "compiledBrowserContexts": 17,
+  "existingApplicationFilesPreserved": 94,
+  "newRuntimeFileCount": 3,
+  "totalApplicationFiles": 97,
+  "sourceSha256": {
+    "settlement-gameplay/admin.mjs": "681afbd54c7e7c31173e26535eb86a7f398e64224c1931b40b0e9d8bc9604d88",
+    "settlement-gameplay/plant-core.mjs": "c0ebf4c3d019aacda83d22fb3b653da2b66b47cf0467320b2eb963e4a739f4c5",
+    "settlement-gameplay/admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+    "settlement-gameplay/index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b",
+    "settlement-gameplay/build.mjs": "7d705a9741090fca4ff9514df6398a2e9778f71a0bec546e656ce0ff6e58ddf2"
+  },
+  "runtimeSha256": {
+    "admin/gameplay-test/admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+    "admin/gameplay-test/admin.mjs": "2af356dbadf893778dd6e1f267b07a5f40678cd290b3c23ce5dd826cba323235",
+    "admin/gameplay-test/index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b"
+  },
+  "rootVisualReview": {
+    "desktop": "browser/desktop-ready.png",
+    "mobile": "browser/mobile-ready.png",
+    "passed": true
+  }
+}

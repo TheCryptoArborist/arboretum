@@ -4,6 +4,8 @@ This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull
 
 ## Owner-wallet first-test review — October 31, 2026, America/Chicago
 
+**The owner has now started Season 1.** The [actual receipt verification](../settlement-season/verification/confirmed-20261031/README.md) confirms transaction `HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW`, actual start October 31 at 4:57:28.277 p.m. CDT, cutoff November 1 at 3:57:28.277 p.m. CST, and actual gas of 0.000100553 SUI. The start deposited no reward funds. The earlier unstarted-state observations below describe their saved checkpoints; the new receipt supersedes that state. The next isolated owner step is a single 0.01-SUI NFTree-backed planting, with its automatic pool/treasury/developer allocation shown before wallet approval.
+
 The [first-season owner review](../settlement-season/verification/README.md) is published at `/admin/season-test/`, with the fixed [tester entrance](https://www.treegrow.xyz/tester-access?next=season-test). Source **`5c1b45dca0ccd87fd53f0c82053cf0c508029909`** is live as Netlify deployment **`6ae58697bc817a22d602d1be`**, published **2026-10-31T06:11:53.168Z**. It adds an explicit review of the exact 24-hour version-1 start, receipt recovery and duplicate-request protection. All 53 core/controller tests, 68 compiled browser checks, 49 hosted HTTP checks, desktop/mobile login and live JavaScript checks passed. All 90 prior application files and the backend identities are preserved. The actual Registry remains unstarted and unfunded; the owner must approve the real start in Slush. General gameplay remains read-only.
 
 ## Inventory boundary candidate — October 31, 2026, America/Chicago

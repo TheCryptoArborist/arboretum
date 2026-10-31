@@ -1,0 +1,211 @@
+{
+  "verifiedAt": "2026-10-31T22:09:04.327Z",
+  "status": "SINGLE_UNSIGNED_PLANT_SIMULATION_AND_LATER_UNCHANGED_STATE_VERIFIED",
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "actualSuiSpent": "0",
+  "successfulSimulations": 1,
+  "earlierIncompleteInventoryReads": 1,
+  "earlierGraphQLValidationRejections": 1,
+  "selectedNftId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+  "ownedNFTCount": 1077,
+  "simulated": {
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 340277540,
+      "timestamp": "2026-10-31T22:06:35.120Z",
+      "digest": "CWtGXFdnDaxWuPAnq9vGF3XXuSxHsPWHtGra82Thjb4g"
+    },
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "seasonId": "1",
+    "inventoryVersion": "1",
+    "nftId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+    "seedId": "0x13a7448ce9195139c9157fe23aebb53dedb4426195087308406e5d5a8fdbc716",
+    "growthPoints": "10",
+    "plantedAtMs": "1793484396776",
+    "waterReadyMs": "1793562156776",
+    "cutoffMs": "1793570248277",
+    "canWaterBeforeCutoff": true,
+    "claimDeadlineMs": "1794175048277",
+    "priceMist": "10000000",
+    "rewardShareMist": "7000000",
+    "treasuryShareMist": "2800000",
+    "developerShareMist": "200000",
+    "gasEstimateMist": "11151182",
+    "gasEstimateSui": "0.011151182",
+    "kindSha256": "2e3b9612a5b19b00681ce1cdf7c7cd4ec5d087c463afc8fa0cb26e494999b39a",
+    "exactKindSha256": "2e3b9612a5b19b00681ce1cdf7c7cd4ec5d087c463afc8fa0cb26e494999b39a",
+    "executionClock": {
+      "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+      "version": "1013265567",
+      "digest": "BETFA3jaWxHUue7e9Uv9P2Zh9GxhYWbsANSkuDw1sWXd"
+    },
+    "resolvedGasBudgetMist": "12239083",
+    "resolvedGasPriceMist": "100",
+    "resolvedGasPayments": 2,
+    "virtualGasReservations": 1,
+    "note": "Unsigned prediction only. No wallet, signature, payment or planting occurred."
+  },
+  "simulationCompletedAt": "2026-10-31T22:06:37.349Z",
+  "selectedPostObservation": 1,
+  "actualAfter": {
+    "checkpoint": {
+      "sequenceNumber": 340278131,
+      "timestamp": "2026-10-31T22:09:00.071Z",
+      "digest": "2koMDWqD6MHYrEUA8nu2XKuQ5MhhCkDoNnQSTHbMWat7"
+    },
+    "seasonId": "1",
+    "storedStartMs": "1790978248277",
+    "rewardPoolMist": "0",
+    "treasuryMist": "0",
+    "totalSeeds": "0",
+    "growthPoints": "0",
+    "eligibleGrowthPoints": "0",
+    "paused": false
+  },
+  "requests": [
+    {
+      "name": "post-proof",
+      "requestedAt": "2026-10-31T22:09:01.900Z",
+      "capturedAt": "2026-10-31T22:09:02.055Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1",
+      "requestedAt": "2026-10-31T22:09:02.245Z",
+      "capturedAt": "2026-10-31T22:09:02.323Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-1",
+      "requestedAt": "2026-10-31T22:09:02.324Z",
+      "capturedAt": "2026-10-31T22:09:02.406Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-2",
+      "requestedAt": "2026-10-31T22:09:02.407Z",
+      "capturedAt": "2026-10-31T22:09:02.497Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-3",
+      "requestedAt": "2026-10-31T22:09:02.498Z",
+      "capturedAt": "2026-10-31T22:09:02.585Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-4",
+      "requestedAt": "2026-10-31T22:09:02.586Z",
+      "capturedAt": "2026-10-31T22:09:02.679Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-5",
+      "requestedAt": "2026-10-31T22:09:02.680Z",
+      "capturedAt": "2026-10-31T22:09:02.771Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-6",
+      "requestedAt": "2026-10-31T22:09:02.773Z",
+      "capturedAt": "2026-10-31T22:09:02.862Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-7",
+      "requestedAt": "2026-10-31T22:09:02.864Z",
+      "capturedAt": "2026-10-31T22:09:02.957Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-8",
+      "requestedAt": "2026-10-31T22:09:02.959Z",
+      "capturedAt": "2026-10-31T22:09:03.045Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-9",
+      "requestedAt": "2026-10-31T22:09:03.048Z",
+      "capturedAt": "2026-10-31T22:09:03.129Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-10",
+      "requestedAt": "2026-10-31T22:09:03.132Z",
+      "capturedAt": "2026-10-31T22:09:03.232Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-11",
+      "requestedAt": "2026-10-31T22:09:03.235Z",
+      "capturedAt": "2026-10-31T22:09:03.320Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-12",
+      "requestedAt": "2026-10-31T22:09:03.323Z",
+      "capturedAt": "2026-10-31T22:09:03.422Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-13",
+      "requestedAt": "2026-10-31T22:09:03.425Z",
+      "capturedAt": "2026-10-31T22:09:03.510Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-14",
+      "requestedAt": "2026-10-31T22:09:03.513Z",
+      "capturedAt": "2026-10-31T22:09:03.605Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-15",
+      "requestedAt": "2026-10-31T22:09:03.608Z",
+      "capturedAt": "2026-10-31T22:09:03.696Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-16",
+      "requestedAt": "2026-10-31T22:09:03.699Z",
+      "capturedAt": "2026-10-31T22:09:03.790Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-17",
+      "requestedAt": "2026-10-31T22:09:03.793Z",
+      "capturedAt": "2026-10-31T22:09:03.878Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-18",
+      "requestedAt": "2026-10-31T22:09:03.884Z",
+      "capturedAt": "2026-10-31T22:09:03.982Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-19",
+      "requestedAt": "2026-10-31T22:09:03.987Z",
+      "capturedAt": "2026-10-31T22:09:04.074Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-20",
+      "requestedAt": "2026-10-31T22:09:04.079Z",
+      "capturedAt": "2026-10-31T22:09:04.155Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "post-1-nft-21",
+      "requestedAt": "2026-10-31T22:09:04.160Z",
+      "capturedAt": "2026-10-31T22:09:04.246Z",
+      "httpStatus": 200
+    }
+  ],
+  "sourceSha256": {
+    "plant-core.mjs": "0a4d4676400695ad17c683965fea7df6a8c49bcff5880cbda8a355fb01421441",
+    "check-live.mjs": "b4903b711d8815c52b850c6d8872dd6630db75fe95d341d4eac12f62de6537c3"
+  }
+}

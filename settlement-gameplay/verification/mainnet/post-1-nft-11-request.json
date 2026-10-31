@@ -1,0 +1,8 @@
+{
+  "query": "query OwnerPlantNFTPage($checkpoint:UInt53!$after:String!){genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}checkpoint(sequenceNumber:$checkpoint){sequenceNumber query{ownedNFTs:objects(first:50 after:$after filter:{owner:\"0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4\" type:\"0xf6c6d439ea0da2f3e9ba79e4992a7a4c113215fbf54c442ac9020c315f953705::collection::NFT\"}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}}asMoveObject{contents{type{repr}json}}}pageInfo{hasNextPage endCursor}}}}}",
+  "variables": {
+    "checkpoint": 340278131,
+    "after": "cztIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAB8D2g7bIlLvO+ft0S4gy5U1LauDW+6UTS6VOEe6EIYeA=="
+  },
+  "requestedAt": "2026-10-31T22:09:03.235Z"
+}

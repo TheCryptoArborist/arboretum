@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>First test Seed | Arboretum owner test</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/gameplay-test/admin.css">
+  <script type="module" src="/admin/gameplay-test/admin.mjs"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home"><img src="/prelaunch/mark.png" width="44" height="44" alt=""><span>ARBORETUM<small>OWNER TEST</small></span></a>
+    <a class="back-link" href="/settlement-game.html">Review the garden <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · SEASON 1</p>
+      <h1 id="page-title">Plant your first <br><span>test Seed.</span></h1>
+      <p class="lead">Choose one of your NFTrees and review a single 0.01 SUI planting payment. Your NFTree stays in your wallet. A successful plant creates one test Seed with 10 Growth Points.</p>
+    </section>
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required for the wallet review. Enable it in your browser and reload this page.</div></noscript>
+    <div class="release-layout">
+      <section class="card release-card" aria-labelledby="plant-heading">
+        <div class="card-heading"><div><p class="eyebrow">FIRST GAMEPLAY TEST</p><h2 id="plant-heading">One NFTree. One test Seed.</h2></div><span class="version-chip">Test v1</span></div>
+        <div class="preservation-strip"><span class="check-icon" aria-hidden="true">✓</span><p>Season 1 is already started<br><small>Existing Registry · package v12 · test inventory version 1</small></p></div>
+        <h3>What your approval does</h3>
+        <ol class="command-list">
+          <li><span class="step-number" aria-hidden="true">1</span><div><strong>Plant one Seed using your selected NFTree</strong><p>The contract reads your owned NFTree without transferring or consuming it. This page supports your first Seed in this test season.</p></div></li>
+          <li><span class="step-number" aria-hidden="true">2</span><div><strong>Pay 0.01 SUI, plus the network fee</strong><p>The payment follows the existing test economy. The breakdown below is verified again during simulation and receipt checks.</p></div></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span><div><strong>Receive 10 Growth Points</strong><p>Your new Seed begins watered. Its next watering becomes eligible 21 hours, 36 minutes after the actual planting time.</p></div></li>
+        </ol>
+        <dl class="payment-grid"><dt>Planting payment</dt><dd>0.0100 SUI</dd><dt>Season reward pool</dt><dd>0.0070 SUI</dd><dt>Treasury wallet</dt><dd>0.0028 SUI</dd><dt>Developer wallet</dt><dd>0.0002 SUI</dd></dl>
+        <p class="small-text">The developer wallet is this administrator account. The gross planting payment remains 0.01 SUI; the confirmed receipt shows the actual balance changes and network fee.</p>
+        <div class="fee-box"><div><p class="eyebrow">ESTIMATED NETWORK FEE</p><p id="gas-estimate" class="fee">Check to estimate</p></div><span id="gas-status" class="pill">Refresh required</span><p id="gas-note" class="fee-note">The network fee is additional to the 0.01 SUI planting payment. Slush sets the final gas budget and shows its review before approval.</p></div>
+        <div class="season-window"><p class="eyebrow">GROWING WINDOW</p><p id="season-cutoff">Season 1 ends November 1, 2026 at 3:57:28 p.m. CST.</p><p id="latest-plant-note" class="timing-note">Plant before October 31 at 7:21:28 p.m. CDT to leave time for another watering before this season ends. The overnight clock change is included in these times.</p></div>
+        <p class="scope-note">This page prepares one planting transaction. Keep its confirmed receipt for the watering test. The general garden remains read-only. Production is reserved for a later version-2 Registry.</p>
+        <details class="technical-details"><summary>View the test identities</summary><dl><dt>Required administrator</dt><dd id="expected-admin"></dd><dt>Package</dt><dd id="expected-package"></dd><dt>Rewards Registry</dt><dd id="expected-registry"></dd><dt>Confirmed season-start transaction</dt><dd id="expected-start"></dd><dt>Reviewed planting fingerprint</dt><dd id="expected-kind">Available after selecting an NFTree and checking planting.</dd></dl></details>
+      </section>
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="eyebrow">OWNER ACTION</p><h2 id="action-heading">Review with Slush</h2><p class="action-intro">Use the administrator account that started this season.</p>
+        <div class="flow-section"><h3><span class="step-number">1</span> Connect your wallet</h3><div id="wallet-list" class="wallet-list"><p class="muted">Looking for the Slush browser extension…</p></div><p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p><div id="account-controls" hidden><label for="account-select">Choose the administrator account</label><select id="account-select"><option value="">Select an account</option></select><button id="use-account" type="button" class="button secondary" disabled>Use selected account</button><p id="connected-address" class="address" hidden></p><button id="disconnect" type="button" class="text-button">Disconnect</button></div></div>
+        <div class="flow-section"><h3><span class="step-number">2</span> Choose your NFTree</h3><p class="small-text">Load your owned NFTrees, then explicitly choose one. Loading checks ownership and the current Season 1 state without requesting a transaction.</p><button id="load-nfts" type="button" class="button secondary" disabled>Load my NFTrees</button><div id="nft-controls" class="nft-picker" hidden><label for="nft-select">NFTree to use for this test Seed</label><select id="nft-select"><option value="">Select an NFTree</option></select><p id="selected-nft" class="selected-nft" aria-live="polite"></p></div><p id="nft-status" class="small-text" aria-live="polite"></p></div>
+        <div class="flow-section"><h3><span class="step-number">3</span> Check the planting</h3><button id="check-plant" type="button" class="button secondary" disabled>Check planting</button><div id="checks" class="checks" aria-live="polite" hidden><p><span aria-hidden="true">✓</span> Season 1, administrator and selected NFTree verified</p><p><span aria-hidden="true">✓</span> One Seed · 10 Growth Points · NFTree stays owned</p><p><span aria-hidden="true">✓</span> 0.01 SUI payment and its allocation verified</p><p><span aria-hidden="true">✓</span> Current simulation successful</p><p id="projected-water" class="small-text"></p><p id="checked-at" class="small-text"></p></div></div>
+        <div class="flow-section final-step"><h3><span class="step-number">4</span> Approve one planting</h3><label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I want to plant one version-1 test Seed using the selected NFTree. I have reviewed the 0.01 SUI payment, allocation, additional network fee and watering window.</span></label><button id="submit-plant" type="button" class="button primary" disabled>Review planting in Slush <span aria-hidden="true">↗</span></button><p class="small-text">After approval, this page verifies the actual transaction and new Seed. A pending or uncertain request must be checked before another planting can be reviewed.</p></div>
+      </section>
+    </div>
+    <section id="status-panel" class="notice status-panel" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-message"></p></section>
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden><p class="eyebrow">CONFIRMED ON SUI MAINNET</p><h2 id="receipt-heading">Your first test Seed is planted.</h2><p id="receipt-state-message"></p><p class="seed-result">1 test Seed · 10 Growth Points at planting</p><dl class="receipt-table"><dt>Transaction digest</dt><dd id="receipt-digest"></dd><dt>Seed object</dt><dd id="receipt-seed"></dd><dt>NFTree used</dt><dd id="receipt-nft"></dd><dt>Planting payment</dt><dd>0.01 SUI</dd><dt>Confirmed network fee</dt><dd id="receipt-gas"></dd><dt>Confirmed planting time</dt><dd id="receipt-planted"></dd><dt>Next watering eligible</dt><dd id="receipt-next-water"></dd><dt>Growing cutoff</dt><dd id="receipt-cutoff"></dd><dt>Rewards Registry</dt><dd id="receipt-registry"></dd><dt>Package</dt><dd id="receipt-package"></dd></dl><div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button><a href="/settlement-game.html" class="button secondary">Review the garden</a></div></section>
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading" hidden><h2 id="recovery-heading">Check an existing planting</h2><p id="recovery-message">Verify the planting transaction from Slush activity. These checks only read mainnet and are available without connecting a wallet.</p><form id="verify-form"><label for="transaction-digest">Planting transaction digest from Slush</label><div class="recovery-input"><input id="transaction-digest" name="digest" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form><button id="check-existing" type="button" class="text-button">Check my current test Seed</button></section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · OWNER TEST</span><span>One test Seed. Each transaction requires your wallet approval.</span></footer>
+</body>
+</html>

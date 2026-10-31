@@ -44,7 +44,7 @@ const { chromium } = require(config.playwright);
 const password = config.hosted ? fs.readFileSync(0, 'utf8').trim() : 'SYNTHETIC-ONLY-tester-return-' + 'p'.repeat(48);
 assert(password.length >= 32 && password.length <= 256, 'A tester code of the expected length must be supplied via stdin');
 const ORIGIN = 'https://www.treegrow.xyz';
-const INTENT = config.review === 'new-seasons' ? 'new-seasons' : config.review === 'season-test' ? 'season-test' : config.review === 'setup' ? 'settlement-setup' : 'settlement-upgrade';
+const INTENT = config.review === 'new-seasons' ? 'new-seasons' : config.review === 'season-test' ? 'season-test' : config.review === 'gameplay-test' ? 'gameplay-test' : config.review === 'setup' ? 'settlement-setup' : 'settlement-upgrade';
 const ADMIN = config.review === 'new-seasons' ? '/settlement-game.html' : '/admin/' + INTENT + '/';
 const EXTERNAL = 'https://chatgpt.com/offline-arboretum-return-fixture';
 const GATE_PATH = 'netlify/edge-functions/tester-gate.ts';
@@ -87,7 +87,7 @@ async function loadGate(source, label) {
 function localResponse(url) {
   let filename = decodeURIComponent(url.pathname).replace(/^\//, '');
   if (!filename) filename = 'index.html';
-  if (['admin/settlement-upgrade', 'admin/settlement-setup', 'admin/season-test'].includes(filename)) filename += '/index.html';
+  if (['admin/settlement-upgrade', 'admin/settlement-setup', 'admin/season-test', 'admin/gameplay-test'].includes(filename)) filename += '/index.html';
   else if (filename.endsWith('/')) filename += 'index.html';
   const target = path.resolve(config.dist, filename);
   if (!target.startsWith(path.resolve(config.dist) + path.sep) || !fs.existsSync(target) || !fs.statSync(target).isFile()) {
@@ -371,7 +371,7 @@ try {
       const page = await externalEntry(context, label, true);
       assert.equal(await page.locator('input[name="next"]').inputValue(), INTENT);
       assert.match(await page.locator('form[action="/tester-access"] button[type="submit"]').innerText(),
-        config.review === 'new-seasons' ? /new seasons/i : config.review === 'season-test' ? /test season review/i : config.review === 'setup' ? /setup review/i : /upgrade review/i);
+        config.review === 'new-seasons' ? /new seasons/i : config.review === 'season-test' ? /test season review/i : config.review === 'gameplay-test' ? /first Seed review/i : config.review === 'setup' ? /setup review/i : /upgrade review/i);
       const bad = await submit(page, 'synthetic-wrong-access-code-for-regression');
       assert.equal(bad.status(), 401);
       await page.locator('[role="alert"]').waitFor({ state: 'visible' });
@@ -385,7 +385,7 @@ try {
         assert.equal(await page.locator('#garden-sec').count(), 1);
         assert.match(await page.locator('#sr-routes').innerText(), /New seasons/i);
       } else {
-        assert.match(await page.locator('#page-title').innerText(), config.review === 'season-test' ? /test season/i : config.review === 'setup' ?
+        assert.match(await page.locator('#page-title').innerText(), config.review === 'season-test' ? /test season/i : config.review === 'gameplay-test' ? /Plant\s+your\s+first\s+test\s+Seed\./ : config.review === 'setup' ?
           /Set up the\s+rewards system\./ : /Publish the\s+settlement upgrade\./);
         assert.equal(await page.locator('#garden-sec').count(), 0);
       }
@@ -455,7 +455,7 @@ try {
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--hosted", action="store_true")
-    parser.add_argument("--review", choices=["upgrade", "setup", "new-seasons", "season-test"], default="upgrade")
+    parser.add_argument("--review", choices=["upgrade", "setup", "new-seasons", "season-test", "gameplay-test"], default="upgrade")
     parser.add_argument("--baseline-ref", default=DEFAULT_BASELINE)
     parser.add_argument("--dist", type=Path, default=ROOT / "dist")
     parser.add_argument("--output", type=Path)

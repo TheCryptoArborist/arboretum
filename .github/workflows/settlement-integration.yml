@@ -2,9 +2,9 @@ name: Settlement app integration review
 on:
   push:
     branches: [feature/settlement-app-integration-20261020]
-    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
+    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'settlement-gameplay/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
   pull_request:
-    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
+    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'settlement-gameplay/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
 permissions:
   contents: read
 jobs:
@@ -35,6 +35,7 @@ jobs:
           node --test settlement-admin/*.test.mjs | tee settlement-review-results/administrator-upgrade.txt
           node --test settlement-setup/*.test.mjs | tee settlement-review-results/administrator-setup.txt
           node --test --test-isolation=none settlement-season/*.test.mjs | tee settlement-review-results/administrator-season.txt
+          node --test --test-isolation=none settlement-gameplay/*.test.mjs | tee settlement-review-results/owner-gameplay.txt
           node --test --test-isolation=none --test-reporter=tap scripts/test-tester-return.mjs | tee settlement-review-results/tester-return.txt
           node --test --test-isolation=none --test-reporter=tap scripts/build-policy.test.mjs settlement-integration/ui/panel.test.mjs | tee settlement-review-results/read-only-view.txt
       - name: Build the protected review and isolated approved administrator operations

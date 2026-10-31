@@ -1,0 +1,18 @@
+{
+  "scope": "Exact source at final compiled browser review; no real wallet, signature, payment or execution",
+  "sourceSha256": {
+    "admin.mjs": "681afbd54c7e7c31173e26535eb86a7f398e64224c1931b40b0e9d8bc9604d88",
+    "index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b",
+    "admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+    "plant-core.mjs": "c0ebf4c3d019aacda83d22fb3b653da2b66b47cf0467320b2eb963e4a739f4c5",
+    "plant-fixtures.mjs": "ae9ede9aa6b2987063fe8ad1e11ae6967ebdd8011be9afa0b406c8a094f0882e",
+    "admin.test.mjs": "dc8be478b7d58dd8ac732e3a1ec06ff86a29bbdb35206efcb719a2ff33ca9ecb",
+    "browser-review.py": "698449561f0643be2398730662140a3f08b0e7c7ea85e3e94d37dd6766c8db9a"
+  },
+  "compiledSha256": {
+    "index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b",
+    "admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+    "admin.mjs": "2af356dbadf893778dd6e1f267b07a5f40678cd290b3c23ce5dd826cba323235"
+  },
+  "visualReview": "Desktop and mobile readiness, uncertain-result recovery and synthetic confirmed receipt visually inspected; no horizontal overflow or product control overlap observed. Purple evidence ribbon labels the fixture screenshots."
+}

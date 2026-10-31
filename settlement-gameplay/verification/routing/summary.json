@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "allPassed": true,
+  "checks": [
+    {
+      "name": "return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "stats": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "skipped": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "gate-policy",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch.mjs"
+      ],
+      "exitCode": 0,
+      "stats": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "skipped": 0
+      },
+      "passed": true
+    },
+    {
+      "name": "form-origin",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch-origin.mjs"
+      ],
+      "exitCode": 0,
+      "stats": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "skipped": 0
+      },
+      "passed": true
+    }
+  ],
+  "limits": [
+    "The three suites run in separate Node processes because each installs its own synthetic Netlify environment; combining them with --test-isolation=none causes fixture interference."
+  ]
+}

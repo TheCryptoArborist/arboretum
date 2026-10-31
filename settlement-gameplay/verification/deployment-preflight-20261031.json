@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T22:03:19.270863+00:00",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "siteName": "arboretum-preview",
+  "domain": "www.treegrow.xyz",
+  "publishedDeployId": "6ae58697bc817a22d602d1be",
+  "publishedState": "ready",
+  "gitContinuousDeploymentConnected": false,
+  "edgeFunctionsPresent": true,
+  "edgeFunctionNamesFromPriorVerifiedPublication": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "functions": [
+    {
+      "n": "calendar-reminder",
+      "d": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+      "r": "nodejs24.x",
+      "m": 1024,
+      "rg": "us-east-2",
+      "s": 279384,
+      "p": 10,
+      "bd": {
+        "runtimeAPIVersion": 1
+      }
+    }
+  ],
+  "functionSchedules": [],
+  "retainedOriginalSiteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+  "retainedOriginalDeployId": "6abe81174b61a8e3dd53b333",
+  "restReadAuthenticated": true,
+  "credentialsPrinted": false,
+  "limits": [
+    "Edge function names are sourced from the existing verified publication record; this fresh preflight confirms edge functions are present. The new release must independently verify deployed edge names."
+  ]
+}
