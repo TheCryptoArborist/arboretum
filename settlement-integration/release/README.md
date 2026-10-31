@@ -1,30 +1,14 @@
 # Unsigned settlement upgrade and setup review
 
-## Current handoff — October 30, 2026, America/Chicago
+## Confirmed upgrade and next setup review — October 30, 2026, America/Chicago
 
-The owner has completed the wallet/account/garden acceptance checks on
-`https://www.treegrow.xyz/tester-access`. The exact unsigned version-12 upgrade
-has now been reproduced against fresh mainnet inputs and passed a new checked
-simulation at `2026-10-31T02:27:28.149Z` (October 30, 9:27 p.m. Central).
+**Version 12 is now published and verified on Sui mainnet.** Owner transaction `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU` succeeded at checkpoint **340000251**, October 30 at **10:31 p.m. CDT** (2026-10-31T03:31:58.538Z). The actual package is **`0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`**. Its actual fee was **0.337998763 SUI**.
 
-**[Open the current concrete transaction review](evidence/20261031-review/REVIEW.md).**
+The [confirmed receipt verification](evidence/20261031-confirmed-upgrade/verification.json), [raw public receipt](evidence/20261031-confirmed-upgrade/receipt.json), and [independent verification](evidence/20261031-confirmed-upgrade/independent-verification.json) establish the exact approved three-command kind, matching module bytes, all 32 preserved legacy type origins, all 39 new settlement origins, and unchanged upgrade authority/policy. The same UpgradeCap now records this package and version 12. Do not repeat the upgrade.
 
-The transaction-kind SHA-256 remains
-`1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0`.
-The current simulated net gas is **0.337998763 SUI**. Verification preserves
-the existing module, all 32 legacy type origins, the owner and upgrade policy,
-and correctly binds all 39 new settlement type origins. A later public read
-confirmed the live capabilities and Registry unchanged and the simulated
-package absent. No signature or transaction submission occurred.
+**[Open the concrete empty Registry setup review](evidence/20261031-empty-registry-review/REVIEW.md).** It is tied to this real receipt and package, and remains an unsigned transaction for a separate owner review. The current deployed administrator page performs the upgrade/receipt flow only; it does not yet provide setup signing. No Registry setup, season activation, pool funding, legacy import or compensation has been submitted by this work.
 
-The current evidence also includes an unsigned SDK Transaction JSON whose
-offline round trip reproduces the exact reviewed transaction kind. There is
-no administrator signing page in the deployed review. The next live release
-action is the separately reviewed administrator-wallet upgrade; the real
-transaction digest is then required to prepare Registry setup.
-
-The October 20 observations below are retained as the original verification
-record. Use the October 31 capture linked above for current public inputs.
+The [October 31 unsigned upgrade review](evidence/20261031-review/REVIEW.md) is retained as the approved input packet, with kind SHA-256 `1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0`. Its estimate matched the real fee. The original October 20 observations below are historical evidence.
 
 ## Original verification — October 20, 2026 UTC
 
@@ -150,16 +134,16 @@ transaction-kind hash equals the reviewed upgrade, checks the real package's
 module hashes and type origins, verifies the current UpgradeCap and refreshed
 legacy AdminCap, and rejects an already-created settlement Registry. It then
 emits the setup kind and unsigned review packet. It has no signing or execution
-method. It has been unit tested with explicit synthetic fixtures; it has not
-been run against a real version-12 transaction because no such deployment was
-performed in this work.
+method. It was originally tested with synthetic fixtures and has now been run against
+the real verified version-12 receipt above. The current setup packet and checked
+simulation are recorded in the linked setup review.
 
-After a separately approved upgrade exists, the development workflow is:
+The reproducible preparation command for the confirmed upgrade is:
 
 ```bash
 node --use-env-proxy settlement-integration/release/prepare-setup.mjs \
-  settlement-integration/release/evidence/20261020-initial \
-  ACTUAL_CONFIRMED_UPGRADE_DIGEST \
+  settlement-integration/release/evidence/20261031-review \
+  GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU \
   /tmp/arboretum-setup-review
 ```
 
@@ -217,6 +201,6 @@ Official references: [package upgrades](https://docs.sui.io/develop/publish-upgr
 [GraphQL RPC](https://docs.sui.io/concepts/data-access/graphql-rpc), and
 [the package digest implementation](https://github.com/MystenLabs/sui/blob/mainnet-v1.78.1/crates/sui-types/src/move_package.rs).
 
-This completes the unsigned upgrade review packet. Deployment authorization,
-the real upgrade, setup simulation/signing, economic activation decisions, and
-any legacy compensation remain separate from this verified preparation.
+The real approved upgrade is complete. Empty Registry setup remains unsigned;
+its approval/signing, later economic activation and any legacy compensation
+are distinct steps. The current verified setup preparation is linked above.

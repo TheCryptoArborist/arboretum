@@ -28,7 +28,7 @@ jobs:
           mkdir -p settlement-review-results
           npm run lint
           node settlement-integration/model.test.mjs | tee settlement-review-results/model.txt
-          node --test --test-isolation=none --test-reporter=tap settlement-integration/reader.test.mjs settlement-integration/wallet.test.mjs settlement-integration/release/release-packet.test.mjs | tee settlement-review-results/reader-wallet-release.txt
+          node --test --test-isolation=none --test-reporter=tap settlement-integration/reader.test.mjs settlement-integration/wallet.test.mjs settlement-integration/release/*.test.mjs | tee settlement-review-results/reader-wallet-release.txt
           node --test --test-isolation=none --test-reporter=tap scripts/test-wallet-transactions.mjs | tee settlement-review-results/wallet-confirmation.txt
           python3 -m unittest discover -s settlement-integration/release -p 'test_*.py' -v 2>&1 | tee settlement-review-results/release-inputs.txt
           python3 -m unittest discover -s settlement-integration/legacy-reconciliation -p 'test_*.py' -v 2>&1 | tee settlement-review-results/reconciliation.txt

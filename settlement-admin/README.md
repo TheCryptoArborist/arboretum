@@ -4,6 +4,14 @@ This isolated page implements the owner's approved Arboretum Sui mainnet version
 
 The canonical route is **https://www.treegrow.xyz/admin/settlement-upgrade/**, behind the existing tester gate on the dedicated `arboretum-preview` Netlify project (`d425445d-4980-49be-8ab2-12e7527ba281`). The route will not initialize its wallet controller on another origin. The existing game review continues to disable gameplay transactions.
 
+## Owner upgrade completed — October 30, 2026, 10:31 p.m. CDT
+
+The owner signed the approved upgrade. Transaction **`GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU`** succeeded at mainnet checkpoint **340000251**, timestamp **2026-10-31T03:31:58.538Z**, publishing version 12 as **`0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`**. The actual net fee was **0.337998763 SUI**.
+
+The [confirmed receipt verification](../settlement-integration/release/evidence/20261031-confirmed-upgrade/verification.json) and independent verification establish the exact approved kind/digest, both module hashes, 32 preserved legacy type origins, 39 new settlement type origins, unchanged administrator ownership and policy, and the current version-12 UpgradeCap. The existing page detects `already-upgraded` and verifies the receipt; this upgrade must not be submitted again.
+
+The next operation is the separately reviewed empty settlement Registry setup. Its exact unsigned packet and checked simulation are recorded in [the setup review](../settlement-integration/release/evidence/20261031-empty-registry-review/REVIEW.md). This page currently provides only upgrade and receipt actions; it has no setup signing control. No setup, season activation, pool funding, legacy import or compensation transaction was submitted by this receipt-verification work.
+
 ## Tester entrance for the upgrade
 
 The direct upgrade entrance is **https://www.treegrow.xyz/tester-access?next=settlement-upgrade**. Its login button says **Continue to upgrade review** and returns to the canonical upgrade page after successful authentication. An unauthenticated visit to the canonical upgrade URL now retains the same fixed destination through login, including a failed-password retry. Ordinary tester entry continues to open the garden.
@@ -28,7 +36,7 @@ The initial page was deployed from source commit `c20c181b5651c1818aa02e1cccbd30
 
 All [28 focused core/controller checks](verification/local-checks-20261031.json) and [46 synthetic browser checks across 13 scenarios](verification/browser-review-20261031.json) passed. The [live GraphQL queries and browser CORS check](verification/live-query-check.json) passed, including the successful checked simulation at **0.337998763 SUI**. The two Settlement app integration CI runs passed. Five older preview workflows remain red on unchanged baseline/scope assertions; their exact causes and skipped deployment stages are recorded in [the CI triage](verification/ci-20261031.json).
 
-The final [read-only mainnet observation](verification/final-chain-state-20261031.json), checkpoint **339991221** at **2026-10-31 02:55:22 UTC**, still records version 11 and the original reviewed UpgradeCap reference. **No real signature or upgrade transaction has been submitted by this work. The next action is the owner's explicit Slush approval through the deployed page.**
+The initial [read-only mainnet observation](verification/final-chain-state-20261031.json), checkpoint **339991221** at **2026-10-31 02:55:22 UTC**, recorded version 11 before owner signing. The later confirmed upgrade above supersedes that pending-signature handoff.
 
 At that initial release, the available Netlify tester-password value was masked, so authenticated browser login and calendar invocation were not repeated. No credential, session setting, or gate was changed by that initial release. The existing owner-confirmed tester session was its accepted login checkpoint. Netlify generated a different calendar bundle digest while its source and runtime remained unchanged. Those limits apply to the initial hosted record. The current navigation correction above uses the existing code from the owner's earlier conversation and records new authenticated login, administrator content, and calendar checks.
 

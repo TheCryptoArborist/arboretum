@@ -14,25 +14,11 @@ confirmed successful Slush connection, the selected wallet address, and correct
 loading of the existing garden, NFTree holdings, and season information. See
 the [current domain handoff](../docs/dedicated-preview-domain.md).
 
-The **[current unsigned upgrade review](release/evidence/20261031-review/REVIEW.md)**
-contains refreshed public inputs, the exact three-command version-12 upgrade,
-wallet-ready SDK JSON, and a successful checked simulation with estimated net
-gas of **0.337998763 SUI**. The live contract and Registry remain unchanged.
-The owner has authorized proceeding with this exact upgrade. The deployed isolated
-**[administrator signing route](../settlement-admin/README.md)** adds explicit
-Slush approval and actual receipt verification at
-`https://www.treegrow.xyz/admin/settlement-upgrade/`. Gameplay transaction
-submission remains disabled. The empty Registry setup is a later step that
-requires the real confirmed upgrade digest. The final mainnet check at checkpoint
-339991221 still records version 11; no real signature or upgrade has been submitted.
-The [administrator handoff](../settlement-admin/README.md) records the passing
-28 upgrade unit checks, 46 synthetic upgrade browser checks, 10 return-routing tests,
-20 native return-regression checks, 12 live native-browser checks, 15 deployed asset hashes, both successful
-exact-source Settlement CI runs, and 21 passing authenticated hosted checks.
-Open **[the upgrade tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-upgrade)**
-and choose **Continue to upgrade review**. The corrected gate preserves that
-destination through login and a wrong-code retry. The earlier masked-secret
-authentication limitation is historical; the existing tester code has now been verified.
+The owner signed the reviewed version-12 upgrade. **[The real upgrade is confirmed](release/evidence/20261031-confirmed-upgrade/verification.json)** at checkpoint **340000251**, October 30, 2026 at **10:31 p.m. CDT**. Transaction `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU` published package `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a` with an actual fee of **0.337998763 SUI**. Exact receipt verification confirms the approved bytes, legacy type origins, new settlement types, administrator ownership and upgrade policy. The administrator page now detects the completed upgrade and prevents repeating it.
+
+The **[empty settlement Registry review](release/evidence/20261031-empty-registry-review/REVIEW.md)** is the next separate transaction. Its unsigned packet is tied to the real package and receipt. It creates empty state and a bound administrator capability; it does not start a season, fund a pool, import legacy state or compensate players. The current website has no setup signing control. No setup transaction has been submitted, and simulation IDs are not deployment configuration. Gameplay transaction submission remains disabled by the review build.
+
+The [administrator handoff](../settlement-admin/README.md) records the accepted website, login correction, current deployment and verification evidence. The [upgrade tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-upgrade) remains the route to the completed upgrade/receipt page.
 
 The October 29 Netlify-hostname warning/deployment sections below are preserved
 historical observations. Their statements about paused testing and the old
