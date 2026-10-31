@@ -48,6 +48,8 @@ const ADMIN = '/admin/settlement-upgrade/';
 const EXTERNAL = 'https://chatgpt.com/offline-arboretum-return-fixture';
 const GATE_PATH = 'netlify/edge-functions/tester-gate.ts';
 const rows = [], requests = [], screenshots = [], gateHashes = {}, contexts = [];
+const cdpRequests = [], formSubmissions = [], instrumentationNotes = [];
+const contextLabels = new WeakMap(), observedPages = new WeakMap();
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const redact = text => String(text).split(password).join('[REDACTED]');
 const requestStats = { total: 0, blocked: 0, chainAttempts: 0, externalDocumentAttempts: 0 };
@@ -105,6 +107,46 @@ function recordDocument(label, url, method, headers) {
     fetchSite: headers['sec-fetch-site'] || null, originHeader: headers.origin || null,
     hasTesterCookie: /(?:^|;\s*)__Host-arboretum_tester=/.test(headers.cookie || '') };
   requests.push(row); return row;
+}
+function observePage(context, page) {
+  if (!config.hosted) return Promise.resolve();
+  if (observedPages.has(page)) return observedPages.get(page);
+  const attached = (async () => {
+    const session = await context.newCDPSession(page);
+    const pending = new Map();
+    const pair = id => {
+      if (!pending.has(id)) pending.set(id, { requests: [], extra: [] });
+      return pending.get(id);
+    };
+    const flush = id => {
+      const value = pair(id);
+      while (value.requests.length && value.extra.length) {
+        const request = value.requests.shift(), extra = value.extra.shift();
+        if (request.type !== 'Document' || new URL(request.url).origin !== ORIGIN) continue;
+        cdpRequests.push({ case: contextLabels.get(context), path: new URL(request.url).pathname,
+          method: request.method, ...extra });
+      }
+    };
+    session.on('Network.requestWillBeSent', event => {
+      // Never retain postData, raw request headers, or full protocol events.
+      pair(event.requestId).requests.push({ url: event.request.url, method: event.request.method, type: event.type });
+      flush(event.requestId);
+    });
+    session.on('Network.requestWillBeSentExtraInfo', event => {
+      const headers = Object.fromEntries(Object.entries(event.headers || {}).map(([name, value]) => [name.toLowerCase(), value]));
+      pair(event.requestId).extra.push({
+        fetchSite: headers['sec-fetch-site'] || null, originHeader: headers.origin || null,
+        hasTesterCookie: /(?:^|;\s*)__Host-arboretum_tester=/.test(headers.cookie || ''),
+        testerCookieBlockedReasons: (event.associatedCookies || []).filter(item => item.cookie?.name === '__Host-arboretum_tester')
+          .flatMap(item => item.blockedReasons || []),
+      });
+      flush(event.requestId);
+    });
+    await session.send('Network.enable');
+  })().catch(error => {
+    instrumentationNotes.push({ case: contextLabels.get(context), cdpMetadata: 'unavailable', reason: redact(error.message) });
+  });
+  observedPages.set(page, attached); return attached;
 }
 async function localProxy(label, gate, adminTarget) {
   const sockets = new Set();
@@ -175,6 +217,8 @@ async function newContext(label, gate, { width = 1440, adminTarget = ADMIN } = {
     ...(local ? { proxy: { server: local.url }, ignoreHTTPSErrors: true } : {}),
   });
   contexts.push(context);
+  contextLabels.set(context, label);
+  if (config.hosted) context.on('page', page => { void observePage(context, page); });
   if (local) context.on('close', () => local.close());
   if (config.hosted) {
     // Leave canonical requests and redirects on Chromium's native HTTP path.
@@ -202,6 +246,7 @@ async function newContext(label, gate, { width = 1440, adminTarget = ADMIN } = {
 }
 async function newPage(context, url) {
   const page = await context.newPage(); page.setDefaultTimeout(20000);
+  await observePage(context, page);
   await page.goto(url, { waitUntil: 'domcontentloaded' });
   return page;
 }
@@ -215,23 +260,42 @@ async function submit(page, value, destination) {
   else await page.waitForLoadState('domcontentloaded');
   const headers = await response.request().allHeaders();
   assert.equal(headers.origin, ORIGIN, 'Native POST must have the browser-generated canonical Origin');
-  assert.equal(headers['sec-fetch-site'], 'same-origin', 'Native form POST must remain same-origin');
+  const label = contextLabels.get(page.context());
+  const cdp = [...cdpRequests].reverse().find(row => row.case === label && row.path === '/tester-access' && row.method === 'POST');
+  const fetchSite = headers['sec-fetch-site'] || cdp?.fetchSite || null;
+  const fetchSiteSource = headers['sec-fetch-site'] ? 'playwright' : cdp?.fetchSite ? 'cdp-extra-info' : 'unavailable';
+  if (fetchSite !== null) assert.equal(fetchSite, 'same-origin', 'Observed native POST fetch metadata must be same-origin');
+  formSubmissions.push({ case: label, status: response.status(), origin: headers.origin, fetchSite, fetchSiteSource });
   return response;
 }
 async function externalEntry(context, label, expectedIntent) {
+  const existing = (await context.cookies(ORIGIN)).find(cookie => cookie.name === '__Host-arboretum_tester');
+  assert(existing && existing.sameSite === 'Strict', 'A valid browser-managed Strict session must exist before external entry');
+  assert(requests.some(row => row.case === label && row.path === '/game.html' && row.status === 200 && row.hasTesterCookie),
+    'The existing cookie must have authenticated a real game GET before the external navigation');
   const source = await newPage(context, EXTERNAL);
+  assert.equal(source.url(), EXTERNAL, 'The anchor must be clicked in the actual external-origin document');
+  assert.equal(await source.locator('#admin-link').getAttribute('href'), ORIGIN + ADMIN);
   const nextPage = context.waitForEvent('page');
   await source.locator('#admin-link').click();
   const page = await nextPage; page.setDefaultTimeout(20000);
+  await observePage(context, page);
   await page.waitForURL(url => url.origin === ORIGIN && url.pathname === '/tester-access', { waitUntil: 'domcontentloaded' });
   const target = new URL(page.url());
   assert.equal(target.searchParams.get('next'), expectedIntent ? 'settlement-upgrade' : null);
   const entry = requests.find(row => row.case === label && row.path === ADMIN && row.method === 'GET');
   assert(entry, 'Actual external-link administrator navigation was observed');
-  assert.equal(entry.fetchSite, 'cross-site');
   assert.equal(entry.hasTesterCookie, false, 'SameSite Strict cookie must be omitted on cross-site entry');
+  const retained = (await context.cookies(ORIGIN)).find(cookie => cookie.name === '__Host-arboretum_tester');
+  assert(retained && retained.value === existing.value, 'External entry must omit the cookie without deleting or replacing it');
+  const cdp = cdpRequests.find(row => row.case === label && row.path === ADMIN && row.method === 'GET');
+  if (cdp) assert.equal(cdp.hasTesterCookie, false, 'CDP must also show the cookie omitted when extra metadata is available');
+  const fetchSite = entry.fetchSite || cdp?.fetchSite || null;
+  if (fetchSite !== null) assert.equal(fetchSite, 'cross-site');
   check(label + ': external anchor omits Strict cookie and reaches the intended login URL', true,
-    { originalPath: ADMIN, loginPath: target.pathname + target.search, fetchSite: entry.fetchSite });
+    { originalPath: ADMIN, loginPath: target.pathname + target.search, fetchSite,
+      fetchSiteSource: entry.fetchSite ? 'playwright' : cdp?.fetchSite ? 'cdp-extra-info' : 'unavailable',
+      priorGameRequestHadCookie: true, entryCookiePresent: false, sameCookieRemainsStored: true });
   return page;
 }
 async function screenshot(page, filename) {
@@ -366,7 +430,8 @@ try {
     baselineRef: config.hosted ? null : config.baselineRef, gateSha256: gateHashes,
     playwrightVersion: require(path.join(config.playwright, 'package.json')).version,
     browserVersion: browser?.version() || null, passed: rows.every(row => row.passed), checks: rows,
-    documentRequests: requests, requestStats, screenshots };
+    documentRequests: requests, cdpRequestMetadata: cdpRequests, nativeFormSubmissions: formSubmissions,
+    instrumentationNotes, requestStats, screenshots };
   fs.writeFileSync(path.join(config.output, 'summary.json'), JSON.stringify(summary, null, 2));
   if (browser) await browser.close();
   console.log('Evidence: ' + config.output);

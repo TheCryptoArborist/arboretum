@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "repository": "TheCryptoArborist/arboretum",
+  "sourceCommit": "5abbe0930fd61639c37addd7a7a745b57a12db32",
+  "verifiedAtUtc": "2026-10-31T03:19:31Z",
+  "workflow": "Settlement app integration review",
+  "workflowPath": ".github/workflows/settlement-integration.yml",
+  "runs": [
+    {
+      "runId": 41163764943,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41163764943",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "workflowUpdatedAtUtc": "2026-10-31T03:18:20Z",
+      "verifiedAtUtc": "2026-10-31T03:19:31Z"
+    },
+    {
+      "runId": 41163762392,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41163762392",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "workflowUpdatedAtUtc": "2026-10-31T03:18:18Z",
+      "verifiedAtUtc": "2026-10-31T03:19:31Z"
+    }
+  ],
+  "inspectedJobSteps": "Both verify jobs passed dependency installation, reward/route/reader/wallet/unsigned-packet checks, protected review and administrator build, and artifact upload.",
+  "scopedCIFailureIdentified": false,
+  "legacyWorkflowStatus": "Not inspected for this source commit; no passing or failing conclusion is made.",
+  "historicalBaselineCaveat": "The intentional tester-gate return-path change can also invalidate older byte-equality guards for gate source. Historical workflow results for earlier commits do not establish the status of those workflows for this commit.",
+  "inspection": "Read-only GitHub workflow metadata and job-step review. No workflow changes, deployment, wallet signature, or transaction submission was performed by this inspection."
+}

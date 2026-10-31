@@ -12,6 +12,16 @@ This corrects the reported navigation defect: the previous gate discarded the re
 
 The owner supplied no new credential: the existing code was recovered from their earlier conversation and successfully verified against the live tester entrance and administrator page. The earlier masked-secret verification limit below describes the initial deployment check; it no longer prevents authenticated testing. No tester code belongs in repository files or verification reports.
 
+## Current navigation correction — 2026-10-31 UTC
+
+Source `5abbe0930fd61639c37addd7a7a745b57a12db32` is published as deployment `6ae55e069ac28a1658ed0d65`, at **2026-10-31 03:18:45 UTC / October 30, 10:18 p.m. CDT**. The [authenticated hosted record](verification/tester-return-hosted-20261031.json) confirms 21 passing checks: the fixed return after login and rejected-code retry, protected administrator assets, ordinary garden login, logout, and calendar output. All 15 application asset hashes and the calendar function bundle digest match the initial administrator release. Only the gate's fixed return handling changed executable behavior; credentials, session security, application and signing bytes are preserved.
+
+The focused return suite passed all 10 tests. The [native-browser regression](verification/tester-return-browser-offline-20261031.json) passed 20 checks using the actual old and new handlers behind local HTTPS fixtures. Chromium reproduced the old cross-site Strict-cookie destination loss, then confirmed the corrected desktop/mobile forms and rejected-code retry. Both exact-source [Settlement integration CI runs](verification/tester-return-ci-20261031.json) passed. Older byte-equality guards may reject the intentional gate-source edit; the prior release's legacy CI results do not establish those workflows' status for this source.
+
+The [live native-browser check](verification/tester-return-browser-hosted-20261031.json) passed all 12 checks at desktop and mobile widths. A real external anchor omits the already valid Strict cookie, the correct native form restores the fixed return, and the page displays **Publish the settlement upgrade.** Rejected-code retries and the ordinary garden login also pass. Certificate validation remained enabled. Page JavaScript was disabled for this login-only check.
+
+The existing code was used for hosted authentication without changing Netlify secrets. Browser login verification is separate from real Slush approval. No wallet signature or blockchain submission was performed by this navigation correction.
+
 ## Initial administrator release — October 30, 2026, America/Chicago
 
 The initial page was deployed from source commit `c20c181b5651c1818aa02e1cccbd3058cdcac4d6` as Netlify deployment `6ae5576912763ca45cca5a76`, published at **2026-10-31 02:50:37 UTC / October 30, 9:50 p.m. CDT**. The [hosted verification record](verification/hosted-20261031.json) confirms all 15 raw deployed asset hashes, including the 11 accepted gameplay assets, the published file inventory, 13 public/access-denial checks, both edge functions, and the calendar function inventory. The original Netlify project remains unchanged.
@@ -20,7 +30,7 @@ All [28 focused core/controller checks](verification/local-checks-20261031.json)
 
 The final [read-only mainnet observation](verification/final-chain-state-20261031.json), checkpoint **339991221** at **2026-10-31 02:55:22 UTC**, still records version 11 and the original reviewed UpgradeCap reference. **No real signature or upgrade transaction has been submitted by this work. The next action is the owner's explicit Slush approval through the deployed page.**
 
-At that initial release, the only available tester-password value was the masked, write-only Netlify API value, so a fresh authenticated browser login and calendar invocation were not repeated. This historical verification limit was subsequently resolved using the existing code from the owner's earlier conversation. No credential, session setting, or gate was changed or bypassed. The previous owner-confirmed tester session remains the accepted login checkpoint. Netlify generated a new calendar bundle digest; its source and runtime are unchanged, but this record does not claim byte-identical bundles or a new authenticated function-output test.
+At that initial release, the available Netlify tester-password value was masked, so authenticated browser login and calendar invocation were not repeated. No credential, session setting, or gate was changed by that initial release. The existing owner-confirmed tester session was its accepted login checkpoint. Netlify generated a different calendar bundle digest while its source and runtime remained unchanged. Those limits apply to the initial hosted record. The current navigation correction above uses the existing code from the owner's earlier conversation and records new authenticated login, administrator content, and calendar checks.
 
 ## Scope
 

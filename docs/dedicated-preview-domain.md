@@ -6,6 +6,7 @@ The protected review application is attached to the owner's requested exact host
 | --- | --- |
 | Preview hostname | `www.treegrow.xyz` |
 | Tester entrance | `https://www.treegrow.xyz/tester-access` |
+| Upgrade tester entrance | `https://www.treegrow.xyz/tester-access?next=settlement-upgrade` |
 | Approved upgrade administrator route | `https://www.treegrow.xyz/admin/settlement-upgrade/` |
 | Netlify project | `arboretum-preview` |
 | Netlify site ID | `d425445d-4980-49be-8ab2-12e7527ba281` |
@@ -14,11 +15,13 @@ The protected review application is attached to the owner's requested exact host
 
 ## Current administrator release — 2026-10-31 UTC
 
-The owner-approved administrator signing page is published at **https://www.treegrow.xyz/admin/settlement-upgrade/**. Current deployment **`6ae5576912763ca45cca5a76`** uses source **`c20c181b5651c1818aa02e1cccbd3058cdcac4d6`** and was published at 02:50:37 UTC (October 30, 9:50 p.m. America/Chicago). Its isolated route accepts only the exact reviewed v11-to-v12 transaction, with explicit administrator account selection, fresh mainnet simulation, Slush approval, duplicate-request protection, and actual receipt verification. Gameplay submission remains disabled.
+The owner-approved administrator signing page is published at **https://www.treegrow.xyz/admin/settlement-upgrade/**. Current deployment **`6ae55e069ac28a1658ed0d65`** uses source **`5abbe0930fd61639c37addd7a7a745b57a12db32`** and was published at 03:18:45 UTC (October 30, 10:18 p.m. America/Chicago). Its isolated route accepts only the exact reviewed v11-to-v12 transaction, with explicit administrator account selection, fresh mainnet simulation, Slush approval, duplicate-request protection, and actual receipt verification. Gameplay submission remains disabled.
 
-All 15 raw deployed asset hashes match the tested build; the 11 existing gameplay assets match the previously accepted preview byte for byte. The configured tester entrance, anonymous protection, published inventory, both edge functions, and calendar function inventory passed the current hosted checks. The gate, its credentials, and session settings were preserved. A fresh authenticated login and calendar invocation were not repeated because Netlify masks the stored production tester secret. The calendar function source and runtime are unchanged; its newly generated bundle digest differs. See the [current hosted record](../settlement-admin/verification/hosted-20261031.json) for the exact verification scope.
+The [upgrade tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-upgrade) says **Continue to upgrade review** and returns directly to the administrator page. The previous gate always returned to the garden; an external link could also omit its Strict session cookie. The fixed gate preserves one opaque administrator return marker through authentication and an incorrect-code retry, without accepting arbitrary return URLs or changing cookie security.
 
-The [administrator handoff](../settlement-admin/README.md) records 28 passing focused tests, 46 passing synthetic browser checks, two successful Settlement integration CI runs, and the pre-existing failures in five historical preview workflows. The final read-only mainnet check still records version 11; the website deployment does not itself publish the contract. The next action is the owner's Slush signature.
+All 15 raw deployed application asset hashes match the initial administrator release, including the 11 accepted gameplay assets. The [current authenticated hosted record](../settlement-admin/verification/tester-return-hosted-20261031.json) confirms 21 passing checks, actual code acceptance and administrator content, protected assets, the ordinary garden entrance, logout, and preserved calendar output. The calendar bundle digest is also unchanged. Existing credentials and session settings are preserved. The earlier masked-secret authentication limitation is historical: the existing code from the owner's earlier conversation enabled the new checks.
+
+The [administrator handoff](../settlement-admin/README.md) records the original 28 focused upgrade tests and 46 synthetic upgrade browser checks, plus 10 return-routing tests, 20 native return-regression checks, [12 successful live native-browser checks](../settlement-admin/verification/tester-return-browser-hosted-20261031.json), and both successful Settlement integration CI runs for the current exact source. Older byte-equality guards may reject the intentional gate edit; the earlier legacy CI triage is not a result for this commit. The last recorded mainnet observation at checkpoint 339991221 remains the historical version-11 checkpoint. This website correction does not itself submit the upgrade; the next owner action is explicit Slush approval.
 
 ## Accepted gameplay checkpoint — earlier on 2026-10-31 UTC
 
@@ -42,7 +45,7 @@ Netlify calls the primary deployment of each project `production`. The dedicated
 
 `scripts/build-site.mjs` selects the review builder only for that pinned project. Other projects retain the previous public build sequence and its existing approval checks. The original production site and unknown site IDs cannot run the review builder in production context. Child builders inherit the actual context, and the review report records the dedicated-preview role explicitly. The Python builders use the same policy through a small JSON adapter.
 
-The runtime application, wallet transforms, contracts, tester gate, public-guide edge function, and calendar function are unchanged. The preview remains nonindexable, with `Disallow: /` in `robots.txt`. Its 11 critical emitted application files match the verified `a3096b4f4e0d6b357949505f706b4afe88f85009` review build byte for byte.
+At the hostname/build-policy checkpoint, the runtime application, wallet transforms, contracts, tester gate, public-guide edge function, and calendar function were unchanged. The later administrator release and fixed login return are described above. The preview remains nonindexable, with `Disallow: /` in `robots.txt`. Its 11 critical emitted application files match the verified `a3096b4f4e0d6b357949505f706b4afe88f85009` review build byte for byte.
 
 ## Runtime configuration
 
