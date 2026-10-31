@@ -1,0 +1,10 @@
+Built scripts/build-player-guide.py
+Built scripts/build-guide-site.mjs
+Built scripts/build-prelaunch.mjs
+Built scripts/polish-player-guide.mjs
+Built scripts/build-public-guide.py
+Built scripts/build-reward-first.py
+Built scripts/build-season-status.mjs
+Built economy-review/build-admin-preview.mjs
+Built economy-review/build-garden-ux-preview.mjs
+Verified review build: 6 inline scripts, 9 module files; gameplay submission disabled; exact administrator operations isolated.

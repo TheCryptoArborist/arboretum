@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T04:46:40.721706+00:00",
+  "command": "node --test --test-isolation=none --test-reporter=tap scripts/test-tester-return.mjs",
+  "testCount": 18,
+  "passed": 18,
+  "failed": 0,
+  "skipped": 0,
+  "scope": [
+    "fixed new-seasons document variants and opaque return marker",
+    "incorrect-code retry and native login destination",
+    "Secure HttpOnly host-only SameSite=Strict session",
+    "no arbitrary, duplicate, mixed or query-only redirects",
+    "asset authentication and same-origin POST checks",
+    "retained setup, upgrade and ordinary garden destinations"
+  ],
+  "sourceSha256": {
+    "netlify/edge-functions/tester-gate.ts": "bd8faf72c495637cc3153da14a3ab5fe6d562e6d6bc462f867ce4045a05564fd",
+    "scripts/test-tester-return.mjs": "440ef81f504243ec462fe6baaaf4564e74213401a784bcca96ff56009fd08673"
+  },
+  "evidence": "Observed successful terminal test output; no separate raw log was saved. Native browser results are recorded separately."
+}

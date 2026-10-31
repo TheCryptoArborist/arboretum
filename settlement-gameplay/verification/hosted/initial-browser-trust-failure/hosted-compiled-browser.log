@@ -1,0 +1,7 @@
+FAIL Hosted read-only verification completed: page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.treegrow.xyz/tester-access?next=gameplay-test
+Call log:
+[2m  - navigating to "https://www.treegrow.xyz/tester-access?next=gameplay-test", waiting until "domcontentloaded"[22m
+
+    at review (/tmp/arboretum-gameplay-hosted-browser-review/hosted-20261031/runner.mjs:225:16)
+    at async file:///tmp/arboretum-gameplay-hosted-browser-review/hosted-20261031/runner.mjs:311:36
+Evidence: /tmp/arboretum-gameplay-hosted-browser-review/hosted-20261031

@@ -1,0 +1,63 @@
+{
+  "suite": "v1",
+  "passed": true,
+  "command": [
+    "/tmp/arboretum-season-test-toolchain-20261031/sui",
+    "move",
+    "test",
+    "--build-env",
+    "mainnet",
+    "--path",
+    "/tmp/arboretum-inventory-boundary-full-20261031-2/v1-tests",
+    "--threads",
+    "1",
+    "bnd_"
+  ],
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "expectedTests": [
+    "bnd_v1_application_cannot_consume_v2_tool",
+    "bnd_v1_cheap_crate_purchase_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_generic_plant_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_native_plant_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_supply_purchase_cannot_mutate_v2_registry",
+    "bnd_v1_claim_cannot_consume_v2_seed_entitlement",
+    "bnd_v1_crate_cannot_open_through_v2_registry",
+    "bnd_v1_frozen_cheap_purchase_still_mints_only_version_one_inventory",
+    "bnd_v1_opening_cannot_consume_v2_crate",
+    "bnd_v1_promo_cannot_mint_using_v2_registry_and_cap",
+    "bnd_v1_revival_cannot_consume_v2_tool",
+    "bnd_v1_start_cannot_activate_v2_registry_and_cap",
+    "bnd_v1_tool_cannot_apply_against_v2_registry",
+    "bnd_v1_tool_cannot_mutate_v2_seed_through_v1_registry",
+    "bnd_v1_tool_cannot_revive_against_v2_registry"
+  ],
+  "passedTests": [
+    "bnd_v1_application_cannot_consume_v2_tool",
+    "bnd_v1_cheap_crate_purchase_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_generic_plant_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_native_plant_cannot_mutate_v2_registry",
+    "bnd_v1_cheap_supply_purchase_cannot_mutate_v2_registry",
+    "bnd_v1_claim_cannot_consume_v2_seed_entitlement",
+    "bnd_v1_crate_cannot_open_through_v2_registry",
+    "bnd_v1_frozen_cheap_purchase_still_mints_only_version_one_inventory",
+    "bnd_v1_opening_cannot_consume_v2_crate",
+    "bnd_v1_promo_cannot_mint_using_v2_registry_and_cap",
+    "bnd_v1_revival_cannot_consume_v2_tool",
+    "bnd_v1_start_cannot_activate_v2_registry_and_cap",
+    "bnd_v1_tool_cannot_apply_against_v2_registry",
+    "bnd_v1_tool_cannot_mutate_v2_seed_through_v1_registry",
+    "bnd_v1_tool_cannot_revive_against_v2_registry"
+  ],
+  "exitCode": 0,
+  "testFragmentSha256": {
+    "settlement-integration/inventory-boundary/tests/old-package-rejection-v1.move.inc": "d8a1c0152760517fbe1135754f4851ff86b927f208f064a41f2e3edb0691b26a"
+  },
+  "testOnlyInsertion": true,
+  "generatedSourceSha256": "2869697eaedb3d05d9c8fa23ca2e4791aac15968c1c6815e9978cc3c62da3c48",
+  "legacyTestOnlyInsertion": false,
+  "generatedLegacySourceSha256": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1"
+}

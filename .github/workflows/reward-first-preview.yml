@@ -51,7 +51,9 @@ jobs:
           npx tsc --noEmit --target es2022 --module nodenext --moduleResolution nodenext --lib es2022,dom --skipLibCheck netlify/edge-functions/tester-gate.ts netlify/edge-functions/public-player-guide.ts
           if CONTEXT=production python3 scripts/build-reward-first.py >reward-results/production-guard.txt 2>&1; then exit 1; fi
           grep -q 'preview-only' reward-results/production-guard.txt
-          git diff 781caf03d17bda0d4c618cdf486e1c77756d8e6a --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js contract/sources/arboretum.move
+          git diff 781caf03d17bda0d4c618cdf486e1c77756d8e6a --exit-code -- index.html garden.js sui-sdk.bundle.js contract/sources/arboretum.move
+          # Preserve the reviewed confirmation/receipt fixes already included in PR15.
+          git diff ba6faff6de7c446599a605ffa95369a325a12e3e --exit-code -- wallet.js
       - name: Prepare browser tools and one-use public key
         if: github.event_name == 'push' && contains(github.event.head_commit.message, '[reward-preview-deploy]')
         env:

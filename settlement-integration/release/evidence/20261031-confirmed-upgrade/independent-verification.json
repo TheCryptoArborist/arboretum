@@ -1,0 +1,153 @@
+{
+  "verifiedAtUtc": "2026-10-31T03:34:13.990Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "chainIdentifier": "35834a8a",
+  "digest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+  "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "status": "SUCCESS",
+  "checkpoint": {
+    "sequenceNumber": 340000251,
+    "timestamp": "2026-10-31T03:31:58.538Z"
+  },
+  "latestObservedCheckpoint": {
+    "sequenceNumber": 340000795,
+    "timestamp": "2026-10-31T03:34:11.156Z",
+    "digest": "HMxg1JCuh7asqkMGRxXBifT48zrQ2rVoFKb2VRyoDxWZ"
+  },
+  "exactAuthorizedTransactionKind": true,
+  "kindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+  "kindBytes": 40617,
+  "commands": [
+    {
+      "kind": "MoveCall",
+      "package": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "module": "package",
+      "function": "authorize_upgrade",
+      "arguments": [
+        {
+          "Input": 0,
+          "$kind": "Input"
+        },
+        {
+          "Input": 1,
+          "$kind": "Input"
+        },
+        {
+          "Input": 2,
+          "$kind": "Input"
+        }
+      ]
+    },
+    {
+      "kind": "Upgrade",
+      "package": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+      "dependencies": [
+        "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "0x0000000000000000000000000000000000000000000000000000000000000002"
+      ],
+      "modules": 2,
+      "ticket": {
+        "NestedResult": [
+          0,
+          0
+        ],
+        "$kind": "NestedResult"
+      }
+    },
+    {
+      "kind": "MoveCall",
+      "package": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "module": "package",
+      "function": "commit_upgrade",
+      "arguments": [
+        {
+          "Input": 0,
+          "$kind": "Input"
+        },
+        {
+          "NestedResult": [
+            1,
+            0
+          ],
+          "$kind": "NestedResult"
+        }
+      ]
+    }
+  ],
+  "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "packageVersion": 12,
+  "packageOwner": "Immutable",
+  "modules": [
+    {
+      "name": "arboretum",
+      "bytes": 18034,
+      "sha256": "3ddcce6c26d7672f242cbe11f803972cc992c658e90dc8e2239b6839d67d4aa5"
+    },
+    {
+      "name": "settlement",
+      "bytes": 22221,
+      "sha256": "c0dd12db1e675d506fd52deb42b654562a84b7ca5dd0ebd60b3eb3bbf7378d0e"
+    }
+  ],
+  "typeOrigins": {
+    "total": 71,
+    "legacyCount": 32,
+    "settlementCount": 39,
+    "legacyOriginsMatchApproved": true,
+    "allSettlementOriginsEqualNewPackage": true
+  },
+  "upgradeCap": {
+    "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "objectVersion": 990522282,
+    "digest": "5WD8ag8pDpeHKMNc96eV5e9UTnW42L8KWk5jHZoS6a1W",
+    "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "fields": {
+      "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+      "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "version": "12",
+      "policy": 0
+    },
+    "previousTransaction": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+    "reviewedInputReference": {
+      "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+      "version": 990522281,
+      "digest": "AL8rz2UmVAVijA5KiDufAKsn4VbYjDMFaYyHQ8kzPB22"
+    }
+  },
+  "fee": {
+    "netMist": "337998763",
+    "netSui": "0.337998763",
+    "computationCost": 323000,
+    "storageCost": 339309600,
+    "storageRebate": 1633837,
+    "nonRefundableStorageFee": 163,
+    "walletGasBudgetMist": "338098763",
+    "walletGasPrice": "100"
+  },
+  "balanceChanges": [
+    {
+      "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "coinType": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+      "amount": "-337998763"
+    }
+  ],
+  "objectChanges": [
+    {
+      "address": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+      "created": false,
+      "deleted": false,
+      "category": "UpgradeCap"
+    },
+    {
+      "address": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "created": true,
+      "deleted": false,
+      "category": "published package"
+    }
+  ],
+  "duplicatePreflightState": "already-upgraded",
+  "legacyAdminAndRegistryMatchApproved": true,
+  "deviations": [],
+  "signaturesProduced": 0,
+  "transactionsSubmitted": 0
+}

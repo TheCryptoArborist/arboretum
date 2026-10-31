@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T22:11:24.013Z",
+  "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
+  "buildContext": "production",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "deploymentRole": "dedicated-preview",
+  "previewOrigin": "https://www.treegrow.xyz",
+  "reviewOnly": true,
+  "newSeasonsConfigured": true,
+  "newSeasonsReviewAvailable": true,
+  "newSeasonsReadOnly": true,
+  "settlementActivationEnabled": false,
+  "preservedSourceSha256": {
+    "index.html": "d097ef796f14380c0d2e9e3dcfecab0fead13808d6c26a20497b5b9bd0123701",
+    "wallet.js": "ce600b052fcb87098ec001ebb57e33709d676d8d0562d7092e5d5081b295119f",
+    "garden.js": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+    "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+    "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
+    "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+    "netlify/edge-functions/tester-gate.ts": "cc8759bc04590128a3625f3f1be605532d02dd8a197fd0799e0f7f5ac6421ce8",
+    "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
+    "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
+  },
+  "publicPagesUnchanged": true,
+  "inlineScriptsParsed": 6,
+  "walletModuleDependencies": [
+    "season-status/garden-status.mjs",
+    "season-status/model.mjs",
+    "settlement-integration/deployment-config.mjs",
+    "settlement-integration/model.mjs",
+    "settlement-integration/reader.mjs",
+    "settlement-panel.mjs",
+    "settlement-sdk.bundle.js",
+    "settlement-wallet.js",
+    "wallet.js"
+  ],
+  "emittedSha256": {
+    "index.html": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+    "player-guide.html": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+    "game.html": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+    "settlement-game.html": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+    "wallet.js": "4d4486b9f39cdedcc6adfafafd9ae51e00514b08fa68926076bf4854ccdef043",
+    "settlement-sdk.bundle.js": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+    "settlement-panel.mjs": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+    "settlement-panel.css": "bcc8165ce351dc818a9c13560b2cde8843c92f384b89b421ae21df988c9d430e",
+    "settlement-integration/reader.mjs": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+    "settlement-integration/model.mjs": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-wallet.js": "712901808debd5f36965b9fbc1e0d7ca3d2c26911c16e92b2c486ad8f3367ace"
+  },
+  "transactionSubmissionEnabled": false,
+  "transactionSubmissionScope": "gameplay-review",
+  "administratorUpgrade": {
+    "route": "/admin/settlement-upgrade/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactUpgradeKindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+    "gameplayTransactionsEnabled": false,
+    "ownerWalletApprovalRequired": true,
+    "registrySetupEnabled": false,
+    "emittedSha256": {
+      "admin/settlement-upgrade/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "admin/settlement-upgrade/admin.mjs": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "admin/settlement-upgrade/index.html": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
+      "admin/settlement-upgrade/upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563"
+    }
+  },
+  "administratorSetup": {
+    "route": "/admin/settlement-setup/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactSetupKindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+    "exactSetupKindBytes": 154,
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "confirmedUpgradeDigest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+    "ownerWalletApprovalRequired": true,
+    "emptyRegistrySetupEnabled": true,
+    "gameplayTransactionsEnabled": false,
+    "seasonStartEnabled": false,
+    "fundingEnabled": false,
+    "emittedSha256": {
+      "admin/settlement-setup/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "admin/settlement-setup/admin.mjs": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
+      "admin/settlement-setup/index.html": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
+      "admin/settlement-setup/setup-kind.b64": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849"
+    }
+  },
+  "administratorSeason": {
+    "route": "/admin/season-test/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactStartKindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "exactStartKindBytes": 258,
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "proposedDurationMs": "86400000",
+    "inventoryVersion": 1,
+    "ownerWalletApprovalRequired": true,
+    "firstSeasonStartEnabled": true,
+    "gameplayTransactionsEnabled": false,
+    "fundingEnabled": false,
+    "productionUpgradeEnabled": false,
+    "emittedSha256": {
+      "admin/season-test/admin.css": "3a2032ab33dca1000edf6de0e18ae164b50bd34b99ee9eab692367655d097f75",
+      "admin/season-test/admin.mjs": "64cabbfe879aa08319aa83ca3b320cbfd03cea7f2331072ca91aa85dba2f89f3",
+      "admin/season-test/index.html": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+      "admin/season-test/start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+    }
+  },
+  "ownerGameplay": {
+    "route": "/admin/gameplay-test/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "confirmedSeasonStartDigest": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
+    "inventoryVersion": 1,
+    "seasonId": 1,
+    "ownerWalletApprovalRequired": true,
+    "ownerGameplayEnabled": true,
+    "transactionScope": "single-first-owner-seed-plant",
+    "generalGameplayEnabled": false,
+    "fundingOperationsEnabled": false,
+    "productionUpgradeEnabled": false,
+    "emittedSha256": {
+      "admin/gameplay-test/admin.css": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+      "admin/gameplay-test/admin.mjs": "2af356dbadf893778dd6e1f267b07a5f40678cd290b3c23ce5dd826cba323235",
+      "admin/gameplay-test/index.html": "b6fbe1d1483cb23f029905b64eb0f812d71806bf4ab5a1a4aa9052acc0c9ab3b"
+    }
+  },
+  "evidencePublished": false,
+  "hostedPreviewVerified": false,
+  "gateRequirement": "The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient."
+}

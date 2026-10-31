@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>First test season | Arboretum administration</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/season-test/admin.css">
+  <script type="module" src="/admin/season-test/admin.mjs"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home">
+      <img src="/prelaunch/mark.png" width="44" height="44" alt="">
+      <span>ARBORETUM<small>ADMINISTRATION</small></span>
+    </a>
+    <a class="back-link" href="/settlement-game.html">Review the garden <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · OWNER TEST</p>
+      <h1 id="page-title">Start the first <br><span>test season.</span></h1>
+      <p class="lead">Open a 24-hour growing period in the existing test Registry. Review the timing and network fee, then approve the start with your administrator wallet.</p>
+    </section>
+
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required for the wallet review. Enable it in your browser and reload this page.</div></noscript>
+
+    <div class="release-layout">
+      <section class="card release-card" aria-labelledby="season-heading">
+        <div class="card-heading"><div><p class="eyebrow">FIRST TEST SEASON</p><h2 id="season-heading">A 24-hour growing period</h2></div><span class="version-chip">Test v1</span></div>
+        <div class="preservation-strip"><span class="check-icon" aria-hidden="true">✓</span><p>Existing Registry, confirmed setup<br><small>Package v12 · inventory version 1 · administrator controlled</small></p></div>
+
+        <h3>What your approval does</h3>
+        <ol class="command-list">
+          <li><span class="step-number" aria-hidden="true">1</span><div><strong>Start test season 1</strong><p>The 24-hour timer begins when the transaction executes on Sui mainnet. The receipt shows the confirmed start and growing cutoff.</p></div></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span><div><strong>Use the test economy</strong><p>This Registry retains version-1 test prices and inventory. The prepared version-2 production release uses a separate Registry and production prices.</p></div></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span><div><strong>Begin with zero reward funding</strong><p>This transaction starts the season only. Reward funding and the gameplay test interface follow as separate steps.</p></div></li>
+        </ol>
+
+        <div class="fee-box">
+          <div><p class="eyebrow">ESTIMATED NETWORK FEE</p><p id="gas-estimate" class="fee">Check to estimate</p></div>
+          <span id="gas-status" class="pill">Refresh required</span>
+          <p id="gas-note" class="fee-note">The readiness check calculates a current estimate. Slush selects gas and shows its final review before approval.</p>
+        </div>
+        <p class="scope-note">Watering keeps its normal 21-hour, 36-minute interval. The short season does not accelerate care. The garden review remains read-only after this start.</p>
+
+        <details class="technical-details">
+          <summary>View Registry and administrator details</summary>
+          <dl>
+            <dt>Required administrator</dt><dd id="expected-admin">0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4</dd>
+            <dt>Confirmed version 12 package</dt><dd id="expected-package">0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a</dd>
+            <dt>Existing test Registry</dt><dd>0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9</dd>
+            <dt>Single contract call</dt><dd>settlement::start_season_for_duration · 86,400,000 milliseconds</dd>
+            <dt>Reviewed transaction fingerprint</dt><dd id="expected-kind">6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1</dd>
+          </dl>
+          <a class="text-link" href="https://github.com/TheCryptoArborist/arboretum/blob/2c0991b45e840caa9b875f37376306691c268e6d/settlement-integration/verification/inventory-boundary-20261031/README.md" target="_blank" rel="noopener noreferrer">Read the inventory boundary review <span aria-hidden="true">↗</span></a>
+        </details>
+      </section>
+
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="eyebrow">ADMINISTRATOR ACTION</p>
+        <h2 id="action-heading">Review with Slush</h2>
+        <p class="action-intro">Use the same administrator account that created the rewards Registry.</p>
+
+        <div class="flow-section">
+          <h3><span class="step-number">1</span> Connect your wallet</h3>
+          <div id="wallet-list" class="wallet-list"><p class="muted">Looking for the Slush browser extension…</p></div>
+          <p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p>
+          <div id="account-controls" hidden>
+            <label for="account-select">Choose the administrator account</label>
+            <select id="account-select"><option value="">Select an account</option></select>
+            <button id="use-account" type="button" class="button secondary" disabled>Use selected account</button>
+            <p id="connected-address" class="address" hidden></p>
+            <button id="disconnect" type="button" class="text-button">Disconnect</button>
+          </div>
+        </div>
+
+        <div class="flow-section">
+          <h3><span class="step-number">2</span> Check the test start</h3>
+          <p class="small-text">Verify the empty Registry and administrator, then simulate the exact 24-hour first-season transaction.</p>
+          <button id="check-season" type="button" class="button secondary" disabled>Check test-season readiness</button>
+          <div id="checks" class="checks" aria-live="polite" hidden>
+            <p><span aria-hidden="true">✓</span> Existing version-1 Registry is empty and unstarted</p>
+            <p><span aria-hidden="true">✓</span> Administrator, package, and mainnet verified</p>
+            <p><span aria-hidden="true">✓</span> Exact 24-hour start, with zero funding</p>
+            <p><span aria-hidden="true">✓</span> Current simulation successful</p>
+            <p id="projected-cutoff" class="small-text"></p>
+            <p id="watering-note" class="small-text"></p>
+            <p id="checked-at" class="small-text"></p>
+          </div>
+        </div>
+
+        <div class="flow-section final-step">
+          <h3><span class="step-number">3</span> Approve the test start</h3>
+          <label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I want to start a 24-hour version-1 test season when this transaction executes. It deposits no reward funds. I have reviewed the estimated end time and network fee.</span></label>
+          <button id="submit-season" type="button" class="button primary" disabled>Review test start in Slush <span aria-hidden="true">↗</span></button>
+          <p class="small-text">Slush asks for your final approval. This page never needs your recovery phrase or private key.</p>
+        </div>
+      </section>
+    </div>
+
+    <section id="status-panel" class="notice status-panel" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-message"></p></section>
+
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden>
+      <p class="eyebrow">CONFIRMED ON SUI MAINNET</p>
+      <h2 id="receipt-heading">The first test season is confirmed.</h2>
+      <p id="receipt-state-message">The receipt verifies the original first-season start and its deadlines.</p>
+      <dl>
+        <dt>Transaction digest</dt><dd id="receipt-digest"></dd>
+        <dt>Test season</dt><dd id="receipt-season"></dd>
+        <dt>Confirmed start</dt><dd id="receipt-start"></dd>
+        <dt>Growing cutoff</dt><dd id="receipt-cutoff"></dd>
+        <dt>Claim deadline</dt><dd id="receipt-claim-deadline"></dd>
+        <dt>Rewards Registry</dt><dd id="receipt-registry"></dd>
+        <dt>Administrator capability</dt><dd id="receipt-admin-cap"></dd>
+        <dt>Package</dt><dd id="receipt-package"></dd>
+      </dl>
+      <div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button><a href="/settlement-game.html" class="button secondary">Review the garden</a></div>
+    </section>
+
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading" hidden>
+      <h2 id="recovery-heading">Check an existing test start</h2>
+      <p id="recovery-message">Verify the original start transaction from Slush activity. These checks only read mainnet and are available without connecting a wallet.</p>
+      <form id="verify-form"><label for="transaction-digest">Season-start transaction digest from Slush</label><div class="recovery-input"><input id="transaction-digest" name="digest" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form>
+      <button id="check-existing" type="button" class="text-button">Check the current test season</button>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · ADMINISTRATION</span><span>24-hour test. Wallet approval starts the timer.</span></footer>
+</body>
+</html>

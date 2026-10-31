@@ -1,0 +1,21 @@
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+Running Move unit tests
+[ PASS    ] arboretum::settlement::bnd_v1_application_cannot_consume_v2_tool
+[ PASS    ] arboretum::settlement::bnd_v1_cheap_crate_purchase_cannot_mutate_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_cheap_generic_plant_cannot_mutate_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_cheap_native_plant_cannot_mutate_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_cheap_supply_purchase_cannot_mutate_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_claim_cannot_consume_v2_seed_entitlement
+[ PASS    ] arboretum::settlement::bnd_v1_crate_cannot_open_through_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_frozen_cheap_purchase_still_mints_only_version_one_inventory
+[ PASS    ] arboretum::settlement::bnd_v1_opening_cannot_consume_v2_crate
+[ PASS    ] arboretum::settlement::bnd_v1_promo_cannot_mint_using_v2_registry_and_cap
+[ PASS    ] arboretum::settlement::bnd_v1_revival_cannot_consume_v2_tool
+[ PASS    ] arboretum::settlement::bnd_v1_start_cannot_activate_v2_registry_and_cap
+[ PASS    ] arboretum::settlement::bnd_v1_tool_cannot_apply_against_v2_registry
+[ PASS    ] arboretum::settlement::bnd_v1_tool_cannot_mutate_v2_seed_through_v1_registry
+[ PASS    ] arboretum::settlement::bnd_v1_tool_cannot_revive_against_v2_registry
+Test result: OK. Total tests: 15; passed: 15; failed: 0
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.

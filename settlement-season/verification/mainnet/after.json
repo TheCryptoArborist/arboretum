@@ -1,0 +1,301 @@
+{
+  "requestedAt": "2026-10-31T06:02:40.996Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "method": "POST",
+  "credentials": "omit",
+  "redirect": "error",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Origin": "https://www.treegrow.xyz"
+  },
+  "query": "query OwnerTestSeasonInputs($upgradeCap:SuiAddress!$legacyAdminCap:SuiAddress!$registry:SuiAddress!$registryType:String!$adminCapType:String!){checkpoint{sequenceNumber timestamp digest}genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}upgradeCap:object(address:$upgradeCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}legacyAdminCap:object(address:$legacyAdminCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}registry:object(address:$registry){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}registries:objects(first:2 filter:{type:$registryType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}adminCaps:objects(first:2 filter:{type:$adminCapType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}clock:object(address:\"0x0000000000000000000000000000000000000000000000000000000000000006\"){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}",
+  "variables": {
+    "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "registryType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+    "adminCapType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap"
+  },
+  "capturedAt": "2026-10-31T06:02:41.117Z",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "content-type": "application/json",
+    "date": "Sat, 31 Oct 2026 06:02:41 GMT",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": null,
+    "access-control-allow-headers": null
+  },
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 340037436,
+        "timestamp": "2026-10-31T06:02:39.203Z",
+        "digest": "GvbR3oSufDr5wn9keeYHf2ox5bXkfEkFD7nPeQ6QfiNw"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "upgradeCap": {
+        "address": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+        "version": 990522282,
+        "digest": "5WD8ag8pDpeHKMNc96eV5e9UTnW42L8KWk5jHZoS6a1W",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::package::UpgradeCap"
+            },
+            "json": {
+              "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+              "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+              "version": "12",
+              "policy": 0
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 340000251,
+              "timestamp": "2026-10-31T03:31:58.538Z"
+            }
+          }
+        }
+      },
+      "legacyAdminCap": {
+        "address": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+        "version": 986499448,
+        "digest": "9pPCr7P5WhSzdFJFHynGq1yJemck8Z8purxuDyDVtfLo",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::AdminCap"
+            },
+            "json": {
+              "id": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3"
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 340013815,
+              "timestamp": "2026-10-31T04:27:02.091Z"
+            }
+          }
+        }
+      },
+      "registry": {
+        "address": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "version": 995549548,
+        "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 922820085
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry"
+            },
+            "json": {
+              "id": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "3",
+              "season_start_ms": "1788220806247",
+              "reward_pool": "209720000",
+              "treasury": "0",
+              "total_seeds": "20",
+              "total_growth_points": "2498",
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x93277cbe2f6683d9ecaab8f5dde5086600e6e95c41ce094409b8e8b437a24a48",
+                "size": "8"
+              },
+              "referrers": {
+                "id": "0x0ca07d058dd75c756611819f547e13ac48f22112a2565521c2723aaf8f980661",
+                "size": "2"
+              },
+              "referral_earnings": {
+                "id": "0xc93da9448da77d684700d1c7d11c5dd59f836a0e7cb90a131191c09c99570ea7",
+                "size": "2"
+              },
+              "player_growth": {
+                "id": "0xe5e0e2985ecb99ed5fec053c7e6aae67820db446d7c1c1c7b716825e1985c92f",
+                "size": "8"
+              },
+              "player_growth_season": {
+                "id": "0xf2475714439da494caf3d01f9f0c4d4ccaf0da35fbdebed8e31fc6bc61d4a53e",
+                "size": "8"
+              },
+              "planted_saplings": {
+                "id": "0x7d09331b32ab8723c58ee09f592c38d66a11e5798d8f68e2fee1bf05830009e2",
+                "size": "20"
+              }
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "Bwu4YX4eBEBsHoMTMS15rDCdhYHkYnfvCq9H3aF24k2d",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 328132170,
+              "timestamp": "2026-09-29T03:27:45.115Z"
+            }
+          }
+        }
+      },
+      "registries": {
+        "nodes": [
+          {
+            "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "version": 986499448,
+            "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+            "owner": {
+              "__typename": "Shared",
+              "initialSharedVersion": 986499448
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                },
+                "json": {
+                  "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                  "version": "1",
+                  "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "current_season_id": "0",
+                  "season_start_ms": "0",
+                  "reward_pool": "0",
+                  "treasury": "0",
+                  "total_seeds": "0",
+                  "total_growth_points": "0",
+                  "eligible_growth_points": "0",
+                  "settlement": null,
+                  "paused": false,
+                  "seeds_by_owner": {
+                    "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                    "size": "0"
+                  },
+                  "referrers": {
+                    "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                    "size": "0"
+                  },
+                  "referral_earnings": {
+                    "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                    "size": "0"
+                  },
+                  "player_growth": {
+                    "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                    "size": "0"
+                  },
+                  "player_growth_season": {
+                    "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                    "size": "0"
+                  },
+                  "planted_saplings": {
+                    "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                    "size": "0"
+                  }
+                }
+              }
+            },
+            "previousTransaction": {
+              "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 340013815,
+                  "timestamp": "2026-10-31T04:27:02.091Z"
+                }
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "PI9EFAAAAABq/GxuX2FZ1ABSqP+Ag6pe9tJw0VtyvozELN4ntkPKe5oAAAAAAAAACnNldHRsZW1lbnQAAAAAAAAACFJlZ2lzdHJ5AAAAAAAAAAAvjrJcVx0fHpY/giJlwyvAje2GoWpdbb1KQXoximyKuQ=="
+        }
+      },
+      "adminCaps": {
+        "nodes": [
+          {
+            "address": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+            "version": 986499448,
+            "digest": "HDZcd13jb51WBb59PwTCW4oYk7rtchGYDtV6a5sajDUg",
+            "owner": {
+              "__typename": "AddressOwner",
+              "address": {
+                "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap"
+                },
+                "json": {
+                  "id": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+                  "version": "1",
+                  "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9"
+                }
+              }
+            },
+            "previousTransaction": {
+              "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 340013815,
+                  "timestamp": "2026-10-31T04:27:02.091Z"
+                }
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "PI9EFAAAAABq/GxuX2FZ1ABSqP+Ag6pe9tJw0VtyvozELN4ntkPKe5oAAAAAAAAACnNldHRsZW1lbnQAAAAAAAAACEFkbWluQ2FwAAAAAAAAAAAvXYjvZr5XAeM8TdwHaGiEWyvBU7zrSuP8mX4rY7k4NQ=="
+        }
+      },
+      "clock": {
+        "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "version": 1012384526,
+        "digest": "J3SeQt3ddHQ4VmbPAyMfnRgG1FVsaYhYbYRTyAekFp5S",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 1
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock"
+            },
+            "json": {
+              "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "timestamp_ms": "1793426559203"
+            }
+          }
+        }
+      }
+    }
+  }
+}

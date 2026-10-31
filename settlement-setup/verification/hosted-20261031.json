@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:20:27.031326+00:00",
+  "sourceUpload": {
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "siteName": "arboretum-preview",
+    "customDomain": "www.treegrow.xyz",
+    "sourceCommit": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+    "archiveSha256": "0ce08d69cbf9fc8da4a018b676e06776425e058294fc1eba55721f20121830f3",
+    "archiveBytes": 31259686,
+    "requestedAt": "2026-10-31T04:19:32.170094+00:00",
+    "previousPublishedDeployId": "6ae55e069ac28a1658ed0d65",
+    "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+    "submissionAttempted": true,
+    "responseReceived": true,
+    "responseHttpStatus": 200,
+    "buildId": "6ae56c55b4f726c32698bd36",
+    "deployId": "6ae56c55b4f726c32698bd38"
+  },
+  "deployment": {
+    "id": "6ae56c55b4f726c32698bd38",
+    "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "build_id": "6ae56c55b4f726c32698bd36",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-10-31T04:19:49.905Z",
+    "deploy_source": "api",
+    "has_source_zip": true
+  },
+  "entryUrl": "https://www.treegrow.xyz/tester-access?next=settlement-setup",
+  "administratorUrl": "https://www.treegrow.xyz/admin/settlement-setup/",
+  "rawDeployedAssets": [
+    {
+      "path": "index.html",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "matches": true
+    },
+    {
+      "path": "player-guide.html",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "matches": true
+    },
+    {
+      "path": "game.html",
+      "sha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "matches": true
+    },
+    {
+      "path": "settlement-game.html",
+      "sha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "matches": true
+    },
+    {
+      "path": "wallet.js",
+      "sha256": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
+      "matches": true
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "sha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.css",
+      "sha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "sha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "sha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.css",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.mjs",
+      "sha256": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "sha256": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/upgrade-kind.b64",
+      "sha256": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/admin.css",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/admin.mjs",
+      "sha256": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/index.html",
+      "sha256": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-setup/setup-kind.b64",
+      "sha256": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849",
+      "matches": true
+    }
+  ],
+  "existing14GameAndSigningAssetsUnchanged": true,
+  "setupAssetsAdded": 4,
+  "upgradeReceiptNavigationUpdated": true,
+  "httpChecks": [
+    {
+      "check": "Setup return retained /admin/settlement-setup/",
+      "passed": true
+    },
+    {
+      "check": "Setup return retained /admin/settlement-setup",
+      "passed": true
+    },
+    {
+      "check": "Setup return retained /admin/settlement-setup/index.html",
+      "passed": true
+    },
+    {
+      "check": "Existing upgrade retains its own destination",
+      "passed": true
+    },
+    {
+      "check": "Ordinary game retains normal tester entrance",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset protected admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset protected admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset protected setup-kind.b64",
+      "passed": true
+    },
+    {
+      "check": "Setup-intent login form",
+      "passed": true
+    },
+    {
+      "check": "Native form origin policy",
+      "passed": true
+    },
+    {
+      "check": "Wrong code preserves destination without session",
+      "passed": true
+    },
+    {
+      "check": "Valid login returns directly to setup",
+      "passed": true
+    },
+    {
+      "check": "Secure Strict tester session preserved",
+      "passed": true
+    },
+    {
+      "check": "Authenticated setup page visible",
+      "passed": true
+    },
+    {
+      "check": "Setup page cache and robot headers",
+      "passed": true
+    },
+    {
+      "check": "Setup page has no public-page restrictive CSP",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact asset admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact asset admin.css",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact asset setup-kind.b64",
+      "passed": true
+    },
+    {
+      "check": "Existing upgrade receipt links to setup",
+      "passed": true
+    },
+    {
+      "check": "Calendar response matches preserved function",
+      "passed": true
+    },
+    {
+      "check": "Tester logout retained",
+      "passed": true
+    },
+    {
+      "check": "Default login still opens garden",
+      "passed": true
+    }
+  ],
+  "authenticatedLoginVerified": true,
+  "authenticatedAdministratorPageVerified": true,
+  "calendarBundleDigestUnchanged": true,
+  "calendarResponseMatchesPreservedSource": true,
+  "edgeFunctionNames": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "serverlessFunctionNames": [
+    "calendar-reminder"
+  ],
+  "functionSchedules": [],
+  "passwordAndSessionSettingsChanged": false,
+  "cookieSameSite": "Strict",
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limits": [
+    "HTTP checks do not by themselves reproduce cross-site native browser cookie behavior; that is recorded by the separate browser test.",
+    "No wallet or blockchain submission was used."
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "status": "ONLY_VERSION_AND_13_APPROVED_PRICES_CHANGED",
+  "functionSourceCount": 137,
+  "allFunctionSourceTokensIdentical": true,
+  "changedConstants": [
+    {
+      "name": "VERSION",
+      "before": "1",
+      "after": "2"
+    },
+    {
+      "name": "GROWTH_DEPOSIT_MIST",
+      "before": "10000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "CRATE_PRICE_0",
+      "before": "10000000",
+      "after": "5000000000"
+    },
+    {
+      "name": "CRATE_PRICE_1",
+      "before": "10000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "CRATE_PRICE_2",
+      "before": "10000000",
+      "after": "25000000000"
+    },
+    {
+      "name": "CRATE_PRICE_3",
+      "before": "10000000",
+      "after": "50000000000"
+    },
+    {
+      "name": "CRATE_PRICE_4",
+      "before": "10000000",
+      "after": "100000000000"
+    },
+    {
+      "name": "CRATE_PRICE_5",
+      "before": "10000000",
+      "after": "30000000000"
+    },
+    {
+      "name": "CRATE_PRICE_6",
+      "before": "10000000",
+      "after": "30000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_WATERING_BOOST",
+      "before": "20000000",
+      "after": "2000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_MULCH",
+      "before": "25000000",
+      "after": "4000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_RAIN_BARREL",
+      "before": "30000000",
+      "after": "5000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_DROUGHT_SHIELD",
+      "before": "40000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_REVIVAL_KIT",
+      "before": "50000000",
+      "after": "15000000000"
+    }
+  ],
+  "allOtherTokensIdentical": true,
+  "plantingReferralMistUnchanged": "1000000",
+  "migrationFunctionAdded": false
+}

@@ -1,0 +1,31 @@
+{
+  "officialArchive": "https://security.ubuntu.com/ubuntu/",
+  "distro": "Ubuntu24.04 noble-security amd64",
+  "inReleaseSha256": "1c365fad2f217c66dc96716b916dc65eaf65fb46459fcffffa87a4ecc5e1c41b",
+  "signatureVerified": true,
+  "signatureReport": "gpgv: Signature made Sat Oct 31 11:44:22 2026 JST\ngpgv:                using RSA key F6ECB3762474EDA9D21B7022871920D1991BC93C\ngpgv: Good signature from \"Ubuntu Archive Automatic Signing Key (2018) <ftpmaster@ubuntu.com>\"",
+  "packagesIndex": "main/binary-amd64/Packages.xz",
+  "packagesIndexSha256": "a65b8532f4c3f3b864c7c0a423fbc6a4f4c6ee1a871bb78c0f5f0f27cc44a195",
+  "package": {
+    "Package": "libnss3-tools",
+    "Version": "2:3.98-1ubuntu0.3",
+    "Architecture": "amd64",
+    "Filename": "pool/main/n/nss/libnss3-tools_3.98-1ubuntu0.3_amd64.deb",
+    "Size": "615126",
+    "SHA256": "0bb7919188cb21d3bfba5d45b5aa45848aa61b92ced34ff3f8ecda7b92d788c0",
+    "Depends": "libc6 (>= 2.34), libnspr4 (>= 2:4.34), libnss3 (>= 2:3.94), zlib1g (>= 1:1.1.4)"
+  },
+  "extractedCertutil": "/tmp/arboretum-nss-tools-20261031/extracted/usr/bin/certutil",
+  "certutilExecutableRuns": true,
+  "caPath": "/usr/local/share/ca-certificates/nebula-dns.crt",
+  "caFileSha256": "ab6933a81e6f0d142e6d5f58ed465589d899a523c2752055761af11d4ee38f2b",
+  "caPublicDetails": "subject=C = US, ST = California, L = San Francisco, O = \"OpenAI, LLC\", CN = openai.com\nissuer=C = US, ST = California, L = San Francisco, O = \"OpenAI, LLC\", CN = openai.com\nnotBefore=Dec  3 21:46:23 2024 GMT\nnotAfter=Dec  1 21:46:23 2034 GMT\nsha256 Fingerprint=C7:1B:4D:1E:9D:77:75:C5:38:C6:88:AB:10:CE:A9:CE:41:7D:73:12:E8:98:38:F9:D1:5F:F7:32:56:CD:7F:C3\n",
+  "legacyNssDbExists": false,
+  "modernNssDbPath": "/root/.local/share/pki/nssdb",
+  "modernNssDbExists": true,
+  "trustWritesPerformed": false,
+  "globalPackagesInstalled": false,
+  "caCertificateDerSha256": "c71b4d1e9d7775c538c688ab10cea9ce417d7312e89838f9d15ff73256cd7fc3",
+  "nssReadVerified": true,
+  "priorNssListingSha256": "fea42a02c8de16ec8e1b3ed32f76ac777ea5f0196f02f30e9f5aad3b0a3316f9"
+}

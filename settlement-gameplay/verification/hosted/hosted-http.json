@@ -1,0 +1,90 @@
+{
+  "verifiedAt": "2026-10-31T22:18:47.495125+00:00",
+  "origin": "https://www.treegrow.xyz",
+  "checks": [
+    {
+      "check": "Protected document return: /admin/gameplay-test",
+      "passed": true
+    },
+    {
+      "check": "Protected document return: /admin/gameplay-test/",
+      "passed": true
+    },
+    {
+      "check": "Protected document return: /admin/gameplay-test/index.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/gameplay-test/index.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/gameplay-test/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/gameplay-test/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: settlement-game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: settlement-wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Native form retains fixed gameplay destination",
+      "passed": true
+    },
+    {
+      "check": "Rejected code retains destination",
+      "passed": true
+    },
+    {
+      "check": "Existing tester login returns to gameplay",
+      "passed": true
+    },
+    {
+      "check": "Session cookie retains security attributes",
+      "passed": true
+    },
+    {
+      "check": "Correct gameplay page is live",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact asset: admin/gameplay-test/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Authenticated exact asset: admin/gameplay-test/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Logout succeeds",
+      "passed": true
+    },
+    {
+      "check": "Asset denied after logout",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "credentialsWritten": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "HTTP checks do not establish native browser SameSite behavior or JavaScript execution."
+  ]
+}

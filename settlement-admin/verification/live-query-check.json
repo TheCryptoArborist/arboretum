@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T02:42:16.072Z",
+  "chain": "sui:mainnet",
+  "kindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+  "livePreflight": {
+    "status": "ready",
+    "checkpoint": {
+      "sequenceNumber": 339987997,
+      "timestamp": "2026-10-31T02:42:16.072Z",
+      "digest": "CZyGnDVvbK6Q3hDBWPBpD8CCS3KYfiEyWsUw1juaMqNn"
+    },
+    "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "upgradeCap": {
+      "objectId": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+      "version": "990522281",
+      "digest": "AL8rz2UmVAVijA5KiDufAKsn4VbYjDMFaYyHQ8kzPB22"
+    },
+    "packageId": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+    "packageVersion": 11
+  },
+  "simulation": {
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 339987997,
+      "timestamp": "2026-10-31T02:42:16.072Z",
+      "digest": "CZyGnDVvbK6Q3hDBWPBpD8CCS3KYfiEyWsUw1juaMqNn"
+    },
+    "gasEstimateMist": "337998763",
+    "gasEstimateSui": "0.337998763"
+  },
+  "historicalConfirmationQueryControl": {
+    "digest": "HZRUsU9xNybZ5qSsPZV5wP1PvCEgbdsVJHur4ifFXnbw",
+    "status": "SUCCESS",
+    "checkpoint": {
+      "sequenceNumber": 319546807,
+      "timestamp": "2026-09-06T19:55:41.102Z"
+    },
+    "hasBcs": true,
+    "objectChangesComplete": true
+  },
+  "cors": {
+    "status": 200,
+    "allowedOrigin": "*",
+    "allowedMethods": "POST",
+    "allowedHeaders": "*"
+  },
+  "postCors": "*",
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limits": [
+    "A successful simulation does not publish a package.",
+    "The historical receipt validates GraphQL field compatibility; it is not the new upgrade receipt.",
+    "The browser repeats all chain and simulation checks before asking the owner to sign."
+  ]
+}

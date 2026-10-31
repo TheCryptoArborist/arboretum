@@ -4,6 +4,8 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import gate from '../netlify/edge-functions/tester-gate.ts';
 const base='e84ccdc87d5f62242fa9101b469afec90c79832a';
+// PR15 already includes the reviewed wallet confirmation and receipt fixes.
+const walletBaseline='ba6faff6de7c446599a605ffa95369a325a12e3e';
 const html=fs.readFileSync('dist/index.html','utf8');
 const guide=fs.readFileSync('dist/player-guide.html','utf8');
 const old=p=>execFileSync('git',['show',base+':'+p],{encoding:'utf8'});
@@ -24,14 +26,17 @@ test('authentication unchanged except the three approved original-artwork URLs',
  assert.equal(current.split(supply).length,2);
  assert.equal(current.replace(supply,'').replace(partner,''),old('netlify/edge-functions/tester-gate.ts'));
 });
-test('game and handbook sources unchanged; only approved build passes added',()=>{
- for(const p of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','contract/sources/arboretum.move','content/public-player-guide.html','content/public-player-guide.js','scripts/build-public-guide.py','netlify/edge-functions/public-player-guide.ts'])assert.equal(fs.readFileSync(p,'utf8'),old(p),p);
+test('approved game and handbook baselines preserved; review build remains isolated',()=>{
+ for(const p of ['index.html','garden.js','sui-sdk.bundle.js','contract/sources/arboretum.move','content/public-player-guide.html','content/public-player-guide.js','scripts/build-public-guide.py','netlify/edge-functions/public-player-guide.ts'])assert.equal(fs.readFileSync(p,'utf8'),old(p),p);
+ assert.equal(fs.readFileSync('wallet.js','utf8'),execFileSync('git',['show',walletBaseline+':wallet.js'],{encoding:'utf8'}),'wallet.js');
  const current=fs.readFileSync('netlify.toml','utf8');
  const reward=' && python3 scripts/build-reward-first.py';
  const season=' && node scripts/build-season-status.mjs';
+ const review='\n# Isolated settlement review; the default production build stays above.\n[context."feature/settlement-app-integration-20261020"]\n  command = "node settlement-integration/build-review.mjs"\n  environment = { NODE_VERSION = "24" }\n';
  assert.equal(current.split(reward).length,2);
  assert.equal(current.split(season).length,2);
- assert.equal(current.replace(season,'').replace(reward,''),old('netlify.toml'));
+ assert.equal(current.split(review).length,2,'Exactly one approved review-branch context is required');
+ assert.equal(current.replace(review,'').replace(season,'').replace(reward,''),old('netlify.toml'));
 });
 test('all local homepage anchors exist',()=>{const ids=new Set([...html.matchAll(/id="([^"]+)"/g)].map(m=>m[1]));for(const m of html.matchAll(/href="#([^"]+)"/g))assert.ok(ids.has(m[1]))});
 test('pool link accurately describes public guide',()=>{assert.match(html,/Player Guide <span>\(open to everyone\)<\/span>/);assert.doesNotMatch(html,/Player Guide <span>\(tester access\)<\/span>/)});

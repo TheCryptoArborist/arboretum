@@ -1,0 +1,5 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> arboretum-api@1.0.0 lint
+> node --check api.js && node --check wallet.js && node --check garden.js && node --check sdk-entry.js
+

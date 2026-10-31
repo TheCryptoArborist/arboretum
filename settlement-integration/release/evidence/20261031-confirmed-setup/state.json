@@ -1,0 +1,11 @@
+{
+  "status": "already-created",
+  "checkpoint": {
+    "sequenceNumber": 340014277,
+    "timestamp": "2026-10-31T04:28:54.179Z",
+    "digest": "FTGRTfzeV6eE5n6LYS5DyLn7zdkerwN5tMkWfLYCD3BF"
+  },
+  "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+  "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+  "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp"
+}

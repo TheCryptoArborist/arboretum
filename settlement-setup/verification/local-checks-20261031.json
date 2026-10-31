@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:15:33.003714+00:00",
+  "checks": [
+    {
+      "name": "setup",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-setup/admin.test.mjs",
+        "settlement-setup/setup-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 38,
+        "pass": 38,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "2aa3ed786503043b765b3a327cb0b2e75e7725dccb595a10e97df6de182df337"
+    },
+    {
+      "name": "gate-return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "2022426d82e2b86d42941028e29798389edf42721426b44517c4cbc54fc7edca"
+    },
+    {
+      "name": "gate-policy",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "e77a1468af20eb85cf46fb7411c126877238a858aaf7309db2e887c557d4b296"
+    },
+    {
+      "name": "gate-origin",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch-origin.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "9ac4d212735e45ccab4a96c6dc31e656f0ac99d0f38285889aaffe20e2108c7e"
+    },
+    {
+      "name": "build-policy",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/build-policy.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "4180463fe5aec7bf36c0e0702edc071ff0ebdeeab57ea746fb0d6c8e6994b744"
+    }
+  ],
+  "signaturesCreated": 0,
+  "transactionsSubmitted": 0,
+  "sourceSha256": {
+    "settlement-setup/check-live.mjs": "ca3f512244d607845bf722523f9d0e09bc8a6167a4421b3a14133a11e8e068d8",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-setup/build.mjs": "d58231f362d68a85406b12101fdc2b872701e6ac5a86e00e03a4b5c959fe4ff3",
+    "settlement-setup/setup-core.test.mjs": "47bfd3f47cdb296a044e7c5569a519a4808b122801fb617b17dbd00c6d9c1984",
+    "settlement-setup/admin.test.mjs": "a9fdd1fb46992ea5eeb1bdda05795c3f481c97e5b37fca1d9d0a5f7abd6a6247",
+    "settlement-setup/admin.mjs": "18efc9c135ec35ef742d2bf35d4c19f1c239e5d041c6f8a78b99dfae712360ac"
+  }
+}

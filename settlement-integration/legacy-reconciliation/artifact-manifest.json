@@ -1,0 +1,44 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "path": "reconciliation-evidence.json",
+      "sha256": "f574ed4b6ada129c1134878e4403beb558fbb9c3977870a15b8bba37ab92feac",
+      "bytes": 263145
+    },
+    {
+      "path": "reconciliation-details.json",
+      "sha256": "0910f420834d6a68a8c898571629ff6c2e1d3546e07f38d3f1d13a09c83b33ea",
+      "bytes": 2240242
+    },
+    {
+      "path": "summary.json",
+      "sha256": "e0119b48164dfb02cd708ab98931c9a093a8f0309e2739a6e82287d0ddccd66b",
+      "bytes": 49794
+    },
+    {
+      "path": "season3-seeds-review.csv",
+      "sha256": "b273900de904e24fe9a12c33df39d7360977e7e90159727421603854c00f2d97",
+      "bytes": 6672
+    },
+    {
+      "path": "season3-owners-review.csv",
+      "sha256": "3f3f115ef9f442734e1deb9905ea528d0b9ca22b666fd6423923464dd1363ac5",
+      "bytes": 673
+    }
+  ],
+  "priorSimulationEvidence": [
+    {
+      "path": "gameplay-verification/deployed-probe/summary-20261019.json",
+      "sha256": "cbaadf99cd2f68c66601f3cb5515bad488f72cf80045d60ddd63fbbda2088be6"
+    },
+    {
+      "path": "gameplay-verification/deployed-probe/claim_reward-simulation-20261019.json",
+      "sha256": "1874aa0a7c8bccdb10c3d84ac15a93392e00def13c52cc15d8f6adb30b076f56"
+    },
+    {
+      "path": "gameplay-verification/deployed-probe/post-simulation-state-20261019.json",
+      "sha256": "a004010713563cb858681941a821ff0c2b9517231da0d55db8e2c797d1d9709a"
+    }
+  ]
+}

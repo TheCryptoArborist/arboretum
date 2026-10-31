@@ -1,0 +1,1096 @@
+TAP version 13
+# Subtest: owned inventory pins every page to the first verified checkpoint
+ok 1 - owned inventory pins every page to the first verified checkpoint
+  ---
+  duration_ms: 9.523013
+  type: 'test'
+  ...
+# Subtest: all-object inventory uses the caller checkpoint from its first page
+ok 2 - all-object inventory uses the caller checkpoint from its first page
+  ---
+  duration_ms: 0.908632
+  type: 'test'
+  ...
+# Subtest: event pages preserve exact transaction/event identity at one checkpoint
+ok 3 - event pages preserve exact transaction/event identity at one checkpoint
+  ---
+  duration_ms: 0.916617
+  type: 'test'
+  ...
+# Subtest: a checkpoint change during pagination rejects the complete result
+ok 4 - a checkpoint change during pagination rejects the complete result
+  ---
+  duration_ms: 0.948232
+  type: 'test'
+  ...
+# Subtest: a page read failure never returns objects already collected from earlier pages
+ok 5 - a page read failure never returns objects already collected from earlier pages
+  ---
+  duration_ms: 0.642846
+  type: 'test'
+  ...
+# Subtest: HTTP failure is an error, not an empty inventory
+ok 6 - HTTP failure is an error, not an empty inventory
+  ---
+  duration_ms: 0.264781
+  type: 'test'
+  ...
+# Subtest: GraphQL error with partial data is an error, not an empty inventory
+ok 7 - GraphQL error with partial data is an error, not an empty inventory
+  ---
+  duration_ms: 0.281116
+  type: 'test'
+  ...
+# Subtest: missing data is an error, not an empty inventory
+ok 8 - missing data is an error, not an empty inventory
+  ---
+  duration_ms: 0.23722
+  type: 'test'
+  ...
+# Subtest: null data is an error, not an empty inventory
+ok 9 - null data is an error, not an empty inventory
+  ---
+  duration_ms: 0.336638
+  type: 'test'
+  ...
+# Subtest: missing checkpoint cannot authenticate an inventory snapshot
+ok 10 - missing checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.633603
+  type: 'test'
+  ...
+# Subtest: negative checkpoint cannot authenticate an inventory snapshot
+ok 11 - negative checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.401795
+  type: 'test'
+  ...
+# Subtest: unsafe checkpoint cannot authenticate an inventory snapshot
+ok 12 - unsafe checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.202439
+  type: 'test'
+  ...
+# Subtest: string checkpoint cannot authenticate an inventory snapshot
+ok 13 - string checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.164143
+  type: 'test'
+  ...
+# Subtest: missing checkpoint query cannot authenticate an inventory snapshot
+ok 14 - missing checkpoint query cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.085065
+  type: 'test'
+  ...
+# Subtest: missing connection rejects an incomplete inventory
+ok 15 - missing connection rejects an incomplete inventory
+  ---
+  duration_ms: 0.272358
+  type: 'test'
+  ...
+# Subtest: missing nodes rejects an incomplete inventory
+ok 16 - missing nodes rejects an incomplete inventory
+  ---
+  duration_ms: 0.233008
+  type: 'test'
+  ...
+# Subtest: missing page info rejects an incomplete inventory
+ok 17 - missing page info rejects an incomplete inventory
+  ---
+  duration_ms: 0.143963
+  type: 'test'
+  ...
+# Subtest: non-boolean continuation rejects an incomplete inventory
+ok 18 - non-boolean continuation rejects an incomplete inventory
+  ---
+  duration_ms: 0.139798
+  type: 'test'
+  ...
+# Subtest: missing continuing cursor rejects an incomplete inventory
+ok 19 - missing continuing cursor rejects an incomplete inventory
+  ---
+  duration_ms: 0.120606
+  type: 'test'
+  ...
+# Subtest: empty continuing cursor rejects an incomplete inventory
+ok 20 - empty continuing cursor rejects an incomplete inventory
+  ---
+  duration_ms: 0.153456
+  type: 'test'
+  ...
+# Subtest: a repeated continuing cursor is rejected before another page request
+ok 21 - a repeated continuing cursor is rejected before another page request
+  ---
+  duration_ms: 0.604651
+  type: 'test'
+  ...
+# Subtest: duplicate object IDs across pages invalidate the entire inventory
+ok 22 - duplicate object IDs across pages invalidate the entire inventory
+  ---
+  duration_ms: 0.364229
+  type: 'test'
+  ...
+# Subtest: equivalent padded, short, and uppercase object IDs are duplicate identities
+ok 23 - equivalent padded, short, and uppercase object IDs are duplicate identities
+  ---
+  duration_ms: 0.250383
+  type: 'test'
+  ...
+# Subtest: duplicate event identities do not become a doubled reward total
+ok 24 - duplicate event identities do not become a doubled reward total
+  ---
+  duration_ms: 0.29152
+  type: 'test'
+  ...
+# Subtest: reaching the view limit with unread pages returns no partial total
+ok 25 - reaching the view limit with unread pages returns no partial total
+  ---
+  duration_ms: 0.5654
+  type: 'test'
+  ...
+# Subtest: an oversized response is rejected even when it claims to be the last page
+ok 26 - an oversized response is rejected even when it claims to be the last page
+  ---
+  duration_ms: 0.209069
+  type: 'test'
+  ...
+# Subtest: a complete inventory exactly at the limit is permitted
+ok 27 - a complete inventory exactly at the limit is permitted
+  ---
+  duration_ms: 0.202628
+  type: 'test'
+  ...
+# Subtest: an explicitly absent object is distinct from a missing response field
+ok 28 - an explicitly absent object is distinct from a missing response field
+  ---
+  duration_ms: 0.276381
+  type: 'test'
+  ...
+# Subtest: object reads validate identity and any requested checkpoint
+ok 29 - object reads validate identity and any requested checkpoint
+  ---
+  duration_ms: 0.273144
+  type: 'test'
+  ...
+# Subtest: missing address cannot become a usable Move object
+ok 30 - missing address cannot become a usable Move object
+  ---
+  duration_ms: 0.155919
+  type: 'test'
+  ...
+# Subtest: invalid address cannot become a usable Move object
+ok 31 - invalid address cannot become a usable Move object
+  ---
+  duration_ms: 0.256509
+  type: 'test'
+  ...
+# Subtest: missing version cannot become a usable Move object
+ok 32 - missing version cannot become a usable Move object
+  ---
+  duration_ms: 0.066849
+  type: 'test'
+  ...
+# Subtest: unsafe object version cannot become a usable Move object
+ok 33 - unsafe object version cannot become a usable Move object
+  ---
+  duration_ms: 0.045223
+  type: 'test'
+  ...
+# Subtest: negative object version cannot become a usable Move object
+ok 34 - negative object version cannot become a usable Move object
+  ---
+  duration_ms: 0.039618
+  type: 'test'
+  ...
+# Subtest: missing digest cannot become a usable Move object
+ok 35 - missing digest cannot become a usable Move object
+  ---
+  duration_ms: 0.036897
+  type: 'test'
+  ...
+# Subtest: empty digest cannot become a usable Move object
+ok 36 - empty digest cannot become a usable Move object
+  ---
+  duration_ms: 0.042379
+  type: 'test'
+  ...
+# Subtest: missing type cannot become a usable Move object
+ok 37 - missing type cannot become a usable Move object
+  ---
+  duration_ms: 0.039889
+  type: 'test'
+  ...
+# Subtest: missing fields cannot become a usable Move object
+ok 38 - missing fields cannot become a usable Move object
+  ---
+  duration_ms: 0.085039
+  type: 'test'
+  ...
+# Subtest: non-object fields cannot become a usable Move object
+ok 39 - non-object fields cannot become a usable Move object
+  ---
+  duration_ms: 0.119037
+  type: 'test'
+  ...
+# Subtest: both GraphQL Move-object layouts retain complete fields
+ok 40 - both GraphQL Move-object layouts retain complete fields
+  ---
+  duration_ms: 0.333304
+  type: 'test'
+  ...
+# Subtest: a Move UID must agree with the outer object address, including nested wrappers
+ok 41 - a Move UID must agree with the outer object address, including nested wrappers
+  ---
+  duration_ms: 0.228752
+  type: 'test'
+  ...
+# Subtest: overflowing object versions, array fields, and whitespace digests are invalid
+ok 42 - overflowing object versions, array fields, and whitespace digests are invalid
+  ---
+  duration_ms: 0.211246
+  type: 'test'
+  ...
+# Subtest: a null item inside a successful page is an incomplete response
+ok 43 - a null item inside a successful page is an incomplete response
+  ---
+  duration_ms: 0.181113
+  type: 'test'
+  ...
+# Subtest: Registry and Clock are fetched together at the selected checkpoint
+ok 44 - Registry and Clock are fetched together at the selected checkpoint
+  ---
+  duration_ms: 0.373852
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock undefined cannot establish claim timing
+ok 45 - invalid chain Clock undefined cannot establish claim timing
+  ---
+  duration_ms: 0.271351
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock null cannot establish claim timing
+ok 46 - invalid chain Clock null cannot establish claim timing
+  ---
+  duration_ms: 0.127744
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock -1 cannot establish claim timing
+ok 47 - invalid chain Clock -1 cannot establish claim timing
+  ---
+  duration_ms: 0.088341
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 1.5 cannot establish claim timing
+ok 48 - invalid chain Clock 1.5 cannot establish claim timing
+  ---
+  duration_ms: 0.07647
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock NaN cannot establish claim timing
+ok 49 - invalid chain Clock NaN cannot establish claim timing
+  ---
+  duration_ms: 0.070122
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock -1 cannot establish claim timing
+ok 50 - invalid chain Clock -1 cannot establish claim timing
+  ---
+  duration_ms: 0.160055
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 9007199254740992 cannot establish claim timing
+ok 51 - invalid chain Clock 9007199254740992 cannot establish claim timing
+  ---
+  duration_ms: 0.103289
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 18446744073709551615 cannot establish claim timing
+ok 52 - invalid chain Clock 18446744073709551615 cannot establish claim timing
+  ---
+  duration_ms: 0.083624
+  type: 'test'
+  ...
+# Subtest: a state snapshot for a different Registry is rejected
+ok 53 - a state snapshot for a different Registry is rejected
+  ---
+  duration_ms: 0.15633
+  type: 'test'
+  ...
+# Subtest: missing event transaction rejects an incomplete receipt history
+ok 54 - missing event transaction rejects an incomplete receipt history
+  ---
+  duration_ms: 0.139063
+  type: 'test'
+  ...
+# Subtest: missing event ordinal rejects an incomplete receipt history
+ok 55 - missing event ordinal rejects an incomplete receipt history
+  ---
+  duration_ms: 0.125113
+  type: 'test'
+  ...
+# Subtest: negative event ordinal rejects an incomplete receipt history
+ok 56 - negative event ordinal rejects an incomplete receipt history
+  ---
+  duration_ms: 0.096551
+  type: 'test'
+  ...
+# Subtest: missing event type rejects an incomplete receipt history
+ok 57 - missing event type rejects an incomplete receipt history
+  ---
+  duration_ms: 0.208287
+  type: 'test'
+  ...
+# Subtest: missing event fields rejects an incomplete receipt history
+ok 58 - missing event fields rejects an incomplete receipt history
+  ---
+  duration_ms: 0.11228
+  type: 'test'
+  ...
+# Subtest: invalid wallet and object IDs fail before any query
+ok 59 - invalid wallet and object IDs fail before any query
+  ---
+  duration_ms: 0.191072
+  type: 'test'
+  ...
+# Subtest: invalid requested checkpoints fail before reads across every snapshot method
+ok 60 - invalid requested checkpoints fail before reads across every snapshot method
+  ---
+  duration_ms: 0.595768
+  type: 'test'
+  ...
+# Subtest: invalid inventory limits cannot trigger an unbounded or partial read
+ok 61 - invalid inventory limits cannot trigger an unbounded or partial read
+  ---
+  duration_ms: 0.323058
+  type: 'test'
+  ...
+# Subtest: non-object event fields cannot establish a receipt history
+ok 62 - non-object event fields cannot establish a receipt history
+  ---
+  duration_ms: 0.468928
+  type: 'test'
+  ...
+# Subtest: unsigned upgrade deterministically reproduces captured BCS with only the UpgradeCap as an object input
+ok 63 - unsigned upgrade deterministically reproduces captured BCS with only the UpgradeCap as an object input
+  ---
+  duration_ms: 36.486163
+  type: 'test'
+  ...
+# Subtest: upgrade builder rejects tampered module bytes
+ok 64 - upgrade builder rejects tampered module bytes
+  ---
+  duration_ms: 2.524029
+  type: 'test'
+  ...
+# Subtest: a changed simulation payload is rejected even if the recorded kind hash was preserved
+ok 65 - a changed simulation payload is rejected even if the recorded kind hash was preserved
+  ---
+  duration_ms: 44.632346
+  type: 'test'
+  ...
+# Subtest: future setup builder emits exactly one empty-registry setup call using a refreshed legacy AdminCap
+ok 66 - future setup builder emits exactly one empty-registry setup call using a refreshed legacy AdminCap
+  ---
+  duration_ms: 3.081217
+  type: 'test'
+  ...
+# Subtest: simulation response cannot stand in for a confirmed upgrade
+ok 67 - simulation response cannot stand in for a confirmed upgrade
+  ---
+  duration_ms: 0.599085
+  type: 'test'
+  ...
+# Subtest: future setup rejects an unconfirmed or different upgrade transaction
+ok 68 - future setup rejects an unconfirmed or different upgrade transaction
+  ---
+  duration_ms: 1.269982
+  type: 'test'
+  ...
+# Subtest: future setup rejects type origins pointing at the legacy package
+ok 69 - future setup rejects type origins pointing at the legacy package
+  ---
+  duration_ms: 6.43053
+  type: 'test'
+  ...
+# Subtest: future setup rejects a later superseding upgrade and a transferred AdminCap
+ok 70 - future setup rejects a later superseding upgrade and a transferred AdminCap
+  ---
+  duration_ms: 2.67743
+  type: 'test'
+  ...
+# Subtest: captured setup verifies the empty Registry, wrapped tables and legitimate legacy capability metadata advance
+ok 71 - captured setup verifies the empty Registry, wrapped tables and legitimate legacy capability metadata advance
+  ---
+  duration_ms: 43.186676
+  type: 'test'
+  ...
+# Subtest: different sender, authority reference, target, extra call or gas owner cannot replace the reviewed setup
+ok 72 - different sender, authority reference, target, extra call or gas owner cannot replace the reviewed setup
+  ---
+  duration_ms: 211.170312
+  type: 'test'
+  ...
+# Subtest: tampered kind bytes and a modified or prefilled wallet transaction are rejected
+ok 73 - tampered kind bytes and a modified or prefilled wallet transaction are rejected
+  ---
+  duration_ms: 190.424602
+  type: 'test'
+  ...
+# Subtest: the prerequisite must be the real confirmed reviewed upgrade, with exact published bytecode and types
+ok 74 - the prerequisite must be the real confirmed reviewed upgrade, with exact published bytecode and types
+  ---
+  duration_ms: 91.535197
+  type: 'test'
+  ...
+# Subtest: source drift, another network and an existing or incomplete Registry inventory stop the review
+ok 75 - source drift, another network and an existing or incomplete Registry inventory stop the review
+  ---
+  duration_ms: 149.62281
+  type: 'test'
+  ...
+# Subtest: disabled checks, response errors, failed execution and incomplete effects are rejected
+ok 76 - disabled checks, response errors, failed execution and incomplete effects are rejected
+  ---
+  duration_ms: 228.199777
+  type: 'test'
+  ...
+# Subtest: funded, started, populated, settled, paused, wrongly owned or mismatched Registry state is rejected
+ok 77 - funded, started, populated, settled, paused, wrongly owned or mismatched Registry state is rejected
+  ---
+  duration_ms: 371.841885
+  type: 'test'
+  ...
+# Subtest: legacy capability authorization may advance metadata but cannot change owner, type, contents or input reference
+ok 78 - legacy capability authorization may advance metadata but cannot change owner, type, contents or input reference
+  ---
+  duration_ms: 222.509261
+  type: 'test'
+  ...
+# Subtest: wrapped table IDs must exactly cover six distinct empty tables without hidden writes or extra objects
+ok 79 - wrapped table IDs must exactly cover six distinct empty tables without hidden writes or extra objects
+  ---
+  duration_ms: 170.849814
+  type: 'test'
+  ...
+# Subtest: unexpected event, recipient, balance movement or fee cannot be accepted as empty setup
+ok 80 - unexpected event, recipient, balance movement or fee cannot be accepted as empty setup
+  ---
+  duration_ms: 204.871441
+  type: 'test'
+  ...
+# Subtest: simulation evidence cannot be promoted to a real setup or a signed/submitted packet
+ok 81 - simulation evidence cannot be promoted to a real setup or a signed/submitted packet
+  ---
+  duration_ms: 165.153434
+  type: 'test'
+  ...
+# Subtest: the real post-simulation read must preserve live state and independently find no setup objects
+ok 82 - the real post-simulation read must preserve live state and independently find no setup objects
+  ---
+  duration_ms: 195.786274
+  type: 'test'
+  ...
+# Subtest: legacy review connects only the explicitly selected wallet
+ok 83 - legacy review connects only the explicitly selected wallet
+  ---
+  duration_ms: 4.635592
+  type: 'test'
+  ...
+# Subtest: legacy review rejects missing or invalid named wallets without contacting another wallet
+ok 84 - legacy review rejects missing or invalid named wallets without contacting another wallet
+  ---
+  duration_ms: 1.853153
+  type: 'test'
+  ...
+# Subtest: legacy review retains auto-detection when no wallet was explicitly selected
+ok 85 - legacy review retains auto-detection when no wallet was explicitly selected
+  ---
+  duration_ms: 2.4317
+  type: 'test'
+  ...
+# Subtest: legacy review rejects ambiguous wallet names before connecting or restoring
+ok 86 - legacy review rejects ambiguous wallet names before connecting or restoring
+  ---
+  duration_ms: 2.662156
+  type: 'test'
+  ...
+# Subtest: legacy review restores the exact saved account even when it is not first
+ok 87 - legacy review restores the exact saved account even when it is not first
+  ---
+  duration_ms: 1.746199
+  type: 'test'
+  ...
+# Subtest: legacy review does not restore a different wallet or account when the saved choice disappears
+ok 88 - legacy review does not restore a different wallet or account when the saved choice disappears
+  ---
+  duration_ms: 6.120696
+  type: 'test'
+  ...
+# Subtest: legacy review can silently restore the exact saved account from its saved wallet
+ok 89 - legacy review can silently restore the exact saved account from its saved wallet
+  ---
+  duration_ms: 2.153472
+  type: 'test'
+  ...
+# Subtest: settlement review connects only the explicitly selected wallet
+ok 90 - settlement review connects only the explicitly selected wallet
+  ---
+  duration_ms: 2.35883
+  type: 'test'
+  ...
+# Subtest: settlement review rejects missing or invalid named wallets without contacting another wallet
+ok 91 - settlement review rejects missing or invalid named wallets without contacting another wallet
+  ---
+  duration_ms: 1.563603
+  type: 'test'
+  ...
+# Subtest: settlement review retains auto-detection when no wallet was explicitly selected
+ok 92 - settlement review retains auto-detection when no wallet was explicitly selected
+  ---
+  duration_ms: 1.623513
+  type: 'test'
+  ...
+# Subtest: settlement review rejects ambiguous wallet names before connecting or restoring
+ok 93 - settlement review rejects ambiguous wallet names before connecting or restoring
+  ---
+  duration_ms: 1.488293
+  type: 'test'
+  ...
+# Subtest: settlement review restores the exact saved account even when it is not first
+ok 94 - settlement review restores the exact saved account even when it is not first
+  ---
+  duration_ms: 1.374312
+  type: 'test'
+  ...
+# Subtest: settlement review does not restore a different wallet or account when the saved choice disappears
+ok 95 - settlement review does not restore a different wallet or account when the saved choice disappears
+  ---
+  duration_ms: 3.423055
+  type: 'test'
+  ...
+# Subtest: settlement review can silently restore the exact saved account from its saved wallet
+ok 96 - settlement review can silently restore the exact saved account from its saved wallet
+  ---
+  duration_ms: 1.479563
+  type: 'test'
+  ...
+# Subtest: legacy crate emits the correct payment and Clock signature
+ok 97 - legacy crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 3.808959
+  type: 'test'
+  ...
+# Subtest: legacy Boom Chest emits the correct payment and Clock signature
+ok 98 - legacy Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.480804
+  type: 'test'
+  ...
+# Subtest: legacy Victory Chest emits the correct payment and Clock signature
+ok 99 - legacy Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.573198
+  type: 'test'
+  ...
+# Subtest: legacy Supply Drop emits the correct payment and Clock signature
+ok 100 - legacy Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.257352
+  type: 'test'
+  ...
+# Subtest: legacy admin pool deposit emits the correct payment and Clock signature
+ok 101 - legacy admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.547969
+  type: 'test'
+  ...
+# Subtest: settlement crate emits the correct payment and Clock signature
+ok 102 - settlement crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.920148
+  type: 'test'
+  ...
+# Subtest: settlement Boom Chest emits the correct payment and Clock signature
+ok 103 - settlement Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.97986
+  type: 'test'
+  ...
+# Subtest: settlement Victory Chest emits the correct payment and Clock signature
+ok 104 - settlement Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.50433
+  type: 'test'
+  ...
+# Subtest: settlement Supply Drop emits the correct payment and Clock signature
+ok 105 - settlement Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 3.062779
+  type: 'test'
+  ...
+# Subtest: settlement admin pool deposit emits the correct payment and Clock signature
+ok 106 - settlement admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 1.970337
+  type: 'test'
+  ...
+# Subtest: default legacy route cannot be switched by storage, page globals, or URL values
+ok 107 - default legacy route cannot be switched by storage, page globals, or URL values
+  ---
+  duration_ms: 1.45517
+  type: 'test'
+  ...
+# Subtest: emitted settlement route refuses to initialize without verified compiled deployment
+ok 108 - emitted settlement route refuses to initialize without verified compiled deployment
+  ---
+  duration_ms: 2.571458
+  type: 'test'
+  ...
+# Subtest: settlement route and admin capability stay immutable after initialization
+ok 109 - settlement route and admin capability stay immutable after initialization
+  ---
+  duration_ms: 2.011748
+  type: 'test'
+  ...
+# Subtest: owned settlement Seeds require the new origin, Registry, and version
+ok 110 - owned settlement Seeds require the new origin, Registry, and version
+  ---
+  duration_ms: 2.598886
+  type: 'test'
+  ...
+# Subtest: a foreign Seed owner invalidates wallet inventory and claim preflight
+ok 111 - a foreign Seed owner invalidates wallet inventory and claim preflight
+  ---
+  duration_ms: 1.795952
+  type: 'test'
+  ...
+# Subtest: legacy inventory queries historical type origins and never treats its call package as a type origin
+ok 112 - legacy inventory queries historical type origins and never treats its call package as a type origin
+  ---
+  duration_ms: 2.364295
+  type: 'test'
+  ...
+# Subtest: reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+ok 113 - reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+  ---
+  duration_ms: 2.991594
+  type: 'test'
+  ...
+# Subtest: archive matching excludes other Registries and origins before choosing a unique season
+ok 114 - archive matching excludes other Registries and origins before choosing a unique season
+  ---
+  duration_ms: 1.889046
+  type: 'test'
+  ...
+# Subtest: missing season archive produces unknown entitlement
+ok 115 - missing season archive produces unknown entitlement
+  ---
+  duration_ms: 1.700222
+  type: 'test'
+  ...
+# Subtest: ambiguous season archive produces unknown entitlement
+ok 116 - ambiguous season archive produces unknown entitlement
+  ---
+  duration_ms: 1.416081
+  type: 'test'
+  ...
+# Subtest: changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+ok 117 - changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+  ---
+  duration_ms: 1.606738
+  type: 'test'
+  ...
+# Subtest: early-season projected rewards are estimates and cannot enter claim preflight
+ok 118 - early-season projected rewards are estimates and cannot enter claim preflight
+  ---
+  duration_ms: 2.44112
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact positive receipt
+ok 119 - direct settlement verifies an exact positive receipt
+  ---
+  duration_ms: 3.846039
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact zero-value receipt
+ok 120 - direct settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 2.233908
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact positive receipt
+ok 121 - archived settlement verifies an exact positive receipt
+  ---
+  duration_ms: 2.649425
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact zero-value receipt
+ok 122 - archived settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 2.514253
+  type: 'test'
+  ...
+# Subtest: no receipt cannot confirm a settlement payout or cause a second signature
+ok 123 - no receipt cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.741161
+  type: 'test'
+  ...
+# Subtest: legacy origin cannot confirm a settlement payout or cause a second signature
+ok 124 - legacy origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.263838
+  type: 'test'
+  ...
+# Subtest: call package used as event origin cannot confirm a settlement payout or cause a second signature
+ok 125 - call package used as event origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.270226
+  type: 'test'
+  ...
+# Subtest: another Registry cannot confirm a settlement payout or cause a second signature
+ok 126 - another Registry cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.218218
+  type: 'test'
+  ...
+# Subtest: another Seed cannot confirm a settlement payout or cause a second signature
+ok 127 - another Seed cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.122763
+  type: 'test'
+  ...
+# Subtest: another wallet cannot confirm a settlement payout or cause a second signature
+ok 128 - another wallet cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.015657
+  type: 'test'
+  ...
+# Subtest: another season cannot confirm a settlement payout or cause a second signature
+ok 129 - another season cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.978822
+  type: 'test'
+  ...
+# Subtest: different eligible GP cannot confirm a settlement payout or cause a second signature
+ok 130 - different eligible GP cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.879978
+  type: 'test'
+  ...
+# Subtest: different payment cannot confirm a settlement payout or cause a second signature
+ok 131 - different payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.970264
+  type: 'test'
+  ...
+# Subtest: missing payment cannot confirm a settlement payout or cause a second signature
+ok 132 - missing payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.667591
+  type: 'test'
+  ...
+# Subtest: zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+ok 133 - zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.24069
+  type: 'test'
+  ...
+# Subtest: two matching receipts cannot confirm a settlement payout or cause a second signature
+ok 134 - two matching receipts cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.840714
+  type: 'test'
+  ...
+# Subtest: a positive receipt cannot mislabel a genuine zero preflight as paid
+ok 135 - a positive receipt cannot mislabel a genuine zero preflight as paid
+  ---
+  duration_ms: 2.686778
+  type: 'test'
+  ...
+# Subtest: a u64 season ID and u64 payment are checked exactly without Number rounding
+ok 136 - a u64 season ID and u64 payment are checked exactly without Number rounding
+  ---
+  duration_ms: 2.059044
+  type: 'test'
+  ...
+# Subtest: expired deadline is refused before a fixture wallet signature
+ok 137 - expired deadline is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.808481
+  type: 'test'
+  ...
+# Subtest: already processed Seed is refused before a fixture wallet signature
+ok 138 - already processed Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.665064
+  type: 'test'
+  ...
+# Subtest: missing eligibility field is refused before a fixture wallet signature
+ok 139 - missing eligibility field is refused before a fixture wallet signature
+  ---
+  duration_ms: 2.113874
+  type: 'test'
+  ...
+# Subtest: unsupported Seed version is refused before a fixture wallet signature
+ok 140 - unsupported Seed version is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.660311
+  type: 'test'
+  ...
+# Subtest: foreign Registry Seed is refused before a fixture wallet signature
+ok 141 - foreign Registry Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.922979
+  type: 'test'
+  ...
+# Subtest: archived claim requires the exact matching archive before signing
+ok 142 - archived claim requires the exact matching archive before signing
+  ---
+  duration_ms: 1.547811
+  type: 'test'
+  ...
+# Subtest: legacy direct claims keep their original positive-payment semantics
+ok 143 - legacy direct claims keep their original positive-payment semantics
+  ---
+  duration_ms: 2.662026
+  type: 'test'
+  ...
+# Subtest: legacy archived claims keep their original positive-payment semantics
+ok 144 - legacy archived claims keep their original positive-payment semantics
+  ---
+  duration_ms: 2.349523
+  type: 'test'
+  ...
+# Subtest: legacy zero-payment success is still reported as no payout
+ok 145 - legacy zero-payment success is still reported as no payout
+  ---
+  duration_ms: 2.573085
+  type: 'test'
+  ...
+# Subtest: review-only preview refuses every funding path and claim before wallet signing
+ok 146 - review-only preview refuses every funding path and claim before wallet signing
+  ---
+  duration_ms: 2.175358
+  type: 'test'
+  ...
+# Subtest: compiled read-only route exposes the confirmed empty Registry snapshot without wallet connection
+ok 147 - compiled read-only route exposes the confirmed empty Registry snapshot without wallet connection
+  ---
+  duration_ms: 3.98124
+  type: 'test'
+  ...
+# Subtest: read-only state failures and identity mismatches never become an empty or funded snapshot
+ok 148 - read-only state failures and identity mismatches never become an empty or funded snapshot
+  ---
+  duration_ms: 8.697637
+  type: 'test'
+  ...
+# Subtest: read-only route with compiled review guard rejects all transaction entry points before reads, PTB construction or wallet access
+ok 149 - read-only route with compiled review guard rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 3.202641
+  type: 'test'
+  ...
+# Subtest: read-only route independently of the review guard rejects all transaction entry points before reads, PTB construction or wallet access
+ok 150 - read-only route independently of the review guard rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 2.131743
+  type: 'test'
+  ...
+# Subtest: legacy review route rejects all transaction entry points before reads, PTB construction or wallet access
+ok 151 - legacy review route rejects all transaction entry points before reads, PTB construction or wallet access
+  ---
+  duration_ms: 4.549638
+  type: 'test'
+  ...
+# Subtest: object batches and names use the modern GraphQL reader without retired client calls
+ok 152 - object batches and names use the modern GraphQL reader without retired client calls
+  ---
+  duration_ms: 1.955517
+  type: 'test'
+  ...
+# Subtest: dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+ok 153 - dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+  ---
+  duration_ms: 2.6503
+  type: 'test'
+  ...
+# Subtest: a verified balance is returned exactly in MIST through the GraphQL reader
+ok 154 - a verified balance is returned exactly in MIST through the GraphQL reader
+  ---
+  duration_ms: 1.621401
+  type: 'test'
+  ...
+# Subtest: missing balance is unavailable rather than a fabricated zero balance
+ok 155 - missing balance is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.554883
+  type: 'test'
+  ...
+# Subtest: missing amount is unavailable rather than a fabricated zero balance
+ok 156 - missing amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.711776
+  type: 'test'
+  ...
+# Subtest: null address is unavailable rather than a fabricated zero balance
+ok 157 - null address is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.538483
+  type: 'test'
+  ...
+# Subtest: negative amount is unavailable rather than a fabricated zero balance
+ok 158 - negative amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.386351
+  type: 'test'
+  ...
+# Subtest: unsafe numeric amount is unavailable rather than a fabricated zero balance
+ok 159 - unsafe numeric amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.83444
+  type: 'test'
+  ...
+# Subtest: an explicit zero balance remains a verified zero
+ok 160 - an explicit zero balance remains a verified zero
+  ---
+  duration_ms: 1.49816
+  type: 'test'
+  ...
+# Subtest: Registry read failure cannot become zero player Growth Points
+ok 161 - Registry read failure cannot become zero player Growth Points
+  ---
+  duration_ms: 1.992128
+  type: 'test'
+  ...
+# Subtest: network failure propagates through reward views and aggregate projections
+ok 162 - network failure propagates through reward views and aggregate projections
+  ---
+  duration_ms: 2.409997
+  type: 'test'
+  ...
+# Subtest: corrupt reward fields keep the aggregate projection unknown
+ok 163 - corrupt reward fields keep the aggregate projection unknown
+  ---
+  duration_ms: 2.060268
+  type: 'test'
+  ...
+# Subtest: collected settlement rewards use only exact matching owner, Registry, type, and event identity
+ok 164 - collected settlement rewards use only exact matching owner, Registry, type, and event identity
+  ---
+  duration_ms: 1.640872
+  type: 'test'
+  ...
+# Subtest: unavailable or corrupt reward history is an error rather than zero collected
+ok 165 - unavailable or corrupt reward history is an error rather than zero collected
+  ---
+  duration_ms: 3.545224
+  type: 'test'
+  ...
+# Subtest: emitted sources import modern read APIs and keep review configuration explicit
+ok 166 - emitted sources import modern read APIs and keep review configuration explicit
+  ---
+  duration_ms: 0.804226
+  type: 'test'
+  ...
+# Subtest: legacy review picker connects the displayed wallet after registry reordering
+ok 167 - legacy review picker connects the displayed wallet after registry reordering
+  ---
+  duration_ms: 163.457393
+  type: 'test'
+  ...
+# Subtest: legacy review picker never substitutes another wallet when the displayed wallet disappears
+ok 168 - legacy review picker never substitutes another wallet when the displayed wallet disappears
+  ---
+  duration_ms: 2.009691
+  type: 'test'
+  ...
+# Subtest: legacy review picker rejects a single replacement provider with the same displayed name
+ok 169 - legacy review picker rejects a single replacement provider with the same displayed name
+  ---
+  duration_ms: 6.973103
+  type: 'test'
+  ...
+# Subtest: legacy review rechecks provider identity after asynchronous wallet detection
+ok 170 - legacy review rechecks provider identity after asynchronous wallet detection
+  ---
+  duration_ms: 3.917704
+  type: 'test'
+  ...
+# Subtest: legacy review picker refuses invalid or stale cards instead of auto-selecting
+ok 171 - legacy review picker refuses invalid or stale cards instead of auto-selecting
+  ---
+  duration_ms: 2.272279
+  type: 'test'
+  ...
+# Subtest: legacy review picker fails closed if another provider registers the displayed name
+ok 172 - legacy review picker fails closed if another provider registers the displayed name
+  ---
+  duration_ms: 2.451518
+  type: 'test'
+  ...
+# Subtest: settlement review picker connects the displayed wallet after registry reordering
+ok 173 - settlement review picker connects the displayed wallet after registry reordering
+  ---
+  duration_ms: 165.54481
+  type: 'test'
+  ...
+# Subtest: settlement review picker never substitutes another wallet when the displayed wallet disappears
+ok 174 - settlement review picker never substitutes another wallet when the displayed wallet disappears
+  ---
+  duration_ms: 2.221276
+  type: 'test'
+  ...
+# Subtest: settlement review picker rejects a single replacement provider with the same displayed name
+ok 175 - settlement review picker rejects a single replacement provider with the same displayed name
+  ---
+  duration_ms: 1.700652
+  type: 'test'
+  ...
+# Subtest: settlement review rechecks provider identity after asynchronous wallet detection
+ok 176 - settlement review rechecks provider identity after asynchronous wallet detection
+  ---
+  duration_ms: 3.479717
+  type: 'test'
+  ...
+# Subtest: settlement review picker refuses invalid or stale cards instead of auto-selecting
+ok 177 - settlement review picker refuses invalid or stale cards instead of auto-selecting
+  ---
+  duration_ms: 1.652409
+  type: 'test'
+  ...
+# Subtest: settlement review picker fails closed if another provider registers the displayed name
+ok 178 - settlement review picker fails closed if another provider registers the displayed name
+  ---
+  duration_ms: 2.23888
+  type: 'test'
+  ...
+# Subtest: legacy review blocks the independent NFTree mint path before any external effect
+ok 179 - legacy review blocks the independent NFTree mint path before any external effect
+  ---
+  duration_ms: 156.895942
+  type: 'test'
+  ...
+# Subtest: settlement review blocks the independent NFTree mint path before any external effect
+ok 180 - settlement review blocks the independent NFTree mint path before any external effect
+  ---
+  duration_ms: 159.672591
+  type: 'test'
+  ...
+# Subtest: review transform fails closed if the independent mint source anchors change
+ok 181 - review transform fails closed if the independent mint source anchors change
+  ---
+  duration_ms: 154.086186
+  type: 'test'
+  ...
+1..181
+# tests 181
+# suites 0
+# pass 181
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3843.859484

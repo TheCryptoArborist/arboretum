@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T05:27:58.595Z",
+  "status": "FIRST_SEASON_UNSIGNED_REHEARSAL_PASSED",
+  "network": "sui:mainnet",
+  "proposedDurationHours": 24,
+  "durationChosenForSimulationOnly": true,
+  "packet": {
+    "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "kindBytes": 258,
+    "commands": 1,
+    "inputs": 4
+  },
+  "simulated": {
+    "status": "SIMULATION_ONLY_SUCCESS",
+    "checkpoint": {
+      "sequenceNumber": 340028857,
+      "timestamp": "2026-10-31T05:27:53.996Z",
+      "digest": "H67fhaa2cygjQAmFdCQtDaJydcjyc7x9LhQKCkJYMPJu"
+    },
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "predictedSeasonId": "1",
+    "proposedDurationMs": "86400000",
+    "simulatedActualStartMs": "1793424475440",
+    "predictedStoredStartMs": "1790918875440",
+    "predictedCutoffMs": "1793510875440",
+    "predictedClaimDeadlineMs": "1794115675440",
+    "predictedNormalResetReadyMs": "1793597275440",
+    "gasEstimateMist": "100553",
+    "gasEstimateSui": "0.000100553",
+    "simulatedGasBudgetMist": "200553",
+    "simulatedGasPriceMist": "100",
+    "simulatedResolvedExpiration": {
+      "ValidDuring": {
+        "minEpoch": "1297",
+        "maxEpoch": "1298",
+        "minTimestamp": null,
+        "maxTimestamp": null,
+        "chain": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+        "nonce": 2142297199
+      },
+      "$kind": "ValidDuring"
+    },
+    "resolvedGasPayments": 0,
+    "returnedGasObjectChanges": 0,
+    "protocolObjectChanges": 2,
+    "protocolObjectsCreated": 0,
+    "predictedRewardPoolMist": "0",
+    "predictedTreasuryMist": "0",
+    "predictedPlantedSeeds": "0",
+    "predictedGrowthPoints": "0",
+    "exactKindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "simulationClock": {
+      "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+      "version": "1012351454",
+      "digest": "4wUMz61ppoHVest1Xd4U1otKCF7S8FkVkLxYv75g525e"
+    },
+    "note": "Predicted state only. No signature, execution, season start, funding or gas payment occurred."
+  },
+  "actualAfterRehearsal": {
+    "actualRegistryUnchanged": true,
+    "actualAdminCapUnchanged": true,
+    "upgradeAndLegacyObjectsUnchanged": true,
+    "actualSeasonId": "0",
+    "actualSeasonStartMs": "0",
+    "actualRewardPoolMist": "0",
+    "actualTreasuryMist": "0",
+    "observedAtOrAfterSimulatedClock": true,
+    "simulatedClockMs": "1793424475440",
+    "checkpoint": {
+      "sequenceNumber": 340028868,
+      "timestamp": "2026-10-31T05:27:56.614Z",
+      "digest": "G8qAxGvC7EcMLMT3kyEWJyYzyffWar8jsnKYB3MUwFrZ"
+    }
+  },
+  "sourceSha256": {
+    "settlement-integration/season-test/start-core.mjs": "710826322c9bafd4fa2278e90ba7935a3e91f7b583caf5b88d49fed5268ecf30",
+    "settlement-integration/season-test/check-live.mjs": "ee5e821254dfc30143f577df0ac5a1ef30f8c459f10246ba1be2b7cd0ad8335a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  },
+  "requests": [
+    {
+      "name": "confirmed-proof",
+      "capturedAt": "2026-10-31T05:27:55.692Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "inputs",
+      "capturedAt": "2026-10-31T05:27:55.828Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "simulation",
+      "capturedAt": "2026-10-31T05:27:56.033Z",
+      "checkedSimulation": true
+    },
+    {
+      "name": "after-observation-1",
+      "capturedAt": "2026-10-31T05:27:56.202Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "after-observation-2",
+      "capturedAt": "2026-10-31T05:27:57.364Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "after-observation-3",
+      "capturedAt": "2026-10-31T05:27:58.559Z",
+      "checkedSimulation": false
+    }
+  ],
+  "selectedAfterObservation": "after-observation-3",
+  "actualSignaturesRequested": 0,
+  "actualTransactionsSubmitted": 0,
+  "actualGasSpentMist": "0",
+  "actualFundsDepositedMist": "0",
+  "actualNewObjectsCreated": 0,
+  "applicationOrContractChanged": false,
+  "websiteDeploymentPerformed": false,
+  "limits": [
+    "This is not a signed start transaction or a confirmed season.",
+    "The simulated timestamps and fees are an observation, not a future appointment or fee guarantee.",
+    "The website remains read only. No user wallet or gameplay transaction was tested here.",
+    "Live test inventory must be isolated from the future production economy before paid testing."
+  ]
+}

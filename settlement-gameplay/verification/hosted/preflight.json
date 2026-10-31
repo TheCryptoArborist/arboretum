@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-31T22:05:01.894859+00:00",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "siteName": "arboretum-preview",
+  "domain": "www.treegrow.xyz",
+  "publishedDeployId": "6ae58697bc817a22d602d1be",
+  "deployment": {
+    "id": "6ae58697bc817a22d602d1be",
+    "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "build_id": "6ae58697bc817a22d602d1bc",
+    "state": "ready",
+    "context": "production",
+    "title": "Add owner review for first 24-hour test season \u00b7 5c1b45dca0cc",
+    "created_at": "2026-10-31T06:11:35.898Z",
+    "published_at": "2026-10-31T06:11:53.168Z",
+    "error_message": null,
+    "deploy_source": "api",
+    "has_source_zip": true,
+    "edge_functions_present": true,
+    "function_schedules": []
+  },
+  "gitContinuousDeploymentConnected": false,
+  "edgeFunctionNames": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "calendarFunction": {
+    "n": "calendar-reminder",
+    "d": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+    "r": "nodejs24.x",
+    "m": 1024,
+    "rg": "us-east-2",
+    "s": 279384,
+    "p": 10,
+    "bd": {
+      "runtimeAPIVersion": 1
+    }
+  },
+  "calendarBundleDigest": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+  "functionSchedules": [],
+  "retainedOriginalDeployId": "6abe81174b61a8e3dd53b333",
+  "credentialsPrinted": false
+}

@@ -1,0 +1,25 @@
+INCLUDING DEPENDENCY MoveStdlib
+INCLUDING DEPENDENCY Sui
+BUILDING arboretum
+Running Move unit tests
+[ PASS    ] arboretum::settlement::season_test_crate_bought_elsewhere_opens_against_unstarted_registry_current_behavior
+[ PASS    ] arboretum::settlement::season_test_default_start_opens_empty_first_season_for_thirty_days
+[ PASS    ] arboretum::settlement::season_test_duration_accepts_one_millisecond_lower_boundary
+[ PASS    ] arboretum::settlement::season_test_duration_accepts_thirty_day_upper_boundary
+[ PASS    ] arboretum::settlement::season_test_duration_rejects_more_than_thirty_days
+[ PASS    ] arboretum::settlement::season_test_duration_rejects_nonpositive_backdated_start
+[ PASS    ] arboretum::settlement::season_test_duration_rejects_zero
+[ PASS    ] arboretum::settlement::season_test_first_paid_lifecycle_keeps_archive_claim_after_second_start
+[ PASS    ] arboretum::settlement::season_test_short_start_uses_exact_twenty_four_hour_cutoff
+[ PASS    ] arboretum::settlement::season_test_start_rejects_cap_from_other_registry
+[ PASS    ] arboretum::settlement::season_test_start_rejects_existing_settlement
+[ PASS    ] arboretum::settlement::season_test_start_rejects_existing_start
+[ PASS    ] arboretum::settlement::season_test_start_rejects_replay_after_short_start
+[ PASS    ] arboretum::settlement::season_test_start_rejects_stale_eligible_growth_points
+[ PASS    ] arboretum::settlement::season_test_start_rejects_wrong_cap_version
+[ PASS    ] arboretum::settlement::season_test_start_rejects_wrong_registry_version
+[ PASS    ] arboretum::settlement::season_test_start_rejects_wrong_sender
+[ PASS    ] arboretum::settlement::season_test_start_rejects_zero_clock
+[ PASS    ] arboretum::settlement::season_test_tool_bought_in_another_registry_is_accepted_current_behavior
+Test result: OK. Total tests: 19; passed: 19; failed: 0
+[NOTE] Dependencies on Sui, MoveStdlib, Bridge, DeepBook, and SuiSystem are automatically added, but this feature is disabled for your package because you have explicitly included dependencies on MoveStdlib and Sui. Consider removing these dependencies from `Move.toml`.

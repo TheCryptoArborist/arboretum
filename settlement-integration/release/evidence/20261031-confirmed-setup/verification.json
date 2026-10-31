@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:29:11.731Z",
+  "kindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+  "kindBytes": 154,
+  "mainnetGenesisDigest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+  "receipt": {
+    "status": "confirmed",
+    "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "typeOrigin": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "checkpoint": {
+      "sequenceNumber": 340013815,
+      "timestamp": "2026-10-31T04:27:02.091Z"
+    },
+    "gasEstimateMist": "5632932",
+    "gasEstimateSui": "0.005632932",
+    "gasAboveReviewCeiling": false,
+    "currentEmpty": true,
+    "hasAdvanced": false
+  },
+  "liveCheckpoint": {
+    "sequenceNumber": 340014341,
+    "timestamp": "2026-10-31T04:29:09.722Z",
+    "digest": "6PAodZd8KWVsBR86sERgTh3RXRhXMrNVaxSaWVYznbjb"
+  },
+  "registryContents": {
+    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "version": "1",
+    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "current_season_id": "0",
+    "season_start_ms": "0",
+    "reward_pool": "0",
+    "treasury": "0",
+    "total_seeds": "0",
+    "total_growth_points": "0",
+    "eligible_growth_points": "0",
+    "settlement": null,
+    "paused": false,
+    "seeds_by_owner": {
+      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+      "size": "0"
+    },
+    "referrers": {
+      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+      "size": "0"
+    },
+    "referral_earnings": {
+      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+      "size": "0"
+    },
+    "player_growth": {
+      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+      "size": "0"
+    },
+    "player_growth_season": {
+      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+      "size": "0"
+    },
+    "planted_saplings": {
+      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+      "size": "0"
+    }
+  },
+  "administratorCapabilityContents": {
+    "id": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "version": "1",
+    "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9"
+  },
+  "legacyAdminCap": {
+    "version": 986499448,
+    "digest": "9pPCr7P5WhSzdFJFHynGq1yJemck8Z8purxuDyDVtfLo",
+    "owner": {
+      "__typename": "AddressOwner",
+      "address": {
+        "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+      }
+    },
+    "contents": {
+      "id": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3"
+    }
+  },
+  "upgradeCap": {
+    "version": 990522282,
+    "digest": "5WD8ag8pDpeHKMNc96eV5e9UTnW42L8KWk5jHZoS6a1W",
+    "contents": {
+      "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+      "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "version": "12",
+      "policy": 0
+    }
+  },
+  "sourceSha256": {
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  },
+  "assistantSignaturesRequested": 0,
+  "assistantTransactionsSubmitted": 0
+}

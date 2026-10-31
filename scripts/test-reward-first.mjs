@@ -8,6 +8,8 @@ import handbook,{publicGuidePaths,config as guideConfig} from '../netlify/edge-f
 const home=fs.readFileSync('dist/index.html','utf8'),guide=fs.readFileSync('dist/player-guide.html','utf8');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 const base='781caf03d17bda0d4c618cdf486e1c77756d8e6a';
+// Preserve the wallet confirmation and receipt fixes already reviewed in PR15.
+const walletBaseline='ba6faff6de7c446599a605ffa95369a325a12e3e';
 const prior=p=>execFileSync('git',['show',base+':'+p],{maxBuffer:32*1024*1024});
 const env={ARBORETUM_TESTER_PASSWORD:'fixture-'+ 'p'.repeat(48),ARBORETUM_SESSION_SECRET:'fixture-'+ 's'.repeat(80)};
 globalThis.Netlify={env:{get:k=>env[k]}};
@@ -31,5 +33,8 @@ test('guide changes retain public/private access separation',()=>{assert.deepEqu
 for(const path of ['/game','/game.html','/wallet.js','/garden.js','/sui-sdk.bundle.js','/tester-guide','/tester-guide.html','/guide/guide.css','/.netlify/functions/calendar-reminder','/reward-preview/home.html','/prelaunch/other.jpg'])test('anonymous remains blocked '+path,async()=>{const before=forwards;assert.equal((await dispatch(path)).status,401);assert.equal(before,forwards)});
 for(const path of ['/','/prelaunch/supply-drop.jpg','/prelaunch/boom-chest.png','/prelaunch/victory-chest.png','/player-guide','/guide/player-guide.css','/guide/player-guide.js'])test('exact public destination '+path,async()=>{assert.equal((await dispatch(path)).status,200)});
 test('only one exact asset changes the original gate',()=>{const now=fs.readFileSync('netlify/edge-functions/tester-gate.ts','utf8');assert.equal(now.replace(', "/prelaunch/supply-drop.jpg"',''),prior('netlify/edge-functions/tester-gate.ts').toString())});
-test('game, wallet, Move, calendar and base handbook sources unchanged',()=>{for(const file of ['index.html','wallet.js','garden.js','sui-sdk.bundle.js','sdk-entry.js','contract/sources/arboretum.move','netlify/functions/calendar-reminder.js','netlify/edge-functions/public-player-guide.ts','content/public-player-guide.html','content/public-player-guide.js'])assert.ok(fs.readFileSync(file).equals(prior(file)),file)});
+test('approved game, wallet, Move, calendar and handbook baselines preserved',()=>{
+ for(const file of ['index.html','garden.js','sui-sdk.bundle.js','sdk-entry.js','contract/sources/arboretum.move','netlify/functions/calendar-reminder.js','netlify/edge-functions/public-player-guide.ts','content/public-player-guide.html','content/public-player-guide.js'])assert.ok(fs.readFileSync(file).equals(prior(file)),file);
+ assert.ok(fs.readFileSync('wallet.js').equals(execFileSync('git',['show',walletBaseline+':wallet.js'],{maxBuffer:32*1024*1024})),'wallet.js');
+});
 test('all protected build files match their pre-transform hashes',()=>{const report=JSON.parse(fs.readFileSync('reward-results/build.json'));for(const [file,hash] of Object.entries(report.protected_files_unchanged))assert.equal(sha(fs.readFileSync('dist/'+file)),hash);assert.equal(report.production_allowed,false)});

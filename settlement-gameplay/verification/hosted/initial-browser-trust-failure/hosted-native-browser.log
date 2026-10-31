@@ -1,0 +1,23 @@
+FAIL hosted-1440: external administrator entry, bad code, retry and correct native return
+page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.treegrow.xyz/tester-access
+Call log:
+[2m  - navigating to "https://www.treegrow.xyz/tester-access", waiting until "domcontentloaded"[22m
+
+    at newPage (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:226:14)
+    at async defaultLogin (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:294:16)
+    at async file:///tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:342:7
+    at async scenario (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:290:9)
+    at async file:///tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:338:5
+FAIL hosted-390: external administrator entry, bad code, retry and correct native return
+page.goto: net::ERR_CERT_AUTHORITY_INVALID at https://www.treegrow.xyz/tester-access
+Call log:
+[2m  - navigating to "https://www.treegrow.xyz/tester-access", waiting until "domcontentloaded"[22m
+
+    at newPage (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:226:14)
+    at async defaultLogin (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:294:16)
+    at async file:///tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:342:7
+    at async scenario (/tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:290:9)
+    at async file:///tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031/native-return-runner.mjs:338:5
+PASS No blockchain request was attempted with page JavaScript disabled
+PASS No navigation attempted an external return destination
+Evidence: /tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-20261031

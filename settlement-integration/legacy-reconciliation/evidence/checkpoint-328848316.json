@@ -1,0 +1,24 @@
+{
+  "retrievedAt": "2026-10-20T01:32:31.782235+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query HistoricalCheckpoint($checkpoint: UInt53!) { checkpoint(sequenceNumber:$checkpoint) { sequenceNumber digest timestamp } }",
+    "variables": {
+      "checkpoint": 328848316
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 328848316,
+        "digest": "8APHYhNNo13WebyhmXD4QQVQ72JWXCNs8nfQboUpBwiv",
+        "timestamp": "2026-10-01T00:00:15.095Z"
+      }
+    }
+  },
+  "responseSha256": "b67b0b2c85cbab19d90a353fe22c866295326f5cadd2a81140ef43dbcca5cd6f"
+}

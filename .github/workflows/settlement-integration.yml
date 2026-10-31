@@ -1,0 +1,58 @@
+name: Settlement app integration review
+on:
+  push:
+    branches: [feature/settlement-app-integration-20261020]
+    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'settlement-gameplay/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
+  pull_request:
+    paths: ['settlement-integration/**', 'settlement-admin/**', 'settlement-setup/**', 'settlement-season/**', 'settlement-gameplay/**', 'netlify/edge-functions/tester-gate.ts', 'scripts/test-tester-return*', 'scripts/build-policy.mjs', 'scripts/build-policy.test.mjs', 'scripts/build-site.mjs', 'package.json', 'package-lock.json', '.github/workflows/settlement-integration.yml', 'netlify.toml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify reward, route, reader, wallet, and unsigned packet behavior
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p settlement-review-results
+          npm run lint
+          node settlement-integration/model.test.mjs | tee settlement-review-results/model.txt
+          node --test --test-isolation=none --test-reporter=tap settlement-integration/reader.test.mjs settlement-integration/wallet.test.mjs settlement-integration/release/*.test.mjs | tee settlement-review-results/reader-wallet-release.txt
+          node --test --test-isolation=none --test-reporter=tap scripts/test-wallet-transactions.mjs | tee settlement-review-results/wallet-confirmation.txt
+          python3 -m unittest discover -s settlement-integration/release -p 'test_*.py' -v 2>&1 | tee settlement-review-results/release-inputs.txt
+          python3 -m unittest discover -s settlement-integration/legacy-reconciliation -p 'test_*.py' -v 2>&1 | tee settlement-review-results/reconciliation.txt
+          node --test settlement-admin/*.test.mjs | tee settlement-review-results/administrator-upgrade.txt
+          node --test settlement-setup/*.test.mjs | tee settlement-review-results/administrator-setup.txt
+          node --test --test-isolation=none settlement-season/*.test.mjs | tee settlement-review-results/administrator-season.txt
+          node --test --test-isolation=none settlement-gameplay/*.test.mjs | tee settlement-review-results/owner-gameplay.txt
+          node --test --test-isolation=none --test-reporter=tap scripts/test-tester-return.mjs | tee settlement-review-results/tester-return.txt
+          node --test --test-isolation=none --test-reporter=tap scripts/build-policy.test.mjs settlement-integration/ui/panel.test.mjs | tee settlement-review-results/read-only-view.txt
+      - name: Build the protected review and isolated approved administrator operations
+        env:
+          CONTEXT: branch-deploy
+        shell: bash
+        run: |
+          set -euo pipefail
+          node settlement-integration/build-review.mjs | tee settlement-review-results/build.txt
+          cp settlement-integration/verification/build.json settlement-review-results/build.json
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js netlify contract/sources/arboretum.move contract-payout/source/settlement.move
+          git rev-parse HEAD > settlement-review-results/source-sha.txt
+          tar -czf settlement-review-results/review-dist.tar.gz dist
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: settlement-app-integration-review
+          path: settlement-review-results/
+          retention-days: 14
+

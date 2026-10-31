@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-31T05:58:15.990928+00:00",
+  "sourceBaseCommit": "2c0991b45e840caa9b875f37376306691c268e6d",
+  "status": "PASS",
+  "rows": [
+    {
+      "name": "return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "6ba2686e5155026fb1ddd0bd1742dda49596fc3e62ee635a08d05108a27b6d1a"
+    },
+    {
+      "name": "gate-policy",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 47,
+        "pass": 47,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "31e5733198d27356225bfe68c8601a13924300cc4531c7cc53a63a8c312a2dac"
+    },
+    {
+      "name": "form-origin",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-prelaunch-origin.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "d1346eb3950cd5a499c59696820ea7451f1700c1f323a33af73578719c87301a"
+    }
+  ],
+  "sourceSha256": {
+    "netlify/edge-functions/tester-gate.ts": "50c63ad1c64d0108365e2d7275e6e19baddabf0c07190d1203e39972f4cd2871",
+    "scripts/test-tester-return.mjs": "3c9fc561ebba75788772a86a506f9abbb78c549b5adb3ef8f208502ceb5cdf6c",
+    "scripts/test-tester-return-browser.py": "6dd084c74615c2ec12dab885acb3035e5a5391d53f8ecef073da4aa3131a6ace",
+    "settlement-integration/build-review.mjs": "44ead911f25ce54b62b7f452d7c6cd9a62ab57124164da6a9637f3ba01c69967",
+    ".github/workflows/settlement-integration.yml": "0011b9cbb2a1dc2a84ec21461cea1ae6a175ea31c1eafd215cdaa0c1e2efa5d3"
+  },
+  "realNetworkRequests": 0,
+  "realWalletRequests": 0,
+  "transactionsSubmitted": 0,
+  "fullBuildRun": false
+}

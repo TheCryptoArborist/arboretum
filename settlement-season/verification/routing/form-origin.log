@@ -1,0 +1,74 @@
+(node:30) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/066ce7a12a80/arboretum/netlify/edge-functions/tester-gate.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/066ce7a12a80/arboretum/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# Subtest: native form origin retained GET /tester-access
+ok 1 - native form origin retained GET /tester-access
+  ---
+  duration_ms: 35.514967
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access
+ok 2 - native form origin retained HEAD /tester-access
+  ---
+  duration_ms: 0.729661
+  type: 'test'
+  ...
+# Subtest: native form origin retained GET /tester-access/
+ok 3 - native form origin retained GET /tester-access/
+  ---
+  duration_ms: 0.924392
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access/
+ok 4 - native form origin retained HEAD /tester-access/
+  ---
+  duration_ms: 0.651546
+  type: 'test'
+  ...
+# Subtest: native form origin retained GET /tester-access.html
+ok 5 - native form origin retained GET /tester-access.html
+  ---
+  duration_ms: 0.727793
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access.html
+ok 6 - native form origin retained HEAD /tester-access.html
+  ---
+  duration_ms: 0.601114
+  type: 'test'
+  ...
+# Subtest: incorrect-code retry preserves native form origin
+ok 7 - incorrect-code retry preserves native form origin
+  ---
+  duration_ms: 12.813282
+  type: 'test'
+  ...
+# Subtest: null origin still rejected, not trusted as workaround
+ok 8 - null origin still rejected, not trusted as workaround
+  ---
+  duration_ms: 1.05059
+  type: 'test'
+  ...
+# Subtest: cross-site metadata rejects forged same-origin login
+ok 9 - cross-site metadata rejects forged same-origin login
+  ---
+  duration_ms: 1.007963
+  type: 'test'
+  ...
+# Subtest: ordinary protected response retains no-referrer privacy
+ok 10 - ordinary protected response retains no-referrer privacy
+  ---
+  duration_ms: 2.20634
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136.696673

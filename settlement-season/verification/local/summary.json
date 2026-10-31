@@ -1,0 +1,210 @@
+{
+  "completedAt": "2026-10-31T06:03:50.430410+00:00",
+  "checks": [
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "counts": {},
+      "logSha256": "a702100a3e1d19689e5984b3b5d6e4e26975c7cc1cb8066c9c544696c0b272b4"
+    },
+    {
+      "name": "model",
+      "command": [
+        "node",
+        "settlement-integration/model.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {},
+      "logSha256": "da29ed346b8f3d4e2b46bb35cc796269ea00481c0c0d6603ffa0fd2ab6e01152"
+    },
+    {
+      "name": "reader-wallet-release",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-integration/reader.test.mjs",
+        "settlement-integration/wallet.test.mjs",
+        "settlement-integration/release/release-packet.test.mjs",
+        "settlement-integration/release/verify-setup.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 181,
+        "pass": 181,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "49a11f318e6f40d7db25bfee103d59937eeb876bb5ac7a5d922e438f621b1378"
+    },
+    {
+      "name": "wallet-confirmation",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-wallet-transactions.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 50,
+        "pass": 50,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "19ff2c07c7b04aa7919856f6592514abf05dbb7b03784450b2bc5d56552dc1c2"
+    },
+    {
+      "name": "release-inputs",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/release",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "counts": {},
+      "logSha256": "4ebc14d2c1a52fc07e8f0b4f63b6d3838771922594d352fecb6b888998b643db"
+    },
+    {
+      "name": "reconciliation",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/legacy-reconciliation",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "counts": {},
+      "logSha256": "889f5dfa02485c361631edb020c4ed4c3a40cf1c682e0681c2041f1b99b20fa7"
+    },
+    {
+      "name": "administrator-upgrade",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "settlement-admin/admin.test.mjs",
+        "settlement-admin/upgrade-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "dbcdd181cc1461589efae4202395a7e136f47ca3fd3ebd85bef4647f12291264"
+    },
+    {
+      "name": "administrator-setup",
+      "command": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "settlement-setup/admin.test.mjs",
+        "settlement-setup/setup-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 2,
+        "pass": 2,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "3fc8c403945aaade634b28f6d42b4e3e596256de29a9d93ad2769f669c713d07"
+    },
+    {
+      "name": "administrator-season",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-season/admin.test.mjs",
+        "settlement-season/start-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 53,
+        "pass": 53,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "7e74555d30a168a7e6f051129211a4691ce01f48d986ab40a58e8b86a447f9b6"
+    },
+    {
+      "name": "tester-return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "829d4a200fb22d1be6c77c9079d27cf810515020052ea4b8554e9a1dcee6ad8f"
+    },
+    {
+      "name": "read-only-view",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/build-policy.test.mjs",
+        "settlement-integration/ui/panel.test.mjs"
+      ],
+      "exitCode": 0,
+      "counts": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "logSha256": "b9f6b6f8ae2b8d1a2bff587a913344c9b6463d8749a913c44453d263dea477d5"
+    }
+  ],
+  "allPassed": true,
+  "sourceSha256": {
+    "settlement-season/admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+    "settlement-season/admin.mjs": "7357994c67f1ed9f3c683ed50737cc4e22c6218a2d7c5c3968ae55e11ed55dad",
+    "settlement-season/admin.test.mjs": "b7c52eb4b03525a103e99841c3b839dd74bd988fe372192a02dd61f71be4f96c",
+    "settlement-season/browser-review.py": "5b732f53bbbb0afb2e8531af19d877f938cf58263a042f5b8b2a2d01d7de414e",
+    "settlement-season/build.mjs": "ce7180a86aaa0ad346a79bb7850c8d8c2b31dd9e5ed8b2e52ed89b7b442c5ee4",
+    "settlement-season/check-live.mjs": "8aec6b55242533629089e2e9961a3146e3117fab9605578be3911990f058ce9f",
+    "settlement-season/index.html": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+    "settlement-season/start-core.mjs": "39dbcffd63322eb4eedcee54f7fb10373da78c56ae3bbd2cd779730b15ec1bfb",
+    "settlement-season/start-core.test.mjs": "a446d7cdfdc965843f3eda735c8e02ab573a179ca2d33ee0138de4dc5f55ebb7"
+  }
+}

@@ -1,0 +1,1338 @@
+[
+  {
+    "context": "review-1440",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-1440",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "review-390",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "read-only",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-nft",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "stale",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "stale",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC receipt"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "uncertain-request",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "synthetic planting receipt",
+    "operation": "OwnerPlantConfirmation"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC receipt"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "successful-plant",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "synthetic planting receipt",
+    "operation": "OwnerPlantConfirmation"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC receipt"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "synthetic planting receipt",
+    "operation": "OwnerPlantConfirmation"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantSimulation"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC receipt"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "synthetic planting receipt",
+    "operation": "OwnerPlantConfirmation"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "already-planted",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantProof"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "fixture": "isolated proof/input/simulation fixture",
+    "operation": "OwnerPlantInputs"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/gameplay-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/gameplay-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  }
+]
