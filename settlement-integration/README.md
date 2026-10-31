@@ -6,17 +6,17 @@ This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arbor
 
 The accepted preview is now **[www.treegrow.xyz/tester-access](https://www.treegrow.xyz/tester-access)**,
 on the dedicated preview project. The accepted gameplay checkpoint was
-deployment `6ae53e7c96ded9882ad844c8`; the administrator page is now deployed as
-`6ae55e069ac28a1658ed0d65` from source `5abbe0930fd61639c37addd7a7a745b57a12db32`,
-with all 15 application assets from the initial administrator release unchanged,
-including the 11 accepted gameplay assets. The owner
+deployment `6ae53e7c96ded9882ad844c8`; the upgrade and empty-Registry setup pages are now deployed as
+`6ae56c55b4f726c32698bd38` from source `c4789ec647e522857f4166021a3f9d3220e4cf7c`.
+The 11 accepted gameplay assets and three existing upgrade signing assets are unchanged;
+the upgrade receipt HTML links to the new separate setup route. The owner
 confirmed successful Slush connection, the selected wallet address, and correct
 loading of the existing garden, NFTree holdings, and season information. See
 the [current domain handoff](../docs/dedicated-preview-domain.md).
 
 The owner signed the reviewed version-12 upgrade. **[The real upgrade is confirmed](release/evidence/20261031-confirmed-upgrade/verification.json)** at checkpoint **340000251**, October 30, 2026 at **10:31 p.m. CDT**. Transaction `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU` published package `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a` with an actual fee of **0.337998763 SUI**. Exact receipt verification confirms the approved bytes, legacy type origins, new settlement types, administrator ownership and upgrade policy. The administrator page now detects the completed upgrade and prevents repeating it.
 
-The **[empty settlement Registry review](release/evidence/20261031-empty-registry-review/REVIEW.md)** is the next separate transaction. Its unsigned packet is tied to the real package and receipt. It creates empty state and a bound administrator capability; it does not start a season, fund a pool, import legacy state or compensate players. The current website has no setup signing control. No setup transaction has been submitted, and simulation IDs are not deployment configuration. Gameplay transaction submission remains disabled by the review build.
+The **[empty settlement Registry review](release/evidence/20261031-empty-registry-review/REVIEW.md)** is the next separate transaction. Its unsigned packet is tied to the real package and receipt. The owner-authorized **[setup approval page is now deployed and verified](../settlement-setup/README.md)** at [the setup tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-setup). It creates empty state and a bound administrator capability through the owner's final Slush approval. No setup signature or transaction was submitted by this implementation; simulation IDs are not deployment configuration. Season start, funding, legacy import, compensation, and gameplay activation remain separate decisions.
 
 The [administrator handoff](../settlement-admin/README.md) records the accepted website, login correction, current deployment and verification evidence. The [upgrade tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-upgrade) remains the route to the completed upgrade/receipt page.
 
@@ -62,9 +62,9 @@ The regression tests exercise the generated review wallet and generated picker f
 
 ## Review behavior
 
-The build produces an **Existing garden** route using the verified legacy deployment. **New seasons** remains unavailable because the actual upgrade package, new Registry, and new AdminCap do not exist yet. Those IDs must be taken from real confirmed deployment effects and type origins; a URL parameter, browser global, local-storage entry, or simulated package cannot configure the route.
+The build produces an **Existing garden** route using the verified legacy deployment. The actual version-12 package is confirmed. **New seasons** remains unavailable while the new Registry/AdminCap setup and later season activation are pending. New object IDs must come from real confirmed effects; a URL parameter, browser global, local-storage entry, or simulation cannot configure the route.
 
-Every generated gameplay review wallet refuses transaction submission before requesting a signature. The separately approved administrator route accepts only the exact reviewed upgrade. Wallet connections and public Sui reads remain available. The gameplay review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
+Every generated gameplay review wallet refuses transaction submission before requesting a signature. The separately approved administrator routes accept only their exact reviewed upgrade or empty Registry setup. Wallet connections and public Sui reads remain available. The gameplay review keeps the accepted Garden, Rewards, guide, and partner-accounting context while replacing the reward presentation with explicit states:
 
 | State | What the review shows |
 | --- | --- |
@@ -87,7 +87,7 @@ The generated app uses the current Sui GraphQL and gRPC clients. Reward views pi
 
 The existing Wallet Standard framework and transaction-confirmation adapter are retained; the review transforms add strict wallet selection and account restoration. Original production HTML, wallet, Garden, SDK, Move sources, access gate, and calendar-reminder function are preserved and hashed by the review builder.
 
-The public landing and public guide keep their accepted build output. New application assets remain behind the existing tester gate. Source code, reconciliation records, and verification evidence are excluded from the website's published assets. The isolated administrator route includes one exact approved transaction-kind packet as a protected runtime asset.
+The public landing and public guide keep their accepted build output. New application assets remain behind the existing tester gate. Source code, reconciliation records, and verification evidence are excluded from the website's published assets. Each isolated administrator route includes its exact approved transaction-kind packet as a protected runtime asset.
 
 ## Verified legacy Season 3
 

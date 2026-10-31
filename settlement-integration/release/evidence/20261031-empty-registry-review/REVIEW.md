@@ -4,7 +4,7 @@
 
 The owner-completed version-12 upgrade is confirmed. Its transaction is `GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU`, at mainnet checkpoint 340000251 on October 30, 2026 at 10:31 p.m. CDT. The actual package is `0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a`. The [upgrade verification](../20261031-confirmed-upgrade/verification.json) records the approved kind, module hashes, type origins and authority checks.
 
-This document reviews the **next separate transaction**. It remains unsigned. The current administrator page only has upgrade/receipt controls; no setup signing control has been deployed.
+This document reviews the **next separate transaction**. It remains unsigned. At the time of this capture, the administrator page had only upgrade/receipt controls. The subsequently authorized [separate setup page](../../../../settlement-setup/README.md) is now deployed and verified; final setup approval remains with the owner in Slush.
 
 ## Exact proposed action
 
@@ -57,7 +57,7 @@ The [post-simulation public read](post-simulation-state.json) confirms that the 
 
 ## Next owner flow
 
-A setup approval control still needs to be implemented on the canonical protected administrator site. Before requesting a signature it must revalidate the actual upgrade, current package/authority, refreshed legacy capability reference, absence of an existing settlement Registry, exact setup bytes and a checked simulation. It must retain explicit Slush/provider/account/mainnet selection and a persistent unresolved-request lock.
+The protected [setup tester entrance](https://www.treegrow.xyz/tester-access?next=settlement-setup) now leads to the separately implemented approval control. Before requesting a signature it revalidates the actual upgrade, current package/authority, exact legacy capability reference, absence of an existing settlement Registry, exact setup bytes and a checked simulation. It retains explicit Slush/provider/account/mainnet selection and a persistent unresolved-request lock. The [implementation and hosted evidence](../../../../settlement-setup/README.md) record its verification.
 
 The contract permits creating additional empty Registries; uniqueness is an operational check, not an onchain one-shot guarantee. Do not automatically retry an uncertain setup request or build a second Registry when a first one exists. After owner approval and real confirmation, verify the transaction bytes, event and effects and use the actual new Registry and AdminCap IDs. Only then can deployment configuration be prepared for subsequent season decisions.
 

@@ -10,7 +10,7 @@ The owner signed the approved upgrade. Transaction **`GY23E3FJnMkg9VgZnqABEyWrKs
 
 The [confirmed receipt verification](../settlement-integration/release/evidence/20261031-confirmed-upgrade/verification.json) and independent verification establish the exact approved kind/digest, both module hashes, 32 preserved legacy type origins, 39 new settlement type origins, unchanged administrator ownership and policy, and the current version-12 UpgradeCap. The existing page detects `already-upgraded` and verifies the receipt; this upgrade must not be submitted again.
 
-The next operation is the separately reviewed empty settlement Registry setup. Its exact unsigned packet and checked simulation are recorded in [the setup review](../settlement-integration/release/evidence/20261031-empty-registry-review/REVIEW.md). This page currently provides only upgrade and receipt actions; it has no setup signing control. No setup, season activation, pool funding, legacy import or compensation transaction was submitted by this receipt-verification work.
+The next operation is the separately reviewed empty settlement Registry setup. Its exact unsigned packet and checked simulation are recorded in [the setup review](../settlement-integration/release/evidence/20261031-empty-registry-review/REVIEW.md). The upgrade receipt now links to the **[separate setup page](../settlement-setup/README.md)**, published as deployment `6ae56c55b4f726c32698bd38` from source `c4789ec647e522857f4166021a3f9d3220e4cf7c`. This upgrade route retains its existing signing code; setup has a separate controller, journal, exact kind and final Slush approval. No setup, season activation, pool funding, legacy import or compensation transaction was submitted by the implementation.
 
 ## Tester entrance for the upgrade
 
@@ -20,7 +20,7 @@ This corrects the reported navigation defect: the previous gate discarded the re
 
 The owner supplied no new credential: the existing code was recovered from their earlier conversation and successfully verified against the live tester entrance and administrator page. The earlier masked-secret verification limit below describes the initial deployment check; it no longer prevents authenticated testing. No tester code belongs in repository files or verification reports.
 
-## Current navigation correction — 2026-10-31 UTC
+## Earlier navigation correction — 2026-10-31 UTC
 
 Source `5abbe0930fd61639c37addd7a7a745b57a12db32` is published as deployment `6ae55e069ac28a1658ed0d65`, at **2026-10-31 03:18:45 UTC / October 30, 10:18 p.m. CDT**. The [authenticated hosted record](verification/tester-return-hosted-20261031.json) confirms 21 passing checks: the fixed return after login and rejected-code retry, protected administrator assets, ordinary garden login, logout, and calendar output. All 15 application asset hashes and the calendar function bundle digest match the initial administrator release. Only the gate's fixed return handling changed executable behavior; credentials, session security, application and signing bytes are preserved.
 
