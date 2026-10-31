@@ -292,3 +292,93 @@ test('duplicate or mixed setup intents fail closed to the ordinary garden destin
     assert.equal(response.headers.get('location'), origin + '/game.html');
   }
 });
+
+test('first-test season document variants retain only their fixed owner-review destination', async () => {
+  for (const path of ['/admin/season-test', '/admin/season-test/', '/admin/season-test/index.html']) {
+    const before = originCalls;
+    const response = await gate(navigate(path + '?next=new-seasons'), context);
+    assert.equal(response.status, 303);
+    assert.equal(response.headers.get('location'), origin + '/tester-access?next=season-test');
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.match(response.headers.get('cache-control'), /no-store/);
+    assert.equal(originCalls, before);
+  }
+  for (const path of ['/admin/season-test-extra', '/admin/season-test/extra', '/admin/season-test/index.html/']) {
+    const response = await gate(navigate(path), context);
+    assert.equal(response.headers.get('location'), origin + '/tester-access');
+  }
+});
+
+test('native first-test login and incorrect-code retry preserve intent and the unchanged Strict session', async () => {
+  const marker = /<input type="hidden" name="next" value="season-test">/;
+  const page = await gate(request('/tester-access?next=season-test'), context);
+  const html = await page.text();
+  assert.match(html, marker);
+  assert.match(html, /Continue to test season review/);
+  assert.doesNotMatch(html, /<script/i);
+  assert.equal(page.headers.get('referrer-policy'), 'same-origin');
+  assert.match(page.headers.get('content-security-policy'), /form-action 'self'/);
+  const wrong = await gate(post({ password: 'wrong', next: 'season-test' }), context);
+  assert.equal(wrong.status, 401);
+  assert.equal(wrong.headers.get('set-cookie'), null);
+  assert.equal(wrong.headers.get('location'), null);
+  assert.match(await wrong.text(), marker);
+  const success = await gate(post({ password, next: 'season-test' }, '/tester-access?next=settlement-setup'), context);
+  assert.equal(success.status, 303);
+  assert.equal(success.headers.get('location'), origin + '/admin/season-test/');
+  const cookie = success.headers.get('set-cookie');
+  assert.match(cookie, /^__Host-arboretum_tester=/);
+  assert.match(cookie, /; Path=\/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200$/);
+  assert.doesNotMatch(cookie, /Domain=/);
+  const authenticated = await gate(request('/admin/season-test/', { headers: { Cookie: cookie.split(';')[0] } }), context);
+  assert.equal(authenticated.status, 200);
+  assert.equal(await authenticated.text(), 'PROTECTED CONTENT');
+  assert.match(authenticated.headers.get('cache-control'), /no-store/);
+  assert.match(authenticated.headers.get('x-robots-tag'), /noindex/);
+  assert.equal(authenticated.headers.get('etag'), null);
+});
+
+test('the first-test marker cannot authorize assets or weaken origin and request checks', async () => {
+  for (const name of ['admin.mjs', 'admin.css']) {
+    const before = originCalls;
+    const response = await gate(request('/admin/season-test/' + name + '?next=season-test'), context);
+    assert.equal(response.status, 401);
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.equal(originCalls, before);
+    const asDocument = await gate(navigate('/admin/season-test/' + name), context);
+    assert.equal(asDocument.headers.get('location'), origin + '/tester-access');
+  }
+  for (const headers of [{ Origin: 'null' }, { Origin: 'https://attacker.example' }, { 'Sec-Fetch-Site': 'cross-site' }, { 'Sec-Fetch-Site': 'same-site' }]) {
+    const response = await gate(post({ password, next: 'season-test' }, '/tester-access', headers), context);
+    assert.equal(response.status, 403);
+    assert.equal(response.headers.get('set-cookie'), null);
+  }
+  const unsigned = await gate(request('/admin/season-test/?next=season-test'), context);
+  assert.equal(unsigned.status, 401);
+  const head = await gate(request('/tester-access?next=season-test', { method: 'HEAD' }), context);
+  assert.equal(head.status, 200);
+  assert.equal(await head.text(), '');
+  assert.equal(head.headers.get('referrer-policy'), 'same-origin');
+});
+
+test('duplicate, mixed, malformed and query-only first-test intents fall back to the ordinary garden', async () => {
+  for (const other of ['season-test', 'settlement-upgrade', 'settlement-setup', 'new-seasons', 'https://attacker.example']) {
+    const markers = [['next', 'season-test'], ['next', other]];
+    const page = await gate(request('/tester-access?' + new URLSearchParams(markers)), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post([['password', password], ...markers]), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+    const wrong = await gate(post([['password', 'wrong'], ...markers]), context);
+    assert.doesNotMatch(await wrong.text(), /name="next"/);
+  }
+  const queryOnly = await gate(post({ password }, '/tester-access?next=season-test'), context);
+  assert.equal(queryOnly.headers.get('location'), origin + '/game.html');
+  for (const next of ['/admin/season-test/', 'season-test/anything', ' season-test', 'season-test ', '%73eason-test', 'Season-Test']) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams({ next })), context);
+    const html = await page.text();
+    assert.doesNotMatch(html, /name="next"/);
+    assert.ok(!html.includes(next), 'Unrecognized return text must never enter the page');
+    const response = await gate(post({ password, next }), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+});

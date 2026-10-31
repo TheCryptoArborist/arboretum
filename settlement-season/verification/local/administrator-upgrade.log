@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: settlement-admin/admin.test.mjs
+ok 1 - settlement-admin/admin.test.mjs
+  ---
+  duration_ms: 696.428963
+  type: 'test'
+  ...
+# Subtest: settlement-admin/upgrade-core.test.mjs
+ok 2 - settlement-admin/upgrade-core.test.mjs
+  ---
+  duration_ms: 695.413466
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 723.304617

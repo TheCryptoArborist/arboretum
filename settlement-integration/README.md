@@ -2,6 +2,10 @@
 
 This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the separate legacy garden and read-only v12 Registry view, a complete legacy Season 3 reconciliation, and the retained upgrade/setup release records. The upgrade and empty Registry setup are complete; economic activation and gameplay transactions remain disabled.
 
+## Owner-wallet first-test review — October 31, 2026, America/Chicago
+
+The [first-season owner review](../settlement-season/verification/README.md) prepares the exact 24-hour version-1 start on the existing Registry at `/admin/season-test/`, with the fixed [tester entrance](https://www.treegrow.xyz/tester-access?next=season-test). It adds a separate explicit wallet review, receipt recovery and duplicate-request protection. The 53 core/controller tests, 68 compiled browser checks, native-login checks and unsigned mainnet rehearsal passed. The actual Registry remains unstarted and unfunded; the owner must approve the real start in Slush. General gameplay remains read-only. See the dated handoff for the actual publication record.
+
 ## Inventory boundary candidate — October 31, 2026, America/Chicago
 
 The [inventory-boundary handoff](verification/inventory-boundary-20261031/README.md) records a verified production candidate using inventory version 2 and all 13 approved production prices from its first purchase. It requires a fresh v2 production Registry and adds no conversion or migration of v1 test inventory/history. All 67 focused Move tests passed, including tests against the frozen v1 implementation, and the exact candidate passed a checked unsigned mainnet upgrade simulation. The live package remains v12 and its Registry remains inventory version 1, empty and unstarted. No actual upgrade, signature, spending or website deployment occurred. The candidate resolves the prior isolation finding for the intended production transition; preparing the owner-wallet v1 test season remains the next live-testing step.

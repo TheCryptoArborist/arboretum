@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-10-31T04:53:27.698Z",
+  "verifiedAt": "2026-10-31T06:06:05.097Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
   "buildContext": "production",
   "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
@@ -18,7 +18,7 @@
     "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
     "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
     "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
-    "netlify/edge-functions/tester-gate.ts": "bd8faf72c495637cc3153da14a3ab5fe6d562e6d6bc462f867ce4045a05564fd",
+    "netlify/edge-functions/tester-gate.ts": "50c63ad1c64d0108365e2d7275e6e19baddabf0c07190d1203e39972f4cd2871",
     "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
     "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
   },
@@ -82,6 +82,27 @@
       "admin/settlement-setup/admin.mjs": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
       "admin/settlement-setup/index.html": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
       "admin/settlement-setup/setup-kind.b64": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849"
+    }
+  },
+  "administratorSeason": {
+    "route": "/admin/season-test/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "exactStartKindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "exactStartKindBytes": 258,
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "proposedDurationMs": "86400000",
+    "inventoryVersion": 1,
+    "ownerWalletApprovalRequired": true,
+    "firstSeasonStartEnabled": true,
+    "gameplayTransactionsEnabled": false,
+    "fundingEnabled": false,
+    "productionUpgradeEnabled": false,
+    "emittedSha256": {
+      "admin/season-test/admin.css": "3a2032ab33dca1000edf6de0e18ae164b50bd34b99ee9eab692367655d097f75",
+      "admin/season-test/admin.mjs": "64cabbfe879aa08319aa83ca3b320cbfd03cea7f2331072ca91aa85dba2f89f3",
+      "admin/season-test/index.html": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+      "admin/season-test/start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
     }
   },
   "evidencePublished": false,

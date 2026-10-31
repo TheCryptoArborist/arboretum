@@ -1,0 +1,12 @@
+{
+  "requestedAt": "2026-10-31T06:02:37.074Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "method": "OPTIONS",
+  "credentials": "omit",
+  "redirect": "error",
+  "headers": {
+    "Origin": "https://www.treegrow.xyz",
+    "Access-Control-Request-Method": "POST",
+    "Access-Control-Request-Headers": "content-type"
+  }
+}

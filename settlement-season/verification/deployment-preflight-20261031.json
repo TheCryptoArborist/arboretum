@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-31T06:04:30.531065+00:00",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "siteName": "arboretum-preview",
+  "domain": "www.treegrow.xyz",
+  "publishedDeployId": "6ae57602f4f0e531f67877e7",
+  "publishedState": "ready",
+  "gitContinuousDeploymentConnected": false,
+  "edgeFunctionNames": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "functions": [
+    {
+      "n": "calendar-reminder",
+      "d": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+      "runtime": null,
+      "schedule": null
+    }
+  ],
+  "functionSchedules": [],
+  "retainedOriginalDeployId": "6abe81174b61a8e3dd53b333",
+  "credentialsPrinted": false
+}
