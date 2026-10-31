@@ -2,6 +2,21 @@
 
 This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the separate legacy garden and read-only v12 Registry view, a complete legacy Season 3 reconciliation, and the retained owner-operation release records. The upgrade, Registry setup and first test-season start are complete. The general garden remains read-only; reviewed owner operations use their isolated pages.
 
+## First watering owner review — published October 31, 2026
+
+The [first-watering page](../settlement-watering/README.md) is live at its fixed
+[tester entrance](https://www.treegrow.xyz/tester-access?next=watering-test).
+It reads the owner's confirmed Seed, displays its live countdown, and prepares
+one gas-only watering after eligibility. Source `7506a3778f35a74c4889e34a87dd0a547d886a0c`
+is published as deployment `6ae678179e4a049e68a01cae` at
+`2026-10-31T23:22:17.269Z`. The [verification record](../settlement-watering/verification/README.md)
+records 42 focused tests, both passing exact-source integration CI runs and all
+100 published application files verified. The first watering opens November 1
+at **2:16:41.252 p.m. CST** and must execute before **3:57:28.277 p.m. CST**.
+The current Seed is 10 GP/streak 1; the expected watering result is 24 GP/streak 2.
+No actual watering was submitted. Earlier publication and empty-state notes
+below describe their historical checkpoints.
+
 ## First test Seed owner review — published October 31, 2026
 
 **Latest continuation:** the owner has now planted the first Seed in transaction

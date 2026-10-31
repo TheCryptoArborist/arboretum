@@ -4,6 +4,16 @@ This is the next step after the owner's confirmed first Seed planting. The
 protected page is `/admin/watering-test/`; its fixed tester entrance is
 <https://www.treegrow.xyz/tester-access?next=watering-test>.
 
+## Published release
+
+Source **`7506a3778f35a74c4889e34a87dd0a547d886a0c`** is live as Netlify
+deployment **`6ae678179e4a049e68a01cae`**, published October 31, 2026 at
+**6:22:17 p.m. CDT** (`2026-10-31T23:22:17.269Z`). The
+[release verification](verification/README.md) records 42 focused tests, both
+passing exact-source integration CI runs, all 100 matched published application
+files, retained backend identities, live route checks and the limits of browser
+and unsigned simulation coverage. No real watering was submitted.
+
 ## Confirmed starting point
 
 | Item | Value |
