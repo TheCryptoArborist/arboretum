@@ -1,5 +1,33 @@
 # Unsigned settlement upgrade and setup review
 
+## Current handoff — October 30, 2026, America/Chicago
+
+The owner has completed the wallet/account/garden acceptance checks on
+`https://www.treegrow.xyz/tester-access`. The exact unsigned version-12 upgrade
+has now been reproduced against fresh mainnet inputs and passed a new checked
+simulation at `2026-10-31T02:27:28.149Z` (October 30, 9:27 p.m. Central).
+
+**[Open the current concrete transaction review](evidence/20261031-review/REVIEW.md).**
+
+The transaction-kind SHA-256 remains
+`1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0`.
+The current simulated net gas is **0.337998763 SUI**. Verification preserves
+the existing module, all 32 legacy type origins, the owner and upgrade policy,
+and correctly binds all 39 new settlement type origins. A later public read
+confirmed the live capabilities and Registry unchanged and the simulated
+package absent. No signature or transaction submission occurred.
+
+The current evidence also includes an unsigned SDK Transaction JSON whose
+offline round trip reproduces the exact reviewed transaction kind. There is
+no administrator signing page in the deployed review. The next live release
+action is the separately reviewed administrator-wallet upgrade; the real
+transaction digest is then required to prepare Registry setup.
+
+The October 20 observations below are retained as the original verification
+record. Use the October 31 capture linked above for current public inputs.
+
+## Original verification — October 20, 2026 UTC
+
 The exact candidate upgrade **passed a mainnet simulation with transaction checks
 and automatic gas selection enabled** on October 20, 2026 at 01:36 UTC
 (October 19, 8:36 p.m. Central). It preserved the legacy module and added the

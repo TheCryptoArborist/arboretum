@@ -2,7 +2,26 @@
 
 This is the next draft after [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the app integration, a complete legacy Season 3 reconciliation, and the exact unsigned upgrade review. It does not activate the new protocol.
 
-## Preview security review and deployed correction
+## Current handoff — October 30, 2026, America/Chicago
+
+The accepted preview is now **[www.treegrow.xyz/tester-access](https://www.treegrow.xyz/tester-access)**,
+deployment `6ae53e7c96ded9882ad844c8` on the dedicated preview project. The owner
+confirmed successful Slush connection, the selected wallet address, and correct
+loading of the existing garden, NFTree holdings, and season information. See
+the [current domain handoff](../docs/dedicated-preview-domain.md).
+
+The **[current unsigned upgrade review](release/evidence/20261031-review/REVIEW.md)**
+contains refreshed public inputs, the exact three-command version-12 upgrade,
+wallet-ready SDK JSON, and a successful checked simulation with estimated net
+gas of **0.337998763 SUI**. The live contract and Registry remain unchanged.
+Real upgrade signing and subsequent empty Registry setup are the next release
+steps; transaction submission in the review app remains disabled.
+
+The October 29 Netlify-hostname warning/deployment sections below are preserved
+historical observations. Their statements about paused testing and the old
+current hostname do not supersede the later accepted www-domain checkpoint.
+
+## Historical preview security review and deployed correction — October 29
 
 **The mint-helper and wallet-selection corrections are deployed and verified. Slush still displays a malicious-site warning on the current preview.** Source commit `a3096b4f4e0d6b357949505f706b4afe88f85009` is live at [the current tester entrance](https://6ae37c04102ccbfac41d20b4--arboretum-sui-forest.netlify.app/tester-access). The deployment completed on October 29, 2026 at 12:02 p.m. America/Chicago (17:02 UTC). Production remains unchanged. The current build includes both the earlier mint-helper correction and the October 29 wallet-selection follow-up below.
 
