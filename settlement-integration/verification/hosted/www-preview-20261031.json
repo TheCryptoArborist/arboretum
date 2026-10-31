@@ -832,11 +832,20 @@
     "walletConnectionSucceeded": true,
     "independentlyObservedByAutomation": false,
     "warningPresenceOrAbsenceReported": null,
-    "walletAddressVerified": false,
-    "gardenAndNftreeDataVerified": false,
+    "walletAddressVerified": true,
+    "gardenAndNftreeDataVerified": true,
     "transactionExecutionVerified": false,
     "providerClearanceOfOtherOriginsEstablished": false,
-    "earlierWarningRootCauseEstablished": false
+    "earlierWarningRootCauseEstablished": false,
+    "seasonInformationVerified": true,
+    "accountAndDataConfirmation": {
+      "recordedAt": "2026-10-31T02:11:32.438417+00:00",
+      "source": "User confirmed that both requested checks were correct",
+      "walletAddressMatchesSelectedSlushAccount": true,
+      "gardenNftreeHoldingsAndSeasonInformationAsExpected": true,
+      "verificationMethod": "user-reported acceptance",
+      "independentlyObservedByAutomation": false
+    }
   },
   "automatedWalletCounterScope": "walletConnections, realSignaturesRequested, and realTransactionsSubmitted above describe the automated hosted verification only; the later user-reported connection is recorded separately."
 }

@@ -23,7 +23,9 @@ HTTPS is valid for both `www.treegrow.xyz` and `treegrow.xyz`, with the existing
 
 On October 30, 2026 (America/Chicago), the owner reported successfully entering the tester access page and connecting Slush Wallet after the preview was attached to `www.treegrow.xyz`. The exact-domain tester and wallet connection flow therefore has a successful user-reported result. This confirmation is recorded separately from the automated HTTP checks, which did not operate a wallet.
 
-The user did not separately report whether a warning appeared, whether the expected wallet address and garden data loaded, or whether any transaction was attempted. Transaction submission remains disabled by the review build. The successful connection does not establish the cause of the earlier warning or clearance of the old Netlify preview hostnames.
+The owner subsequently confirmed both requested acceptance checks: the Arboretum wallet address matches the selected Slush account, and the existing garden, NFTree holdings, and season information load as expected. The tester access, wallet connection, account selection, and data-loading checkpoint is therefore passed by user confirmation.
+
+No transaction execution was verified, and transaction submission remains disabled by the review build. The user did not separately report whether a warning appeared. These results do not establish the cause of the earlier warning or clearance of the old Netlify preview hostnames.
 
 ## Build policy
 
