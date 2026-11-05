@@ -1,0 +1,844 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-05T03:01:07.435Z",
+  "operation": "unsigned-claim-simulation",
+  "sourceBaseline": "f09c97f86d8e8b2a2af2f1402547fead7e041c91",
+  "coreSha256": "54d374384e809247eaeee66ad136edf2ab204b7660a17ecfa31c8c4bb16eb117",
+  "network": "sui:mainnet",
+  "checksEnabled": true,
+  "doGasSelection": true,
+  "realSignatures": 0,
+  "realTransactionsSubmitted": 0,
+  "transaction": {
+    "version": 1,
+    "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "gasPayment": {
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+    },
+    "kind": {
+      "programmableTransaction": {
+        "inputs": [
+          {
+            "kind": "SHARED",
+            "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "version": "986499448",
+            "mutable": true
+          },
+          {
+            "kind": "IMMUTABLE_OR_OWNED",
+            "objectId": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+            "version": "1021418439",
+            "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs"
+          },
+          {
+            "kind": "SHARED",
+            "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+            "version": "1",
+            "mutable": false
+          }
+        ],
+        "commands": [
+          {
+            "moveCall": {
+              "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+              "module": "settlement",
+              "function": "claim_reward",
+              "typeArguments": [],
+              "arguments": [
+                {
+                  "kind": "INPUT",
+                  "input": 0
+                },
+                {
+                  "kind": "INPUT",
+                  "input": 1
+                },
+                {
+                  "kind": "INPUT",
+                  "input": 2
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "kindSha256": "d41721d878a2b77c073e642216d4ae6a8f7a984c9f59356bb1846c4b08e58492",
+  "stateBefore": {
+    "checkpoint": {
+      "sequenceNumber": 341772943,
+      "timestamp": "2026-11-05T03:01:02.825Z"
+    },
+    "clockMs": "1793847662825",
+    "registry": {
+      "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+      "version": 1021418439,
+      "digest": "9Z5WiPp4TR2ucMQGuoNVJetkGgqvLtq9LXQ5ZeQndyAe",
+      "owner": {
+        "__typename": "Shared",
+        "initialSharedVersion": 986499448
+      },
+      "asMoveObject": {
+        "contents": {
+          "type": {
+            "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+          },
+          "json": {
+            "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "version": "1",
+            "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+            "current_season_id": "1",
+            "season_start_ms": "1790978248277",
+            "reward_pool": "7000000",
+            "treasury": "0",
+            "total_seeds": "1",
+            "total_growth_points": "10",
+            "eligible_growth_points": "10",
+            "settlement": null,
+            "paused": false,
+            "seeds_by_owner": {
+              "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+              "size": "1"
+            },
+            "referrers": {
+              "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+              "size": "0"
+            },
+            "referral_earnings": {
+              "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+              "size": "0"
+            },
+            "player_growth": {
+              "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+              "size": "1"
+            },
+            "player_growth_season": {
+              "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+              "size": "1"
+            },
+            "planted_saplings": {
+              "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+              "size": "1"
+            }
+          }
+        }
+      },
+      "previousTransaction": {
+        "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+      }
+    },
+    "seed": {
+      "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+      "version": 1021418439,
+      "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs",
+      "owner": {
+        "__typename": "AddressOwner",
+        "address": {
+          "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+        }
+      },
+      "asMoveObject": {
+        "contents": {
+          "type": {
+            "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+          },
+          "json": {
+            "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+            "version": "1",
+            "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "cutoff_growth_points": "10",
+            "reward_processed": false,
+            "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+            "season_id": "1",
+            "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+            "planted_at_ms": "1793486441252",
+            "last_watered_ms": "1793486441252",
+            "watering_streak": "1",
+            "growth_points": "10",
+            "state": 0,
+            "fertilizer_charges": 0,
+            "miracle_grow_applied": false,
+            "revival_charges": 0,
+            "bottomless_can_expiry_ms": "0",
+            "permanent_gp_bonus": "0"
+          }
+        }
+      },
+      "previousTransaction": {
+        "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+      }
+    },
+    "seedId": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+    "growthPoints": "10",
+    "wateringStreak": "1",
+    "cutoffMs": "1793570248277",
+    "claimDeadlineMs": "1794175048277",
+    "paused": false,
+    "settlementFinalized": false,
+    "rewardProcessed": false,
+    "digestCandidate": null,
+    "eligibleGrowthPoints": "10",
+    "totalEligibleGrowthPoints": "10",
+    "poolMist": "7000000",
+    "rewardMist": "7000000",
+    "rewardSui": "0.007000000",
+    "status": "ready"
+  },
+  "inputResponse": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 341772943,
+        "timestamp": "2026-11-05T03:01:02.825Z"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "registry": {
+        "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "version": 1021418439,
+        "digest": "9Z5WiPp4TR2ucMQGuoNVJetkGgqvLtq9LXQ5ZeQndyAe",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 986499448
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+            },
+            "json": {
+              "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": "1",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "1",
+              "season_start_ms": "1790978248277",
+              "reward_pool": "7000000",
+              "treasury": "0",
+              "total_seeds": "1",
+              "total_growth_points": "10",
+              "eligible_growth_points": "10",
+              "settlement": null,
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                "size": "1"
+              },
+              "referrers": {
+                "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                "size": "0"
+              },
+              "referral_earnings": {
+                "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                "size": "0"
+              },
+              "player_growth": {
+                "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                "size": "1"
+              },
+              "player_growth_season": {
+                "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                "size": "1"
+              },
+              "planted_saplings": {
+                "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                "size": "1"
+              }
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "seed": {
+        "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+        "version": 1021418439,
+        "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+            },
+            "json": {
+              "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+              "version": "1",
+              "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "cutoff_growth_points": "10",
+              "reward_processed": false,
+              "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+              "season_id": "1",
+              "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "planted_at_ms": "1793486441252",
+              "last_watered_ms": "1793486441252",
+              "watering_streak": "1",
+              "growth_points": "10",
+              "state": 0,
+              "fertilizer_charges": 0,
+              "miracle_grow_applied": false,
+              "revival_charges": 0,
+              "bottomless_can_expiry_ms": "0",
+              "permanent_gp_bonus": "0"
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "clock": {
+        "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "version": 1018907710,
+        "digest": "799dcE5VgPMGMxqVknMkHnHZiNpLQMR1QjEhmCuez7wi",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 1
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock"
+            },
+            "json": {
+              "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "timestamp_ms": "1793847662825"
+            }
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 341772956,
+        "timestamp": "2026-11-05T03:01:06.166Z"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "registry": {
+        "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "version": 1021418439,
+        "digest": "9Z5WiPp4TR2ucMQGuoNVJetkGgqvLtq9LXQ5ZeQndyAe",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 986499448
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+            },
+            "json": {
+              "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": "1",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "1",
+              "season_start_ms": "1790978248277",
+              "reward_pool": "7000000",
+              "treasury": "0",
+              "total_seeds": "1",
+              "total_growth_points": "10",
+              "eligible_growth_points": "10",
+              "settlement": null,
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                "size": "1"
+              },
+              "referrers": {
+                "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                "size": "0"
+              },
+              "referral_earnings": {
+                "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                "size": "0"
+              },
+              "player_growth": {
+                "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                "size": "1"
+              },
+              "player_growth_season": {
+                "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                "size": "1"
+              },
+              "planted_saplings": {
+                "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                "size": "1"
+              }
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "seed": {
+        "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+        "version": 1021418439,
+        "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+            },
+            "json": {
+              "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+              "version": "1",
+              "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "cutoff_growth_points": "10",
+              "reward_processed": false,
+              "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+              "season_id": "1",
+              "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "planted_at_ms": "1793486441252",
+              "last_watered_ms": "1793486441252",
+              "watering_streak": "1",
+              "growth_points": "10",
+              "state": 0,
+              "fertilizer_charges": 0,
+              "miracle_grow_applied": false,
+              "revival_charges": 0,
+              "bottomless_can_expiry_ms": "0",
+              "permanent_gp_bonus": "0"
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "clock": {
+        "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "version": 1018907758,
+        "digest": "HU7QHBHREcCcXzx3ru1KfEhhCwn6EVm8usEvwj4VBTG3",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 1
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock"
+            },
+            "json": {
+              "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "timestamp_ms": "1793847666166"
+            }
+          }
+        }
+      },
+      "simulateTransaction": {
+        "effects": {
+          "status": "SUCCESS",
+          "executionError": null,
+          "checkpoint": null,
+          "epoch": {
+            "epochId": 1302
+          },
+          "lamportVersion": 1021418440,
+          "transaction": {
+            "transactionBcs": "AAADAQEvjrJcVx0fHpY/giJlwyvAje2GoWpdbb1KQXoximyKuXjJzDoAAAAAAQEAKwbj85ANCO/zkh83QTfCssuH8ve79s21/38eMjihBG3Hm+E8AAAAACDIWYUKuoo/zTJlslHAG9hDROyPlvEAZ+r6uLzHPU8DUgEBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYBAAAAAAAAAAABAPxsbl9hWdQAUqj/gIOqXvbScNFbcr6MxCzeJ7ZDynuaCnNldHRsZW1lbnQMY2xhaW1fcmV3YXJkAAMBAAABAQABAgBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxABIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxGQAAAAAAAAAK48ZAAAAAAACARYFAAAAAAAAARcFAAAAAAAAAAAgNYNKisF8pI+xSsj5nBfJh0fpXdBylK5BpGs4IkakSZsTS7WJ",
+            "sender": {
+              "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+            }
+          },
+          "gasEffects": {
+            "gasSummary": {
+              "computationCost": 100000,
+              "storageCost": 7987600,
+              "storageRebate": 6512549,
+              "nonRefundableStorageFee": 651
+            }
+          },
+          "balanceChangesJson": [
+            {
+              "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "coinType": "0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI",
+              "amount": "5424949"
+            }
+          ],
+          "objectChanges": {
+            "nodes": [
+              {
+                "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                "idCreated": false,
+                "idDeleted": false,
+                "inputState": {
+                  "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                  "version": 1021418439,
+                  "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs",
+                  "owner": {
+                    "__typename": "AddressOwner",
+                    "address": {
+                      "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                    }
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+                      },
+                      "json": {
+                        "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                        "version": "1",
+                        "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                        "cutoff_growth_points": "10",
+                        "reward_processed": false,
+                        "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+                        "season_id": "1",
+                        "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                        "planted_at_ms": "1793486441252",
+                        "last_watered_ms": "1793486441252",
+                        "watering_streak": "1",
+                        "growth_points": "10",
+                        "state": 0,
+                        "fertilizer_charges": 0,
+                        "miracle_grow_applied": false,
+                        "revival_charges": 0,
+                        "bottomless_can_expiry_ms": "0",
+                        "permanent_gp_bonus": "0"
+                      }
+                    }
+                  }
+                },
+                "outputState": {
+                  "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                  "version": 1021418440,
+                  "digest": "2sxLuUqTJac3Bi3ovUju98C9695XcVdA36BeAFJCTwoU",
+                  "owner": {
+                    "__typename": "AddressOwner",
+                    "address": {
+                      "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                    }
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+                      },
+                      "json": {
+                        "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                        "version": "1",
+                        "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                        "cutoff_growth_points": "0",
+                        "reward_processed": true,
+                        "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+                        "season_id": "1",
+                        "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                        "planted_at_ms": "1793486441252",
+                        "last_watered_ms": "1793486441252",
+                        "watering_streak": "1",
+                        "growth_points": "0",
+                        "state": 0,
+                        "fertilizer_charges": 0,
+                        "miracle_grow_applied": false,
+                        "revival_charges": 0,
+                        "bottomless_can_expiry_ms": "0",
+                        "permanent_gp_bonus": "0"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                "idCreated": false,
+                "idDeleted": false,
+                "inputState": {
+                  "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                  "version": 1021418439,
+                  "digest": "9Z5WiPp4TR2ucMQGuoNVJetkGgqvLtq9LXQ5ZeQndyAe",
+                  "owner": {
+                    "__typename": "Shared",
+                    "initialSharedVersion": 986499448
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                      },
+                      "json": {
+                        "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                        "version": "1",
+                        "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                        "current_season_id": "1",
+                        "season_start_ms": "1790978248277",
+                        "reward_pool": "7000000",
+                        "treasury": "0",
+                        "total_seeds": "1",
+                        "total_growth_points": "10",
+                        "eligible_growth_points": "10",
+                        "settlement": null,
+                        "paused": false,
+                        "seeds_by_owner": {
+                          "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                          "size": "1"
+                        },
+                        "referrers": {
+                          "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                          "size": "0"
+                        },
+                        "referral_earnings": {
+                          "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                          "size": "0"
+                        },
+                        "player_growth": {
+                          "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                          "size": "1"
+                        },
+                        "player_growth_season": {
+                          "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                          "size": "1"
+                        },
+                        "planted_saplings": {
+                          "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                          "size": "1"
+                        }
+                      }
+                    }
+                  }
+                },
+                "outputState": {
+                  "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                  "version": 1021418440,
+                  "digest": "5yvKHsKNVKAF7izdGtdC5FYMuWbT4tTkYZmzpkQm4tjK",
+                  "owner": {
+                    "__typename": "Shared",
+                    "initialSharedVersion": 986499448
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                      },
+                      "json": {
+                        "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                        "version": "1",
+                        "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                        "current_season_id": "1",
+                        "season_start_ms": "1790978248277",
+                        "reward_pool": "0",
+                        "treasury": "0",
+                        "total_seeds": "1",
+                        "total_growth_points": "10",
+                        "eligible_growth_points": "10",
+                        "settlement": {
+                          "season_id": "1",
+                          "season_end_ms": "1793570248277",
+                          "claim_deadline_ms": "1794175048277",
+                          "pool_mist": "7000000",
+                          "eligible_growth_points": "10",
+                          "paid_mist": "7000000",
+                          "processed_growth_points": "10",
+                          "processed_seeds": "1"
+                        },
+                        "paused": false,
+                        "seeds_by_owner": {
+                          "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                          "size": "1"
+                        },
+                        "referrers": {
+                          "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                          "size": "0"
+                        },
+                        "referral_earnings": {
+                          "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                          "size": "0"
+                        },
+                        "player_growth": {
+                          "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                          "size": "1"
+                        },
+                        "player_growth_season": {
+                          "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                          "size": "1"
+                        },
+                        "planted_saplings": {
+                          "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                          "size": "1"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "address": "0x9551f22de3d216f9194db156ab7951bc175d7ba7dd54e5d933ffba2f145415a2",
+                "idCreated": true,
+                "idDeleted": false,
+                "inputState": null,
+                "outputState": {
+                  "address": "0x9551f22de3d216f9194db156ab7951bc175d7ba7dd54e5d933ffba2f145415a2",
+                  "version": 1021418440,
+                  "digest": "3UQ57MPuosRwycTtqRD25fa1TVA5vXqjnEjZ226k9rMR",
+                  "owner": {
+                    "__typename": "AddressOwner",
+                    "address": {
+                      "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                    }
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::coin::Coin<0x0000000000000000000000000000000000000000000000000000000000000002::sui::SUI>"
+                      },
+                      "json": {
+                        "id": "0x9551f22de3d216f9194db156ab7951bc175d7ba7dd54e5d933ffba2f145415a2",
+                        "balance": "7000000"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "Mg=="
+            }
+          },
+          "events": {
+            "nodes": [
+              {
+                "sender": {
+                  "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                },
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::RewardSettlementFinalized"
+                  },
+                  "json": {
+                    "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "season_id": "1",
+                    "season_end_ms": "1793570248277",
+                    "claim_deadline_ms": "1794175048277",
+                    "pool_mist": "7000000",
+                    "eligible_growth_points": "10"
+                  }
+                }
+              },
+              {
+                "sender": {
+                  "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                },
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::RewardEntitlementProcessed"
+                  },
+                  "json": {
+                    "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "season_id": "1",
+                    "seed_id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+                    "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "eligible_growth_points": "10",
+                    "amount_mist": "7000000"
+                  }
+                }
+              },
+              {
+                "sender": {
+                  "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+                },
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::RewardClaimed"
+                  },
+                  "json": {
+                    "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "amount_mist": "7000000"
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "Mg=="
+            }
+          },
+          "unchangedConsensusObjects": {
+            "nodes": [
+              {
+                "__typename": "ConsensusObjectRead",
+                "object": {
+                  "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                  "version": 1018907768,
+                  "digest": "C4agcUxR6VuhBAPEfQfqCDSTcpF5mxUU437yZsNP8RrV",
+                  "owner": {
+                    "__typename": "Shared",
+                    "initialSharedVersion": 1
+                  },
+                  "asMoveObject": {
+                    "contents": {
+                      "type": {
+                        "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock"
+                      },
+                      "json": {
+                        "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                        "timestamp_ms": "1793847666846"
+                      }
+                    }
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "MA=="
+            }
+          }
+        }
+      }
+    }
+  },
+  "validatedReview": {
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 341772956,
+      "timestamp": "2026-11-05T03:01:06.166Z"
+    },
+    "seedId": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "seasonId": "1",
+    "previousGrowthPoints": "10",
+    "growthPoints": "0",
+    "eligibleGrowthPoints": "10",
+    "totalEligibleGrowthPoints": "10",
+    "wateringStreak": "1",
+    "rewardMist": "7000000",
+    "rewardSui": "0.007000000",
+    "poolMist": "7000000",
+    "rewardCoinId": "0x9551f22de3d216f9194db156ab7951bc175d7ba7dd54e5d933ffba2f145415a2",
+    "rewardProcessed": true,
+    "claimedAtMs": "1793847666846",
+    "cutoffMs": "1793570248277",
+    "claimDeadlineMs": "1794175048277",
+    "settlementFinalized": true,
+    "finalizedByClaim": true,
+    "appChargeMist": "0",
+    "priceMist": "0",
+    "gasEstimateMist": "1575051",
+    "gasEstimateSui": "0.001575051",
+    "netReceiveMist": "5424949",
+    "netReceiveSui": "0.005424949",
+    "virtualGasReservations": 0,
+    "gasAboveReviewCeiling": false,
+    "kindSha256": "d41721d878a2b77c073e642216d4ae6a8f7a984c9f59356bb1846c4b08e58492",
+    "exactKindSha256": "d41721d878a2b77c073e642216d4ae6a8f7a984c9f59356bb1846c4b08e58492"
+  }
+}

@@ -2,6 +2,26 @@
 
 This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull/15) for [treegrow.xyz](https://www.treegrow.xyz/). It combines the separate legacy garden and read-only v12 Registry view, a complete legacy Season 3 reconciliation, and the retained owner-operation release records. The upgrade, Registry setup and first test-season start are complete. The general garden remains read-only; reviewed owner operations use their isolated pages.
 
+## Season 1 reward owner review — November 4, 2026, America/Chicago
+
+The [reward review and claim page](../settlement-claim/README.md) continues the
+first test Seed after its November 1 cutoff. Its fixed entrance is
+[Season 1 reward](https://www.treegrow.xyz/tester-access?next=claim-test).
+The November 4 evening mainnet observation confirms that no watering occurred:
+the Seed still has **10 GP**, streak 1 and an unprocessed reward. The single-Seed
+pool contains **0.007 SUI**. A fresh checked, unsigned mainnet simulation through
+the new claim validator succeeds with an estimated **0.001575051 SUI** network
+fee and **0.005424949 SUI** net balance increase. These are simulation results;
+no actual claim has been submitted.
+
+The fixed claim deadline is **November 8, 2026 at 3:57:28.277 p.m. CST**.
+Eligibility uses the Seed's Growth Points at the cutoff, so later drying does
+not remove this entitlement. The owner reviews one claim and approves it in
+Slush; that call finalizes settlement automatically when needed. The separate
+page includes fresh status without a wallet, exact payout verification and
+receipt recovery. The earlier watering window and expected 24 GP result below
+describe the prior plan, not the actual current Seed.
+
 ## First watering owner review — published October 31, 2026
 
 The [first-watering page](../settlement-watering/README.md) is live at its fixed
