@@ -3,6 +3,18 @@
 The protected owner page is `/admin/claim-test/`. Its fixed tester entrance is
 <https://www.treegrow.xyz/tester-access?next=claim-test>.
 
+**Published November 4, 2026 at 9:27 p.m. CST.** Reviewed source
+`c298d5a8bd0a47cd3e971ca3d89a428f1b888644` is deployed as
+`6aebf7959ad6e90b6714ca15` (`2026-11-05T03:27:36.144Z`). The
+[verification record](verification/README.md) confirms all 103 application
+files, 15 hosted access checks, desktop/mobile preview, both required CI runs
+and the retained backend identities. The native browser reaches **Continue to
+season reward** at the fixed entrance.
+
+The final read after publication, at `2026-11-05T03:30:23.264Z`, still shows
+**10 GP**, **0.007 SUI** available and **reward unprocessed**. The owner must
+approve the actual claim in Slush; no claim was submitted during this release.
+
 This continues the first version-1 test Seed through its season-end reward. The
 owner reviews one `settlement::claim_reward` call and approves it in Slush.
 Reading the reward and recovering a receipt require no wallet connection.

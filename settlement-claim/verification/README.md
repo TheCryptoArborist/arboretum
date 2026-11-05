@@ -1,6 +1,11 @@
 # Season 1 owner claim verification
 
-The candidate passed local validation on **November 4, 2026, America/Chicago**
+**Live at [the claim tester entrance](https://www.treegrow.xyz/tester-access?next=claim-test).**
+Source `c298d5a8bd0a47cd3e971ca3d89a428f1b888644` was published as deployment
+`6aebf7959ad6e90b6714ca15` on **November 4, 2026 at 9:27 p.m. CST**
+(`2026-11-05T03:27:36.144Z`).
+
+The candidate passed local validation on November 4, 2026, America/Chicago
 (November 5 UTC). This record distinguishes actual public mainnet reads,
 unsigned simulations, synthetic receipt tests, and the disconnected browser
 preview. No real wallet was connected and no blockchain transaction was
@@ -102,4 +107,45 @@ The release utility binds the source archive and candidate inventory to a clean
 Git commit, journals before the sole submission, and rejects uncertain repeats.
 It verifies the existing calendar function and runtime, both edge handlers,
 empty schedule list, disconnected Git deployment and retained original site.
-Hosted source/asset/HTTP and exact-source CI results are added after publication.
+
+## Published verification
+
+The [hosted inventory record](hosted/hosted-assets.json) verifies all **103
+application files** by hash and size, with **37 protected runtime files** also
+compared as raw deployed bytes. The archived source, candidate inventory and
+source tree match the reviewed commit. The existing calendar bundle/runtime,
+both edge functions, empty schedule list and original site's published identity
+are retained. The three new claim assets and two navigation-only additions
+match the locally reviewed output.
+
+All **15 [anonymous hosted checks](hosted/hosted-http.json)** pass. They cover
+the claim document variants, fixed tester return, protected runtime assets,
+retained owner routes, public landing and public guide. The
+[native browser observation](hosted/browser-entrance.json) confirms that
+`/admin/claim-test/` reaches
+`https://www.treegrow.xyz/tester-access?next=claim-test` with **Continue to
+season reward**. No tester password was entered. Authenticated runtime bytes
+were checked through the deployment API, not through an authenticated browser
+session.
+
+Both required exact-source **Settlement app integration review** runs pass:
+[push](https://github.com/TheCryptoArborist/arboretum/actions/runs/41961506998)
+and [pull request](https://github.com/TheCryptoArborist/arboretum/actions/runs/41961514140).
+The [complete CI record](hosted/ci.json) also records five older preview workflow
+failures. Their workflow/build/test scripts are unchanged from the watering
+release. Economy and Partner show the same detailed failures; Garden season
+and both Reward-first workflows stop at the same retained-baseline stages.
+The latter three redirected assertions were not individually compared. No new
+substantive regression was identified in the observed patterns, and deployment
+steps were skipped in all five. This is not a claim that every repository
+workflow passed.
+
+The [final mainnet read after publication](hosted/mainnet-state-after-publication.json),
+completed at `2026-11-05T03:30:23.264Z`, verifies checkpoint **341780170**:
+the Seed remains **10 GP**, its reward remains **unprocessed**, and **0.007
+SUI** is available inside the fixed claim window. Website publication did not
+execute a claim. The owner can now follow the page's explicit Slush review and
+approval flow.
+
+The publication evidence is saved in a documentation-only follow-up commit;
+the deployed application source remains the reviewed commit identified above.

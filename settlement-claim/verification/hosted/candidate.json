@@ -1,0 +1,625 @@
+{
+  "sourceCommit": "c298d5a8bd0a47cd3e971ca3d89a428f1b888644",
+  "sourceTree": "36ac93d3f2e3dd580acdf39eee675db7198924ce",
+  "applicationFiles": [
+    {
+      "path": "admin/claim-test/admin.css",
+      "sha1": "3aaaf34102a4819a14ac395d98580eb7c71ae7d4",
+      "sha256": "2e4597fb2075ddd8bcae91cb1edf366ae03bb149c9bb27530043931e95980691",
+      "bytes": 15375
+    },
+    {
+      "path": "admin/claim-test/admin.mjs",
+      "sha1": "f2d46ae7031689f10dbcc51e072280134fa7b198",
+      "sha256": "d252b4b26e1a0fdc0ac7436e72bee5410a40add4f28a244e69c5894fdde6516a",
+      "bytes": 479220
+    },
+    {
+      "path": "admin/claim-test/index.html",
+      "sha1": "802de3150a65c931aeac34f984e48279ae97e7e6",
+      "sha256": "79de64be2d9e2c9a9aa1fcabb85deebe98d2e529b3045e22e9b39153c1eceecf",
+      "bytes": 11099
+    },
+    {
+      "path": "admin/gameplay-test/admin.css",
+      "sha1": "64c2268f64130636e083671f841ee69fb64d7224",
+      "sha256": "97ca629f0b47b6fb7fe2de138f60213c253028a9d9ff6647f84749a908009bd3",
+      "bytes": 9861
+    },
+    {
+      "path": "admin/gameplay-test/admin.mjs",
+      "sha1": "9b899178900d8436459c70cd311e3316f07e2db2",
+      "sha256": "2af356dbadf893778dd6e1f267b07a5f40678cd290b3c23ce5dd826cba323235",
+      "bytes": 504822
+    },
+    {
+      "path": "admin/gameplay-test/index.html",
+      "sha1": "9fa87b894314b39c83b0bcf6a4d823f96d67b49e",
+      "sha256": "91f3223d24265639d004aee605d7316869ae59e8bcf8a6f8a0f22fe511a666f6",
+      "bytes": 10630
+    },
+    {
+      "path": "admin/season-test/admin.css",
+      "sha1": "8ba6ee10843b6e8dabe421c808c5dc96967b664a",
+      "sha256": "3a2032ab33dca1000edf6de0e18ae164b50bd34b99ee9eab692367655d097f75",
+      "bytes": 9043
+    },
+    {
+      "path": "admin/season-test/admin.mjs",
+      "sha1": "6fd4ac64f24ec54ba790f7c3b01edf4a4abccdfc",
+      "sha256": "64cabbfe879aa08319aa83ca3b320cbfd03cea7f2331072ca91aa85dba2f89f3",
+      "bytes": 475858
+    },
+    {
+      "path": "admin/season-test/index.html",
+      "sha1": "b0ec199ceb0135a92e7f4a45df75cdfbb9fe8b80",
+      "sha256": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+      "bytes": 10031
+    },
+    {
+      "path": "admin/season-test/start-kind.b64",
+      "sha1": "27055c449065344d53070f1f1723658f11d926b5",
+      "sha256": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49",
+      "bytes": 345
+    },
+    {
+      "path": "admin/settlement-setup/admin.css",
+      "sha1": "8c14bc11642f09151a330aa1b893e99cd297c5c6",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "bytes": 9027
+    },
+    {
+      "path": "admin/settlement-setup/admin.mjs",
+      "sha1": "e7ad162696b795bffe7fd02321fa63ab084596ce",
+      "sha256": "1213be20c09eabd9a2ef9cff33d85439d06730576f32c0a103f2dce3f32255ef",
+      "bytes": 411217
+    },
+    {
+      "path": "admin/settlement-setup/index.html",
+      "sha1": "a2026170f3e2c55824048f40553c0b94e17cbddb",
+      "sha256": "971c98262b9e8cc704c2413d722f60d42021052a543980c29a6c3473ecc79b39",
+      "bytes": 9421
+    },
+    {
+      "path": "admin/settlement-setup/setup-kind.b64",
+      "sha1": "7cd7f894c298178d7b954e7646f097c7511770e9",
+      "sha256": "8f76cf72577452634aaa5904e3c6dd8f4dd6c19b682aa9f9511b2cb37fd14849",
+      "bytes": 209
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.css",
+      "sha1": "8c14bc11642f09151a330aa1b893e99cd297c5c6",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "bytes": 9027
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.mjs",
+      "sha1": "b5c83310c69d994c136ff59a95cdfecc3bbbf5be",
+      "sha256": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "bytes": 393912
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "sha1": "cdc21e1a063b7211641bc699821e55bbc57dc1fa",
+      "sha256": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
+      "bytes": 8921
+    },
+    {
+      "path": "admin/settlement-upgrade/upgrade-kind.b64",
+      "sha1": "b630ee75f08dc2bd5455228d12f48ffaa0dcf587",
+      "sha256": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563",
+      "bytes": 54157
+    },
+    {
+      "path": "admin/watering-test/admin.css",
+      "sha1": "ec92db795583ab97aa72220def56f0230afa42ef",
+      "sha256": "d5b33f602baf0a125ff42d08e2fc3fbc2776eaae37961035f33bf3140741aebe",
+      "bytes": 13483
+    },
+    {
+      "path": "admin/watering-test/admin.mjs",
+      "sha1": "027cee3d6a971a18f97c8c15ba91f182ad160a59",
+      "sha256": "019fa55b076f94d1adc18db2972c7a7210551cce391100c0b3e6bdca73f57a4f",
+      "bytes": 473660
+    },
+    {
+      "path": "admin/watering-test/index.html",
+      "sha1": "9ab3c8fc5a4dc6e1c7eefcfdd5444f99090bdb14",
+      "sha256": "ba6af36190631bb9a42cc67edde09b4aa4cf287c74c6e36795258c8ffa42f0de",
+      "bytes": 10550
+    },
+    {
+      "path": "arboretum-protocol-logo.png",
+      "sha1": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "sha256": "9e0e5f54c623f7bf25f8710fff7de04f9298282a359166443f078b669c4a2dff",
+      "bytes": 1817978
+    },
+    {
+      "path": "assets/cosmetics/frames/ancient-oak-frame.png",
+      "sha1": "150ff5d3172258d26e51e1c5a031f6998f50cac4",
+      "sha256": "93d050e7ce35bcbb637e53e82f81cfd924e2cff810c2d0e42ebaedd99191b16d",
+      "bytes": 251920
+    },
+    {
+      "path": "assets/cosmetics/frames/first-growth-ring-frame.png",
+      "sha1": "5fcf1596a3e6c679ea2a7090c4b6200a4dcb8aa5",
+      "sha256": "2a79a1643af70f50d768435ad214784825c0488eea4ea9e62b925d574ea44553",
+      "bytes": 201969
+    },
+    {
+      "path": "assets/cosmetics/frames/frame-contact-sheet.png",
+      "sha1": "a8a949c5e2b9762772774618ef3e435d918a644e",
+      "sha256": "62bfc181b969a303ae55fcbab2ba316e3abe38870331aef5aa2b6de62a709c81",
+      "bytes": 225552
+    },
+    {
+      "path": "assets/cosmetics/frames/legendary-canopy-frame.png",
+      "sha1": "3c13e0b1e8f2c5c55b23058a1c479fa91b37104f",
+      "sha256": "9aa066fe69d15fb29b1cbe2870998ba2caedead770a2a207ada9b0f5e853447c",
+      "bytes": 363521
+    },
+    {
+      "path": "assets/cosmetics/frames/mythic-living-crown.png",
+      "sha1": "e9c05f0596ed1d18d1e260355be6d70eb0c8e473",
+      "sha256": "3c40325b6922992bce5c546c46af72044acf32a894203de521077c9be220f8dc",
+      "bytes": 366663
+    },
+    {
+      "path": "assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "sha1": "5fb8a363d10c73ffc0a1f7aad4e6ac8f685c8ac8",
+      "sha256": "67050a51c18919afc3a87531aa0a8530aefcd1f2c57931be09cda3ea8f00ffb3",
+      "bytes": 290825
+    },
+    {
+      "path": "assets/cosmetics/frames/starter-emerald-nursery.png",
+      "sha1": "964157ebf0dad82bc474cc4696802f1b27da78ed",
+      "sha256": "962a726e41e7236ebd37c4d456a41e1cf749472f26c747ed4f0a50fab7640b9d",
+      "bytes": 241300
+    },
+    {
+      "path": "assets/growth/ancient-growth.png",
+      "sha1": "85381457a27f639b07a77b3e2a6f41e2a2956f9d",
+      "sha256": "d7004cede2e90503dbea7779e2eef08107ade60aa92852e3354bff4df38497ab",
+      "bytes": 199829
+    },
+    {
+      "path": "assets/growth/branching-out.png",
+      "sha1": "7ee87afd45f2c28bd5780faa6189aae695a1bc5b",
+      "sha256": "f4233698f5c729e178ea843c1cc2996a735e2fec9853964520b125858232c8a1",
+      "bytes": 102765
+    },
+    {
+      "path": "assets/growth/canopy-rise.png",
+      "sha1": "a9e8623d26335bfe096a33e38007e4bbfd30d2c7",
+      "sha256": "87ef94f969b56936539b0e2271d529399649e0eb5a46936054cbff28f38bb155",
+      "bytes": 133420
+    },
+    {
+      "path": "assets/growth/first-growth-ring.png",
+      "sha1": "7c1485835ac2b63e2659efe1a7c17d5f26ae73f6",
+      "sha256": "4561eeaecf30b3736f30fa0ee2df2b17f25418dd1d4462d72c56843fc6b68a8d",
+      "bytes": 188809
+    },
+    {
+      "path": "assets/growth/first-planting.png",
+      "sha1": "795084b4eaadae0c88a1a6d7f01fa6ae7aec0449",
+      "sha256": "1e352ef1dd59068462ae23084f641772bbe8bc184e8614cdb1a96795f456a103",
+      "bytes": 29237
+    },
+    {
+      "path": "assets/growth/season-harvest.png",
+      "sha1": "8e4b9ccf58bdcb6d5d09715ba1dfa3587c0a60d6",
+      "sha256": "5820a4b9f664e0980fdeeff9b41710a790cb2a85bd77c6b512118a4596075b3d",
+      "bytes": 131203
+    },
+    {
+      "path": "assets/growth/taking-root.png",
+      "sha1": "b2ca8cce48ddd68f8bb9296c9ac0773745d9447c",
+      "sha256": "d9d4d2f6158340af5ed0a0bf8bb2144866679871cda7382f08500f39691ecc3c",
+      "bytes": 42920
+    },
+    {
+      "path": "assets/shop/crates/ancient-crate.jpg",
+      "sha1": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "sha256": "268a8ec5c982e44b042daceac82d5f94fdc5898560ee639fc8e3ab8e3c62ccb5",
+      "bytes": 591531
+    },
+    {
+      "path": "assets/shop/crates/boom-chest.png",
+      "sha1": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "sha256": "5a9a588883a15ebd18369bed77fc9283b2d0a94ea2512d80395fa4a0be2609ac",
+      "bytes": 2716812
+    },
+    {
+      "path": "assets/shop/crates/canopy-crate.jpg",
+      "sha1": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "sha256": "a63b7c62b1709ba5c0f3abc561202525b3aacab5068e6fa5c6d34367de0088ac",
+      "bytes": 444971
+    },
+    {
+      "path": "assets/shop/crates/grove-crate.jpg",
+      "sha1": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "sha256": "6f43370f077c861e3e4b7e834cd5b351ba1f164a1500565d61fb77eef94de080",
+      "bytes": 474164
+    },
+    {
+      "path": "assets/shop/crates/mythic-crate.jpg",
+      "sha1": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "sha256": "78146b1782d482ecd0e4a18789e61497cc70103a8091ed8c1041118e513ca95d",
+      "bytes": 535874
+    },
+    {
+      "path": "assets/shop/crates/seedling-crate.jpg",
+      "sha1": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "sha256": "234a041d8a9147e545638cfe3bef93a5fda41fbb10920146f195fff35da63f65",
+      "bytes": 389653
+    },
+    {
+      "path": "assets/shop/crates/supply-drop.jpg",
+      "sha1": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "sha256": "92ab1504c3db63e600dcf3b4e4882414810d0d9a645cb1fe7770830f23deab00",
+      "bytes": 409209
+    },
+    {
+      "path": "assets/shop/crates/victory-chest.png",
+      "sha1": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "sha256": "94f82e1234b6f1ce0c831b9c3d49453521a115dde97e36ae28da86c08d421356",
+      "bytes": 2505790
+    },
+    {
+      "path": "background.jpg",
+      "sha1": "dbe94587737e82f5844397f47d32a81557527c03",
+      "sha256": "fd23a3c2908ebf0a6739da8105c33ee4e2f55a328e77d20a6c8906417472a00a",
+      "bytes": 163001
+    },
+    {
+      "path": "background4.jpg",
+      "sha1": "b107c052150c2772c14ef6155a073a4c7104e183",
+      "sha256": "3bbd7fee32dd0320546e7fc6ff510dac3ff329daa7c0d42048e69f81f168549b",
+      "bytes": 63275
+    },
+    {
+      "path": "background5.jpg",
+      "sha1": "a17f6f9093e29987959856286d065611db3b3373",
+      "sha256": "976b050be2af01938d366723e241b82c3a3787cef37131a457fab44ffee86dad",
+      "bytes": 887261
+    },
+    {
+      "path": "background6.jpg",
+      "sha1": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "sha256": "78fe10572086219d13614534b9dd30e1b0ea3abf04a40093e2c888f21f35442a",
+      "bytes": 157821
+    },
+    {
+      "path": "backgroundA.jpg",
+      "sha1": "69f13c3a040232bb560513044db3e165c6594247",
+      "sha256": "8090aeceda4a054a19c5b467076c3a70971c78c8316f03ffc82b4152bffebff8",
+      "bytes": 855525
+    },
+    {
+      "path": "economy-review/garden-ux-model.mjs",
+      "sha1": "ea54ed3dc838109c36757b28fec60a17110a8fa7",
+      "sha256": "2437d19361e7e72b83cac4997f9c87fbe0cb2b1cdb71f5a9c2b10594688d9c1a",
+      "bytes": 7696
+    },
+    {
+      "path": "economy-review/garden-ux.css",
+      "sha1": "c15dc7bf4ba23e70c0437b4b3ac31af3e9e8b51f",
+      "sha256": "ef599d5350d22308534fa9fdfa1cb752d42d2970ee4a75f4acef2bcaf703be3f",
+      "bytes": 10829
+    },
+    {
+      "path": "economy-review/garden-ux.mjs",
+      "sha1": "e8f13e05a31c271e5a6e11c7a2caa61e30d222a8",
+      "sha256": "e0b55d5f0c216c75865c6b2219ef31d62cc25f423623199ede5bc2d5a3d08613",
+      "bytes": 22379
+    },
+    {
+      "path": "economy-review/ledger.mjs",
+      "sha1": "6d90ac8b52ca6fcaf43e652080322d3c82283a81",
+      "sha256": "52e5fd2b6eac7bf999efa1d237c732e114ce72284c672593caf6089f74e4bf55",
+      "bytes": 12282
+    },
+    {
+      "path": "economy-review/live-reader.mjs",
+      "sha1": "24ef6d65e67f17c8423a2e6bfe65af59990b1f68",
+      "sha256": "4d4c5b9b73cf7b21111a701c5fe084340425dff84f5a6c3e5a9cc5a1806b6605",
+      "bytes": 19797
+    },
+    {
+      "path": "economy-review/partner-panel.css",
+      "sha1": "b1a0897fbaa7d69db67035bd719bcbdb93fa89dd",
+      "sha256": "7f5bd0f462004ed0d7ec5d48c15fd59229f1eb4decb60e3bc99df6e94476c60d",
+      "bytes": 4143
+    },
+    {
+      "path": "economy-review/partner-panel.mjs",
+      "sha1": "2fe1d2ed11efbc589dff1a15e884589074083bbf",
+      "sha256": "5380b9bcc5def7ade2ae5401bad825cc07f8fed869d1b06cd49b72b422ae5ffb",
+      "bytes": 13345
+    },
+    {
+      "path": "economy-review/partner-reconciliation-panel.mjs",
+      "sha1": "4147540161f78af262170a42f1e3a46de6629982",
+      "sha256": "90f2c57634d5fc32c722b0a2bfa9103134b1c17c4e2ba196164f5220ad655aac",
+      "bytes": 2273
+    },
+    {
+      "path": "economy-review/read-queries.mjs",
+      "sha1": "e17213c0e0fe109ce50e1dfa79585f585ffdcf5a",
+      "sha256": "b303b0c7513f0d14a49200a35d25bcee8745b8792c4304f91b44552ee18c44f0",
+      "bytes": 1455
+    },
+    {
+      "path": "economy-review/season-reader.mjs",
+      "sha1": "df66d5fdaa9f7ddb35031c4dcd3893a56c42dbc6",
+      "sha256": "d981667ba0b66c249daf73247d1228f3c357b7091744db1f6abab0ab6b66adff",
+      "bytes": 10926
+    },
+    {
+      "path": "game.html",
+      "sha1": "61b870c3044aa336fc88bfc8a6a72cd002775e3e",
+      "sha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "bytes": 576478
+    },
+    {
+      "path": "garden-battles-cosmetics-concept.png",
+      "sha1": "ed0ed2a430cc3dcf847a758a159b78a5c333064e",
+      "sha256": "d27a5a0d8dbc6d81892c2cf6e77917224acc0c392f814b2a7f5f871ff4a8ee24",
+      "bytes": 2088628
+    },
+    {
+      "path": "garden.js",
+      "sha1": "7a45fb40201fdb9f72ab60a66fe73c69b8d6003b",
+      "sha256": "eeaee9ef35e9fb29a12058c3c76cfc0e9c4aabe2e63d6cbebcd4d9b6cda63dd8",
+      "bytes": 15258
+    },
+    {
+      "path": "garden.png",
+      "sha1": "f18c4f1ff42a1f3be19f8632c579de3faebbcdeb",
+      "sha256": "b0ac2ea888136892aa949cca17e1d8875168a4dab7191205184a5895e87bb604",
+      "bytes": 392706
+    },
+    {
+      "path": "guide/guide.css",
+      "sha1": "d7b6abdd7c5b0bdcdd58cb83f9641b80db45f4c3",
+      "sha256": "a2e730c73bb603ab3d505ed063a2416b4c3a0b23f8b39fbbd3aa90214377d9ef",
+      "bytes": 14355
+    },
+    {
+      "path": "guide/player-guide.css",
+      "sha1": "2eae9ec0aeee7ea33beb1abd2e9d86b364091299",
+      "sha256": "05212d2a69feeb56f4e848cf847973c97022d2d18fe1d11e65018bd2a6900adc",
+      "bytes": 48829
+    },
+    {
+      "path": "guide/player-guide.js",
+      "sha1": "bd664112639378f8e84542ca533f3a7a236decc3",
+      "sha256": "4ff383b88bcf7fa7a74bcba4f3e5bf31decf4abfcf6f4487167a86132dea88b9",
+      "bytes": 3045
+    },
+    {
+      "path": "hero.png",
+      "sha1": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "sha256": "090c890cdc60de682501735fc76739de2fc1c441bb50badb47cc74a3600728dd",
+      "bytes": 634915
+    },
+    {
+      "path": "index.html",
+      "sha1": "5b877381838492b003e196496e47ee99aa6795ca",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "bytes": 13362
+    },
+    {
+      "path": "mascot.png",
+      "sha1": "9f5e5db66e2f6c3eee41d70b1800094fe014a473",
+      "sha256": "c3a1eb3270952cab96cdd6c6264441eca755c21500ac73ca6f2d37fa29454f85",
+      "bytes": 666831
+    },
+    {
+      "path": "player-guide.html",
+      "sha1": "414be1bd853c757a8b09c9f951610a0376dd1633",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "bytes": 35657
+    },
+    {
+      "path": "prelaunch/ancient.jpg",
+      "sha1": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "sha256": "268a8ec5c982e44b042daceac82d5f94fdc5898560ee639fc8e3ab8e3c62ccb5",
+      "bytes": 591531
+    },
+    {
+      "path": "prelaunch/boom-chest.png",
+      "sha1": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "sha256": "5a9a588883a15ebd18369bed77fc9283b2d0a94ea2512d80395fa4a0be2609ac",
+      "bytes": 2716812
+    },
+    {
+      "path": "prelaunch/canopy-crate.jpg",
+      "sha1": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "sha256": "a63b7c62b1709ba5c0f3abc561202525b3aacab5068e6fa5c6d34367de0088ac",
+      "bytes": 444971
+    },
+    {
+      "path": "prelaunch/forest.jpg",
+      "sha1": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "sha256": "78fe10572086219d13614534b9dd30e1b0ea3abf04a40093e2c888f21f35442a",
+      "bytes": 157821
+    },
+    {
+      "path": "prelaunch/garden-preview.avif",
+      "sha1": "e0704dd3a2825c591772568f87580a031c0ce0b2",
+      "sha256": "15cbeb1b0ee0f8466e3e8202c71843bd63dbd793c9f8bd1040edcfc533c6a782",
+      "bytes": 14439
+    },
+    {
+      "path": "prelaunch/grove-crate.jpg",
+      "sha1": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "sha256": "6f43370f077c861e3e4b7e834cd5b351ba1f164a1500565d61fb77eef94de080",
+      "bytes": 474164
+    },
+    {
+      "path": "prelaunch/hero.png",
+      "sha1": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "sha256": "090c890cdc60de682501735fc76739de2fc1c441bb50badb47cc74a3600728dd",
+      "bytes": 634915
+    },
+    {
+      "path": "prelaunch/mark.png",
+      "sha1": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "sha256": "9e0e5f54c623f7bf25f8710fff7de04f9298282a359166443f078b669c4a2dff",
+      "bytes": 1817978
+    },
+    {
+      "path": "prelaunch/mythic-crate.jpg",
+      "sha1": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "sha256": "78146b1782d482ecd0e4a18789e61497cc70103a8091ed8c1041118e513ca95d",
+      "bytes": 535874
+    },
+    {
+      "path": "prelaunch/seedling-crate.jpg",
+      "sha1": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "sha256": "234a041d8a9147e545638cfe3bef93a5fda41fbb10920146f195fff35da63f65",
+      "bytes": 389653
+    },
+    {
+      "path": "prelaunch/shop-pool.css",
+      "sha1": "72bad803daa2ded9e8f5d12a14dbae799b94d0b7",
+      "sha256": "ec8036e16a7406dd5cf8eedeab8d8ea14594c3ac18dd14b205670dc85637bc8a",
+      "bytes": 7537
+    },
+    {
+      "path": "prelaunch/site.css",
+      "sha1": "c8bfa58ea4d6788f8a311f441872acf9cf05862b",
+      "sha256": "1afc9c80f0639f65d9bfdbd4274c23dc7dc8d4e0fa1056dd22c43dd3c5bedb95",
+      "bytes": 39019
+    },
+    {
+      "path": "prelaunch/supply-drop.jpg",
+      "sha1": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "sha256": "92ab1504c3db63e600dcf3b4e4882414810d0d9a645cb1fe7770830f23deab00",
+      "bytes": 409209
+    },
+    {
+      "path": "prelaunch/victory-chest.png",
+      "sha1": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "sha256": "94f82e1234b6f1ce0c831b9c3d49453521a115dde97e36ae28da86c08d421356",
+      "bytes": 2505790
+    },
+    {
+      "path": "robots.txt",
+      "sha1": "63657cbb7d7086c56b0cd4e5c6999bb683664868",
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+      "bytes": 26
+    },
+    {
+      "path": "sdk-entry.js",
+      "sha1": "ab95bd4a4e0417444e648decf6880f713103561a",
+      "sha256": "cd840f36d3c69ffc001e4fa32a2ee1ff39301fe01a8b9a9a84853e1311c7bf21",
+      "bytes": 317
+    },
+    {
+      "path": "season-status/garden-status.mjs",
+      "sha1": "f0f032675b7cb0571915af9fd4c1ff55123a8103",
+      "sha256": "e25886590696cd29017a0e9d338661303d7dc4aaf12ce265c5bc7f0986dc728c",
+      "bytes": 8560
+    },
+    {
+      "path": "season-status/model.mjs",
+      "sha1": "c7187b1405032118191a95c30fa8f58d4549cc50",
+      "sha256": "6c0bd35002d695a18d25ca688c5b2be2fde59058255417bfc40dc53b7e9b1946",
+      "bytes": 4843
+    },
+    {
+      "path": "season-status/panel.css",
+      "sha1": "4a8489448ae29685c6b1a58e9eabd2ae361d18f8",
+      "sha256": "87d4373f68c571c05f2b0a4cdff565cb19d9d51eb2e6229b943309a5a5c4e438",
+      "bytes": 2227
+    },
+    {
+      "path": "settlement-game.html",
+      "sha1": "5d517f817e4e0ac3b80c1d6a43aabd61b37531a1",
+      "sha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+      "bytes": 580715
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "sha1": "432f22d8f8bc793a9fff75d92d586482bb53058c",
+      "sha256": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+      "bytes": 2255
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "sha1": "dc992cd4445c72d74365510f371f5074d5c9e69f",
+      "sha256": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+      "bytes": 21666
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "sha1": "4c56cc6e89d4c46540630db5eea1a101a0a11c76",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "bytes": 9588
+    },
+    {
+      "path": "settlement-panel.css",
+      "sha1": "0cd7fa3b537b905baa4666b81791917feb425df2",
+      "sha256": "bcc8165ce351dc818a9c13560b2cde8843c92f384b89b421ae21df988c9d430e",
+      "bytes": 10804
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "sha1": "1a2012e27e454c94b460880db50bfba8ed079740",
+      "sha256": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+      "bytes": 24961
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "sha1": "3f6dbcbaf0fabcd8fd5724ffea91b62f82cd6d66",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "bytes": 265139
+    },
+    {
+      "path": "settlement-wallet.js",
+      "sha1": "644bbcd2c75426bcf72c21262225ee71265e0f28",
+      "sha256": "712901808debd5f36965b9fbc1e0d7ca3d2c26911c16e92b2c486ad8f3367ace",
+      "bytes": 77070
+    },
+    {
+      "path": "sitemap.xml",
+      "sha1": "d58a642e0be10a910d2cded1240c152c0d4bdef4",
+      "sha256": "fc493b04a8e4ded1cae1e44440e7750559cc1a6888c57a8837ab6a4d32624987",
+      "bytes": 150
+    },
+    {
+      "path": "sui-sdk.bundle.js",
+      "sha1": "853fd2da7f3e5e00688fd591c2a2f01a486c6c41",
+      "sha256": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
+      "bytes": 152351
+    },
+    {
+      "path": "tester-guide.html",
+      "sha1": "4fccae59ed56919548eed2c5e59a9662e8d508fb",
+      "sha256": "263268db650d27b42530ba40081ac5f1dcfa71ffd72cf88a3eebbcfef5e8a988",
+      "bytes": 59488
+    },
+    {
+      "path": "thick.png",
+      "sha1": "ad280e7b551f15631f84ffe01bc5373746590da6",
+      "sha256": "6e5b1b5d2cecece0ee693518a6121210fb52b346f31637e35bb2b51e605683bf",
+      "bytes": 1004336
+    },
+    {
+      "path": "tree.jpg",
+      "sha1": "5ca16c779edf1d559e5be5a02a6edd2e626d9c2f",
+      "sha256": "eeb573d18b915d980796213cfb9f6e68f7db4abb0c5932d3b8d1a3c6ed736a3e",
+      "bytes": 37233
+    },
+    {
+      "path": "wallet.js",
+      "sha1": "8b6dc45675b0e92e8b41c5c4db39288725457022",
+      "sha256": "4d4486b9f39cdedcc6adfafafd9ae51e00514b08fa68926076bf4854ccdef043",
+      "bytes": 77066
+    }
+  ],
+  "sourceConfigSha256": "fb10df6b1a49ce69f130cc3103a4816a785f5bbab2781738af07bb195331c1f7"
+}

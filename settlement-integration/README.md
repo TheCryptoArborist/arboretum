@@ -4,6 +4,13 @@ This review follows [PR #15](https://github.com/TheCryptoArborist/arboretum/pull
 
 ## Season 1 reward owner review — November 4, 2026, America/Chicago
 
+**Published:** source `c298d5a8bd0a47cd3e971ca3d89a428f1b888644`, deployment
+`6aebf7959ad6e90b6714ca15`, `2026-11-05T03:27:36.144Z` (November 4 at
+9:27 p.m. CST). The [claim verification record](../settlement-claim/verification/README.md)
+confirms 60 focused claim tests, both required exact-source CI runs, 103
+published application files and 15 hosted access checks. A read after
+publication still shows the unclaimed 10-GP Seed and its 0.007-SUI reward.
+
 The [reward review and claim page](../settlement-claim/README.md) continues the
 first test Seed after its November 1 cutoff. Its fixed entrance is
 [Season 1 reward](https://www.treegrow.xyz/tester-access?next=claim-test).
