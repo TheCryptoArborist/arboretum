@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "status": "confirmed",
+  "verifiedAt": "2026-10-31T03:34:07.844Z",
+  "digest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+  "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "typeOrigin": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "checkpoint": {
+    "sequenceNumber": 340000251,
+    "timestamp": "2026-10-31T03:31:58.538Z"
+  },
+  "gasEstimateMist": "337998763",
+  "gasEstimateSui": "0.337998763",
+  "actualGasMist": "337998763",
+  "actualGasSui": "0.337998763",
+  "chainIdentifier": "35834a8a",
+  "reportedPackageMatches": true,
+  "exactApprovedTransactionKindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+  "legacyModuleByteIdentical": true,
+  "legacyTypeOriginsPreserved": 32,
+  "newSettlementTypeOrigins": 39,
+  "upgradeCapabilityOwner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "upgradePolicy": 0,
+  "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+  "legacyRegistry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+  "verificationSourceCommit": "73ff221121dff7a50a1ffc1313db340f45e7ffaf",
+  "observerTransactionsSubmitted": 0,
+  "observerSignaturesProduced": 0,
+  "verificationStatus": "ACTUAL_MAINNET_V12_UPGRADE_VERIFIED",
+  "actualTransactionStatus": "SUCCESS",
+  "gasLabelNote": "The reused validator calls its gas fields gasEstimate; for this actual confirmed receipt they equal the actual charged net fee. actualGasMist/actualGasSui are the unambiguous receipt fields."
+}

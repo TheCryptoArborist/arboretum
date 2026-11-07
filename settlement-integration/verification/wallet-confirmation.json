@@ -1,0 +1,13 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "--test-isolation=none",
+    "--test-reporter=tap",
+    "scripts/test-wallet-transactions.mjs"
+  ],
+  "sourceSha256": "405700ebba4938229119c71c630331f8f4f78bd03634e676aa9ed2a895003ff1",
+  "tests": 50,
+  "failed": 0,
+  "transactionsSubmitted": 0
+}

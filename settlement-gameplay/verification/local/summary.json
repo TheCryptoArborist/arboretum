@@ -1,0 +1,182 @@
+{
+  "verifiedAt": "2026-10-31T22:06:24.132004+00:00",
+  "groups": [
+    {
+      "name": "administrator-season",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-season/admin.test.mjs",
+        "settlement-season/start-core.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:20.966613+00:00",
+      "completedAt": "2026-10-31T22:06:24.131610+00:00",
+      "exitCode": 0,
+      "log": "administrator-season.log",
+      "logSha256": "1817a976cafcefc1bdcb69bc746ec7d31cce7196143cd39e2557dfb10af4ab4d"
+    },
+    {
+      "name": "administrator-setup",
+      "command": [
+        "node",
+        "--test",
+        "settlement-setup/admin.test.mjs",
+        "settlement-setup/setup-core.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:20.280635+00:00",
+      "completedAt": "2026-10-31T22:06:21.637815+00:00",
+      "exitCode": 0,
+      "log": "administrator-setup.log",
+      "logSha256": "dababce2884bd6b87a04018148a68037ac161bc97878f15a0d94ff2856711b3f"
+    },
+    {
+      "name": "administrator-upgrade",
+      "command": [
+        "node",
+        "--test",
+        "settlement-admin/admin.test.mjs",
+        "settlement-admin/upgrade-core.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:20.198714+00:00",
+      "completedAt": "2026-10-31T22:06:20.966532+00:00",
+      "exitCode": 0,
+      "log": "administrator-upgrade.log",
+      "logSha256": "30551562604898a1eaa4b392f43e8160267790032d9ac8c1e2c4a0c69e928c97"
+    },
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "startedAt": "2026-10-31T22:06:19.752811+00:00",
+      "completedAt": "2026-10-31T22:06:20.024243+00:00",
+      "exitCode": 0,
+      "log": "lint.log",
+      "logSha256": "a702100a3e1d19689e5984b3b5d6e4e26975c7cc1cb8066c9c544696c0b272b4"
+    },
+    {
+      "name": "model",
+      "command": [
+        "node",
+        "settlement-integration/model.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:19.754391+00:00",
+      "completedAt": "2026-10-31T22:06:19.823379+00:00",
+      "exitCode": 0,
+      "log": "model.log",
+      "logSha256": "5761812c6c9007806c9096f40f34bceae1df71fe390bb5f7d821aa615cea6699"
+    },
+    {
+      "name": "read-only-view",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/build-policy.test.mjs",
+        "settlement-integration/ui/panel.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:21.637892+00:00",
+      "completedAt": "2026-10-31T22:06:22.140859+00:00",
+      "exitCode": 0,
+      "log": "read-only-view.log",
+      "logSha256": "72c505cfbb48e7606228311b40aba75c5b99443e67827b532508bc0b22948f35"
+    },
+    {
+      "name": "reader-wallet-release",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-integration/reader.test.mjs",
+        "settlement-integration/wallet.test.mjs",
+        "settlement-integration/release/release-packet.test.mjs",
+        "settlement-integration/release/verify-setup.test.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:19.754634+00:00",
+      "completedAt": "2026-10-31T22:06:22.753074+00:00",
+      "exitCode": 0,
+      "log": "reader-wallet-release.log",
+      "logSha256": "bd68ed78d9df916c2ac52dd39c9fb9c508d1097b7e23c8597df69103b60b5876"
+    },
+    {
+      "name": "reconciliation",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/legacy-reconciliation",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "startedAt": "2026-10-31T22:06:20.034982+00:00",
+      "completedAt": "2026-10-31T22:06:20.280564+00:00",
+      "exitCode": 0,
+      "log": "reconciliation.log",
+      "logSha256": "6955e5a56362e4b0ba9972bca5651a36b933ff585f2a808179a9b43a4a68e56e"
+    },
+    {
+      "name": "release-inputs",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/release",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "startedAt": "2026-10-31T22:06:20.024315+00:00",
+      "completedAt": "2026-10-31T22:06:20.198637+00:00",
+      "exitCode": 0,
+      "log": "release-inputs.log",
+      "logSha256": "3e621d8baf281c3abd5377c2f6a948929ef16dceb58768b82281a2874e5adca8"
+    },
+    {
+      "name": "wallet-confirmation",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-wallet-transactions.mjs"
+      ],
+      "startedAt": "2026-10-31T22:06:19.823474+00:00",
+      "completedAt": "2026-10-31T22:06:20.034919+00:00",
+      "exitCode": 0,
+      "log": "wallet-confirmation.log",
+      "logSha256": "92f37709c0183046087acc070e85304d9f7e0d357f68698e330f508af1ff80aa"
+    }
+  ],
+  "allPassed": true,
+  "requiredLocalGroupsRun": 10,
+  "testerReturnEvidence": "../routing/return.log",
+  "newGameplayTests": {
+    "command": "node --test --test-isolation=none --test-reporter=tap settlement-gameplay/*.test.mjs",
+    "log": "gameplay.tap",
+    "passed": 50,
+    "failed": 0,
+    "skipped": 0,
+    "logSha256": "73bd2b0321804f491d9cb4638dd6e89fbd2253089d79bf72ab98ddfe815c57eb",
+    "sourceSha256": {
+      "settlement-gameplay/admin.test.mjs": "dc8be478b7d58dd8ac732e3a1ec06ff86a29bbdb35206efcb719a2ff33ca9ecb",
+      "settlement-gameplay/plant-core.test.mjs": "2f631aad16fd94a584b1f782e0d418f7a4fff1a82fa7a48279420a33669a9951",
+      "settlement-gameplay/admin.mjs": "681afbd54c7e7c31173e26535eb86a7f398e64224c1931b40b0e9d8bc9604d88",
+      "settlement-gameplay/plant-core.mjs": "c0ebf4c3d019aacda83d22fb3b653da2b66b47cf0467320b2eb963e4a739f4c5"
+    }
+  },
+  "sourceBaseCommit": "21f7a2e0198b30f2c3ba091bbf4b5d8b46604609",
+  "requiredLocalGroupsPassed": 12,
+  "testerReturnGroupPassed": true,
+  "updatedAt": "2026-10-31T22:12:04.293832+00:00"
+}

@@ -1,0 +1,219 @@
+{
+  "checkedAt": "2026-11-05T03:22:16.343163+00:00",
+  "allPassed": true,
+  "sourceBaseline": "f09c97f86d8e8b2a2af2f1402547fead7e041c91",
+  "checks": [
+    {
+      "name": "lint",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "startedAt": "2026-11-05T02:56:36.462436+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "model",
+      "command": [
+        "node",
+        "settlement-integration/model.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:36.462947+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "reader-wallet-release",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-integration/reader.test.mjs",
+        "settlement-integration/wallet.test.mjs",
+        "settlement-integration/release/release-packet.test.mjs",
+        "settlement-integration/release/verify-setup.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:36.463321+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "wallet-confirmation",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-wallet-transactions.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:36.557176+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "release-inputs",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/release",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "startedAt": "2026-11-05T02:56:36.778949+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "reconciliation",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/legacy-reconciliation",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "startedAt": "2026-11-05T02:56:36.852990+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "administrator-upgrade",
+      "command": [
+        "node",
+        "--test",
+        "settlement-admin/admin.test.mjs",
+        "settlement-admin/upgrade-core.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:36.960188+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "administrator-setup",
+      "command": [
+        "node",
+        "--test",
+        "settlement-setup/admin.test.mjs",
+        "settlement-setup/setup-core.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:37.140737+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "administrator-season",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-season/admin.test.mjs",
+        "settlement-season/start-core.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:37.690473+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "owner-planting",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-gameplay/admin.test.mjs",
+        "settlement-gameplay/plant-core.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:38.662605+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "owner-watering",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-watering/admin.test.mjs",
+        "settlement-watering/water-core.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:39.642945+00:00",
+      "exitCode": 0
+    },
+    {
+      "name": "read-only-view",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/build-policy.test.mjs",
+        "settlement-integration/ui/panel.test.mjs"
+      ],
+      "startedAt": "2026-11-05T02:56:40.425395+00:00",
+      "exitCode": 0,
+      "finalLog": "read-only-view-final.txt",
+      "resolvedIntermediateFailure": "The initial check ran before the new build.mjs existed; final check passes all 26 tests after implementation."
+    },
+    {
+      "name": "owner-claim",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-claim/claim-core.test.mjs",
+        "settlement-claim/admin.test.mjs"
+      ],
+      "exitCode": 0,
+      "passedTests": 60,
+      "coreTests": 35,
+      "controllerTests": 25
+    },
+    {
+      "name": "tester-return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "passedTests": 32
+    },
+    {
+      "name": "protected-build",
+      "command": [
+        "node",
+        "settlement-integration/build-review.mjs"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "preserved-core",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "f09c97f86d8e8b2a2af2f1402547fead7e041c91",
+        "--",
+        "index.html",
+        "wallet.js",
+        "garden.js",
+        "sui-sdk.bundle.js",
+        "netlify/functions",
+        "netlify/edge-functions/public-player-guide.ts",
+        "contract",
+        "contract-payout",
+        "package.json",
+        "package-lock.json",
+        "netlify.toml",
+        "settlement-integration/deployment-config.mjs"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0
+}

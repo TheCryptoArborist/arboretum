@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-31T06:02:36.576Z",
+  "verifiedAt": "2026-10-31T06:02:41.154Z",
+  "status": "OWNER_TEST_SEASON_UNSIGNED_REHEARSAL_PASSED",
+  "network": "sui:mainnet",
+  "canonicalOrigin": "https://www.treegrow.xyz",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "packet": {
+    "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "kindBytes": 258,
+    "function": "settlement::start_season_for_duration",
+    "durationMs": "86400000",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835"
+  },
+  "simulated": {
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 340037418,
+      "timestamp": "2026-10-31T06:02:34.981Z",
+      "digest": "4oj3yNcGSo1pvNrikDUjBXmfGj4aXyHDk3ZjdQEq3teJ"
+    },
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "predictedSeasonId": "1",
+    "proposedDurationMs": "86400000",
+    "actualStartMs": "1793426556730",
+    "storedStartMs": "1790920956730",
+    "cutoffMs": "1793512956730",
+    "claimDeadlineMs": "1794117756730",
+    "normalResetReadyMs": "1793599356730",
+    "gasEstimateMist": "100553",
+    "gasEstimateSui": "0.000100553",
+    "simulatedGasBudgetMist": "200553",
+    "simulatedGasPriceMist": "100",
+    "simulatedResolvedExpiration": {
+      "ValidDuring": {
+        "minEpoch": "1297",
+        "maxEpoch": "1298",
+        "minTimestamp": null,
+        "maxTimestamp": null,
+        "chain": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+        "nonce": 4216519918
+      },
+      "$kind": "ValidDuring"
+    },
+    "resolvedGasPayments": 0,
+    "returnedGasObjectChanges": 0,
+    "protocolObjectChanges": 2,
+    "protocolObjectsCreated": 0,
+    "predictedRewardPoolMist": "0",
+    "predictedTreasuryMist": "0",
+    "predictedPlantedSeeds": "0",
+    "predictedGrowthPoints": "0",
+    "exactKindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "simulationClock": {
+      "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+      "version": "1012384490",
+      "digest": "2vhnTG237B7giTAkDXFQGCrENpdTkBd1LxMSgFJYZSA7"
+    },
+    "note": "Predicted state only. No signature, execution, season start, funding or gas payment occurred."
+  },
+  "confirmationControl": {
+    "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+    "correctlyRejectedAsFirstStart": true,
+    "code": "PACKET_MISMATCH",
+    "message": "The confirmed transaction differs from the exact reviewed first-start call.",
+    "observedTransactionStatus": "SUCCESS"
+  },
+  "postObservationNotBeforeMs": 1793426557474,
+  "selectedAfterObservation": "after-observation-4",
+  "actualAfterRehearsal": {
+    "checkpoint": {
+      "sequenceNumber": 340037436,
+      "timestamp": "2026-10-31T06:02:39.203Z",
+      "digest": "GvbR3oSufDr5wn9keeYHf2ox5bXkfEkFD7nPeQ6QfiNw"
+    },
+    "packageVersion": "12",
+    "inventoryVersion": "1",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "seasonId": "0",
+    "storedStartMs": "0",
+    "rewardPoolMist": "0",
+    "treasuryMist": "0",
+    "totalSeeds": "0",
+    "growthPoints": "0",
+    "eligibleGrowthPoints": "0",
+    "paused": false,
+    "protocolObjectsUnchanged": true,
+    "references": {
+      "registry": {
+        "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "version": "986499448",
+        "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk"
+      },
+      "adminCap": {
+        "objectId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "version": "986499448",
+        "digest": "HDZcd13jb51WBb59PwTCW4oYk7rtchGYDtV6a5sajDUg"
+      },
+      "upgradeCap": {
+        "objectId": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+        "version": "990522282",
+        "digest": "5WD8ag8pDpeHKMNc96eV5e9UTnW42L8KWk5jHZoS6a1W"
+      },
+      "legacyRegistry": {
+        "objectId": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "version": "995549548",
+        "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf"
+      },
+      "legacyAdminCap": {
+        "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+        "version": "986499448",
+        "digest": "9pPCr7P5WhSzdFJFHynGq1yJemck8Z8purxuDyDVtfLo"
+      }
+    }
+  },
+  "sourceSha256": {
+    "settlement-season/start-core.mjs": "39dbcffd63322eb4eedcee54f7fb10373da78c56ae3bbd2cd779730b15ec1bfb",
+    "settlement-season/check-live.mjs": "8aec6b55242533629089e2e9961a3146e3117fab9605578be3911990f058ce9f",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "package.json": "6c5cac221980b459104e6bf7cb94260cc048f9b60abc4659c44dcb3efa7941ec",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa",
+    "settlement-integration/verification/season-test-20261031/mainnet/unsigned-start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+  },
+  "sourceAfterSha256": {
+    "settlement-season/start-core.mjs": "39dbcffd63322eb4eedcee54f7fb10373da78c56ae3bbd2cd779730b15ec1bfb",
+    "settlement-season/check-live.mjs": "8aec6b55242533629089e2e9961a3146e3117fab9605578be3911990f058ce9f",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "package.json": "6c5cac221980b459104e6bf7cb94260cc048f9b60abc4659c44dcb3efa7941ec",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa",
+    "settlement-integration/verification/season-test-20261031/mainnet/unsigned-start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+  },
+  "requests": [
+    {
+      "name": "confirmed-proof",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:36.578Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:36.873Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "inputs",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:36.875Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:37.007Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "cors",
+      "method": "OPTIONS",
+      "requestedAt": "2026-10-31T06:02:37.074Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:37.156Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "confirmation-control",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:37.158Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:37.315Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "simulation",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:37.320Z",
+      "checkedSimulation": true,
+      "capturedAt": "2026-10-31T06:02:37.474Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "after-observation-1",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:37.518Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:37.632Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "after-observation-2",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:38.667Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:38.793Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "after-observation-3",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:39.841Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:39.964Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "after-observation-4",
+      "method": "POST",
+      "requestedAt": "2026-10-31T06:02:40.996Z",
+      "checkedSimulation": false,
+      "capturedAt": "2026-10-31T06:02:41.117Z",
+      "httpStatus": 200
+    }
+  ],
+  "actualSignaturesRequested": 0,
+  "actualTransactionsSubmitted": 0,
+  "actualGasSpentMist": "0",
+  "actualFundsDepositedMist": "0",
+  "actualSeasonStarted": false,
+  "applicationActivationPerformed": false,
+  "websiteDeploymentPerformed": false,
+  "limits": [
+    "Simulation timing and gas are predictions, not a confirmed start or future fee guarantee.",
+    "The existing version-1 Registry remains empty and unstarted at the later saved checkpoint.",
+    "The owner must separately review and approve any actual start in their wallet."
+  ]
+}

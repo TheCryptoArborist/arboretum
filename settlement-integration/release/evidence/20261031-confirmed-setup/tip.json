@@ -1,0 +1,18 @@
+{
+  "capturedAt": "2026-10-31T04:28:56.235Z",
+  "query": "query SetupTip { checkpoint { sequenceNumber timestamp digest }\n  genesis: checkpoint(sequenceNumber: 0) { sequenceNumber digest } }",
+  "variables": {},
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 340014277,
+        "timestamp": "2026-10-31T04:28:54.179Z",
+        "digest": "FTGRTfzeV6eE5n6LYS5DyLn7zdkerwN5tMkWfLYCD3BF"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      }
+    }
+  }
+}

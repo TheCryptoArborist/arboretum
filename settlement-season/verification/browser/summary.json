@@ -1,0 +1,2362 @@
+{
+  "schemaVersion": 1,
+  "syntheticOnly": true,
+  "liveNetworkAllowed": false,
+  "realWalletUsed": false,
+  "signaturesCreated": 0,
+  "broadcasts": 0,
+  "testedOrigin": "https://www.treegrow.xyz",
+  "playwrightVersion": "1.62.1",
+  "browserVersion": "156.0.8078.4",
+  "dist": "/workspace/scratch/066ce7a12a80/arboretum/dist",
+  "compiledSha256": {
+    "index.html": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+    "admin.css": "3a2032ab33dca1000edf6de0e18ae164b50bd34b99ee9eab692367655d097f75",
+    "admin.mjs": "64cabbfe879aa08319aa83ca3b320cbfd03cea7f2331072ca91aa85dba2f89f3",
+    "start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "check": "Load, connect, account selection and fresh simulation produce zero signing requests",
+      "passed": true
+    },
+    {
+      "check": "Readiness review uses exact captured simulation payload",
+      "passed": true
+    },
+    {
+      "check": "Review requires explicit acknowledgement",
+      "passed": true
+    },
+    {
+      "check": "Desktop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Final wallet handoff has exact approved kind, explicit sender/mainnet and unset gas",
+      "passed": true,
+      "detail": {
+        "account": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        "chain": "sui:mainnet",
+        "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+        "commands": [
+          "MoveCall"
+        ],
+        "gasData": {
+          "budget": null,
+          "price": null,
+          "owner": null,
+          "payment": null
+        }
+      }
+    },
+    {
+      "check": "A second tab sees the persisted in-flight request and cannot resubmit",
+      "passed": true
+    },
+    {
+      "check": "Explicit wallet cancellation clears only this request and requires a fresh review",
+      "passed": true
+    },
+    {
+      "check": "Desktop explicit selection, read-only review, exact single 24-hour start request, cancellation and duplicate-tab lock",
+      "passed": true
+    },
+    {
+      "check": "Mobile review has no overflow and no signing",
+      "passed": true
+    },
+    {
+      "check": "Wrong administrator account fails before any chain check or signature",
+      "passed": true
+    },
+    {
+      "check": "Administrator account restricted to testnet is rejected",
+      "passed": true
+    },
+    {
+      "check": "Changed wallet account invalidates a previously acknowledged review",
+      "passed": true
+    },
+    {
+      "check": "A second Slush provider invalidates the pinned provider selection",
+      "passed": true
+    },
+    {
+      "check": "Tampered approved packet fails closed before simulation or wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "Stale checkpoint fails closed before simulation or wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "An already-started season prevents another start and verifies its receipt without a wallet",
+      "passed": true
+    },
+    {
+      "check": "An unverified later-activity candidate remains replaceable and cannot permit another first start",
+      "passed": true
+    },
+    {
+      "check": "Duplicate Registry inventory prevents simulation and wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "Truncated Registry inventory prevents simulation and wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "Changed fee requires a new acknowledgement without opening the wallet",
+      "passed": true
+    },
+    {
+      "check": "Excessive simulated network fee stops review before acknowledgement",
+      "passed": true
+    },
+    {
+      "check": "Uncertain wallet response remains locked across reload, tabs and an unstarted-state check, then recovers a verified receipt",
+      "passed": true
+    },
+    {
+      "check": "Confirmed timing is exactly 24 hours from actual event time; backdated storage time is separate",
+      "passed": true,
+      "detail": {
+        "actualStartMs": "1793426784732",
+        "storedStartMs": "1790921184732",
+        "cutoffMs": "1793513184732"
+      }
+    },
+    {
+      "check": "A synthetic successful wallet result confirms exact actual start and 24-hour cutoff",
+      "passed": true
+    },
+    {
+      "check": "Wrong sender receipt cannot confirm or clear a returned-digest lock",
+      "passed": true
+    },
+    {
+      "check": "Simulation presented as a receipt cannot confirm or clear a returned-digest lock",
+      "passed": true
+    },
+    {
+      "check": "Storage unavailable disables signing while retaining read-only recovery",
+      "passed": true
+    },
+    {
+      "check": "Wrong origin is rejected before connecting a wallet",
+      "passed": true
+    },
+    {
+      "check": "desktop: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "desktop: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "mobile: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "mobile: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-account: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-account: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-chain: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-chain: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-account: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-account: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicate-provider: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicate-provider: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "tampered-packet: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "tampered-packet: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "stale-checkpoint: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "stale-checkpoint: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "existing-registry: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "existing-registry: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "existing-candidate: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "existing-candidate: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicates: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicates: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "incompleteInventory: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "incompleteInventory: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-fee: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-fee: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "excessive-fee: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "excessive-fee: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "uncertain-wallet: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "uncertain-wallet: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "successful-season: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "successful-season: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "receiptMismatch: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "receiptMismatch: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "simulationAsReceipt: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "simulationAsReceipt: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no-storage: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no-storage: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-origin: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-origin: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "desktop-ready.png",
+      "sha256": "4e24bfddcf1051116bd29071089dd3484194050301166145119b592fa414c4fc"
+    },
+    {
+      "filename": "mobile-ready.png",
+      "sha256": "c4dfa61827c3be2ea67985896f05c416b97698892f32093f39e729f305c4dba5"
+    },
+    {
+      "filename": "desktop-uncertain-recovery.png",
+      "sha256": "b9a4b13b58539477599acb8ed0e2236dfe1e523b980ff01ad3d63556a5b082db"
+    },
+    {
+      "filename": "desktop-confirmed-synthetic.png",
+      "sha256": "0667ae9fc4a1342073780b982d2b22610e4e68de21c2696409cb89d6a351d67d"
+    }
+  ],
+  "contexts": [
+    {
+      "name": "desktop",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "desktop",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Season cancelled in Slush",
+        "message": "Slush reported that you rejected the request. No transaction was submitted by this request. Run a fresh season check if you decide to continue.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "mobile",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "mobile",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "mobile",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Ready for your review",
+        "message": "The administrator and empty version-1 Registry are verified. The exact 24-hour first-season simulation passed with zero funding. Review the estimated end and fee, then acknowledge the test start.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": false,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 390,
+        "pageWidth": 390
+      }
+    },
+    {
+      "name": "wrong-account",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "wrong-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Select the required administrator",
+        "message": "Select the administrator account shown in this review. Required administrator: 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        "wallet": "Choose 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4 in the list. If it is missing, allow that account in Slush and reconnect.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "wrong-chain",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "wrong-chain",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-chain",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-chain",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-chain",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Connection not completed",
+        "message": "No accounts were authorized.",
+        "wallet": "Connect Slush when you are ready.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "changed-account",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "changed-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-account",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Select the administrator again",
+        "message": "Slush’s account or connection changed. Explicitly select 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4 to continue.",
+        "wallet": "Slush’s account or connection changed. Explicitly select 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4 to continue.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "duplicate-provider",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "duplicate-provider",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "duplicate-provider",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Select the administrator again",
+        "message": "Slush’s account or connection changed. Explicitly select 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4 to continue.",
+        "wallet": "Slush’s account or connection changed. Explicitly select 0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4 to continue.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "tampered-packet",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "tampered-packet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "tampered-packet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "tampered-packet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "tampered-packet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "tampered-packet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Season check stopped",
+        "message": "The start packet hash differs.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "stale-checkpoint",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "stale-checkpoint",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Season check stopped",
+        "message": "The chain review is stale or in the future. Refresh before continuing.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "existing-registry",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "existing-registry",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-registry",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Test season confirmed",
+        "message": "The exact first-season start is verified at mainnet checkpoint 340028862. Growing ends Nov 1, 2026, 6:06:15 AM UTC. No reward funds were deposited by this transaction.",
+        "wallet": "Connecting only shares your account address.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": false,
+        "receiptVisible": true,
+        "journal": {
+          "nonce": "2b972278-b0d2-4ec8-bf84-0459fd6d9814",
+          "phase": "confirmed",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426779285,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+          "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a"
+        },
+        "receiptDigest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+        "receiptRegistry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "receiptAdminCap": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "existing-candidate",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "existing-candidate",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://fullnode.mainnet.sui.io",
+          "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+          "method": "POST",
+          "fixture": "local read-only synthetic gRPC transaction"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "existing-candidate",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Test season confirmed",
+        "message": "The exact first-season start is verified at mainnet checkpoint 340028862. Growing ends Nov 1, 2026, 6:06:16 AM UTC. No reward funds were deposited by this transaction.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": false,
+        "receiptVisible": true,
+        "journal": {
+          "nonce": "97f6db87-cb4a-45ea-8fcd-ff074d8ea632",
+          "phase": "confirmed",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426780403,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+          "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a"
+        },
+        "receiptDigest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+        "receiptRegistry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "receiptAdminCap": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "duplicates",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "duplicates",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "duplicates",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Season check stopped",
+        "message": "The settlement Registry/AdminCap inventory is inconsistent or contains multiple objects. Creation is disabled.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "incompleteInventory",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "incompleteInventory",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "incompleteInventory",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Season check stopped",
+        "message": "The settlement Registry inventory is incomplete.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "changed-fee",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "changed-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "The network fee estimate changed",
+        "message": "Review the updated estimate, acknowledge it, then select “Review test start in Slush” again.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": false,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "excessive-fee",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "excessive-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "excessive-fee",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Season check stopped",
+        "message": "The current estimate exceeds the 0.01 SUI review ceiling. Refresh or review the fee before continuing.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": false,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": null,
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "uncertain-wallet",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://fullnode.mainnet.sui.io",
+          "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+          "method": "POST",
+          "fixture": "local read-only synthetic gRPC transaction"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "uncertain-wallet",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Test season confirmed",
+        "message": "The exact first-season start is verified at mainnet checkpoint 340028862. Growing ends Nov 1, 2026, 6:06:21 AM UTC. No reward funds were deposited by this transaction.",
+        "wallet": "Connecting only shares your account address.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": false,
+        "receiptVisible": true,
+        "journal": {
+          "nonce": "970d9faa-8de6-40f9-94ed-71850f04dc1e",
+          "phase": "confirmed",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426787673,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+          "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a"
+        },
+        "receiptDigest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+        "receiptRegistry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "receiptAdminCap": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "successful-season",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://fullnode.mainnet.sui.io",
+          "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+          "method": "POST",
+          "fixture": "local read-only synthetic gRPC transaction"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "successful-season",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "A previous wallet request needs verification",
+        "message": "Verify its onchain receipt before continuing. Reloading this page does not submit another transaction.",
+        "wallet": "Connecting only shares your account address.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": {
+          "nonce": "acd5f9d4-e295-4467-8c3f-5b97a9c7aac1",
+          "phase": "confirmed",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426789021,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+          "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+          "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+          "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a"
+        },
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "receiptMismatch",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://fullnode.mainnet.sui.io",
+          "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+          "method": "POST",
+          "fixture": "local read-only synthetic gRPC transaction"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "receiptMismatch",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Receipt not yet verified",
+        "message": "Use the transaction digest already returned by Slush for this wallet request. The transaction may already have been submitted. Another wallet request is disabled. Verify the receipt before taking any further action.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": {
+          "nonce": "9adc7c14-bb95-4c3f-af25-2c02b939c075",
+          "phase": "uncertain",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426791408,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1"
+        },
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "simulationAsReceipt",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/start-kind.b64",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonInputs",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonSimulation",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://fullnode.mainnet.sui.io",
+          "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+          "method": "POST",
+          "fixture": "local read-only synthetic gRPC transaction"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonProof",
+          "fixture": "saved capture with synthetic fresh timestamp"
+        },
+        {
+          "context": "simulationAsReceipt",
+          "origin": "https://graphql.mainnet.sui.io",
+          "path": "/graphql",
+          "method": "POST",
+          "operation": "OwnerTestSeasonConfirmation",
+          "fixture": "unsigned synthetic receipt and current-state fixture"
+        }
+      ],
+      "simulationPayloads": [
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8",
+        "3cd4bf6cd3f1fd7a2a8cdf618088d21f205414b291200493cfb64fd922900ba8"
+      ],
+      "final": {
+        "title": "Receipt not yet verified",
+        "message": "Use the transaction digest already returned by Slush for this wallet request. The transaction may already have been submitted. Another wallet request is disabled. Verify the receipt before taking any further action.",
+        "wallet": "Administrator selected · Slush browser extension · Sui mainnet",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": {
+          "nonce": "152dedbd-611e-4fd2-8bf9-6ceb2a95be9c",
+          "phase": "uncertain",
+          "digest": "ArHkVQd7YZExNAft73349A9q6oiJnbrbX2EQi1WFYCv1",
+          "at": 1793426792751,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "kindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1"
+        },
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "no-storage",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "no-storage",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "no-storage",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "no-storage",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "no-storage",
+          "origin": "https://www.treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": [],
+      "final": {
+        "title": "Browser storage is required",
+        "message": "This page needs browser storage to remember an unresolved wallet request. Enable storage for www.treegrow.xyz and reload before reviewing the season.",
+        "wallet": "Connecting only shares your account address.",
+        "checkDisabled": true,
+        "submitDisabled": true,
+        "acknowledgementDisabled": true,
+        "recoveryVisible": true,
+        "receiptVisible": false,
+        "journal": "unavailable",
+        "receiptDigest": "",
+        "receiptRegistry": "",
+        "receiptAdminCap": "",
+        "viewport": 1440,
+        "pageWidth": 1440
+      }
+    },
+    {
+      "name": "wrong-origin",
+      "errors": [],
+      "blocked": [],
+      "requests": [
+        {
+          "context": "wrong-origin",
+          "origin": "https://treegrow.xyz",
+          "path": "/admin/season-test/",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-origin",
+          "origin": "https://treegrow.xyz",
+          "path": "/admin/season-test/admin.css",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-origin",
+          "origin": "https://treegrow.xyz",
+          "path": "/admin/season-test/admin.mjs",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        },
+        {
+          "context": "wrong-origin",
+          "origin": "https://treegrow.xyz",
+          "path": "/prelaunch/mark.png",
+          "method": "GET",
+          "fixture": "local compiled asset"
+        }
+      ],
+      "simulationPayloads": []
+    }
+  ]
+}

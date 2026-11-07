@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-10-31T04:46:01Z",
+  "scope": "Read-only New seasons routing, wallet guards and build policy",
+  "files": [
+    "settlement-integration/deployment-config.mjs",
+    "settlement-integration/model.mjs",
+    "settlement-integration/model.test.mjs",
+    "settlement-integration/build_wallet.py",
+    "settlement-integration/wallet.test.mjs",
+    "settlement-integration/build-review.mjs",
+    "scripts/build-policy.mjs",
+    "scripts/build-policy.test.mjs"
+  ],
+  "validation": [
+    {
+      "command": "node --test --test-isolation=none --test-reporter=tap settlement-integration/model.test.mjs scripts/build-policy.test.mjs",
+      "exitCode": 0,
+      "tests": 35,
+      "passed": 35,
+      "failed": 0,
+      "suites": {
+        "model": 24,
+        "buildPolicy": 11
+      }
+    },
+    {
+      "command": "node --test --test-isolation=none --test-reporter=tap --test-name-pattern='read-only|legacy review route rejects|review-only preview refuses' settlement-integration/wallet.test.mjs",
+      "exitCode": 0,
+      "tests": 6,
+      "passed": 6,
+      "failed": 0,
+      "note": "Focused subset; not added again to distinct test total."
+    },
+    {
+      "command": "node --test --test-isolation=none --test-reporter=dot settlement-integration/wallet.test.mjs",
+      "exitCode": 0,
+      "tests": 99,
+      "passed": 99,
+      "failed": 0,
+      "stdout": "....................\n....................\n....................\n....................\n...................\n"
+    }
+  ],
+  "distinctTests": {
+    "total": 134,
+    "passed": 134,
+    "failed": 0
+  },
+  "directMutationGuardCases": 90,
+  "guardCoverage": {
+    "functions": 30,
+    "contexts": [
+      "settlement READ_ONLY with REVIEW_ONLY true",
+      "settlement READ_ONLY independently with REVIEW_ONLY false",
+      "legacy route with REVIEW_ONLY true"
+    ],
+    "observedTransactionConstructions": 0,
+    "observedReaderCalls": 0,
+    "observedWalletCalls": 0
+  },
+  "testLogPaths": [],
+  "testEvidenceSource": "Observed exec_command results in this session. Raw TAP stdout was not separately persisted; full wallet dot stdout is preserved above.",
+  "exactStateFixture": "settlement-integration/release/evidence/20261031-confirmed-setup/receipt.json",
+  "flags": {
+    "reviewEnabled": true,
+    "enabled": false,
+    "REVIEW_ONLY": true,
+    "settlementRouteReadOnly": true
+  },
+  "checkedBehaviors": [
+    "Disconnected exact Registry snapshot, including exact pool/treasury amounts and checkpoint/clock",
+    "Wrong Registry/type/schema, absent amounts and read errors fail rather than showing fabricated zero",
+    "Compiled route flags are strict, immutable and mutually exclusive",
+    "No global, local-storage, URL or environment flag activates transactions",
+    "Legacy remains the default route and retained wallet/read/claim regressions pass",
+    "Dedicated preview may expose read-only route; public production review and settlement activation remain blocked"
+  ],
+  "noFullSiteBuildRun": true,
+  "noTestsRepeatedForThisRecord": true,
+  "runtimeFilesFrozen": true,
+  "administratorRouteSourcesEdited": false,
+  "dependenciesChanged": false,
+  "signaturesProduced": 0,
+  "transactionsSubmitted": 0,
+  "deploymentsPerformed": 0,
+  "parentHeadAtRecord": "136309ba6640d86b25f671718fcdb1d682085659",
+  "sourceSha256": {
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "settlement-integration/model.mjs": "3843967f736eff5dfb476dada16bb2d3a9fbfc5d696dbcd79ef5e8addbc9ae3e",
+    "settlement-integration/model.test.mjs": "967a8d86775576bea242855be3310d991b0354aacc72ab3b706a3c383b1401c9",
+    "settlement-integration/build_wallet.py": "7ba4307442ac8645a7d20b69cd2d7c23d309944cc9c99ee92d06acb2e00625a0",
+    "settlement-integration/wallet.test.mjs": "568f93e535103fade4ac66e67ea85f15d57c3c1819b38ed126bbe03d1873edaf",
+    "settlement-integration/build-review.mjs": "01aebd59127f8fd5524349dde757a7fe70cae89d008669679419ba83a2539c21",
+    "scripts/build-policy.mjs": "1ca71cb942a790d64aabd52b552e928d0a354966fa443390fc28a0cc7de9fc94",
+    "scripts/build-policy.test.mjs": "322088cbfdbbfd21b34af3f300e8441ceed47bc6809db66db22781fc9bfbb351"
+  }
+}

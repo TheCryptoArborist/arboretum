@@ -1,0 +1,13 @@
+PASS hosted-1440 default login: host-only Secure HttpOnly SameSite Strict cookie is retained
+PASS hosted-1440: external anchor omits Strict cookie and reaches the intended login URL
+PASS hosted-1440: rejected password preserves only the approved administrator intent
+PASS hosted-1440: host-only Secure HttpOnly SameSite Strict cookie is retained
+PASS hosted-1440: external administrator entry, bad code, retry and correct native return
+PASS hosted-390 default login: host-only Secure HttpOnly SameSite Strict cookie is retained
+PASS hosted-390: external anchor omits Strict cookie and reaches the intended login URL
+PASS hosted-390: rejected password preserves only the approved administrator intent
+PASS hosted-390: host-only Secure HttpOnly SameSite Strict cookie is retained
+PASS hosted-390: external administrator entry, bad code, retry and correct native return
+PASS No blockchain request was attempted with page JavaScript disabled
+PASS No navigation attempted an external return destination
+Evidence: /tmp/arboretum-admin-browser-review/tester-return/hosted-gameplay-verified-20261031

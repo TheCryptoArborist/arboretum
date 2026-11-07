@@ -1,0 +1,32 @@
+✔ legacy is the default; incomplete or non-boolean settlement activation is unavailable (1.58908ms)
+✔ compiled read-only availability uses the real setup receipt without activating settlement (0.946534ms)
+✔ read-only route flags are strict, mutually exclusive and cannot be weakened by extra config fields (1.505444ms)
+✔ configuration is detached and deeply frozen, including per-type origins (0.448234ms)
+✔ type queries use defining origins while call package may be a later upgrade (0.462666ms)
+✔ legacy Registry, AdminCap, and any known legacy origin cannot activate the new route (0.646803ms)
+✔ typed object checks bind Registry/Seed/Archive identity and version (1.23731ms)
+✔ fields, optional-state wrappers, and nested Balance values normalize identically (1.167806ms)
+✔ finalized original pool and denominator never shrink with other payments (0.329336ms)
+✔ all six claim orders produce 1,3,5 MIST and leave the same rounding residue (0.836097ms)
+✔ delayed claims keep cutoff eligibility despite later drought or gameplay pause (0.264318ms)
+✔ early-season projections use current GP while final entitlements use cutoff eligibility (0.246561ms)
+✔ cutoff and fixed seven-day deadline are inclusive; the next millisecond closes claims (0.22629ms)
+✔ archived and direct entitlement calculations agree and late archive does not extend deadline (0.221233ms)
+✔ all genuine zero entitlements remain distinct from missing data and can be processed once (0.328113ms)
+✔ a processed Seed without its receipt does not infer a zero payout from cleared GP (0.181583ms)
+✔ exact indexed receipts distinguish a paid entitlement from processed zero (0.357047ms)
+✔ wrong-type, wrong-owner, wrong-Seed, wrong-Registry, wrong-season and inconsistent receipts fail closed (0.520483ms)
+✔ unknown history, mismatched season and mismatched Registry never assign a fresh entitlement (0.402996ms)
+✔ large u64 arithmetic stays exact rather than converting through Number (0.233261ms)
+✔ corrupt numeric or boolean values, absent state, and malformed Option fail closed (3.467315ms)
+✔ inconsistent frozen counters or timing cannot present an available claim (2.53996ms)
+✔ sweeping retains history while closing availability and requires an expired empty archive (0.183857ms)
+✔ canonical IDs support normalized Move UID wrappers without accepting arbitrary values (0.093571ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27.583792

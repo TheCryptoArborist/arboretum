@@ -1,0 +1,9 @@
+PASS 1440px: native login reaches the correct JavaScript-enabled, disconnected first-Seed review
+PASS 1440px: compiled JavaScript and CSS match the frozen dist bytes
+PASS 1440px: actual public reads confirm started Season 1, zero Seeds and owned NFTrees
+PASS 1440px: no wallet action, simulation, execution request, journal, console error or overflow
+PASS 390px: native login reaches the correct JavaScript-enabled, disconnected first-Seed review
+PASS 390px: compiled JavaScript and CSS match the frozen dist bytes
+PASS 390px: actual public reads confirm started Season 1, zero Seeds and owned NFTrees
+PASS 390px: no wallet action, simulation, execution request, journal, console error or overflow
+Evidence: /tmp/arboretum-gameplay-hosted-browser-review/hosted-verified-20261031

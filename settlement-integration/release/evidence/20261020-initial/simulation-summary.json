@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "status": "UNSIGNED_MAINNET_UPGRADE_SIMULATION_VERIFIED",
+  "inputCheckpoint": {
+    "sequenceNumber": 335949689,
+    "timestamp": "2026-10-20T01:32:27.884Z",
+    "digest": "A5ZHipBtwvRGtc6sR1o8H2R785wTESWnFEMJ8nziDARJ"
+  },
+  "simulationCheckpoint": {
+    "sequenceNumber": 335950620,
+    "timestamp": "2026-10-20T01:36:10.019Z",
+    "digest": "8GrRpodPudDMKp3DyMPN6hJc4LwbAScm1d5hLnsqsokU"
+  },
+  "transactionKindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+  "packageDigestHex": "a4f84de8007a0d8b8f79ab9d0fa8bdb03a1926dc954b1d72d626783be04c29df",
+  "simulationSucceededWithChecksEnabled": true,
+  "simulatedPackageIdNeverDeployed": "0xd456b20c443039f5f82c6e95cf90001245441ac8c2221732328c86171b3c0d3d",
+  "simulatedPackageVersion": 12,
+  "legacyModuleBytesPreserved": true,
+  "legacyTypeOriginsPreserved": 32,
+  "newTypeOriginsBoundToNewPackage": 39,
+  "newModuleBytesMatchAfterSelfAddressBinding": true,
+  "simulatedDependencyLinks": [
+    {
+      "originalId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "upgradedId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+      "version": 25
+    },
+    {
+      "originalId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "upgradedId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+      "version": 60
+    }
+  ],
+  "upgradeCapOwnerAndPolicyPreserved": true,
+  "legacyRegistryOrSeedsOrAdminCapMutated": false,
+  "settlementRegistryCreated": false,
+  "startsSeason": false,
+  "fundsPool": false,
+  "gasEstimateMist": {
+    "computationCost": 353000,
+    "storageCost": 339309600,
+    "storageRebate": 1633837,
+    "nonRefundableStorageFee": 163,
+    "net": "338028763"
+  },
+  "gasEstimateSui": "0.338028763",
+  "newDeploymentPackageId": null,
+  "newRegistryId": null,
+  "newAdminCapId": null,
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0,
+  "liveStateVerifiedUnchangedAfterSimulation": true,
+  "postSimulationCheckpoint": {
+    "sequenceNumber": 335951288,
+    "timestamp": "2026-10-20T01:38:48.613Z",
+    "digest": "21gRknmAmznfcYcm7DMgoym3zT9cX4v5dyAipisyAqCS"
+  }
+}

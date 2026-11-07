@@ -1,0 +1,184 @@
+{
+  "verifiedAt": "2026-11-07T04:08:05.018160+00:00",
+  "origin": "https://www.treegrow.xyz",
+  "deployId": "6aeea0b254e028ece344267c",
+  "checks": [
+    {
+      "check": "Anonymous direct GET: /game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /settlement-game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /settlement-game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/claim-test/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/claim-test/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/claim-test/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/claim-test/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance GET: /tester-access",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance HEAD: /tester-access",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance GET: /tester-access/",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance HEAD: /tester-access/",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance GET: /tester-access.html",
+      "passed": true
+    },
+    {
+      "check": "Legacy claim entrance HEAD: /tester-access.html",
+      "passed": true
+    },
+    {
+      "check": "Unrecognized legacy destination falls back: next=https://example.invalid/",
+      "passed": true
+    },
+    {
+      "check": "Unrecognized legacy destination falls back: next=claim-test&next=claim-test",
+      "passed": true
+    },
+    {
+      "check": "Legacy play link",
+      "passed": true
+    },
+    {
+      "check": "Legacy same-origin POST: /tester-access",
+      "passed": true
+    },
+    {
+      "check": "Legacy same-origin POST: /tester-logout",
+      "passed": true
+    },
+    {
+      "check": "Legacy POST origin rejected: None",
+      "passed": true
+    },
+    {
+      "check": "Legacy POST origin rejected: null",
+      "passed": true
+    },
+    {
+      "check": "Legacy POST origin rejected: https://example.invalid",
+      "passed": true
+    },
+    {
+      "check": "Ordinary write rejected: POST /game.html",
+      "passed": true
+    },
+    {
+      "check": "Ordinary write rejected: PUT /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Ordinary write rejected: DELETE /wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Ordinary write rejected: POST /.netlify/functions/calendar-reminder",
+      "passed": true
+    },
+    {
+      "check": "Calendar download remains available",
+      "passed": true
+    },
+    {
+      "check": "Public page remains available: /",
+      "passed": true
+    },
+    {
+      "check": "Public page remains available: /player-guide",
+      "passed": true
+    },
+    {
+      "check": "Captured target project snapshot matches submitted deployment (2026-11-07T04:01:15.199Z)",
+      "passed": true
+    },
+    {
+      "check": "Captured original project snapshot matches preserved deployment (2026-11-07T04:01:15.199Z)",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "anonymousOnly": true,
+  "testerPasswordUsed": false,
+  "credentialsWritten": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "HTTP checks establish access and response behavior, not browser JavaScript execution or wallet behavior.",
+    "Other-site preservation is established by its unchanged published deployment; context-specific gate behavior is covered by offline tests.",
+    "Project deployment identities are based on captured connector snapshots at the stated timestamp, not fresh API requests from the HTTP helper.",
+    "These HTTP observations do not establish a complete authenticated deployment file inventory or newly deployed edge-function names."
+  ],
+  "method": "Anonymous HTTP behavior checks from the deployed release adapter, using an in-memory exact expected-HTML substitution supported by the recorded narrow serving-transformation proof. API references use the explicitly timestamped connector project snapshots.",
+  "metadataObservation": {
+    "evidenceFile": "final-project-status.json",
+    "verifiedAt": "2026-11-07T04:01:15.199Z",
+    "method": "Fresh Netlify get_project connector reads after browser verification",
+    "projects": [
+      {
+        "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+        "name": "arboretum-preview",
+        "publishedDeployId": "6aeea0b254e028ece344267c",
+        "state": "ready"
+      },
+      {
+        "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+        "name": "arboretum-sui-forest",
+        "publishedDeployId": "6abe81174b61a8e3dd53b333",
+        "state": "ready"
+      }
+    ]
+  },
+  "freshApiQueriesDuringHttpChecks": 0,
+  "snapshotApiReferenceCount": 3,
+  "htmlServingTransformationEvidence": "html-serving-normalization.json",
+  "htmlResponseComparison": "Exact verified public bytes after separately proving that only recorded .html anchor href rewriting and affected-tag serialization differ from source."
+}

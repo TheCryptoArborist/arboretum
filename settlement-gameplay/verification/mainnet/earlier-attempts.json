@@ -1,0 +1,420 @@
+{
+  "note": "The first read failed closed on partial inventory. The second run reached GraphQL query validation but produced no simulation effects. The third produced the sole successful checked simulation; its initial validator rejection was resolved by implementing the official locked-SDK virtual gas reservation format and the approved planting-specific fee review ceiling. That response was revalidated offline, never simulated again.",
+  "runs": [
+    {
+      "run": "arboretum-first-plant-mainnet-20261031",
+      "failure": {
+        "at": "2026-10-31T22:04:41.794Z",
+        "message": "Incomplete owned NFTree inventory.",
+        "code": "REVIEW_MISMATCH",
+        "requests": [
+          {
+            "name": "proof",
+            "requestedAt": "2026-10-31T22:04:41.443Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs",
+            "requestedAt": "2026-10-31T22:04:41.569Z",
+            "simulation": false
+          }
+        ]
+      },
+      "simulationRequestMade": false
+    },
+    {
+      "run": "arboretum-first-plant-mainnet-20261031-2",
+      "failure": {
+        "at": "2026-10-31T22:05:53.972Z",
+        "message": "[{\"message\":\"Query has over 300 nodes\",\"locations\":[{\"line\":1,\"column\":3648}],\"path\":[\"simulateTransaction\",\"effects\",\"objectChanges\",\"nodes\",\"outputState\",\"owner\",\"address\"],\"extensions\":{\"code\":\"GRAPHQL_VALIDATION_FAILED\"}}]",
+        "code": "ERR_ASSERTION",
+        "requests": [
+          {
+            "name": "proof",
+            "requestedAt": "2026-10-31T22:05:50.437Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs",
+            "requestedAt": "2026-10-31T22:05:50.597Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-1",
+            "requestedAt": "2026-10-31T22:05:50.760Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-2",
+            "requestedAt": "2026-10-31T22:05:50.931Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-3",
+            "requestedAt": "2026-10-31T22:05:51.086Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-4",
+            "requestedAt": "2026-10-31T22:05:51.223Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-5",
+            "requestedAt": "2026-10-31T22:05:51.360Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-6",
+            "requestedAt": "2026-10-31T22:05:51.494Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-7",
+            "requestedAt": "2026-10-31T22:05:51.667Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-8",
+            "requestedAt": "2026-10-31T22:05:51.805Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-9",
+            "requestedAt": "2026-10-31T22:05:51.946Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-10",
+            "requestedAt": "2026-10-31T22:05:52.091Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-11",
+            "requestedAt": "2026-10-31T22:05:52.265Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-12",
+            "requestedAt": "2026-10-31T22:05:52.419Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-13",
+            "requestedAt": "2026-10-31T22:05:52.572Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-14",
+            "requestedAt": "2026-10-31T22:05:52.714Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-15",
+            "requestedAt": "2026-10-31T22:05:52.840Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-16",
+            "requestedAt": "2026-10-31T22:05:52.975Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-17",
+            "requestedAt": "2026-10-31T22:05:53.106Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-18",
+            "requestedAt": "2026-10-31T22:05:53.262Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-19",
+            "requestedAt": "2026-10-31T22:05:53.397Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-20",
+            "requestedAt": "2026-10-31T22:05:53.533Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-21",
+            "requestedAt": "2026-10-31T22:05:53.664Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation",
+            "requestedAt": "2026-10-31T22:05:53.930Z",
+            "simulation": true
+          }
+        ]
+      },
+      "graphqlErrors": [
+        {
+          "message": "Query has over 300 nodes",
+          "locations": [
+            {
+              "line": 1,
+              "column": 3648
+            }
+          ],
+          "path": [
+            "simulateTransaction",
+            "effects",
+            "objectChanges",
+            "nodes",
+            "outputState",
+            "owner",
+            "address"
+          ],
+          "extensions": {
+            "code": "GRAPHQL_VALIDATION_FAILED"
+          }
+        }
+      ],
+      "simulationResponseStatus": "GRAPHQL_VALIDATION_REJECTED_BEFORE_SIMULATION"
+    },
+    {
+      "run": "arboretum-first-plant-mainnet-20261031-3",
+      "failure": {
+        "at": "2026-10-31T22:06:39.333Z",
+        "message": "A selected gas input is missing from effects.",
+        "code": "REVIEW_MISMATCH",
+        "requests": [
+          {
+            "name": "proof",
+            "requestedAt": "2026-10-31T22:06:34.622Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs",
+            "requestedAt": "2026-10-31T22:06:34.758Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-1",
+            "requestedAt": "2026-10-31T22:06:34.861Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-2",
+            "requestedAt": "2026-10-31T22:06:34.969Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-3",
+            "requestedAt": "2026-10-31T22:06:35.059Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-4",
+            "requestedAt": "2026-10-31T22:06:35.148Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-5",
+            "requestedAt": "2026-10-31T22:06:35.241Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-6",
+            "requestedAt": "2026-10-31T22:06:35.398Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-7",
+            "requestedAt": "2026-10-31T22:06:35.530Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-8",
+            "requestedAt": "2026-10-31T22:06:35.672Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-9",
+            "requestedAt": "2026-10-31T22:06:35.784Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-10",
+            "requestedAt": "2026-10-31T22:06:35.889Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-11",
+            "requestedAt": "2026-10-31T22:06:35.987Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-12",
+            "requestedAt": "2026-10-31T22:06:36.099Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-13",
+            "requestedAt": "2026-10-31T22:06:36.202Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-14",
+            "requestedAt": "2026-10-31T22:06:36.301Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-15",
+            "requestedAt": "2026-10-31T22:06:36.437Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-16",
+            "requestedAt": "2026-10-31T22:06:36.528Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-17",
+            "requestedAt": "2026-10-31T22:06:36.643Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-18",
+            "requestedAt": "2026-10-31T22:06:36.756Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-19",
+            "requestedAt": "2026-10-31T22:06:36.843Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-20",
+            "requestedAt": "2026-10-31T22:06:36.949Z",
+            "simulation": false
+          },
+          {
+            "name": "inputs-nft-page-21",
+            "requestedAt": "2026-10-31T22:06:37.045Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation",
+            "requestedAt": "2026-10-31T22:06:37.265Z",
+            "simulation": true
+          },
+          {
+            "name": "simulation-nft-page-1",
+            "requestedAt": "2026-10-31T22:06:37.350Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-2",
+            "requestedAt": "2026-10-31T22:06:37.430Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-3",
+            "requestedAt": "2026-10-31T22:06:37.511Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-4",
+            "requestedAt": "2026-10-31T22:06:37.588Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-5",
+            "requestedAt": "2026-10-31T22:06:37.688Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-6",
+            "requestedAt": "2026-10-31T22:06:37.768Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-7",
+            "requestedAt": "2026-10-31T22:06:37.871Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-8",
+            "requestedAt": "2026-10-31T22:06:37.949Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-9",
+            "requestedAt": "2026-10-31T22:06:38.041Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-10",
+            "requestedAt": "2026-10-31T22:06:38.121Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-11",
+            "requestedAt": "2026-10-31T22:06:38.202Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-12",
+            "requestedAt": "2026-10-31T22:06:38.282Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-13",
+            "requestedAt": "2026-10-31T22:06:38.385Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-14",
+            "requestedAt": "2026-10-31T22:06:38.472Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-15",
+            "requestedAt": "2026-10-31T22:06:38.571Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-16",
+            "requestedAt": "2026-10-31T22:06:38.661Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-17",
+            "requestedAt": "2026-10-31T22:06:38.740Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-18",
+            "requestedAt": "2026-10-31T22:06:38.842Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-19",
+            "requestedAt": "2026-10-31T22:06:38.925Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-20",
+            "requestedAt": "2026-10-31T22:06:39.027Z",
+            "simulation": false
+          },
+          {
+            "name": "simulation-nft-page-21",
+            "requestedAt": "2026-10-31T22:06:39.120Z",
+            "simulation": false
+          }
+        ]
+      },
+      "simulationResponseStatus": "SUCCESS",
+      "savedAndRevalidatedWithoutRepeating": true
+    }
+  ],
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "actualSuiSpent": "0"
+}

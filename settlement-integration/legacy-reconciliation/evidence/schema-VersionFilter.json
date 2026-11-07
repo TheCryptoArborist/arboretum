@@ -1,0 +1,44 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.330765+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "VersionFilter"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "VersionFilter",
+        "description": "Filter for paginating the history of an Object or MovePackage.",
+        "inputFields": [
+          {
+            "name": "afterVersion",
+            "description": "Filter to versions that are strictly newer than this one, defaults to fetching from the earliest version known to this RPC (this could be the initial version, or some later version if the initial version has been pruned).",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          },
+          {
+            "name": "beforeVersion",
+            "description": "Filter to versions that are strictly older than this one, defaults to fetching up to the latest version (inclusive).",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            }
+          }
+        ],
+        "fields": null
+      }
+    }
+  },
+  "responseSha256": "9b9a795bc480f4745c29b966b9ef10d3e557a56897a38b5a6fa4ac24bb9ab793"
+}

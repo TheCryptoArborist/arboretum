@@ -1,0 +1,74 @@
+TAP version 13
+# Subtest: native form origin retained GET /tester-access
+ok 1 - native form origin retained GET /tester-access
+  ---
+  duration_ms: 23.820046
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access
+ok 2 - native form origin retained HEAD /tester-access
+  ---
+  duration_ms: 0.63884
+  type: 'test'
+  ...
+# Subtest: native form origin retained GET /tester-access/
+ok 3 - native form origin retained GET /tester-access/
+  ---
+  duration_ms: 0.379811
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access/
+ok 4 - native form origin retained HEAD /tester-access/
+  ---
+  duration_ms: 0.416586
+  type: 'test'
+  ...
+# Subtest: native form origin retained GET /tester-access.html
+ok 5 - native form origin retained GET /tester-access.html
+  ---
+  duration_ms: 0.489446
+  type: 'test'
+  ...
+# Subtest: native form origin retained HEAD /tester-access.html
+ok 6 - native form origin retained HEAD /tester-access.html
+  ---
+  duration_ms: 0.390196
+  type: 'test'
+  ...
+# Subtest: incorrect-code retry preserves native form origin
+ok 7 - incorrect-code retry preserves native form origin
+  ---
+  duration_ms: 6.476042
+  type: 'test'
+  ...
+# Subtest: null origin still rejected, not trusted as workaround
+ok 8 - null origin still rejected, not trusted as workaround
+  ---
+  duration_ms: 0.594072
+  type: 'test'
+  ...
+# Subtest: cross-site metadata rejects forged same-origin login
+ok 9 - cross-site metadata rejects forged same-origin login
+  ---
+  duration_ms: 0.660002
+  type: 'test'
+  ...
+# Subtest: ordinary protected response retains no-referrer privacy
+ok 10 - ordinary protected response retains no-referrer privacy
+  ---
+  duration_ms: 1.249428
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.774163
+(node:30) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/066ce7a12a80/arboretum-gameplay/netlify/edge-functions/tester-gate.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/066ce7a12a80/arboretum-gameplay/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)

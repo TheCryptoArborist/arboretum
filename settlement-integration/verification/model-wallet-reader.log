@@ -1,0 +1,904 @@
+TAP version 13
+# Subtest: legacy is the default; incomplete or non-boolean settlement activation is unavailable
+ok 1 - legacy is the default; incomplete or non-boolean settlement activation is unavailable
+  ---
+  duration_ms: 6.917058
+  type: 'test'
+  ...
+# Subtest: configuration is detached and deeply frozen, including per-type origins
+ok 2 - configuration is detached and deeply frozen, including per-type origins
+  ---
+  duration_ms: 1.408286
+  type: 'test'
+  ...
+# Subtest: type queries use defining origins while call package may be a later upgrade
+ok 3 - type queries use defining origins while call package may be a later upgrade
+  ---
+  duration_ms: 0.264371
+  type: 'test'
+  ...
+# Subtest: legacy Registry, AdminCap, and any known legacy origin cannot activate the new route
+ok 4 - legacy Registry, AdminCap, and any known legacy origin cannot activate the new route
+  ---
+  duration_ms: 2.506574
+  type: 'test'
+  ...
+# Subtest: typed object checks bind Registry/Seed/Archive identity and version
+ok 5 - typed object checks bind Registry/Seed/Archive identity and version
+  ---
+  duration_ms: 1.887121
+  type: 'test'
+  ...
+# Subtest: fields, optional-state wrappers, and nested Balance values normalize identically
+ok 6 - fields, optional-state wrappers, and nested Balance values normalize identically
+  ---
+  duration_ms: 1.191091
+  type: 'test'
+  ...
+# Subtest: finalized original pool and denominator never shrink with other payments
+ok 7 - finalized original pool and denominator never shrink with other payments
+  ---
+  duration_ms: 0.619699
+  type: 'test'
+  ...
+# Subtest: all six claim orders produce 1,3,5 MIST and leave the same rounding residue
+ok 8 - all six claim orders produce 1,3,5 MIST and leave the same rounding residue
+  ---
+  duration_ms: 0.835108
+  type: 'test'
+  ...
+# Subtest: delayed claims keep cutoff eligibility despite later drought or gameplay pause
+ok 9 - delayed claims keep cutoff eligibility despite later drought or gameplay pause
+  ---
+  duration_ms: 0.456756
+  type: 'test'
+  ...
+# Subtest: early-season projections use current GP while final entitlements use cutoff eligibility
+ok 10 - early-season projections use current GP while final entitlements use cutoff eligibility
+  ---
+  duration_ms: 0.409033
+  type: 'test'
+  ...
+# Subtest: cutoff and fixed seven-day deadline are inclusive; the next millisecond closes claims
+ok 11 - cutoff and fixed seven-day deadline are inclusive; the next millisecond closes claims
+  ---
+  duration_ms: 0.387292
+  type: 'test'
+  ...
+# Subtest: archived and direct entitlement calculations agree and late archive does not extend deadline
+ok 12 - archived and direct entitlement calculations agree and late archive does not extend deadline
+  ---
+  duration_ms: 0.492249
+  type: 'test'
+  ...
+# Subtest: all genuine zero entitlements remain distinct from missing data and can be processed once
+ok 13 - all genuine zero entitlements remain distinct from missing data and can be processed once
+  ---
+  duration_ms: 0.365229
+  type: 'test'
+  ...
+# Subtest: a processed Seed without its receipt does not infer a zero payout from cleared GP
+ok 14 - a processed Seed without its receipt does not infer a zero payout from cleared GP
+  ---
+  duration_ms: 0.131958
+  type: 'test'
+  ...
+# Subtest: exact indexed receipts distinguish a paid entitlement from processed zero
+ok 15 - exact indexed receipts distinguish a paid entitlement from processed zero
+  ---
+  duration_ms: 0.535504
+  type: 'test'
+  ...
+# Subtest: wrong-type, wrong-owner, wrong-Seed, wrong-Registry, wrong-season and inconsistent receipts fail closed
+ok 16 - wrong-type, wrong-owner, wrong-Seed, wrong-Registry, wrong-season and inconsistent receipts fail closed
+  ---
+  duration_ms: 0.464707
+  type: 'test'
+  ...
+# Subtest: unknown history, mismatched season and mismatched Registry never assign a fresh entitlement
+ok 17 - unknown history, mismatched season and mismatched Registry never assign a fresh entitlement
+  ---
+  duration_ms: 0.67901
+  type: 'test'
+  ...
+# Subtest: large u64 arithmetic stays exact rather than converting through Number
+ok 18 - large u64 arithmetic stays exact rather than converting through Number
+  ---
+  duration_ms: 0.208362
+  type: 'test'
+  ...
+# Subtest: corrupt numeric or boolean values, absent state, and malformed Option fail closed
+ok 19 - corrupt numeric or boolean values, absent state, and malformed Option fail closed
+  ---
+  duration_ms: 0.862638
+  type: 'test'
+  ...
+# Subtest: inconsistent frozen counters or timing cannot present an available claim
+ok 20 - inconsistent frozen counters or timing cannot present an available claim
+  ---
+  duration_ms: 0.341155
+  type: 'test'
+  ...
+# Subtest: sweeping retains history while closing availability and requires an expired empty archive
+ok 21 - sweeping retains history while closing availability and requires an expired empty archive
+  ---
+  duration_ms: 0.208242
+  type: 'test'
+  ...
+# Subtest: canonical IDs support normalized Move UID wrappers without accepting arbitrary values
+ok 22 - canonical IDs support normalized Move UID wrappers without accepting arbitrary values
+  ---
+  duration_ms: 0.096281
+  type: 'test'
+  ...
+# Subtest: owned inventory pins every page to the first verified checkpoint
+ok 23 - owned inventory pins every page to the first verified checkpoint
+  ---
+  duration_ms: 1.642391
+  type: 'test'
+  ...
+# Subtest: all-object inventory uses the caller checkpoint from its first page
+ok 24 - all-object inventory uses the caller checkpoint from its first page
+  ---
+  duration_ms: 0.515276
+  type: 'test'
+  ...
+# Subtest: event pages preserve exact transaction/event identity at one checkpoint
+ok 25 - event pages preserve exact transaction/event identity at one checkpoint
+  ---
+  duration_ms: 0.666499
+  type: 'test'
+  ...
+# Subtest: a checkpoint change during pagination rejects the complete result
+ok 26 - a checkpoint change during pagination rejects the complete result
+  ---
+  duration_ms: 0.535882
+  type: 'test'
+  ...
+# Subtest: a page read failure never returns objects already collected from earlier pages
+ok 27 - a page read failure never returns objects already collected from earlier pages
+  ---
+  duration_ms: 0.834533
+  type: 'test'
+  ...
+# Subtest: HTTP failure is an error, not an empty inventory
+ok 28 - HTTP failure is an error, not an empty inventory
+  ---
+  duration_ms: 0.189331
+  type: 'test'
+  ...
+# Subtest: GraphQL error with partial data is an error, not an empty inventory
+ok 29 - GraphQL error with partial data is an error, not an empty inventory
+  ---
+  duration_ms: 0.186207
+  type: 'test'
+  ...
+# Subtest: missing data is an error, not an empty inventory
+ok 30 - missing data is an error, not an empty inventory
+  ---
+  duration_ms: 0.108858
+  type: 'test'
+  ...
+# Subtest: null data is an error, not an empty inventory
+ok 31 - null data is an error, not an empty inventory
+  ---
+  duration_ms: 0.308211
+  type: 'test'
+  ...
+# Subtest: missing checkpoint cannot authenticate an inventory snapshot
+ok 32 - missing checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.396502
+  type: 'test'
+  ...
+# Subtest: negative checkpoint cannot authenticate an inventory snapshot
+ok 33 - negative checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.185677
+  type: 'test'
+  ...
+# Subtest: unsafe checkpoint cannot authenticate an inventory snapshot
+ok 34 - unsafe checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.264768
+  type: 'test'
+  ...
+# Subtest: string checkpoint cannot authenticate an inventory snapshot
+ok 35 - string checkpoint cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.245007
+  type: 'test'
+  ...
+# Subtest: missing checkpoint query cannot authenticate an inventory snapshot
+ok 36 - missing checkpoint query cannot authenticate an inventory snapshot
+  ---
+  duration_ms: 0.249094
+  type: 'test'
+  ...
+# Subtest: missing connection rejects an incomplete inventory
+ok 37 - missing connection rejects an incomplete inventory
+  ---
+  duration_ms: 0.417847
+  type: 'test'
+  ...
+# Subtest: missing nodes rejects an incomplete inventory
+ok 38 - missing nodes rejects an incomplete inventory
+  ---
+  duration_ms: 0.141936
+  type: 'test'
+  ...
+# Subtest: missing page info rejects an incomplete inventory
+ok 39 - missing page info rejects an incomplete inventory
+  ---
+  duration_ms: 0.08593
+  type: 'test'
+  ...
+# Subtest: non-boolean continuation rejects an incomplete inventory
+ok 40 - non-boolean continuation rejects an incomplete inventory
+  ---
+  duration_ms: 0.070283
+  type: 'test'
+  ...
+# Subtest: missing continuing cursor rejects an incomplete inventory
+ok 41 - missing continuing cursor rejects an incomplete inventory
+  ---
+  duration_ms: 0.20574
+  type: 'test'
+  ...
+# Subtest: empty continuing cursor rejects an incomplete inventory
+ok 42 - empty continuing cursor rejects an incomplete inventory
+  ---
+  duration_ms: 0.092221
+  type: 'test'
+  ...
+# Subtest: a repeated continuing cursor is rejected before another page request
+ok 43 - a repeated continuing cursor is rejected before another page request
+  ---
+  duration_ms: 0.216215
+  type: 'test'
+  ...
+# Subtest: duplicate object IDs across pages invalidate the entire inventory
+ok 44 - duplicate object IDs across pages invalidate the entire inventory
+  ---
+  duration_ms: 0.162493
+  type: 'test'
+  ...
+# Subtest: equivalent padded, short, and uppercase object IDs are duplicate identities
+ok 45 - equivalent padded, short, and uppercase object IDs are duplicate identities
+  ---
+  duration_ms: 0.333753
+  type: 'test'
+  ...
+# Subtest: duplicate event identities do not become a doubled reward total
+ok 46 - duplicate event identities do not become a doubled reward total
+  ---
+  duration_ms: 0.220944
+  type: 'test'
+  ...
+# Subtest: reaching the view limit with unread pages returns no partial total
+ok 47 - reaching the view limit with unread pages returns no partial total
+  ---
+  duration_ms: 0.289167
+  type: 'test'
+  ...
+# Subtest: an oversized response is rejected even when it claims to be the last page
+ok 48 - an oversized response is rejected even when it claims to be the last page
+  ---
+  duration_ms: 0.188574
+  type: 'test'
+  ...
+# Subtest: a complete inventory exactly at the limit is permitted
+ok 49 - a complete inventory exactly at the limit is permitted
+  ---
+  duration_ms: 0.121984
+  type: 'test'
+  ...
+# Subtest: an explicitly absent object is distinct from a missing response field
+ok 50 - an explicitly absent object is distinct from a missing response field
+  ---
+  duration_ms: 0.283402
+  type: 'test'
+  ...
+# Subtest: object reads validate identity and any requested checkpoint
+ok 51 - object reads validate identity and any requested checkpoint
+  ---
+  duration_ms: 0.256332
+  type: 'test'
+  ...
+# Subtest: missing address cannot become a usable Move object
+ok 52 - missing address cannot become a usable Move object
+  ---
+  duration_ms: 0.119034
+  type: 'test'
+  ...
+# Subtest: invalid address cannot become a usable Move object
+ok 53 - invalid address cannot become a usable Move object
+  ---
+  duration_ms: 0.083509
+  type: 'test'
+  ...
+# Subtest: missing version cannot become a usable Move object
+ok 54 - missing version cannot become a usable Move object
+  ---
+  duration_ms: 0.052598
+  type: 'test'
+  ...
+# Subtest: unsafe object version cannot become a usable Move object
+ok 55 - unsafe object version cannot become a usable Move object
+  ---
+  duration_ms: 0.047878
+  type: 'test'
+  ...
+# Subtest: negative object version cannot become a usable Move object
+ok 56 - negative object version cannot become a usable Move object
+  ---
+  duration_ms: 0.2664
+  type: 'test'
+  ...
+# Subtest: missing digest cannot become a usable Move object
+ok 57 - missing digest cannot become a usable Move object
+  ---
+  duration_ms: 0.05474
+  type: 'test'
+  ...
+# Subtest: empty digest cannot become a usable Move object
+ok 58 - empty digest cannot become a usable Move object
+  ---
+  duration_ms: 0.052353
+  type: 'test'
+  ...
+# Subtest: missing type cannot become a usable Move object
+ok 59 - missing type cannot become a usable Move object
+  ---
+  duration_ms: 0.0443
+  type: 'test'
+  ...
+# Subtest: missing fields cannot become a usable Move object
+ok 60 - missing fields cannot become a usable Move object
+  ---
+  duration_ms: 0.050096
+  type: 'test'
+  ...
+# Subtest: non-object fields cannot become a usable Move object
+ok 61 - non-object fields cannot become a usable Move object
+  ---
+  duration_ms: 0.041887
+  type: 'test'
+  ...
+# Subtest: both GraphQL Move-object layouts retain complete fields
+ok 62 - both GraphQL Move-object layouts retain complete fields
+  ---
+  duration_ms: 0.176239
+  type: 'test'
+  ...
+# Subtest: a Move UID must agree with the outer object address, including nested wrappers
+ok 63 - a Move UID must agree with the outer object address, including nested wrappers
+  ---
+  duration_ms: 0.250341
+  type: 'test'
+  ...
+# Subtest: overflowing object versions, array fields, and whitespace digests are invalid
+ok 64 - overflowing object versions, array fields, and whitespace digests are invalid
+  ---
+  duration_ms: 0.350477
+  type: 'test'
+  ...
+# Subtest: a null item inside a successful page is an incomplete response
+ok 65 - a null item inside a successful page is an incomplete response
+  ---
+  duration_ms: 0.277194
+  type: 'test'
+  ...
+# Subtest: Registry and Clock are fetched together at the selected checkpoint
+ok 66 - Registry and Clock are fetched together at the selected checkpoint
+  ---
+  duration_ms: 0.436648
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock undefined cannot establish claim timing
+ok 67 - invalid chain Clock undefined cannot establish claim timing
+  ---
+  duration_ms: 0.266122
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock null cannot establish claim timing
+ok 68 - invalid chain Clock null cannot establish claim timing
+  ---
+  duration_ms: 0.142612
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock -1 cannot establish claim timing
+ok 69 - invalid chain Clock -1 cannot establish claim timing
+  ---
+  duration_ms: 0.193516
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 1.5 cannot establish claim timing
+ok 70 - invalid chain Clock 1.5 cannot establish claim timing
+  ---
+  duration_ms: 0.228092
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock NaN cannot establish claim timing
+ok 71 - invalid chain Clock NaN cannot establish claim timing
+  ---
+  duration_ms: 0.106646
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock -1 cannot establish claim timing
+ok 72 - invalid chain Clock -1 cannot establish claim timing
+  ---
+  duration_ms: 0.469101
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 9007199254740992 cannot establish claim timing
+ok 73 - invalid chain Clock 9007199254740992 cannot establish claim timing
+  ---
+  duration_ms: 0.22105
+  type: 'test'
+  ...
+# Subtest: invalid chain Clock 18446744073709551615 cannot establish claim timing
+ok 74 - invalid chain Clock 18446744073709551615 cannot establish claim timing
+  ---
+  duration_ms: 0.33767
+  type: 'test'
+  ...
+# Subtest: a state snapshot for a different Registry is rejected
+ok 75 - a state snapshot for a different Registry is rejected
+  ---
+  duration_ms: 0.286694
+  type: 'test'
+  ...
+# Subtest: missing event transaction rejects an incomplete receipt history
+ok 76 - missing event transaction rejects an incomplete receipt history
+  ---
+  duration_ms: 0.24978
+  type: 'test'
+  ...
+# Subtest: missing event ordinal rejects an incomplete receipt history
+ok 77 - missing event ordinal rejects an incomplete receipt history
+  ---
+  duration_ms: 0.129191
+  type: 'test'
+  ...
+# Subtest: negative event ordinal rejects an incomplete receipt history
+ok 78 - negative event ordinal rejects an incomplete receipt history
+  ---
+  duration_ms: 0.095253
+  type: 'test'
+  ...
+# Subtest: missing event type rejects an incomplete receipt history
+ok 79 - missing event type rejects an incomplete receipt history
+  ---
+  duration_ms: 0.103689
+  type: 'test'
+  ...
+# Subtest: missing event fields rejects an incomplete receipt history
+ok 80 - missing event fields rejects an incomplete receipt history
+  ---
+  duration_ms: 0.08665
+  type: 'test'
+  ...
+# Subtest: invalid wallet and object IDs fail before any query
+ok 81 - invalid wallet and object IDs fail before any query
+  ---
+  duration_ms: 0.210147
+  type: 'test'
+  ...
+# Subtest: invalid requested checkpoints fail before reads across every snapshot method
+ok 82 - invalid requested checkpoints fail before reads across every snapshot method
+  ---
+  duration_ms: 0.791959
+  type: 'test'
+  ...
+# Subtest: invalid inventory limits cannot trigger an unbounded or partial read
+ok 83 - invalid inventory limits cannot trigger an unbounded or partial read
+  ---
+  duration_ms: 0.563773
+  type: 'test'
+  ...
+# Subtest: non-object event fields cannot establish a receipt history
+ok 84 - non-object event fields cannot establish a receipt history
+  ---
+  duration_ms: 0.409204
+  type: 'test'
+  ...
+# Subtest: legacy crate emits the correct payment and Clock signature
+ok 85 - legacy crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 6.717074
+  type: 'test'
+  ...
+# Subtest: legacy Boom Chest emits the correct payment and Clock signature
+ok 86 - legacy Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.423241
+  type: 'test'
+  ...
+# Subtest: legacy Victory Chest emits the correct payment and Clock signature
+ok 87 - legacy Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.205279
+  type: 'test'
+  ...
+# Subtest: legacy Supply Drop emits the correct payment and Clock signature
+ok 88 - legacy Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.183471
+  type: 'test'
+  ...
+# Subtest: legacy admin pool deposit emits the correct payment and Clock signature
+ok 89 - legacy admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 5.071676
+  type: 'test'
+  ...
+# Subtest: settlement crate emits the correct payment and Clock signature
+ok 90 - settlement crate emits the correct payment and Clock signature
+  ---
+  duration_ms: 3.585285
+  type: 'test'
+  ...
+# Subtest: settlement Boom Chest emits the correct payment and Clock signature
+ok 91 - settlement Boom Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.014797
+  type: 'test'
+  ...
+# Subtest: settlement Victory Chest emits the correct payment and Clock signature
+ok 92 - settlement Victory Chest emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.254527
+  type: 'test'
+  ...
+# Subtest: settlement Supply Drop emits the correct payment and Clock signature
+ok 93 - settlement Supply Drop emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.369832
+  type: 'test'
+  ...
+# Subtest: settlement admin pool deposit emits the correct payment and Clock signature
+ok 94 - settlement admin pool deposit emits the correct payment and Clock signature
+  ---
+  duration_ms: 2.71848
+  type: 'test'
+  ...
+# Subtest: default legacy route cannot be switched by storage, page globals, or URL values
+ok 95 - default legacy route cannot be switched by storage, page globals, or URL values
+  ---
+  duration_ms: 1.350201
+  type: 'test'
+  ...
+# Subtest: emitted settlement route refuses to initialize without verified compiled deployment
+ok 96 - emitted settlement route refuses to initialize without verified compiled deployment
+  ---
+  duration_ms: 2.799972
+  type: 'test'
+  ...
+# Subtest: settlement route and admin capability stay immutable after initialization
+ok 97 - settlement route and admin capability stay immutable after initialization
+  ---
+  duration_ms: 2.756831
+  type: 'test'
+  ...
+# Subtest: owned settlement Seeds require the new origin, Registry, and version
+ok 98 - owned settlement Seeds require the new origin, Registry, and version
+  ---
+  duration_ms: 1.848793
+  type: 'test'
+  ...
+# Subtest: a foreign Seed owner invalidates wallet inventory and claim preflight
+ok 99 - a foreign Seed owner invalidates wallet inventory and claim preflight
+  ---
+  duration_ms: 1.977132
+  type: 'test'
+  ...
+# Subtest: legacy inventory queries historical type origins and never treats its call package as a type origin
+ok 100 - legacy inventory queries historical type origins and never treats its call package as a type origin
+  ---
+  duration_ms: 1.760084
+  type: 'test'
+  ...
+# Subtest: reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+ok 101 - reward view pins the Registry, Clock, owned Seeds, and archives to one checkpoint
+  ---
+  duration_ms: 2.339148
+  type: 'test'
+  ...
+# Subtest: archive matching excludes other Registries and origins before choosing a unique season
+ok 102 - archive matching excludes other Registries and origins before choosing a unique season
+  ---
+  duration_ms: 1.640792
+  type: 'test'
+  ...
+# Subtest: missing season archive produces unknown entitlement
+ok 103 - missing season archive produces unknown entitlement
+  ---
+  duration_ms: 2.298122
+  type: 'test'
+  ...
+# Subtest: ambiguous season archive produces unknown entitlement
+ok 104 - ambiguous season archive produces unknown entitlement
+  ---
+  duration_ms: 1.800052
+  type: 'test'
+  ...
+# Subtest: changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+ok 105 - changed remaining pool and delayed wall-clock drought do not change frozen entitlement
+  ---
+  duration_ms: 1.932777
+  type: 'test'
+  ...
+# Subtest: early-season projected rewards are estimates and cannot enter claim preflight
+ok 106 - early-season projected rewards are estimates and cannot enter claim preflight
+  ---
+  duration_ms: 2.912964
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact positive receipt
+ok 107 - direct settlement verifies an exact positive receipt
+  ---
+  duration_ms: 4.735088
+  type: 'test'
+  ...
+# Subtest: direct settlement verifies an exact zero-value receipt
+ok 108 - direct settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 5.611895
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact positive receipt
+ok 109 - archived settlement verifies an exact positive receipt
+  ---
+  duration_ms: 2.691672
+  type: 'test'
+  ...
+# Subtest: archived settlement verifies an exact zero-value receipt
+ok 110 - archived settlement verifies an exact zero-value receipt
+  ---
+  duration_ms: 1.802408
+  type: 'test'
+  ...
+# Subtest: no receipt cannot confirm a settlement payout or cause a second signature
+ok 111 - no receipt cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.650215
+  type: 'test'
+  ...
+# Subtest: legacy origin cannot confirm a settlement payout or cause a second signature
+ok 112 - legacy origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.136627
+  type: 'test'
+  ...
+# Subtest: call package used as event origin cannot confirm a settlement payout or cause a second signature
+ok 113 - call package used as event origin cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.840049
+  type: 'test'
+  ...
+# Subtest: another Registry cannot confirm a settlement payout or cause a second signature
+ok 114 - another Registry cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.595891
+  type: 'test'
+  ...
+# Subtest: another Seed cannot confirm a settlement payout or cause a second signature
+ok 115 - another Seed cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.347448
+  type: 'test'
+  ...
+# Subtest: another wallet cannot confirm a settlement payout or cause a second signature
+ok 116 - another wallet cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.78101
+  type: 'test'
+  ...
+# Subtest: another season cannot confirm a settlement payout or cause a second signature
+ok 117 - another season cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.120609
+  type: 'test'
+  ...
+# Subtest: different eligible GP cannot confirm a settlement payout or cause a second signature
+ok 118 - different eligible GP cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.827832
+  type: 'test'
+  ...
+# Subtest: different payment cannot confirm a settlement payout or cause a second signature
+ok 119 - different payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 2.074602
+  type: 'test'
+  ...
+# Subtest: missing payment cannot confirm a settlement payout or cause a second signature
+ok 120 - missing payment cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.870368
+  type: 'test'
+  ...
+# Subtest: zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+ok 121 - zero for a positive preflight cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.82756
+  type: 'test'
+  ...
+# Subtest: two matching receipts cannot confirm a settlement payout or cause a second signature
+ok 122 - two matching receipts cannot confirm a settlement payout or cause a second signature
+  ---
+  duration_ms: 1.808293
+  type: 'test'
+  ...
+# Subtest: a positive receipt cannot mislabel a genuine zero preflight as paid
+ok 123 - a positive receipt cannot mislabel a genuine zero preflight as paid
+  ---
+  duration_ms: 2.107802
+  type: 'test'
+  ...
+# Subtest: a u64 season ID and u64 payment are checked exactly without Number rounding
+ok 124 - a u64 season ID and u64 payment are checked exactly without Number rounding
+  ---
+  duration_ms: 1.918038
+  type: 'test'
+  ...
+# Subtest: expired deadline is refused before a fixture wallet signature
+ok 125 - expired deadline is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.608109
+  type: 'test'
+  ...
+# Subtest: already processed Seed is refused before a fixture wallet signature
+ok 126 - already processed Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 3.112349
+  type: 'test'
+  ...
+# Subtest: missing eligibility field is refused before a fixture wallet signature
+ok 127 - missing eligibility field is refused before a fixture wallet signature
+  ---
+  duration_ms: 3.17194
+  type: 'test'
+  ...
+# Subtest: unsupported Seed version is refused before a fixture wallet signature
+ok 128 - unsupported Seed version is refused before a fixture wallet signature
+  ---
+  duration_ms: 5.783787
+  type: 'test'
+  ...
+# Subtest: foreign Registry Seed is refused before a fixture wallet signature
+ok 129 - foreign Registry Seed is refused before a fixture wallet signature
+  ---
+  duration_ms: 1.128944
+  type: 'test'
+  ...
+# Subtest: archived claim requires the exact matching archive before signing
+ok 130 - archived claim requires the exact matching archive before signing
+  ---
+  duration_ms: 1.844348
+  type: 'test'
+  ...
+# Subtest: legacy direct claims keep their original positive-payment semantics
+ok 131 - legacy direct claims keep their original positive-payment semantics
+  ---
+  duration_ms: 2.869896
+  type: 'test'
+  ...
+# Subtest: legacy archived claims keep their original positive-payment semantics
+ok 132 - legacy archived claims keep their original positive-payment semantics
+  ---
+  duration_ms: 1.530903
+  type: 'test'
+  ...
+# Subtest: legacy zero-payment success is still reported as no payout
+ok 133 - legacy zero-payment success is still reported as no payout
+  ---
+  duration_ms: 1.493307
+  type: 'test'
+  ...
+# Subtest: review-only preview refuses every funding path and claim before wallet signing
+ok 134 - review-only preview refuses every funding path and claim before wallet signing
+  ---
+  duration_ms: 2.510269
+  type: 'test'
+  ...
+# Subtest: object batches and names use the modern GraphQL reader without retired client calls
+ok 135 - object batches and names use the modern GraphQL reader without retired client calls
+  ---
+  duration_ms: 1.398868
+  type: 'test'
+  ...
+# Subtest: dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+ok 136 - dynamic-field lookup uses the gRPC core API with correctly serialized address and u64 keys
+  ---
+  duration_ms: 1.949041
+  type: 'test'
+  ...
+# Subtest: a verified balance is returned exactly in MIST through the GraphQL reader
+ok 137 - a verified balance is returned exactly in MIST through the GraphQL reader
+  ---
+  duration_ms: 1.372259
+  type: 'test'
+  ...
+# Subtest: missing balance is unavailable rather than a fabricated zero balance
+ok 138 - missing balance is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.416634
+  type: 'test'
+  ...
+# Subtest: missing amount is unavailable rather than a fabricated zero balance
+ok 139 - missing amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.24085
+  type: 'test'
+  ...
+# Subtest: null address is unavailable rather than a fabricated zero balance
+ok 140 - null address is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.08682
+  type: 'test'
+  ...
+# Subtest: negative amount is unavailable rather than a fabricated zero balance
+ok 141 - negative amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.072625
+  type: 'test'
+  ...
+# Subtest: unsafe numeric amount is unavailable rather than a fabricated zero balance
+ok 142 - unsafe numeric amount is unavailable rather than a fabricated zero balance
+  ---
+  duration_ms: 1.002671
+  type: 'test'
+  ...
+# Subtest: an explicit zero balance remains a verified zero
+ok 143 - an explicit zero balance remains a verified zero
+  ---
+  duration_ms: 1.169721
+  type: 'test'
+  ...
+# Subtest: Registry read failure cannot become zero player Growth Points
+ok 144 - Registry read failure cannot become zero player Growth Points
+  ---
+  duration_ms: 1.426129
+  type: 'test'
+  ...
+# Subtest: network failure propagates through reward views and aggregate projections
+ok 145 - network failure propagates through reward views and aggregate projections
+  ---
+  duration_ms: 1.121805
+  type: 'test'
+  ...
+# Subtest: corrupt reward fields keep the aggregate projection unknown
+ok 146 - corrupt reward fields keep the aggregate projection unknown
+  ---
+  duration_ms: 1.391534
+  type: 'test'
+  ...
+# Subtest: collected settlement rewards use only exact matching owner, Registry, type, and event identity
+ok 147 - collected settlement rewards use only exact matching owner, Registry, type, and event identity
+  ---
+  duration_ms: 1.339311
+  type: 'test'
+  ...
+# Subtest: unavailable or corrupt reward history is an error rather than zero collected
+ok 148 - unavailable or corrupt reward history is an error rather than zero collected
+  ---
+  duration_ms: 2.232426
+  type: 'test'
+  ...
+# Subtest: emitted sources import modern read APIs and keep review configuration explicit
+ok 149 - emitted sources import modern read APIs and keep review configuration explicit
+  ---
+  duration_ms: 0.524714
+  type: 'test'
+  ...
+1..149
+# tests 149
+# suites 0
+# pass 149
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 563.909187

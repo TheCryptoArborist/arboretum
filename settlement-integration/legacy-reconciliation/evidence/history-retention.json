@@ -1,0 +1,49 @@
+{
+  "retrievedAt": "2026-10-20T01:35:46.238786+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query HistoryRetention {\n serviceConfig {\n  tx: availableRange(type:\"Query\",field:\"transactions\") { first { sequenceNumber timestamp } last { sequenceNumber timestamp } }\n  events: availableRange(type:\"Query\",field:\"events\") { first { sequenceNumber timestamp } last { sequenceNumber timestamp } }\n  objects: availableRange(type:\"Query\",field:\"objects\") { first { sequenceNumber timestamp } last { sequenceNumber timestamp } }\n }\n}",
+    "variables": {}
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "serviceConfig": {
+        "tx": {
+          "first": {
+            "sequenceNumber": 0,
+            "timestamp": "2023-04-12T17:00:00Z"
+          },
+          "last": {
+            "sequenceNumber": 335950509,
+            "timestamp": "2026-10-20T01:35:44.327Z"
+          }
+        },
+        "events": {
+          "first": {
+            "sequenceNumber": 325581370,
+            "timestamp": "2026-09-22T11:22:27.891Z"
+          },
+          "last": {
+            "sequenceNumber": 335950509,
+            "timestamp": "2026-10-20T01:35:44.327Z"
+          }
+        },
+        "objects": {
+          "first": {
+            "sequenceNumber": 335935512,
+            "timestamp": "2026-10-20T00:37:33.005Z"
+          },
+          "last": {
+            "sequenceNumber": 335950509,
+            "timestamp": "2026-10-20T01:35:44.327Z"
+          }
+        }
+      }
+    }
+  },
+  "responseSha256": "50f34cc6393f28502cc3c5977bf2864fbcc7df5cfc7c683730ce1e1539b62972"
+}

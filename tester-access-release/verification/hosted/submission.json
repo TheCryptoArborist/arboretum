@@ -1,0 +1,16 @@
+{
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "sourceCommit": "05c0a9d9799ba6bc096051650320099db3def8a8",
+  "sourceTree": "cd4fddaea87d02ce9744b2c83f04be30ef4abfdf",
+  "candidateEvidenceSha256": "c5de8ca5cc7987d4913bab62d17214a62d7b5ee414a5a4ea3c06a937dfb0da26",
+  "archiveSha256": "9d7d4d6774d00e8f20e913abf812d2ed45c359fa1636230a68231cb43a5aa10c",
+  "archiveBytes": 45258305,
+  "requestedAt": "2026-11-07T03:53:16.892523+00:00",
+  "previousPublishedDeployId": "6aebf7959ad6e90b6714ca15",
+  "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+  "submissionAttempted": true,
+  "responseReceived": true,
+  "responseHttpStatus": 200,
+  "deployId": "6aeea0b254e028ece344267c",
+  "buildId": "6aeea0b254e028ece344267a"
+}

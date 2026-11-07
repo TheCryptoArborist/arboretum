@@ -39,7 +39,9 @@ jobs:
           node --check season-status/garden-status.mjs
           node --check season-status/model.mjs
           python3 -m py_compile scripts/release-season-status.py scripts/check-season-status-hosted.py
-          git diff ab5e0fa0e70ede69af6450658c79591e7364dbaa --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js sdk-entry.js contract/sources/arboretum.move netlify/edge-functions netlify/functions
+          git diff ab5e0fa0e70ede69af6450658c79591e7364dbaa --exit-code -- index.html garden.js sui-sdk.bundle.js sdk-entry.js contract/sources/arboretum.move netlify/edge-functions netlify/functions
+          # Preserve the reviewed confirmation/receipt fixes already included in PR15.
+          git diff ba6faff6de7c446599a605ffa95369a325a12e3e --exit-code -- wallet.js
           if CONTEXT=production ARBORETUM_SEASON_STATUS_APPROVED=false node scripts/build-season-status.mjs > season-status-results/approval-guard.txt 2>&1; then exit 1; fi
           grep -q 'requires owner approval' season-status-results/approval-guard.txt
       - name: Verify full approved production build

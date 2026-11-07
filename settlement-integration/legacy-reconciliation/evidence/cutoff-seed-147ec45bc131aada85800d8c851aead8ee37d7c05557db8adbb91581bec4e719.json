@@ -1,0 +1,25 @@
+{
+  "retrievedAt": "2026-10-20T01:35:19.808651+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyObjectPoint($object: SuiAddress!, $checkpoint: UInt53!) {\n  checkpoint(sequenceNumber:$checkpoint) { sequenceNumber timestamp }\n  object(address:$object, atCheckpoint:$checkpoint) { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } }\n }\n}",
+    "variables": {
+      "object": "0x147ec45bc131aada85800d8c851aead8ee37d7c05557db8adbb91581bec4e719",
+      "checkpoint": 328848276
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 328848276,
+        "timestamp": "2026-10-01T00:00:06.086Z"
+      },
+      "object": null
+    }
+  },
+  "responseSha256": "485f0f3fda8d97365b865aab4fc3a06671cc79ac2b0835175c86c9da884cff09"
+}

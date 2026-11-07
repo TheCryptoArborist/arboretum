@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {getBuildPolicy} from './build-policy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
 export function applySeasonStatus(original){
@@ -19,7 +20,7 @@ export function applySeasonStatus(original){
   return html;
 }
 function build(){
-  if(process.env.CONTEXT==='production'&&process.env.ARBORETUM_SEASON_STATUS_APPROVED!=='2026-10-01')throw new Error('Season status production build requires owner approval.');
+  if(getBuildPolicy().publicProduction&&process.env.ARBORETUM_SEASON_STATUS_APPROVED!=='2026-10-01')throw new Error('Season status production build requires owner approval.');
   const dist=path.join(root,'dist');
   const keep=['index.html','player-guide.html','wallet.js','garden.js','sui-sdk.bundle.js','tester-guide.html','guide/player-guide.js','guide/player-guide.css','prelaunch/site.css'];
   const before=Object.fromEntries(keep.map(n=>[n,hash(fs.readFileSync(path.join(dist,n)))]));

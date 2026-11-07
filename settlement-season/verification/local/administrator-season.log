@@ -1,0 +1,328 @@
+TAP version 13
+# Subtest: load, explicit connection and successful 24-hour readiness never request a signature
+ok 1 - load, explicit connection and successful 24-hour readiness never request a signature
+  ---
+  duration_ms: 142.791655
+  type: 'test'
+  ...
+# Subtest: an explicitly selected wrong account cannot check or open a wallet request
+ok 2 - an explicitly selected wrong account cannot check or open a wallet request
+  ---
+  duration_ms: 4.708651
+  type: 'test'
+  ...
+# Subtest: account fallback during final simulation invalidates the acknowledged review
+ok 3 - account fallback during final simulation invalidates the acknowledged review
+  ---
+  duration_ms: 97.542956
+  type: 'test'
+  ...
+# Subtest: same-address replacement provider cannot inherit a prior review
+ok 4 - same-address replacement provider cannot inherit a prior review
+  ---
+  duration_ms: 59.919233
+  type: 'test'
+  ...
+# Subtest: duplicate clicks create one request; definite rejection clears only that request
+ok 5 - duplicate clicks create one request; definite rejection clears only that request
+  ---
+  duration_ms: 118.812268
+  type: 'test'
+  ...
+# Subtest: uncertain wallet error blocks retry and survives reload without another request
+ok 6 - uncertain wallet error blocks retry and survives reload without another request
+  ---
+  duration_ms: 114.430666
+  type: 'test'
+  ...
+# Subtest: network change during final simulation blocks wallet handoff
+ok 7 - network change during final simulation blocks wallet handoff
+  ---
+  duration_ms: 80.351707
+  type: 'test'
+  ...
+# Subtest: read failure in a second tab cannot mutate the first tab in-flight journal
+ok 8 - read failure in a second tab cannot mutate the first tab in-flight journal
+  ---
+  duration_ms: 117.512533
+  type: 'test'
+  ...
+# Subtest: saved request locks fail closed and cannot be cleared by unrelated rejection
+ok 9 - saved request locks fail closed and cannot be cleared by unrelated rejection
+  ---
+  duration_ms: 0.928394
+  type: 'test'
+  ...
+# Subtest: only typed, explicit rejection codes count as cancellation
+ok 10 - only typed, explicit rejection codes count as cancellation
+  ---
+  duration_ms: 0.178663
+  type: 'test'
+  ...
+# Subtest: fresh browser can check unstarted Registry without connection or simulation
+ok 11 - fresh browser can check unstarted Registry without connection or simulation
+  ---
+  duration_ms: 30.345796
+  type: 'test'
+  ...
+# Subtest: already-started state without receipt candidate persistently prevents another first start
+ok 12 - already-started state without receipt candidate persistently prevents another first start
+  ---
+  duration_ms: 35.545122
+  type: 'test'
+  ...
+# Subtest: wrong previous-transaction candidate remains replaceable; verified start recovers without wallet
+ok 13 - wrong previous-transaction candidate remains replaceable; verified start recovers without wallet
+  ---
+  duration_ms: 82.363921
+  type: 'test'
+  ...
+# Subtest: duplicate or truncated Registry inventory stops readiness before simulation
+ok 14 - duplicate or truncated Registry inventory stops readiness before simulation
+  ---
+  duration_ms: 68.996099
+  type: 'test'
+  ...
+# Subtest: changed fee requires a new acknowledgment before the one wallet request
+ok 15 - changed fee requires a new acknowledgment before the one wallet request
+  ---
+  duration_ms: 210.857121
+  type: 'test'
+  ...
+# Subtest: only an independently verified receipt displays actual start and exact 24-hour cutoff
+ok 16 - only an independently verified receipt displays actual start and exact 24-hour cutoff
+  ---
+  duration_ms: 146.584649
+  type: 'test'
+  ...
+# Subtest: historical first-start receipt remains recoverable after later Registry activity
+ok 17 - historical first-start receipt remains recoverable after later Registry activity
+  ---
+  duration_ms: 36.252195
+  type: 'test'
+  ...
+# Subtest: known wallet digest cannot be replaced by a later-activity candidate
+ok 18 - known wallet digest cannot be replaced by a later-activity candidate
+  ---
+  duration_ms: 176.781953
+  type: 'test'
+  ...
+# Subtest: 42-character wallet digest survives reload and reaches read-only recovery
+ok 19 - 42-character wallet digest survives reload and reaches read-only recovery
+  ---
+  duration_ms: 119.461143
+  type: 'test'
+  ...
+# Subtest: canonical origin and explicit administrator/mainnet are required
+ok 20 - canonical origin and explicit administrator/mainnet are required
+  ---
+  duration_ms: 0.518568
+  type: 'test'
+  ...
+# Subtest: captured mainnet proof verifies the exact empty first-test Registry
+ok 21 - captured mainnet proof verifies the exact empty first-test Registry
+  ---
+  duration_ms: 29.084539
+  type: 'test'
+  ...
+# Subtest: browser packet is the captured single call with no final gas or expiration
+ok 22 - browser packet is the captured single call with no final gas or expiration
+  ---
+  duration_ms: 1.996051
+  type: 'test'
+  ...
+# Subtest: changed packet or injected wallet command cannot reach wallet review
+ok 23 - changed packet or injected wallet command cannot reach wallet review
+  ---
+  duration_ms: 2.398162
+  type: 'test'
+  ...
+# Subtest: app-selected gas or expiration is rejected before wallet review
+ok 24 - app-selected gas or expiration is rejected before wallet review
+  ---
+  duration_ms: 1.278471
+  type: 'test'
+  ...
+# Subtest: captured checked simulation shows actual start and 24-hour cutoff separately from stored backdate
+ok 25 - captured checked simulation shows actual start and 24-hour cutoff separately from stored backdate
+  ---
+  duration_ms: 54.699075
+  type: 'test'
+  ...
+# Subtest: wrong network, stale proof and partial inventory cannot authorize a start
+ok 26 - wrong network, stale proof and partial inventory cannot authorize a start
+  ---
+  duration_ms: 24.967564
+  type: 'test'
+  ...
+# Subtest: a changed capability, binding or creation table is rejected
+ok 27 - a changed capability, binding or creation table is rejected
+  ---
+  duration_ms: 118.319677
+  type: 'test'
+  ...
+# Subtest: funded, paused or otherwise nonempty first Registry is rejected
+ok 28 - funded, paused or otherwise nonempty first Registry is rejected
+  ---
+  duration_ms: 80.985592
+  type: 'test'
+  ...
+# Subtest: already-started discovery blocks replay and offers only a receipt candidate
+ok 29 - already-started discovery blocks replay and offers only a receipt candidate
+  ---
+  duration_ms: 57.921171
+  type: 'test'
+  ...
+# Subtest: an archived/reset first season never becomes a fresh first-start again
+ok 30 - an archived/reset first season never becomes a fresh first-start again
+  ---
+  duration_ms: 28.985005
+  type: 'test'
+  ...
+# Subtest: extra commands or altered duration in resolved simulation are rejected
+ok 31 - extra commands or altered duration in resolved simulation are rejected
+  ---
+  duration_ms: 59.415892
+  type: 'test'
+  ...
+# Subtest: sender and gas owner cannot be substituted in the resolved simulation
+ok 32 - sender and gas owner cannot be substituted in the resolved simulation
+  ---
+  duration_ms: 63.030642
+  type: 'test'
+  ...
+# Subtest: address-balance gas requires mainnet-bound expiration and proper epoch window
+ok 33 - address-balance gas requires mainnet-bound expiration and proper epoch window
+  ---
+  duration_ms: 93.282549
+  type: 'test'
+  ...
+# Subtest: foreign gas objects, uncovered fee, and fee above review ceiling are rejected
+ok 34 - foreign gas objects, uncovered fee, and fee above review ceiling are rejected
+  ---
+  duration_ms: 93.535339
+  type: 'test'
+  ...
+# Subtest: only the actual Clock and exact SeasonStarted event are accepted
+ok 35 - only the actual Clock and exact SeasonStarted event are accepted
+  ---
+  duration_ms: 91.412768
+  type: 'test'
+  ...
+# Subtest: output Lamport version must be exactly maximum actual input version plus one
+ok 36 - output Lamport version must be exactly maximum actual input version plus one
+  ---
+  duration_ms: 31.170493
+  type: 'test'
+  ...
+# Subtest: only season ID and stored backdate may change in the first-start Registry
+ok 37 - only season ID and stored backdate may change in the first-start Registry
+  ---
+  duration_ms: 61.364108
+  type: 'test'
+  ...
+# Subtest: capability ownership, binding and non-gas balance changes remain protected
+ok 38 - capability ownership, binding and non-gas balance changes remain protected
+  ---
+  duration_ms: 86.066626
+  type: 'test'
+  ...
+# Subtest: synthetic confirmed receipt validates full digest, start schedule and zero funding
+ok 39 - synthetic confirmed receipt validates full digest, start schedule and zero funding
+  ---
+  duration_ms: 39.471513
+  type: 'test'
+  ...
+# Subtest: historical confirmed receipt remains valid after later legitimate season activity
+ok 40 - historical confirmed receipt remains valid after later legitimate season activity
+  ---
+  duration_ms: 32.276189
+  type: 'test'
+  ...
+# Subtest: confirmed first start remains historical after a subsequent season starts
+ok 41 - confirmed first start remains historical after a subsequent season starts
+  ---
+  duration_ms: 33.856767
+  type: 'test'
+  ...
+# Subtest: simulation effects and unconfirmed receipts cannot be labeled confirmed
+ok 42 - simulation effects and unconfirmed receipts cannot be labeled confirmed
+  ---
+  duration_ms: 3.009276
+  type: 'test'
+  ...
+# Subtest: receipt digest must match full transaction bytes
+ok 43 - receipt digest must match full transaction bytes
+  ---
+  duration_ms: 1.867442
+  type: 'test'
+  ...
+# Subtest: recomputed digest cannot hide an extra command or foreign sender
+ok 44 - recomputed digest cannot hide an extra command or foreign sender
+  ---
+  duration_ms: 35.538784
+  type: 'test'
+  ...
+# Subtest: receipt must start from exact empty inputs and preserve capability binding
+ok 45 - receipt must start from exact empty inputs and preserve capability binding
+  ---
+  duration_ms: 55.024218
+  type: 'test'
+  ...
+# Subtest: receipt rejects funding, wrong event time and additional events
+ok 46 - receipt rejects funding, wrong event time and additional events
+  ---
+  duration_ms: 95.073153
+  type: 'test'
+  ...
+# Subtest: receipt checkpoint must follow actual execution Clock and fresh observation must follow receipt
+ok 47 - receipt checkpoint must follow actual execution Clock and fresh observation must follow receipt
+  ---
+  duration_ms: 31.621652
+  type: 'test'
+  ...
+# Subtest: same-version current data cannot contradict the receipt
+ok 48 - same-version current data cannot contradict the receipt
+  ---
+  duration_ms: 58.226118
+  type: 'test'
+  ...
+# Subtest: ordinary wallet gas coins with None or Epoch expiration verify without address-balance assumptions
+ok 49 - ordinary wallet gas coins with None or Epoch expiration verify without address-balance assumptions
+  ---
+  duration_ms: 64.817006
+  type: 'test'
+  ...
+# Subtest: a days-old first-start receipt is recoverable using fresh current observations
+ok 50 - a days-old first-start receipt is recoverable using fresh current observations
+  ---
+  duration_ms: 28.672791
+  type: 'test'
+  ...
+# Subtest: same-version last-write metadata and same-season start contradictions are rejected
+ok 51 - same-version last-write metadata and same-season start contradictions are rejected
+  ---
+  duration_ms: 67.424601
+  type: 'test'
+  ...
+# Subtest: a wallet ValidDuring receipt can confirm in its second epoch but never outside its window
+ok 52 - a wallet ValidDuring receipt can confirm in its second epoch but never outside its window
+  ---
+  duration_ms: 91.637145
+  type: 'test'
+  ...
+# Subtest: ambiguous wrappers and simulation-only markers cannot supply confirmed evidence
+ok 53 - ambiguous wrappers and simulation-only markers cannot supply confirmed evidence
+  ---
+  duration_ms: 2.154215
+  type: 'test'
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3745.08753

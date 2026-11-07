@@ -1,0 +1,78 @@
+{
+  "verifiedAt": "2026-11-05T03:29:29.171652+00:00",
+  "origin": "https://www.treegrow.xyz",
+  "deployId": "6aebf7959ad6e90b6714ca15",
+  "checks": [
+    {
+      "check": "Protected document return: /admin/claim-test",
+      "passed": true
+    },
+    {
+      "check": "Protected document return: /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Protected document return: /admin/claim-test/index.html",
+      "passed": true
+    },
+    {
+      "check": "Previous owner document remains protected: gameplay-test",
+      "passed": true
+    },
+    {
+      "check": "Previous owner document remains protected: watering-test",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/claim-test/index.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/claim-test/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: admin/claim-test/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: settlement-game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Anonymous asset denied: settlement-wallet.js",
+      "passed": true
+    },
+    {
+      "check": "Native form retains fixed claim destination",
+      "passed": true
+    },
+    {
+      "check": "Public page remains available: /",
+      "passed": true
+    },
+    {
+      "check": "Public page remains available: /player-guide",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "anonymousOnly": true,
+  "testerLoginAttempted": false,
+  "credentialsWritten": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "Anonymous HTTP checks do not establish tester login, native browser SameSite behavior, or JavaScript execution.",
+    "Exact protected runtime bytes are verified separately through the authenticated deployment API."
+  ]
+}

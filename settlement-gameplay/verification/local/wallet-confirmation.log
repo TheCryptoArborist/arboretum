@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: raw Wallet Standard effects are confirmed by GraphQL and normalized for current callers
+ok 1 - raw Wallet Standard effects are confirmed by GraphQL and normalized for current callers
+  ---
+  duration_ms: 4.34209
+  type: 'test'
+  ...
+# Subtest: wallet-provided event/object arrays do not bypass indexed confirmation
+ok 2 - wallet-provided event/object arrays do not bypass indexed confirmation
+  ---
+  duration_ms: 1.085563
+  type: 'test'
+  ...
+# Subtest: not-yet-indexed responses are polled without a second signature
+ok 3 - not-yet-indexed responses are polled without a second signature
+  ---
+  duration_ms: 2.062722
+  type: 'test'
+  ...
+# Subtest: transient HTTP and GraphQL errors recover through reads only
+ok 4 - transient HTTP and GraphQL errors recover through reads only
+  ---
+  duration_ms: 2.519639
+  type: 'test'
+  ...
+# Subtest: an executed Move failure rejects with the original error and digest
+ok 5 - an executed Move failure rejects with the original error and digest
+  ---
+  duration_ms: 1.836972
+  type: 'test'
+  ...
+# Subtest: partial GraphQL errors do not discard an explicit execution failure
+ok 6 - partial GraphQL errors do not discard an explicit execution failure
+  ---
+  duration_ms: 1.082828
+  type: 'test'
+  ...
+# Subtest: partial GraphQL errors preserve known success while withholding an incomplete receipt
+ok 7 - partial GraphQL errors preserve known success while withholding an incomplete receipt
+  ---
+  duration_ms: 1.36371
+  type: 'test'
+  ...
+# Subtest: a parsed failure already returned by the wallet never resolves as success
+ok 8 - a parsed failure already returned by the wallet never resolves as success
+  ---
+  duration_ms: 1.115718
+  type: 'test'
+  ...
+# Subtest: missing transaction stays unconfirmed and never replays the transaction
+ok 9 - missing transaction stays unconfirmed and never replays the transaction
+  ---
+  duration_ms: 1.962731
+  type: 'test'
+  ...
+# Subtest: missing effects stays unconfirmed and never replays the transaction
+ok 10 - missing effects stays unconfirmed and never replays the transaction
+  ---
+  duration_ms: 1.855701
+  type: 'test'
+  ...
+# Subtest: missing execution status stays unconfirmed and never replays the transaction
+ok 11 - missing execution status stays unconfirmed and never replays the transaction
+  ---
+  duration_ms: 2.110434
+  type: 'test'
+  ...
+# Subtest: missing checkpoint stays unconfirmed and never replays the transaction
+ok 12 - missing checkpoint stays unconfirmed and never replays the transaction
+  ---
+  duration_ms: 2.619149
+  type: 'test'
+  ...
+# Subtest: network timeout stays unconfirmed and never replays the transaction
+ok 13 - network timeout stays unconfirmed and never replays the transaction
+  ---
+  duration_ms: 2.15485
+  type: 'test'
+  ...
+# Subtest: wrong transaction digest is rejected
+ok 14 - wrong transaction digest is rejected
+  ---
+  duration_ms: 1.351503
+  type: 'test'
+  ...
+# Subtest: wrong effects digest is rejected
+ok 15 - wrong effects digest is rejected
+  ---
+  duration_ms: 1.186194
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: undefined
+ok 16 - malformed or different-API wallet result has no assumed success: undefined
+  ---
+  duration_ms: 1.306074
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: null
+ok 17 - malformed or different-API wallet result has no assumed success: null
+  ---
+  duration_ms: 4.272095
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: {}
+ok 18 - malformed or different-API wallet result has no assumed success: {}
+  ---
+  duration_ms: 1.157791
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: {"digest":""}
+ok 19 - malformed or different-API wallet result has no assumed success: {"digest":""}
+  ---
+  duration_ms: 0.897249
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: {"digest":123}
+ok 20 - malformed or different-API wallet result has no assumed success: {"digest":123}
+  ---
+  duration_ms: 0.866684
+  type: 'test'
+  ...
+# Subtest: malformed or different-API wallet result has no assumed success: {"$kind":"Transaction","Transaction":{"digest":"11111111111111111111111111111111"}}
+ok 21 - malformed or different-API wallet result has no assumed success: {"$kind":"Transaction","Transaction":{"digest":"11111111111111111111111111111111"}}
+  ---
+  duration_ms: 0.854265
+  type: 'test'
+  ...
+# Subtest: wallet rejection is propagated without confirmation reads or retry
+ok 22 - wallet rejection is propagated without confirmation reads or retry
+  ---
+  duration_ms: 0.921847
+  type: 'test'
+  ...
+# Subtest: disconnected wallet is rejected before requesting a signature
+ok 23 - disconnected wallet is rejected before requesting a signature
+  ---
+  duration_ms: 0.760875
+  type: 'test'
+  ...
+# Subtest: event/object detail pages are read independently and preserved
+ok 24 - event/object detail pages are read independently and preserved
+  ---
+  duration_ms: 1.187506
+  type: 'test'
+  ...
+# Subtest: a stalled cursor reports a succeeded transaction with unavailable details, not a reason to repeat it
+ok 25 - a stalled cursor reports a succeeded transaction with unavailable details, not a reason to repeat it
+  ---
+  duration_ms: 1.121687
+  type: 'test'
+  ...
+# Subtest: missing input/output state does not manufacture a created object
+ok 26 - missing input/output state does not manufacture a created object
+  ---
+  duration_ms: 1.284061
+  type: 'test'
+  ...
+# Subtest: a current-season claim resolves with a matching positive payout receipt, retaining its result fields
+ok 27 - a current-season claim resolves with a matching positive payout receipt, retaining its result fields
+  ---
+  duration_ms: 1.681929
+  type: 'test'
+  ...
+# Subtest: the deployed SUCCESS + SeedDied behavior rejects a claim as confirmed with no payout
+ok 28 - the deployed SUCCESS + SeedDied behavior rejects a claim as confirmed with no payout
+  ---
+  duration_ms: 1.564042
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from zero payout
+ok 29 - a claim cannot report a positive payment from zero payout
+  ---
+  duration_ms: 1.54886
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from noncanonical amount
+ok 30 - a claim cannot report a positive payment from noncanonical amount
+  ---
+  duration_ms: 1.327095
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from exponent amount
+ok 31 - a claim cannot report a positive payment from exponent amount
+  ---
+  duration_ms: 1.172803
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from fractional amount
+ok 32 - a claim cannot report a positive payment from fractional amount
+  ---
+  duration_ms: 1.309079
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from unsafe numeric amount
+ok 33 - a claim cannot report a positive payment from unsafe numeric amount
+  ---
+  duration_ms: 1.339575
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from overflowing u64 amount
+ok 34 - a claim cannot report a positive payment from overflowing u64 amount
+  ---
+  duration_ms: 1.220325
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from wrong owner
+ok 35 - a claim cannot report a positive payment from wrong owner
+  ---
+  duration_ms: 1.008447
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from fake package event
+ok 36 - a claim cannot report a positive payment from fake package event
+  ---
+  duration_ms: 0.949147
+  type: 'test'
+  ...
+# Subtest: a claim cannot report a positive payment from fake module event
+ok 37 - a claim cannot report a positive payment from fake module event
+  ---
+  duration_ms: 1.028356
+  type: 'test'
+  ...
+# Subtest: a claim with no reward receipt reports confirmed execution without assuming a payout
+ok 38 - a claim with no reward receipt reports confirmed execution without assuming a payout
+  ---
+  duration_ms: 1.065883
+  type: 'test'
+  ...
+# Subtest: an archived claim requires its defining upgrade type, owner, Seed and archive, and retains a positive u64 receipt
+ok 39 - an archived claim requires its defining upgrade type, owner, Seed and archive, and retains a positive u64 receipt
+  ---
+  duration_ms: 3.110518
+  type: 'test'
+  ...
+# Subtest: an archived claim rejects a payout receipt for wrong Seed
+ok 40 - an archived claim rejects a payout receipt for wrong Seed
+  ---
+  duration_ms: 1.616501
+  type: 'test'
+  ...
+# Subtest: an archived claim rejects a payout receipt for wrong archive
+ok 41 - an archived claim rejects a payout receipt for wrong archive
+  ---
+  duration_ms: 1.035978
+  type: 'test'
+  ...
+# Subtest: an archived claim rejects a payout receipt for wrong owner
+ok 42 - an archived claim rejects a payout receipt for wrong owner
+  ---
+  duration_ms: 1.100185
+  type: 'test'
+  ...
+# Subtest: an archived claim rejects a payout receipt for wrong type origin
+ok 43 - an archived claim rejects a payout receipt for wrong type origin
+  ---
+  duration_ms: 1.011691
+  type: 'test'
+  ...
+# Subtest: claim receipt owner is captured before wallet changes: accept original-signer receipt
+ok 44 - claim receipt owner is captured before wallet changes: accept original-signer receipt
+  ---
+  duration_ms: 1.108147
+  type: 'test'
+  ...
+# Subtest: claim receipt owner is captured before wallet changes: reject switched-owner receipt
+ok 45 - claim receipt owner is captured before wallet changes: reject switched-owner receipt
+  ---
+  duration_ms: 1.166955
+  type: 'test'
+  ...
+# Subtest: disconnecting during confirmation does not invalidate the original signer's verified archived payout
+ok 46 - disconnecting during confirmation does not invalidate the original signer's verified archived payout
+  ---
+  duration_ms: 1.097791
+  type: 'test'
+  ...
+# Subtest: existing purchase UI shows success only after confirmation resolves
+ok 47 - existing purchase UI shows success only after confirmation resolves
+  ---
+  duration_ms: 20.595813
+  type: 'test'
+  ...
+# Subtest: existing purchase UI enters its error path on failed execution
+ok 48 - existing purchase UI enters its error path on failed execution
+  ---
+  duration_ms: 2.489614
+  type: 'test'
+  ...
+# Subtest: existing claim UI displays payment confirmation and refreshes only for a verified positive payout
+ok 49 - existing claim UI displays payment confirmation and refreshes only for a verified positive payout
+  ---
+  duration_ms: 2.470275
+  type: 'test'
+  ...
+# Subtest: existing claim UI does not show reward success for the deployed SUCCESS + SeedDied outcome
+ok 50 - existing claim UI does not show reward success for the deployed SUCCESS + SeedDied outcome
+  ---
+  duration_ms: 2.14125
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 169.08672

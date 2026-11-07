@@ -1,0 +1,85 @@
+{
+  "status": "UNSIGNED_EMPTY_REGISTRY_SETUP_SIMULATION_VERIFIED",
+  "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "actualUpgradeDigest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+  "actualUpgradeCheckpoint": {
+    "sequenceNumber": 340000251,
+    "timestamp": "2026-10-31T03:31:58.538Z"
+  },
+  "sourceSha256": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+  "transactionKindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+  "transactionKindBytes": 154,
+  "unsignedPacketSha256": "6cb428472e4c99a5758663a56af7506ccb5fbf3faf4987994728aa3ef58ba515",
+  "checkpoint": {
+    "sequenceNumber": 340001424,
+    "timestamp": "2026-10-31T03:36:44.677Z",
+    "digest": "Gc7eQwyLJLWdyENqZu81BnVt5ma98nA5DHVcnssPpBhc"
+  },
+  "command": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::create_settlement_registry",
+  "commandCount": 1,
+  "event": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::SettlementRegistryCreated",
+  "gasEstimateMist": "5632932",
+  "gasEstimateSui": "0.005632932",
+  "objectChanges": {
+    "newRegistry": 1,
+    "newAdminCap": 1,
+    "wrappedEmptyTables": 6,
+    "legacyAdminCapVersionUpdate": 1
+  },
+  "legacyAdminCap": {
+    "ownerTypeContentsUnchanged": true,
+    "simulatedReferenceAdvanced": true,
+    "inputReference": {
+      "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+      "version": "986499447",
+      "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN"
+    },
+    "simulatedOutputReference": {
+      "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+      "version": "986499448",
+      "digest": "8ZAJmehSJzc2DNEXTTeDGiF6VSAVFa8kBpibhjjHEYJ7"
+    }
+  },
+  "simulationOnly": {
+    "registryId": "0x4d84862e3ab8052a07ffacbef111107b60189e9729a84ee80bdf1ba788924780",
+    "adminCapId": "0x45b621ca090954ee08d5a85efd30c2c813274d21462a2121e9a0c53b07a914db",
+    "wrappedTableIds": [
+      "0x05f3cfc91b12d3a874bf0ddff705fc0228953621051cf0a0dc2ec9982a1bc407",
+      "0x2be0a8609ffe5ad0c770671574ccd7f5672cbeb3f27ff6a38c697aec7e839898",
+      "0x95f9301cc14b26befd7ca11614957338000a6be93f5a89504f8a327cf4a59d2e",
+      "0xa64921d70c3fe5f394968ad7c7c9d66a83b46ebf91de3bdc29262a30db11e945",
+      "0xbe8056d5458284affd3b6acb3b3d62fe8492fae61e4f072f1bf209523dcf2a72",
+      "0xf64b5ca402e3c8f4fd9b24ee0a0186cc6b084a859da56298c29c0d2216b3283f"
+    ]
+  },
+  "simulatedIdsAreNotDeployedIds": true,
+  "newRegistryId": null,
+  "newAdminCapId": null,
+  "postSimulationObservation": {
+    "checkpoint": {
+      "sequenceNumber": 340001856,
+      "timestamp": "2026-10-31T03:38:30.476Z",
+      "digest": "AuXLRLidJapMMjBH1iRkh47jjnY2MmMSAeYL3WFSq9JW"
+    },
+    "liveReferencesAndContentsUnchanged": true,
+    "existingRegistryCount": 0,
+    "simulatedRegistryAndAdminCapAbsent": true
+  },
+  "existingRegistryCountAtCapture": 0,
+  "startsSeason": false,
+  "fundsPool": false,
+  "importsLegacyState": false,
+  "legacyRegistryInTransaction": false,
+  "requiresFreshReviewBeforeSigning": true,
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0,
+  "recordedAt": "2026-10-31T03:41:06.378499+00:00",
+  "offlineValidation": {
+    "combinedReleaseTestsPassed": 20,
+    "failed": 0,
+    "focusedSetupTestGroupsPassed": 12,
+    "adversarialRejectionCases": 86,
+    "validatorSha256": "e1e57ffd73fbaee6d243758c8e6a268bea1fc5bb2ff259042d411be709f21a64",
+    "testFileSha256": "3d76f64e98f6626f0eaae246bcd8351abce402858c86d76a5192c85773b6e7b8"
+  }
+}

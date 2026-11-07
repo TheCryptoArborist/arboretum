@@ -1,0 +1,10 @@
+{
+  "completedAt": "2026-10-31T06:13:08.881354+00:00",
+  "onlyNamedCertificateAddedAndRemoved": true,
+  "nickname": "Arboretum-owner-season-runtime-CA-c71b4d1e",
+  "caSha256": "c71b4d1e9d7775c538c688ab10cea9ce417d7312e89838f9d15ff73256cd7fc3",
+  "normalTLSValidationUsed": true,
+  "priorTrustListingRestored": true,
+  "websiteOrSystemEnvironmentChangedForTrust": false,
+  "credentialsWritten": false
+}

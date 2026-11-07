@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "settlement-integration/legacy-reconciliation",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "exitCode": 0,
+  "testsPassed": 14,
+  "testsFailed": 0,
+  "networkUsed": false,
+  "transactionsSubmitted": 0,
+  "result": "PASS"
+}

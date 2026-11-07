@@ -6,6 +6,7 @@ All content is prelaunch product documentation, not a claim of deployed parity.
 from pathlib import Path
 from html import escape
 import ast, hashlib, json, os, re
+from build_policy import get_build_policy
 ROOT=Path(__file__).resolve().parents[1]
 DIST=ROOT/'dist'
 # Short player-facing effects from the reviewed guide; not new game mechanics.
@@ -58,7 +59,7 @@ def build():
         cards.append(f'<details class="tool" id="tool-{id}" data-rarity="{rarity}" data-category="{category}"><summary><span><span class="summary-title">{escape(name)}</span><span class="summary-meta">{rarity} · {category}</span></span></summary><div class="detail-body"><dl><dt>What it does</dt><dd>{escape(effect)}</dd><dt>When to use it</dt><dd>{escape(when)}</dd><dt>Play it wisely</dt><dd>{escape(tip)}</dd></dl><a class="deep-link" href="#tool-{id}">Link to this tool</a></div></details>')
     crates=''.join(f'<article class="handbook-crate"><img src="/prelaunch/{art}" alt="{name} crate — original in-game artwork" width="1024" height="1024" loading="lazy"><div><p class="role">{role}</p><h3>{name}</h3><p>{description}</p></div></article>' for name,role,art,description in CRATES)
     holders=''.join(f'<tr><th scope="row">{rarity}</th><td>{n}</td><td>{2*n}</td></tr>' for n,rarity in enumerate(['Common','Rare','Epic','Legendary','Mythic','One of One'],1))
-    production=os.environ.get('CONTEXT')=='production' and os.environ.get('ARBORETUM_PRELAUNCH_APPROVED')=='true'
+    production=get_build_policy()['publicProduction'] and os.environ.get('ARBORETUM_PRELAUNCH_APPROVED')=='true'
     for token,value in [('@@NAV@@',nav),('@@TOOLS@@',''.join(cards)),('@@CRATES@@',crates),('@@HOLDERS@@',holders),('@@ROBOTS@@','index,follow' if production else 'noindex,nofollow')]:html=html.replace(token,value)
     assert '@@' not in html
     assert not re.search(r'\s(?:style|on\w+)\s*=',html,re.I), 'No inline styles or event handlers in public handbook'

@@ -1,0 +1,319 @@
+[
+  {
+    "receivedAt": "2026-10-31T05:09:01.817Z",
+    "operation": "IntegrationState",
+    "status": 200,
+    "response": {
+      "data": {
+        "checkpoint": {
+          "sequenceNumber": 340024188,
+          "query": {
+            "registry": {
+              "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": 986499448,
+              "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+              "asMoveObject": {
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                  },
+                  "json": {
+                    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "version": "1",
+                    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "current_season_id": "0",
+                    "season_start_ms": "0",
+                    "reward_pool": "0",
+                    "treasury": "0",
+                    "total_seeds": "0",
+                    "total_growth_points": "0",
+                    "eligible_growth_points": "0",
+                    "settlement": null,
+                    "paused": false,
+                    "seeds_by_owner": {
+                      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                      "size": "0"
+                    },
+                    "referrers": {
+                      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                      "size": "0"
+                    },
+                    "referral_earnings": {
+                      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                      "size": "0"
+                    },
+                    "player_growth": {
+                      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                      "size": "0"
+                    },
+                    "player_growth_season": {
+                      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                      "size": "0"
+                    },
+                    "planted_saplings": {
+                      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                      "size": "0"
+                    }
+                  }
+                }
+              }
+            },
+            "clock": {
+              "asMoveObject": {
+                "contents": {
+                  "json": {
+                    "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                    "timestamp_ms": "1793423339728"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "receivedAt": "2026-10-31T05:09:02.028Z",
+    "operation": "IntegrationState",
+    "status": 200,
+    "response": {
+      "data": {
+        "checkpoint": {
+          "sequenceNumber": 340024190,
+          "query": {
+            "registry": {
+              "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": 986499448,
+              "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+              "asMoveObject": {
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                  },
+                  "json": {
+                    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "version": "1",
+                    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "current_season_id": "0",
+                    "season_start_ms": "0",
+                    "reward_pool": "0",
+                    "treasury": "0",
+                    "total_seeds": "0",
+                    "total_growth_points": "0",
+                    "eligible_growth_points": "0",
+                    "settlement": null,
+                    "paused": false,
+                    "seeds_by_owner": {
+                      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                      "size": "0"
+                    },
+                    "referrers": {
+                      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                      "size": "0"
+                    },
+                    "referral_earnings": {
+                      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                      "size": "0"
+                    },
+                    "player_growth": {
+                      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                      "size": "0"
+                    },
+                    "player_growth_season": {
+                      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                      "size": "0"
+                    },
+                    "planted_saplings": {
+                      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                      "size": "0"
+                    }
+                  }
+                }
+              }
+            },
+            "clock": {
+              "asMoveObject": {
+                "contents": {
+                  "json": {
+                    "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                    "timestamp_ms": "1793423340221"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "receivedAt": "2026-10-31T05:09:02.034Z",
+    "operation": "IntegrationState",
+    "status": 200,
+    "response": {
+      "data": {
+        "checkpoint": {
+          "sequenceNumber": 340024190,
+          "query": {
+            "registry": {
+              "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": 986499448,
+              "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+              "asMoveObject": {
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                  },
+                  "json": {
+                    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "version": "1",
+                    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "current_season_id": "0",
+                    "season_start_ms": "0",
+                    "reward_pool": "0",
+                    "treasury": "0",
+                    "total_seeds": "0",
+                    "total_growth_points": "0",
+                    "eligible_growth_points": "0",
+                    "settlement": null,
+                    "paused": false,
+                    "seeds_by_owner": {
+                      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                      "size": "0"
+                    },
+                    "referrers": {
+                      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                      "size": "0"
+                    },
+                    "referral_earnings": {
+                      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                      "size": "0"
+                    },
+                    "player_growth": {
+                      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                      "size": "0"
+                    },
+                    "player_growth_season": {
+                      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                      "size": "0"
+                    },
+                    "planted_saplings": {
+                      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                      "size": "0"
+                    }
+                  }
+                }
+              }
+            },
+            "clock": {
+              "asMoveObject": {
+                "contents": {
+                  "json": {
+                    "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                    "timestamp_ms": "1793423340221"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "receivedAt": "2026-10-31T05:09:02.258Z",
+    "operation": "IntegrationState",
+    "status": 200,
+    "response": {
+      "data": {
+        "checkpoint": {
+          "sequenceNumber": 340024190,
+          "query": {
+            "registry": {
+              "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": 986499448,
+              "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+              "asMoveObject": {
+                "contents": {
+                  "type": {
+                    "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+                  },
+                  "json": {
+                    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                    "version": "1",
+                    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                    "current_season_id": "0",
+                    "season_start_ms": "0",
+                    "reward_pool": "0",
+                    "treasury": "0",
+                    "total_seeds": "0",
+                    "total_growth_points": "0",
+                    "eligible_growth_points": "0",
+                    "settlement": null,
+                    "paused": false,
+                    "seeds_by_owner": {
+                      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                      "size": "0"
+                    },
+                    "referrers": {
+                      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                      "size": "0"
+                    },
+                    "referral_earnings": {
+                      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                      "size": "0"
+                    },
+                    "player_growth": {
+                      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                      "size": "0"
+                    },
+                    "player_growth_season": {
+                      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                      "size": "0"
+                    },
+                    "planted_saplings": {
+                      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                      "size": "0"
+                    }
+                  }
+                }
+              }
+            },
+            "clock": {
+              "asMoveObject": {
+                "contents": {
+                  "json": {
+                    "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                    "timestamp_ms": "1793423340221"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "receivedAt": "2026-10-31T05:09:03.204Z",
+    "operation": "IntegrationAll",
+    "status": 200,
+    "response": {
+      "data": {
+        "checkpoint": {
+          "sequenceNumber": 340024193,
+          "query": {
+            "objects": {
+              "nodes": [],
+              "pageInfo": {
+                "hasNextPage": false,
+                "endCursor": null
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]
