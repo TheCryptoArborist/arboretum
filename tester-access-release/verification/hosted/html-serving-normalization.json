@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-07T04:06:08.496360Z",
+  "origin": "https://www.treegrow.xyz",
+  "deployId": "6aeea0b254e028ece344267c",
+  "passed": true,
+  "method": "Parse source and public anchor start tags in order. Require identical other attribute values and the href to be exactly the same-origin resolved path with terminal .html removed, preserving query/fragment. Replace only those exact public start tags with original start tags and require every resulting byte to equal the source. Record raw tags and raw hashes.",
+  "rawByteIdenticalFiles": 95,
+  "htmlFilesWithVerifiedServingTransformation": 8,
+  "allOtherBytesIdentical": true,
+  "files": [
+    {
+      "path": "admin/claim-test/index.html",
+      "url": "https://www.treegrow.xyz/admin/claim-test/index.html",
+      "status": 200,
+      "sourceBytes": 11099,
+      "publicBytes": 11089,
+      "sourceSha1": "802de3150a65c931aeac34f984e48279ae97e7e6",
+      "sourceSha256": "79de64be2d9e2c9a9aa1fcabb85deebe98d2e529b3045e22e9b39153c1eceecf",
+      "publicSha1": "b25bbf2a271c0382d9a508ef94045a5dc465af6c",
+      "publicSha256": "2776c06f84faac1b99bdba313e53f3e6f9c9072b9b840e885cd3a827f14df4eb",
+      "rewrittenAnchorCount": 2,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 769,
+          "publicOffset": 769,
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 9497,
+          "publicOffset": 9492,
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "admin/gameplay-test/index.html",
+      "url": "https://www.treegrow.xyz/admin/gameplay-test/index.html",
+      "status": 200,
+      "sourceBytes": 10630,
+      "publicBytes": 10620,
+      "sourceSha1": "9fa87b894314b39c83b0bcf6a4d823f96d67b49e",
+      "sourceSha256": "91f3223d24265639d004aee605d7316869ae59e8bcf8a6f8a0f22fe511a666f6",
+      "publicSha1": "c7fb64b7aa02027e1b312b4c3a532f53d638ad3d",
+      "publicSha256": "e1f0ca6c70cc024a4f148abff07608320cd5b8b69c0544c13f433a92712665e3",
+      "rewrittenAnchorCount": 2,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 707,
+          "publicOffset": 707,
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 9520,
+          "publicOffset": 9515,
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "admin/season-test/index.html",
+      "url": "https://www.treegrow.xyz/admin/season-test/index.html",
+      "status": 200,
+      "sourceBytes": 10031,
+      "publicBytes": 10021,
+      "sourceSha1": "b0ec199ceb0135a92e7f4a45df75cdfbb9fe8b80",
+      "sourceSha256": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+      "publicSha1": "a79fae2b8221ca0a849f98b73f7fe79f218b4bf0",
+      "publicSha256": "3a4bee9d1daa191b3b4654024e507a66a2aea3eed4d45715be13a69e42d922e7",
+      "rewrittenAnchorCount": 2,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 732,
+          "publicOffset": 732,
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 8880,
+          "publicOffset": 8875,
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "url": "https://www.treegrow.xyz/admin/settlement-upgrade/index.html",
+      "status": 200,
+      "sourceBytes": 8921,
+      "publicBytes": 8916,
+      "sourceSha1": "cdc21e1a063b7211641bc699821e55bbc57dc1fa",
+      "sourceSha256": "a740c3cd27933dbeaafb3693b089d0df98b88b601e4186cd29cc0a511e7140d9",
+      "publicSha1": "32f6ae27babbb4ebaaaaea7a00e6a7d7fbd14044",
+      "publicSha256": "67be3bdd819e31f0c245703b797475cdf311b2a045a4d60947a6dbc6597e0350",
+      "rewrittenAnchorCount": 1,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 747,
+          "publicOffset": 747,
+          "sourceTag": "<a class=\"back-link\" href=\"/game.html\">",
+          "publicTag": "<a class='back-link' href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "admin/watering-test/index.html",
+      "url": "https://www.treegrow.xyz/admin/watering-test/index.html",
+      "status": 200,
+      "sourceBytes": 10550,
+      "publicBytes": 10540,
+      "sourceSha1": "9ab3c8fc5a4dc6e1c7eefcfdd5444f99090bdb14",
+      "sourceSha256": "ba6af36190631bb9a42cc67edde09b4aa4cf287c74c6e36795258c8ffa42f0de",
+      "publicSha1": "7a7a46e22b3b7ac972e474580613d1191b84f6b3",
+      "publicSha256": "bbae802e35eca12f7819b04bfee31d1ff876e05846b4e53c613b223b137ad51f",
+      "rewrittenAnchorCount": 2,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 776,
+          "publicOffset": 776,
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 8943,
+          "publicOffset": 8938,
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "game.html",
+      "url": "https://www.treegrow.xyz/game.html",
+      "status": 200,
+      "sourceBytes": 576478,
+      "publicBytes": 576453,
+      "sourceSha1": "61b870c3044aa336fc88bfc8a6a72cd002775e3e",
+      "sourceSha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "publicSha1": "8cdba77d10a96ff197439b42ff5fbbddc5d04754",
+      "publicSha256": "6e6787c575c71102ebaa1dc10007a1523a46282ce1998501b698a5a748680781",
+      "rewrittenAnchorCount": 6,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 226515,
+          "publicOffset": 226515,
+          "sourceTag": "<a class=\"sr-route\" href=\"/game.html\">",
+          "publicTag": "<a class='sr-route' href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 227955,
+          "publicOffset": 227950,
+          "sourceTag": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play \u2014 opens player guide in a new tab\">",
+          "publicTag": "<a aria-label='How to Play \u2014 opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 229422,
+          "publicOffset": 229413,
+          "sourceTag": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 242887,
+          "publicOffset": 242874,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#watering",
+          "publicHref": "/player-guide#watering",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 243022,
+          "publicOffset": 243005,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#tools",
+          "publicHref": "/player-guide#tools",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 285545,
+          "publicOffset": 285524,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#crates",
+          "publicHref": "/player-guide#crates",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "settlement-game.html",
+      "url": "https://www.treegrow.xyz/settlement-game.html",
+      "status": 200,
+      "sourceBytes": 580715,
+      "publicBytes": 580685,
+      "sourceSha1": "5d517f817e4e0ac3b80c1d6a43aabd61b37531a1",
+      "sourceSha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+      "publicSha1": "d6b259cc0b03141662494fdf29614814a28a7ba9",
+      "publicSha256": "604113521ca6bfff974cc6e0eb8020352d7fd84aaa538ae7e16a22bb82c60c36",
+      "rewrittenAnchorCount": 7,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 226525,
+          "publicOffset": 226525,
+          "sourceTag": "<a class=\"sr-route\" href=\"/game.html\">",
+          "publicTag": "<a class='sr-route' href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 227963,
+          "publicOffset": 227958,
+          "sourceTag": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play \u2014 opens player guide in a new tab\">",
+          "publicTag": "<a aria-label='How to Play \u2014 opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 229470,
+          "publicOffset": 229461,
+          "sourceTag": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 242979,
+          "publicOffset": 242966,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#watering",
+          "publicHref": "/player-guide#watering",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 243114,
+          "publicOffset": 243097,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#tools",
+          "publicHref": "/player-guide#tools",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 288797,
+          "publicOffset": 288776,
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#crates",
+          "publicHref": "/player-guide#crates",
+          "otherAttributeValuesIdentical": true
+        },
+        {
+          "sourceOffset": 334899,
+          "publicOffset": 334874,
+          "sourceTag": "<a href=\"/game.html\">",
+          "publicTag": "<a href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    },
+    {
+      "path": "tester-guide.html",
+      "url": "https://www.treegrow.xyz/tester-guide.html",
+      "status": 200,
+      "sourceBytes": 59488,
+      "publicBytes": 59483,
+      "sourceSha1": "4fccae59ed56919548eed2c5e59a9662e8d508fb",
+      "sourceSha256": "263268db650d27b42530ba40081ac5f1dcfa71ffd72cf88a3eebbcfef5e8a988",
+      "publicSha1": "7bfcd64e15f56be66978b27c1cf51ed17cfa4fbf",
+      "publicSha256": "fc420ae24c27eb75bceb693d9786edd881a85aa4a76f1eda6178c54183a5edc8",
+      "rewrittenAnchorCount": 1,
+      "rewrittenAnchors": [
+        {
+          "sourceOffset": 9695,
+          "publicOffset": 9695,
+          "sourceTag": "<a class=\"button\" href=\"/game.html\">",
+          "publicTag": "<a class='button' href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game",
+          "otherAttributeValuesIdentical": true
+        }
+      ],
+      "everyOtherByteIdentical": true,
+      "passed": true,
+      "redirects": []
+    }
+  ]
+}

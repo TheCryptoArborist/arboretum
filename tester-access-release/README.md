@@ -5,6 +5,18 @@ The project owner requested removal of the shared tester access code on
 website access policy on the dedicated Netlify site
 `d425445d-4980-49be-8ab2-12e7527ba281`.
 
+Published on **2026-11-07 at 03:53:39 UTC** from source commit
+`05c0a9d9799ba6bc096051650320099db3def8a8`, Netlify deploy
+`6aeea0b254e028ece344267c`. The original tester entrance was reloaded in a
+browser and opened `https://www.treegrow.xyz/admin/claim-test/` directly, without
+entering a code. The disconnected wallet controls remained disabled.
+
+Release records are under `verification/hosted/`. Both push and pull-request
+runs of the required **Settlement app integration review** workflow passed for
+the exact source commit. Other repository workflow results are recorded
+separately in `verification/hosted/ci.json`; this release does not claim that
+every historical workflow passed.
+
 ## Result
 
 - The garden, new-season review, and isolated owner/administrator pages and
@@ -36,6 +48,23 @@ The release retains the 103 application files from published deploy
 `calendar-reminder` backend bundle/runtime, both Edge Function names, no scheduled
 functions, and the original site's published deploy. Only `tester-gate` behavior
 changes. The preflight evidence records the actual deployed inventories.
+
+After publication, all 103 expected application paths were retrieved without
+tester credentials. Of those, 95 responses match the build byte for byte. Eight
+HTML responses contain only Netlify's verified pretty-URL transformation in 23
+anchor start tags: `.html` suffix removal, relative-link resolution, and tag
+quote/attribute-order serialization. Every other byte and every non-URL attribute
+value matches. The exact changed tags and raw response hashes are recorded in
+`verification/hosted/html-serving-normalization.json`.
+
+Post-publication backend and current-site checks used the connected Netlify
+tools; the local deployment credential file was no longer available. The
+connector confirmed the unchanged calendar bundle/runtime, no schedules, two
+edge functions, and the original site's unchanged publication. An authenticated
+post-publication file inventory and internal edge-function names were not
+re-read; the public verification covers all 103 expected application paths and
+does not enumerate additional remote paths. Source files and all application
+bytes remain bound to the submitted archive and saved baseline.
 
 The focused tester-gate tests cover the dedicated-site exception and the
 original gate together. Build policy/panel checks, the reproducible review build,
