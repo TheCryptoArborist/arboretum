@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-11-05T03:21:28.025Z",
+  "verifiedAt": "2026-11-07T03:45:16.881Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
   "buildContext": null,
   "siteId": null,
@@ -18,7 +18,7 @@
     "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
     "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
     "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
-    "netlify/edge-functions/tester-gate.ts": "14b27c40ca864647226a84e6dea15fe688f1b3ed817ee752f25d85531d846688",
+    "netlify/edge-functions/tester-gate.ts": "8e398bb728f2c7f05236bdadacac444b0ac419f4eff4554af7677cf325ab4837",
     "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
     "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
   },

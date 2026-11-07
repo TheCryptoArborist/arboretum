@@ -2,7 +2,12 @@ import type { Config, Context } from "@netlify/edge-functions";
 
 declare const Netlify: { env: { get(name: string): string | undefined } };
 
-// Only these files are public. Never add a wildcard for game JS, guides or APIs.
+// The dedicated TreeGrow testing site no longer requires a shared access code.
+// Use Netlify's trusted site context, never a hostname or request header, to opt in.
+const CODE_FREE_TEST_SITE_ID = "d425445d-4980-49be-8ab2-12e7527ba281";
+const EXPIRED_TESTER_COOKIE = "__Host-arboretum_tester=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0";
+
+// On other sites, only these files are public. Keep their existing access policy.
 function publicPaths(): Set<string> {
   return new Set(["/", "/index.html", "/robots.txt", "/sitemap.xml",
     "/prelaunch/site.css", "/prelaunch/forest.jpg", "/prelaunch/hero.png",
@@ -41,6 +46,15 @@ function settlementReturn(params: URLSearchParams): SettlementReturn {
   if (values[0] === "watering-test") return "watering-test";
   if (values[0] === "claim-test") return "claim-test";
   return null;
+}
+function settlementDestination(returnToSettlement: SettlementReturn): string {
+  return returnToSettlement === "settlement-upgrade" ? "/admin/settlement-upgrade/" :
+    returnToSettlement === "settlement-setup" ? "/admin/settlement-setup/" :
+    returnToSettlement === "new-seasons" ? "/settlement-game.html" :
+    returnToSettlement === "season-test" ? "/admin/season-test/" :
+    returnToSettlement === "gameplay-test" ? "/admin/gameplay-test/" :
+    returnToSettlement === "watering-test" ? "/admin/watering-test/" :
+    returnToSettlement === "claim-test" ? "/admin/claim-test/" : "/game.html";
 }
 function htmlPage(message = "", configured = true, status = 200, returnToSettlement: SettlementReturn = null): Response {
   // All interpolated strings below are fixed server messages, never request input.
@@ -131,6 +145,35 @@ export default async function testerGate(request: Request, context: Context): Pr
       if (!["GET","HEAD"].includes(request.method)) return text("Method not allowed", 405);
       return publicCsp(await context.next());
     }
+    if (context.site?.id === CODE_FREE_TEST_SITE_ID) {
+      // Keep saved entrance links working without showing a password form.
+      if (["/tester-access", "/tester-access/", "/tester-access.html"].includes(path)) {
+        if (["GET", "HEAD"].includes(request.method)) {
+          return secure(Response.redirect(`${url.origin}${settlementDestination(settlementReturn(url.searchParams))}`, 303));
+        }
+        if (request.method !== "POST") return text("Method not allowed", 405);
+        if (!sameOrigin(request)) return text("Not permitted", 403);
+        if (!/^application\/x-www-form-urlencoded(?:;|$)/i.test(request.headers.get("content-type") ?? "")) return text("Unsupported content type", 415);
+        const body = await boundedBody(request);
+        if (body === null) return text("Request too large", 413);
+        // A form left open before this release can continue, but creates no session.
+        const destination = settlementDestination(settlementReturn(new URLSearchParams(body)));
+        const response = secure(Response.redirect(`${url.origin}${destination}`, 303));
+        response.headers.set("Set-Cookie", EXPIRED_TESTER_COOKIE);
+        return response;
+      }
+      if (path === "/tester-logout") {
+        if (request.method !== "POST" || !sameOrigin(request)) return text("Not permitted", 403);
+        const response = secure(Response.redirect(`${url.origin}/game.html`, 303));
+        response.headers.set("Set-Cookie", EXPIRED_TESTER_COOKIE);
+        return response;
+      }
+      // Browsing is code-free. This does not grant server-side write access or
+      // alter the separate wallet/account and onchain transaction authorization.
+      if (!["GET", "HEAD"].includes(request.method)) return text("Method not allowed", 405);
+      if (path === "/play" || path === "/play/") return secure(Response.redirect(`${url.origin}/game.html`, 302));
+      return secure(await context.next());
+    }
     const password = Netlify.env.get("ARBORETUM_TESTER_PASSWORD") ?? "";
     const secret = Netlify.env.get("ARBORETUM_SESSION_SECRET") ?? "";
     const configured = password.length >= 32 && password.length <= 256 && secret.length >= 64;
@@ -138,7 +181,7 @@ export default async function testerGate(request: Request, context: Context): Pr
     if (path === "/tester-logout") {
       if (request.method !== "POST" || !sameOrigin(request)) return text("Not permitted", 403);
       const response = secure(Response.redirect(`${url.origin}/tester-access`, 303));
-      response.headers.set("Set-Cookie", "__Host-arboretum_tester=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0");
+      response.headers.set("Set-Cookie", EXPIRED_TESTER_COOKIE);
       return response;
     }
     if (["/tester-access", "/tester-access/", "/tester-access.html"].includes(path)) {
@@ -162,13 +205,7 @@ export default async function testerGate(request: Request, context: Context): Pr
       const key = await sessionKey(secret, password);
       const payload = b64(new TextEncoder().encode(JSON.stringify({v:1, host:url.host, iat:now, exp:now+43_200, nonce:crypto.randomUUID()})));
       const signature = b64(new Uint8Array(await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(payload))));
-      const destination = returnToSettlement === "settlement-upgrade" ? "/admin/settlement-upgrade/" :
-        returnToSettlement === "settlement-setup" ? "/admin/settlement-setup/" :
-        returnToSettlement === "new-seasons" ? "/settlement-game.html" :
-        returnToSettlement === "season-test" ? "/admin/season-test/" :
-        returnToSettlement === "gameplay-test" ? "/admin/gameplay-test/" :
-        returnToSettlement === "watering-test" ? "/admin/watering-test/" :
-        returnToSettlement === "claim-test" ? "/admin/claim-test/" : "/game.html";
+      const destination = settlementDestination(returnToSettlement);
       const response = secure(Response.redirect(`${url.origin}${destination}`, 303));
       response.headers.set("Set-Cookie", `__Host-arboretum_tester=${payload}.${signature}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200`);
       return response;
@@ -205,7 +242,7 @@ export default async function testerGate(request: Request, context: Context): Pr
   }
 }
 
-// The public handbook has a dedicated read-only handler. Gameplay stays gated.
+// The public handbook has a dedicated read-only handler on every site.
 export const config: Config = { path: "/*", excludedPath: [
   "/player-guide", "/player-guide.html", "/player-guide/",
   "/guide/player-guide.css", "/guide/player-guide.js"
