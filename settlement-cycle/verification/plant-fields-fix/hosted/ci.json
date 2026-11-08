@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "1062f33c881939de53ca10529ef81b5d8dbabc89",
+  "sourceTree": "84bf53034518c3e749411fb8a2fea948c3b4c8c3",
+  "requiredCI": [
+    {
+      "id": 42493855420,
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42493855420"
+    },
+    {
+      "id": 42493848886,
+      "event": "push",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42493848886"
+    }
+  ]
+}

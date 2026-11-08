@@ -35,7 +35,14 @@ type and value. The other three planting field changes remain required.
 
 See the [planting correction record](verification/plant-fields-fix/README.md)
 for the untouched reproduction, passing live unsigned preview, tests and
-publication status. `release.py --plant-fields-hotfix` pins the published
+publication status. The correction was published at **9:17 AM America/Chicago
+on November 8, 2026**, from `1062f33c881939de53ca10529ef81b5d8dbabc89`, as
+deployment `6af09274b50143d105dbb63a`. All 106 authenticated assets matched the
+tested build, the other 105 files stayed byte-identical, and all 24 public HTTP
+checks passed. Live browser recovery of the actual start receipt returned to
+**Plant a Seed**. See the [completed hotfix release](verification/plant-fields-fix/hosted/README.md).
+
+`release.py --plant-fields-hotfix` pins the published
 initial Season 2 deployment and allows only `admin/season-two/admin.mjs` to
 change, preserving the other 105 application files. The growing season and
 all transaction economics stay unchanged.

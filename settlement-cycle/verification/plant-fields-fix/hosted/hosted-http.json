@@ -1,0 +1,202 @@
+{
+  "verifiedAt": "2026-11-08T15:19:03.309533+00:00",
+  "origin": "https://www.treegrow.xyz",
+  "deployId": "6af09274b50143d105dbb63a",
+  "checks": [
+    {
+      "check": "Anonymous direct GET: /admin/season-two/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/season-two/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/season-two/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/season-two/admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/season-two/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/season-two/admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct GET: /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous direct HEAD: /admin/claim-test/",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance GET: /tester-access",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance HEAD: /tester-access",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance GET: /tester-access/",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance HEAD: /tester-access/",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance GET: /tester-access.html",
+      "passed": true
+    },
+    {
+      "check": "Fixed Season 2 entrance HEAD: /tester-access.html",
+      "passed": true
+    },
+    {
+      "check": "Unknown or duplicate destination falls back: next=https://example.invalid/",
+      "passed": true
+    },
+    {
+      "check": "Unknown or duplicate destination falls back: next=season-two&next=season-two",
+      "passed": true
+    },
+    {
+      "check": "Direct Season 2 writes rejected",
+      "passed": true
+    },
+    {
+      "check": "Calendar download preserved",
+      "passed": true
+    },
+    {
+      "check": "Public page preserved: /",
+      "passed": true
+    },
+    {
+      "check": "Public page preserved: /player-guide",
+      "passed": true
+    },
+    {
+      "check": "Target remains on submitted deployment",
+      "passed": true
+    },
+    {
+      "check": "Original site remains unchanged",
+      "passed": true
+    }
+  ],
+  "htmlServingChecks": [
+    {
+      "path": "admin/season-two/index.html",
+      "sourceSha256": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+      "publicSha256": "4eff683813392bcaac5f8565c3c0e16a42c595ceb8b0dc0931060b6be9fe3d74",
+      "rawBytesIdentical": false,
+      "verifiedAnchorRewrites": [
+        {
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game"
+        },
+        {
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game"
+        }
+      ],
+      "allOtherBytesIdentical": true
+    },
+    {
+      "path": "game.html",
+      "sourceSha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "publicSha256": "6e6787c575c71102ebaa1dc10007a1523a46282ce1998501b698a5a748680781",
+      "rawBytesIdentical": false,
+      "verifiedAnchorRewrites": [
+        {
+          "sourceTag": "<a class=\"sr-route\" href=\"/game.html\">",
+          "publicTag": "<a class='sr-route' href='/game'>",
+          "sourceHref": "/game.html",
+          "publicHref": "/game"
+        },
+        {
+          "sourceTag": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play \u2014 opens player guide in a new tab\">",
+          "publicTag": "<a aria-label='How to Play \u2014 opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide"
+        },
+        {
+          "sourceTag": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html",
+          "publicHref": "/player-guide"
+        },
+        {
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#watering",
+          "publicHref": "/player-guide#watering"
+        },
+        {
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#tools",
+          "publicHref": "/player-guide#tools"
+        },
+        {
+          "sourceTag": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">",
+          "publicTag": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>",
+          "sourceHref": "player-guide.html#crates",
+          "publicHref": "/player-guide#crates"
+        }
+      ],
+      "allOtherBytesIdentical": true
+    },
+    {
+      "path": "admin/claim-test/index.html",
+      "sourceSha256": "79de64be2d9e2c9a9aa1fcabb85deebe98d2e529b3045e22e9b39153c1eceecf",
+      "publicSha256": "2776c06f84faac1b99bdba313e53f3e6f9c9072b9b840e885cd3a827f14df4eb",
+      "rawBytesIdentical": false,
+      "verifiedAnchorRewrites": [
+        {
+          "sourceTag": "<a class=\"back-link\" href=\"/settlement-game.html\">",
+          "publicTag": "<a class='back-link' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game"
+        },
+        {
+          "sourceTag": "<a href=\"/settlement-game.html\" class=\"button secondary\">",
+          "publicTag": "<a class='button secondary' href='/settlement-game'>",
+          "sourceHref": "/settlement-game.html",
+          "publicHref": "/settlement-game"
+        }
+      ],
+      "allOtherBytesIdentical": true
+    }
+  ],
+  "passed": true,
+  "anonymousOnly": true,
+  "credentialsWritten": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "HTTP checks establish response behavior, not browser JavaScript or wallet execution.",
+    "HTML may have narrowly verified Netlify anchor rewrites. Authenticated raw assets and complete inventory are checked by verify."
+  ]
+}

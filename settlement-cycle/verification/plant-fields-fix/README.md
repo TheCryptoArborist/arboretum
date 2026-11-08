@@ -2,11 +2,17 @@
 
 ## Status
 
-The source correction is validated locally and against a fresh unsigned Sui
-mainnet simulation. Publication is pending; this record does not claim that
-the correction is already hosted. A completed publication record will be
-added in `hosted/` after the exact saved source passes required CI and deploy
-verification.
+The correction is **published and verified** on `www.treegrow.xyz` as of
+**2026-11-08 15:17:26 UTC**, from source
+`1062f33c881939de53ca10529ef81b5d8dbabc89`, deployment
+`6af09274b50143d105dbb63a`. Both required CI runs passed. All 106 authenticated
+application assets matched the tested source build, and all 24 public HTTP
+checks passed. The live browser recovered the actual Season 2 start receipt
+and returned to **Plant a Seed**.
+
+See the [completed publication record](hosted/README.md). The local
+`validation.json` and initial preflight retain their original prepublication
+status; the hosted evidence documents what happened subsequently.
 
 The actual Season 2 rollover is
 `9SqBoBCyVA4A1mWfmBid7dGxny4ba2tzCgVPLiRS77z4`. The season began on
