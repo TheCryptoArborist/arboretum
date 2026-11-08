@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "ed128b295e80701067a0f74c66e6a1ae3e6b709b",
+  "sourceTree": "27b58ad8371191c2fe2c2c6ee79fb57e06476665",
+  "requiredCI": [
+    {
+      "id": 42488362380,
+      "event": "pull_request",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42488362380"
+    },
+    {
+      "id": 42488357464,
+      "event": "push",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42488357464"
+    }
+  ],
+  "recordScope": "Required Settlement app integration review runs for the exact source before publication. Publication is recorded in submission.json and hosted-assets.json."
+}

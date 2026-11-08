@@ -6,6 +6,22 @@ This isolated page brings the next test cycle together at
 not require a tester code. Other Netlify site contexts retain their existing
 access policy.
 
+## Published release
+
+The page was published on **November 8, 2026, at 8:34 AM America/Chicago**
+from source commit `ed128b295e80701067a0f74c66e6a1ae3e6b709b`, as Netlify
+deployment `6af08867e808541bad23b5b2`. Authenticated verification matched all
+106 application assets and preserved all 103 previous files. All 24 public
+HTTP checks passed. The live browser showed **Mainnet verified** and
+**Ready for Season 2**, and a manual refresh returned a newer checkpoint.
+The desktop layout was inspected at 1348 CSS pixels; mobile visual checking
+remains unverified because this browser blocks DevTools. No wallet was
+connected and no Sui transaction was submitted during deployment.
+
+See the [completed release record](verification/hosted/README.md). Earlier
+local validation files retain their original prepublication status; the hosted
+record documents the subsequent deployment and browser checks.
+
 Publishing the page does not archive a season, start a season, plant, water or
 claim. The owner reviews and approves each transaction in the Slush extension.
 The general garden remains read-only; this does not activate the prepared
