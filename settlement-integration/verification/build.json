@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "verifiedAt": "2026-11-07T03:45:16.881Z",
+  "verifiedAt": "2026-11-08T14:05:13.482Z",
   "parentCommit": "ba6faff6de7c446599a605ffa95369a325a12e3e",
-  "buildContext": null,
-  "siteId": null,
-  "deploymentRole": "isolated-review",
-  "previewOrigin": null,
+  "buildContext": "production",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "deploymentRole": "dedicated-preview",
+  "previewOrigin": "https://www.treegrow.xyz",
   "reviewOnly": true,
   "newSeasonsConfigured": true,
   "newSeasonsReviewAvailable": true,
@@ -18,7 +18,7 @@
     "sui-sdk.bundle.js": "8ad797a87557f50b3473c533225bf1778361ec689707b8b70a22632990c6ca44",
     "contract/sources/arboretum.move": "f0356e68c676e2e9864cce2d5a8593106ef9c3550c30e4b9a2b0b359620c2aa2",
     "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
-    "netlify/edge-functions/tester-gate.ts": "8e398bb728f2c7f05236bdadacac444b0ac419f4eff4554af7677cf325ab4837",
+    "netlify/edge-functions/tester-gate.ts": "b4128957ab70780f4a1e8e041f1e675152392bda5699e5fb7cb4a2886612f791",
     "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
     "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68"
   },
@@ -162,6 +162,34 @@
       "admin/claim-test/admin.mjs": "d252b4b26e1a0fdc0ac7436e72bee5410a40add4f28a244e69c5894fdde6516a",
       "admin/claim-test/index.html": "79de64be2d9e2c9a9aa1fcabb85deebe98d2e529b3045e22e9b39153c1eceecf"
     }
+  },
+  "ownerCycle": {
+    "route": "/admin/season-two/",
+    "authorizedOrigin": "https://www.treegrow.xyz",
+    "inventoryVersion": 1,
+    "seasonId": 2,
+    "durationMs": "172800000",
+    "ownerWalletApprovalRequired": true,
+    "transactionScope": "owner-season-two-48-hour-cycle",
+    "testerCodeRequiredOnDedicatedSite": false,
+    "generalGameplayEnabled": false,
+    "productionUpgradeEnabled": false,
+    "emittedSha256": {
+      "admin/season-two/admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+      "admin/season-two/admin.mjs": "775f68854b97a9b5aca72f9fc7e68658f5e33857cdecd14708dffb1797aea11a",
+      "admin/season-two/index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14"
+    }
+  },
+  "cyclePreservation": {
+    "baselineDeployId": "6aeea0b254e028ece344267c",
+    "existingApplicationFilesPreserved": 103,
+    "changedApplicationFiles": [],
+    "addedRuntimeFiles": [
+      "admin/season-two/admin.css",
+      "admin/season-two/admin.mjs",
+      "admin/season-two/index.html"
+    ],
+    "completeApplicationFileCount": 106
   },
   "evidencePublished": false,
   "hostedPreviewVerified": false,

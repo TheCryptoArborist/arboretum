@@ -1,0 +1,36 @@
+{
+  "reviewedAt": "2026-11-08T14:00:13.492Z",
+  "status": "CORE_VERIFICATION_PASSED",
+  "testCommand": "node --test settlement-cycle/rollover-core.test.mjs",
+  "tests": 45,
+  "passed": 45,
+  "failed": 0,
+  "liveEvidence": "mainnet-scoped-20261108",
+  "liveEvidenceReplayedByTests": true,
+  "signatures": 0,
+  "submissions": 0,
+  "mystenSkillsRevision": "495528ab09a75480847f5b9668adc163817bb296",
+  "readmeAtRevisionMatchesInitialLiveRead": true,
+  "skillsRead": [
+    "README.md",
+    "ptbs/SKILL.md",
+    "ptbs/building.md",
+    "ptbs/commands.md",
+    "accessing-data/SKILL.md",
+    "accessing-data/graphql.md",
+    "sui-move/SKILL.md",
+    "sui-move/move.md",
+    "move-security/SKILL.md",
+    "move-security/access-control.md",
+    "move-security/best-practices.md",
+    "object-model/SKILL.md",
+    "object-model/ownership.md"
+  ],
+  "sourceSha256": {
+    "common.mjs": "74e27172dcbbf64cf130d25d78de39449409c81137ff215cec46a1cb3a9fa469",
+    "rollover-core.mjs": "21a86f08166bef5f82b9a456d119d34baa4901ee0237281f56770cf3e295122c",
+    "rollover-fixtures.mjs": "c5f660e65b594ed1e0b8a1c54e7fc53b53b2ae2740cc9b44922265266ec813fd",
+    "rollover-core.test.mjs": "f3a572bd65c4ad2dc63aa25754edcfc89007b8b8ab52952c0f5429d693b33f79",
+    "check-live.mjs": "46e84aff13bb5c69067c1c2fad378e08b3da935352943998f43c501fed8801ec"
+  }
+}

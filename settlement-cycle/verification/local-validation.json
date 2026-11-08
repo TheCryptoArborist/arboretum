@@ -1,0 +1,35 @@
+{
+  "verifiedAt": "2026-11-08T14:06:53.494683+00:00",
+  "nodeTests": {
+    "passed": 103,
+    "failed": 0
+  },
+  "releaseTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "testerGateAndBuildPolicyTests": {
+    "passed": 56,
+    "failed": 0
+  },
+  "repositoryLint": "passed",
+  "sourceSha256": {
+    "admin.mjs": "9d622e5ce5f8ef47ffb3ee2176add77ca947d7c61bcb3402252a54a4b4abe6ed",
+    "admin.test.mjs": "be835f0bf6eeaa1eafdd6db724b43b8cd8289cc927f88ad7e3c827dc8c7f34a0",
+    "index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+    "admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+    "common.mjs": "74e27172dcbbf64cf130d25d78de39449409c81137ff215cec46a1cb3a9fa469",
+    "rollover-core.mjs": "21a86f08166bef5f82b9a456d119d34baa4901ee0237281f56770cf3e295122c",
+    "rollover-core.test.mjs": "f3a572bd65c4ad2dc63aa25754edcfc89007b8b8ab52952c0f5429d693b33f79",
+    "care-core.mjs": "88ab0ef60b875b62a6deae1c69d6f7453124ee3c7c00bee97273794dd2b12239",
+    "care-core.test.mjs": "12067b57ed295118b49151416783454efadf99a6f2da89662171ad566c0c6eed",
+    "build.mjs": "5f7d9176dae768951a621ff0b4ff138763f589d9c7461cda17502ff87d9b57a1",
+    "release.py": "e6216ed60409bcd1d630639660a348ddac85314ea19459688070c2d54cb1d15a",
+    "test_release.py": "4be7e0903cb4db07e3270a39279bcff08980b42b9f4835b29615ef7655f269ae"
+  },
+  "liveValidation": "Unsigned rollover simulation and read-only current/historical chain and dynamic-field queries only. All future care receipts in tests are synthetic.",
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "browserValidation": "Blocked locally: normal Chromium process failed to create its Unix socket; the supported cloud browser could not reach the loopback preview. Hosted browser verification remains pending.",
+  "deploymentStatus": "Not submitted; normal Netlify authentication is required."
+}

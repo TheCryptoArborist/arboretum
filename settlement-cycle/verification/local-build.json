@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-08T14:06:24.765875+00:00",
+  "sourceParentCommit": "850ab97b7d84f13b2059ef3ca03324cc02754819",
+  "sourceWasCommitted": false,
+  "method": "Final local production-context integration build followed by the offline release preservation check. This is not deployment verification.",
+  "buildVerifiedAt": "2026-11-08T14:05:13.482Z",
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "baselineDeployId": "6aeea0b254e028ece344267c",
+  "preservation": {
+    "existingApplicationFilesPreserved": 103,
+    "changedApplicationFiles": [],
+    "addedRuntimeFiles": [
+      "admin/season-two/index.html",
+      "admin/season-two/admin.css",
+      "admin/season-two/admin.mjs"
+    ],
+    "completeApplicationFileCount": 106,
+    "allPreviousApplicationBytesUnchanged": true
+  },
+  "sourceSha256": {
+    "settlement-cycle/index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+    "settlement-cycle/admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+    "settlement-cycle/admin.mjs": "9d622e5ce5f8ef47ffb3ee2176add77ca947d7c61bcb3402252a54a4b4abe6ed",
+    "settlement-cycle/common.mjs": "74e27172dcbbf64cf130d25d78de39449409c81137ff215cec46a1cb3a9fa469",
+    "settlement-cycle/rollover-core.mjs": "21a86f08166bef5f82b9a456d119d34baa4901ee0237281f56770cf3e295122c",
+    "settlement-cycle/care-core.mjs": "88ab0ef60b875b62a6deae1c69d6f7453124ee3c7c00bee97273794dd2b12239",
+    "settlement-cycle/build.mjs": "5f7d9176dae768951a621ff0b4ff138763f589d9c7461cda17502ff87d9b57a1",
+    "settlement-cycle/release.py": "e6216ed60409bcd1d630639660a348ddac85314ea19459688070c2d54cb1d15a",
+    "netlify/edge-functions/tester-gate.ts": "b4128957ab70780f4a1e8e041f1e675152392bda5699e5fb7cb4a2886612f791",
+    "settlement-integration/build-review.mjs": "ef19e443964ea26f8eb30e404d25fa93680f66d1664fe929214df1e5fc3bad32"
+  },
+  "runtimeSha256": {
+    "admin/season-two/index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+    "admin/season-two/admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+    "admin/season-two/admin.mjs": "775f68854b97a9b5aca72f9fc7e68658f5e33857cdecd14708dffb1797aea11a"
+  },
+  "commands": [
+    "NETLIFY=true CONTEXT=production SITE_ID=d425445d-4980-49be-8ab2-12e7527ba281 node scripts/build-site.mjs",
+    "python3 settlement-cycle/release.py preserve /workspace/scratch/bf00c1fabb32/season-two-integration-check"
+  ],
+  "browserStatus": "Local Playwright could not launch because Chromium process-singleton socket creation was denied. No viewport or mainnet read was executed by that attempted smoke check. See browser/summary.json.",
+  "hostedVerified": false
+}

@@ -25,6 +25,59 @@ const post = (values, path = '/tester-access', headers = {}) => request(path, {
 });
 const hiddenMarker = /<input type="hidden" name="next" value="settlement-upgrade">/;
 
+test('Season 2 remains protected on other sites and carries only its fixed login destination', async () => {
+  for (const path of ['/admin/season-two', '/admin/season-two/', '/admin/season-two/index.html']) {
+    const before = originCalls;
+    const response = await gate(navigate(path + '?next=https://attacker.example'), context);
+    assert.equal(response.status, 303);
+    assert.equal(response.headers.get('location'), origin + '/tester-access?next=season-two');
+    assert.equal(response.headers.get('set-cookie'), null);
+    assert.equal(originCalls, before);
+  }
+  for (const path of ['/admin/season-two/extra', '/admin/season-two-extra', '/admin/season-two/index.html/']) {
+    const response = await gate(navigate(path), context);
+    assert.equal(response.headers.get('location'), origin + '/tester-access');
+  }
+  const entrancePage = await gate(request('/tester-access?next=season-two'), context);
+  const html = await entrancePage.text();
+  assert.match(html, /name="next" value="season-two"/);
+  assert.match(html, /Continue to Season 2/);
+  assert.doesNotMatch(html, /<script/i);
+  const wrong = await gate(post({ password: 'incorrect', next: 'season-two' }), context);
+  assert.equal(wrong.status, 401);
+  assert.equal(wrong.headers.get('set-cookie'), null);
+  assert.match(await wrong.text(), /name="next" value="season-two"/);
+  const login = await gate(post({ password, next: 'season-two' }, '/tester-access?next=claim-test'), context);
+  assert.equal(login.status, 303);
+  assert.equal(login.headers.get('location'), origin + '/admin/season-two/');
+  const cookie = login.headers.get('set-cookie');
+  assert.match(cookie, /; Path=\/; HttpOnly; Secure; SameSite=Strict; Max-Age=43200$/);
+  assert.doesNotMatch(cookie, /Domain=/);
+  const inside = await gate(request('/admin/season-two/', { headers: { Cookie: cookie.split(';')[0] } }), context);
+  assert.equal(inside.status, 200);
+  for (const name of ['admin.mjs', 'admin.css']) {
+    assert.equal((await gate(request('/admin/season-two/' + name + '?next=season-two'), context)).status, 401);
+  }
+});
+
+test('Season 2 markers cannot add a redirect target or bypass the gated-site origin checks', async () => {
+  for (const next of ['Season-Two', ' season-two', 'season-two ', '/admin/season-two/', 'season-two/extra', '%73eason-two']) {
+    const page = await gate(request('/tester-access?' + new URLSearchParams({ next })), context);
+    assert.doesNotMatch(await page.text(), /name="next"/);
+    const response = await gate(post({ password, next }), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  for (const other of ['season-two', 'claim-test', 'https://attacker.example']) {
+    const response = await gate(post([['password', password], ['next', 'season-two'], ['next', other]]), context);
+    assert.equal(response.headers.get('location'), origin + '/game.html');
+  }
+  for (const headers of [{ Origin: 'null' }, { Origin: 'https://attacker.example' }, { 'Sec-Fetch-Site': 'cross-site' }]) {
+    const blocked = await gate(post({ password, next: 'season-two' }, '/tester-access', headers), context);
+    assert.equal(blocked.status, 403);
+    assert.equal(blocked.headers.get('set-cookie'), null);
+  }
+});
+
 test('first watering preserves the intended route through native login and rejects cross-origin access', async () => {
   for (const path of ['/admin/watering-test', '/admin/watering-test/', '/admin/watering-test/index.html']) {
     const response = await gate(navigate(path + '?next=https://attacker.example'), context);
@@ -614,6 +667,7 @@ const fixedDestinations = [
   ['gameplay-test', '/admin/gameplay-test/'],
   ['watering-test', '/admin/watering-test/'],
   ['claim-test', '/admin/claim-test/'],
+  ['season-two', '/admin/season-two/'],
 ];
 function assertExpiredTesterCookie(response) {
   assert.equal(response.headers.get('set-cookie'),
@@ -625,7 +679,8 @@ test('the dedicated site serves ordinary GET and HEAD content without tester cre
   env.ARBORETUM_TESTER_PASSWORD = ''; env.ARBORETUM_SESSION_SECRET = '';
   try {
     for (const path of ['/game.html', '/game.js', '/settlement-game.html', '/admin/claim-test/',
-      '/admin/claim-test/admin.mjs', '/admin/claim-test/admin.css', '/.netlify/functions/calendar-reminder']) {
+      '/admin/claim-test/admin.mjs', '/admin/claim-test/admin.css', '/admin/season-two/',
+      '/admin/season-two/admin.mjs', '/admin/season-two/admin.css', '/.netlify/functions/calendar-reminder']) {
       for (const method of ['GET', 'HEAD']) {
         const before = originCalls;
         const response = await gate(request(path, { method }), dedicatedContext);
@@ -805,7 +860,8 @@ test('dedicated-site logout only accepts same-origin POST and expires the old se
 });
 
 test('the dedicated-site exception rejects other request methods without invoking downstream content or the legacy login', async () => {
-  for (const path of ['/game.html', '/admin/claim-test/', '/admin/claim-test/admin.mjs', '/play', '/play/',
+  for (const path of ['/game.html', '/admin/claim-test/', '/admin/claim-test/admin.mjs',
+    '/admin/season-two/', '/admin/season-two/admin.mjs', '/play', '/play/',
     '/.netlify/functions/calendar-reminder']) {
     for (const method of ['POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']) {
       const before = originCalls;

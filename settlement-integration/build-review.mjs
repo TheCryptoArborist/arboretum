@@ -18,6 +18,7 @@ import { buildAdministratorSeason } from '../settlement-season/build.mjs';
 import { buildOwnerGameplay } from '../settlement-gameplay/build.mjs';
 import { buildOwnerWatering } from '../settlement-watering/build.mjs';
 import { buildOwnerClaim } from '../settlement-claim/build.mjs';
+import { buildOwnerCycle, verifyCyclePreservation } from '../settlement-cycle/build.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -128,6 +129,7 @@ const administratorSeason = await buildAdministratorSeason();
 const ownerGameplay = await buildOwnerGameplay();
 const ownerWatering = await buildOwnerWatering();
 const ownerClaim = await buildOwnerClaim();
+const ownerCycle = await buildOwnerCycle();
 const allFiles=[];
 function list(dir) {
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -136,6 +138,7 @@ function list(dir) {
   }
 }
 list(dist);
+const cyclePreservation = verifyCyclePreservation(allFiles);
 for(const file of allFiles) assert.ok(!/(^|\/)(release|legacy-reconciliation|evidence|__pycache__|node_modules|\.git)(\/|$)/.test(file),
   'Source or review evidence was included in the published assets: '+file);
 assert.deepEqual(fs.readdirSync(path.join(dist,'settlement-integration')).sort(),
@@ -162,7 +165,7 @@ const report={
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
   transactionSubmissionEnabled:false,transactionSubmissionScope:'gameplay-review',
-  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,ownerClaim,evidencePublished:false,
+  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,ownerClaim,ownerCycle,cyclePreservation,evidencePublished:false,
   hostedPreviewVerified:false,
   gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };
