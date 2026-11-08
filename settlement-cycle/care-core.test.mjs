@@ -1,16 +1,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Transaction } from '@mysten/sui/transactions';
-import { EXPECTED, contents, inspectState, SUI_TYPE } from './common.mjs';
-import { assertCycleReceipt } from './rollover-core.mjs';
+import { EXPECTED, contents, dataOf, reference, inspectState, SUI_TYPE } from './common.mjs';
+import { assertCycleReceipt, validateConfirmedRollover } from './rollover-core.mjs';
 import { observedRolloverInputs, observedRolloverProof } from './rollover-fixtures.mjs';
 import * as care from './care-core.mjs';
-import { createCareFixtures, careLiveInput, careFieldsResponse, makeConfirmedCareFailure, observedCareFields } from './care-fixtures.mjs';
+import { createCareFixtures, careLiveInput, careFieldsResponse, makeConfirmedCareFailure, observedCareFields, observedUnchangedPlant } from './care-fixtures.mjs';
 
 const f = await createCareFixtures();
+const unchanged = await createCareFixtures({ unchangedGrowth: true });
 const clone = value => structuredClone(value);
 const nameOf = action => action[0].toUpperCase() + action.slice(1);
-const options = item => ({ nowMs: item.now });
+const options = item => ({ nowMs: item.now,
+  ...(item.unchangedPlantField ? { unchangedPlantField: item.unchangedPlantField } : {}) });
 const context = item => [item.cycle, ...(item.action === 'plant' ? [] : [item.planting])];
 const simulate = (item, response = item.simulation, packet = item.packet, previous = item.state) =>
   care[`validate${nameOf(item.action)}Simulation`](response, packet, previous, item.proof, ...context(item), options(item));
@@ -55,6 +57,137 @@ test('processed Season 1 inventory and existing owner tables permit one reused N
   assert.deepEqual(contents(f.plant.receipt.fieldOutputs.seedsByOwner).value, [EXPECTED.previousSeedId, f.plant.seedId]);
   for (const table of ['seeds_by_owner', 'player_growth', 'player_growth_season', 'planted_saplings'])
     assert.deepEqual(contents(f.plant.receipt.registryOutput)[table], contents(f.cycle.registryOutput)[table]);
+});
+
+test('the original mainnet planting reproduction verifies an explicitly unchanged 10-GP field', async () => {
+  const capture = observedUnchangedPlant(), nowMs = Date.parse(capture.simulation.capturedAt);
+  const cycle = await validateConfirmedRollover(capture.rollover, dataOf(capture.rollover).transaction.digest, capture.proof, { nowMs });
+  const { transaction: _transaction, ...live } = dataOf(capture.rollover);
+  const state = care.attachPlantFields(await inspectState({ data: live }, capture.proof, { nowMs }), capture.fields, EXPECTED.previousNftId);
+  const packet = await care.preparePlant(state, EXPECTED.previousNftId, cycle, { nowMs });
+  const actualEffects = dataOf(capture.simulation).simulateTransaction.effects;
+  assert.equal(actualEffects.objectChanges.nodes.some(x => x.address === state.careFields.playerGrowth.address), false);
+  assert.deepEqual(actualEffects.effectsJson.unchangedLoadedRuntimeObjects,
+    [{ objectId: state.careFields.playerGrowth.address, version: String(state.careFields.playerGrowth.version) }]);
+  const result = await care.validatePlantSimulation(capture.simulation, packet, state, capture.proof, cycle, { nowMs });
+  assert.equal(result.status, 'simulated'); assert.equal(result.growthPoints, '10');
+  assert.equal(result.gasEstimateMist, '2959058');
+  assert.deepEqual(reference(result.fieldOutputs.playerGrowth), reference(state.careFields.playerGrowth));
+  assert.equal(contents(result.fieldOutputs.playerGrowth).value, '10');
+  assert.equal(contents(result.fieldOutputs.playerGrowthSeason).value, '2');
+});
+
+test('unchanged growth preserves its original version through planting receipt recovery and subsequent care', async () => {
+  const item = unchanged.plant;
+  const variables = await care.plantReceiptFieldVariables(item.confirmation, item.digest);
+  assert.deepEqual(variables, { objectId: item.fields.playerGrowth.address, version: item.fields.playerGrowth.version });
+  assert.ok(care.PLANT_RECEIPT_FIELD_QUERY.includes('version:$version'));
+  const simulated = await simulate(item), receipt = await confirm(item);
+  assert.equal(simulated.status, 'simulated'); assert.equal(receipt.status, 'confirmed');
+  assert.deepEqual(reference(receipt.fieldOutputs.playerGrowth), reference(item.fields.playerGrowth));
+  assert.equal(care.assertPlantReceipt(receipt, item.cycle), receipt);
+  for (const alias of ['seedsByOwner', 'playerGrowthSeason', 'plantedSapling'])
+    assert.equal(receipt.fieldOutputs[alias].version, effects(item.confirmation).lamportVersion);
+  assert.equal((await simulate(unchanged.water)).growthPoints, '24');
+  assert.equal((await confirm(unchanged.water)).growthPoints, '24');
+  assert.equal((await confirm(unchanged.claim)).rewardProcessed, true);
+});
+
+test('changed growth and failed planting receipts request no historical unchanged-field hydration', async () => {
+  assert.equal(await care.plantReceiptFieldVariables(f.plant.confirmation, f.plant.digest), null);
+  const failed = makeConfirmedCareFailure(copiedCase(unchanged.plant));
+  assert.equal(await care.plantReceiptFieldVariables(failed.confirmation, failed.digest), null);
+  await assert.rejects(care.plantReceiptFieldVariables(unchanged.plant.confirmation, f.water.digest), /digests differ/);
+  await assert.rejects(care.plantReceiptFieldVariables(f.water.confirmation, f.water.digest), /verified Season 1 NFTree/);
+});
+
+test('an omitted growth update requires the exact unchanged runtime reference and matching transaction metadata', async () => {
+  const item = unchanged.plant;
+  for (const mutate of [
+    e => { delete e.effectsJson; },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects = []; },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects.push(clone(e.effectsJson.unchangedLoadedRuntimeObjects[0])); },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects[0].objectId = item.fields.playerGrowthSeason.address; },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects[0].version = String(BigInt(item.fields.playerGrowth.version) + 1n); },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects[0].version = '0'; },
+    e => { e.effectsJson.unchangedLoadedRuntimeObjects[0].version = String(e.lamportVersion); },
+    e => { e.effectsJson.transactionDigest = f.water.digest; },
+    e => { e.effectsJson.status = { success: false }; },
+    e => { e.effectsJson.version = 1; },
+    e => { e.effectsJson.epoch = '1'; },
+    e => { e.effectsJson.lamportVersion = String(BigInt(e.lamportVersion) + 1n); },
+    e => { e.effectsJson.changedObjects.push({ objectId: item.fields.playerGrowth.address }); },
+  ]) {
+    const raw = clone(item.simulation); mutate(effects(raw)); await assert.rejects(simulate(item, raw));
+  }
+});
+
+test('an unchanged field cannot replace a required owner-index, season, NFT-use, or watering update', async () => {
+  for (const alias of ['seedsByOwner', 'playerGrowthSeason', 'plantedSapling']) {
+    const item = unchanged.plant, raw = clone(item.simulation);
+    effects(raw).objectChanges.nodes = effects(raw).objectChanges.nodes.filter(x => x.address !== item.fields[alias].address);
+    await assert.rejects(simulate(item, raw), /output is missing/);
+    const receipt = clone(item.confirmation);
+    effects(receipt).objectChanges.nodes = effects(receipt).objectChanges.nodes.filter(x => x.address !== item.fields[alias].address);
+    await assert.rejects(confirm(item, receipt), /receipt lacks/);
+  }
+  const water = clone(unchanged.water.simulation);
+  effects(water).objectChanges.nodes = effects(water).objectChanges.nodes.filter(x => x.address !== unchanged.water.fields.playerGrowth.address);
+  await assert.rejects(simulate(unchanged.water, water), /player_growth output is missing/);
+  const contradictory = clone(f.plant.simulation);
+  effects(contradictory).effectsJson = clone(effects(unchanged.plant.simulation).effectsJson);
+  await assert.rejects(simulate(f.plant, contradictory), /both changed and unchanged/);
+});
+
+test('unchanged growth still binds the exact checkpoint-observed field version and expected value', async () => {
+  const item = unchanged.plant;
+  for (const mutate of [
+    fields => { contents(fields.playerGrowth).value = '11'; },
+    fields => { fields.playerGrowth.version++; },
+  ]) {
+    const fields = clone(item.fields); mutate(fields);
+    const state = care.attachPlantFields(item.state, careFieldsResponse(item.state, fields), EXPECTED.previousNftId);
+    const packet = await care.preparePlant(state, EXPECTED.previousNftId, item.cycle, options(item));
+    await assert.rejects(simulate(item, item.simulation, packet, state), /unchanged player_growth reference|exact expected value/);
+  }
+});
+
+test('confirmed recovery requires the versioned field proof and rejects wrong network, version, owner, key, type, or value', async () => {
+  const item = unchanged.plant;
+  await assert.rejects(care.validateConfirmedPlant(item.confirmation, item.digest, item.proof, item.cycle, { nowMs: item.now }),
+    error => error.code === 'CONFIRMATION_PENDING' && /exact unchanged/.test(error.message));
+  for (const mutate of [
+    r => { r.data.genesis.digest = f.water.digest; },
+    r => { r.data.playerGrowth = null; },
+    r => { r.data.playerGrowth.address = item.fields.playerGrowthSeason.address; },
+    r => { r.data.playerGrowth.version++; },
+    r => { r.data.playerGrowth.owner.address.address = EXPECTED.registryId; },
+    r => { contents(r.data.playerGrowth).name = EXPECTED.previousNftId; },
+    r => { r.data.playerGrowth.asMoveObject.contents.type.repr += 'wrong'; },
+    r => { contents(r.data.playerGrowth).value = '24'; },
+    r => { r.data.playerGrowth.digest = 'bad'; },
+    r => { r.errors = [{ message: 'Historical object unavailable.' }]; },
+  ]) {
+    const field = clone(item.unchangedPlantField); mutate(field);
+    await assert.rejects(care.validateConfirmedPlant(item.confirmation, item.digest, item.proof, item.cycle,
+      { nowMs: item.now, unchangedPlantField: field }));
+  }
+  const badRuntime = clone(item.confirmation);
+  effects(badRuntime).effectsJson.unchangedLoadedRuntimeObjects[0].objectId = item.fields.playerGrowthSeason.address;
+  await assert.rejects(care.plantReceiptFieldVariables(badRuntime, item.digest), /another field/);
+  await assert.rejects(confirm(item, badRuntime), /another field/);
+});
+
+test('historical unchanged growth supports later recovery without substituting the current 24-GP field', async () => {
+  const item = unchanged.plant, later = clone(unchanged.claim.confirmation);
+  later.data.transaction = clone(item.confirmation.data.transaction);
+  const receipt = await care.validateConfirmedPlant(later, item.digest, unchanged.claim.proof, item.cycle,
+    { nowMs: unchanged.claim.now, unchangedPlantField: item.unchangedPlantField });
+  assert.equal(receipt.hasAdvanced, true); assert.equal(contents(receipt.fieldOutputs.playerGrowth).value, '10');
+  assert.deepEqual(reference(receipt.fieldOutputs.playerGrowth), reference(item.fields.playerGrowth));
+  const current = clone(item.unchangedPlantField); current.data.playerGrowth = clone(unchanged.water.fieldOutputs.playerGrowth);
+  await assert.rejects(care.validateConfirmedPlant(later, item.digest, unchanged.claim.proof, item.cycle,
+    { nowMs: unchanged.claim.now, unchangedPlantField: current }), /historical player_growth object/);
 });
 
 test('the isolated cycle rejects a different NFTree even if an owner inventory is supplied', async () => {

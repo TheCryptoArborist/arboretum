@@ -1,7 +1,9 @@
 """Release the isolated Season 2 page through one journaled source build.
 
 Reuse the audited backend, inventory, source-binding and verification helpers.
-The prior 103 application assets stay byte-identical; exactly three are added.
+The initial release preserves 103 application assets and adds three files.
+--plant-fields-hotfix pins the published initial release and permits only its
+Season 2 JavaScript bundle to change; all other 105 assets remain identical.
 No operation connects a wallet or submits a blockchain transaction.
 """
 from pathlib import Path
@@ -20,12 +22,31 @@ spec = importlib.util.spec_from_file_location('arboretum_cycle_release_helpers',
 release = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(release)
 SITE, ORIGINAL, ORIGINAL_DEPLOY, ORIGIN = release.SITE, release.ORIGINAL, release.ORIGINAL_DEPLOY, release.ORIGIN
-OLD = release.OLD = '6aeea0b254e028ece344267c'
-BASELINE_DIR = ROOT / 'tester-access-release/verification/hosted'
-NEW = release.NEW = ['admin/season-two/index.html', 'admin/season-two/admin.css', 'admin/season-two/admin.mjs']
-release.CHANGED = set()
+INITIAL_DEPLOY = '6aeea0b254e028ece344267c'
+INITIAL_FILES = ['admin/season-two/index.html', 'admin/season-two/admin.css', 'admin/season-two/admin.mjs']
+HOTFIX_DEPLOY = '6af08867e808541bad23b5b2'
+HOTFIX_SOURCE = 'ed128b295e80701067a0f74c66e6a1ae3e6b709b'
+HOTFIX_TREE = '27b58ad8371191c2fe2c2c6ee79fb57e06476665'
+HOTFIX_CANDIDATE_SHA256 = '625a09dc476fb547b00e2257af2debe4814e11d2f84d2856a7416e45a8307a16'
+HOTFIX_FILE = 'admin/season-two/admin.mjs'
+INITIAL_MODE, HOTFIX_MODE = 'initial', 'plant-fields-hotfix'
 release.NAVIGATION_ADDITIONS = {}
 sha, save, now = release.sha, release.save, release.now
+
+
+def configure_release_mode(plant_fields_hotfix=False):
+    """Select one fixed, reviewed boundary; no caller-supplied baseline exists."""
+    global RELEASE_MODE, OLD, BASELINE_DIR, NEW
+    assert type(plant_fields_hotfix) is bool
+    RELEASE_MODE = HOTFIX_MODE if plant_fields_hotfix else INITIAL_MODE
+    OLD = release.OLD = HOTFIX_DEPLOY if plant_fields_hotfix else INITIAL_DEPLOY
+    BASELINE_DIR = ROOT / ('settlement-cycle/verification/hosted' if plant_fields_hotfix
+        else 'tester-access-release/verification/hosted')
+    NEW = release.NEW = [] if plant_fields_hotfix else list(INITIAL_FILES)
+    release.CHANGED = {HOTFIX_FILE} if plant_fields_hotfix else set()
+
+
+configure_release_mode()
 
 
 def authorized_request(path, data=None, headers=None, method='GET'):
@@ -63,6 +84,8 @@ def baseline_record():
     transformations, rather than a post-publication authenticated file listing.
     preflight() independently checks this inventory against the current API.
     """
+    if RELEASE_MODE == HOTFIX_MODE:
+        return hotfix_baseline_record()
     submission = json.loads((BASELINE_DIR / 'submission.json').read_text())
     raw = (BASELINE_DIR / 'candidate.json').read_bytes()
     candidate = json.loads(raw)
@@ -87,18 +110,73 @@ def baseline_record():
         'additionalPublishedSourceConfig': {'sha256': candidate['sourceConfigSha256']}}
 
 
+def hotfix_baseline_record():
+    """Use only the authenticated 106-file initial Season 2 publication."""
+    submission = json.loads((BASELINE_DIR / 'submission.json').read_text())
+    raw = (BASELINE_DIR / 'candidate.json').read_bytes()
+    candidate = json.loads(raw)
+    observed = json.loads((BASELINE_DIR / 'hosted-assets.json').read_text())
+    assert OLD == HOTFIX_DEPLOY and submission['siteId'] == SITE and submission['deployId'] == HOTFIX_DEPLOY
+    assert submission['sourceCommit'] == candidate['sourceCommit'] == HOTFIX_SOURCE
+    assert submission['sourceTree'] == candidate['sourceTree'] == HOTFIX_TREE
+    assert sha(raw) == HOTFIX_CANDIDATE_SHA256 == submission['candidateEvidenceSha256'], 'Recorded hotfix baseline candidate changed'
+    assert submission['responseReceived'] is True and submission['submissionAttempted'] is True
+    assert submission['previousPublishedDeployId'] == INITIAL_DEPLOY
+    assert submission['originalPublishedDeployId'] == ORIGINAL_DEPLOY
+    assert observed['siteId'] == SITE and observed['publishedDeployId'] == HOTFIX_DEPLOY
+    assert observed['sourceUpload'] == submission and observed['retainedOriginalDeployId'] == ORIGINAL_DEPLOY
+    deployed = observed['deployment']
+    assert deployed['id'] == HOTFIX_DEPLOY and deployed['site_id'] == SITE
+    assert deployed['state'] == 'ready' and deployed['context'] == 'production' and deployed['published_at']
+    assert observed['additionalPublishedSourceConfig']['sha256'] == candidate['sourceConfigSha256']
+    files = candidate['applicationFiles']
+    inventory, raw_assets = observed['completePublishedInventory'], observed['rawDeployedAssets']
+    paths = {item['path'] for item in files}
+    indexed = {item['path']: item for item in inventory}
+    raw_indexed = {item['path']: item for item in raw_assets}
+    assert len(files) == len(paths) == len(inventory) == len(indexed) == len(raw_assets) == len(raw_indexed) == 106
+    assert paths == set(indexed) == set(raw_indexed) and set(INITIAL_FILES) <= paths
+    assert all(not Path(name).is_absolute() and '..' not in Path(name).parts for name in paths)
+    for item in files:
+        deployed, raw_asset = indexed[item['path']], raw_indexed[item['path']]
+        assert deployed['matches'] is True and raw_asset['matches'] is True
+        assert deployed['sha1'] == item['sha1'] and deployed['bytes'] == item['bytes'], item['path']
+        assert raw_asset['sha256'] == item['sha256'], item['path']
+        assert deployed.get('deployedPath', item['path']) == ('backgrounda.jpg' if item['path'] == 'backgroundA.jpg' else item['path'])
+    return observed
+
+
 release.baseline_record = baseline_record
 original_preflight, original_preservation = release.preflight, release.preservation
+original_saved_submission = release.saved_submission
 
 
 def preflight():
     result = original_preflight()
-    return {**result, 'existingApplicationFileCount': 103, 'expectedChangedApplicationFiles': [],
+    return {**result, 'releaseMode': RELEASE_MODE,
+        'existingApplicationFileCount': 106 if RELEASE_MODE == HOTFIX_MODE else 103,
+        'expectedChangedApplicationFiles': sorted(release.CHANGED),
         'expectedAddedRuntimeFiles': NEW,
         'baselineInventoryMethod': 'Saved source candidate, now independently matched against the authenticated published deployment file inventory.'}
 
 
 def preservation():
+    if RELEASE_MODE == HOTFIX_MODE:
+        baseline = baseline_record()
+        previous = {item['path']: item for item in baseline['completePublishedInventory']}
+        raw_hashes = {item['path']: item['sha256'] for item in baseline['rawDeployedAssets']}
+        current = release.application_inventory()
+        assert len(current) == 106 and {item['path'] for item in current} == set(previous), 'Hotfix must retain exactly the existing 106 application paths'
+        for item in current:
+            name, old = item['path'], previous[item['path']]
+            if name == HOTFIX_FILE:
+                assert item['bytes'] > 0 and item['sha256'] != raw_hashes[name], 'Hotfix bundle must be nonempty and changed'
+            else:
+                assert item['bytes'] == old['bytes'] and item['sha1'] == old['sha1'] and item['sha256'] == raw_hashes[name], 'Unexpected hotfix application change: ' + name
+        assert sha((ROOT / 'netlify.toml').read_bytes()) == baseline['additionalPublishedSourceConfig']['sha256'], 'Source configuration changed'
+        return {'releaseMode': RELEASE_MODE, 'existingApplicationFilesPreserved': 105,
+            'changedApplicationFiles': [HOTFIX_FILE], 'addedRuntimeFiles': [],
+            'completeApplicationFileCount': 106, 'allOtherApplicationBytesUnchanged': True}
     result = original_preservation()
     assert result['existingApplicationFilesPreserved'] == 103 and result['completeApplicationFileCount'] == 106
     assert result['changedApplicationFiles'] == [] and result['addedRuntimeFiles'] == NEW
@@ -110,18 +188,49 @@ def preservation():
 release.preflight, release.preservation = preflight, preservation
 
 
+def ci_evidence_hash(folder, commit, tree):
+    """Bind the operator's exact-source required-CI record without an API call."""
+    path = folder / 'ci.json'
+    assert path.is_file(), 'Hotfix submission requires ci.json for its exact saved source'
+    raw = path.read_bytes()
+    evidence = json.loads(raw)
+    assert evidence['sourceCommit'] == commit and evidence['sourceTree'] == tree, 'Required CI is for different source'
+    runs = evidence['requiredCI']
+    assert len(runs) == 2 and {item['event'] for item in runs} == {'push', 'pull_request'}, 'Both required CI events must pass'
+    assert all(type(item['id']) is int and item['id'] > 0 and item['conclusion'] == 'success'
+        and item['url'] == 'https://github.com/TheCryptoArborist/arboretum/actions/runs/' + str(item['id']) for item in runs), 'Required CI did not pass'
+    assert len({item['id'] for item in runs}) == 2, 'Required CI run IDs must be distinct'
+    return sha(raw)
+
+
+def saved_submission(folder):
+    record = json.loads((folder / 'submission.json').read_text())
+    recorded_mode = record.get('releaseMode', INITIAL_MODE)
+    assert recorded_mode == RELEASE_MODE, 'Release mode differs from journal; use --plant-fields-hotfix for a hotfix journal and omit it for the initial release'
+    record = original_saved_submission(folder)
+    if RELEASE_MODE == HOTFIX_MODE:
+        assert record.get('ciEvidenceSha256') == ci_evidence_hash(folder, record['sourceCommit'], record['sourceTree']), 'Required CI evidence changed after submission'
+    return record
+
+
+release.saved_submission = saved_submission
+
+
 def submit(folder, commit):
     assert len(commit or '') == 40 and all(c in '0123456789abcdef' for c in commit)
     assert not folder.resolve().is_relative_to(ROOT), 'Keep the release journal outside the source checkout'
     assert not (folder / 'submission.json').exists(), 'Submission already journaled; inspect it instead of repeating'
     assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip() == commit
     assert subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip() == b'', 'Save source before publication'
+    tree = subprocess.check_output(['git', 'rev-parse', commit + '^{tree}'], cwd=ROOT).decode().strip()
+    ci_hash = ci_evidence_hash(folder, commit, tree) if RELEASE_MODE == HOTFIX_MODE else None
     prior, preserved = preflight(), preservation()
-    title = 'Add 48-hour Season 2 owner flow · ' + commit[:12]
+    title = ('Fix Season 2 planting field review · ' if RELEASE_MODE == HOTFIX_MODE
+        else 'Add 48-hour Season 2 owner flow · ') + commit[:12]
     release.assert_no_pending_submission(title)
     save(folder, 'preflight-before-submit.json', {**prior, **preserved}, exclusive=True)
     candidate = {'sourceCommit': commit,
-        'sourceTree': subprocess.check_output(['git', 'rev-parse', commit + '^{tree}'], cwd=ROOT).decode().strip(),
+        'sourceTree': tree,
         'applicationFiles': release.application_inventory(),
         'sourceConfigSha256': sha((ROOT / 'netlify.toml').read_bytes())}
     save(folder, 'candidate.json', candidate, exclusive=True)
@@ -134,10 +243,14 @@ def submit(folder, commit):
     assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT).decode().strip() == commit
     assert subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT).strip() == b'', 'Source changed before publication'
     assert release.application_inventory() == candidate['applicationFiles'], 'Build output changed before submission'
-    record = {'siteId': SITE, 'sourceCommit': commit, 'sourceTree': candidate['sourceTree'],
+    if ci_hash is not None:
+        assert ci_evidence_hash(folder, commit, tree) == ci_hash, 'Required CI evidence changed before submission'
+    record = {'siteId': SITE, 'releaseMode': RELEASE_MODE, 'sourceCommit': commit, 'sourceTree': candidate['sourceTree'],
         'candidateEvidenceSha256': sha((folder / 'candidate.json').read_bytes()), 'archiveSha256': sha(archive),
         'archiveBytes': len(archive), 'requestedAt': now(), 'previousPublishedDeployId': OLD,
         'originalPublishedDeployId': ORIGINAL_DEPLOY, 'submissionAttempted': True, 'responseReceived': False}
+    if ci_hash is not None:
+        record['ciEvidenceSha256'] = ci_hash
     save(folder, 'submission.json', record, exclusive=True)
     boundary = 'ArboretumSeasonTwoSource' + sha(archive)[:24]
     body = ('--' + boundary + '\r\nContent-Disposition: form-data; name="zip"; filename="source.zip"\r\n'
@@ -278,7 +391,10 @@ def main():
     parser.add_argument('operation', choices=['preserve', 'preflight', 'submit', 'status', 'verify', 'http'])
     parser.add_argument('output', type=Path)
     parser.add_argument('--commit')
+    parser.add_argument('--plant-fields-hotfix', action='store_true',
+        help='Use only the pinned initial Season 2 deploy; change admin/season-two/admin.mjs and preserve the other 105 files. Required for every hotfix journal operation.')
     args = parser.parse_args()
+    configure_release_mode(args.plant_fields_hotfix)
     args.output.mkdir(parents=True, exist_ok=True)
     if args.operation in ('preserve', 'preflight'):
         record = preservation() if args.operation == 'preserve' else preflight()

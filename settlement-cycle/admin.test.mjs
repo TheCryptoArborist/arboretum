@@ -11,6 +11,7 @@ import { EXPECTED } from './common.mjs';
 const OTHER = '0x' + '1'.repeat(64), BASE_TIME = 1794168000000;
 const DIGESTS = Object.fromEntries(ACTIONS.map((action, i) => [action, toBase58(new Uint8Array(32).fill(i + 5))]));
 const HASHES = Object.fromEntries(ACTIONS.map((action, i) => [action, String(i + 1).repeat(64)]));
+const HISTORICAL_PLANT_FIELD = Object.freeze({ objectId: '0x' + '9'.repeat(64), version: 1021418439 });
 class MemoryStorage {
   values = new Map();
   getItem(key) { return this.values.get(key) ?? null; }
@@ -45,10 +46,16 @@ function recorded(storage, action, phase = 'confirmed', extra = {}) {
     digest: ['confirmed', 'submitted', 'failed'].includes(phase) ? DIGESTS[action] : null, kindSha256: HASHES[action], at: BASE_TIME, ...extra });
 }
 async function harness({ storage = new MemoryStorage(), initial = 'rollover-ready', signingError, successful = false,
-  denyLock = false, beforeSimulation, transformSimulation, duringSigning, beforeConfirmation, invalidReceipt = false, failRead = false, confirmedFailure = false } = {}) {
+  denyLock = false, beforeSimulation, transformSimulation, duringSigning, beforeConfirmation, invalidReceipt = false, failRead = false, confirmedFailure = false,
+  unchangedPlantField = false, failReceiptFieldRead = false } = {}) {
   const elements = new Map(), timers = new Map(), storageListeners = new Set();
   let timerId = 0, clock = BASE_TIME, phase = initial, lockHeld = false, signCalls = 0, simulations = 0, reads = 0, receiptReads = 0, validations = 0;
-  let readFailure = failRead, rejectReceipt = invalidReceipt, failedReceipt = confirmedFailure, copied;
+  let readFailure = failRead, rejectReceipt = invalidReceipt, failedReceipt = confirmedFailure, receiptFieldReadFailure = failReceiptFieldRead, copied;
+  const fieldTrace = { plans: [], reads: [], confirmations: [], order: [] };
+  const historicalFieldResponse = { data: { unchangedPlantField: {
+    address: HISTORICAL_PLANT_FIELD.objectId, version: HISTORICAL_PLANT_FIELD.version,
+    asMoveObject: { contents: { json: { name: EXPECTED.sender, value: '10' } } },
+  } } };
   const doc = { hidden: false, getElementById(id) { if (!elements.has(id)) elements.set(id, new Element()); return elements.get(id); }, createElement: tag => new Element(tag) };
   const originalWallet = wallet(), wallets = store([originalWallet]), connection = store({ isConnected: false, wallet: null, account: null }), network = store('mainnet');
   const receipts = Object.fromEntries(ACTIONS.map(action => [action, { action, status: 'confirmed', digest: DIGESTS[action], kindSha256: HASHES[action],
@@ -64,6 +71,14 @@ async function harness({ storage = new MemoryStorage(), initial = 'rollover-read
     PROOF_QUERY: 'proof', PROOF_VARIABLES: {}, INPUTS_QUERY: 'inputs', INPUT_VARIABLES: {},
     SIMULATION_QUERY: 'simulation', CONFIRM_QUERY: 'confirmation', CONFIRM_VARIABLES: {},
     PLANT_FIELDS_QUERY: 'fields', plantFieldVariables: () => ({}), attachPlantFields: chain => chain,
+    PLANT_RECEIPT_FIELD_QUERY: 'plant-receipt-field',
+    async plantReceiptFieldVariables(raw, expectedDigest) {
+      assert.equal(expectedDigest, DIGESTS.plant, 'Only planting receipts need this historical-field plan');
+      assert.equal(raw.data.transaction.digest, expectedDigest);
+      const status = raw.data.transaction.effects.status;
+      fieldTrace.plans.push({ digest: expectedDigest, status }); fieldTrace.order.push('plan-plant');
+      return unchangedPlantField && status === 'SUCCESS' ? { ...HISTORICAL_PLANT_FIELD } : null;
+    },
     nextNFTPageVariables: () => null,
     async inspectState(raw) { assert.ok(raw.data.current); return raw.data.current; },
     inspectCare(chain, cycle, plant) {
@@ -78,10 +93,15 @@ async function harness({ storage = new MemoryStorage(), initial = 'rollover-read
     async simulate(action) { const result = { gasEstimateMist: '2000000', ...(action === 'claim' ? { rewardMist: '7000000', netReceiveMist: '5000000', eligibleGrowthPoints: '24' } : {}) };
       transformSimulation?.(result, simulations); return result; },
     async validateWallet(transaction, packet) { validations++; assert.equal(transaction.action, packet.action); },
-    async confirm(action, raw, digest) {
+    async confirm(action, raw, digest, proof, contexts, reviewOptions) {
       assert.equal(digest, DIGESTS[action]);
+      fieldTrace.confirmations.push(action); fieldTrace.order.push('confirm-' + action);
       if (failedReceipt) throw Object.assign(new Error('Exact synthetic failure'), { confirmedFailure: { action, digest, kindSha256: HASHES[action], permitsRetry: true } });
       if (rejectReceipt) throw new Error('Synthetic receipt could not be verified');
+      if (action === 'plant' && unchangedPlantField) {
+        assert.equal(contexts.rollover.digest, DIGESTS.rollover);
+        assert.deepEqual(reviewOptions.unchangedPlantField, historicalFieldResponse, 'Confirm must receive the exact historical query response');
+      } else assert.equal(reviewOptions?.unchangedPlantField, undefined, 'Other receipts do not use a historical planting field');
       return receipts[action];
     },
   };
@@ -113,15 +133,24 @@ async function harness({ storage = new MemoryStorage(), initial = 'rollover-read
       if (query === 'inputs') { reads++; if (readFailure) throw new Error('Synthetic unavailable read'); }
       else if (query === 'simulation') { simulations++; await beforeSimulation?.(simulations, { connection, network, wallets, originalWallet }); }
       else if (query === 'confirmation') { receiptReads++; assert.ok(Object.values(DIGESTS).includes(variables.digest)); await beforeConfirmation?.(storage, receiptReads); }
+      else if (query === 'plant-receipt-field') {
+        assert.deepEqual(variables, HISTORICAL_PLANT_FIELD, 'Read the exact version named by the original effects, not a current field');
+        fieldTrace.reads.push({ query, variables }); fieldTrace.order.push('read-plant-field');
+        if (receiptFieldReadFailure) throw new Error('The historical planting field is unavailable');
+        return { ok: true, status: 200, json: async () => structuredClone(historicalFieldResponse) };
+      }
       else assert.ok(['proof', 'fields'].includes(query));
-      return { ok: true, status: 200, json: async () => ({ data: { current: snapshot() } }) };
+      return { ok: true, status: 200, json: async () => ({ data: { current: snapshot(),
+        ...(query === 'confirmation' ? { transaction: { digest: variables.digest, effects: { status: failedReceipt ? 'FAILURE' : 'SUCCESS' } } } : {}) } }) };
     },
   };
   const controller = createCycleController({ window: win, document: doc, dAppKit: kit, now: () => clock, protocol }); await controller.ready;
   const get = id => doc.getElementById(id);
   return { controller, get, win, kit, connection, network, wallets, originalWallet, storage, receipts,
     counts: () => ({ signCalls, simulations, reads, receiptReads, validations }), copied: () => copied,
+    fieldTrace: () => structuredClone(fieldTrace),
     setReadFailure(value) { readFailure = value; }, setInvalidReceipt(value) { rejectReceipt = value; }, setFailedReceipt(value) { failedReceipt = value; },
+    setReceiptFieldReadFailure(value) { receiptFieldReadFailure = value; },
     setNow(value) { clock = value; }, setPhase(value) { phase = value; },
     tick() { const entry = [...timers].find(([, timer]) => timer.ms === 1000); assert.ok(entry); timers.delete(entry[0]); entry[1].fn(); },
     storageChanged() { for (const fn of storageListeners) fn({ key: null }); },
@@ -210,6 +239,58 @@ test('saved receipts are reverified in dependency order; storage JSON never supp
     h.storageChanged(); assert.equal(h.controller.getState().receipts.rollover, undefined); assert.equal(h.get('submit-action').disabled, true);
     await h.controller.refresh({ restore: true }); assert.equal(h.counts().receiptReads, 4); }
   finally { h.controller.destroy(); }
+});
+test('digest-only planting recovery hydrates its exact historical unchanged field before confirmation without wallet activity', async () => {
+  const storage = new MemoryStorage(); recorded(storage, 'rollover');
+  const h = await harness({ storage, initial: 'waiting-water', unchangedPlantField: true });
+  try {
+    assert.equal(h.controller.getState().receipts.plant, undefined);
+    assert.deepEqual(h.fieldTrace().plans, [], 'Rollover recovery must not plan a planting field read');
+    assert.equal(new CycleAttemptJournal(storage).read('plant'), null, 'No saved review is needed to recover an actual digest');
+    await h.recover('plant');
+    assert.equal(h.controller.getState().receipts.plant.digest, DIGESTS.plant);
+    assert.equal(new CycleAttemptJournal(storage).read('plant').phase, 'confirmed');
+    assert.equal(h.get('current-stage').textContent, 'Your Seed is taking root');
+    assert.deepEqual(h.fieldTrace().plans, [{ digest: DIGESTS.plant, status: 'SUCCESS' }]);
+    assert.deepEqual(h.fieldTrace().reads, [{ query: 'plant-receipt-field', variables: HISTORICAL_PLANT_FIELD }]);
+    assert.deepEqual(h.fieldTrace().order, ['confirm-rollover', 'plan-plant', 'read-plant-field', 'confirm-plant']);
+    for (const [action, phase] of [['water', 'watered'], ['claim', 'claimed']]) { h.setPhase(phase); await h.recover(action); }
+    assert.equal(h.fieldTrace().plans.length, 1, 'Water and claim recovery must not plan a planting field read');
+    assert.equal(h.fieldTrace().reads.length, 1);
+    assert.equal(h.counts().signCalls, 0); assert.equal(h.counts().simulations, 0); assert.equal(h.counts().validations, 0);
+    assert.equal(h.connection.get().isConnected, false);
+  } finally { h.controller.destroy(); }
+});
+test('an unavailable historical planting field retains the submitted digest and blocks resubmission until read-only recovery succeeds', async () => {
+  const storage = new MemoryStorage(); recorded(storage, 'rollover'); recorded(storage, 'plant', 'submitted');
+  const original = new CycleAttemptJournal(storage).read('plant');
+  const h = await harness({ storage, initial: 'waiting-water', unchangedPlantField: true, failReceiptFieldRead: true });
+  try {
+    assert.equal(h.controller.getState().receipts.plant, undefined);
+    assert.deepEqual(new CycleAttemptJournal(storage).read('plant'), original);
+    assert.equal(h.fieldTrace().confirmations.includes('plant'), false, 'No confirmation may run with a missing historical field');
+    assert.match(h.get('status-message').textContent, /historical planting field is unavailable/);
+    await h.connectAndChoose(); await h.get('check-action').fire('click'); await h.get('submit-action').fire('click');
+    assert.equal(h.get('submit-action').disabled, true); assert.equal(h.counts().signCalls, 0); assert.equal(h.counts().simulations, 0);
+    h.setReceiptFieldReadFailure(false); await h.recover('plant');
+    const saved = new CycleAttemptJournal(storage).read('plant');
+    assert.equal(saved.digest, original.digest); assert.equal(saved.nonce, original.nonce); assert.equal(saved.phase, 'confirmed');
+    assert.equal(h.controller.getState().receipts.plant.digest, DIGESTS.plant);
+    assert.equal(h.fieldTrace().reads.length, 2); assert.equal(h.counts().signCalls, 0); assert.equal(h.counts().simulations, 0);
+  } finally { h.controller.destroy(); }
+});
+test('a failed planting receipt skips historical-field hydration and preserves the existing failed-request recovery flow', async () => {
+  const storage = new MemoryStorage(); recorded(storage, 'rollover');
+  const h = await harness({ storage, initial: 'plant-ready', unchangedPlantField: true });
+  try {
+    recorded(storage, 'plant', 'submitted'); h.setFailedReceipt(true); await h.recover('plant');
+    assert.deepEqual(h.fieldTrace().plans, [{ digest: DIGESTS.plant, status: 'FAILURE' }]);
+    assert.deepEqual(h.fieldTrace().reads, []);
+    assert.equal(h.controller.getState().receipts.plant, undefined);
+    assert.equal(new CycleAttemptJournal(storage).read('plant').phase, 'failed');
+    assert.equal(h.get('retry-action').disabled, false);
+    assert.equal(h.counts().signCalls, 0); assert.equal(h.counts().simulations, 0);
+  } finally { h.controller.destroy(); }
 });
 test('a late wallet result cannot overwrite another tab’s nonce or pinned digest', async () => {
   for (const replace of [

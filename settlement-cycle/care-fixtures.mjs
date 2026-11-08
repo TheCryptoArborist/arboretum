@@ -12,6 +12,8 @@ import { attachPlantFields, preparePlant, prepareWater, prepareClaim,
 const clone = value => structuredClone(value);
 const recordedFields = JSON.parse(fs.readFileSync(new URL('./care-observed-fields-20261108.json', import.meta.url), 'utf8'));
 export const observedCareFields = () => clone(recordedFields);
+const recordedUnchangedPlant = JSON.parse(fs.readFileSync(new URL('./care-unchanged-growth-observed-20261108.json', import.meta.url), 'utf8'));
+export const observedUnchangedPlant = () => clone(recordedUnchangedPlant);
 const D = '11111111111111111111111111111111';
 const GAS_ID = '0x' + 'a'.repeat(64), SEED_ID = '0x' + 'b'.repeat(64);
 const TREASURY_ID = '0x' + 'c'.repeat(64), DEVELOPER_ID = '0x' + 'd'.repeat(64), REWARD_ID = '0x' + 'e'.repeat(64);
@@ -71,7 +73,12 @@ async function caseFixture(action, inputs, proof, cycle, planting, fields, gasMo
       fertilizer_charges: 0, miracle_grow_applied: false, revival_charges: 0, bottomless_can_expiry_ms: '0', permanent_gp_bonus: '0' });
     changes.push(change(null, seedOut));
     const values = { seedsByOwner: [...contents(fields.seedsByOwner).value, SEED_ID], playerGrowth: '10', playerGrowthSeason: '2', plantedSapling: '2' };
-    for (const [alias, field] of Object.entries(fields)) { const out = output(field); contents(out).value = values[alias]; fieldOutputs[alias] = out; changes.push(change(field, out)); }
+    for (const [alias, field] of Object.entries(fields)) {
+      if (options.unchangedGrowth && alias === 'playerGrowth') {
+        fieldOutputs[alias] = clone(field); continue;
+      }
+      const out = output(field); contents(out).value = values[alias]; fieldOutputs[alias] = out; changes.push(change(field, out));
+    }
     Object.assign(r, { total_seeds: '1', total_growth_points: '10', eligible_growth_points: '10', reward_pool: '7000000' });
     for (const [id, who, amount] of [[TREASURY_ID, EXPECTED.treasuryWallet, '2800000'], [DEVELOPER_ID, EXPECTED.sender, '200000']])
       changes.push(change(null, object(id, version, COIN_TYPE, { id, balance: amount }, owner(who))));
@@ -113,6 +120,12 @@ async function caseFixture(action, inputs, proof, cycle, planting, fields, gasMo
       storageRebate: gasNet < 0n ? Number(-gasNet) : 0, nonRefundableStorageFee: 0 } },
     balanceChangesJson: balances, objectChanges: connection(changes), events: connection(events),
     unchangedConsensusObjects: connection([{ __typename: 'ConsensusObjectRead', object: clone(inputs.data.clock) }]) };
+  const unchangedPlantField = action === 'plant' && options.unchangedGrowth ? { data: {
+    genesis: { sequenceNumber: 0, digest: EXPECTED.genesisDigest }, playerGrowth: clone(fields.playerGrowth),
+  } } : null;
+  if (unchangedPlantField) effects.effectsJson = { version: 2, status: { success: true }, epoch: '1300',
+    transactionDigest: digest, lamportVersion: String(version), changedObjects: changes.map(x => ({ objectId: x.address })),
+    unchangedLoadedRuntimeObjects: [{ objectId: fields.playerGrowth.address, version: String(fields.playerGrowth.version) }] };
   const simulation = { data: { ...clone(inputs.data), simulateTransaction: { effects: clone(effects) } } };
   const confirmedCheckpoint = { ...inputs.data.checkpoint, sequenceNumber: inputs.data.checkpoint.sequenceNumber + 1 };
   const receiptEffects = clone(effects); receiptEffects.checkpoint = confirmedCheckpoint;
@@ -122,11 +135,12 @@ async function caseFixture(action, inputs, proof, cycle, planting, fields, gasMo
   confirmation.data.registries.nodes = [withDigest(registryOut)];
   confirmation.data.ownedSeeds.nodes = [clone(state.oldSeed), withDigest(seedOut)];
   if (nftOut) confirmation.data.ownedNFTs.nodes = [withDigest(nftOut)];
-  const receipt = action === 'plant' ? await validateConfirmedPlant(confirmation, digest, proof, cycle, { nowMs: now }) :
+  const receipt = action === 'plant' ? await validateConfirmedPlant(confirmation, digest, proof, cycle, { nowMs: now, unchangedPlantField }) :
     action === 'water' ? await validateConfirmedWater(confirmation, digest, proof, cycle, planting, { nowMs: now }) :
       await validateConfirmedClaim(confirmation, digest, proof, cycle, planting, { nowMs: now });
   return { synthetic: true, action, now, inputs, proof, cycle, planting, state, fields, fieldResponse, fieldOutputs,
-    packet, simulation, confirmation, digest, bytes, receipt, seedId: seedOut.address, gasId: gasMode === 'coin' ? GAS_ID : null };
+    packet, simulation, confirmation, digest, bytes, receipt, unchangedPlantField,
+    seedId: seedOut.address, gasId: gasMode === 'coin' ? GAS_ID : null };
 }
 export async function createCareFixtures(options = {}) {
   const gasMode = options.gasMode ?? 'coin', growthPoints = options.growthPoints ?? '24';

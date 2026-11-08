@@ -50,6 +50,14 @@ export const PLANT_FIELDS_QUERY = stripIgnoredCharacters(`query SecondSeasonCare
     plantedSapling: object(address: $plantedSapling) { ${OBJECT_FIELDS} }
   } }
 }`);
+// An unchanged runtime-loaded field is absent from objectChanges. Its receipt
+// names the exact object version; recovery reads that historical version rather
+// than borrowing a later player-growth value from the current season.
+export const PLANT_RECEIPT_FIELD_QUERY = stripIgnoredCharacters(`query SecondSeasonPlantReceiptField(
+  $objectId: SuiAddress!, $version: UInt53!) {
+  genesis: checkpoint(sequenceNumber: 0) { sequenceNumber digest }
+  playerGrowth: object(address: $objectId, version: $version) { ${OBJECT_FIELDS} }
+}`);
 function fieldDescriptors(registry, nftId) {
   address(nftId); const r = registryIdentity(registry);
   return FIELD_SPECS.map(([alias, table, keyType, valueType]) => {
@@ -283,8 +291,18 @@ export const validateWalletTransaction = validateCareWalletTransaction;
 
 const event = (name, json) => ({ sender: { address: EXPECTED.sender }, contents: {
   type: { repr: `${EXPECTED.packageId}::settlement::${name}` }, json } });
-function fieldChange(changes, descriptor, input, value, version, allowed) {
+function fieldChange(changes, descriptor, input, value, version, allowed, unchanged = null) {
   const change = changes.find(x => x.address === descriptor.id);
+  if (!change && unchanged) {
+    requireThat(descriptor.alias === 'playerGrowth' && value === '10', 'Only unchanged first-plant Growth Points may omit an update.');
+    validateField(input, descriptor, true);
+    same({ objectId: input.address, version: String(uint(input.version)) }, unchanged,
+      'The unchanged player_growth reference differs from the verified input.');
+    same(contents(input), { id: descriptor.id, name: descriptor.name, value },
+      'The omitted player_growth field does not already contain the exact expected value.');
+    requireThat(uint(input.version) < uint(version), 'The unchanged player_growth version must precede this transaction.');
+    return clone(input);
+  }
   requireThat(change?.outputState && !change.idDeleted, `The ${descriptor.table} output is missing.`);
   if (input === null) requireThat(change.idCreated && change.inputState === null, `The ${descriptor.table} field must be newly created.`);
   else inputOutput(change, input, version);
@@ -292,6 +310,31 @@ function fieldChange(changes, descriptor, input, value, version, allowed) {
   same(reference(change.outputState).version, version, `Wrong ${descriptor.table} output version.`);
   same(contents(change.outputState), { id: descriptor.id, name: descriptor.name, value }, `Wrong ${descriptor.table} output value.`);
   allowed.add(change.address); return change.outputState;
+}
+async function unchangedPlantGrowth(effects, changes, descriptor, transactionDigest) {
+  const metadata = effects.effectsJson;
+  if (changes.some(x => x.address === descriptor.id)) {
+    requireThat(!metadata?.unchangedLoadedRuntimeObjects?.some?.(x => x.objectId === descriptor.id),
+      'The player_growth field cannot be both changed and unchanged.');
+    return null;
+  }
+  requireThat(metadata && typeof metadata === 'object' && !Array.isArray(metadata),
+    'The omitted player_growth field requires its unchanged runtime proof.');
+  same(String(uint(metadata.version)), '2', 'Unsupported unchanged runtime proof version.');
+  same(metadata.status, { success: true }, 'The unchanged runtime proof does not describe a successful transaction.');
+  same(digest(metadata.transactionDigest), transactionDigest, 'The unchanged runtime proof belongs to another transaction.');
+  same(String(uint(metadata.lamportVersion)), String(uint(effects.lamportVersion)), 'The unchanged runtime proof has another output version.');
+  same(String(uint(metadata.epoch)), String(uint(effects.epoch?.epochId)), 'The unchanged runtime proof has another execution epoch.');
+  const rows = metadata.unchangedLoadedRuntimeObjects;
+  requireThat(Array.isArray(rows) && rows.length === 1, 'Exactly one unchanged player_growth runtime reference is required.');
+  const row = rows[0];
+  same(Object.keys(row ?? {}).sort(), ['objectId', 'version'], 'Malformed unchanged player_growth reference.');
+  same(address(row.objectId), descriptor.id, 'The unchanged runtime proof names another field.');
+  requireThat(uint(row.version) > 0n && uint(row.version) < uint(effects.lamportVersion),
+    'The unchanged player_growth version is invalid.');
+  requireThat(Array.isArray(metadata.changedObjects) && !metadata.changedObjects.some(x => x.objectId === descriptor.id),
+    'The omitted player_growth field is marked as changed in the runtime proof.');
+  return { objectId: row.objectId, version: String(uint(row.version)) };
 }
 function expectedEmptyRegistry(registry, cycle) {
   const r = registryIdentity(registry);
@@ -322,7 +365,8 @@ async function validateEffects(effects, packet, input, cycle, planting, options 
     effects.checkpoint.sequenceNumber >= cycle.checkpoint.sequenceNumber, 'The receipt predates its execution Clock or rollover.');
   const changes = objectChanges(effects), version = String(uint(effects.lamportVersion));
   const inputVersions = [input.registry.version, ref.version, executionClock.version,
-    ...resolved.payments.map(x => x.version), ...changes.filter(x => x.inputState).map(x => x.inputState.version)].map(uint);
+    ...resolved.payments.map(x => x.version), ...changes.filter(x => x.inputState).map(x => x.inputState.version),
+    ...Object.values(packet.fieldInputs ?? {}).filter(Boolean).map(x => x.version)].map(uint);
   requireThat(uint(version) === inputVersions.reduce((maximum, value) => value > maximum ? value : maximum, 0n) + 1n,
     'Output Lamport version differs from the exact care inputs.');
   const registryChange = changes.find(x => x.address === EXPECTED.registryId);
@@ -354,12 +398,15 @@ async function validateEffects(effects, packet, input, cycle, planting, options 
     if (fields.plantedSapling !== null) requireThat(uint(contents(fields.plantedSapling).value) < uint(EXPECTED.seasonId), 'This NFTree was already used in Season 2.');
     const values = { seedsByOwner: [...contents(fields.seedsByOwner).value, seedId], playerGrowth: '10',
       playerGrowthSeason: EXPECTED.seasonId, plantedSapling: EXPECTED.seasonId };
+    const unchangedGrowth = await unchangedPlantGrowth(effects, changes,
+      descriptors.find(x => x.alias === 'playerGrowth'), await resolved.transaction.getDigest());
     const expectedRegistry = clone(r), fieldOutputs = {};
     Object.assign(expectedRegistry, { reward_pool: String(uint(r.reward_pool) + uint(EXPECTED.rewardShareMist)),
       total_seeds: '1', total_growth_points: '10', eligible_growth_points: '10' });
     for (const descriptor of descriptors) {
       const before = fields[descriptor.alias];
-      fieldOutputs[descriptor.alias] = fieldChange(changes, descriptor, before, values[descriptor.alias], version, allowed);
+      fieldOutputs[descriptor.alias] = fieldChange(changes, descriptor, before, values[descriptor.alias], version, allowed,
+        descriptor.alias === 'playerGrowth' ? unchangedGrowth : null);
       if (before === null) expectedRegistry[descriptor.table].size = String(uint(expectedRegistry[descriptor.table].size) + 1n);
     }
     same(contents(registryChange.outputState), expectedRegistry, 'Unexpected Registry changes during Season 2 planting.');
@@ -503,11 +550,57 @@ async function receiptPacket(action, actual, cycle, planting) {
     'The actual care transaction targets another NFTree or Seed.');
   return packetFor(action, ref, cycle, planting);
 }
-function receiptFieldInputs(action, registry, changes, planting) {
+export async function plantReceiptFieldVariables(response, expectedDigest) {
+  const data = dataOf(response), actual = data.transaction;
+  requireThat(!data.simulateTransaction && response?.simulatedIdsAreNotDeployedIds !== true &&
+    response?.response?.simulatedIdsAreNotDeployedIds !== true,
+  'A simulation cannot request a confirmed planting field.', 'CONFIRMATION_MISMATCH');
+  requireThat(actual?.transactionBcs && actual.effects?.checkpoint,
+    'The planting receipt is not yet indexed.', 'CONFIRMATION_PENDING');
+  // Failed requests need only the existing gas-only failure verifier. Their
+  // unchanged field observations never authorize another planting request.
+  if (actual.effects.status === 'FAILURE') return null;
+  requireThat(actual.effects.status === 'SUCCESS', 'The planting receipt does not prove success.', 'TRANSACTION_FAILED');
+  checkpoint(actual.effects.checkpoint, {}, false);
+  same(digest(expectedDigest), actual.digest, 'The requested and actual receipt digests differ.');
+  const transaction = Transaction.from(actual.transactionBcs);
+  same(await transaction.getDigest(), expectedDigest, 'The actual bytes do not match the requested digest.');
+  const owned = transaction.getData().inputs.filter(x => x.Object?.ImmOrOwnedObject).map(x => x.Object.ImmOrOwnedObject);
+  requireThat(owned.length === 1 && owned[0].objectId === EXPECTED.previousNftId,
+    'The planting receipt must use the verified Season 1 NFTree.');
+  const ref = { ...owned[0], version: String(uint(owned[0].version)) };
+  reference({ address: ref.objectId, version: ref.version, digest: ref.digest });
+  const packet = await packetFrom(transactionFor('plant', ref), simulationFor('plant', ref));
+  await resolvedTransaction(actual.effects, packet, actual, { excludeIds: [ref.objectId] });
+  const changes = objectChanges(actual.effects), registry = changes.find(x => x.address === EXPECTED.registryId)?.inputState;
+  requireThat(registry, 'The planting receipt lacks its Registry input.');
+  const descriptor = fieldDescriptors(registry, EXPECTED.previousNftId).find(x => x.alias === 'playerGrowth');
+  const row = await unchangedPlantGrowth(actual.effects, changes, descriptor, expectedDigest);
+  if (!row) return null;
+  requireThat(uint(row.version) <= BigInt(Number.MAX_SAFE_INTEGER), 'The historical field version cannot be queried exactly.');
+  return { objectId: row.objectId, version: Number(row.version) };
+}
+function verifiedUnchangedPlantField(response, row, descriptor) {
+  requireThat(response, 'Read the exact unchanged player_growth object version from the planting receipt.', 'CONFIRMATION_PENDING');
+  const data = dataOf(response);
+  same(data.genesis, { sequenceNumber: 0, digest: EXPECTED.genesisDigest }, 'The historical planting field identifies another network.');
+  requireThat(!data.transaction && !data.simulateTransaction, 'A current or simulated transaction cannot replace the historical planting field.');
+  const field = validateField(data.playerGrowth, descriptor, true);
+  same({ objectId: field.address, version: String(uint(field.version)) }, row,
+    'The historical player_growth object does not match the receipt runtime reference.');
+  same(contents(field), { id: descriptor.id, name: descriptor.name, value: '10' },
+    'The historical unchanged player_growth object must contain exactly 10 Growth Points.');
+  return clone(field);
+}
+function receiptFieldInputs(action, registry, changes, planting, unchangedGrowth = null) {
   const fields = {};
   for (const descriptor of fieldDescriptors(registry, planting?.nftId ?? EXPECTED.previousNftId)) {
     const change = changes.find(x => x.address === descriptor.id);
     if (action === 'plant') {
+      if (!change && descriptor.alias === 'playerGrowth' && unchangedGrowth) {
+        fields.playerGrowth = clone(validateField(unchangedGrowth, descriptor, true));
+        continue;
+      }
       requireThat(change, `The planting receipt lacks its ${descriptor.table} update.`);
       fields[descriptor.alias] = clone(validateField(change.inputState, descriptor, true));
     } else if (descriptor.alias === 'playerGrowth') {
@@ -607,7 +700,13 @@ async function validateConfirmedCare(action, response, expectedDigest, proof, cy
   const ref = action === 'plant' ? packet.nftReference : packet.seedReference;
   const ownedChange = changes.find(x => x.address === ref.objectId);
   requireThat(ownedChange?.inputState, 'The actual care receipt lacks its reviewed owned input.');
-  if (action !== 'claim') packet.fieldInputs = receiptFieldInputs(action, registryChange.inputState, changes, planting);
+  let unchangedGrowth = null;
+  if (action === 'plant') {
+    const descriptor = fieldDescriptors(registryChange.inputState, packet.nftId).find(x => x.alias === 'playerGrowth');
+    const row = await unchangedPlantGrowth(actual.effects, changes, descriptor, expectedDigest);
+    if (row) unchangedGrowth = verifiedUnchangedPlantField(options.unchangedPlantField, row, descriptor);
+  }
+  if (action !== 'claim') packet.fieldInputs = receiptFieldInputs(action, registryChange.inputState, changes, planting, unchangedGrowth);
   const checked = await validateEffects(actual.effects, packet, { ...current, registry: registryChange.inputState,
     ...(action === 'plant' ? { nfts: [ownedChange.inputState] } : { seed: ownedChange.inputState }) }, cycle, planting, options, actual);
   const currentSeed = current.ownedSeeds.find(x => x.address === checked.seedId);

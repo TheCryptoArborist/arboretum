@@ -445,7 +445,12 @@ export function createCycleController({ window: win, document: doc, dAppKit, now
       try {
         const proof = await graphql(protocol.PROOF_QUERY, protocol.PROOF_VARIABLES);
         const raw = await readComplete(protocol.CONFIRM_QUERY, { ...protocol.CONFIRM_VARIABLES, digest });
-        const receipt = await protocol.confirm(action, raw, digest, proof, state.receipts, options());
+        const confirmationOptions = options();
+        if (action === 'plant' && protocol.plantReceiptFieldVariables) {
+          const variables = await protocol.plantReceiptFieldVariables(raw, digest);
+          if (variables) confirmationOptions.unchangedPlantField = await graphql(protocol.PLANT_RECEIPT_FIELD_QUERY, variables);
+        }
+        const receipt = await protocol.confirm(action, raw, digest, proof, state.receipts, confirmationOptions);
         const { transaction: _tx, simulateTransaction: _sim, ...live } = raw.response?.data ?? raw.data;
         acceptChain(await protocol.inspectState({ data: live }, proof, options())); state.proof = proof;
         acceptReceipt(action, receipt, saved); if (announce) status(LABELS[action] + ' confirmed on mainnet', 'The transaction, state changes, and network fee have been verified.', 'success');

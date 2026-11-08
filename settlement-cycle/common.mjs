@@ -164,7 +164,7 @@ export const PROOF_QUERY = stripIgnoredCharacters(print(proofDefinition));
 // The isolated second cycle reuses the known, previously planted NFT. Asking
 // for its exact current object avoids enumerating this owner's 1,077 NFTs on
 // every freshness check. Type and owner are independently verified below.
-function scopedQuery(query) {
+function scopedQuery(query, includeRuntimeEffects = false) {
   const definition = structuredClone(parse(query).definitions[0]);
   definition.name.value = definition.name.value.replace('OwnerPlant', 'OwnerCycle');
   const field = definition.selectionSet.selections.find(x => x.alias?.value === 'ownedNFTs');
@@ -173,11 +173,18 @@ function scopedQuery(query) {
   field.arguments = [{ kind: 'Argument', name: { kind: 'Name', value: 'address' },
     value: { kind: 'StringValue', value: EXPECTED.previousNftId, block: false } }];
   field.selectionSet = selectionSet;
+  if (includeRuntimeEffects) {
+    const execution = definition.selectionSet.selections.find(x =>
+      ['simulateTransaction', 'transaction'].includes(x.name.value));
+    const effects = execution?.selectionSet.selections.find(x => x.name.value === 'effects');
+    requireThat(effects, 'The care query must contain transaction effects.');
+    effects.selectionSet.selections.push({ kind: 'Field', name: { kind: 'Name', value: 'effectsJson' } });
+  }
   return stripIgnoredCharacters(print(definition));
 }
 export const INPUTS_QUERY = scopedQuery(ALL_INPUTS_QUERY);
-export const SIMULATION_QUERY = scopedQuery(ALL_SIMULATION_QUERY);
-export const CONFIRM_QUERY = scopedQuery(ALL_CONFIRM_QUERY);
+export const SIMULATION_QUERY = scopedQuery(ALL_SIMULATION_QUERY, true);
+export const CONFIRM_QUERY = scopedQuery(ALL_CONFIRM_QUERY, true);
 // Kept for the controller's shared read API. This single-NFT scope never pages.
 export const NFT_PAGE_QUERY = INPUTS_QUERY;
 export function nextNFTPageVariables(response) {

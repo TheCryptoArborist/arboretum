@@ -1,0 +1,12 @@
+{
+  "requestedAt": "2026-11-08T15:11:52.515Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query SecondSeasonCareFields($checkpoint:UInt53!$seedsByOwner:SuiAddress!$playerGrowth:SuiAddress!$playerGrowthSeason:SuiAddress!$plantedSapling:SuiAddress!){genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}checkpoint(sequenceNumber:$checkpoint){sequenceNumber timestamp query{seedsByOwner:object(address:$seedsByOwner){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}playerGrowth:object(address:$playerGrowth){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}playerGrowthSeason:object(address:$playerGrowthSeason){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}plantedSapling:object(address:$plantedSapling){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}}}",
+  "variables": {
+    "checkpoint": 343038120,
+    "seedsByOwner": "0xca5ce30a8bdc5ddf591afdd99f1e4b010396289506da2afa3772936c63f39abd",
+    "playerGrowth": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+    "playerGrowthSeason": "0xc0bdf947cf7b2123a61306c22f17677c4a52b7a203d6482361bb8b97b4aa9d39",
+    "plantedSapling": "0xbced674f7bf067bc37320aac2159631938846279c713989dc12f93a4c00c15b1"
+  }
+}

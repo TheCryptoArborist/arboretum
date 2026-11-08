@@ -1,5 +1,5 @@
 """Offline release-boundary checks. No request reaches Netlify or a wallet."""
-from contextlib import ExitStack
+from contextlib import ExitStack, contextmanager
 from pathlib import Path
 from unittest.mock import patch
 import importlib.util
@@ -15,6 +15,10 @@ spec.loader.exec_module(cycle)
 
 
 class ReleaseBoundaryTests(unittest.TestCase):
+    def setUp(self):
+        cycle.configure_release_mode()
+        self.addCleanup(cycle.configure_release_mode)
+
     def test_baseline_binds_the_published_gate_release_to_exactly_103_source_files(self):
         baseline = cycle.baseline_record()
         self.assertEqual(baseline['publishedDeployId'], '6aeea0b254e028ece344267c')
@@ -38,12 +42,20 @@ class ReleaseBoundaryTests(unittest.TestCase):
                 network.assert_not_called()
 
     def test_unknown_submission_is_durably_journaled_and_cannot_be_repeated(self):
+        for hotfix in [False, True]:
+            with self.subTest(hotfix=hotfix):
+                cycle.configure_release_mode(hotfix)
+                self.check_unknown_submission()
+
+    def check_unknown_submission(self):
         commit, tree = 'a' * 40, 'b' * 40
         with tempfile.TemporaryDirectory() as directory:
             parent = Path(directory)
             root, folder = parent / 'source', parent / 'journal'
             root.mkdir(); folder.mkdir()
             (root / 'netlify.toml').write_text('[build]\n')
+            if cycle.RELEASE_MODE == cycle.HOTFIX_MODE:
+                (folder / 'ci.json').write_text(json.dumps(ci_record(commit, tree)))
 
             def command(args, **_kwargs):
                 if args == ['git', 'rev-parse', 'HEAD']:
@@ -62,8 +74,12 @@ class ReleaseBoundaryTests(unittest.TestCase):
                 saved = json.loads((folder / 'submission.json').read_text())
                 self.assertTrue(saved['submissionAttempted'])
                 self.assertFalse(saved['responseReceived'])
+                self.assertEqual(saved['releaseMode'], cycle.RELEASE_MODE)
+                self.assertEqual(saved['previousPublishedDeployId'], cycle.OLD)
                 self.assertEqual(saved['archiveSha256'], cycle.sha((folder / 'source.zip').read_bytes()))
                 self.assertEqual(saved['candidateEvidenceSha256'], cycle.sha((folder / 'candidate.json').read_bytes()))
+                if cycle.RELEASE_MODE == cycle.HOTFIX_MODE:
+                    self.assertEqual(saved['ciEvidenceSha256'], cycle.sha((folder / 'ci.json').read_bytes()))
                 raise TimeoutError('fixture unknown outcome')
 
             with ExitStack() as stack:
@@ -130,6 +146,150 @@ class ReleaseBoundaryTests(unittest.TestCase):
                 served.replace(b'/stable.js', b'/changed.js')]:
             with self.subTest(changed=changed), self.assertRaises(AssertionError):
                 cycle.verify_served_html(source, changed, cycle.ORIGIN + '/game.html')
+
+
+def ci_record(commit='a' * 40, tree='b' * 40):
+    return {'sourceCommit': commit, 'sourceTree': tree, 'requiredCI': [
+        {'id': index, 'event': event, 'conclusion': 'success',
+         'url': 'https://github.com/TheCryptoArborist/arboretum/actions/runs/' + str(index)}
+        for index, event in [(1, 'push'), (2, 'pull_request')]]}
+
+
+class PlantFieldsHotfixTests(unittest.TestCase):
+    def setUp(self):
+        cycle.configure_release_mode(True)
+        self.addCleanup(cycle.configure_release_mode)
+
+    @contextmanager
+    def application_fixture(self):
+        published = cycle.baseline_record()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            inventory, raw_assets = [], []
+            for item in published['completePublishedInventory']:
+                path = root / 'dist' / item['path']; path.parent.mkdir(parents=True, exist_ok=True)
+                data = ('fixture for ' + item['path'] + '\n').encode(); path.write_bytes(data)
+                inventory.append({'path': item['path'], 'sha1': cycle.sha(data, 'sha1'), 'bytes': len(data)})
+                raw_assets.append({'path': item['path'], 'sha256': cycle.sha(data)})
+            config = b'[build]\n'; (root / 'netlify.toml').write_bytes(config)
+            baseline = {'completePublishedInventory': inventory, 'rawDeployedAssets': raw_assets,
+                'additionalPublishedSourceConfig': {'sha256': cycle.sha(config)}}
+            with patch.object(cycle, 'ROOT', root), patch.object(cycle.release, 'ROOT', root), \
+                    patch.object(cycle, 'baseline_record', return_value=baseline):
+                yield root
+
+    def test_hotfix_uses_only_the_verified_initial_season_two_publication(self):
+        baseline = cycle.baseline_record()
+        self.assertEqual(cycle.OLD, '6af08867e808541bad23b5b2')
+        self.assertEqual(cycle.release.OLD, cycle.OLD)
+        self.assertEqual(baseline['sourceUpload']['sourceCommit'], cycle.HOTFIX_SOURCE)
+        self.assertEqual(baseline['sourceUpload']['sourceTree'], cycle.HOTFIX_TREE)
+        self.assertEqual(len(baseline['completePublishedInventory']), 106)
+        self.assertEqual(len(baseline['rawDeployedAssets']), 106)
+        self.assertEqual(cycle.NEW, [])
+        self.assertEqual(cycle.release.CHANGED, {'admin/season-two/admin.mjs'})
+
+    def test_wrong_or_modified_baseline_evidence_is_rejected_without_auth(self):
+        for change in ['deployment', 'source', 'candidate-bytes', 'inventory', 'raw-assets']:
+            with self.subTest(change=change), tempfile.TemporaryDirectory() as directory:
+                folder = Path(directory)
+                for name in ['submission.json', 'candidate.json', 'hosted-assets.json']:
+                    shutil.copyfile(cycle.BASELINE_DIR / name, folder / name)
+                if change == 'candidate-bytes':
+                    with (folder / 'candidate.json').open('ab') as stream: stream.write(b' ')
+                else:
+                    name = 'submission.json' if change in ['deployment', 'source'] else 'hosted-assets.json'
+                    value = json.loads((folder / name).read_text())
+                    if change == 'deployment': value['deployId'] = '0' * 24
+                    elif change == 'source': value['sourceCommit'] = '0' * 40
+                    elif change == 'inventory': value['completePublishedInventory'][0]['sha1'] = '0' * 40
+                    else: value['rawDeployedAssets'][0]['sha256'] = '0' * 64
+                    (folder / name).write_text(json.dumps(value))
+                with patch.object(cycle, 'BASELINE_DIR', folder), \
+                        patch.object(cycle.release, 'authorized_request') as network:
+                    with self.assertRaises(AssertionError): cycle.baseline_record()
+                    network.assert_not_called()
+
+    def test_preflight_uses_the_new_pinned_baseline_and_all_106_records(self):
+        baseline = cycle.baseline_record()
+        inventory = [{'path': x.get('deployedPath', x['path']), 'sha': x['sha1'], 'size': x['bytes']}
+            for x in baseline['completePublishedInventory']]
+        inventory.extend([{'path': 'netlify.toml'}] +
+            [{'path': '.netlify/internal/edge-functions/' + name} for name in ['manifest.json', 'one.js', 'two.js']])
+        with patch.object(cycle.release, 'backend_snapshot', return_value={'publishedDeployId': cycle.HOTFIX_DEPLOY}) as backend, \
+                patch.object(cycle.release, 'api', return_value=inventory) as api:
+            result = cycle.preflight()
+        backend.assert_called_once_with(cycle.HOTFIX_DEPLOY)
+        api.assert_called_once_with('/deploys/' + cycle.HOTFIX_DEPLOY + '/files')
+        self.assertEqual(result['existingApplicationFileCount'], 106)
+        self.assertEqual(result['expectedChangedApplicationFiles'], [cycle.HOTFIX_FILE])
+        self.assertEqual(result['expectedAddedRuntimeFiles'], [])
+
+    def test_only_the_changed_bundle_is_allowed_and_105_files_are_preserved(self):
+        with self.application_fixture() as root:
+            with self.assertRaisesRegex(AssertionError, 'nonempty and changed'): cycle.preservation()
+            (root / 'dist' / cycle.HOTFIX_FILE).write_bytes(b'fixture corrected bundle')
+            result = cycle.preservation()
+            self.assertEqual(result['existingApplicationFilesPreserved'], 105)
+            self.assertEqual(result['completeApplicationFileCount'], 106)
+            self.assertEqual(result['changedApplicationFiles'], [cycle.HOTFIX_FILE])
+            self.assertEqual(result['addedRuntimeFiles'], [])
+            self.assertTrue(result['allOtherApplicationBytesUnchanged'])
+
+    def test_changes_to_other_files_inventory_or_source_config_are_rejected(self):
+        for change in ['html', 'css', 'added', 'deleted', 'empty-bundle', 'symlink', 'configuration']:
+            with self.subTest(change=change), self.application_fixture() as root:
+                bundle = root / 'dist' / cycle.HOTFIX_FILE
+                bundle.write_bytes(b'fixture corrected bundle')
+                if change == 'html': (root / 'dist/admin/season-two/index.html').write_bytes(b'changed')
+                elif change == 'css': (root / 'dist/admin/season-two/admin.css').write_bytes(b'changed')
+                elif change == 'added': (root / 'dist/extra.js').write_bytes(b'extra')
+                elif change == 'deleted': (root / 'dist/game.html').unlink()
+                elif change == 'empty-bundle': bundle.write_bytes(b'')
+                elif change == 'symlink':
+                    bundle.unlink(); bundle.symlink_to(root / 'dist/admin/season-two/admin.css')
+                else: (root / 'netlify.toml').write_bytes(b'[build]\ncommand="different"\n')
+                with self.assertRaises(AssertionError): cycle.preservation()
+
+    def test_ci_requires_the_exact_source_and_both_successful_events(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            with self.assertRaisesRegex(AssertionError, 'requires ci.json'):
+                cycle.ci_evidence_hash(folder, 'a' * 40, 'b' * 40)
+            (folder / 'ci.json').write_text(json.dumps(ci_record()))
+            self.assertEqual(cycle.ci_evidence_hash(folder, 'a' * 40, 'b' * 40), cycle.sha((folder / 'ci.json').read_bytes()))
+            for change in ['commit', 'tree', 'missing-pr', 'failure', 'duplicate-id', 'foreign-url']:
+                with self.subTest(change=change):
+                    value = ci_record()
+                    if change == 'commit': value['sourceCommit'] = 'c' * 40
+                    elif change == 'tree': value['sourceTree'] = 'd' * 40
+                    elif change == 'missing-pr': value['requiredCI'].pop()
+                    elif change == 'failure': value['requiredCI'][1]['conclusion'] = 'failure'
+                    elif change == 'duplicate-id':
+                        value['requiredCI'][1]['id'] = 1
+                        value['requiredCI'][1]['url'] = value['requiredCI'][0]['url']
+                    else: value['requiredCI'][1]['url'] = 'https://example.invalid/2'
+                    (folder / 'ci.json').write_text(json.dumps(value))
+                    with self.assertRaises(AssertionError): cycle.ci_evidence_hash(folder, 'a' * 40, 'b' * 40)
+
+    def test_saved_hotfix_requires_its_mode_and_bound_ci_for_followup_operations(self):
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            (folder / 'ci.json').write_text(json.dumps(ci_record()))
+            record = {'siteId': cycle.SITE, 'releaseMode': cycle.HOTFIX_MODE,
+                'sourceCommit': 'a' * 40, 'sourceTree': 'b' * 40,
+                'previousPublishedDeployId': cycle.HOTFIX_DEPLOY, 'originalPublishedDeployId': cycle.ORIGINAL_DEPLOY,
+                'submissionAttempted': True, 'responseReceived': True, 'deployId': 'c' * 24,
+                'ciEvidenceSha256': cycle.ci_evidence_hash(folder, 'a' * 40, 'b' * 40)}
+            (folder / 'submission.json').write_text(json.dumps(record))
+            self.assertEqual(cycle.release.saved_submission(folder), record)
+            cycle.configure_release_mode()
+            with self.assertRaisesRegex(AssertionError, 'use --plant-fields-hotfix'):
+                cycle.release.saved_submission(folder)
+            cycle.configure_release_mode(True)
+            with (folder / 'ci.json').open('ab') as stream: stream.write(b' ')
+            with self.assertRaisesRegex(AssertionError, 'CI evidence changed'):
+                cycle.release.saved_submission(folder)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,9 @@
+{
+  "requestedAt": "2026-11-08T15:11:52.150Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query SecondSeasonPlantReceiptField($objectId:SuiAddress!$version:UInt53!){genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}playerGrowth:object(address:$objectId version:$version){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}",
+  "variables": {
+    "objectId": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+    "version": 1021418439
+  }
+}

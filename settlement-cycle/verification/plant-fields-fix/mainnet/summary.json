@@ -1,0 +1,88 @@
+{
+  "verifiedAt": "2026-11-08T15:11:52.599Z",
+  "status": "UNSIGNED_SEASON_TWO_PLANT_PREVIEW_VERIFIED",
+  "rolloverDigest": "9SqBoBCyVA4A1mWfmBid7dGxny4ba2tzCgVPLiRS77z4",
+  "actualStartMs": "1794149127707",
+  "cutoffMs": "1794321927707",
+  "simulationStatus": "SUCCESS",
+  "validated": {
+    "action": "plant",
+    "kindSha256": "27b311ca14b3b1960ad36bb1ec839f2c3f2a6db53d68e7507be665235e41e34d",
+    "priceMist": "10000000",
+    "rewardShareMist": "7000000",
+    "treasuryShareMist": "2800000",
+    "developerShareMist": "200000",
+    "growthPoints": "10",
+    "gasEstimateMist": "2959058",
+    "canWaterBeforeCutoff": true
+  },
+  "unchangedPlayerGrowth": {
+    "objectId": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+    "version": "1021418439",
+    "digest": "h8fznU8RcPxQcE187UxEAA5h8QsJqvMn4nwnqo2sypr"
+  },
+  "historicalPlayerGrowthReadVerified": true,
+  "simulatedIdsAreNotDeployedIds": true,
+  "actualAfter": {
+    "checkpoint": {
+      "sequenceNumber": 343038120,
+      "timestamp": "2026-11-08T15:11:51.136Z",
+      "digest": "3qfo54XJpqnqLaSiXeErzozY4T7AnTPkRWfN1WD1q6Jn"
+    },
+    "seasonId": "2",
+    "storedStartMs": "1791729927707",
+    "rewardPoolMist": "0",
+    "treasuryMist": "0",
+    "totalSeeds": "0",
+    "growthPoints": "0",
+    "eligibleGrowthPoints": "0",
+    "paused": false
+  },
+  "allReviewedObjectsUnchanged": true,
+  "requests": [
+    {
+      "name": "proof",
+      "requestedAt": "2026-11-08T15:11:39.592Z",
+      "simulation": false
+    },
+    {
+      "name": "rollover",
+      "requestedAt": "2026-11-08T15:11:44.858Z",
+      "simulation": false
+    },
+    {
+      "name": "fields",
+      "requestedAt": "2026-11-08T15:11:48.914Z",
+      "simulation": false
+    },
+    {
+      "name": "simulation",
+      "requestedAt": "2026-11-08T15:11:51.967Z",
+      "simulation": true
+    },
+    {
+      "name": "historical-player-growth",
+      "requestedAt": "2026-11-08T15:11:52.150Z",
+      "simulation": false
+    },
+    {
+      "name": "after",
+      "requestedAt": "2026-11-08T15:11:52.224Z",
+      "simulation": false
+    },
+    {
+      "name": "after-fields",
+      "requestedAt": "2026-11-08T15:11:52.515Z",
+      "simulation": false
+    }
+  ],
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "actualSuiSpent": "0",
+  "sourceSha256": {
+    "common.mjs": "86c58d542918cd6ce93ec12f27547a33b779ee1b9ef10b5225c07bd44fb72f60",
+    "care-core.mjs": "18e8ed460e345766c2e262ddd6996ddb8fd0814a932943bc215e8685c665c031",
+    "rollover-core.mjs": "21a86f08166bef5f82b9a456d119d34baa4901ee0237281f56770cf3e295122c",
+    "check-plant-live.mjs": "093421c88bf4121619d59026d4aaecff85b7a0ae86eabfdfb0a0ba195ff38837"
+  }
+}

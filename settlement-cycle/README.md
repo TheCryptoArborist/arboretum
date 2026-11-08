@@ -22,6 +22,24 @@ See the [completed release record](verification/hosted/README.md). Earlier
 local validation files retain their original prepublication status; the hosted
 record documents the subsequent deployment and browser checks.
 
+### Planting field correction
+
+The owner then started Season 2 successfully. Its actual rollover transaction is
+`9SqBoBCyVA4A1mWfmBid7dGxny4ba2tzCgVPLiRS77z4`; the growing cutoff is
+November 10, 2026, at 8:45:27 AM America/Chicago. The first planting preview
+revealed that Sui can report the existing 10-GP owner field as unchanged when
+the first Seed of the new season also sets it to 10. The verifier now checks
+that explicit unchanged runtime reference. Receipt recovery reads the exact
+historical object version, independently validating its identity, parent, key,
+type and value. The other three planting field changes remain required.
+
+See the [planting correction record](verification/plant-fields-fix/README.md)
+for the untouched reproduction, passing live unsigned preview, tests and
+publication status. `release.py --plant-fields-hotfix` pins the published
+initial Season 2 deployment and allows only `admin/season-two/admin.mjs` to
+change, preserving the other 105 application files. The growing season and
+all transaction economics stay unchanged.
+
 Publishing the page does not archive a season, start a season, plant, water or
 claim. The owner reviews and approves each transaction in the Slush extension.
 The general garden remains read-only; this does not activate the prepared

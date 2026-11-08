@@ -1,0 +1,62 @@
+{
+  "status": "LOCAL_VALIDATION_PASSED_PUBLICATION_PENDING",
+  "baseCommit": "8bb1126e87be39168e9e83a48bb6db7e27e524c2",
+  "nodeVersion": "v24.22.1",
+  "checks": [
+    {
+      "command": "node --test --test-isolation=none settlement-cycle/*.test.mjs",
+      "passed": 114,
+      "failed": 0,
+      "log": "cycle-tests.txt"
+    },
+    {
+      "command": "node --test --test-isolation=none scripts/test-tester-return.mjs scripts/build-policy.test.mjs",
+      "passed": 56,
+      "failed": 0,
+      "log": "gate-build-policy.txt"
+    },
+    {
+      "command": "python3 -m unittest settlement-cycle/test_release.py -v",
+      "passed": 14,
+      "failed": 0
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0
+    },
+    {
+      "command": "NETLIFY=true CONTEXT=production SITE_ID=d425445d-4980-49be-8ab2-12e7527ba281 node scripts/build-site.mjs",
+      "exitCode": 0,
+      "log": "build.log"
+    },
+    {
+      "command": "python3 settlement-cycle/release.py preserve /workspace/scratch/bf00c1fabb32/season-two-plant-hotfix-release --plant-fields-hotfix",
+      "exitCode": 0,
+      "log": "preservation.json"
+    }
+  ],
+  "sourceSha256": {
+    "admin.mjs": "7eec2e10a058588410588cbd4a46692114faa2a477360b08108c57e1d2b8f56d",
+    "admin.test.mjs": "d100f4cdfbf3c2e3bf8e5096204181038e07d5ae8d44329b7921be0f8937062b",
+    "care-core.mjs": "18e8ed460e345766c2e262ddd6996ddb8fd0814a932943bc215e8685c665c031",
+    "care-core.test.mjs": "b836c853d2fd58663e087783b34db11b1cfce14fe8c0c46b711bbe8df6ea3640",
+    "care-fixtures.mjs": "70c94e17e715a15a86ea1995328fc86824d2616870eff6afa81ddbabc1adda55",
+    "common.mjs": "86c58d542918cd6ce93ec12f27547a33b779ee1b9ef10b5225c07bd44fb72f60",
+    "release.py": "732b3037b12aa7fe612def64a6f696f45ff110fb993a30109173f5d5e79155b4",
+    "test_release.py": "92890a004c311f7f779ab4c5963841ec29bfb896803f6ed0e7f27d9474e0eaee",
+    "check-plant-live.mjs": "093421c88bf4121619d59026d4aaecff85b7a0ae86eabfdfb0a0ba195ff38837"
+  },
+  "bundle": {
+    "path": "admin/season-two/admin.mjs",
+    "bytes": 576285,
+    "sha256": "737b7c04ec073fe1753cbbb63356856c6e94609f02e7fb8a563ede2ee23ebb2a"
+  },
+  "mainnetPreview": "mainnet/summary.json",
+  "actualWalletConnections": 0,
+  "actualSignatures": 0,
+  "actualTransactionsSubmitted": 0,
+  "limits": [
+    "A live unsigned preview does not establish an executed planting.",
+    "Required exact-source CI and hosted release verification are still pending."
+  ]
+}
