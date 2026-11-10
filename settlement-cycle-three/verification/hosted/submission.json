@@ -1,0 +1,18 @@
+{
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "releaseMode": "season-three-focused-watering",
+  "sourceCommit": "5d17306758518579bf523ab8a7f9e8cb198a9fe8",
+  "sourceTree": "a17cff6a8a442d1518bf69331fd600731868e3dd",
+  "candidateEvidenceSha256": "8904cc2096ba97078213de4ffd3e1a9ba7917c1bc4df15df20223fb8bd79909c",
+  "archiveSha256": "9b6743f26d8cbc14c11103525a1abedc3fe405ae6e9ad18bc8e0041dff809c23",
+  "archiveBytes": 46407754,
+  "requestedAt": "2026-11-10T19:05:50.251510+00:00",
+  "previousPublishedDeployId": "6af09274b50143d105dbb63a",
+  "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+  "submissionAttempted": true,
+  "responseReceived": true,
+  "ciEvidenceSha256": "2e5b740a7d30023a7b37ee0dbe43ea597d2237a02fe03cf5be53961085be463a",
+  "responseHttpStatus": 200,
+  "deployId": "6af36b1211851adcba7aa254",
+  "buildId": "6af36b1211851adcba7aa252"
+}

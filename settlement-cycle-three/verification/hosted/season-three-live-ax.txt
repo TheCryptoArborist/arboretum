@@ -1,0 +1,102 @@
+Browser tab: 14, Title: "Season 3 watering test | Arboretum", URL: "https://www.treegrow.xyz/admin/season-three/".
+0 AXWebArea Season 3 watering test | Arboretum, URL: treegrow.xyz/admin/season-three/
+	1 link Description: Skip to your season, Value: treegrow.xyz/admin/season-three/#cycle-status
+	2 container
+		3 link Description: Arboretum home, Value: treegrow.xyz/
+		4 link Description: Season 2 receipts , Value: treegrow.xyz/admin/season-two/
+	5 container
+		6 container One watering. A full cycle.
+			7 container
+				8 text  SUI MAINNET · SEASON 3 · OWNER TEST
+				9 heading One watering. A full cycle., Value: 1, ID: page-title
+					10 text One watering.
+					11 text A full cycle.
+				12 text A focused 48-hour test. Plant one Seed, return for its first watering, then collect the season reward.
+				13 link Description: View your completed Season 2 payment , Value: suivision.xyz/txblock/EvJHfMtHpGNcGoKndFNTafx9JSn8rKHwTPwiXuKD4pCB
+			14 image The TREE guardian
+		15 content list Season 3 progress
+			16 container step-rollover
+				17 text 1
+				18 text Start Season 3
+				95 text Archive & start
+			20 container step-plant
+				21 text 2
+				22 text Plant a Seed
+				96 text 0.01 SUI
+			24 container step-water
+				25 text 3
+				26 text Give it water
+				97 text 10 → 24 GP
+			28 container step-claim
+				29 text 4
+				30 text Claim reward
+				98 text After the cutoff
+		32 container YOUR NEXT SEASON, ID: cycle-status
+			33 text YOUR NEXT SEASON
+			99 text Mainnet verified
+			35 heading Your watering test is next, Value: 2, ID: current-stage
+				100 text Your watering test is next
+			101 text Season 2 is complete. The next season can start after the current review window ends.
+			38 text Growth Points
+			39 container
+				102 text —
+				41 text  GP
+			42 text Watering streak
+			103 text —
+			44 text Reward pool
+			104 text 0 SUI
+			105 text SEASON 3 START
+			106 text 19:37:47
+			107 text Return at the start time below. No wallet transaction is needed while you wait.
+			108 text Last verified 1:07:25 PM · checkpoint 343813188
+			50 button Refresh status, ID: refresh-state
+		51 container Plant. Set a reminder. Return.
+			52 text YOUR WATERING PLAN
+			53 heading Plant. Set a reminder. Return., Value: 2, ID: schedule-heading
+				54 text Plant. Set a reminder. Return.
+			55 text Start when you can plant promptly. Watering opens 21 hours, 36 minutes after planting. Return for one watering to verify 10 → 24 GP, then claim after the growing cutoff.
+			56 container
+				57 text Season 3 can start from
+				109 text Nov 11, 2026, 8:45:27 AM CST
+			59 container
+				60 text Season 3 starts
+				61 text After your Slush approval
+			62 container
+				63 text First watering opens
+				64 text Set by your planting time
+			65 container
+				66 text Growing ends · reward opens
+				67 text 48 hours after the season starts
+			68 container
+				69 text Claim deadline
+				70 text Seven days after the growing cutoff
+			71 container
+				72 text All schedule times are shown in  America/Chicago . The timer is checked against Sui mainnet.
+			73 button (collapsed) Season and wallet details, Secondary Actions: Expand
+				74 text Season and wallet details
+		75 container Season 3 opens soon
+			76 text YOUR NEXT MOVE
+			77 heading Season 3 opens soon, Value: 2, ID: action-heading
+				110 text Season 3 opens soon
+			79 text 48 hours
+			111 text Return at Nov 11, 2026, 8:45:27 AM CST. Refresh status then to review the season start.
+			81 heading Connect your Slush wallet, Value: 3
+				82 text Connect your Slush wallet
+			83 text Use a browser with the Slush extension for wallet approvals. Your status and receipts can be viewed without a wallet.
+			84 text Connecting shares your address. It costs no gas.
+			85 heading Review before approving, Value: 3
+				86 text Review before approving
+			87 button (disabled) Check readiness, ID: check-action
+			88 text A readiness check requests no signature and costs no gas.
+			89 button (disabled) Waiting for the next step, ID: submit-action
+			90 text Your wallet asks for approval. Each completed step is checked on mainnet before the next one opens.
+		112 container status-panel
+			113 heading Season status refreshed, Value: 2, ID: status-title
+				114 text Season status refreshed
+			115 text The next step and its timing have been verified on mainnet.
+		91 button (collapsed) Recover a previous test step, Secondary Actions: Expand
+			92 text Recover a previous test step
+	93 container
+		94 text ARBORETUM · SEASON 3 WATERING TEST One Seed. One watering. A verified reward.
+
+The focused UI element is 0 AXWebArea Season 3 watering test | Arboretum, URL: treegrow.xyz/admin/season-three/
