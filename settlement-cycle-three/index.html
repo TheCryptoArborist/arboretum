@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Season 3 watering test | Arboretum</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/season-three/admin.css">
+  <script type="module" src="/admin/season-three/admin.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#cycle-status">Skip to your season</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home"><img src="/prelaunch/mark.png" width="46" height="46" alt=""><span>ARBORETUM<small>THE NEXT CHAPTER</small></span></a>
+    <a class="back-link" href="/admin/season-two/">Season 2 receipts <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · SEASON 3 · OWNER TEST</p>
+        <h1 id="page-title">One watering.<br><span>A full cycle.</span></h1>
+        <p class="lead">A focused 48-hour test. Plant one Seed, return for its first watering, then collect the season reward.</p>
+        <a class="text-link" href="https://suivision.xyz/txblock/EvJHfMtHpGNcGoKndFNTafx9JSn8rKHwTPwiXuKD4pCB" target="_blank" rel="noopener noreferrer">View your completed Season 2 payment <span aria-hidden="true">↗</span></a>
+      </div>
+      <img class="hero-character" src="/prelaunch/hero.png" width="773" height="963" alt="The TREE guardian" fetchpriority="high">
+    </section>
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">Enable JavaScript to view the live season and review each wallet action.</div></noscript>
+    <ol class="cycle-progress" aria-label="Season 3 progress">
+      <li id="step-rollover"><span class="progress-number">1</span><div><strong>Start Season 3</strong><span id="step-rollover-note">Archive &amp; start</span></div></li>
+      <li id="step-plant"><span class="progress-number">2</span><div><strong>Plant a Seed</strong><span id="step-plant-note">0.01 SUI</span></div></li>
+      <li id="step-water"><span class="progress-number">3</span><div><strong>Give it water</strong><span id="step-water-note">10 → 24 GP</span></div></li>
+      <li id="step-claim"><span class="progress-number">4</span><div><strong>Claim reward</strong><span id="step-claim-note">After the cutoff</span></div></li>
+    </ol>
+    <div class="claim-layout cycle-layout">
+      <div class="garden-column">
+        <section id="cycle-status" class="card countdown-card" aria-labelledby="season-heading">
+          <div class="card-top"><p id="season-heading" class="eyebrow">YOUR NEXT SEASON</p><span id="chain-status" class="pill">Checking mainnet</span></div>
+          <h2 id="current-stage" class="current-stage">Reading your garden…</h2>
+          <p id="stage-note" class="countdown-note">Your season status works without a wallet connection.</p>
+          <div class="seed-stats">
+            <div><p class="stat-label">Growth Points</p><p class="stat-value"><span id="current-gp">—</span><span class="stat-unit"> GP</span></p></div>
+            <div><p class="stat-label">Watering streak</p><p class="stat-value" id="current-streak">—</p></div>
+            <div><p class="stat-label">Reward pool</p><p id="pool-balance" class="state-value">—</p></div>
+          </div>
+          <div class="claim-window"><p id="countdown-label" class="stat-label">SEASON TIMER</p><p id="countdown" class="countdown" role="timer" aria-live="off">—</p></div>
+          <p id="countdown-note" class="countdown-note">The 48 hours begin when your season-start transaction succeeds.</p>
+          <div class="refresh-row"><p id="chain-checked" class="small-text">Waiting for a current mainnet read.</p><button id="refresh-state" type="button" class="text-button">Refresh status</button></div>
+        </section>
+        <section class="card schedule-card" aria-labelledby="schedule-heading">
+          <div class="card-top"><div><p class="eyebrow">YOUR WATERING PLAN</p><h2 id="schedule-heading">Plant. Set a reminder. Return.</h2></div><img src="/prelaunch/mark.png" width="48" height="48" alt=""></div>
+          <p class="small-text">Start when you can plant promptly. Watering opens 21 hours, 36 minutes after planting. Return for one watering to verify 10 → 24 GP, then claim after the growing cutoff.</p>
+          <div class="schedule">
+            <div><span class="schedule-dot gold" aria-hidden="true"></span><p class="stat-label">Season 3 can start from</p><p id="rollover-time" class="schedule-time">Checking the completed season</p></div>
+            <div><span class="schedule-dot" aria-hidden="true"></span><p class="stat-label">Season 3 starts</p><p id="season-start" class="schedule-time">After your Slush approval</p></div>
+            <div><span class="schedule-dot" aria-hidden="true"></span><p class="stat-label">First watering opens</p><p id="watering-time" class="schedule-time">Set by your planting time</p></div>
+            <div><span class="schedule-dot gold" aria-hidden="true"></span><p class="stat-label">Growing ends · reward opens</p><p id="season-cutoff" class="schedule-time">48 hours after the season starts</p></div>
+            <div><span class="schedule-dot gold" aria-hidden="true"></span><p class="stat-label">Claim deadline</p><p id="claim-deadline" class="schedule-time">Seven days after the growing cutoff</p></div>
+          </div>
+          <div id="calendar-panel" class="calendar-panel" hidden><button id="watering-calendar" type="button" class="button secondary" disabled>Add watering to my calendar</button><p id="calendar-note" class="small-text">Your confirmed planting sets the reminder time. Download the event, then import it into your calendar.</p></div>
+          <p class="timing-note">All schedule times are shown in <strong>America/Chicago</strong>. The timer is checked against Sui mainnet.</p>
+          <details class="technical-details"><summary>Season and wallet details</summary><dl><dt>Owner account</dt><dd id="expected-admin"></dd><dt>Registry</dt><dd id="expected-registry"></dd><dt>Season 3 Seed</dt><dd id="current-seed">Available after planting</dd><dt>Season 2 archive</dt><dd id="season-archive">Available after rollover</dd><dt>Package</dt><dd id="expected-package"></dd></dl></details>
+        </section>
+      </div>
+      <section class="card action-card" aria-labelledby="action-heading">
+        <div class="card-top"><div><p class="eyebrow">YOUR NEXT MOVE</p><h2 id="action-heading">Checking the next step</h2></div><span class="version-chip">48 hours</span></div>
+        <p id="action-description" class="action-intro">Read the current season before connecting your wallet.</p>
+        <div class="flow-section"><h3>Connect your Slush wallet</h3><div id="wallet-list" class="wallet-list"><p class="small-text">Looking for the Slush browser extension…</p></div><p id="wallet-status" class="small-text" aria-live="polite">Connecting shares your address. It costs no gas.</p><div id="account-controls" hidden><label for="account-select">Choose the owner account ending 45c4</label><select id="account-select"><option value="">Select an account</option></select><button id="use-account" type="button" class="button secondary" disabled>Use selected account</button><p id="connected-address" class="address" hidden></p><button id="disconnect" type="button" class="text-button">Disconnect</button></div></div>
+        <div id="nft-controls" class="flow-section" hidden><h3>Choose your NFTree</h3><label for="nft-select">NFTree for this season’s Seed</label><select id="nft-select"><option value="">Select an NFTree</option></select><p class="small-text">This test reuses your Season 2 NFTree to plant one new Season 3 Seed. The NFTree stays in your wallet.</p></div>
+        <div class="flow-section"><h3>Review before approving</h3><button id="check-action" type="button" class="button secondary" disabled>Check readiness</button><p class="small-text">A readiness check requests no signature and costs no gas.</p>
+          <div id="review-panel" hidden>
+            <div class="fee-box"><span id="gas-status" class="pill">Fresh simulation</span><dl class="estimate-table"><dt id="amount-label">App charge</dt><dd id="amount-estimate">—</dd><dt>Estimated network fee</dt><dd id="gas-estimate">—</dd><dt class="net-label">Estimated wallet change</dt><dd id="net-estimate" class="net-value">—</dd></dl><p id="gas-note" class="small-text">Slush selects the final gas budget. Actual network fees can differ from the estimate.</p></div>
+            <div class="checks"><p id="review-summary"></p><p id="checked-at" class="small-text"></p></div>
+            <label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span id="acknowledgement-text">I have reviewed this action and its network fee.</span></label>
+          </div>
+          <button id="submit-action" type="button" class="button primary" disabled>Review in Slush ↗</button>
+          <p id="action-note" class="small-text">Your wallet asks for approval. Each completed step is checked on mainnet before the next one opens.</p>
+        </div>
+      </section>
+    </div>
+    <section id="status-panel" class="notice status-panel" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-message"></p></section>
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden><p class="eyebrow">CONFIRMED ON SUI MAINNET</p><h2 id="receipt-heading">Your test step is confirmed.</h2><p id="receipt-message" class="receipt-message"></p><dl id="receipt-details" class="receipt-table"></dl><div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction ↗</a><button id="copy-receipt" type="button" class="button secondary">Copy test receipts</button><a href="/settlement-game.html" class="button secondary">Review the garden</a></div><div id="receipt-history" class="receipt-history"></div></section>
+    <section id="failure-panel" class="card recovery-card" hidden><h2>Failed transaction verified</h2><p id="failure-message"></p><button id="retry-action" type="button" class="button secondary" disabled>Prepare a fresh review</button></section>
+    <details id="recovery-panel" class="card recovery-card"><summary>Recover a previous test step</summary><p id="recovery-message">Saved receipts are rechecked automatically after a refresh. You can also paste a transaction digest from Slush. Checking a receipt does not require a wallet connection.</p><form id="verify-form"><label for="recovery-action">Which step did you complete?</label><select id="recovery-action"><option value="rollover">Start Season 3</option><option value="plant">Plant a Seed</option><option value="water">First watering</option><option value="claim">Claim Season 3 reward</option></select><label for="transaction-digest">Transaction digest</label><div class="recovery-input"><input id="transaction-digest" type="text" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the original transaction digest"><button id="verify-receipt" type="submit" class="button secondary">Verify transaction</button></div></form></details>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · SEASON 3 WATERING TEST</span><span>One Seed. One watering. A verified reward.</span></footer>
+</body>
+</html>

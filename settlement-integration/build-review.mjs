@@ -19,6 +19,7 @@ import { buildOwnerGameplay } from '../settlement-gameplay/build.mjs';
 import { buildOwnerWatering } from '../settlement-watering/build.mjs';
 import { buildOwnerClaim } from '../settlement-claim/build.mjs';
 import { buildOwnerCycle, verifyCyclePreservation } from '../settlement-cycle/build.mjs';
+import { buildFocusedOwnerCycle, verifySeasonThreePreservation, FOCUSED_FILES } from '../settlement-cycle-three/build.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dist = path.join(root, 'dist');
@@ -130,6 +131,7 @@ const ownerGameplay = await buildOwnerGameplay();
 const ownerWatering = await buildOwnerWatering();
 const ownerClaim = await buildOwnerClaim();
 const ownerCycle = await buildOwnerCycle();
+const focusedOwnerCycle = await buildFocusedOwnerCycle();
 const allFiles=[];
 function list(dir) {
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})) {
@@ -138,7 +140,8 @@ function list(dir) {
   }
 }
 list(dist);
-const cyclePreservation = verifyCyclePreservation(allFiles);
+const cyclePreservation = verifyCyclePreservation(allFiles.filter(file => !FOCUSED_FILES.includes(file)));
+const seasonThreePreservation = verifySeasonThreePreservation(allFiles);
 for(const file of allFiles) assert.ok(!/(^|\/)(release|legacy-reconciliation|evidence|__pycache__|node_modules|\.git)(\/|$)/.test(file),
   'Source or review evidence was included in the published assets: '+file);
 assert.deepEqual(fs.readdirSync(path.join(dist,'settlement-integration')).sort(),
@@ -165,7 +168,8 @@ const report={
   walletModuleDependencies:[...visited].map(file=>path.relative(dist,file)).sort(),
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
   transactionSubmissionEnabled:false,transactionSubmissionScope:'gameplay-review',
-  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,ownerClaim,ownerCycle,cyclePreservation,evidencePublished:false,
+  administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,ownerClaim,ownerCycle,cyclePreservation,
+  focusedOwnerCycle,seasonThreePreservation,evidencePublished:false,
   hostedPreviewVerified:false,
   gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };

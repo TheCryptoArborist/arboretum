@@ -1,0 +1,24 @@
+{
+  "readAt": "2026-11-10T18:48:49.108Z",
+  "network": "sui:mainnet",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "readOnlyQueries": 3,
+  "simulations": 0,
+  "signatures": 0,
+  "submittedTransactions": 0,
+  "claimDigest": "EvJHfMtHpGNcGoKndFNTafx9JSn8rKHwTPwiXuKD4pCB",
+  "claimStatus": "SUCCESS",
+  "proofCheckpoint": {
+    "sequenceNumber": 343808455,
+    "timestamp": "2026-11-10T18:48:42.964Z",
+    "digest": "5QvDjHJtKGkoxCbCLttXvSJUsNTQ4jFybNJaN77DWxeU"
+  },
+  "inputsCheckpoint": {
+    "sequenceNumber": 343808474,
+    "timestamp": "2026-11-10T18:48:47.655Z",
+    "digest": "4c85J7T8x42ow6q4ANKKQZQzAqdDy7aEfz4nrNzuDzK5"
+  },
+  "normalResetReadyMs": "1794408327707",
+  "fieldsCheckpoint": 343808474,
+  "captureCompletedAt": "2026-11-10T18:49:43.978Z"
+}

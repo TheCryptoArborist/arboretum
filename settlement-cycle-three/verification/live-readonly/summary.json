@@ -1,0 +1,54 @@
+{
+  "startedAt": "2026-11-10T18:53:45.830Z",
+  "passed": true,
+  "method": "Exact read-only predecessor proof, then fresh current inputs; no future state substitution.",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "network": "sui:mainnet",
+  "intendedSeason": "3",
+  "readOnlyQueries": 2,
+  "simulations": 0,
+  "walletConnections": 0,
+  "signatures": 0,
+  "submittedTransactions": 0,
+  "futureWateringLiveTested": false,
+  "completedAt": "2026-11-10T18:53:56.219Z",
+  "proofCheckpoint": {
+    "sequenceNumber": 343809746,
+    "timestamp": "2026-11-10T18:53:50.164Z",
+    "digest": "DjmfBUeBgQbo2RoQNNZQtbWe9tqrbi8J16YYJQGs9BWe"
+  },
+  "currentCheckpoint": {
+    "sequenceNumber": 343809763,
+    "timestamp": "2026-11-10T18:53:54.272Z",
+    "digest": "3av4Xx9rZVmLkh3SKhMtY7x3UdRY84X397njCpxJEdHz"
+  },
+  "chainClockMs": "1794336834272",
+  "currentSeason": "2",
+  "status": "rollover-wait",
+  "normalResetReadyMs": "1794408327707",
+  "earlyRolloverPreparationRejected": true,
+  "seasonThreeHasStarted": false,
+  "previousClaim": {
+    "status": "confirmed",
+    "action": "claim",
+    "digest": "EvJHfMtHpGNcGoKndFNTafx9JSn8rKHwTPwiXuKD4pCB",
+    "checkpoint": {
+      "sequenceNumber": 343802393,
+      "timestamp": "2026-11-10T18:24:29.387Z"
+    },
+    "seasonId": "2",
+    "seedId": "0x4e3200ee3a42f82158e14e5c14f37a3ed33134c7b1e60c80b2178e94772dc6f2",
+    "rewardMist": "7000000",
+    "eligibleGrowthPoints": "10",
+    "rewardProcessed": true,
+    "claimedAtMs": "1794335069299",
+    "gasEstimateMist": "1575051",
+    "gasEstimateSui": "0.001575051",
+    "netReceiveMist": "5424949",
+    "netReceiveSui": "0.005424949",
+    "virtualGasReservations": 0,
+    "gasAboveReviewCeiling": false
+  },
+  "processedPreviousSeeds": 2,
+  "fixedNftId": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7"
+}
