@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-31T06:02:36.576Z",
+  "sourceSha256": {
+    "settlement-season/start-core.mjs": "39dbcffd63322eb4eedcee54f7fb10373da78c56ae3bbd2cd779730b15ec1bfb",
+    "settlement-season/check-live.mjs": "8aec6b55242533629089e2e9961a3146e3117fab9605578be3911990f058ce9f",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "package.json": "6c5cac221980b459104e6bf7cb94260cc048f9b60abc4659c44dcb3efa7941ec",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa",
+    "settlement-integration/verification/season-test-20261031/mainnet/unsigned-start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+  }
+}

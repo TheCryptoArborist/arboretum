@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-31T02:55:24.582320+00:00",
+  "checkpoint": {
+    "sequenceNumber": 339991221,
+    "timestamp": "2026-10-31T02:55:22.063Z",
+    "digest": "GghRyEee1hyaZKFYx3RHX2YwFsTHVQwjHxnjEQB9HKnQ"
+  },
+  "upgradeCap": {
+    "address": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "version": 990522281,
+    "digest": "AL8rz2UmVAVijA5KiDufAKsn4VbYjDMFaYyHQ8kzPB22",
+    "owner": {
+      "__typename": "AddressOwner",
+      "address": {
+        "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+      }
+    },
+    "asMoveObject": {
+      "contents": {
+        "type": {
+          "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::package::UpgradeCap"
+        },
+        "json": {
+          "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+          "package": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+          "version": "11",
+          "policy": 0
+        }
+      }
+    },
+    "previousTransaction": {
+      "digest": "HZRUsU9xNybZ5qSsPZV5wP1PvCEgbdsVJHur4ifFXnbw",
+      "effects": {
+        "status": "SUCCESS",
+        "checkpoint": {
+          "sequenceNumber": 319546807,
+          "timestamp": "2026-09-06T19:55:41.102Z"
+        }
+      }
+    }
+  },
+  "readOnly": true,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0
+}

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T02:47:39.995153+00:00",
+  "unitChecks": {
+    "upgradeCore": 18,
+    "controller": 10,
+    "passed": 28,
+    "failed": 0
+  },
+  "productionTargetBuildPassed": true,
+  "acceptedGameplayAssetHashesUnchanged": 11,
+  "preservedSourceHashesUnchanged": 9,
+  "compiledAdministratorSha256": {
+    "index.html": "7cd4a4e32d2f81d84678c274bfc3d6ef9ecb2fa34a4fab0cd1a23966e09cc03d",
+    "admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+    "admin.mjs": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+    "upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563"
+  },
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0
+}

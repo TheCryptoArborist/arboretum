@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-11-05T03:22:16.343163+00:00",
+  "method": "cua_repl local static preview with public live mainnet status reads",
+  "productionRuntimeUnchangedByHarness": true,
+  "walletKit": "disconnected QA stub with no signing capability",
+  "desktopLayoutInspected": true,
+  "desktopClientWidth": 1363,
+  "desktopScrollWidth": 1363,
+  "mobileIframeWidthCssPx": 390,
+  "mobileDocumentClientWidth": 375,
+  "mobileDocumentScrollWidth": 375,
+  "horizontalOverflow": false,
+  "mobileRewardAndApprovalViewsInspected": true,
+  "observed": {
+    "reward": "0.007 SUI",
+    "growthPoints": "10",
+    "eligibleGrowthPoints": "10",
+    "totalEligibleGrowthPoints": "10",
+    "seedStatus": "Ready to claim",
+    "readStatus": "Mainnet verified",
+    "disconnectedClaimCheckDisabled": true,
+    "disconnectedWalletApprovalDisabled": true,
+    "allThreeImagesLoaded": true
+  },
+  "screenshots": [
+    "claim-desktop-20261105.jpg",
+    "claim-mobile-20261105.jpg",
+    "claim-mobile-controls-20261105.jpg"
+  ],
+  "realWalletConnections": 0,
+  "signaturesRequested": 0,
+  "blockchainTransactionsSubmitted": 0,
+  "consoleObservation": "Sampled errors originated from the cloud browser metadata extension, not the application.",
+  "limits": [
+    "The local preview uses the real controller with a disconnected stub and an expected-origin facade; the production origin check remains intact.",
+    "No genuine Slush extension signing session or native tester login was exercised. Hosted HTTP and exact deployed-byte verification are recorded separately."
+  ]
+}

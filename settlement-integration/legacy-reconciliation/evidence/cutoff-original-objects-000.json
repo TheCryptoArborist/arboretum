@@ -1,0 +1,46 @@
+{
+  "retrievedAt": "2026-10-20T01:32:33.003616+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyObjectsAtCheckpoint($checkpoint: UInt53!, $type: String!, $cursor: String) {\n  checkpoint(sequenceNumber:$checkpoint) {\n    sequenceNumber\n    query { objects(first:50, after:$cursor, filter:{type:$type}) {\n      nodes { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } }\n } pageInfo { hasNextPage endCursor }\n    } }\n  }\n}",
+    "variables": {
+      "checkpoint": 328848276,
+      "type": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum",
+      "cursor": null
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 328848276,
+        "query": {
+          "objects": null
+        }
+      }
+    },
+    "errors": [
+      {
+        "message": "Request is outside consistent range",
+        "locations": [
+          {
+            "line": 4,
+            "column": 13
+          }
+        ],
+        "path": [
+          "checkpoint",
+          "query",
+          "objects"
+        ],
+        "extensions": {
+          "code": "BAD_USER_INPUT"
+        }
+      }
+    ]
+  },
+  "responseSha256": "505581daef6c48a5c85ec2f8584b2cf874091dd1f3faf28a9dd62625a8eee379"
+}

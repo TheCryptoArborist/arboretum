@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T05:45:23.613Z",
+  "status": "INVENTORY_BOUNDARY_UNSIGNED_UPGRADE_REHEARSAL_PASSED",
+  "network": "sui:mainnet",
+  "candidateInventoryVersion": 2,
+  "currentPackageVersion": 12,
+  "packet": {
+    "kindSha256": "8fcee48655a164ab66fb7552179654ebb1af09190566b57f4d298c72122bf406",
+    "kindBytes": 40647,
+    "commands": 3,
+    "inputs": 3
+  },
+  "simulated": {
+    "status": "UNSIGNED_NATIVE_UPGRADE_COMPATIBILITY_PASSED",
+    "checkpoint": {
+      "sequenceNumber": 340033157,
+      "timestamp": "2026-10-31T05:45:18.604Z",
+      "digest": "CPBCiWNvUDMnb3zzez8rzA1utR6vvAhuLfj11TTBo83V"
+    },
+    "kindSha256": "8fcee48655a164ab66fb7552179654ebb1af09190566b57f4d298c72122bf406",
+    "kindBytes": 40647,
+    "packageDigestHex": "1985543a00f6de289e170a0d16547b2a6cf709481ecb59bec7c85152393cfba9",
+    "simulatedPackageIdForVerificationOnly": "0x24c45b3c74657f8c977a4fbca1dfbcc544c56424303f53abf63e1fcb31686791",
+    "predictedPackageVersion": 13,
+    "productionInventoryVersion": 2,
+    "existingTypeOriginsPreserved": 71,
+    "newTypeOrigins": 0,
+    "legacyModuleBytesPreserved": true,
+    "candidateModuleBytesVerified": true,
+    "observedDependencyLinks": [
+      {
+        "originalId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "upgradedId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+        "version": 25
+      },
+      {
+        "originalId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "upgradedId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+        "version": 60
+      }
+    ],
+    "upgradeCapOwnerAndPolicyPreserved": true,
+    "gasEstimateMist": "338227763",
+    "gasEstimateSui": "0.338227763",
+    "simulatedGasBudgetMist": "338327763",
+    "simulatedGasPriceMist": "100",
+    "simulatedResolvedExpiration": {
+      "ValidDuring": {
+        "minEpoch": "1297",
+        "maxEpoch": "1298",
+        "minTimestamp": null,
+        "maxTimestamp": null,
+        "chain": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+        "nonce": 1659988061
+      },
+      "$kind": "ValidDuring"
+    },
+    "resolvedGasPayments": 0,
+    "postObservationNotBeforeMs": "1793425521090",
+    "predictedRegistriesCreated": 0,
+    "predictedSeasonsStarted": 0,
+    "predictedInventoryConverted": 0,
+    "actualSignaturesRequested": 0,
+    "actualTransactionsSubmitted": 0,
+    "actualGasSpentMist": "0",
+    "newDeploymentPackageId": null,
+    "newProductionRegistryId": null
+  },
+  "actualAfterRehearsal": {
+    "checkpoint": {
+      "sequenceNumber": 340033169,
+      "timestamp": "2026-10-31T05:45:21.513Z",
+      "digest": "GKKKX8w3xrgzAFv3WLLyZXV4LWpVfsE8Ugj5tZTQW3U8"
+    },
+    "actualPackageVersion": "12",
+    "actualRegistryVersion": "1",
+    "actualSeasonId": "0",
+    "actualSeasonStartMs": "0",
+    "actualRewardPoolMist": "0",
+    "actualTreasuryMist": "0",
+    "realProtocolObjectsUnchanged": true,
+    "simulatedPackageAbsentOnChain": true,
+    "observationAfterSimulationResponse": true,
+    "actualNewProductionRegistryId": null
+  },
+  "requests": [
+    {
+      "name": "confirmed-proof",
+      "capturedAt": "2026-10-31T05:45:20.595Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "inputs",
+      "capturedAt": "2026-10-31T05:45:20.746Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "simulation",
+      "capturedAt": "2026-10-31T05:45:21.090Z",
+      "checkedSimulation": true
+    },
+    {
+      "name": "after-observation-1",
+      "capturedAt": "2026-10-31T05:45:21.262Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "after-observation-2",
+      "capturedAt": "2026-10-31T05:45:22.422Z",
+      "checkedSimulation": false
+    },
+    {
+      "name": "after-observation-3",
+      "capturedAt": "2026-10-31T05:45:23.578Z",
+      "checkedSimulation": false
+    }
+  ],
+  "selectedAfterObservation": "after-observation-3",
+  "sourceSha256": {
+    "contract-reconstruction/source/arboretum.move": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+    "contract-payout/source/settlement.move": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+    "settlement-integration/inventory-boundary/production/settlement.move": "091f774707d28a299bd85a0744d61187b16c9b7fe8997886c796c1db62b94df8",
+    "economy-review/decisions.json": "ac7833719724023d1f8703cb7d3092e41f5328bfa909bc7f903fbbbffccd2852",
+    "settlement-integration/release/evidence/20261031-confirmed-upgrade/receipt.json": "113184bcead64c2fd64eb94e67c600ccaab3fe5c47fb2b017d7688077d060d5b",
+    "settlement-integration/inventory-boundary/verify-candidate.py": "419243aa5a8bf039359fb9f1501ea7c72d7492e245cac477a635ab3fdd6add01",
+    "contract-reconstruction/compare_bytecode.py": "6e81a966fe19721c2e8f1e47a033b461e0926281b10d4f073813c825103074a0",
+    "contract-reconstruction/build_reconstruction.py": "7c2b6f7bec0a44395a31e505f3737f5fd77fb63555f514d69cfd42c14169d1d9",
+    "contract-payout/audit_source_scope.py": "6d4598072938dd8ecc0f605f1b1bcc365c6545d345aff8df4c152d2ceffdf82a",
+    "settlement-integration/release/verify_inputs.py": "8fd9606bfdd4bb895a4ca9027c8a3cd7a9460e9d6febbc3fbe03fdab78475691",
+    "settlement-integration/inventory-boundary/tests/version-boundary-v2.move.inc": "b97ad40090e651be56d24d373e6c6cf555f4c54b304d7466dc184f52e348f82e",
+    "settlement-integration/inventory-boundary/tests/production-economy-v2.move.inc": "d931eb379e6fb7787021c216b11f4e14a6b4e9f4e8442b81b4b8fa9cc8e42bc9",
+    "settlement-integration/inventory-boundary/tests/legacy-admin-fixture.move.inc": "d815ad826dd59b6978627a14f66b891f0118baf0afaa2423be2608cf148a6133",
+    "settlement-integration/inventory-boundary/tests/old-package-rejection-v1.move.inc": "d8a1c0152760517fbe1135754f4851ff86b927f208f064a41f2e3edb0691b26a",
+    "settlement-integration/inventory-boundary/prepare-candidate.py": "f2c13d2f9df510743bfe70336d12a8b5acfc47f09cf2f4a44013338fab5a4d99",
+    "settlement-integration/inventory-boundary/production/candidate.json": "e89a229c0479ee5e781b313d7df5bcbdb504dad2125bbc72828cfb18d7a84ce6",
+    "settlement-integration/inventory-boundary/production/settlement.patch": "4f934854a3143c30b476c82e7c94e70ef64b8ada742b920ed94562c51547f33c",
+    "settlement-integration/inventory-boundary/upgrade-rehearsal-core.mjs": "2abaf843617f409389e4a7bdbc708d497b22d1db6c5a0686711567b5d9620957",
+    "settlement-integration/inventory-boundary/check-upgrade.mjs": "e9b4f239370aa8d5510294c5a650e2f3ce82b066f8acdd89e1f1ef596047d945",
+    "settlement-integration/season-test/start-core.mjs": "710826322c9bafd4fa2278e90ba7935a3e91f7b583caf5b88d49fed5268ecf30",
+    "settlement-integration/release/build-upgrade.mjs": "b64c9bb1254ecf01a75ba31edeedf2f1d0053a802d56ee7e592798184a08f7c6",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  },
+  "offlineEvidenceSha256": {
+    "candidate-build.json": "2d5259e95d3f4fa1c2cd10f88445cdc7621fd442db3949616b1c75dd437a9fbb",
+    "summary.json": "861b83ddeeea4a9a9cee2a74f37396a8048712cd710b4936bd44119d37e9dd83",
+    "v1-tests.json": "76dbf55d7889425f7adb3a0e6d87eec6b9eb57ed786e421773e7d822da14b9f8",
+    "v2-tests.json": "caebec11e553eed7bb5f0ebfc15135659eb31e12b6959ac7001b8233143d8577"
+  },
+  "actualSignaturesRequested": 0,
+  "actualTransactionsSubmitted": 0,
+  "actualGasSpentMist": "0",
+  "actualFundsDepositedMist": "0",
+  "actualNewProductionRegistryId": null,
+  "actualNewDeploymentPackageId": null,
+  "applicationActivationPerformed": false,
+  "websiteDeploymentPerformed": false,
+  "limits": [
+    "This is an unsigned compatibility rehearsal, not a published upgrade or approval to launch.",
+    "The predicted package ID must never be used as a real deployment or application configuration.",
+    "Production requires a separately verified real upgrade, fresh v2 Registry and version-aware frontend.",
+    "The existing v1 Registry and old inventory remain separate test state."
+  ]
+}

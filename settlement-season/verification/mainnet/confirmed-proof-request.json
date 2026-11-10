@@ -1,0 +1,17 @@
+{
+  "requestedAt": "2026-10-31T06:02:36.578Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "method": "POST",
+  "credentials": "omit",
+  "redirect": "error",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Origin": "https://www.treegrow.xyz"
+  },
+  "query": "query OwnerTestSeasonProof($digest:String!$upgradeDigest:String!){checkpoint{sequenceNumber timestamp digest}genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}transaction(digest:$digest){digest sender{address}transactionBcs effects{status executionError{message}gasEffects{gasSummary{computationCost storageCost storageRebate nonRefundableStorageFee}}balanceChangesJson objectChanges(first:50){nodes{address idCreated idDeleted inputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}outputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}asMovePackage{address version linkage{originalId upgradedId version}typeOrigins{module struct definingId}modules(first:50){nodes{name bytes}pageInfo{hasNextPage endCursor}}}}}pageInfo{hasNextPage endCursor}}events(first:10){nodes{sender{address}contents{type{repr}json}}pageInfo{hasNextPage endCursor}}checkpoint{sequenceNumber timestamp}}}upgradeTransaction:transaction(digest:$upgradeDigest){digest sender{address}transactionBcs effects{status executionError{message}gasEffects{gasSummary{computationCost storageCost storageRebate nonRefundableStorageFee}}balanceChangesJson objectChanges(first:50){nodes{address idCreated idDeleted inputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}outputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}asMovePackage{address version linkage{originalId upgradedId version}typeOrigins{module struct definingId}modules(first:50){nodes{name bytes}pageInfo{hasNextPage endCursor}}}}}pageInfo{hasNextPage endCursor}}checkpoint{sequenceNumber timestamp}}}}",
+  "variables": {
+    "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+    "upgradeDigest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU"
+  }
+}

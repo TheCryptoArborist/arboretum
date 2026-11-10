@@ -1,0 +1,99 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.455646+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "Event"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "Event",
+        "description": null,
+        "inputFields": null,
+        "fields": [
+          {
+            "name": "contents",
+            "description": "The Move value emitted for this event.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "MoveValue",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "eventBcs",
+            "description": "The Base64 encoded BCS serialized bytes of the entire Event structure from sui-types.\nThis includes: package_id, transaction_module, sender, type, and contents (which itself contains the BCS-serialized Move struct data).",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Base64",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "sender",
+            "description": "Address of the sender of the transaction that emitted this event.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Address",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "sequenceNumber",
+            "description": "The position of the event among the events from the same transaction.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "UInt53"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "timestamp",
+            "description": "Timestamp corresponding to the checkpoint this event's transaction was finalized in.\nAll events from the same transaction share the same timestamp.\n\n`null` for simulated/executed transactions as they are not included in a checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "transaction",
+            "description": "The transaction that emitted this event. This information is only available for events from indexed transactions, and not from transactions that have just been executed or dry-run.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Transaction",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "transactionModule",
+            "description": "The module containing the function that was called in the programmable transaction, that resulted in this event being emitted.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "MoveModule",
+              "ofType": null
+            },
+            "args": []
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "5d40f52f47e8f67bfdacf3629f2d79a2572877453bbe63fde10563b28a4f7b01"
+}

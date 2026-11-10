@@ -1,0 +1,309 @@
+"""Add the settlement review UI to emitted game HTML, never to source inputs.
+
+Usage: python settlement-integration/ui/transform_game.py dist/game.html legacy
+The caller supplies the correct compiled wallet and copies panel.mjs/panel.css
+to /settlement-panel.mjs and /settlement-panel.css in the emitted site.
+"""
+from pathlib import Path
+import hashlib
+import json
+import re
+import sys
+
+ROOT = Path(__file__).resolve().parents[2]
+MARKER = 'data-settlement-review="true"'
+
+BANNER = '''
+<aside class="sr-banner" aria-label="Integration review">
+  <div class="sr-banner-copy"><span class="sr-eyebrow">Arboretum · Integration review</span>
+    <strong>Explore your garden. Review the reward state.</strong>
+    <p>This review build connects to wallets and reads the Sui network. Transactions are disabled.</p>
+  </div>
+  <nav id="sr-routes" class="sr-routes" aria-label="Garden protocol">
+    <a class="sr-route" href="/game.html">Existing garden <small>Default route</small></a>
+    <span class="sr-route sr-route-unavailable" aria-disabled="true">New seasons <small>Unavailable · awaiting activation</small></span>
+  </nav>
+</aside>
+'''
+
+PANEL = '''
+    <section id="settlement-rewards" class="sr-panel" aria-labelledby="sr-title" tabindex="-1">
+      <div class="sr-panel-heading">
+        <div><span class="sr-eyebrow">Wallet reward review</span><h3 id="sr-title">Your season rewards</h3>
+          <p id="sr-intro">Connect your wallet to read the reward status of its Seeds in the selected garden.</p></div>
+        <span class="sr-badge sr-badge-review">Review only</span>
+      </div>
+      <div class="sr-overview">
+        <div><span>Garden</span><strong id="sr-protocol">Unavailable</strong></div>
+        <div><span>Connected wallet</span><strong id="sr-owner">Not connected</strong></div>
+        <div><span>Owned Seeds</span><strong id="sr-count">Unavailable</strong></div>
+      </div>
+      <div class="sr-toolbar">
+        <div class="sr-actions"><button type="button" class="sr-button sr-button-primary" id="sr-connect">Connect wallet</button>
+          <button type="button" class="sr-button" id="sr-refresh">Refresh reward data</button></div>
+        <span id="sr-read-status" role="status">Reward reader is loading.</span>
+      </div>
+      <p id="sr-action-note" class="sr-callout" hidden role="status"></p>
+      <div id="sr-state" class="sr-state" role="status">Unavailable until the wallet reader is ready.</div>
+      <div id="sr-entries" class="sr-entries" aria-label="Seed reward states"></div>
+      <details id="sr-evidence" class="sr-evidence" hidden><summary>Read verification</summary>
+        <dl><div><dt>Checkpoint</dt><dd id="sr-checkpoint">Unavailable</dd></div>
+          <div><dt>Network time</dt><dd id="sr-network-time">Unavailable</dd></div>
+          <div><dt>Wallet</dt><dd id="sr-owner-full">Unavailable</dd></div></dl>
+        <p>These Seeds, their reward records, and the network clock were read at the same checkpoint. Refresh for a new snapshot.</p>
+      </details>
+      <p class="sr-footnote">A processed Seed needs its matching receipt before the amount paid can be shown. A verified zero and an unavailable amount are shown separately.</p>
+      <p class="sr-footnote">Observed payouts include verified receipts returned by the data provider. Older history may be incomplete, so this is not a guaranteed lifetime total.</p>
+    </section>
+'''
+
+REGISTRY_PANEL = '''
+  <section id="sr-registry" class="sr-panel sr-registry" data-state="loading" aria-labelledby="sr-registry-title">
+    <div class="sr-panel-heading">
+      <div><span class="sr-eyebrow">New seasons · Sui mainnet</span><h3 id="sr-registry-title">Checking the new garden</h3>
+        <p id="sr-registry-copy" role="status">Reading the selected Registry. You do not need to connect a wallet.</p></div>
+      <span class="sr-badge sr-badge-review">Read only</span>
+    </div>
+    <div class="sr-overview sr-registry-overview" aria-label="Verified Registry totals">
+      <div><span>Reward pool</span><strong id="sr-registry-pool">Checking…</strong></div>
+      <div><span>Treasury</span><strong id="sr-registry-treasury">Checking…</strong></div>
+      <div><span>Planted Seeds</span><strong id="sr-registry-seeds">Checking…</strong></div>
+      <div><span>Growth Points</span><strong id="sr-registry-gp">Checking…</strong></div>
+    </div>
+    <div class="sr-state sr-garden-state" id="sr-garden-state">
+      <span class="sr-garden-leaf" aria-hidden="true"><svg aria-hidden="true" focusable="false" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#61ffca" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a7 7 0 0 1-1.2-13.9C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 22c0-6 6-12 9-13"/></svg></span>
+      <div><strong id="sr-garden-title">Checking the garden</strong><p id="sr-garden-copy">Reading the Registry on Sui mainnet.</p></div>
+    </div>
+    <div class="sr-toolbar">
+      <div class="sr-actions"><button type="button" class="sr-button sr-button-primary" id="sr-registry-refresh">Refresh season status</button>
+        <a class="sr-button" href="#rewards-sec" onclick="doc('rewards-sec');return false">Review owned Seeds</a></div>
+      <span class="sr-registry-note">Public network read · no wallet approval</span>
+    </div>
+    <details id="sr-registry-evidence" class="sr-evidence" hidden><summary>Read verification</summary>
+      <dl><div><dt>Checkpoint</dt><dd id="sr-registry-checkpoint">Unavailable</dd></div>
+        <div><dt>Network time</dt><dd id="sr-registry-time">Unavailable</dd></div>
+        <div><dt>Registry</dt><dd id="sr-registry-id">Unavailable</dd></div></dl>
+      <p>The Registry and network clock were verified at the same checkpoint. Refresh for a new snapshot.</p>
+    </details>
+    <p class="sr-footnote">This page is for review. Season activation, planting, purchases, funding, and claims are disabled.</p>
+  </section>
+'''
+
+
+def transform_settlement_view(source):
+    """Expose the public review and preserve hidden legacy IDs for existing scripts."""
+    code = source
+
+    def once(before, after):
+        nonlocal code
+        if code.count(before) != 1:
+            raise ValueError("New seasons presentation anchor is not unique: " + before[:90])
+        code = code.replace(before, after, 1)
+
+    once('<div id="garden-guide" class="player-path">', REGISTRY_PANEL + '\n  <div id="garden-guide" class="player-path">')
+    once('<span class="logo-sub">Monthly SUI Growth Cycles</span>', '<span class="logo-sub">New seasons · Read only</span>')
+    once("const PANEL_IDS=['hero-sec','demo-sec','rewards-sec','leaderboard-sec','garden-sec','tools-sec','market-sec','info-sec'];",
+         "const PANEL_IDS=['garden-sec','rewards-sec'];")
+    once("const initial=normalizePanelId(location.hash?.replace('#','')||'hero-sec');",
+         "const initial=normalizePanelId(location.hash?.replace('#','')||'garden-sec');")
+    once("setActivePanel(PANEL_IDS.includes(panelFor(initial))?initial:'hero-sec',{push:false,scroll:false});",
+         "setActivePanel(PANEL_IDS.includes(panelFor(initial))?initial:'garden-sec',{push:false,scroll:false});")
+    once("window.addEventListener('popstate',()=>setActivePanel(normalizePanelId(location.hash?.replace('#','')||'hero-sec'),{push:false,scroll:false}));",
+         "window.addEventListener('popstate',()=>{const id=normalizePanelId(location.hash?.replace('#','')||'garden-sec');setActivePanel(PANEL_IDS.includes(panelFor(id))?id:'garden-sec',{push:false,scroll:false});});")
+    once('onclick="setRewardTab(\'season\')">Monthly Pool</button>', 'onclick="setRewardTab(\'season\')">Seed rewards</button>')
+    # The existing tab scripts retain their DOM nodes. On this route the CSS
+    # exposes only the Registry review and the owned-Seed reward reader.
+    # Remove static economic dispatch too; the compiled wallet independently
+    # rejects every transaction entry point before it constructs a transaction.
+    economic = re.compile(r'\b(?:doPlant\w*|doWater\w*|doRevive\w*|doResetSeed|doApplyTool|doOpenCrate|doBuy\w*|doClaim\w*|doMint|mintNftreeInArboretum|openMintModal|openAdminModal|aStart|aReset|aTogglePause|aDeposit|aWithdraw\w*|aPromoCrate|aCreateChallengeBook|aOpenCanopySprint|aCancelCanopySprint|aFinalizeCanopySprint|doEnterCanopy\w*|doRefundCanopy\w*)\s*\(')
+    button_tag = re.compile(r'''<button\b(?:[^>"']|"[^"]*"|'[^']*')*>''', re.S)
+    handler = re.compile(r'''\bonclick\s*=\s*("[^"]*"|'[^']*')''', re.S)
+
+    def disable(match):
+        tag = match[0]
+        action = handler.search(tag)
+        if not action or not economic.search(action[1]):
+            return tag
+        tag = tag[:action.start()] + 'onclick="return false"' + tag[action.end():]
+        attrs = ' data-review-disabled="true" hidden'
+        if not re.search(r'\sdisabled(?:\s|=|>)', tag):
+            attrs += ' disabled'
+        return tag[:-1] + attrs + '>'
+
+    return button_tag.sub(disable, code)
+
+
+def transform(source, route_id="legacy"):
+    if route_id not in ("legacy", "settlement"):
+        raise ValueError("Unknown garden route")
+    if MARKER in source:
+        raise ValueError("The emitted game already has the settlement review transform")
+    code = source
+
+    def once(before, after):
+        nonlocal code
+        if code.count(before) != 1:
+            raise ValueError("Review UI anchor is not unique: " + before[:90])
+        code = code.replace(before, after, 1)
+
+    def section(start, end, replacement):
+        nonlocal code
+        if code.count(start) != 1 or code.count(end) != 1:
+            raise ValueError("Review UI section is not unique: " + start)
+        a, b = code.index(start), code.index(end)
+        if b <= a:
+            raise ValueError("Review UI section order is invalid: " + start)
+        code = code[:a] + replacement + "\n" + code[b:]
+
+    once('<html lang="en">', '<html lang="en" ' + MARKER + ' data-review-protocol="' + route_id + '">')
+    once('</head>', '<link rel="stylesheet" href="/settlement-panel.css">\n</head>')
+    banner = BANNER if route_id == 'legacy' else BANNER.replace(
+        'Explore your garden. Review the reward state.', 'New seasons · Read-only review').replace(
+        'This review build connects to wallets and reads the Sui network. Transactions are disabled.',
+        'Check the new garden on Sui mainnet. Connect a wallet only to review its owned Seeds. Transactions are disabled.')
+    once('<body>', '<body>\n' + banner)
+    once('</body>', '<script type="module" src="/settlement-panel.mjs"></script>\n</body>')
+    # Pin the providers and names represented by the visible cards. Registration can
+    # change between rendering and clicking; a fresh registry index may refer
+    # to a different extension, even one with the same name.
+    once('function walletOptionsMarkup(wallets=[]){', '''let walletPickerChoices=[];
+function walletOptionsMarkup(wallets=[]){
+  walletPickerChoices=wallets.map(wallet=>({wallet,name:wallet.name}));''')
+    once("  list.innerHTML='<div class=\"ach-empty\">Searching for Sui wallet extensions...</div>';",
+         "  walletPickerChoices=[];\n  list.innerHTML='<div class=\"ach-empty\">Searching for Sui wallet extensions...</div>';")
+    section('async function triggerConnectIndex(i){', 'window.triggerConnectIndex=triggerConnectIndex;', '''async function triggerConnectIndex(i){
+  const choice=Number.isInteger(i)?walletPickerChoices[i]:null;
+  const name=choice?.name;
+  if(typeof name!=='string'||!name){
+    toast('That wallet choice is no longer available. Refresh the wallet list and choose again.','td',7000);
+    return;
+  }
+  closeWalletModal();
+  await doConnect(name,choice.wallet);
+}''')
+    once('async function doConnect(walletName=null){',
+         'async function doConnect(walletName=null,expectedWallet=null){')
+    once('    const r=await window.connectWallet(walletName);',
+         '    const r=await window.connectWallet(walletName,expectedWallet);')
+    # NFTree minting uses an independent remote wallet helper, so the emitted
+    # wallet's signAndExecute guard cannot protect it. Remove that path from
+    # both review routes before any wallet connection or remote script load.
+    once("let NFTREE_MINT_SCRIPT_PROMISE=null;\n", '')
+    once("const NFTREE_SALE_POOL_API='https://nftree.net/api/nftree-sale-pools';\n", '')
+    once("const NFTREE_MINT_SCRIPT='https://nftree.net/assets/nftree-wallet-mint.js';\n", '')
+    section('async function loadNftreeMintScript(){', 'function formatMistAsSui(mist){', '')
+    section('async function mintNftreeInArboretum(){', 'window.mintNftreeInArboretum=mintNftreeInArboretum;', '''async function mintNftreeInArboretum(){
+  toast('NFTree minting is disabled in this review. No wallet transaction will be requested.','ti',9000);
+  return {submitted:false,reason:'REVIEW_ONLY'};
+}''')
+    section('<div class="amodal-overlay" id="mint-modal">', '<div class="amodal-overlay" id="eco-modal">', '''<div class="amodal-overlay" id="mint-modal">
+  <div class="amodal-box">
+    <h3>NFTree access review</h3>
+    <p id="mint-review-notice">NFTree minting is disabled in this review. No wallet transaction will be requested.</p>
+    <p>You can check the NFTrees already in your wallet and review your garden access.</p>
+    <div class="amodal-acts">
+      <button class="gbtn" id="mint-here-btn" type="button" disabled aria-describedby="mint-review-notice">Minting disabled in review</button>
+      <button class="gbtn" onclick="checkMintAndReturn()">Check existing NFTree access</button>
+      <button class="gbtn" onclick="closeAModal2('mint-modal')">Close</button>
+    </div>
+  </div>
+</div>
+''')
+    section('function openMintModal(){', 'window.openMintModal=openMintModal;', '''function openMintModal(){
+  $('mint-modal')?.classList.add('open');
+}''')
+    once('<div class="reward-tab-panel active" id="reward-tab-season" role="tabpanel" aria-labelledby="reward-tab-season-btn">',
+         '<div class="reward-tab-panel active" id="reward-tab-season" role="tabpanel" aria-labelledby="reward-tab-season-btn">' + PANEL)
+    # Keep legacy IDs for the existing game scripts, but remove the old payout
+    # story from the accessibility tree and visible UI in this review build.
+    once('<div class="reward-zone claim">', '<div class="reward-zone claim" hidden aria-hidden="true">')
+    once('See your monthly SUI pool estimate, claim status, invite earnings, badges, and cosmetics.',
+         'Review your season reward state, invite earnings, badges, and cosmetics.')
+    once('<small>Claimed</small><b id="r-collected">', '<small>Observed payouts</small><b id="r-collected">')
+    if route_id == 'settlement':
+        once('<div class="adm-wide" id="partner-revenue-mount"></div>',
+             '<div class="adm-wide sr-partner-unavailable" id="settlement-partner-report">Partner accounting for new seasons is not configured. <a href="/game.html">Open the existing garden</a> to review legacy partner receipts.</div>')
+
+    section('async function doClaimReward(){', 'window.doClaimReward=doClaimReward;', '''async function doClaimReward(){
+  if(window.arbSettlementPanel){await window.arbSettlementPanel.openClaims();return;}
+  if(typeof setRewardTab==='function')setRewardTab('season');
+  if(typeof doc==='function')doc('rewards-sec');
+  toast('This is a review build. Transactions are disabled; the reward reader is still loading.','ti',9000);
+}''')
+    # The old local GP/pool projection would otherwise overwrite the wallet's
+    # Under review/Unavailable text whenever the garden refreshed.
+    section('function updateProjectedReward(playerGP=0){', 'function updatePoolShare(playerGP=0){', '''function updateProjectedReward(playerGP=0){
+  if(window.arbSettlementPanel){window.arbSettlementPanel.syncProjection();return;}
+  const value=PA?'Loading…':'Connect wallet';
+  for(const id of ['hero-earn-proj','h-proj','d-sui','r-proj','roi-pct'])txt(id,value);
+}''')
+    once('function afterConnect(r){', "function afterConnect(r){\n  window.arbSettlementPanel?.onWalletChanged();")
+    once('  PA=null;WALLET_NAME=null;ALL=[];', '  PA=null;WALLET_NAME=null;ALL=[];\n  window.arbSettlementPanel?.onWalletChanged();')
+
+    section('async function loadCollectedRewards(){', 'window.loadCollectedRewards=loadCollectedRewards;', '''async function loadCollectedRewards(){
+  const owner=PA;
+  const show=value=>{txt('d-collected',value);txt('r-collected',value);};
+  if(!owner){show('Connect wallet');return;}
+  if(typeof window.arb?.getTotalRewardsCollected!=='function'){show('Unavailable');return;}
+  try{
+    const total=await window.arb.getTotalRewardsCollected(owner);
+    if(PA!==owner)return;
+    if(total==null||!Number.isFinite(Number(total))||Number(total)<0)throw Error('Collected reward history unavailable.');
+    show(`${Number(total).toFixed(4)} SUI`);
+    syncRewardsHub();
+  }catch(e){
+    if(PA!==owner)return;
+    console.warn('Collected rewards:',e);
+    show('Unavailable');
+  }
+}''')
+    # Only missing-data fallbacks change; successful numeric zero stays zero.
+    once("txt('r-collected',$('d-collected')?.textContent||'0.0000 SUI');", "txt('r-collected',$('d-collected')?.textContent||'Unavailable');")
+    once("txt('r-proj',$('d-sui')?.textContent||'0.00 SUI');", "txt('r-proj',$('d-sui')?.textContent||'Unavailable');")
+    once("txt('hero-earn-proj',$('h-proj')?.textContent||$('d-sui')?.textContent||'0.00 SUI');", "txt('hero-earn-proj',$('h-proj')?.textContent||$('d-sui')?.textContent||'Unavailable');")
+    # The only remaining copies are in the explicit disconnect handler.
+    once("  txt('d-collected','0.0000 SUI');", "  txt('d-collected','Connect wallet');")
+    once("  txt('r-collected','0.0000 SUI');", "  txt('r-collected','Connect wallet');")
+    for element_id in ('d-collected', 'r-collected', 'hero-earn-proj', 'h-proj', 'd-sui', 'r-proj', 'roi-pct'):
+        pattern = r'(<[^>]+\bid="' + re.escape(element_id) + r'"[^>]*>)([^<]*)(</[^>]+>)'
+        code, count = re.subn(pattern, lambda m: m[1] + 'Connect wallet' + m[3], code)
+        # These two names remain JavaScript compatibility aliases; the
+        # accepted Garden layout no longer emits elements with those IDs.
+        if count != 1 and not (count == 0 and element_id in ('h-proj', 'roi-pct')):
+            raise ValueError("Review initial-value anchor is not unique: " + element_id)
+
+    # Admin support lookup must not turn failed inventories into empty wallets.
+    # Inventory errors reach its visible outer error state; independent balance
+    # and receipt history errors remain explicit Unavailable fields.
+    for kind in ('Seed', 'Tool', 'Crate'):
+        once("window.arb.getOwnedObjects(addr,'" + kind + "').catch(()=>[])", "window.arb.getOwnedObjects(addr,'" + kind + "')")
+    once('window.arb.getOwnedNftreeNfts(addr).catch(()=>[])', 'window.arb.getOwnedNftreeNfts(addr)')
+    once('window.arb.getSuiBalance(addr).catch(()=>0n)', 'window.arb.getSuiBalance(addr).catch(()=>null)')
+    once('window.arb.getTotalRewardsCollected?.(addr).catch(()=>0)', "typeof window.arb.getTotalRewardsCollected==='function'?window.arb.getTotalRewardsCollected(addr).catch(()=>null):Promise.resolve(null)")
+    once('    const seeds=seedObjs.map(window.arb.parseSeedObject);', "    if(![seedObjs,toolObjs,crateObjs,nfts].every(Array.isArray))throw Error('Wallet inventory unavailable.');\n    const seeds=seedObjs.map(window.arb.parseSeedObject);")
+    once('    const balanceSui=(Number(balanceMist||0n)/1e9).toFixed(4);', "    const balanceSui=balanceMist==null||!Number.isFinite(Number(balanceMist))||Number(balanceMist)<0?'Unavailable':(Number(balanceMist)/1e9).toFixed(4);\n    const collectedSui=collected==null||!Number.isFinite(Number(collected))||Number(collected)<0?'Unavailable':Number(collected).toFixed(4);")
+    once('${Number(collected||0).toFixed(4)}</strong><span>SUI claimed', '${collectedSui}</strong><span>Observed SUI payouts')
+    once('<span class="adm-chip danger">Lookup failed</span>', '<span class="adm-chip danger">Wallet data unavailable</span>')
+    if route_id == 'settlement':
+        code = transform_settlement_view(code)
+    return code
+
+
+def main():
+    if len(sys.argv) not in (2, 3):
+        raise SystemExit(__doc__)
+    target = Path(sys.argv[1]).resolve()
+    if target in (ROOT / 'index.html', ROOT / 'wallet.js'):
+        raise SystemExit('Only an emitted review file may be transformed; source inputs are protected.')
+    route = sys.argv[2] if len(sys.argv) == 3 else 'legacy'
+    original = target.read_text()
+    output = transform(original, route)
+    target.write_text(output)
+    digest = lambda text: hashlib.sha256(text.encode()).hexdigest()
+    print(json.dumps({'reviewOnly': True, 'protocol': route, 'path': str(target),
+                      'inputSha256': digest(original), 'outputSha256': digest(output),
+                      'transactionsSubmitted': 0}))
+
+
+if __name__ == '__main__':
+    main()

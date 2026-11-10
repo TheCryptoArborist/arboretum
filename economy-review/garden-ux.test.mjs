@@ -27,7 +27,16 @@ test('dead appearance preserved',()=>assert.equal(growth(seed({state:'dead'})).c
 test('duration is rounded up',()=>{assert.equal(duration(1),'1m');assert.equal(duration(3600000),'1h 0m');assert.equal(duration(NaN),'Unavailable');});
 test('transform rejects unknown source',()=>assert.throws(()=>transform('<html></html>'),/reviewed/));
 test('season accessor addition rejects unexpected input',()=>assert.throws(()=>transformSeason('unknown'),/Unrecognized/));
-test('production and unset contexts fail before writes',()=>{const old=process.env.CONTEXT;for(const context of ['production','deploy-preview','']){process.env.CONTEXT=context;assert.throws(()=>build('/not-a-real-directory'),/branch-review only/);}if(old===undefined)delete process.env.CONTEXT;else process.env.CONTEXT=old;});
+test('public production and unsupported Netlify contexts fail before writes',()=>{
+ const keys=['CONTEXT','NETLIFY','SITE_ID'],old=Object.fromEntries(keys.map(key=>[key,process.env[key]]));
+ try{
+  process.env.NETLIFY='true';process.env.SITE_ID='a344fb31-10b4-4eea-9562-067d90a39607';
+  for(const context of ['production','dev','']){
+   process.env.CONTEXT=context;
+   assert.throws(()=>build('/not-a-real-directory'),/production build blocked|isolated branch or pull-request preview/);
+  }
+ }finally{for(const key of keys)if(old[key]===undefined)delete process.env[key];else process.env[key]=old[key];}
+});
 test('new runtime does not construct, sign, execute or fetch transactions',()=>{const s=fs.readFileSync('economy-review/garden-ux.mjs','utf8');assert.doesNotMatch(s,/fetch\s*\(|new Transaction|signAndExecute|executeTransaction|moveCall\(|splitCoins\(/);});
 
 test('closed and unverified views hide legacy secondary care prompts',()=>{

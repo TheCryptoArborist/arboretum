@@ -1,0 +1,20 @@
+{
+  "requestedAt": "2026-10-31T06:02:36.875Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "method": "POST",
+  "credentials": "omit",
+  "redirect": "error",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Origin": "https://www.treegrow.xyz"
+  },
+  "query": "query OwnerTestSeasonInputs($upgradeCap:SuiAddress!$legacyAdminCap:SuiAddress!$registry:SuiAddress!$registryType:String!$adminCapType:String!){checkpoint{sequenceNumber timestamp digest}genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}upgradeCap:object(address:$upgradeCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}legacyAdminCap:object(address:$legacyAdminCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}registry:object(address:$registry){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}registries:objects(first:2 filter:{type:$registryType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}adminCaps:objects(first:2 filter:{type:$adminCapType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}clock:object(address:\"0x0000000000000000000000000000000000000000000000000000000000000006\"){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}",
+  "variables": {
+    "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "registryType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+    "adminCapType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap"
+  }
+}

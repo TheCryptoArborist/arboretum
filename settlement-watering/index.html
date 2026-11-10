@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>First watering | Arboretum</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/watering-test/admin.css">
+  <script type="module" src="/admin/watering-test/admin.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#watering-status">Skip to watering status</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home"><img src="/prelaunch/mark.png" width="46" height="46" alt=""><span>ARBORETUM<small>THE NEXT CHAPTER</small></span></a>
+    <a class="back-link" href="/settlement-game.html">Back to garden <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy"><p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · SEASON 1 · OWNER TEST</p>
+        <h1 id="page-title">Your first<br><span>watering.</span></h1>
+        <p class="lead">Your Seed is planted. Give it a boost when its watering window opens, and watch your Growth Points grow.</p>
+        <p class="small-text"><a class="back-link" href="/admin/claim-test/">Season finished? Review your reward and claim window <span aria-hidden="true">→</span></a></p>
+        <a class="text-link" href="/admin/gameplay-test/">View your planting record <span aria-hidden="true">↗</span></a>
+      </div>
+      <img class="hero-character" src="/prelaunch/hero.png" alt="The purple, green and gold TREE guardian" width="773" height="963" fetchpriority="high">
+    </section>
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required to read the live Seed status and review watering. Enable it and reload this page.</div></noscript>
+    <div class="watering-layout">
+      <div class="garden-column">
+        <section id="watering-status" class="card countdown-card" aria-labelledby="countdown-label">
+          <div class="card-top"><p id="countdown-label" class="eyebrow">LIVE WATERING STATUS</p><span id="chain-status" class="pill">Checking mainnet</span></div>
+          <p id="countdown" class="countdown" role="timer" aria-live="off">—</p>
+          <p id="countdown-note" class="countdown-note">Reading your Seed and the Sui Clock. No wallet connection is needed.</p>
+          <div class="seed-stats" aria-label="Verified Seed status">
+            <div><p class="stat-label">Growth Points</p><p class="stat-value"><span id="current-gp">—</span><span class="stat-unit"> GP</span></p></div>
+            <div><p class="stat-label">Watering streak</p><p id="current-streak" class="stat-value">—</p></div>
+            <div><p class="stat-label">Seed status</p><p id="seed-state" class="state-value">Reading Seed</p></div>
+          </div>
+          <div class="refresh-row"><p id="chain-checked" class="small-text">Waiting for a current mainnet read.</p><button id="refresh-state" class="text-button" type="button">Refresh status</button></div>
+        </section>
+        <section class="card growth-card" aria-labelledby="growth-heading">
+          <div class="card-top"><div><p class="eyebrow">THE NEXT BOOST</p><h2 id="growth-heading">A little water. More growth.</h2></div><img src="/prelaunch/mark.png" class="growth-mark" width="55" height="55" alt=""></div>
+          <div class="growth-result" aria-label="Expected first watering Growth Points"><div><span>BEFORE</span><strong>10 <small>GP</small></strong></div><span class="growth-arrow" aria-hidden="true">→</span><div><span>AFTER WATERING</span><strong>24 <small>GP</small></strong></div><span class="bonus-chip">+14 GP</span></div>
+          <p class="small-text">One normal watering increases your streak from 1 to 2. The 14-point gain includes the current streak bonus.</p>
+          <div class="schedule"><div><span class="schedule-dot" aria-hidden="true"></span><p class="stat-label">First watering opens</p><p id="water-opens" class="schedule-time">November 1, 2026 at 2:16:41 p.m. CST</p></div><div><span class="schedule-dot gold" aria-hidden="true"></span><p class="stat-label">Season 1 growing ends</p><p id="season-cutoff" class="schedule-time">November 1, 2026 at 3:57:28 p.m. CST</p></div></div>
+          <p class="timing-note">A window of about <strong>1 hour, 41 minutes</strong>. All schedule times are Central; the overnight clock change is included.</p>
+          <details class="technical-details"><summary>View this Seed’s identities</summary><dl><dt>Test Seed</dt><dd id="expected-seed"></dd><dt>Planting transaction</dt><dd id="expected-plant"></dd><dt>Required administrator</dt><dd id="expected-admin"></dd><dt>Rewards Registry</dt><dd id="expected-registry"></dd><dt>Package</dt><dd id="expected-package"></dd><dt>Reviewed watering fingerprint</dt><dd id="expected-kind">Available after checking watering.</dd></dl></details>
+        </section>
+      </div>
+      <section class="card action-card" aria-labelledby="action-heading">
+        <div class="card-top"><div><p class="eyebrow">YOUR NEXT MOVE</p><h2 id="action-heading">Water with Slush</h2></div><span class="version-chip">Test v1</span></div>
+        <p class="action-intro">One watering for your first test Seed. The only charge is network gas.</p>
+        <div class="flow-section"><h3><span class="step-number">1</span> Connect your wallet</h3><div id="wallet-list" class="wallet-list"><p class="small-text">Looking for the Slush browser extension…</p></div><p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p><div id="account-controls" hidden><label for="account-select">Choose the administrator account</label><select id="account-select"><option value="">Select an account</option></select><button id="use-account" type="button" class="button secondary" disabled>Use selected account</button><p id="connected-address" class="address" hidden></p><button id="disconnect" type="button" class="text-button">Disconnect</button></div></div>
+        <div class="flow-section"><h3><span class="step-number">2</span> Check when the window opens</h3><button id="check-water" type="button" class="button secondary" disabled>Check watering</button><p class="small-text">This check becomes available when your Seed is eligible. It verifies the Seed and simulates one watering to estimate gas.</p>
+          <div class="fee-box"><div><p class="stat-label">ESTIMATED NETWORK GAS</p><p id="gas-estimate" class="fee">Not estimated</p></div><span id="gas-status" class="pill">Check when ready</span><p id="gas-note" class="small-text">No watering purchase or reward-pool payment. Slush will show the final gas review before approval.</p></div>
+          <div id="checks" class="checks" aria-live="polite" hidden><p>✓ Exact Seed, owner and season verified</p><p>✓ One watering · 10 → 24 Growth Points</p><p>✓ Network gas only · simulation successful</p><p id="checked-at" class="small-text"></p></div>
+        </div>
+        <div class="flow-section final-step"><h3><span class="step-number">3</span> Approve one watering</h3><label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I want to water this version-1 test Seed once. I have reviewed the expected 14-point increase and network gas estimate.</span></label><button id="submit-water" type="button" class="button primary" disabled>Review watering in Slush <span aria-hidden="true">↗</span></button><p class="small-text">Your wallet asks for approval. The receipt appears only after successful execution and the actual Seed update are verified.</p></div>
+      </section>
+    </div>
+    <section id="status-panel" class="notice status-panel" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-message"></p></section>
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden><p class="eyebrow">CONFIRMED ON SUI MAINNET</p><h2 id="receipt-heading">Your first watering is confirmed.</h2><p id="receipt-message"></p><dl class="receipt-table"><dt>Growth Points</dt><dd id="receipt-growth"></dd><dt>Watering streak</dt><dd id="receipt-streak"></dd><dt>Transaction digest</dt><dd id="receipt-digest"></dd><dt>Seed object</dt><dd id="receipt-seed"></dd><dt>Confirmed network gas</dt><dd id="receipt-gas"></dd><dt>Confirmed watering time</dt><dd id="receipt-watered"></dd><dt>Growing cutoff</dt><dd id="receipt-cutoff"></dd></dl><div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button><a href="/settlement-game.html" class="button secondary">Review the garden</a></div></section>
+    <section id="failure-panel" class="card recovery-card" aria-labelledby="failure-heading" hidden><p class="eyebrow">FAILED TRANSACTION VERIFIED</p><h2 id="failure-heading">Your Seed was not watered.</h2><p id="failure-message"></p><button id="retry-water" type="button" class="button secondary" disabled>Retry after confirmed failure</button><p class="small-text">This button rechecks the failed receipt and current Seed. It opens no wallet request; a fresh review and your approval are still required.</p></section>
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading"><div class="recovery-heading"><h2 id="recovery-heading">Already watered?</h2><span class="read-only-label">READ-ONLY CHECK</span></div><p id="recovery-message">Recover a watering receipt using its transaction digest from Slush. You do not need to connect a wallet for this check.</p><form id="verify-form"><label for="transaction-digest">Watering transaction digest</label><div class="recovery-input"><input id="transaction-digest" name="digest" type="text" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the watering transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form></section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · OWNER TEST</span><span>One Seed. One first watering. Your wallet approves the action.</span></footer>
+</body>
+</html>

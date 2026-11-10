@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-07T03:47:40.748917+00:00",
+  "baseCommit": "900f4ffac498d37e5c8a369ca1846ee68869f7cc",
+  "mystenSkillsCommit": "495528ab09a75480847f5b9668adc163817bb296",
+  "testerGateTests": {
+    "passed": 43,
+    "originalGateTestsRetained": 32,
+    "newDedicatedSiteTests": 11
+  },
+  "buildPolicyAndPanelTests": {
+    "passed": 26
+  },
+  "lintPassed": true,
+  "reviewBuildPassed": true,
+  "baselineDeployId": "6aebf7959ad6e90b6714ca15",
+  "applicationFilesCompared": 103,
+  "applicationFilesByteIdentical": true,
+  "changedApplicationFiles": [],
+  "gateSourceSha256": "8e398bb728f2c7f05236bdadacac444b0ac419f4eff4554af7677cf325ab4837",
+  "nonTargetSiteGatePreserved": true,
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0
+}

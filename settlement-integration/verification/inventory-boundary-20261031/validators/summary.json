@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-31T05:47:25.805586+00:00",
+  "command": [
+    "node",
+    "--test",
+    "--test-isolation=none",
+    "--test-reporter=tap",
+    "settlement-integration/inventory-boundary/upgrade-rehearsal-core.test.mjs"
+  ],
+  "exitCode": 0,
+  "counts": {
+    "tests": 25,
+    "pass": 25,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "passed": true,
+  "sourceSha256": {
+    "settlement-integration/inventory-boundary/upgrade-rehearsal-core.mjs": "2abaf843617f409389e4a7bdbc708d497b22d1db6c5a0686711567b5d9620957",
+    "settlement-integration/inventory-boundary/check-upgrade.mjs": "e9b4f239370aa8d5510294c5a650e2f3ce82b066f8acdd89e1f1ef596047d945",
+    "settlement-integration/inventory-boundary/upgrade-rehearsal-core.test.mjs": "ccf798cd1c73c4f9221c89c9e2a4348dbf48600cacba066e554aa746d9ba4ba0",
+    "settlement-integration/season-test/start-core.mjs": "710826322c9bafd4fa2278e90ba7935a3e91f7b583caf5b88d49fed5268ecf30",
+    "settlement-integration/release/build-upgrade.mjs": "b64c9bb1254ecf01a75ba31edeedf2f1d0053a802d56ee7e592798184a08f7c6",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/deployment-config.mjs": "f3b9ebea0081daf9a305b7ca997d253429df3bab8aea69e17c1c986463fa15fb",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  },
+  "sourceUnchanged": true,
+  "fixtureSource": "settlement-integration/verification/inventory-boundary-20261031",
+  "fixtureSha256": {
+    "mainnet/after-observation-1.json": "62dd8ac8045610c9472d17f9d342a61e1e5240af8c61f184923e0fcb328adf45",
+    "mainnet/after-observation-2.json": "e050f8bcfd6014eaf9ff88272baa5f39c3a4376b863f2a1c4e57ef129f9ff07a",
+    "mainnet/after-observation-3.json": "cd5f333a967c7e28ec50a5905c2dd50285757d7bca9239375c0e00c751305127",
+    "mainnet/after.json": "cd5f333a967c7e28ec50a5905c2dd50285757d7bca9239375c0e00c751305127",
+    "mainnet/confirmed-proof.json": "ff8528d56401e52f21ce78c5ced421e158818bb049712b00cea04ebc8ad683d1",
+    "mainnet/inputs.json": "6ba9b7ad1c04a89c53c20d09ff8d731e6c9faee378afe994bb2f360e00d50457",
+    "mainnet/simulation.json": "ad0ce06f65e5c7bc5724a581de20b8663e937799e29534ec4c850b24375c747d",
+    "mainnet/summary.json": "0777a091f60185b8779a6458c7dcd2937e629228d8e652cfbc932387b4330f0c",
+    "mainnet/unsigned-upgrade.json": "5c6c60bdaab4b94ad992e71971c1761688dbca666af67191387ee07858a2407b",
+    "mainnet/upgrade-kind.b64": "a117cda106080f9a64fabd27a65588f3809cc1b0d00de740c3deac7b23805b5e",
+    "offline/candidate-build.json": "2d5259e95d3f4fa1c2cd10f88445cdc7621fd442db3949616b1c75dd437a9fbb"
+  },
+  "networkRequests": 0,
+  "signatureRequests": 0,
+  "transactionsSubmitted": 0,
+  "credentialsUsed": false,
+  "logSha256": "42e2d0bc5ddfc863745946cca0660b06e35cb0e55e3599b44e8ce67319ca92be"
+}

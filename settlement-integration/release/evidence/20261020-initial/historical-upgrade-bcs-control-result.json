@@ -1,0 +1,11 @@
+{
+  "status": "ACTUAL_CHAIN_TRANSACTION_BCS_DECODER_VERIFIED",
+  "transaction": "HZRUsU9xNybZ5qSsPZV5wP1PvCEgbdsVJHur4ifFXnbw",
+  "checkpoint": {
+    "sequenceNumber": 319546807,
+    "timestamp": "2026-09-06T19:55:41.102Z"
+  },
+  "transactionKindSha256": "b74244419251ab40c01d97979660369208a9ff38625e780187642ee21ec4658f",
+  "legacyPrepublicationModuleSha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1",
+  "transactionsSubmitted": 0
+}

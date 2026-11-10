@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "completedAt": "2026-10-31T05:22:51.836166+00:00",
+  "status": "FIRST_SEASON_VM_TESTS_PASSED",
+  "compiler": "sui 1.78.1-722ac4fcf484",
+  "compilerSha256": "381deb1ffc87177a92bbfd0c1ff59507ceb190fd62d7482909d31d28740ad068",
+  "frameworkRevision": "8b9163554164776bc3372d828f8d6ced55aa2b5e",
+  "frameworkSourceFilesUnchanged": 238,
+  "publishedPackageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "publishedReceiptSha256": "113184bcead64c2fd64eb94e67c600ccaab3fe5c47fb2b017d7688077d060d5b",
+  "modules": [
+    {
+      "name": "arboretum",
+      "bytes": 18034,
+      "sourceSha256": "14cec739964acbdd077b8231339992265e9014778e50ba52af06ca0e10c312d1",
+      "prepublicationSha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1",
+      "publishedSha256": "3ddcce6c26d7672f242cbe11f803972cc992c658e90dc8e2239b6839d67d4aa5",
+      "exactPublishedMatchAfterOnlySelfAddressBinding": true
+    },
+    {
+      "name": "settlement",
+      "bytes": 22221,
+      "sourceSha256": "91c9b8c7e74187107f005a164c898e77658dfefe86fb13f22b8a6abaeff28edb",
+      "prepublicationSha256": "b7a04fde1df19d69cc09a2384f3abca0c4f8caa226ba738a6091dd7cda92f531",
+      "publishedSha256": "c0dd12db1e675d506fd52deb42b654562a84b7ca5dd0ebd60b3eb3bbf7378d0e",
+      "exactPublishedMatchAfterOnlySelfAddressBinding": true
+    }
+  ],
+  "exactLinkedFrameworkModules": 89,
+  "productionBuildCommand": [
+    "/tmp/arboretum-season-test-toolchain-20261031/sui",
+    "move",
+    "build",
+    "--build-env",
+    "mainnet",
+    "--path",
+    "/tmp/arboretum-season-lifecycle-20261031-run3/production"
+  ],
+  "testCommand": [
+    "/tmp/arboretum-season-test-toolchain-20261031/sui",
+    "move",
+    "test",
+    "--build-env",
+    "mainnet",
+    "--path",
+    "/tmp/arboretum-season-lifecycle-20261031-run3/tests",
+    "--threads",
+    "1",
+    "season_test_"
+  ],
+  "testFragmentSha256": "ae59f51ca909c51838a52b913fb3781fe2eab95bb29530ee66be05d5bfb94a3a",
+  "runnerSha256": "512697ccad13f75bf6141f2d6bfd5b0128118cb175ac23a5ce3c4ffcaf5db567",
+  "testOnlyInsertion": true,
+  "counts": {
+    "total": 19,
+    "passed": 19,
+    "failed": 0
+  },
+  "expectedTests": [
+    "season_test_crate_bought_elsewhere_opens_against_unstarted_registry_current_behavior",
+    "season_test_default_start_opens_empty_first_season_for_thirty_days",
+    "season_test_duration_accepts_one_millisecond_lower_boundary",
+    "season_test_duration_accepts_thirty_day_upper_boundary",
+    "season_test_duration_rejects_more_than_thirty_days",
+    "season_test_duration_rejects_nonpositive_backdated_start",
+    "season_test_duration_rejects_zero",
+    "season_test_first_paid_lifecycle_keeps_archive_claim_after_second_start",
+    "season_test_short_start_uses_exact_twenty_four_hour_cutoff",
+    "season_test_start_rejects_cap_from_other_registry",
+    "season_test_start_rejects_existing_settlement",
+    "season_test_start_rejects_existing_start",
+    "season_test_start_rejects_replay_after_short_start",
+    "season_test_start_rejects_stale_eligible_growth_points",
+    "season_test_start_rejects_wrong_cap_version",
+    "season_test_start_rejects_wrong_registry_version",
+    "season_test_start_rejects_wrong_sender",
+    "season_test_start_rejects_zero_clock",
+    "season_test_tool_bought_in_another_registry_is_accepted_current_behavior"
+  ],
+  "passedTests": [
+    "season_test_crate_bought_elsewhere_opens_against_unstarted_registry_current_behavior",
+    "season_test_default_start_opens_empty_first_season_for_thirty_days",
+    "season_test_duration_accepts_one_millisecond_lower_boundary",
+    "season_test_duration_accepts_thirty_day_upper_boundary",
+    "season_test_duration_rejects_more_than_thirty_days",
+    "season_test_duration_rejects_nonpositive_backdated_start",
+    "season_test_duration_rejects_zero",
+    "season_test_first_paid_lifecycle_keeps_archive_claim_after_second_start",
+    "season_test_short_start_uses_exact_twenty_four_hour_cutoff",
+    "season_test_start_rejects_cap_from_other_registry",
+    "season_test_start_rejects_existing_settlement",
+    "season_test_start_rejects_existing_start",
+    "season_test_start_rejects_replay_after_short_start",
+    "season_test_start_rejects_stale_eligible_growth_points",
+    "season_test_start_rejects_wrong_cap_version",
+    "season_test_start_rejects_wrong_registry_version",
+    "season_test_start_rejects_wrong_sender",
+    "season_test_start_rejects_zero_clock",
+    "season_test_tool_bought_in_another_registry_is_accepted_current_behavior"
+  ],
+  "exitCode": 0,
+  "productionSourceUnchanged": true,
+  "isolatedKeystoreStayedEmpty": true,
+  "configuredRpc": "http://127.0.0.1:9",
+  "networkOrWalletOperation": false,
+  "signaturesProduced": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "Offline VM fixtures are not a mainnet transaction or user-wallet acceptance test.",
+    "The same-version cross-Registry inventory case characterizes existing deployed behavior; it does not fix it."
+  ]
+}

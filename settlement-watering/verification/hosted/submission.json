@@ -1,0 +1,14 @@
+{
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "sourceCommit": "7506a3778f35a74c4889e34a87dd0a547d886a0c",
+  "archiveSha256": "604c1e55b5ccece0291dfdbaeb16d23d1cdf47506b390902b430bbc16c87bf3e",
+  "archiveBytes": 44760309,
+  "requestedAt": "2026-10-31T23:21:58.061351+00:00",
+  "previousPublishedDeployId": "6ae66915a1c6f7918ba01600",
+  "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+  "submissionAttempted": true,
+  "responseReceived": true,
+  "responseHttpStatus": 200,
+  "deployId": "6ae678179e4a049e68a01cae",
+  "buildId": "6ae678179e4a049e68a01cac"
+}

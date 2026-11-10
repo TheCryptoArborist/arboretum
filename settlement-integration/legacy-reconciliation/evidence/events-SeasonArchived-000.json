@@ -1,0 +1,56 @@
+{
+  "retrievedAt": "2026-10-20T01:35:19.082003+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyClaimEvents($type: String!, $before: UInt53!, $cursor: String) {\n  events(first:50, after:$cursor, filter:{type:$type, beforeCheckpoint:$before}) {\n    nodes { sequenceNumber contents { type { repr } json }\n      transaction { digest effects { status checkpoint { sequenceNumber timestamp } } }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "type": "0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum::SeasonArchived",
+      "before": 335949689,
+      "cursor": null
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "events": {
+        "nodes": [
+          {
+            "sequenceNumber": 0,
+            "contents": {
+              "type": {
+                "repr": "0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum::SeasonArchived"
+              },
+              "json": {
+                "archive_id": "0x46836041fba4d740d76e740443846775204f9936d2ab0ff6692d7ffffb5a9e5d",
+                "season_id": "2",
+                "finalized_at_ms": "1788383314671",
+                "claim_deadline_ms": "1788988114671",
+                "reward_pool_mist": "145950000",
+                "total_growth_points": "698",
+                "total_seeds": "13"
+              }
+            },
+            "transaction": {
+              "digest": "57DWrN3oTTBxCJ2GhHcdgcjvHuZqDgB6o3a8ba6DNe87",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 318011972,
+                  "timestamp": "2026-09-02T21:08:34.755Z"
+                }
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "KAJCDgj53pigARDf5920FxgA"
+        }
+      }
+    }
+  },
+  "responseSha256": "5e760e2f08e95187df7661f8766a53a8d3b8ccb7f7844f484c701e739f1d7d9e"
+}

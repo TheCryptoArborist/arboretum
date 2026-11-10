@@ -1,0 +1,384 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.558027+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "TransactionEffects"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "TransactionEffects",
+        "description": "The results of executing a transaction.",
+        "inputFields": null,
+        "fields": [
+          {
+            "name": "digest",
+            "description": "A 32-byte hash that uniquely identifies the transaction contents, encoded in Base58.\n\nNote that this is different from the execution digest, which is the unique hash of the transaction effects.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "transaction",
+            "description": "The transaction that ran to produce these effects.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Transaction",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "checkpoint",
+            "description": "The checkpoint this transaction was finalized in.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Checkpoint",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "status",
+            "description": "Whether the transaction executed successfully or not.",
+            "type": {
+              "kind": "ENUM",
+              "name": "ExecutionStatus",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "version",
+            "description": "The schema version of the effects struct.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "lamportVersion",
+            "description": "The latest version of all objects (apart from packages) that have been created or modified by this transaction, immediately following this transaction.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "executionError",
+            "description": "Rich execution error information for failed transactions.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ExecutionError",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "timestamp",
+            "description": "Timestamp corresponding to the checkpoint this transaction was finalized in.\n\n`null` for executed/simulated transactions that have not been included in a checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "epoch",
+            "description": "The epoch this transaction was finalized in.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Epoch",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "events",
+            "description": "Events emitted by this transaction.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "EventConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "balanceChanges",
+            "description": "The effect this transaction had on the balances (sum of coin values per coin type) of addresses and objects.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "BalanceChangeConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "balanceChangesJson",
+            "description": "The balance changes as a JSON array, matching the gRPC proto format.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "effectsBcs",
+            "description": "The Base64-encoded BCS serialization of these effects, as `TransactionEffects`.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Base64",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "effectsJson",
+            "description": "The effects as a JSON blob, matching the gRPC proto format (excluding BCS).",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "effectsDigest",
+            "description": "A 32-byte hash that uniquely identifies the effects contents, encoded in Base58.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "objectChanges",
+            "description": "The before and after state of objects that were modified by this transaction.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ObjectChangeConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "gasEffects",
+            "description": "Effects related to the gas object used for the transaction (costs incurred and the identity of the smashed gas object returned).",
+            "type": {
+              "kind": "OBJECT",
+              "name": "GasEffects",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "unchangedConsensusObjects",
+            "description": "The unchanged consensus-managed objects that were referenced by this transaction.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "UnchangedConsensusObjectConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          },
+          {
+            "name": "dependencies",
+            "description": "Transactions whose outputs this transaction depends upon.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "TransactionConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "3c08b2ed8f44cf95b33bc5877063194c08db0a5540ac46aaf0686d8d8b4e8eb1"
+}

@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T22:20:51.752Z",
+  "repository": "TheCryptoArborist/arboretum",
+  "sourceCommit": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+  "sourceTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+  "status": "EXACT_SOURCE_SETTLEMENT_CI_PASSED_WITH_OTHER_WORKFLOW_FAILURES",
+  "requiredWorkflow": "Settlement app integration review",
+  "requiredWorkflowPassed": true,
+  "requiredRuns": [
+    {
+      "id": 41247516366,
+      "name": "Settlement app integration review",
+      "path": ".github/workflows/settlement-integration.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516366",
+      "attempt": 1,
+      "checkoutCommit": "657def6ca228402ffbffed6d7ea33b8c95a7145f",
+      "jobs": [
+        {
+          "id": 124673923073,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify reward, route, reader, wallet, and unsigned packet behavior",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build the protected review and isolated approved administrator operations",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "checkoutAndBuildEvidence": [
+        "2026-10-31T22:17:50.0365365Z 657def6ca228402ffbffed6d7ea33b8c95a7145f",
+        "2026-10-31T22:18:28.2679405Z Verified review build: 6 inline scripts, 9 module files; gameplay submission disabled; exact administrator operations isolated."
+      ],
+      "artifacts": [
+        {
+          "id": 13059644058,
+          "name": "settlement-app-integration-review",
+          "bytes": 31323526,
+          "digest": "sha256:78b336a314a336d04af93a8f2f8d8f4adb4303b559f0cbbf12b1f112cac728b2",
+          "expired": false,
+          "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522"
+        }
+      ]
+    },
+    {
+      "id": 41247511882,
+      "name": "Settlement app integration review",
+      "path": ".github/workflows/settlement-integration.yml",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247511882",
+      "attempt": 1,
+      "checkoutCommit": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "jobs": [
+        {
+          "id": 124673910284,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install locked dependencies",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify reward, route, reader, wallet, and unsigned packet behavior",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build the protected review and isolated approved administrator operations",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "checkoutAndBuildEvidence": [
+        "2026-10-31T22:17:39.8218185Z 05f67fc9a3c489bef4502be885d91e7cf0446522",
+        "2026-10-31T22:18:17.0603350Z Verified review build: 6 inline scripts, 9 module files; gameplay submission disabled; exact administrator operations isolated."
+      ],
+      "artifacts": [
+        {
+          "id": 13059936504,
+          "name": "settlement-app-integration-review",
+          "bytes": 31323515,
+          "digest": "sha256:e5824bf4e3f8d7aaa066a3f7f50e5280b19b0ad08aaf90e3ecafd979307a23a9",
+          "expired": false,
+          "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522"
+        }
+      ]
+    }
+  ],
+  "prMerge": {
+    "number": 16,
+    "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+    "baseSha": "ba6faff6de7c446599a605ffa95369a325a12e3e",
+    "mergeCommitSha": "657def6ca228402ffbffed6d7ea33b8c95a7145f",
+    "mergeTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+    "sourceTreeMatches": true,
+    "actualPrJobCheckoutObserved": true,
+    "merged": false
+  },
+  "currentRunInventory": {
+    "total": 12,
+    "completed": 12,
+    "success": 7,
+    "failure": 5
+  },
+  "otherSuccessfulRuns": [
+    {
+      "id": 41247516452,
+      "name": "Player guide checks",
+      "path": ".github/workflows/player-guide-checks.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516452",
+      "attempt": 1
+    },
+    {
+      "id": 41247516397,
+      "name": "Arboretum prelaunch preview",
+      "path": ".github/workflows/prelaunch-preview.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516397",
+      "attempt": 1
+    },
+    {
+      "id": 41247516693,
+      "name": "Arboretum rewards-led redesign",
+      "path": ".github/workflows/prelaunch-redesign.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516693",
+      "attempt": 1
+    },
+    {
+      "id": 41247516445,
+      "name": "Item Shop and Growth Pool previews",
+      "path": ".github/workflows/prelaunch-showcases.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516445",
+      "attempt": 1
+    },
+    {
+      "id": 41247516413,
+      "name": "Public Player Handbook",
+      "path": ".github/workflows/public-player-handbook.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516413",
+      "attempt": 1
+    }
+  ],
+  "otherFailedRuns": [
+    {
+      "id": 41247516728,
+      "name": "Economy accounting review",
+      "path": ".github/workflows/economy-accounting-review.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516728",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124673924511,
+          "name": "review",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify additive-only scope and offline regressions",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Inspect archive schema and evidence read-only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Build review-only admin overlay when requested",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Regular-player browser smoke checks - synthetic wallet and data only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Garden UX review - populated synthetic gardens and read failures",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Read and reconcile live testing-season partner purchases",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Prepare hosted branch review environment",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Publish ephemeral encryption public key only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Deploy and verify isolated hosted preview only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Stage gated preview only - authenticated readiness NOT approved",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Preserve exact sources and review build for browser verification",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "failureEvidence": [
+        "2026-10-31T22:17:43.0370743Z AssertionError: A\t.github/workflows/contract-payout.yml"
+      ],
+      "assessment": "The additive-only guard rejects the pre-existing added contract-payout workflow.",
+      "deploymentStepsSkipped": true
+    },
+    {
+      "id": 41247516495,
+      "name": "Partner chest preview",
+      "path": ".github/workflows/partner-preview.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516495",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124673923859,
+          "name": "preview",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build and run retained plus partner preview tests",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Prepare hosted browser checks and one-use public key",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Share public encryption key only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify preview then publish and verify production",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Save non-secret test results and screenshots",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "failureEvidence": [
+        "2026-10-31T22:17:44.3865918Z not ok 9 - authentication unchanged except the three approved original-artwork URLs",
+        "2026-10-31T22:17:44.4515824Z not ok 10 - approved game and handbook baselines preserved; review build remains isolated"
+      ],
+      "assessment": "Retained authentication and game/handbook byte-baseline assertions fail.",
+      "deploymentStepsSkipped": true
+    },
+    {
+      "id": 41247516510,
+      "name": "Reward-first preview",
+      "path": ".github/workflows/reward-first-preview.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516510",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124673923641,
+          "name": "review",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build original site and run retained baseline suite",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Build and test reward-first candidate",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Prepare browser tools and one-use public key",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Deploy branch preview and verify public pages and private game",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Collect the public review files only",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "failureEvidence": [],
+      "assessment": "The workflow fails its retained baseline/build verification stage; detailed redirected assertion output was not downloaded.",
+      "deploymentStepsSkipped": true
+    },
+    {
+      "id": 41247516515,
+      "name": "Reward-first production release",
+      "path": ".github/workflows/reward-first-production.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516515",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124673923819,
+          "name": "publish",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build baseline and approved candidate with retained checks",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Build approved production output and verify metadata and private files",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Prepare browser tooling and one-use release public key",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Publish approved output and verify main-domain pages and native login",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "failureEvidence": [],
+      "assessment": "The workflow fails its retained baseline/build verification stage; detailed redirected assertion output was not downloaded.",
+      "deploymentStepsSkipped": true
+    },
+    {
+      "id": 41247516467,
+      "name": "Garden season status",
+      "path": ".github/workflows/garden-season-status.yml",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "headSha": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+      "headTree": "cb4b67de409ceac42acaebb46db13d6820b14521",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41247516467",
+      "attempt": 1,
+      "jobs": [
+        {
+          "id": 124673923474,
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build current website and retain public and gate tests",
+              "status": "completed",
+              "conclusion": "failure"
+            },
+            {
+              "name": "Verify full approved production build",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Prepare hosted browser tools and run-bound encryption key",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify hosted preview then publish and verify production",
+              "status": "completed",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ],
+      "failureEvidence": [],
+      "assessment": "The workflow fails its retained baseline/build verification stage; detailed redirected assertion output was not downloaded.",
+      "deploymentStepsSkipped": true
+    }
+  ],
+  "allRepositoryCiGreen": false,
+  "workflowsRerun": 0,
+  "remoteMutations": 0,
+  "limits": [
+    "The two required workflow job logs establish actual checkout identity and successful verification/build for the reviewed source.",
+    "Required build artifacts were listed with GitHub-provided hashes; their ZIP contents were not downloaded.",
+    "Three failed older baseline workflows redirect detailed test assertions into artifacts; their failed verification and skipped deployment stages are confirmed, without claiming an uninspected exact assertion.",
+    "This record verifies source CI; publication and the owner-wallet planting outcome require their separate evidence."
+  ]
+}

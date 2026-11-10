@@ -1,0 +1,99 @@
+{
+  "requestedAt": "2026-10-31T22:06:37.265Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query OwnerPlantSimulation($transaction:JSON!$upgradeCap:SuiAddress!$legacyAdminCap:SuiAddress!$registry:SuiAddress!$registryType:String!$adminCapType:String!){checkpoint{sequenceNumber timestamp digest}genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}upgradeCap:object(address:$upgradeCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}legacyAdminCap:object(address:$legacyAdminCap){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}registry:object(address:$registry){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}registries:objects(first:2 filter:{type:$registryType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}adminCaps:objects(first:2 filter:{type:$adminCapType}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}clock:object(address:\"0x0000000000000000000000000000000000000000000000000000000000000006\"){address version digest owner{__typename ...on AddressOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}ownedNFTs:objects(first:50 filter:{owner:\"0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4\" type:\"0xf6c6d439ea0da2f3e9ba79e4992a7a4c113215fbf54c442ac9020c315f953705::collection::NFT\"}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}}asMoveObject{contents{type{repr}json}}}pageInfo{hasNextPage endCursor}}ownedSeeds:objects(first:50 filter:{owner:\"0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4\" type:\"0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed\"}){nodes{address version digest owner{__typename ...on AddressOwner{address{address}}}asMoveObject{contents{type{repr}json}}previousTransaction{digest effects{status checkpoint{sequenceNumber timestamp}}}}pageInfo{hasNextPage endCursor}}simulateTransaction(transaction:$transaction checksEnabled:true doGasSelection:true){effects{status executionError{message}checkpoint{sequenceNumber timestamp}epoch{epochId}lamportVersion transaction{transactionBcs sender{address}}gasEffects{gasSummary{computationCost storageCost storageRebate nonRefundableStorageFee}}balanceChangesJson objectChanges(first:50){nodes{address idCreated idDeleted inputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}outputState{address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}pageInfo{hasNextPage endCursor}}events(first:10){nodes{sender{address}contents{type{repr}json}}pageInfo{hasNextPage endCursor}}unchangedConsensusObjects(first:10){nodes{__typename ...on ConsensusObjectRead{object{address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}}pageInfo{hasNextPage endCursor}}}}}",
+  "variables": {
+    "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "registryType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+    "adminCapType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap",
+    "transaction": {
+      "version": 1,
+      "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "gasPayment": {
+        "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+      },
+      "kind": {
+        "programmableTransaction": {
+          "inputs": [
+            {
+              "kind": "PURE",
+              "pure": "gJaYAAAAAAA="
+            },
+            {
+              "kind": "SHARED",
+              "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": "986499448",
+              "mutable": true
+            },
+            {
+              "kind": "IMMUTABLE_OR_OWNED",
+              "objectId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+              "version": "998571521",
+              "digest": "Hgs5t3be11CChzaGMNqr6yUTZFMzzyoSc5RBgvTaKmxA"
+            },
+            {
+              "kind": "PURE",
+              "pure": "AA=="
+            },
+            {
+              "kind": "SHARED",
+              "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "version": "1",
+              "mutable": false
+            }
+          ],
+          "commands": [
+            {
+              "splitCoins": {
+                "coin": {
+                  "kind": "GAS"
+                },
+                "amounts": [
+                  {
+                    "kind": "INPUT",
+                    "input": 0
+                  }
+                ]
+              }
+            },
+            {
+              "moveCall": {
+                "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+                "module": "settlement",
+                "function": "plant_seed_with_nftree",
+                "typeArguments": [
+                  "0xf6c6d439ea0da2f3e9ba79e4992a7a4c113215fbf54c442ac9020c315f953705::collection::NFT"
+                ],
+                "arguments": [
+                  {
+                    "kind": "INPUT",
+                    "input": 1
+                  },
+                  {
+                    "kind": "INPUT",
+                    "input": 2
+                  },
+                  {
+                    "kind": "RESULT",
+                    "result": 0,
+                    "subresult": 0
+                  },
+                  {
+                    "kind": "INPUT",
+                    "input": 3
+                  },
+                  {
+                    "kind": "INPUT",
+                    "input": 4
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

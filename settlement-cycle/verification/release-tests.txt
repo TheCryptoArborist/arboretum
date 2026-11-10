@@ -1,0 +1,12 @@
+test_absent_normal_auth_stops_before_network_access (test_release.ReleaseBoundaryTests.test_absent_normal_auth_stops_before_network_access) ... ok
+test_baseline_binds_the_published_gate_release_to_exactly_103_source_files (test_release.ReleaseBoundaryTests.test_baseline_binds_the_published_gate_release_to_exactly_103_source_files) ... ok
+test_modified_baseline_candidate_is_rejected_before_any_network_read (test_release.ReleaseBoundaryTests.test_modified_baseline_candidate_is_rejected_before_any_network_read) ... ok
+test_only_the_fixed_target_source_build_can_be_posted (test_release.ReleaseBoundaryTests.test_only_the_fixed_target_source_build_can_be_posted) ... ok
+test_serving_normalization_accepts_only_the_recorded_anchor_transform (test_release.ReleaseBoundaryTests.test_serving_normalization_accepts_only_the_recorded_anchor_transform) ... ok
+test_standard_environment_and_canonical_cli_auth_are_supported (test_release.ReleaseBoundaryTests.test_standard_environment_and_canonical_cli_auth_are_supported) ... ok
+test_unknown_submission_is_durably_journaled_and_cannot_be_repeated (test_release.ReleaseBoundaryTests.test_unknown_submission_is_durably_journaled_and_cannot_be_repeated) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.009s
+
+OK

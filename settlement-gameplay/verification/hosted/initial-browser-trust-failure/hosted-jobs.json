@@ -1,0 +1,30 @@
+{
+  "jobs": [
+    {
+      "name": "native-browser",
+      "exitCode": 1,
+      "startedAt": "2026-10-31T22:18:45.976843+00:00",
+      "completedAt": "2026-10-31T22:18:46.684257+00:00",
+      "log": "/tmp/arboretum-gameplay-release-20261031/hosted-native-browser.log",
+      "logSha256": "b0a90e11a14409e4acce3de4438be7030b910ed8d82b304652a9462160c7b54f"
+    },
+    {
+      "name": "compiled-browser",
+      "exitCode": 1,
+      "startedAt": "2026-10-31T22:18:45.977342+00:00",
+      "completedAt": "2026-10-31T22:18:46.716062+00:00",
+      "log": "/tmp/arboretum-gameplay-release-20261031/hosted-compiled-browser.log",
+      "logSha256": "c1e027aff9acb000a573d208a20608e0aa11af9a071b28fc8e64ce9782076eb5"
+    },
+    {
+      "name": "http",
+      "exitCode": 0,
+      "startedAt": "2026-10-31T22:18:45.976179+00:00",
+      "completedAt": "2026-10-31T22:18:47.509118+00:00",
+      "log": "/tmp/arboretum-gameplay-release-20261031/hosted-http.log",
+      "logSha256": "678bc7a22c09b6453085d91832500804f06949eca269a2aef99a9b625213991e"
+    }
+  ],
+  "allPassed": false,
+  "credentialsWritten": false
+}

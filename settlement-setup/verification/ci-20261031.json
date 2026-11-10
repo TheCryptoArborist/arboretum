@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+  "workflow": "Settlement app integration review",
+  "runs": [
+    {
+      "id": 41168068968,
+      "name": "Settlement app integration review",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068968",
+      "created_at": "2026-10-31T04:19:07Z",
+      "updated_at": "2026-10-31T04:19:40Z"
+    },
+    {
+      "id": 41168065064,
+      "name": "Settlement app integration review",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168065064",
+      "created_at": "2026-10-31T04:19:04Z",
+      "updated_at": "2026-10-31T04:19:28Z"
+    }
+  ],
+  "legacyWorkflowStatus": "Five separate historical preview workflows failed; exact-source causes are recorded in ci-legacy-triage-20261031.json.",
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0
+}

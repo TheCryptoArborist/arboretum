@@ -1,0 +1,18 @@
+{
+  "verifiedAt": "2026-11-07T04:01:15.199Z",
+  "method": "Fresh Netlify get_project connector reads after browser verification",
+  "projects": [
+    {
+      "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+      "name": "arboretum-preview",
+      "publishedDeployId": "6aeea0b254e028ece344267c",
+      "state": "ready"
+    },
+    {
+      "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+      "name": "arboretum-sui-forest",
+      "publishedDeployId": "6abe81174b61a8e3dd53b333",
+      "state": "ready"
+    }
+  ]
+}

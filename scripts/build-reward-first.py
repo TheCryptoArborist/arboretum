@@ -5,6 +5,7 @@ No game, wallet, contract, authentication or economic changes.
 """
 from pathlib import Path
 import hashlib,json,os,re,shutil
+from build_policy import get_build_policy
 ROOT=Path(__file__).resolve().parents[1];DIST=ROOT/'dist';SOURCE=ROOT/'reward-preview'
 def sha(data):return hashlib.sha256(data).hexdigest()
 def once(text,old,new):
@@ -15,7 +16,7 @@ def section(text,ident):
     if not found:raise RuntimeError('Missing guide section '+ident)
     return found.group()
 def build():
-    production=os.environ.get('CONTEXT')=='production'
+    production=get_build_policy()['publicProduction']
     approved=os.environ.get('ARBORETUM_REWARD_FIRST_APPROVED')=='true'
     if production and not approved:raise SystemExit('Reward-first candidate is preview-only without explicit production approval.')
     preserved=['game.html','wallet.js','garden.js','sui-sdk.bundle.js','tester-guide.html','guide/guide.css','guide/player-guide.js']

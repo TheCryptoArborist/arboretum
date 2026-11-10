@@ -1,0 +1,21 @@
+{
+  "retrievedAt": "2026-10-31T03:34:07.790Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query UpgradeReviewTip {\n  checkpoint { sequenceNumber timestamp digest }\n  genesis: checkpoint(sequenceNumber: 0) { sequenceNumber digest }\n}",
+  "variables": {},
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 340000772,
+        "timestamp": "2026-10-31T03:34:05.525Z",
+        "digest": "3735MzFRmCH7Z6WN88pUroqZa4HULvR8XJK1UmkBnNpu"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      }
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}

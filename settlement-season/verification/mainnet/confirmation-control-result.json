@@ -1,0 +1,7 @@
+{
+  "digest": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+  "correctlyRejectedAsFirstStart": true,
+  "code": "PACKET_MISMATCH",
+  "message": "The confirmed transaction differs from the exact reviewed first-start call.",
+  "observedTransactionStatus": "SUCCESS"
+}

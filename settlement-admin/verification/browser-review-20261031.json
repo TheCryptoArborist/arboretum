@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "syntheticOnly": true,
+  "liveNetworkAllowed": false,
+  "realWalletUsed": false,
+  "signaturesCreated": 0,
+  "broadcasts": 0,
+  "testedOrigin": "https://www.treegrow.xyz",
+  "playwrightVersion": "1.62.1",
+  "browserVersion": "156.0.8078.4",
+  "compiledSha256": {
+    "index.html": "7cd4a4e32d2f81d84678c274bfc3d6ef9ecb2fa34a4fab0cd1a23966e09cc03d",
+    "admin.css": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+    "admin.mjs": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+    "upgrade-kind.b64": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563"
+  },
+  "passed": true,
+  "checks": [
+    {
+      "check": "Load, connect, account selection and fresh simulation produce zero signing requests",
+      "passed": true
+    },
+    {
+      "check": "Readiness review uses exact captured simulation payload",
+      "passed": true
+    },
+    {
+      "check": "Review requires explicit acknowledgement",
+      "passed": true
+    },
+    {
+      "check": "Desktop has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Final wallet handoff has exact approved kind, explicit sender/mainnet and unset gas",
+      "passed": true,
+      "detail": {
+        "account": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        "chain": "sui:mainnet",
+        "kindSha256": "1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0",
+        "commands": [
+          "MoveCall",
+          "Upgrade",
+          "MoveCall"
+        ],
+        "gasData": {
+          "budget": null,
+          "price": null,
+          "owner": null,
+          "payment": null
+        }
+      }
+    },
+    {
+      "check": "A second tab sees the persisted in-flight request and cannot resubmit",
+      "passed": true
+    },
+    {
+      "check": "Explicit wallet cancellation clears only this request and requires a fresh review",
+      "passed": true
+    },
+    {
+      "check": "Desktop explicit selection, read-only review, exact single wallet request, cancellation and duplicate-tab lock",
+      "passed": true
+    },
+    {
+      "check": "Mobile review has no overflow and no signing",
+      "passed": true
+    },
+    {
+      "check": "Wrong administrator account fails before any chain check or signature",
+      "passed": true
+    },
+    {
+      "check": "Administrator account restricted to testnet is rejected",
+      "passed": true
+    },
+    {
+      "check": "Changed wallet account invalidates a previously acknowledged review",
+      "passed": true
+    },
+    {
+      "check": "A second Slush provider invalidates the pinned provider selection",
+      "passed": true
+    },
+    {
+      "check": "Tampered approved packet fails closed before simulation or wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "Stale checkpoint fails closed before simulation or wallet handoff",
+      "passed": true
+    },
+    {
+      "check": "Already upgraded state records recovery receipt and forbids a second upgrade",
+      "passed": true
+    },
+    {
+      "check": "Changed fee requires a new acknowledgement without opening the wallet",
+      "passed": true
+    },
+    {
+      "check": "Uncertain wallet response stays locked across reload and a version-11 recovery check",
+      "passed": true
+    },
+    {
+      "check": "Storage unavailable disables signing while retaining read-only recovery",
+      "passed": true
+    },
+    {
+      "check": "Wrong origin is rejected before connecting a wallet",
+      "passed": true
+    },
+    {
+      "check": "desktop: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "desktop: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "mobile: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "mobile: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-account: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-account: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-chain: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-chain: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-account: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-account: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicate-provider: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "duplicate-provider: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "tampered-packet: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "tampered-packet: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "stale-checkpoint: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "stale-checkpoint: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "already-upgraded: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "already-upgraded: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-fee: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "changed-fee: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "uncertain-wallet: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "uncertain-wallet: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no-storage: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "no-storage: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-origin: no unexpected browser exception",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "wrong-origin: all network calls match offline assets or approved read/simulation fixtures",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "screenshots": [
+    {
+      "filename": "desktop-ready.png",
+      "sha256": "74ad1666c0c66cd2c86e35018b851490b7edab3dfca19538976163334722d243"
+    },
+    {
+      "filename": "mobile-ready.png",
+      "sha256": "1a1a300cfdaea6b5dc23d87be5e5ff3b281566a82d8b963360ce2e08afa0b731"
+    },
+    {
+      "filename": "desktop-uncertain-recovery.png",
+      "sha256": "c2ce56299aaa750480bc61df1ae94433126c53aa484321c8cf64d667989331e6"
+    }
+  ],
+  "verifiedAt": "2026-10-31T02:47:06Z",
+  "originalReportSha256": "397091ed2f5db3983160f53848c88344102c808e8be41591e8550191e4cb8736",
+  "scenarioCount": 13,
+  "requestCount": 106,
+  "scenarios": [
+    {
+      "name": "desktop",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 16
+    },
+    {
+      "name": "mobile",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 8
+    },
+    {
+      "name": "wrong-account",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 4
+    },
+    {
+      "name": "wrong-chain",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 4
+    },
+    {
+      "name": "changed-account",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 8
+    },
+    {
+      "name": "duplicate-provider",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 8
+    },
+    {
+      "name": "tampered-packet",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 5
+    },
+    {
+      "name": "stale-checkpoint",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 7
+    },
+    {
+      "name": "already-upgraded",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 8
+    },
+    {
+      "name": "changed-fee",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 12
+    },
+    {
+      "name": "uncertain-wallet",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 18
+    },
+    {
+      "name": "no-storage",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 4
+    },
+    {
+      "name": "wrong-origin",
+      "unexpectedExceptions": 0,
+      "unexpectedRequests": 0,
+      "requests": 4
+    }
+  ],
+  "visualReview": {
+    "desktopWidth": 1440,
+    "mobileWidth": 390,
+    "screenshotsInspected": 3,
+    "horizontalOverflow": false
+  },
+  "limits": [
+    "All wallet providers and chain responses in this browser review were synthetic.",
+    "No real wallet was connected, and no signature or transaction was produced.",
+    "Hosted access controls, served bytes, and live GraphQL compatibility are verified separately."
+  ]
+}

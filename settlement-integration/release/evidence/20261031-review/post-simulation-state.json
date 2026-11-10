@@ -1,0 +1,149 @@
+{
+  "retrievedAt": "2026-10-31T02:27:44.451029+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query PostSimulationState($upgradeCap: SuiAddress!, $legacyAdminCap: SuiAddress!,\n          $registry: SuiAddress!, $simulatedPackage: SuiAddress!) {\n          checkpoint { sequenceNumber timestamp digest }\n          upgradeCap: object(address: $upgradeCap) { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { status checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } } }\n          legacyAdminCap: object(address: $legacyAdminCap) { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { status checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } } }\n          registry: object(address: $registry) { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { status checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } } }\n          simulatedPackage: object(address: $simulatedPackage) { address version }\n        }",
+  "variables": {
+    "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+    "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+    "simulatedPackage": "0x6f8f7588d54143f4b6f3f0373ded98afff88da98648f264c2e01b59a21f3e1b5"
+  },
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 339984414,
+        "timestamp": "2026-10-31T02:27:42.208Z",
+        "digest": "Dks5RPFSssHWatxeudbuMeDQN5i7YikjwHSM5dBK3P6v"
+      },
+      "upgradeCap": {
+        "address": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+        "version": 990522281,
+        "digest": "AL8rz2UmVAVijA5KiDufAKsn4VbYjDMFaYyHQ8kzPB22",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "previousTransaction": {
+          "digest": "HZRUsU9xNybZ5qSsPZV5wP1PvCEgbdsVJHur4ifFXnbw",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 319546807,
+              "timestamp": "2026-09-06T19:55:41.102Z"
+            }
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::package::UpgradeCap"
+            },
+            "json": {
+              "id": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+              "package": "0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724",
+              "version": "11",
+              "policy": 0
+            }
+          }
+        }
+      },
+      "legacyAdminCap": {
+        "address": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+        "version": 986499447,
+        "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "previousTransaction": {
+          "digest": "5CVNRZN9AP6c6x8FP4BTTpaFeL68KBFL31LhDx6tE7L2",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 318013167,
+              "timestamp": "2026-09-02T21:13:09.893Z"
+            }
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::AdminCap"
+            },
+            "json": {
+              "id": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3"
+            }
+          }
+        }
+      },
+      "registry": {
+        "address": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "version": 995549548,
+        "digest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 922820085
+        },
+        "previousTransaction": {
+          "digest": "Bwu4YX4eBEBsHoMTMS15rDCdhYHkYnfvCq9H3aF24k2d",
+          "effects": {
+            "status": "SUCCESS",
+            "checkpoint": {
+              "sequenceNumber": 328132170,
+              "timestamp": "2026-09-29T03:27:45.115Z"
+            }
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry"
+            },
+            "json": {
+              "id": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "3",
+              "season_start_ms": "1788220806247",
+              "reward_pool": "209720000",
+              "treasury": "0",
+              "total_seeds": "20",
+              "total_growth_points": "2498",
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x93277cbe2f6683d9ecaab8f5dde5086600e6e95c41ce094409b8e8b437a24a48",
+                "size": "8"
+              },
+              "referrers": {
+                "id": "0x0ca07d058dd75c756611819f547e13ac48f22112a2565521c2723aaf8f980661",
+                "size": "2"
+              },
+              "referral_earnings": {
+                "id": "0xc93da9448da77d684700d1c7d11c5dd59f836a0e7cb90a131191c09c99570ea7",
+                "size": "2"
+              },
+              "player_growth": {
+                "id": "0xe5e0e2985ecb99ed5fec053c7e6aae67820db446d7c1c1c7b716825e1985c92f",
+                "size": "8"
+              },
+              "player_growth_season": {
+                "id": "0xf2475714439da494caf3d01f9f0c4d4ccaf0da35fbdebed8e31fc6bc61d4a53e",
+                "size": "8"
+              },
+              "planted_saplings": {
+                "id": "0x7d09331b32ab8723c58ee09f592c38d66a11e5798d8f68e2fee1bf05830009e2",
+                "size": "20"
+              }
+            }
+          }
+        }
+      },
+      "simulatedPackage": null
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}

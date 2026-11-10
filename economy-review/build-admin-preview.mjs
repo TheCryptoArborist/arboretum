@@ -1,5 +1,6 @@
 /** Review-only overlay: existing source, wallet, contracts and deployment stay unchanged. */
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
+import {getBuildPolicy} from '../scripts/build-policy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export function applyPartnerReport(original){
  let html=original;if(html.includes('partner-revenue-mount'))throw Error('Partner report already applied');
@@ -11,7 +12,7 @@ export function applyPartnerReport(original){
  return html;
 }
 export function buildPreview(dist=path.join(root,'dist')){
- if(process.env.CONTEXT==='production')throw Error('Partner report is review-only; production build blocked');
+ if(getBuildPolicy().publicProduction)throw Error('Partner report is review-only; production build blocked');
  const game=path.join(dist,'game.html');if(!fs.existsSync(game))throw Error('Build the existing gated site first');
  const keep=['index.html','player-guide.html','wallet.js','garden.js','sui-sdk.bundle.js'];
  const hash=n=>crypto.createHash('sha256').update(fs.readFileSync(path.join(dist,n))).digest('hex');

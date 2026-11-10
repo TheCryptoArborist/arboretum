@@ -1,0 +1,28 @@
+{
+  "recordedAt": "2026-11-10T19:08:34.595313+00:00",
+  "url": "https://www.treegrow.xyz/admin/season-three/",
+  "title": "Season 3 watering test | Arboretum",
+  "deployId": "6af36b1211851adcba7aa254",
+  "sourceCommit": "5d17306758518579bf523ab8a7f9e8cb198a9fe8",
+  "browser": "Chrome cloud browser",
+  "mainnetVerified": true,
+  "state": "rollover-wait",
+  "season3CanStartDisplayed": "Nov 11, 2026, 8:45:27 AM CST",
+  "initialDisplayedCheckpoint": 343813117,
+  "refreshDisplayedCheckpoint": 343813188,
+  "refreshVerifiedAtDisplayed": "1:07:25 PM America/Chicago",
+  "readinessButtonDisabled": true,
+  "transactionButtonDisabled": true,
+  "refreshPassed": true,
+  "layoutReviewed": true,
+  "screenshot": "season-three-live.png",
+  "screenshotSha256": "1feda3e8222a5365668181b8271e1b4202a8103ffedb40b4424c6ef73b544c80",
+  "accessibilityEvidence": "season-three-live-ax.txt",
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limitations": [
+    "Slush is not installed in this verification browser; wallet approval was not exercised.",
+    "The live page was verified in its waiting state. Season 3 starting, planting, watering, calendar download from a live planting receipt, and claim remain owner actions."
+  ]
+}

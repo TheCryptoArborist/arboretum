@@ -1,0 +1,643 @@
+{
+  "schemaVersion": 1,
+  "hosted": false,
+  "javascriptEnabled": false,
+  "walletUsed": false,
+  "signaturesCreated": 0,
+  "broadcasts": 0,
+  "credentialsWritten": false,
+  "canonicalOrigin": "https://www.treegrow.xyz",
+  "administratorPath": "/admin/settlement-setup/",
+  "returnIntent": "settlement-setup",
+  "externalEntryOrigin": "https://chatgpt.com",
+  "baselineRef": "2e24a6cbc831332fce4ce71e0781ab5d947b1c39",
+  "gateSha256": {
+    "before": "ce60f208d49a68c8d02c458b8b4a1e28e5309f5a62a7357d2b377645e6c65650",
+    "after": "79348403aca97f0840d407c40de6e41615dad60f897f8d3bab468dd680d8380b"
+  },
+  "playwrightVersion": "1.62.1",
+  "browserVersion": "156.0.8078.4",
+  "passed": true,
+  "checks": [
+    {
+      "check": "baseline existing session: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "baseline: external anchor omits Strict cookie and reaches the intended login URL",
+      "passed": true,
+      "detail": {
+        "originalPath": "/admin/settlement-setup/",
+        "loginPath": "/tester-access",
+        "fetchSite": "cross-site",
+        "fetchSiteSource": "playwright",
+        "priorGameRequestHadCookie": true,
+        "entryCookiePresent": false,
+        "sameCookieRemainsStored": true
+      }
+    },
+    {
+      "check": "Baseline reproduces game route despite an administrator link and a previously valid session",
+      "passed": true
+    },
+    {
+      "check": "Baseline defect: external administrator link loses its destination after native login",
+      "passed": true
+    },
+    {
+      "check": "fixed-1440 default login: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "fixed-1440: external anchor omits Strict cookie and reaches the intended login URL",
+      "passed": true,
+      "detail": {
+        "originalPath": "/admin/settlement-setup/",
+        "loginPath": "/tester-access?next=settlement-setup",
+        "fetchSite": "cross-site",
+        "fetchSiteSource": "playwright",
+        "priorGameRequestHadCookie": true,
+        "entryCookiePresent": false,
+        "sameCookieRemainsStored": true
+      }
+    },
+    {
+      "check": "fixed-1440: rejected password preserves only the approved administrator intent",
+      "passed": true
+    },
+    {
+      "check": "fixed-1440: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "fixed-1440: external administrator entry, bad code, retry and correct native return",
+      "passed": true
+    },
+    {
+      "check": "fixed-390 default login: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "fixed-390: external anchor omits Strict cookie and reaches the intended login URL",
+      "passed": true,
+      "detail": {
+        "originalPath": "/admin/settlement-setup/",
+        "loginPath": "/tester-access?next=settlement-setup",
+        "fetchSite": "cross-site",
+        "fetchSiteSource": "playwright",
+        "priorGameRequestHadCookie": true,
+        "entryCookiePresent": false,
+        "sameCookieRemainsStored": true
+      }
+    },
+    {
+      "check": "fixed-390: rejected password preserves only the approved administrator intent",
+      "passed": true
+    },
+    {
+      "check": "fixed-390: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "fixed-390: external administrator entry, bad code, retry and correct native return",
+      "passed": true
+    },
+    {
+      "check": "invalid-return: host-only Secure HttpOnly SameSite Strict cookie is retained",
+      "passed": true,
+      "detail": {
+        "name": "__Host-arboretum_tester",
+        "domain": "www.treegrow.xyz",
+        "path": "/",
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict"
+      }
+    },
+    {
+      "check": "Unknown external return target cannot redirect outside the site",
+      "passed": true
+    },
+    {
+      "check": "Duplicate return markers fall back to the game",
+      "passed": true
+    },
+    {
+      "check": "Login POST query alone cannot choose an administrator return target",
+      "passed": true
+    },
+    {
+      "check": "No blockchain request was attempted with page JavaScript disabled",
+      "passed": true
+    },
+    {
+      "check": "No navigation attempted an external return destination",
+      "passed": true
+    }
+  ],
+  "documentRequests": [
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "baseline",
+      "origin": "https://chatgpt.com",
+      "path": "/offline-arboretum-return-fixture",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/admin/settlement-setup/",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access"
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": true,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "baseline",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://chatgpt.com",
+      "path": "/offline-arboretum-return-fixture",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/admin/settlement-setup/",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access?next=settlement-setup"
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": true,
+      "status": 401
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": true,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/admin/settlement-setup/"
+    },
+    {
+      "case": "fixed-1440",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/admin/settlement-setup/",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://chatgpt.com",
+      "path": "/offline-arboretum-return-fixture",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/admin/settlement-setup/",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access?next=settlement-setup"
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "cross-site",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": true,
+      "status": 401
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": true,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/admin/settlement-setup/"
+    },
+    {
+      "case": "fixed-390",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/admin/settlement-setup/",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "invalid-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "invalid-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "invalid-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "duplicate-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "duplicate-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "duplicate-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    },
+    {
+      "case": "query-only-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "GET",
+      "fetchSite": "none",
+      "originHeader": null,
+      "hasTesterCookie": false,
+      "status": 200
+    },
+    {
+      "case": "query-only-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/tester-access",
+      "method": "POST",
+      "fetchSite": "same-origin",
+      "originHeader": "https://www.treegrow.xyz",
+      "hasTesterCookie": false,
+      "status": 303,
+      "redirect": "https://www.treegrow.xyz/game.html"
+    },
+    {
+      "case": "query-only-return",
+      "origin": "https://www.treegrow.xyz",
+      "path": "/game.html",
+      "method": "GET",
+      "fetchSite": "same-origin",
+      "originHeader": null,
+      "hasTesterCookie": true,
+      "status": 200
+    }
+  ],
+  "cdpRequestMetadata": [],
+  "nativeFormSubmissions": [
+    {
+      "case": "baseline",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "baseline",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-1440",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-1440",
+      "status": 401,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-1440",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-390",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-390",
+      "status": 401,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "fixed-390",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "invalid-return",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "duplicate-return",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    },
+    {
+      "case": "query-only-return",
+      "status": 303,
+      "origin": "https://www.treegrow.xyz",
+      "fetchSite": "same-origin",
+      "fetchSiteSource": "playwright"
+    }
+  ],
+  "instrumentationNotes": [],
+  "requestStats": {
+    "total": 169,
+    "blocked": 7,
+    "chainAttempts": 0,
+    "externalDocumentAttempts": 0
+  },
+  "screenshots": [
+    {
+      "filename": "before-external-entry-game.png",
+      "sha256": "f598886b36459265c419d1d669a0d97f4a09f6d84f1f96758683ce7104b7ad89"
+    },
+    {
+      "filename": "fixed-1440-admin-after-login.png",
+      "sha256": "d5e8ed1871048a0344a3b5594f0f18b5492ed2098941225ff9258fdbca7389b7"
+    },
+    {
+      "filename": "fixed-390-admin-after-login.png",
+      "sha256": "340deb3e77f7673f728da858447b86ae074c89a2d3853a808e2e7824225f78dc"
+    }
+  ]
+}

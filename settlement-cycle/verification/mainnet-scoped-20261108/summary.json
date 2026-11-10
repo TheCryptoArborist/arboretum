@@ -1,0 +1,213 @@
+{
+  "verifiedAt": "2026-11-08T13:54:29.787Z",
+  "status": "UNSIGNED_ATOMIC_48_HOUR_ROLLOVER_SIMULATION_VERIFIED",
+  "simulated": {
+    "action": "rollover",
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 343018925,
+      "timestamp": "2026-11-08T13:54:11.562Z",
+      "digest": "CJPK2QBEwbEFFQ4oy819eqBpcWKXmepEgSWQRe8xY9W8"
+    },
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "seasonId": "2",
+    "inventoryVersion": "1",
+    "durationMs": "172800000",
+    "proposedDurationMs": "172800000",
+    "actualStartMs": "1794146059745",
+    "storedStartMs": "1791726859745",
+    "cutoffMs": "1794318859745",
+    "claimDeadlineMs": "1794923659745",
+    "normalResetReadyMs": "1794405259745",
+    "previousClaimDigest": "8PitEh5UEu5WeFKbZ2kZcr1QRixFZeq1NBXX7mxkSm9R",
+    "archiveId": "0x05f530f36e020cb18e30235d384fa2a7fedb552d95b54010531f24874a1e4323",
+    "archiveSeasonId": "1",
+    "previousRewardPaidMist": "7000000",
+    "previousGrowthPoints": "10",
+    "archivedUnclaimedMist": "0",
+    "predictedRewardPoolMist": "0",
+    "predictedTreasuryMist": "0",
+    "predictedPlantedSeeds": "0",
+    "predictedGrowthPoints": "0",
+    "kindSha256": "b11f023cdcd43d1395b6ed4cd45a911a3f441f71dd224d55c43fa84fe867edf3",
+    "exactKindSha256": "b11f023cdcd43d1395b6ed4cd45a911a3f441f71dd224d55c43fa84fe867edf3",
+    "registryOutput": {
+      "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+      "version": 1023361585,
+      "digest": "GbCSpTHg3NZ1g6waMmv645mWXGjX1EFk3K6LsNFKFtdp",
+      "owner": {
+        "__typename": "Shared",
+        "initialSharedVersion": 986499448
+      },
+      "asMoveObject": {
+        "contents": {
+          "type": {
+            "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+          },
+          "json": {
+            "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "version": "1",
+            "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+            "current_season_id": "2",
+            "season_start_ms": "1791726859745",
+            "reward_pool": "0",
+            "treasury": "0",
+            "total_seeds": "0",
+            "total_growth_points": "0",
+            "eligible_growth_points": "0",
+            "settlement": null,
+            "paused": false,
+            "seeds_by_owner": {
+              "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+              "size": "1"
+            },
+            "referrers": {
+              "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+              "size": "0"
+            },
+            "referral_earnings": {
+              "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+              "size": "0"
+            },
+            "player_growth": {
+              "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+              "size": "1"
+            },
+            "player_growth_season": {
+              "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+              "size": "1"
+            },
+            "planted_saplings": {
+              "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+              "size": "1"
+            }
+          }
+        }
+      }
+    },
+    "archiveOutput": {
+      "address": "0x05f530f36e020cb18e30235d384fa2a7fedb552d95b54010531f24874a1e4323",
+      "version": 1023361585,
+      "digest": "6h49P34HqwtxduL2eXDP6umSU4VepTyBiupGu2YzNKjj",
+      "owner": {
+        "__typename": "Shared",
+        "initialSharedVersion": 1023361585
+      },
+      "asMoveObject": {
+        "contents": {
+          "type": {
+            "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::SeasonArchive"
+          },
+          "json": {
+            "id": "0x05f530f36e020cb18e30235d384fa2a7fedb552d95b54010531f24874a1e4323",
+            "version": "1",
+            "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+            "settlement": {
+              "season_id": "1",
+              "season_end_ms": "1793570248277",
+              "claim_deadline_ms": "1794175048277",
+              "pool_mist": "7000000",
+              "eligible_growth_points": "10",
+              "paid_mist": "7000000",
+              "processed_growth_points": "10",
+              "processed_seeds": "1"
+            },
+            "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+            "season_id": "1",
+            "season_start_ms": "1790978248277",
+            "season_end_ms": "1793570248277",
+            "finalized_at_ms": "1794146059745",
+            "claim_deadline_ms": "1794175048277",
+            "total_growth_points": "10",
+            "total_seeds": "1",
+            "reward_pool": "0",
+            "swept": false
+          }
+        }
+      }
+    },
+    "appChargeMist": "0",
+    "priceMist": "0",
+    "gasEstimateMist": "2509802",
+    "gasEstimateSui": "0.002509802",
+    "netReceiveMist": "-2509802",
+    "netReceiveSui": "-0.002509802",
+    "virtualGasReservations": 0,
+    "gasAboveReviewCeiling": false
+  },
+  "simulatedIdsAreNotDeployedIds": true,
+  "verifiedPreviousClaimDigest": "8PitEh5UEu5WeFKbZ2kZcr1QRixFZeq1NBXX7mxkSm9R",
+  "actualAfter": {
+    "checkpoint": {
+      "sequenceNumber": 343018968,
+      "timestamp": "2026-11-08T13:54:21.993Z",
+      "digest": "EE53wiQPJ2j4RprWNBQ3SN1dEdvATYGkpPup3JKV8ozJ"
+    },
+    "status": "rollover-ready",
+    "seasonId": "1",
+    "storedStartMs": "1790978248277",
+    "rewardPoolMist": "0",
+    "treasuryMist": "0",
+    "totalSeeds": "1",
+    "growthPoints": "10",
+    "eligibleGrowthPoints": "10",
+    "paused": false
+  },
+  "requests": [
+    {
+      "name": "proof",
+      "requestedAt": "2026-11-08T13:54:07.926Z",
+      "simulation": false
+    },
+    {
+      "name": "inputs",
+      "requestedAt": "2026-11-08T13:54:12.307Z",
+      "simulation": false
+    },
+    {
+      "name": "simulation",
+      "requestedAt": "2026-11-08T13:54:16.445Z",
+      "simulation": true
+    },
+    {
+      "name": "after-1",
+      "requestedAt": "2026-11-08T13:54:20.593Z",
+      "simulation": false
+    },
+    {
+      "name": "after-2",
+      "requestedAt": "2026-11-08T13:54:25.030Z",
+      "simulation": false
+    },
+    {
+      "name": "after-3",
+      "requestedAt": "2026-11-08T13:54:26.153Z",
+      "simulation": false
+    },
+    {
+      "name": "after-4",
+      "requestedAt": "2026-11-08T13:54:27.286Z",
+      "simulation": false
+    },
+    {
+      "name": "after-5",
+      "requestedAt": "2026-11-08T13:54:28.458Z",
+      "simulation": false
+    },
+    {
+      "name": "after-6",
+      "requestedAt": "2026-11-08T13:54:29.611Z",
+      "simulation": false
+    }
+  ],
+  "actualSignatures": 0,
+  "actualSubmissions": 0,
+  "actualSuiSpent": "0",
+  "sourceSha256": {
+    "common.mjs": "479ef9e9ea1e0e3de62695530f92567be288f70d03f6a2bf13ba64d48131735b",
+    "rollover-core.mjs": "88cb764519d6bc2f2ddaaf5f32cfbdb16cc8be59da632d58b96f17b6fc3d0b16",
+    "check-live.mjs": "46e84aff13bb5c69067c1c2fad378e08b3da935352943998f43c501fed8801ec"
+  }
+}

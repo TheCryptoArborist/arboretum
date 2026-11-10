@@ -1,0 +1,64 @@
+{
+  "observedAt": "2026-11-10 19:05:15 UTC",
+  "sourceCommit": "5d17306758518579bf523ab8a7f9e8cb198a9fe8",
+  "sourceTree": "a17cff6a8a442d1518bf69331fd600731868e3dd",
+  "requiredCI": [
+    {
+      "id": 42881414707,
+      "event": "pull_request",
+      "conclusion": "success",
+      "status": "completed",
+      "headSha": "5d17306758518579bf523ab8a7f9e8cb198a9fe8",
+      "name": "Settlement app integration review",
+      "path": ".github/workflows/settlement-integration.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881414707"
+    },
+    {
+      "id": 42881396425,
+      "event": "push",
+      "conclusion": "success",
+      "status": "completed",
+      "headSha": "5d17306758518579bf523ab8a7f9e8cb198a9fe8",
+      "name": "Settlement app integration review",
+      "path": ".github/workflows/settlement-integration.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881396425"
+    }
+  ],
+  "separateLegacyWorkflowFailures": [
+    {
+      "id": 42881415134,
+      "name": "Partner chest preview",
+      "path": ".github/workflows/partner-preview.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881415134",
+      "releaseGate": false
+    },
+    {
+      "id": 42881414727,
+      "name": "Economy accounting review",
+      "path": ".github/workflows/economy-accounting-review.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881414727",
+      "releaseGate": false
+    },
+    {
+      "id": 42881415072,
+      "name": "Reward-first production release",
+      "path": ".github/workflows/reward-first-production.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881415072",
+      "releaseGate": false
+    },
+    {
+      "id": 42881414953,
+      "name": "Reward-first preview",
+      "path": ".github/workflows/reward-first-preview.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881414953",
+      "releaseGate": false
+    },
+    {
+      "id": 42881415119,
+      "name": "Garden season status",
+      "path": ".github/workflows/garden-season-status.yml",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/42881415119",
+      "releaseGate": false
+    }
+  ]
+}

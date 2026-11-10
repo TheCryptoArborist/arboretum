@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T02:55:07.287461+00:00",
+  "sourceUpload": {
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "siteName": "arboretum-preview",
+    "customDomain": "www.treegrow.xyz",
+    "sourceCommit": "c20c181b5651c1818aa02e1cccbd3058cdcac4d6",
+    "archiveSha256": "b91083571ff6decc4c8c7751edb364385a1b188e8fa805b2f2605774835993ed",
+    "archiveBytes": 30872206,
+    "requestedAt": "2026-10-31T02:50:15.943876+00:00",
+    "previousPublishedDeployId": "6ae53e7c96ded9882ad844c8",
+    "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+    "submissionAttempted": true,
+    "responseReceived": true,
+    "responseHttpStatus": 200,
+    "buildId": "6ae5576912763ca45cca5a74",
+    "deployId": "6ae5576912763ca45cca5a76"
+  },
+  "deployment": {
+    "id": "6ae5576912763ca45cca5a76",
+    "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "build_id": "6ae5576912763ca45cca5a74",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-10-31T02:50:37.626Z",
+    "deploy_source": "api",
+    "has_source_zip": true
+  },
+  "originTested": "https://www.treegrow.xyz",
+  "administratorUrl": "https://www.treegrow.xyz/admin/settlement-upgrade/",
+  "authenticatedBrowserCheck": {
+    "performed": false,
+    "reason": "Netlify Secrets Controller makes the existing production tester code write-only. The API supplies a masked value that cannot authenticate; no gate bypass or credential change was made.",
+    "configurationChanged": false,
+    "gateSourceUnchanged": true,
+    "previousUserAcceptedLoginPreserved": true,
+    "providerReference": "https://docs.netlify.com/build/environment-variables/secrets-controller/"
+  },
+  "rawArtifactRetrieval": "Netlify deploy files API with application/vnd.bitballoon.v1.raw",
+  "rawDeployedAssets": [
+    {
+      "path": "index.html",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "bytes": 13362,
+      "matches": true
+    },
+    {
+      "path": "player-guide.html",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "bytes": 35657,
+      "matches": true
+    },
+    {
+      "path": "game.html",
+      "sha256": "9394c623eff8b4d9cf23941a861a0a2b2d27477672b3144592a97968b7ff88fa",
+      "bytes": 576478,
+      "matches": true
+    },
+    {
+      "path": "settlement-game.html",
+      "sha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "bytes": 1091,
+      "matches": true
+    },
+    {
+      "path": "wallet.js",
+      "sha256": "6e8f7a6a52cb8a85efa47e8285a50849db4fe09864bde2dba9f88e0469c6d2b3",
+      "bytes": 75550,
+      "matches": true
+    },
+    {
+      "path": "settlement-sdk.bundle.js",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "bytes": 265139,
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.mjs",
+      "sha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "bytes": 17478,
+      "matches": true
+    },
+    {
+      "path": "settlement-panel.css",
+      "sha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "bytes": 8542,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/reader.mjs",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "bytes": 9588,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/model.mjs",
+      "sha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "bytes": 21344,
+      "matches": true
+    },
+    {
+      "path": "settlement-integration/deployment-config.mjs",
+      "sha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "bytes": 262,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.css",
+      "sha256": "49b187cbdf3faf8df19eaa0786021ed2e294e6733812250e8a6e42ca497d5500",
+      "bytes": 9027,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/admin.mjs",
+      "sha256": "c2ebbd1d3b8630128d81f307f5070dd90b9b238391905634b10addbd3879e290",
+      "bytes": 393912,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/index.html",
+      "sha256": "7cd4a4e32d2f81d84678c274bfc3d6ef9ecb2fa34a4fab0cd1a23966e09cc03d",
+      "bytes": 8757,
+      "matches": true
+    },
+    {
+      "path": "admin/settlement-upgrade/upgrade-kind.b64",
+      "sha256": "5238bbe450cd19e0fd259ec048a86d2573044572198db448272b769fb715e563",
+      "bytes": 54157,
+      "matches": true
+    }
+  ],
+  "acceptedGameplayAssetsUnchanged": 11,
+  "edgeFunctionNames": [
+    "public-player-guide",
+    "tester-gate"
+  ],
+  "serverlessFunctionNames": [
+    "calendar-reminder"
+  ],
+  "calendarFunctionSourceUnchanged": true,
+  "calendarFunctionAuthenticatedInvocationRepeated": false,
+  "calendarFunctionBundle": {
+    "previousDigest": "9ae57ab696df7f81834efec8b50ac46e2251c94394aebc5193640dce5bb4bb1b",
+    "currentDigest": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+    "digestUnchanged": false,
+    "runtime": "nodejs24.x",
+    "bytes": 279384
+  },
+  "functionSchedules": [],
+  "httpChecks": [
+    {
+      "check": "Anonymous protected page /admin/settlement-upgrade/",
+      "passed": true
+    },
+    {
+      "check": "Anonymous protected page /game.html",
+      "passed": true
+    },
+    {
+      "check": "Anonymous protected asset admin.mjs",
+      "passed": true
+    },
+    {
+      "check": "Anonymous protected asset admin.css",
+      "passed": true
+    },
+    {
+      "check": "Anonymous protected asset upgrade-kind.b64",
+      "passed": true
+    },
+    {
+      "check": "Public route /",
+      "passed": true
+    },
+    {
+      "check": "Public route /player-guide",
+      "passed": true
+    },
+    {
+      "check": "Configured tester entrance",
+      "passed": true
+    },
+    {
+      "check": "Tester privacy headers",
+      "passed": true
+    },
+    {
+      "check": "All administrator files present in published inventory",
+      "passed": true
+    },
+    {
+      "check": "Published administrator module MIME type",
+      "passed": true
+    },
+    {
+      "check": "Source and release evidence excluded from published inventory",
+      "passed": true
+    },
+    {
+      "check": "Administrator path covered by tester edge function",
+      "passed": true
+    }
+  ],
+  "originalProjectPublishedDeployUnchanged": "6abe81174b61a8e3dd53b333",
+  "gameplayTransactionsEnabled": false,
+  "exactAdministratorUpgradeEnabled": true,
+  "ownerWalletApprovalRequired": true,
+  "registrySetupEnabled": false,
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limits": [
+    "HTTP/artifact checks do not operate a real wallet.",
+    "A fresh authenticated login and calendar invocation could not be repeated because the existing tester code is masked by Netlify. The unchanged gate, configured entrance, anonymous access denial, deployed file inventory and raw deployed bytes were checked.",
+    "The provider generated a new calendar bundle digest; function source and runtime remain unchanged. No authenticated function-output equivalence is claimed.",
+    "A live upgrade still requires the owner to explicitly approve the exact transaction in Slush.",
+    "Simulation and synthetic browser evidence do not establish a published mainnet package."
+  ]
+}
