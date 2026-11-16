@@ -1,0 +1,20 @@
+{
+  "capturedAt": "2026-11-16T19:03:13.016Z",
+  "readOnly": true,
+  "submittedTransactions": 0,
+  "previousClaimDigest": "7MLWVofmU1wnoNjqVwYEm3WxRpjMF8AddqojX48YYFKL",
+  "previousSeedId": "0x949d45fc9e2861ec3c75d46ff2e6b277c9692470ab5b929fc76d6dffe5b9ed1b",
+  "currentSeason": "3",
+  "previousStoredStartMs": "1792011931137",
+  "previousCutoffMs": "1794603931137",
+  "previousClaimDeadlineMs": "1795208731137",
+  "previousPlantedAtMs": "1794431510191",
+  "processedSeeds": 3,
+  "checkpoint": {
+    "sequenceNumber": 345949326,
+    "timestamp": "2026-11-16T19:03:11.789Z",
+    "digest": "2TSXG3WqMLQcp8S2FPreTFa7SoGFjntcDrmFrtMsMA12"
+  },
+  "priorClaimStatus": "SUCCESS",
+  "wateringRecorded": false
+}
