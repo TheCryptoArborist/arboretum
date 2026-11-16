@@ -1,0 +1,52 @@
+name: Season four preparation
+on:
+  push:
+    branches: [feature/season-four-watering-20261116]
+    paths: [.github/workflows/season-four-preparation.yml]
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Capture exact source and install locked development dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p season-four-preparation
+          git rev-parse HEAD > season-four-preparation/source-sha.txt
+          git archive --format=tar HEAD | gzip > season-four-preparation/source.tar.gz
+          npm ci --ignore-scripts
+          tar -czf season-four-preparation/dependencies.tar.gz node_modules
+      - name: Read the completed Season 3 state without signing
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const query = `query SeasonFourPreparation {
+            checkpoint { sequenceNumber timestamp }
+            registry: object(address: "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9") { address version digest asMoveObject { contents { json type { repr } } } }
+            seed: object(address: "0x949d45fc9e2861ec3c75d46ff2e6b277c9692470ab5b929fc76d6dffe5b9ed1b") { address version digest previousTransaction { digest } asMoveObject { contents { json type { repr } } } }
+          }`;
+          const response = await fetch('https://graphql.mainnet.sui.io/graphql', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }), signal: AbortSignal.timeout(45000)
+          });
+          const result = await response.json();
+          const evidence = { capturedAt: new Date().toISOString(), httpStatus: response.status, query, response: result, readOnly: true, transactionsSubmitted: 0 };
+          fs.writeFileSync('season-four-preparation/mainnet.json', JSON.stringify(evidence, null, 2));
+          console.log(JSON.stringify(evidence, null, 2));
+          if (!response.ok || result.errors?.length) process.exitCode = 1;
+          JS
+      - name: Retain source and public evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: season-four-preparation
+          path: season-four-preparation/
+          retention-days: 7
+          if-no-files-found: error
