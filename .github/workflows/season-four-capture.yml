@@ -1,0 +1,42 @@
+name: Season four predecessor capture
+on:
+  push:
+    branches: [feature/season-four-watering-20261116]
+    paths: [.github/workflows/season-four-capture.yml]
+permissions:
+  contents: write
+concurrency:
+  group: season-four-predecessor-capture
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: feature/season-four-watering-20261116
+          fetch-depth: 0
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Capture public chain reads only
+        run: node settlement-cycle-four/capture-predecessor.mjs
+      - name: Save only the captured public evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git branch --show-current)" = feature/season-four-watering-20261116
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- settlement-cycle-four/verification/mainnet
+          git diff --cached --name-only | while read -r path; do
+            case "$path" in settlement-cycle-four/verification/mainnet/*.json) ;; *) exit 1;; esac
+          done
+          git commit -m 'Record read-only Season 3 claim and inventory for Season 4'
+          git push origin HEAD:feature/season-four-watering-20261116
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: season-four-predecessor-evidence
+          path: settlement-cycle-four/verification/mainnet/
+          retention-days: 7
