@@ -123,7 +123,8 @@ def generate():
             text=replace(text, "seasonId: '2'", "seasonId: '3'")
             text=replace(text, 'arboretum:season-two:v1:rollover', 'arboretum:season-three:v1:rollover')
             text=replace(text,'/save the event in your calendar/','/save both events in your calendar/')
-            text=replace(text,"assert.ok(ics.endsWith('END:VCALENDAR\r\n'));", "assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 2);\n    assert.ok(ics.includes('Backup: water'));\n    assert.ok(ics.endsWith('END:VCALENDAR\r\n'));")
+            old_end = r"assert.ok(ics.endsWith('END:VCALENDAR\r\n'));"
+            text=replace(text, old_end, "assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 2);\n    assert.ok(ics.includes('Backup: water'));\n    " + old_end)
         (TARGET / name).write_text(text)
         generated[name]=hashlib.sha256(text.encode()).hexdigest()
     (TARGET / 'generated-source.json').write_text(json.dumps({'baselineDirectory':'settlement-cycle-three', 'baselineSha256': BASELINE,'generatedSha256': generated},indent=2)+'\n')
