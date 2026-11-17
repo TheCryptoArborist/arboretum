@@ -30,13 +30,16 @@ with sync_playwright() as p:
         def route_request(route):
             request=route.request;url=urlparse(request.url)
             if url.hostname=='graphql.mainnet.sui.io':
+                cors={'Access-Control-Allow-Origin':'https://www.treegrow.xyz','Access-Control-Allow-Methods':'POST, OPTIONS','Access-Control-Allow-Headers':'content-type,accept,cache-control,pragma'}
+                if request.method=='OPTIONS':
+                    route.fulfill(status=204,headers=cors);return
                 if mode['unavailable']:
-                    route.fulfill(status=503,content_type='application/json',body='{"errors":[{"message":"Offline unavailable-data test"}]}');return
+                    route.fulfill(status=503,headers=cors,content_type='application/json',body='{"errors":[{"message":"Offline unavailable-data test"}]}');return
                 body=request.post_data_json
                 pair=responses.get(normalize(body.get('query','')))
                 assert pair and body.get('variables')==pair[0], 'Unexpected query or variables'
                 reads.append(normalize(body['query']).split('{')[0])
-                route.fulfill(status=200,content_type='application/json',body=json.dumps(pair[1]));return
+                route.fulfill(status=200,headers=cors,content_type='application/json',body=json.dumps(pair[1]));return
             if url.hostname=='www.treegrow.xyz' and request.method=='GET':
                 rel=unquote(url.path).lstrip('/')
                 if rel.endswith('/'):rel+='index.html'
@@ -50,7 +53,7 @@ with sync_playwright() as p:
         page=context.new_page();page.on('pageerror',lambda error:errors.append(str(error)))
         page.goto('https://www.treegrow.xyz/admin/season-four/',wait_until='networkidle')
         page.wait_for_function("document.querySelector('#chain-status').textContent==='Mainnet verified'",timeout=20000)
-        assert page.locator('#current-stage').inner_text()=='Your watering test is next'
+        assert page.locator('#current-stage').inner_text()=='Ready for Season 4'
         assert page.locator('#action-heading').inner_text()=='Start Season 4'
         assert page.locator('#check-action').is_disabled() and page.locator('#submit-action').is_disabled()
         assert page.locator('.back-link').get_attribute('href')=='/admin/season-three/'
