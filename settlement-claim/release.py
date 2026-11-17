@@ -64,6 +64,10 @@ def save(folder, name, value, exclusive=False):
             stream.flush()
             os.fsync(stream.fileno())
         os.replace(temporary, folder / name)
+    # Windows fsync flushes the file via FlushFileBuffers; opening a directory
+    # with os.open is unsupported. POSIX also requires flushing the directory.
+    if os.name == 'nt':
+        return
     directory = os.open(folder, os.O_RDONLY)
     try:
         os.fsync(directory)
@@ -169,14 +173,14 @@ def application_inventory():
     dist = ROOT / 'dist'
     files = [file for file in dist.rglob('*') if file.is_file()]
     assert files and all(not file.is_symlink() for file in files), 'Build output must contain regular files'
-    return [{'path': str(file.relative_to(dist)), 'sha1': sha(file.read_bytes(), 'sha1'),
+    return [{'path': file.relative_to(dist).as_posix(), 'sha1': sha(file.read_bytes(), 'sha1'),
         'sha256': sha(file.read_bytes()), 'bytes': file.stat().st_size} for file in sorted(files)]
 
 
 def preservation():
     baseline = baseline_record()
     old_paths = {item['path'] for item in baseline['completePublishedInventory']}
-    current_paths = {str(p.relative_to(ROOT / 'dist')) for p in (ROOT / 'dist').rglob('*') if p.is_file()}
+    current_paths = {p.relative_to(ROOT / 'dist').as_posix() for p in (ROOT / 'dist').rglob('*') if p.is_file()}
     assert current_paths == old_paths | set(NEW), 'Unexpected application file inventory'
     recorded_sha256 = {item['path']: item['sha256'] for item in baseline['rawDeployedAssets']}
     for item in baseline['completePublishedInventory']:
@@ -279,7 +283,7 @@ def verify(folder):
     inventory = api('/deploys/' + deploy_id + '/files')
     indexed = {item['path'].lstrip('/'): item for item in inventory}
     assert len(indexed) == len(inventory), 'Duplicate deploy file path'
-    expected = {str(p.relative_to(ROOT / 'dist')): p for p in (ROOT / 'dist').rglob('*') if p.is_file()}
+    expected = {p.relative_to(ROOT / 'dist').as_posix(): p for p in (ROOT / 'dist').rglob('*') if p.is_file()}
     checks = []
     for name, file in sorted(expected.items()):
         deployed_name = 'backgrounda.jpg' if name == 'backgroundA.jpg' else name

@@ -19,6 +19,7 @@ import { buildOwnerGameplay } from '../settlement-gameplay/build.mjs';
 import { buildOwnerWatering } from '../settlement-watering/build.mjs';
 import { buildOwnerClaim } from '../settlement-claim/build.mjs';
 import { buildOwnerCycle, verifyCyclePreservation } from '../settlement-cycle/build.mjs';
+import { buildSeasonFour, verifySeasonFourPreservation, SEASON_FOUR_FILES } from '../settlement-cycle-four/build.mjs';
 import { buildFocusedOwnerCycle, verifySeasonThreePreservation, FOCUSED_FILES } from '../settlement-cycle-three/build.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -47,7 +48,9 @@ const commands = [
   ['node','economy-review/build-admin-preview.mjs'],
   ['node','economy-review/build-garden-ux-preview.mjs'],
 ];
-const run = (executable,args) => promisify(execFile)(executable,args,{
+const run = (executable,args) => promisify(execFile)(
+  executable === 'python3' && process.platform === 'win32' ? 'python' : executable,
+  executable === 'python3' ? ['scripts/run-build-python.py', ...args] : args,{
   cwd:root,env:process.env,
   stdio:['ignore','pipe','pipe'],maxBuffer:8*1024*1024,
 });
@@ -132,16 +135,18 @@ const ownerWatering = await buildOwnerWatering();
 const ownerClaim = await buildOwnerClaim();
 const ownerCycle = await buildOwnerCycle();
 const focusedOwnerCycle = await buildFocusedOwnerCycle();
+const seasonFour = await buildSeasonFour();
 const allFiles=[];
 function list(dir) {
   for(const entry of fs.readdirSync(dir,{withFileTypes:true})) {
     const full=path.join(dir,entry.name);
-    if(entry.isDirectory())list(full);else allFiles.push(path.relative(dist,full));
+    if(entry.isDirectory())list(full);else allFiles.push(path.relative(dist,full).split(path.sep).join('/'));
   }
 }
 list(dist);
-const cyclePreservation = verifyCyclePreservation(allFiles.filter(file => !FOCUSED_FILES.includes(file)));
-const seasonThreePreservation = verifySeasonThreePreservation(allFiles);
+const cyclePreservation = verifyCyclePreservation(allFiles.filter(file => !FOCUSED_FILES.includes(file) && !SEASON_FOUR_FILES.includes(file)));
+const seasonThreePreservation = verifySeasonThreePreservation(allFiles.filter(file => !SEASON_FOUR_FILES.includes(file)));
+const seasonFourPreservation = verifySeasonFourPreservation(allFiles);
 for(const file of allFiles) assert.ok(!/(^|\/)(release|legacy-reconciliation|evidence|__pycache__|node_modules|\.git)(\/|$)/.test(file),
   'Source or review evidence was included in the published assets: '+file);
 assert.deepEqual(fs.readdirSync(path.join(dist,'settlement-integration')).sort(),
@@ -169,7 +174,7 @@ const report={
   emittedSha256:Object.fromEntries(files.map(file=>[file,sha(fs.readFileSync(path.join(dist,file)))])),
   transactionSubmissionEnabled:false,transactionSubmissionScope:'gameplay-review',
   administratorUpgrade,administratorSetup,administratorSeason,ownerGameplay,ownerWatering,ownerClaim,ownerCycle,cyclePreservation,
-  focusedOwnerCycle,seasonThreePreservation,evidencePublished:false,
+  focusedOwnerCycle,seasonThreePreservation,seasonFour,seasonFourPreservation,evidencePublished:false,
   hostedPreviewVerified:false,
   gateRequirement:'The existing Netlify edge functions must be bundled and verified on this protected review deployment. A static upload alone is insufficient.',
 };
