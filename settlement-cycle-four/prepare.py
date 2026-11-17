@@ -47,6 +47,7 @@ def generate():
             text=replace(text, "'oldSeed', 'olderSeed']", "'oldSeed', 'olderSeed', 'middleSeed']")
         if name == 'rollover-core.mjs':
             text=replace(text,'state.ownedSeeds.length === 2', 'state.ownedSeeds.length === 3')
+            text=replace(text,'the two processed previous Seeds','the three processed previous Seeds')
         if name == 'care-fixtures.mjs':
             text=replace(text, 'clone(state.olderSeed), clone(state.oldSeed)', 'clone(state.olderSeed), clone(state.middleSeed), clone(state.oldSeed)')
             text=replace(text, 'clone(fixture.state.olderSeed), clone(fixture.state.oldSeed)',
@@ -69,8 +70,15 @@ def generate():
             text=replace(text, "Open the file and save the event in your calendar. Its alert is set for ",
                 "Open the file and save both events in your calendar. The first alert is set for ")
         if name == 'index.html':
-            text=text.replace('Add watering to my calendar', 'Add watering and backup reminders')
+            text=replace(text, 'SEASON 3', 'SEASON 4', 2)
+            text=replace(text, 'href="/admin/season-two/"', 'href="/admin/season-three/"')
+            text=replace(text, 'EvJHfMtHpGNcGoKndFNTafx9JSn8rKHwTPwiXuKD4pCB', '7MLWVofmU1wnoNjqVwYEm3WxRpjMF8AddqojX48YYFKL')
+            text=replace(text, 'Add watering to my calendar', 'Add watering and backup reminders')
+            text=replace(text, 'Download the event, then import it into your calendar.',
+                'Download and save both calendar events: the first watering appointment and a backup 15 minutes later. Enable calendar notifications on your phone.')
         if name == 'common.test.mjs':
+            for expression in ['inputs', 'proof', 'f.inputs', 'f.proof', 'p']:
+                text = re.sub(r'(?<![.\w])' + re.escape(expression) + r'\.data\.', 'dataOf(' + expression + ').', text)
             start=text.index("test('ordinary reset")
             end=text.index("test('completed predecessor",start)
             text=text[:start]+"""test('ordinary reset boundary is checked independently of the late predecessor claim', async () => {
@@ -92,6 +100,8 @@ def generate():
             text=replace(text,'f.proof, resetReadyMs)', 'f.proof, capturedNow())',2)
             text=replace(text,'/Seed.*missing|Season 1 Seed/', '/Seed.*missing|Season [12] Seed/')
         if name == 'rollover-core.test.mjs':
+            text=replace(text, "current_season_id = '4'", "current_season_id = '5'")
+            text=replace(text, "contents.json.season_id = '4'", "contents.json.season_id = '5'")
             text=replace(text,"assert.equal(state.status, 'rollover-wait');", "assert.equal(state.status, 'rollover-ready');")
             text=replace(text,"'1794408327707'", "'1794690331137'")
             text=replace(text,'state.ownedSeeds.length, 2', 'state.ownedSeeds.length, 3')
@@ -108,8 +118,12 @@ def generate():
               'retain both processed Seeds':'retain all three processed Seeds',
             }.items():text=replace(text,old,new)
         if name == 'controller.test.mjs':
+            text=replace(text, 'BASE_TIME = 1794412800000', 'BASE_TIME = 1794942000000')
+            text=replace(text, '/Nov 11, 2026, 8:45:27 AM CST/', '/Nov 14, 2026, 3:05:31 PM CST/')
+            text=replace(text, "seasonId: '2'", "seasonId: '3'")
+            text=replace(text, 'arboretum:season-two:v1:rollover', 'arboretum:season-three:v1:rollover')
             text=replace(text,'/save the event in your calendar/','/save both events in your calendar/')
-            text=replace(text,"assert.ok(ics.endsWith('END:VCALENDAR\\r\\n'));", "assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 2);\n    assert.ok(ics.includes('Backup: water'));\n    assert.ok(ics.endsWith('END:VCALENDAR\\r\\n'));")
+            text=replace(text,"assert.ok(ics.endsWith('END:VCALENDAR\r\n'));", "assert.equal((ics.match(/BEGIN:VEVENT/g) ?? []).length, 2);\n    assert.ok(ics.includes('Backup: water'));\n    assert.ok(ics.endsWith('END:VCALENDAR\r\n'));")
         (TARGET / name).write_text(text)
         generated[name]=hashlib.sha256(text.encode()).hexdigest()
     (TARGET / 'generated-source.json').write_text(json.dumps({'baselineDirectory':'settlement-cycle-three', 'baselineSha256': BASELINE,'generatedSha256': generated},indent=2)+'\n')

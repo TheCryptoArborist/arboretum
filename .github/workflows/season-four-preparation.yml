@@ -11,7 +11,7 @@ concurrency:
 jobs:
   prepare:
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
@@ -30,6 +30,8 @@ jobs:
         run: python3 settlement-cycle-four/prepare.py
       - name: Verify actual Season 3 predecessor and current state
         run: node settlement-cycle-four/capture.mjs
+      - name: Rehearse the exact unsigned rollover without submitting
+        run: node settlement-cycle-four/rehearse.mjs
       - name: Run candidate transaction and controller regressions
         shell: bash
         run: |
@@ -40,6 +42,22 @@ jobs:
         run: |
           set -euo pipefail
           node --test --test-isolation=none settlement-cycle-three/*.test.mjs | tee season-four-results/season-three-tests.txt
+      - name: Run retained integration release checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run lint
+          node settlement-integration/model.test.mjs
+          node --test --test-isolation=none settlement-integration/reader.test.mjs settlement-integration/wallet.test.mjs settlement-integration/release/*.test.mjs
+          node --test --test-isolation=none scripts/test-wallet-transactions.mjs
+          python3 -m unittest discover -s settlement-integration/release -p 'test_*.py' -v
+          python3 -m unittest discover -s settlement-integration/legacy-reconciliation -p 'test_*.py' -v
+          for directory in settlement-admin settlement-setup settlement-season settlement-gameplay settlement-watering settlement-claim settlement-cycle; do
+            node --test --test-isolation=none "$directory"/*.test.mjs
+          done
+          python3 -m unittest discover -s settlement-cycle -p 'test_*.py' -v
+          python3 -m unittest discover -s settlement-cycle-three -p 'test_*.py' -v
+          node --test --test-isolation=none scripts/test-tester-return.mjs scripts/build-policy.test.mjs settlement-integration/ui/panel.test.mjs
       - name: Build additive review candidate and check all 109 retained assets
         env:
           CONTEXT: branch-deploy
@@ -50,6 +68,28 @@ jobs:
           node settlement-cycle-four/build.mjs
           git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js netlify netlify.toml package.json package-lock.json contract contract-payout settlement-cycle-three
           tar -czf season-four-results/review-dist.tar.gz dist
+      - name: Check desktop and mobile with labelled recorded-data replay
+        run: |
+          python3 -m pip install --disable-pip-version-check playwright==1.57.0
+          python3 settlement-cycle-four/browser-check.py
+      - name: Check deployment credential availability without exposing it
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          python3 - <<'PYCODE'
+          import json,os,urllib.request
+          token=os.environ.get('NETLIFY_AUTH_TOKEN','')
+          result={'netlifyAuthConfigured':bool(token),'deploymentAttempted':False}
+          if token:
+              try:
+                  request=urllib.request.Request('https://api.netlify.com/api/v1/sites/d425445d-4980-49be-8ab2-12e7527ba281',headers={'Authorization':'Bearer '+token})
+                  with urllib.request.urlopen(request,timeout=30) as response: site=json.load(response)
+                  result.update(netlifySiteVerified=site.get('id')=='d425445d-4980-49be-8ab2-12e7527ba281',publishedDeployId=(site.get('published_deploy') or {}).get('id'))
+              except Exception:
+                  result['netlifySiteVerified']=False
+          with open('season-four-results/deployment-access.json','w') as f:json.dump(result,f,indent=2)
+          print(json.dumps(result))
+          PYCODE
       - name: Preserve generated source and public evidence even on failure
         if: always()
         run: |
