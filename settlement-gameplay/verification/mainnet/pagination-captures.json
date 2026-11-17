@@ -1,0 +1,978 @@
+{
+  "note": "Complete object payloads are retained in inputs-complete.json and simulation-complete.json. This records each actual pinned page without duplicating those payloads. Original raw captures remain in the task scratch run directory.",
+  "pages": [
+    {
+      "name": "inputs",
+      "requestedAt": "2026-10-31T22:06:34.758Z",
+      "capturedAt": "2026-10-31T22:06:34.860Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+        "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+        "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "registryType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+        "adminCapType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap"
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+      "lastObjectId": "0x0b852d00dffa4cd4ee9d0c85fc5b123316f697fcd93f757c0c6a464a47c98415",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAALhS0A3/pM1O6dDIX8WxIzFvaX/Nk/dXwMakZKR8mEFQ=="
+      },
+      "rawResponseSha256": "c775a40b4f388a4ca2f3488602acbd89209dc07549165287382072615167e8fd",
+      "parsedCaptureSha256": "77669bf4278d1734e48fb141168be8682238f4557cd7cf28fccc87beaccf67d9"
+    },
+    {
+      "name": "inputs-nft-page-1",
+      "requestedAt": "2026-10-31T22:06:34.861Z",
+      "capturedAt": "2026-10-31T22:06:34.968Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAALhS0A3/pM1O6dDIX8WxIzFvaX/Nk/dXwMakZKR8mEFQ=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x0c532cb4e765c58b56a2ef6e17d1326aa108515d7ee5bf03ab859b382c2fb81e",
+      "lastObjectId": "0x163c973624336ac2139460a9e448d5ed1f0c2b3a08734382d51306495ac7dfbc",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAWPJc2JDNqwhOUYKnkSNXtHwwrOghzQ4LVEwZJWsffvA=="
+      },
+      "rawResponseSha256": "85d246554a52c1a98463a6226b9d2b60fc184b60eff46909e617d57dda7fb6bd",
+      "parsedCaptureSha256": "22599324a769bb2adc3fc4db53dc2f7ebe3720f04c9d8876ede2b23268ebc6a5"
+    },
+    {
+      "name": "inputs-nft-page-2",
+      "requestedAt": "2026-10-31T22:06:34.969Z",
+      "capturedAt": "2026-10-31T22:06:35.058Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAWPJc2JDNqwhOUYKnkSNXtHwwrOghzQ4LVEwZJWsffvA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x16ae82d201666a90f08f690b68f2845ba7039b514ef3ac67d1d6de9b783e2da4",
+      "lastObjectId": "0x225bc5d27fa91bd86cdb0f5a0f26238de9ad1a9fc36d441fdd59aa0018537f9f",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAiW8XSf6kb2GzbD1oPJiON6a0an8NtRB/dWaoAGFN/nw=="
+      },
+      "rawResponseSha256": "de2b116040f4ff586dcc7ecf069ea5cca6ccb6ff287354ecfd8f2a018a5e7d97",
+      "parsedCaptureSha256": "c68b8c893139fc93d9f2af3f1323f16c27803ed4deabc3e4874722fa8f74cb21"
+    },
+    {
+      "name": "inputs-nft-page-3",
+      "requestedAt": "2026-10-31T22:06:35.059Z",
+      "capturedAt": "2026-10-31T22:06:35.146Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAiW8XSf6kb2GzbD1oPJiON6a0an8NtRB/dWaoAGFN/nw=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x22855937b907bd285188971a7bdbb03cc483e79e93da3a2f0f17f8939d0caf8c",
+      "lastObjectId": "0x2f26979d1d4df7eeb7ff1ff32e4863269c2168ef4141944aa4518cd1b927c325",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAvJpedHU337rf/H/MuSGMmnCFo70FBlEqkUYzRuSfDJQ=="
+      },
+      "rawResponseSha256": "284fb72a382e4c054c8755e945df68fa81c552086a31c496692196e97e21b588",
+      "parsedCaptureSha256": "ffbdee3ba0bb7961da159d6c14330519177ae6f7b91c7bc126f578cc81f80e47"
+    },
+    {
+      "name": "inputs-nft-page-4",
+      "requestedAt": "2026-10-31T22:06:35.148Z",
+      "capturedAt": "2026-10-31T22:06:35.238Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAvJpedHU337rf/H/MuSGMmnCFo70FBlEqkUYzRuSfDJQ=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x2f4ec6c93e03032fe74ccdfbc69077ff073bacfba398ee878339ba3f68c754cc",
+      "lastObjectId": "0x3a4ea7dab0bf1e27e82bdc385a4197247ac14ead7f11c439830f7f982e8fe341",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAA6TqfasL8eJ+gr3DhaQZckesFOrX8RxDmDD3+YLo/jQQ=="
+      },
+      "rawResponseSha256": "bd7ea136cd77757b6c88f956ed2ee62ac641b5204cbf1fa5246a7f4919b34de9",
+      "parsedCaptureSha256": "9bab6390032020501f4473a60a061b82e1161ed475a7dff5c85710890ee78c1a"
+    },
+    {
+      "name": "inputs-nft-page-5",
+      "requestedAt": "2026-10-31T22:06:35.241Z",
+      "capturedAt": "2026-10-31T22:06:35.395Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAA6TqfasL8eJ+gr3DhaQZckesFOrX8RxDmDD3+YLo/jQQ=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x3a6220dcb0dc8361e5b14c3b0e1ff4e47b6781e003f887a3beb8a534bf3a596c",
+      "lastObjectId": "0x4584fee332e8f7df912cebad51f38db2d5ba9583f94e147aed22a18b2c537640",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABFhP7jMuj335Es661R842y1bqVg/lOFHrtIqGLLFN2QA=="
+      },
+      "rawResponseSha256": "6d1786148dd777b412b3c8f5d4bfec8b1cc6612732b95139144016e0471e622b",
+      "parsedCaptureSha256": "f0d9e9aebee0755ba4bacb4ca3adcb15c48d3083658a634ba31b1900262b9510"
+    },
+    {
+      "name": "inputs-nft-page-6",
+      "requestedAt": "2026-10-31T22:06:35.398Z",
+      "capturedAt": "2026-10-31T22:06:35.527Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABFhP7jMuj335Es661R842y1bqVg/lOFHrtIqGLLFN2QA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x45883806524d74e606ad83772b8f315b7d9e90459f24da026cf2b24f18b32f8d",
+      "lastObjectId": "0x504eb9ad02c1e33dd5ab17af69dd1a5e604600ee5f91886fdd2a7b51abfcd102",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABQTrmtAsHjPdWrF69p3RpeYEYA7l+RiG/dKntRq/zRAg=="
+      },
+      "rawResponseSha256": "7cc90b17d212246880ad6774ab7e1ab7edeee32a7b92c1ff064185d051a9ed0a",
+      "parsedCaptureSha256": "8aee1158a66b851302f5e268a79a44fb971130b5dad4b60cc105429f531d1070"
+    },
+    {
+      "name": "inputs-nft-page-7",
+      "requestedAt": "2026-10-31T22:06:35.530Z",
+      "capturedAt": "2026-10-31T22:06:35.670Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABQTrmtAsHjPdWrF69p3RpeYEYA7l+RiG/dKntRq/zRAg=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x50839acce1496d9c14c5b0a3925fd0aae1083ff5499b5b7c5351fb84673fe4ee",
+      "lastObjectId": "0x5a90978f479b34cb89cbc28ce13cdd6fd491e9249b384a81b77d6c9bf81b0254",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABakJePR5s0y4nLwozhPN1v1JHpJJs4SoG3fWyb+BsCVA=="
+      },
+      "rawResponseSha256": "19590b624bdb12d41e5a6e730f4ce04fe331c1be7efd3e40bcbc1fb005263385",
+      "parsedCaptureSha256": "620afba3bd60c0429ad4cca893c0e54e16d57f29c39261dfaab1353a673f15f3"
+    },
+    {
+      "name": "inputs-nft-page-8",
+      "requestedAt": "2026-10-31T22:06:35.672Z",
+      "capturedAt": "2026-10-31T22:06:35.781Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABakJePR5s0y4nLwozhPN1v1JHpJJs4SoG3fWyb+BsCVA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x5adb396f167578f13a2cafba0896022a96aaf1a69bd76aaf168df673b15354d8",
+      "lastObjectId": "0x65672f1887a61320d41d35f2d06a2ef037cac214d53ea3b0a2ad484fdb2ec4f4",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABlZy8Yh6YTINQdNfLQai7wN8rCFNU+o7CirUhP2y7E9A=="
+      },
+      "rawResponseSha256": "1503e5842f7e0ff56ebcb09f2c25cc9936bc3f211d4b8bae8470822ed0eb0d40",
+      "parsedCaptureSha256": "09f9413bcf2eedaabeea04ae96f7cb15e5e7e14555afcfe6c4e7e7e929f7ed54"
+    },
+    {
+      "name": "inputs-nft-page-9",
+      "requestedAt": "2026-10-31T22:06:35.784Z",
+      "capturedAt": "2026-10-31T22:06:35.884Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABlZy8Yh6YTINQdNfLQai7wN8rCFNU+o7CirUhP2y7E9A=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x657729ac5c78535e837a588460146dab075a7ecb5712d739144315c4d6944167",
+      "lastObjectId": "0x6ffa35d15fd76a97fcea40cd40573a5b6b987cc8fa4ae071f18bd10b88daee3a",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABv+jXRX9dql/zqQM1AVzpba5h8yPpK4HHxi9ELiNruOg=="
+      },
+      "rawResponseSha256": "bc85767a81c865f98dc2f04331ab30e9bd3d0c7af15a911c7b0d0e0970b898ad",
+      "parsedCaptureSha256": "8da1f34d089f43184748d12467110b94a57f5e9e408b21a73a3293b690e6a7f8"
+    },
+    {
+      "name": "inputs-nft-page-10",
+      "requestedAt": "2026-10-31T22:06:35.889Z",
+      "capturedAt": "2026-10-31T22:06:35.984Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABv+jXRX9dql/zqQM1AVzpba5h8yPpK4HHxi9ELiNruOg=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x701a43bb044e01001c0b2692258445ab67c8205185b569164b2316ae1555f759",
+      "lastObjectId": "0x7c0f683b6c894bbcef9fb744b8832e54d4b6ae0d6fba5134ba54e11ee8421878",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAB8D2g7bIlLvO+ft0S4gy5U1LauDW+6UTS6VOEe6EIYeA=="
+      },
+      "rawResponseSha256": "3fa3ade3d97cc90d6b61944bb162b6d678dbf1aea5cb2795ac95b8affcb01626",
+      "parsedCaptureSha256": "eacc9394b1632bd62bdc9a8c7ebcf590a8a56bb0d4b5f4e1aa8e23d2e64880ef"
+    },
+    {
+      "name": "inputs-nft-page-11",
+      "requestedAt": "2026-10-31T22:06:35.987Z",
+      "capturedAt": "2026-10-31T22:06:36.096Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAB8D2g7bIlLvO+ft0S4gy5U1LauDW+6UTS6VOEe6EIYeA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x7c13535bb4d25db0e913ff2dbe543917d7b914b38b3f39965b6be0163a387145",
+      "lastObjectId": "0x886d582c0423f4c9c6f8b90f1caf366c5b3ee12a839dd09b14858b148cf0351d",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACIbVgsBCP0ycb4uQ8crzZsWz7hKoOd0JsUhYsUjPA1HQ=="
+      },
+      "rawResponseSha256": "6267ab2ff0857c29ccde1f2591b33389e8c430dbde4576ae226afd07f41a0887",
+      "parsedCaptureSha256": "86dcd4f337a56fd49a7d1f13ab4cac8d0f77c41040cdaee82df19fd39b67e225"
+    },
+    {
+      "name": "inputs-nft-page-12",
+      "requestedAt": "2026-10-31T22:06:36.099Z",
+      "capturedAt": "2026-10-31T22:06:36.198Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACIbVgsBCP0ycb4uQ8crzZsWz7hKoOd0JsUhYsUjPA1HQ=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x88891eba2356665fb332658c8a38abadc20c214747527afe9d669a6fad8425f0",
+      "lastObjectId": "0x97d12b11b53cc9c185202a438fc18cdc3b953ea6a06e4ec20852b2a71f086d30",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACX0SsRtTzJwYUgKkOPwYzcO5U+pqBuTsIIUrKnHwhtMA=="
+      },
+      "rawResponseSha256": "c648066cc775d76f97a8f779b202fb881f8fbed062d28d93eaa38d323674d41c",
+      "parsedCaptureSha256": "f22ea39fb4faa953c72d77af160e9f62b66f39128ab942f51af88aba9c1d8ab5"
+    },
+    {
+      "name": "inputs-nft-page-13",
+      "requestedAt": "2026-10-31T22:06:36.202Z",
+      "capturedAt": "2026-10-31T22:06:36.297Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACX0SsRtTzJwYUgKkOPwYzcO5U+pqBuTsIIUrKnHwhtMA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0x97db112023956f4b10437590a2d2a2ba7868979185a71f79b5b0e67f4545a5fd",
+      "lastObjectId": "0xa5665cc6a737d51aa236e119a1e86426ed6a25b0c24ec257e136735365774e98",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAClZlzGpzfVGqI24Rmh6GQm7WolsMJOwlfhNnNTZXdOmA=="
+      },
+      "rawResponseSha256": "f83830bb14b12c7e86f4aa85593df337dea65a0f61f8874b1ebe83436563f301",
+      "parsedCaptureSha256": "117e57c32ece176db0c913cf8ef366117d0c917d6575ee127a65bdebf8d82c41"
+    },
+    {
+      "name": "inputs-nft-page-14",
+      "requestedAt": "2026-10-31T22:06:36.301Z",
+      "capturedAt": "2026-10-31T22:06:36.433Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAClZlzGpzfVGqI24Rmh6GQm7WolsMJOwlfhNnNTZXdOmA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xa6b53eeb6a00e124f78731eada4ae67f9de4507d47610912e3e07ec22c473616",
+      "lastObjectId": "0xb0b9568f91400d7ee578924fb44cd198967a557fa43299a223f9b6272e92a28b",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACwuVaPkUANfuV4kk+0TNGYlnpVf6QymaIj+bYnLpKiiw=="
+      },
+      "rawResponseSha256": "a411788f32af207faa8cc3f76efd5d510171f9203bec12e4853b5ea4a30c3b64",
+      "parsedCaptureSha256": "c4583bd8352b680dbbcba393d7df87279e9bcb3a55707037ce8ec9962418bd08"
+    },
+    {
+      "name": "inputs-nft-page-15",
+      "requestedAt": "2026-10-31T22:06:36.437Z",
+      "capturedAt": "2026-10-31T22:06:36.523Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACwuVaPkUANfuV4kk+0TNGYlnpVf6QymaIj+bYnLpKiiw=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xb103658dc8aa02aa6791147c32a54de1e0257521399957f410f230aecf88a8f5",
+      "lastObjectId": "0xbc8745d8fc6cae2d72e83fd2e9e330d0443341fa173ce0eb5529f85c728206e3",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAC8h0XY/GyuLXLoP9Lp4zDQRDNB+hc84OtVKfhccoIG4w=="
+      },
+      "rawResponseSha256": "4850228fa42732dd148b1951eb62cee5e7e90f525b625563943848dfd32548cd",
+      "parsedCaptureSha256": "cc8219266ce918080ade2bb37ab15fca584ad2dcae8b47a1f29ebec2ac25b9e8"
+    },
+    {
+      "name": "inputs-nft-page-16",
+      "requestedAt": "2026-10-31T22:06:36.528Z",
+      "capturedAt": "2026-10-31T22:06:36.639Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAC8h0XY/GyuLXLoP9Lp4zDQRDNB+hc84OtVKfhccoIG4w=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xbcd1db5f9d88e812ebd584ee861e08d4e5f1f779715a29b007915ff25c040ff5",
+      "lastObjectId": "0xc98614d30fa7aff52ce914cb90407463249872e2e112960c3a1c6e518133b576",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADJhhTTD6ev9SzpFMuQQHRjJJhy4uESlgw6HG5RgTO1dg=="
+      },
+      "rawResponseSha256": "ce4fe2880869bf8d4260abf3ad5f97c1e19c670f2d663a9f2cf051481596ae76",
+      "parsedCaptureSha256": "fa8ccedbd04f65db15cc116b8a5abbfd3fc0105208857f1c7abbc8e34e319be9"
+    },
+    {
+      "name": "inputs-nft-page-17",
+      "requestedAt": "2026-10-31T22:06:36.643Z",
+      "capturedAt": "2026-10-31T22:06:36.751Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADJhhTTD6ev9SzpFMuQQHRjJJhy4uESlgw6HG5RgTO1dg=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xc99bfc1bbca42897af9d377a921bd1401144bbe6273ddb9bd27184a2534705af",
+      "lastObjectId": "0xd41e639fb85d516ec1711a2b471889ed0558bb231e6a9515d7d53244969f54de",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADUHmOfuF1RbsFxGitHGIntBVi7Ix5qlRXX1TJElp9U3g=="
+      },
+      "rawResponseSha256": "6c074ad6424c1fcc3d15e314d3e400c9418ad53edbb901336c2caa6684d71fff",
+      "parsedCaptureSha256": "4f540384a4f06eafc8490a56aa34ab22db5d33e6d0994089233a0ea2d8f5b67c"
+    },
+    {
+      "name": "inputs-nft-page-18",
+      "requestedAt": "2026-10-31T22:06:36.756Z",
+      "capturedAt": "2026-10-31T22:06:36.838Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADUHmOfuF1RbsFxGitHGIntBVi7Ix5qlRXX1TJElp9U3g=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xd4ad6c0d7bec5158714b690ba818176bd9092a230a9e1dc5f9f0e8ae7923453f",
+      "lastObjectId": "0xe071144762c63c48c267f98507296913ea15ac98f89969023a5fb468c86aa4a7",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADgcRRHYsY8SMJn+YUHKWkT6hWsmPiZaQI6X7RoyGqkpw=="
+      },
+      "rawResponseSha256": "6d55141f46d79bfee2f9a846c5c60af84246a7b1bfb843519b12e49bcbcac82b",
+      "parsedCaptureSha256": "280b79c9a8882004240e04062d0761a0487c68a9134213d4353b7151c002ce1a"
+    },
+    {
+      "name": "inputs-nft-page-19",
+      "requestedAt": "2026-10-31T22:06:36.843Z",
+      "capturedAt": "2026-10-31T22:06:36.944Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADgcRRHYsY8SMJn+YUHKWkT6hWsmPiZaQI6X7RoyGqkpw=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xe0987349e35a6c5f13ae8c518b743dde0a1a786fa6093f9f96c9346fe0f0e9a2",
+      "lastObjectId": "0xeae09255c2ced4cf4601991c1f441721515ff468fc35659b5baeee7ffd3eda60",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADq4JJVws7Uz0YBmRwfRBchUV/0aPw1ZZtbru5//T7aYA=="
+      },
+      "rawResponseSha256": "1868b318287436962d2f305d3bf755dbdf81fa73a1e3914441810855f151639d",
+      "parsedCaptureSha256": "ed6935ec73052b84c1bae4ae194567b01a75d216b472bef0d813bed77e71f9d1"
+    },
+    {
+      "name": "inputs-nft-page-20",
+      "requestedAt": "2026-10-31T22:06:36.949Z",
+      "capturedAt": "2026-10-31T22:06:37.040Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADq4JJVws7Uz0YBmRwfRBchUV/0aPw1ZZtbru5//T7aYA=="
+      },
+      "checkpoint": 340277530,
+      "count": 50,
+      "firstObjectId": "0xeb6214205fa753a90400411e8183aeff1b421328590832d70ea6ea841e091fa2",
+      "lastObjectId": "0xf8c4d94044bb1bc05ec2285bba98a7b3fa0e90f970775d4c5d62cd3df0dfdd81",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD4xNlARLsbwF7CKFu6mKez+g6Q+XB3XUxdYs098N/dgQ=="
+      },
+      "rawResponseSha256": "75334fc50d372b12140e5f432e068ecb267c36688ba60194743ba6ebdecce2e3",
+      "parsedCaptureSha256": "c3cb75be005024095f6f995d6702ac7ea77ddd95e6da777fc0187afa2edc156c"
+    },
+    {
+      "name": "inputs-nft-page-21",
+      "requestedAt": "2026-10-31T22:06:37.045Z",
+      "capturedAt": "2026-10-31T22:06:37.136Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277530,
+        "after": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD4xNlARLsbwF7CKFu6mKez+g6Q+XB3XUxdYs098N/dgQ=="
+      },
+      "checkpoint": 340277530,
+      "count": 27,
+      "firstObjectId": "0xf8e7a36fb2607e311a9cb1a9b2a19eb0b055e41532fb1782735734f599ac4f19",
+      "lastObjectId": "0xfff2f143db0328c8c8693caa867774ee48e3fe8749b0ce0563cd0428a998ee66",
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "GjlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD/8vFD2wMoyMhpPKqGd3TuSOP+h0mwzgVjzQQoqZjuZg=="
+      },
+      "rawResponseSha256": "59dd875c4935b0a135b41a5c3a081c97a185cc76cbcf3e4f5782963edb99e546",
+      "parsedCaptureSha256": "331a6bec500b47bf2b6b430902dd74789bba5bdc87628fe9d94f770698393ac2"
+    },
+    {
+      "name": "simulation",
+      "requestedAt": "2026-10-31T22:06:37.265Z",
+      "capturedAt": "2026-10-31T22:06:37.349Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "upgradeCap": "0xe531607b0d737ab1a89c00bb16864c9696832e0b374f778e35b79aabc51e7db5",
+        "legacyAdminCap": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+        "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+        "registryType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+        "adminCapType": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap",
+        "transaction": {
+          "version": 1,
+          "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+          "gasPayment": {
+            "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          },
+          "kind": {
+            "programmableTransaction": {
+              "inputs": [
+                {
+                  "kind": "PURE",
+                  "pure": "gJaYAAAAAAA="
+                },
+                {
+                  "kind": "SHARED",
+                  "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+                  "version": "986499448",
+                  "mutable": true
+                },
+                {
+                  "kind": "IMMUTABLE_OR_OWNED",
+                  "objectId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+                  "version": "998571521",
+                  "digest": "Hgs5t3be11CChzaGMNqr6yUTZFMzzyoSc5RBgvTaKmxA"
+                },
+                {
+                  "kind": "PURE",
+                  "pure": "AA=="
+                },
+                {
+                  "kind": "SHARED",
+                  "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+                  "version": "1",
+                  "mutable": false
+                }
+              ],
+              "commands": [
+                {
+                  "splitCoins": {
+                    "coin": {
+                      "kind": "GAS"
+                    },
+                    "amounts": [
+                      {
+                        "kind": "INPUT",
+                        "input": 0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "moveCall": {
+                    "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+                    "module": "settlement",
+                    "function": "plant_seed_with_nftree",
+                    "typeArguments": [
+                      "0xf6c6d439ea0da2f3e9ba79e4992a7a4c113215fbf54c442ac9020c315f953705::collection::NFT"
+                    ],
+                    "arguments": [
+                      {
+                        "kind": "INPUT",
+                        "input": 1
+                      },
+                      {
+                        "kind": "INPUT",
+                        "input": 2
+                      },
+                      {
+                        "kind": "RESULT",
+                        "result": 0,
+                        "subresult": 0
+                      },
+                      {
+                        "kind": "INPUT",
+                        "input": 3
+                      },
+                      {
+                        "kind": "INPUT",
+                        "input": 4
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x003c827dd72b3fd95a6ba66bc7ec890f96e07ee6523cda667ce82e47cbc8d414",
+      "lastObjectId": "0x0b852d00dffa4cd4ee9d0c85fc5b123316f697fcd93f757c0c6a464a47c98415",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAALhS0A3/pM1O6dDIX8WxIzFvaX/Nk/dXwMakZKR8mEFQ=="
+      },
+      "rawResponseSha256": "e2359fd1d1352ac004e891fc7e1f0efdbd4b9fc29b3c1cd1cbfac97fa6d72aaf",
+      "parsedCaptureSha256": "911664a054901d6abceeb85604d158c7f37a6f8c983d5236cfe0fde2b50a4fe2"
+    },
+    {
+      "name": "simulation-nft-page-1",
+      "requestedAt": "2026-10-31T22:06:37.350Z",
+      "capturedAt": "2026-10-31T22:06:37.429Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAALhS0A3/pM1O6dDIX8WxIzFvaX/Nk/dXwMakZKR8mEFQ=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x0c532cb4e765c58b56a2ef6e17d1326aa108515d7ee5bf03ab859b382c2fb81e",
+      "lastObjectId": "0x163c973624336ac2139460a9e448d5ed1f0c2b3a08734382d51306495ac7dfbc",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAWPJc2JDNqwhOUYKnkSNXtHwwrOghzQ4LVEwZJWsffvA=="
+      },
+      "rawResponseSha256": "2d202a774f397098e0fcf4bc6261ff0d68d3c32bd0cb612ea6999023c3e27730",
+      "parsedCaptureSha256": "94b74de644f9932617feab73c5888875683e50e6ce6d40e4b79faea45e5b2498"
+    },
+    {
+      "name": "simulation-nft-page-2",
+      "requestedAt": "2026-10-31T22:06:37.430Z",
+      "capturedAt": "2026-10-31T22:06:37.510Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAWPJc2JDNqwhOUYKnkSNXtHwwrOghzQ4LVEwZJWsffvA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x16ae82d201666a90f08f690b68f2845ba7039b514ef3ac67d1d6de9b783e2da4",
+      "lastObjectId": "0x225bc5d27fa91bd86cdb0f5a0f26238de9ad1a9fc36d441fdd59aa0018537f9f",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAiW8XSf6kb2GzbD1oPJiON6a0an8NtRB/dWaoAGFN/nw=="
+      },
+      "rawResponseSha256": "f42af932520aec4bc8a93e4e12d3c0a3138262ea5922fc4578d03b33f2c42096",
+      "parsedCaptureSha256": "b72099c15a84ceb7b9800b28b4f22359a0212681f4b2268328cf10ca5a5f4ead"
+    },
+    {
+      "name": "simulation-nft-page-3",
+      "requestedAt": "2026-10-31T22:06:37.511Z",
+      "capturedAt": "2026-10-31T22:06:37.587Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAiW8XSf6kb2GzbD1oPJiON6a0an8NtRB/dWaoAGFN/nw=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x22855937b907bd285188971a7bdbb03cc483e79e93da3a2f0f17f8939d0caf8c",
+      "lastObjectId": "0x2f26979d1d4df7eeb7ff1ff32e4863269c2168ef4141944aa4518cd1b927c325",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAvJpedHU337rf/H/MuSGMmnCFo70FBlEqkUYzRuSfDJQ=="
+      },
+      "rawResponseSha256": "f133fb36e908bb64816aa6a33fb2ed28878b5016105b9f54bde7f976d94d571b",
+      "parsedCaptureSha256": "875d5712e6155b1dc0ff5f90a2a9fb29ec4eb07c7cb5961da8cee07e36587e47"
+    },
+    {
+      "name": "simulation-nft-page-4",
+      "requestedAt": "2026-10-31T22:06:37.588Z",
+      "capturedAt": "2026-10-31T22:06:37.663Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAAvJpedHU337rf/H/MuSGMmnCFo70FBlEqkUYzRuSfDJQ=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x2f4ec6c93e03032fe74ccdfbc69077ff073bacfba398ee878339ba3f68c754cc",
+      "lastObjectId": "0x3a4ea7dab0bf1e27e82bdc385a4197247ac14ead7f11c439830f7f982e8fe341",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAA6TqfasL8eJ+gr3DhaQZckesFOrX8RxDmDD3+YLo/jQQ=="
+      },
+      "rawResponseSha256": "2e82b0169c75841f9bd04058f1d9e1f4409a2903a44460111084cffc4c6baefc",
+      "parsedCaptureSha256": "e37ff66773f6d8be14fa283e472ec9b396b2284692b0779db04312c25c1a546a"
+    },
+    {
+      "name": "simulation-nft-page-5",
+      "requestedAt": "2026-10-31T22:06:37.688Z",
+      "capturedAt": "2026-10-31T22:06:37.766Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAA6TqfasL8eJ+gr3DhaQZckesFOrX8RxDmDD3+YLo/jQQ=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x3a6220dcb0dc8361e5b14c3b0e1ff4e47b6781e003f887a3beb8a534bf3a596c",
+      "lastObjectId": "0x4584fee332e8f7df912cebad51f38db2d5ba9583f94e147aed22a18b2c537640",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABFhP7jMuj335Es661R842y1bqVg/lOFHrtIqGLLFN2QA=="
+      },
+      "rawResponseSha256": "021d214a468570ae96b8b5f0647c32bee775ca48ff3cede1d225fe2c6dc3d03a",
+      "parsedCaptureSha256": "daeae46b9e55507fc50ceeca2017c7356142a4146a2e66520fb93ad6e38978d5"
+    },
+    {
+      "name": "simulation-nft-page-6",
+      "requestedAt": "2026-10-31T22:06:37.768Z",
+      "capturedAt": "2026-10-31T22:06:37.868Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABFhP7jMuj335Es661R842y1bqVg/lOFHrtIqGLLFN2QA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x45883806524d74e606ad83772b8f315b7d9e90459f24da026cf2b24f18b32f8d",
+      "lastObjectId": "0x504eb9ad02c1e33dd5ab17af69dd1a5e604600ee5f91886fdd2a7b51abfcd102",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABQTrmtAsHjPdWrF69p3RpeYEYA7l+RiG/dKntRq/zRAg=="
+      },
+      "rawResponseSha256": "485aac77bceb600b84793ad2c375b6c52d6d744f64213804c51ba07e6ad2fc1c",
+      "parsedCaptureSha256": "e7efdffaa027062bf967741be0bc489df7bbd403c7133b3e53fa2355d4334320"
+    },
+    {
+      "name": "simulation-nft-page-7",
+      "requestedAt": "2026-10-31T22:06:37.871Z",
+      "capturedAt": "2026-10-31T22:06:37.947Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABQTrmtAsHjPdWrF69p3RpeYEYA7l+RiG/dKntRq/zRAg=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x50839acce1496d9c14c5b0a3925fd0aae1083ff5499b5b7c5351fb84673fe4ee",
+      "lastObjectId": "0x5a90978f479b34cb89cbc28ce13cdd6fd491e9249b384a81b77d6c9bf81b0254",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABakJePR5s0y4nLwozhPN1v1JHpJJs4SoG3fWyb+BsCVA=="
+      },
+      "rawResponseSha256": "ab0b66cc344917a7aa0048a8f70d7304bbc041869eaa4d099ac8fff56a398da5",
+      "parsedCaptureSha256": "2a6ce275c9c71c9db8c801a3750c3332c03d45d6e9be7480f1f7252c25b52bce"
+    },
+    {
+      "name": "simulation-nft-page-8",
+      "requestedAt": "2026-10-31T22:06:37.949Z",
+      "capturedAt": "2026-10-31T22:06:38.039Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABakJePR5s0y4nLwozhPN1v1JHpJJs4SoG3fWyb+BsCVA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x5adb396f167578f13a2cafba0896022a96aaf1a69bd76aaf168df673b15354d8",
+      "lastObjectId": "0x65672f1887a61320d41d35f2d06a2ef037cac214d53ea3b0a2ad484fdb2ec4f4",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABlZy8Yh6YTINQdNfLQai7wN8rCFNU+o7CirUhP2y7E9A=="
+      },
+      "rawResponseSha256": "7e4fc046bf82a3ba723b6ac64599de9817531652322230fbe38a7995da96c701",
+      "parsedCaptureSha256": "10ef95ad7777fdcc686e5b8d57ea172e758139471315b6d967b4f4a9d5e2c9e3"
+    },
+    {
+      "name": "simulation-nft-page-9",
+      "requestedAt": "2026-10-31T22:06:38.041Z",
+      "capturedAt": "2026-10-31T22:06:38.117Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABlZy8Yh6YTINQdNfLQai7wN8rCFNU+o7CirUhP2y7E9A=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x657729ac5c78535e837a588460146dab075a7ecb5712d739144315c4d6944167",
+      "lastObjectId": "0x6ffa35d15fd76a97fcea40cd40573a5b6b987cc8fa4ae071f18bd10b88daee3a",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABv+jXRX9dql/zqQM1AVzpba5h8yPpK4HHxi9ELiNruOg=="
+      },
+      "rawResponseSha256": "6d1e81f63f8ea8fbc1426146aa030a98abf0360588ec2881dcd83c4619289bd2",
+      "parsedCaptureSha256": "7e99429c0cd60e7a676dd1fb3da75cf32690f8873dd340324ba182e2a5eca47a"
+    },
+    {
+      "name": "simulation-nft-page-10",
+      "requestedAt": "2026-10-31T22:06:38.121Z",
+      "capturedAt": "2026-10-31T22:06:38.199Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAABv+jXRX9dql/zqQM1AVzpba5h8yPpK4HHxi9ELiNruOg=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x701a43bb044e01001c0b2692258445ab67c8205185b569164b2316ae1555f759",
+      "lastObjectId": "0x7c0f683b6c894bbcef9fb744b8832e54d4b6ae0d6fba5134ba54e11ee8421878",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAB8D2g7bIlLvO+ft0S4gy5U1LauDW+6UTS6VOEe6EIYeA=="
+      },
+      "rawResponseSha256": "77dd3d820ce7fdc81c7f1fbd81ab5b178b2209135b075805e7a9494bc1fa5ba3",
+      "parsedCaptureSha256": "2437e3c3b1d7bb69447c9494c2a48b1f6b3bce059f911df7f9a8f9b857eafd50"
+    },
+    {
+      "name": "simulation-nft-page-11",
+      "requestedAt": "2026-10-31T22:06:38.202Z",
+      "capturedAt": "2026-10-31T22:06:38.279Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAB8D2g7bIlLvO+ft0S4gy5U1LauDW+6UTS6VOEe6EIYeA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x7c13535bb4d25db0e913ff2dbe543917d7b914b38b3f39965b6be0163a387145",
+      "lastObjectId": "0x886d582c0423f4c9c6f8b90f1caf366c5b3ee12a839dd09b14858b148cf0351d",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACIbVgsBCP0ycb4uQ8crzZsWz7hKoOd0JsUhYsUjPA1HQ=="
+      },
+      "rawResponseSha256": "92b4a277dd5f36eab8e15600bf5f00e530c377491d257f1ee8272137d02790a3",
+      "parsedCaptureSha256": "7586e9f31a7f05f87aeabf872a8c872cf281e6779ece25ed76e05950340c0124"
+    },
+    {
+      "name": "simulation-nft-page-12",
+      "requestedAt": "2026-10-31T22:06:38.282Z",
+      "capturedAt": "2026-10-31T22:06:38.382Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACIbVgsBCP0ycb4uQ8crzZsWz7hKoOd0JsUhYsUjPA1HQ=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x88891eba2356665fb332658c8a38abadc20c214747527afe9d669a6fad8425f0",
+      "lastObjectId": "0x97d12b11b53cc9c185202a438fc18cdc3b953ea6a06e4ec20852b2a71f086d30",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACX0SsRtTzJwYUgKkOPwYzcO5U+pqBuTsIIUrKnHwhtMA=="
+      },
+      "rawResponseSha256": "cf307c267cb9bb871e2afb325f1c0bb6b3eb49811c18a404d329c0e07a30c0e4",
+      "parsedCaptureSha256": "0e36fffa5ad24b6d99a774ca2b81fb5efadaae493b2364e6a2172e4e90ecaafc"
+    },
+    {
+      "name": "simulation-nft-page-13",
+      "requestedAt": "2026-10-31T22:06:38.385Z",
+      "capturedAt": "2026-10-31T22:06:38.468Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACX0SsRtTzJwYUgKkOPwYzcO5U+pqBuTsIIUrKnHwhtMA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0x97db112023956f4b10437590a2d2a2ba7868979185a71f79b5b0e67f4545a5fd",
+      "lastObjectId": "0xa5665cc6a737d51aa236e119a1e86426ed6a25b0c24ec257e136735365774e98",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAClZlzGpzfVGqI24Rmh6GQm7WolsMJOwlfhNnNTZXdOmA=="
+      },
+      "rawResponseSha256": "c68456228ccda09dfab9653e5acf73866271e321196c7ca7aad52fadd57992bc",
+      "parsedCaptureSha256": "bf30597342788e33cc53dc085b7a57214a940c67c1b89c660aa277748b867e6c"
+    },
+    {
+      "name": "simulation-nft-page-14",
+      "requestedAt": "2026-10-31T22:06:38.472Z",
+      "capturedAt": "2026-10-31T22:06:38.566Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAClZlzGpzfVGqI24Rmh6GQm7WolsMJOwlfhNnNTZXdOmA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xa6b53eeb6a00e124f78731eada4ae67f9de4507d47610912e3e07ec22c473616",
+      "lastObjectId": "0xb0b9568f91400d7ee578924fb44cd198967a557fa43299a223f9b6272e92a28b",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACwuVaPkUANfuV4kk+0TNGYlnpVf6QymaIj+bYnLpKiiw=="
+      },
+      "rawResponseSha256": "846821c6013268b4133e19dab2dbc8104a4a1fdcc2ab03b8851c6d044f931c8f",
+      "parsedCaptureSha256": "1bc0d5cce58a429da66cd510225bad7b98e5bc92d2212908943d01a8d1f590ab"
+    },
+    {
+      "name": "simulation-nft-page-15",
+      "requestedAt": "2026-10-31T22:06:38.571Z",
+      "capturedAt": "2026-10-31T22:06:38.657Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAACwuVaPkUANfuV4kk+0TNGYlnpVf6QymaIj+bYnLpKiiw=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xb103658dc8aa02aa6791147c32a54de1e0257521399957f410f230aecf88a8f5",
+      "lastObjectId": "0xbc8745d8fc6cae2d72e83fd2e9e330d0443341fa173ce0eb5529f85c728206e3",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAC8h0XY/GyuLXLoP9Lp4zDQRDNB+hc84OtVKfhccoIG4w=="
+      },
+      "rawResponseSha256": "972f90be6ea747d5bfdcc529c8d11a836158e1ef7a46a7cf2e559c175337937e",
+      "parsedCaptureSha256": "0feef27ff26bd28422837dc73fe2ddd29f3bd24538ec59a8d618710544f202c5"
+    },
+    {
+      "name": "simulation-nft-page-16",
+      "requestedAt": "2026-10-31T22:06:38.661Z",
+      "capturedAt": "2026-10-31T22:06:38.736Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAC8h0XY/GyuLXLoP9Lp4zDQRDNB+hc84OtVKfhccoIG4w=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xbcd1db5f9d88e812ebd584ee861e08d4e5f1f779715a29b007915ff25c040ff5",
+      "lastObjectId": "0xc98614d30fa7aff52ce914cb90407463249872e2e112960c3a1c6e518133b576",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADJhhTTD6ev9SzpFMuQQHRjJJhy4uESlgw6HG5RgTO1dg=="
+      },
+      "rawResponseSha256": "edfc337eb3ec88652e3931231e18df42d5503fdc64224155116f13269d8fc490",
+      "parsedCaptureSha256": "f5071409bb1a3f7039cb04c9b21f16d78202371873113dbc72221739bd407f38"
+    },
+    {
+      "name": "simulation-nft-page-17",
+      "requestedAt": "2026-10-31T22:06:38.740Z",
+      "capturedAt": "2026-10-31T22:06:38.837Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADJhhTTD6ev9SzpFMuQQHRjJJhy4uESlgw6HG5RgTO1dg=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xc99bfc1bbca42897af9d377a921bd1401144bbe6273ddb9bd27184a2534705af",
+      "lastObjectId": "0xd41e639fb85d516ec1711a2b471889ed0558bb231e6a9515d7d53244969f54de",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADUHmOfuF1RbsFxGitHGIntBVi7Ix5qlRXX1TJElp9U3g=="
+      },
+      "rawResponseSha256": "d6f7faeb2be15b2767c1ec00dae93682265d7443446ee87f9145091a430eb64f",
+      "parsedCaptureSha256": "888bd9d063579e0a95a29d96baa60c85dbeb1906f21d4817f602edd380fa4346"
+    },
+    {
+      "name": "simulation-nft-page-18",
+      "requestedAt": "2026-10-31T22:06:38.842Z",
+      "capturedAt": "2026-10-31T22:06:38.920Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADUHmOfuF1RbsFxGitHGIntBVi7Ix5qlRXX1TJElp9U3g=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xd4ad6c0d7bec5158714b690ba818176bd9092a230a9e1dc5f9f0e8ae7923453f",
+      "lastObjectId": "0xe071144762c63c48c267f98507296913ea15ac98f89969023a5fb468c86aa4a7",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADgcRRHYsY8SMJn+YUHKWkT6hWsmPiZaQI6X7RoyGqkpw=="
+      },
+      "rawResponseSha256": "1d060466d3dbcc4b8e9555f9dca88e2b68a200319435f5119e426b283bc11351",
+      "parsedCaptureSha256": "06c584eef601ad730d55ec95b18087739dad43d8205b4b679590bc5bf66d9738"
+    },
+    {
+      "name": "simulation-nft-page-19",
+      "requestedAt": "2026-10-31T22:06:38.925Z",
+      "capturedAt": "2026-10-31T22:06:39.022Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADgcRRHYsY8SMJn+YUHKWkT6hWsmPiZaQI6X7RoyGqkpw=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xe0987349e35a6c5f13ae8c518b743dde0a1a786fa6093f9f96c9346fe0f0e9a2",
+      "lastObjectId": "0xeae09255c2ced4cf4601991c1f441721515ff468fc35659b5baeee7ffd3eda60",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADq4JJVws7Uz0YBmRwfRBchUV/0aPw1ZZtbru5//T7aYA=="
+      },
+      "rawResponseSha256": "af65443489047041671c1dd1c44ab3910bae8e2939e5179ce467ceb65cd93066",
+      "parsedCaptureSha256": "1436a649123b3b3e4df297a9f38395bd6b7b09c6a5235f550690bc640b0ba9d7"
+    },
+    {
+      "name": "simulation-nft-page-20",
+      "requestedAt": "2026-10-31T22:06:39.027Z",
+      "capturedAt": "2026-10-31T22:06:39.112Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAADq4JJVws7Uz0YBmRwfRBchUV/0aPw1ZZtbru5//T7aYA=="
+      },
+      "checkpoint": 340277540,
+      "count": 50,
+      "firstObjectId": "0xeb6214205fa753a90400411e8183aeff1b421328590832d70ea6ea841e091fa2",
+      "lastObjectId": "0xf8c4d94044bb1bc05ec2285bba98a7b3fa0e90f970775d4c5d62cd3df0dfdd81",
+      "pageInfo": {
+        "hasNextPage": true,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD4xNlARLsbwF7CKFu6mKez+g6Q+XB3XUxdYs098N/dgQ=="
+      },
+      "rawResponseSha256": "be114a47356ae3d826bbd6087539f5b1dd9cf24ec35d79f04c7a5b6406438cad",
+      "parsedCaptureSha256": "9775185ba960aadbf1fbd8bc7e8ce55a21a52fc1474cc363adc8685539980c51"
+    },
+    {
+      "name": "simulation-nft-page-21",
+      "requestedAt": "2026-10-31T22:06:39.120Z",
+      "capturedAt": "2026-10-31T22:06:39.193Z",
+      "httpStatus": 200,
+      "requestVariables": {
+        "checkpoint": 340277540,
+        "after": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD4xNlARLsbwF7CKFu6mKez+g6Q+XB3XUxdYs098N/dgQ=="
+      },
+      "checkpoint": 340277540,
+      "count": 27,
+      "firstObjectId": "0xf8e7a36fb2607e311a9cb1a9b2a19eb0b055e41532fb1782735734f599ac4f19",
+      "lastObjectId": "0xfff2f143db0328c8c8693caa867774ee48e3fe8749b0ce0563cd0428a998ee66",
+      "pageInfo": {
+        "hasNextPage": false,
+        "endCursor": "JDlIFAAAAACHAQBIWVPi6t9KoCr5UM+OkU+9K2dSM4XnPDYRg0FFnY1FxPbG1DnqDaLz6bp55JkqekwRMhX79UxEKskCDDFflTcFAAAAAAAAAApjb2xsZWN0aW9uAAAAAAAAAANORlQAAAAAAAAAAAD/8vFD2wMoyMhpPKqGd3TuSOP+h0mwzgVjzQQoqZjuZg=="
+      },
+      "rawResponseSha256": "85d6b3382af79e3f2b5df203b7984e26d2d3f0d45ed3f358aa425fb9d7354f7a",
+      "parsedCaptureSha256": "8f10a4026ddb5c8ed451b81f5ecbeae26e527c0978ec9d57c2ea3961a46ddf17"
+    }
+  ]
+}

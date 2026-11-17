@@ -1,0 +1,20 @@
+{
+  "existingApplicationFilesPreserved": 106,
+  "changedApplicationFiles": [],
+  "addedRuntimeFiles": [
+    "admin/season-three/index.html",
+    "admin/season-three/admin.css",
+    "admin/season-three/admin.mjs"
+  ],
+  "completeApplicationFileCount": 109,
+  "releaseMode": "season-three-focused-watering",
+  "allPreviousApplicationBytesUnchanged": true,
+  "preservedBackendAndDependencySha256": {
+    "netlify/edge-functions/public-player-guide.ts": "8664278a0f1ded172b7b30ea561e17f87e281ce9bdcb7231daf5467108b5acaf",
+    "netlify/edge-functions/tester-gate.ts": "b4128957ab70780f4a1e8e041f1e675152392bda5699e5fb7cb4a2886612f791",
+    "netlify/functions/calendar-reminder.js": "ed53a654cb71429168c58b04fd5db31c8d7838176c87f7808eeb57e12ba86a68",
+    "netlify.toml": "fb10df6b1a49ce69f130cc3103a4816a785f5bbab2781738af07bb195331c1f7",
+    "package.json": "6c5cac221980b459104e6bf7cb94260cc048f9b60abc4659c44dcb3efa7941ec",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  }
+}

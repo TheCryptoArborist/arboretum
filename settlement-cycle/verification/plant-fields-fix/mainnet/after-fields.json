@@ -1,0 +1,113 @@
+{
+  "requestedAt": "2026-11-08T15:11:52.515Z",
+  "capturedAt": "2026-11-08T15:11:52.598Z",
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "checkpoint": {
+        "sequenceNumber": 343038120,
+        "timestamp": "2026-11-08T15:11:51.136Z",
+        "query": {
+          "seedsByOwner": {
+            "address": "0xca5ce30a8bdc5ddf591afdd99f1e4b010396289506da2afa3772936c63f39abd",
+            "version": 1021418439,
+            "digest": "HfQxXrkVpPNxRtdEtKb5GUAGSRvVzBwRXmkz2WzzyDMz",
+            "owner": {
+              "__typename": "ObjectOwner",
+              "address": {
+                "address": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::dynamic_field::Field<address,vector<0x0000000000000000000000000000000000000000000000000000000000000002::object::ID>>"
+                },
+                "json": {
+                  "id": "0xca5ce30a8bdc5ddf591afdd99f1e4b010396289506da2afa3772936c63f39abd",
+                  "name": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "value": [
+                    "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d"
+                  ]
+                }
+              }
+            }
+          },
+          "playerGrowth": {
+            "address": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+            "version": 1021418439,
+            "digest": "h8fznU8RcPxQcE187UxEAA5h8QsJqvMn4nwnqo2sypr",
+            "owner": {
+              "__typename": "ObjectOwner",
+              "address": {
+                "address": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::dynamic_field::Field<address,u64>"
+                },
+                "json": {
+                  "id": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+                  "name": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "value": "10"
+                }
+              }
+            }
+          },
+          "playerGrowthSeason": {
+            "address": "0xc0bdf947cf7b2123a61306c22f17677c4a52b7a203d6482361bb8b97b4aa9d39",
+            "version": 1021418439,
+            "digest": "Bat45KwNamZA8WoYqvS3g6bNTBh8RS1PXZeca93CCrPD",
+            "owner": {
+              "__typename": "ObjectOwner",
+              "address": {
+                "address": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::dynamic_field::Field<address,u64>"
+                },
+                "json": {
+                  "id": "0xc0bdf947cf7b2123a61306c22f17677c4a52b7a203d6482361bb8b97b4aa9d39",
+                  "name": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                  "value": "1"
+                }
+              }
+            }
+          },
+          "plantedSapling": {
+            "address": "0xbced674f7bf067bc37320aac2159631938846279c713989dc12f93a4c00c15b1",
+            "version": 1021418439,
+            "digest": "EspB8TADhWN312C8MBRhbcJzpsw5Yckus1mXP75wuqnD",
+            "owner": {
+              "__typename": "ObjectOwner",
+              "address": {
+                "address": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689"
+              }
+            },
+            "asMoveObject": {
+              "contents": {
+                "type": {
+                  "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::dynamic_field::Field<0x0000000000000000000000000000000000000000000000000000000000000002::object::ID,u64>"
+                },
+                "json": {
+                  "id": "0xbced674f7bf067bc37320aac2159631938846279c713989dc12f93a4c00c15b1",
+                  "name": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+                  "value": "1"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

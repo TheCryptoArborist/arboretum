@@ -1,0 +1,1448 @@
+[
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "desktop",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "mobile",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-chain",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-chain",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-chain",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-chain",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-account",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "duplicate-provider",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "tampered-packet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "tampered-packet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "tampered-packet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "tampered-packet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "tampered-packet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "stale-checkpoint",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-registry",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC transaction"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "existing-candidate",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "duplicates",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "incompleteInventory",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "changed-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "excessive-fee",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC transaction"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "uncertain-wallet",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC transaction"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "successful-season",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC transaction"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "receiptMismatch",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/start-kind.b64",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonInputs",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonSimulation",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://fullnode.mainnet.sui.io",
+    "path": "/sui.rpc.v2.LedgerService/GetTransaction",
+    "method": "POST",
+    "fixture": "local read-only synthetic gRPC transaction"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonProof",
+    "fixture": "saved capture with synthetic fresh timestamp"
+  },
+  {
+    "context": "simulationAsReceipt",
+    "origin": "https://graphql.mainnet.sui.io",
+    "path": "/graphql",
+    "method": "POST",
+    "operation": "OwnerTestSeasonConfirmation",
+    "fixture": "unsigned synthetic receipt and current-state fixture"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "no-storage",
+    "origin": "https://www.treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/season-test/",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/season-test/admin.css",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/admin/season-test/admin.mjs",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  },
+  {
+    "context": "wrong-origin",
+    "origin": "https://treegrow.xyz",
+    "path": "/prelaunch/mark.png",
+    "method": "GET",
+    "fixture": "local compiled asset"
+  }
+]

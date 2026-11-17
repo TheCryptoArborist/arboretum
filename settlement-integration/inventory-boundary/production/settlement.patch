@@ -1,0 +1,63 @@
+--- contract-payout/source/settlement.move
++++ settlement-integration/inventory-boundary/production/settlement.move
+@@ -1,5 +1,6 @@
+ module arboretum::settlement {
+-    // Additive candidate. Legacy arboretum objects cannot enter these typed paths.
++    // Production candidate: inventory version 2 begins with the approved prices.
++    // Existing version-1 test objects remain in their original economy.
+     // This module has no initializer: setup requires the existing owned AdminCap.
+     use arboretum::arboretum::AdminCap as LegacyAdminCap;
+     use sui::coin::{Self, Coin};
+@@ -54,36 +55,34 @@
+     const E_SETTLEMENT_INVARIANT:  u64 = 104;
+     const E_POOL_FUNDING_CLOSED:   u64 = 105;
+     const E_SETTLEMENT_FINAL:      u64 = 106;
+-    const VERSION:                u64 = 1;
++    const VERSION:                u64 = 2;
+ 
+     // =========================================================
+     //  Constants
+     // =========================================================
+-    const GROWTH_DEPOSIT_MIST:      u64 = 10_000_000;       // 0.01  SUI plant fee
++    const GROWTH_DEPOSIT_MIST:      u64 = 10_000_000_000; // 10 SUI; approved production price
+     const REFERRAL_SHARE_MIST:      u64 =  1_000_000;       // 0.001 SUI referrer share
+ 
+     // Crate prices (7 tiers)
+-    const CRATE_PRICE_0: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_1: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_2: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_3: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_4: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_5: u64 = 10_000_000; // 0.01 SUI
+-    const CRATE_PRICE_6: u64 = 10_000_000; // 0.01 SUI
+-
+-    // Rotating one-off Supply Drops. These are test-economy prices.
+-    // Original economy targets: watering boost 5 SUI, mulch 8 SUI,
+-    // rain barrel 10 SUI, drought shield 15 SUI, revival kit 25 SUI.
++    const CRATE_PRICE_0: u64 = 5_000_000_000; // 5 SUI; approved production price
++    const CRATE_PRICE_1: u64 = 10_000_000_000; // 10 SUI; approved production price
++    const CRATE_PRICE_2: u64 = 25_000_000_000; // 25 SUI; approved production price
++    const CRATE_PRICE_3: u64 = 50_000_000_000; // 50 SUI; approved production price
++    const CRATE_PRICE_4: u64 = 100_000_000_000; // 100 SUI; approved production price
++    const CRATE_PRICE_5: u64 = 30_000_000_000; // 30 SUI; approved production price
++    const CRATE_PRICE_6: u64 = 30_000_000_000; // 30 SUI; approved production price
++
++    // Rotating one-off Supply Drops: approved production prices from first v2 purchase.
+     const SUPPLY_DROP_REVIVAL_KIT:    u8 = 0;
+     const SUPPLY_DROP_DROUGHT_SHIELD: u8 = 1;
+     const SUPPLY_DROP_RAIN_BARREL:    u8 = 2;
+     const SUPPLY_DROP_MULCH:          u8 = 3;
+     const SUPPLY_DROP_WATERING_BOOST: u8 = 4;
+-    const SUPPLY_PRICE_REVIVAL_KIT:    u64 = 50_000_000; // 0.05 SUI
+-    const SUPPLY_PRICE_DROUGHT_SHIELD: u64 = 40_000_000; // 0.04 SUI
+-    const SUPPLY_PRICE_RAIN_BARREL:    u64 = 30_000_000; // 0.03 SUI
+-    const SUPPLY_PRICE_MULCH:          u64 = 25_000_000; // 0.025 SUI
+-    const SUPPLY_PRICE_WATERING_BOOST: u64 = 20_000_000; // 0.02 SUI
++    const SUPPLY_PRICE_REVIVAL_KIT:    u64 = 15_000_000_000; // 15 SUI; approved production price
++    const SUPPLY_PRICE_DROUGHT_SHIELD: u64 = 10_000_000_000; // 10 SUI; approved production price
++    const SUPPLY_PRICE_RAIN_BARREL:    u64 = 5_000_000_000; // 5 SUI; approved production price
++    const SUPPLY_PRICE_MULCH:          u64 = 4_000_000_000; // 4 SUI; approved production price
++    const SUPPLY_PRICE_WATERING_BOOST: u64 = 2_000_000_000; // 2 SUI; approved production price
+ 
+     const SEASON_DURATION_MS:       u64 = 2_592_000_000;     // 30 days
+     const ONE_DAY_MS:               u64 =        86_400_000;

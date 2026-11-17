@@ -1,0 +1,60 @@
+{
+  "purpose": "Unsigned empty settlement Registry setup for review only",
+  "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "typeOrigin": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+  "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "legacyAdminCap": {
+    "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+    "version": "986499447",
+    "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN"
+  },
+  "actualUpgradeDigest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+  "actualUpgradeCheckpoint": {
+    "sequenceNumber": 340000251,
+    "timestamp": "2026-10-31T03:31:58.538Z"
+  },
+  "transaction": {
+    "version": 1,
+    "kind": {
+      "programmableTransaction": {
+        "inputs": [
+          {
+            "kind": "IMMUTABLE_OR_OWNED",
+            "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+            "version": "986499447",
+            "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN"
+          }
+        ],
+        "commands": [
+          {
+            "moveCall": {
+              "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+              "module": "settlement",
+              "function": "create_settlement_registry",
+              "arguments": [
+                {
+                  "kind": "INPUT",
+                  "input": 0
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "gasPayment": {
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+    }
+  },
+  "transactionKindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+  "checksEnabled": true,
+  "doGasSelection": true,
+  "startsSeason": false,
+  "fundsPool": false,
+  "importsLegacyState": false,
+  "newRegistryId": null,
+  "newAdminCapId": null,
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}

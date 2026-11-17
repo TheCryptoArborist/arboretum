@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "reviewedAtUtc": "2026-10-31T04:22:24Z",
+  "repository": "TheCryptoArborist/arboretum",
+  "sourceCommit": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+  "generalCIstillred": true,
+  "noNewSetupRuntimeBlockerIdentified": true,
+  "assessment": "The scoped Settlement app integration review passed on push and pull_request for the exact setup source. Five older workflows remain failed on historical byte-equality or isolated-review scope guards. The gate change is intentional and is not described as byte-identical to its parent. These failed runs did not exercise their downstream deployment stages.",
+  "successfulSettlementRuns": [
+    {
+      "runId": 41168068968,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068968",
+      "name": "Settlement app integration review",
+      "event": "pull_request",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "conclusion": "success",
+      "completedAtUtc": "2026-10-31T04:19:40Z"
+    },
+    {
+      "runId": 41168065064,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168065064",
+      "name": "Settlement app integration review",
+      "event": "push",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "conclusion": "success",
+      "completedAtUtc": "2026-10-31T04:19:28Z"
+    }
+  ],
+  "failedRuns": [
+    {
+      "runId": 41168069040,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168069040",
+      "name": "Reward-first preview",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "completedAtUtc": "2026-10-31T04:19:29Z",
+      "jobId": 124439849020,
+      "jobUrl": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168069040/job/124439849020",
+      "failedStep": "Build original site and run retained baseline suite",
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The byte-for-byte tester-gate guard permits only three artwork URL additions relative to e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the approved settlement-upgrade/settlement-setup return-to-admin logic in netlify/edge-functions/tester-gate.ts.",
+          "classification": "historical byte-equality guard incompatible with intentional approved return-route changes"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "scripts/build-public-guide.py uses get_build_policy()['publicProduction']; the older pinned baseline uses os.environ.get('CONTEXT')=='production'.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0
+      },
+      "evidence": {
+        "source": "Downloaded GitHub Actions artifact",
+        "artifactId": 13029687510,
+        "reportPath": "reward-results/baseline-tests.txt",
+        "zipSha256": "5fa38cb0d7e533552d821f1b2ef159b75a35a9204ab30fe4f47a750e810c3cec"
+      },
+      "deploymentSteps": [
+        {
+          "name": "Deploy branch preview and verify public pages and private game",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41168068751,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068751",
+      "name": "Economy accounting review",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "completedAtUtc": "2026-10-31T04:19:18Z",
+      "jobId": 124439847765,
+      "jobUrl": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068751/job/124439847765",
+      "failedStep": "Verify additive-only scope and offline regressions",
+      "failures": [
+        {
+          "cause": "Before tests, the additive-only guard compares all branch changes against 84b08fdb4bc0ec0417ced7be21f29aae914939f7 and permits only added economy-review/ files or its own workflow. It raises AssertionError: A\\t.github/workflows/contract-payout.yml.",
+          "classification": "pre-existing isolated-review scope guard"
+        }
+      ],
+      "testsNotReached": true,
+      "evidence": {
+        "source": "GitHub job log"
+      },
+      "deploymentSteps": [
+        {
+          "name": "Deploy and verify isolated hosted preview only",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Stage gated preview only - authenticated readiness NOT approved",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41168068838,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068838",
+      "name": "Reward-first production release",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "completedAtUtc": "2026-10-31T04:19:22Z",
+      "jobId": 124439848053,
+      "jobUrl": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068838/job/124439848053",
+      "failedStep": "Build baseline and approved candidate with retained checks",
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The byte-for-byte tester-gate guard permits only three artwork URL additions relative to e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the approved settlement-upgrade/settlement-setup return-to-admin logic in netlify/edge-functions/tester-gate.ts.",
+          "classification": "historical byte-equality guard incompatible with intentional approved return-route changes"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "scripts/build-public-guide.py uses get_build_policy()['publicProduction']; the older pinned baseline uses os.environ.get('CONTEXT')=='production'.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0
+      },
+      "evidence": {
+        "source": "Downloaded GitHub Actions artifact",
+        "artifactId": 13030136231,
+        "reportPath": "release-results/baseline-tests.txt",
+        "zipSha256": "148f73c43509fca331f663f05034d9a38174aac087ed2689148adfa04ab95582"
+      },
+      "deploymentSteps": [
+        {
+          "name": "Publish approved output and verify main-domain pages and native login",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41168068775,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068775",
+      "name": "Partner chest preview",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "completedAtUtc": "2026-10-31T04:19:21Z",
+      "jobId": 124439848016,
+      "jobUrl": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068775/job/124439848016",
+      "failedStep": "Build and run retained plus partner preview tests",
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The byte-for-byte tester-gate guard permits only three artwork URL additions relative to e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the approved settlement-upgrade/settlement-setup return-to-admin logic in netlify/edge-functions/tester-gate.ts.",
+          "classification": "historical byte-equality guard incompatible with intentional approved return-route changes"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "scripts/build-public-guide.py uses get_build_policy()['publicProduction']; the older pinned baseline uses os.environ.get('CONTEXT')=='production'.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 127,
+        "passed": 125,
+        "failed": 2,
+        "skipped": 0
+      },
+      "evidence": {
+        "source": "GitHub job log"
+      },
+      "deploymentSteps": [
+        {
+          "name": "Verify preview then publish and verify production",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41168068821,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068821",
+      "name": "Garden season status",
+      "headSha": "c4789ec647e522857f4166021a3f9d3220e4cf7c",
+      "event": "pull_request",
+      "conclusion": "failure",
+      "completedAtUtc": "2026-10-31T04:19:18Z",
+      "jobId": 124439847900,
+      "jobUrl": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41168068821/job/124439847900",
+      "failedStep": "Build current website and retain public and gate tests",
+      "failures": [
+        {
+          "test": "authentication unchanged except the three approved original-artwork URLs",
+          "location": "scripts/test-partner-preview.mjs:21",
+          "cause": "The byte-for-byte tester-gate guard permits only three artwork URL additions relative to e84ccdc87d5f62242fa9101b469afec90c79832a. It rejects the approved settlement-upgrade/settlement-setup return-to-admin logic in netlify/edge-functions/tester-gate.ts.",
+          "classification": "historical byte-equality guard incompatible with intentional approved return-route changes"
+        },
+        {
+          "test": "approved game and handbook baselines preserved; review build remains isolated",
+          "location": "scripts/test-partner-preview.mjs:29",
+          "cause": "scripts/build-public-guide.py uses get_build_policy()['publicProduction']; the older pinned baseline uses os.environ.get('CONTEXT')=='production'.",
+          "classification": "pre-existing fixed-baseline assertion"
+        }
+      ],
+      "tests": {
+        "total": 117,
+        "passed": 115,
+        "failed": 2,
+        "skipped": 0
+      },
+      "evidence": {
+        "source": "Downloaded GitHub Actions artifact",
+        "artifactId": 13030110601,
+        "reportPath": "season-status-results/base-tests.txt",
+        "zipSha256": "9cdef4d5e70ef81736fba86fcd315dd453564436db6f5ade1e02da98f3be11ec"
+      },
+      "deploymentSteps": [
+        {
+          "name": "Verify hosted preview then publish and verify production",
+          "conclusion": "skipped"
+        }
+      ],
+      "deploymentsAttempted": 0
+    }
+  ],
+  "parentComparisonEvidence": {
+    "parentCommit": "2e24a6cbc831332fce4ce71e0781ab5d947b1c39",
+    "command": "git diff --name-status c4789ec647e522857f4166021a3f9d3220e4cf7c^ c4789ec647e522857f4166021a3f9d3220e4cf7c -- <unchangedFiles>",
+    "output": "",
+    "unchangedFiles": [
+      "scripts/build-public-guide.py",
+      "scripts/test-partner-preview.mjs",
+      ".github/workflows/economy-accounting-review.yml",
+      ".github/workflows/contract-payout.yml",
+      ".github/workflows/garden-season-status.yml",
+      ".github/workflows/partner-preview.yml",
+      ".github/workflows/reward-first-preview.yml",
+      ".github/workflows/reward-first-production.yml"
+    ],
+    "testerGate": {
+      "file": "netlify/edge-functions/tester-gate.ts",
+      "changedInSourceCommit": true,
+      "parentIncludesUpgradeReturn": true,
+      "parentIncludesSetupReturn": false,
+      "sourceIncludesSetupReturn": true,
+      "historicalBaseline": "e84ccdc87d5f62242fa9101b469afec90c79832a",
+      "baselineSha256": "a8b5cf40286c69bde2b0b87c299ca68e6d466800275741bee2aa086a33d74035",
+      "parentNormalizedMatchesOldBaseline": false,
+      "sourceNormalizedMatchesOldBaseline": false,
+      "comparison": "Fetched the historical gate through the GitHub contents API, then applied the test's exact artwork-removal normalization to parent and source gate text. Both already differ from that old baseline."
+    }
+  },
+  "limitations": [
+    "The five listed legacy workflow runs remain red; this is not an all-CI-green report.",
+    "The tester return-route changes intentionally invalidate the older artwork-only byte-equality guard. The new setup return marker extends the already approved upgrade return behavior.",
+    "Skipped deployment and browser stages were not exercised by these failed runs.",
+    "This bounded read-only triage changed no guard, workflow or runtime source and triggered no reruns or deployments."
+  ],
+  "failedRunDeploymentsAttempted": 0,
+  "triageWorkflowReruns": 0,
+  "triageTransactionsSubmitted": 0,
+  "triageSignaturesProduced": 0
+}

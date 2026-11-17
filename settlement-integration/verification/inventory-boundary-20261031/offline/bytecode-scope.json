@@ -1,0 +1,1285 @@
+{
+  "status": "EXACT_LAYOUT_ABI_AND_INSTRUCTION_STRUCTURE_PRESERVED",
+  "structsPreserved": 39,
+  "publicOrEntryAbisPreserved": 85,
+  "productionFunctionsPreserved": 118,
+  "newStructs": [],
+  "newFunctions": [],
+  "allNonConstantInventoryTablesIdentical": true,
+  "instructionStructureIdentical": true,
+  "constantPool": {
+    "baselineCount": 86,
+    "candidateCount": 89,
+    "completeInstructionUsageVerified": true
+  },
+  "changedNumericLoadOperands": 61,
+  "functionsWithChangedConstantLoads": [
+    "apply_tool",
+    "archive_current_season",
+    "assert_admin_cap",
+    "assert_archive_version",
+    "assert_challenge_book",
+    "assert_challenge_cap",
+    "assert_challenge_registry",
+    "assert_registry_version",
+    "assert_seed_version",
+    "buy_crate",
+    "buy_supply_drop",
+    "canopy_challenge_end_ms",
+    "canopy_challenge_entry_baseline",
+    "canopy_challenge_entry_count",
+    "canopy_challenge_entry_fee",
+    "canopy_challenge_entry_refunded",
+    "canopy_challenge_has_entry",
+    "canopy_challenge_id",
+    "canopy_challenge_is_canceled",
+    "canopy_challenge_is_settled",
+    "canopy_challenge_player_score",
+    "canopy_challenge_pot_size",
+    "canopy_challenge_season_id",
+    "canopy_challenge_start_ms",
+    "challenge_book_active_end_ms",
+    "challenge_book_active_id",
+    "challenge_book_admin",
+    "challenge_book_current_id",
+    "create_challenge_book",
+    "create_settlement_registry",
+    "mint_crate_tool",
+    "mint_sapling",
+    "open_canopy_sprint",
+    "open_crate",
+    "plant_seed",
+    "plant_seed_with_nftree",
+    "refund_canceled_canopy_sprint_entry",
+    "return_or_delete_tool",
+    "revive_seed_with_tool",
+    "send_promo_crate",
+    "supply_drop_details",
+    "sweep_archived_rewards"
+  ],
+  "constantOperandChanges": [
+    {
+      "function": "assert_registry_version",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_seed_version",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_archive_version",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_admin_cap",
+      "instructionIndex": 6,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_challenge_cap",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_challenge_cap",
+      "instructionIndex": 16,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_challenge_registry",
+      "instructionIndex": 5,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_challenge_book",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "assert_challenge_book",
+      "instructionIndex": 9,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "return_or_delete_tool",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "mint_crate_tool",
+      "instructionIndex": 9,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "supply_drop_details",
+      "instructionIndex": 7,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "80f0fa0200000000",
+          "value": "50000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00d6117e03000000",
+          "value": "15000000000"
+        }
+      }
+    },
+    {
+      "function": "supply_drop_details",
+      "instructionIndex": 20,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "005a620200000000",
+          "value": "40000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "supply_drop_details",
+      "instructionIndex": 33,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "80c3c90100000000",
+          "value": "30000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00f2052a01000000",
+          "value": "5000000000"
+        }
+      }
+    },
+    {
+      "function": "supply_drop_details",
+      "instructionIndex": 46,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "40787d0100000000",
+          "value": "25000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00286bee00000000",
+          "value": "4000000000"
+        }
+      }
+    },
+    {
+      "function": "supply_drop_details",
+      "instructionIndex": 62,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "002d310100000000",
+          "value": "20000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0094357700000000",
+          "value": "2000000000"
+        }
+      }
+    },
+    {
+      "function": "create_settlement_registry",
+      "instructionIndex": 6,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "create_settlement_registry",
+      "instructionIndex": 44,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "archive_current_season",
+      "instructionIndex": 60,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "create_challenge_book",
+      "instructionIndex": 7,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "open_canopy_sprint",
+      "instructionIndex": 121,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "refund_canceled_canopy_sprint_entry",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "mint_sapling",
+      "instructionIndex": 6,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "plant_seed",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "plant_seed",
+      "instructionIndex": 43,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "plant_seed",
+      "instructionIndex": 103,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "plant_seed",
+      "instructionIndex": 185,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "plant_seed_with_nftree",
+      "instructionIndex": 30,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "plant_seed_with_nftree",
+      "instructionIndex": 84,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "plant_seed_with_nftree",
+      "instructionIndex": 166,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "apply_tool",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "revive_seed_with_tool",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 19,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00f2052a01000000",
+          "value": "5000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 26,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e40b5402000000",
+          "value": "10000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 33,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00ba1dd205000000",
+          "value": "25000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 40,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00743ba40b000000",
+          "value": "50000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 47,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00e8764817000000",
+          "value": "100000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 54,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00ac23fc06000000",
+          "value": "30000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 57,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "8096980000000000",
+          "value": "10000000"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "00ac23fc06000000",
+          "value": "30000000000"
+        }
+      }
+    },
+    {
+      "function": "buy_crate",
+      "instructionIndex": 114,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "send_promo_crate",
+      "instructionIndex": 28,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "buy_supply_drop",
+      "instructionIndex": 53,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "open_crate",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "sweep_archived_rewards",
+      "instructionIndex": 6,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "challenge_book_admin",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "challenge_book_current_id",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "challenge_book_active_id",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "challenge_book_active_end_ms",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_id",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_season_id",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_start_ms",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_end_ms",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_entry_fee",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_entry_count",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_pot_size",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_is_settled",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_is_canceled",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_has_entry",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_entry_baseline",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_entry_refunded",
+      "instructionIndex": 3,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    },
+    {
+      "function": "canopy_challenge_player_score",
+      "instructionIndex": 5,
+      "before": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0100000000000000",
+          "value": "1"
+        }
+      },
+      "after": {
+        "op": "LdConst",
+        "constant": {
+          "type": "u64",
+          "bytes_hex": "0200000000000000",
+          "value": "2"
+        }
+      }
+    }
+  ],
+  "structFingerprint": "795d0d9c7f030a1946f8947c1eb29e2971461d30942de612e9907d58f6f81d6c",
+  "abiFingerprint": "f96d675d41269a5d45550bf67493ae83bf0f9a7e4a41ee41a10e6eeefef03e1e",
+  "limit": "Strict offline structural inspection; native upgrade compatibility is verified separately by a checked unsigned simulation."
+}

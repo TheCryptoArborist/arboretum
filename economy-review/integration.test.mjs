@@ -25,7 +25,13 @@ test('season-start discovery must match successful transaction event',async()=>a
 test('CSV carries the historical coverage watermark and incomplete flag',async()=>{const r=await readCurrentPartnerSeason({read:fixture({gap:true})});const csv=partnerReportCsv(r);assert.match(csv,/earliestAvailableTimestamp/);assert.match(csv,/throughCheckpoint/);assert.match(csv,/"false"/);assert.match(csv,/PARTIAL/)});
 test('admin overlay preserves original snapshot and injects separate attachment',()=>{const src=fs.readFileSync('index.html','utf8');const changed=applyPartnerReport(src);assert.match(changed,/partnerRevenue:window.arbPartnerReport/);assert.match(changed,/partner-revenue-mount/);assert.throws(()=>applyPartnerReport(changed),/already applied/)});
 test('ambiguous HTML cannot be silently patched',()=>assert.throws(()=>applyPartnerReport('<html></html>'),/Ambiguous/));
-test('production build remains blocked',()=>{const prior=process.env.CONTEXT;process.env.CONTEXT='production';try{assert.throws(()=>buildPreview(),/production build blocked/)}finally{if(prior===undefined)delete process.env.CONTEXT;else process.env.CONTEXT=prior}});
+test('original site production build remains blocked',()=>{
+ const keys=['CONTEXT','NETLIFY','SITE_ID'],old=Object.fromEntries(keys.map(key=>[key,process.env[key]]));
+ try{
+  process.env.CONTEXT='production';process.env.NETLIFY='true';process.env.SITE_ID='a344fb31-10b4-4eea-9562-067d90a39607';
+  assert.throws(()=>buildPreview(),/production build blocked/);
+ }finally{for(const key of keys)if(old[key]===undefined)delete process.env[key];else process.env[key]=old[key];}
+});
 test('build includes the read-query module imported by the runtime',()=>{const src=fs.readFileSync('economy-review/build-admin-preview.mjs','utf8');assert.match(src,/'read-queries.mjs'/)});
 test('all approved rate and existing treasury decisions preserved',()=>{const d=JSON.parse(fs.readFileSync('economy-review/decisions.json'));assert.equal(d.funding.BOOM.allocationBasisPoints,1000);assert.equal(d.funding.VICTORY.allocationBasisPoints,1000);assert.equal(d.guardrails.fundingFromPool,false);assert.equal(d.tokenPurchasesAuthorized,false);assert.equal(d.guardrails.treeBudgetFromGameReceipts,false)});
 

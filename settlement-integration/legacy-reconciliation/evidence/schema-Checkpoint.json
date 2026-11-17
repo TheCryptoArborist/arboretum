@@ -1,0 +1,223 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.569747+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "Checkpoint"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "Checkpoint",
+        "description": "Checkpoints contain finalized transactions and are used for node synchronization and global transaction ordering.",
+        "inputFields": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": "The checkpoint's globally unique identifier, which can be passed to `Query.node` to refetch it.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "sequenceNumber",
+            "description": "The checkpoint's position in the total order of finalized checkpoints, agreed upon by consensus.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "UInt53"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "query",
+            "description": "Query the RPC as if this checkpoint were the latest checkpoint.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Query",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "artifactsDigest",
+            "description": "A commitment by the committee at each checkpoint on the artifacts of the checkpoint.\ne.g., object checkpoint states",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "digest",
+            "description": "A 32-byte hash that uniquely identifies the checkpoint, encoded in Base58. This is a hash of the checkpoint's summary.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "contentDigest",
+            "description": "A 32-byte hash that uniquely identifies the checkpoint's content, encoded in Base58.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "epoch",
+            "description": "The epoch that this checkpoint is part of.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "Epoch",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "networkTotalTransactions",
+            "description": "The total number of transactions in the network by the end of this checkpoint.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "UInt53",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "previousCheckpointDigest",
+            "description": "The digest of the previous checkpoint's summary.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "rollingGasSummary",
+            "description": "The computation cost, storage cost, storage rebate, and non-refundable storage fee accumulated during this epoch, up to and including this checkpoint. These values increase monotonically across checkpoints in the same epoch, and reset on epoch boundaries.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "GasCostSummary",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "summaryBcs",
+            "description": "The Base64 serialized BCS bytes of this checkpoint's summary.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Base64",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "contentBcs",
+            "description": "The Base64 serialized BCS bytes of this checkpoint's contents.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Base64",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "timestamp",
+            "description": "The timestamp at which the checkpoint is agreed to have happened according to consensus. Transactions that access time in this checkpoint will observe this timestamp.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "validatorSignatures",
+            "description": "The aggregation of signatures from a quorum of validators for the checkpoint proposal.",
+            "type": {
+              "kind": "OBJECT",
+              "name": "ValidatorAggregatedSignature",
+              "ofType": null
+            },
+            "args": []
+          },
+          {
+            "name": "transactions",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "TransactionConnection",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              {
+                "name": "filter",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "TransactionFilter",
+                  "ofType": null
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "responseSha256": "625e35fc88ddb30e48fdc98bdce27be900b939b592c740f5ae85198569397ac4"
+}

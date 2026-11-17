@@ -1,0 +1,15 @@
+{
+  "id": "6ae678179e4a049e68a01cae",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6ae678179e4a049e68a01cac",
+  "state": "ready",
+  "context": "production",
+  "title": "Add first watering countdown and owner review \u00b7 7506a3778f35",
+  "created_at": "2026-10-31T23:21:59.724Z",
+  "published_at": "2026-10-31T23:22:17.269Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}

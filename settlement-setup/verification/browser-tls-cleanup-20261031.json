@@ -1,0 +1,8 @@
+{
+  "completedAt": "2026-10-31T04:21:00.464222+00:00",
+  "onlyNamedCertificateRemoved": true,
+  "priorTrustListingRestored": true,
+  "normalTLSValidationUsed": true,
+  "systemEnvironmentUnchanged": true,
+  "caSha256": "c71b4d1e9d7775c538c688ab10cea9ce417d7312e89838f9d15ff73256cd7fc3"
+}

@@ -1,0 +1,39 @@
+{
+  "checkedOn": "2026-11-10",
+  "scope": "Separate Season 3 owner watering test; no existing application runtime changes",
+  "nodeTests": {
+    "command": "node --test --test-isolation=none settlement-cycle-three/common.test.mjs settlement-cycle-three/rollover-core.test.mjs settlement-cycle-three/care-core.test.mjs settlement-cycle-three/controller.test.mjs",
+    "passed": 152,
+    "failed": 0,
+    "skipped": 0,
+    "log": "tests.log"
+  },
+  "releaseTests": {
+    "command": "python3 -m unittest discover -s settlement-cycle-three -p test_release.py",
+    "passed": 11,
+    "failed": 0,
+    "log": "release-tests.log"
+  },
+  "lintPassed": true,
+  "protectedProductionBuildPassed": true,
+  "buildEvidence": "build.json",
+  "preservationEvidence": "preserve.json",
+  "previousApplicationFilesPreservedByteForByte": 106,
+  "addedApplicationFiles": 3,
+  "completeApplicationFiles": 109,
+  "readOnlyLiveProtocolEvidence": "../live-readonly/summary.json",
+  "independentCodeReviews": {
+    "protocolReviewedByUiAgent": "No blocking issue found",
+    "priorClaimRolloverAndCareReviewedByReleaseAgent": "No blocking issue found"
+  },
+  "contractChanges": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limitations": [
+    "Synthetic lifecycle tests do not establish that Season 3 has executed on mainnet.",
+    "The ordinary reset gate remains closed until 2026-11-11T14:45:27.707Z.",
+    "The owner must personally start, plant, water and claim in Slush.",
+    "This record predates the exact-source CI gates and hosted deployment verification."
+  ]
+}

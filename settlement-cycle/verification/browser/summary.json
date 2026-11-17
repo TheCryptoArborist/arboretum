@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-11-08T14:01:21.864127+00:00",
+  "passed": false,
+  "method": "Local compiled bytes at the authorized origin; exact scoped proof/input queries freshly forwarded to public mainnet GraphQL using normal TLS. All other browser traffic blocked.",
+  "origin": "https://www.treegrow.xyz",
+  "route": "/admin/season-two/",
+  "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+  "priorClaimDigest": "8PitEh5UEu5WeFKbZ2kZcr1QRixFZeq1NBXX7mxkSm9R",
+  "scopedNftId": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+  "sourceSha256": {
+    "settlement-cycle/index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+    "settlement-cycle/admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+    "settlement-cycle/admin.mjs": "9d622e5ce5f8ef47ffb3ee2176add77ca947d7c61bcb3402252a54a4b4abe6ed",
+    "settlement-cycle/common.mjs": "74e27172dcbbf64cf130d25d78de39449409c81137ff215cec46a1cb3a9fa469",
+    "settlement-cycle/rollover-core.mjs": "21a86f08166bef5f82b9a456d119d34baa4901ee0237281f56770cf3e295122c",
+    "settlement-cycle/care-core.mjs": "3fc40fa219f736f4efec03cf9e18a3cd929e45b4903bb68406a5d0419f8c83d8",
+    "settlement-cycle/build.mjs": "5f7d9176dae768951a621ff0b4ff138763f589d9c7461cda17502ff87d9b57a1"
+  },
+  "compiledSha256": {
+    "admin/season-two/index.html": "91f54e13656c5a7209f4bfbe121b262aee5d0b34a6fcd6f0075f1e0df48c3d14",
+    "admin/season-two/admin.css": "1c0afc1e12e525407fcf5c10c0ed1823bdca75b0fe74771f1d0da901c71cf57f",
+    "admin/season-two/admin.mjs": "ea020affc0cfa5c769d6b38f1d1a67990c3946b7fa89ecf19435b85aab28eaea",
+    "prelaunch/hero.png": "090c890cdc60de682501735fc76739de2fc1c441bb50badb47cc74a3600728dd",
+    "prelaunch/mark.png": "9e0e5f54c623f7bf25f8710fff7de04f9298282a359166443f078b669c4a2dff"
+  },
+  "observations": [],
+  "realWalletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "unsignedSimulations": 0,
+  "futureCareLiveTested": false,
+  "limits": [
+    "This checks current read-only mainnet rendering and responsive layout, not a hosted deployment.",
+    "No synthetic future Season 2 state is used here. Transaction and future-care paths have separate offline tests."
+  ],
+  "error": {
+    "type": "TargetClosedError",
+    "message": "BrowserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --disable-dev-shm-usage --proxy-server=http://127.0.0.1:9 --proxy-bypass-list=<-loopback> --disable-background-networking --user-data-dir=/tmp/playwright_chromiumdev_profile-33ihmV --remote-debugging-pipe --no-startup-window\n<launched> pid=26\n[pid=26][err] /usr/bin/chromium: 9: [: 5225713664: unexpected operator\n[pid=26][err] [26:26:1108/080122.244298:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n[pid=26][err] [1108/080122.245005:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\nCall log:\n  - <launching> /usr/bin/chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-edgeupdater --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,BlockOriginHeaderModificationOnRedirect,Translate,AutoDeElevate,OptimizationHints,msForceBrowserSignIn,msEdgeUpdateLaunchServicesPreferredVersion --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --disable-updater-scheduler --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --disable-infobars --disable-search-engine-choice-screen --disable-sync --enable-unsafe-swiftshader --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --no-sandbox --disable-dev-shm-usage --proxy-server=http://127.0.0.1:9 --proxy-bypass-list=<-loopback> --disable-background-networking --user-data-dir=/tmp/playwright_chromiumdev_profile-33ihmV --remote-debugging-pipe --no-startup-window\n  - <launched> pid=26\n  - [pid=26][err] /usr/bin/chromium: 9: [: 5225713664: unexpected operator\n  - [pid=26][err] [26:26:1108/080122.244298:FATAL:chrome/browser/process_singleton_posix.cc:297] Check failed: . socket() failed: Operation not permitted (1)\n  - [pid=26][err] [1108/080122.245005:ERROR:third_party/crashpad/crashpad/util/linux/scoped_ptrace_attach.cc:27] ptrace: Operation not permitted (1)\n  - [pid=26] <gracefully close start>\n  - [pid=26] <kill>\n  - [pid=26] <will force kill>\n  - [pid=26] <process did exit: exitCode=null, signal=SIGABRT>\n  - [pid=26] starting temporary directories cleanup\n  - [pid=26] finished temporary directories cleanup\n  - [pid=26] <gracefully close end>\n"
+  },
+  "verifiedAt": "2026-11-08T14:01:22.266389+00:00"
+}

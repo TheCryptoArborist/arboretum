@@ -1,0 +1,11 @@
+{
+  "observedAt": "2026-10-31T04:42:13.005969+00:00",
+  "id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "name": "arboretum-preview",
+  "accountId": "69800888d1a3d0483003ae9e",
+  "customDomain": "www.treegrow.xyz",
+  "publishedDeployId": "6ae56c55b4f726c32698bd38",
+  "gitConnected": false,
+  "buildSettingKeys": [],
+  "retainedOriginalChecked": true
+}

@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-11-07T03:56:04.652Z",
+  "sourceCommit": "05c0a9d9799ba6bc096051650320099db3def8a8",
+  "method": "Netlify connector get_deploy and get_project",
+  "target": {
+    "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "name": "arboretum-preview",
+    "origin": "https://www.treegrow.xyz",
+    "publishedDeployId": "6aeea0b254e028ece344267c"
+  },
+  "original": {
+    "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+    "name": "arboretum-sui-forest",
+    "publishedDeployId": "6abe81174b61a8e3dd53b333"
+  },
+  "deployment": {
+    "id": "6aeea0b254e028ece344267c",
+    "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+    "build_id": "6aeea0b254e028ece344267a",
+    "state": "ready",
+    "context": "production",
+    "title": "Remove dedicated-site tester access code · 05c0a9d9799b",
+    "created_at": "2026-11-07T03:53:22.795Z",
+    "published_at": "2026-11-07T03:53:39.280Z",
+    "error_message": null,
+    "deploy_source": "api",
+    "has_source_zip": true,
+    "edge_functions_present": true,
+    "function_schedules": []
+  },
+  "calendarFunction": {
+    "n": "calendar-reminder",
+    "d": "e11353817de886625c0f037e5b341f1506b51b3477a227281527bd9bf496de98",
+    "r": "nodejs24.x",
+    "m": 1024,
+    "rg": "us-east-2",
+    "s": 279384,
+    "p": 10,
+    "bd": {
+      "runtimeAPIVersion": 1
+    }
+  },
+  "deploymentSummary": [
+    {
+      "title": "3 new files uploaded",
+      "description": "3 assets changed."
+    },
+    {
+      "title": "No redirect rules processed",
+      "description": "This deploy did not include any redirect rules. [Learn more about redirects](https://docs.netlify.com/routing/redirects/)"
+    },
+    {
+      "title": "No header rules processed",
+      "description": "This deploy did not include any header rules. [Learn more about headers](https://docs.netlify.com/routing/headers/)"
+    },
+    {
+      "title": "1 function deployed",
+      "description": "We have deployed 1 function. [Visit your Functions](/projects/arboretum-preview/logs/functions) for more information."
+    },
+    {
+      "title": "2 edge functions deployed",
+      "description": "We have deployed 2 edge functions. [Visit your Edge Functions logs](/projects/arboretum-preview/logs/edge-functions?scope=deployid:6aeea0b254e028ece344267c) for more information."
+    }
+  ],
+  "credentialAccessed": false,
+  "limits": [
+    "Post-publication authenticated deploy-file listing is unavailable in this runtime; application byte verification uses anonymous public responses."
+  ]
+}

@@ -1,0 +1,296 @@
+(node:18) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///workspace/scratch/066ce7a12a80/arboretum/netlify/edge-functions/tester-gate.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /workspace/scratch/066ce7a12a80/arboretum/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# Subtest: public /
+ok 1 - public /
+  ---
+  duration_ms: 38.70839
+  type: 'test'
+  ...
+# Subtest: public /index.html
+ok 2 - public /index.html
+  ---
+  duration_ms: 0.733305
+  type: 'test'
+  ...
+# Subtest: public /prelaunch/site.css
+ok 3 - public /prelaunch/site.css
+  ---
+  duration_ms: 0.550656
+  type: 'test'
+  ...
+# Subtest: public /prelaunch/forest.jpg
+ok 4 - public /prelaunch/forest.jpg
+  ---
+  duration_ms: 0.43915
+  type: 'test'
+  ...
+# Subtest: public /prelaunch/mark.png
+ok 5 - public /prelaunch/mark.png
+  ---
+  duration_ms: 0.929939
+  type: 'test'
+  ...
+# Subtest: public /prelaunch/hero.png
+ok 6 - public /prelaunch/hero.png
+  ---
+  duration_ms: 0.64463
+  type: 'test'
+  ...
+# Subtest: public /prelaunch/ancient.jpg
+ok 7 - public /prelaunch/ancient.jpg
+  ---
+  duration_ms: 0.381173
+  type: 'test'
+  ...
+# Subtest: public /robots.txt
+ok 8 - public /robots.txt
+  ---
+  duration_ms: 0.391461
+  type: 'test'
+  ...
+# Subtest: public /sitemap.xml
+ok 9 - public /sitemap.xml
+  ---
+  duration_ms: 0.404546
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /game.html
+ok 10 - unauthenticated blocked /game.html
+  ---
+  duration_ms: 3.356119
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /wallet.js
+ok 11 - unauthenticated blocked /wallet.js
+  ---
+  duration_ms: 0.502518
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /garden.js
+ok 12 - unauthenticated blocked /garden.js
+  ---
+  duration_ms: 0.423663
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /player-guide
+ok 13 - unauthenticated blocked /player-guide
+  ---
+  duration_ms: 0.311924
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /player-guide.html
+ok 14 - unauthenticated blocked /player-guide.html
+  ---
+  duration_ms: 0.322415
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /sui-sdk.bundle.js
+ok 15 - unauthenticated blocked /sui-sdk.bundle.js
+  ---
+  duration_ms: 1.163466
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /assets/cosmetics/frames/mythic-living-crown.png
+ok 16 - unauthenticated blocked /assets/cosmetics/frames/mythic-living-crown.png
+  ---
+  duration_ms: 0.379579
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /.netlify/functions/calendar-reminder
+ok 17 - unauthenticated blocked /.netlify/functions/calendar-reminder
+  ---
+  duration_ms: 0.400675
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /.netlify/images?url=/game.html
+ok 18 - unauthenticated blocked /.netlify/images?url=/game.html
+  ---
+  duration_ms: 1.78566
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /other/index.html
+ok 19 - unauthenticated blocked /other/index.html
+  ---
+  duration_ms: 0.458443
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /prelaunch/private.txt
+ok 20 - unauthenticated blocked /prelaunch/private.txt
+  ---
+  duration_ms: 2.055796
+  type: 'test'
+  ...
+# Subtest: unauthenticated blocked /play
+ok 21 - unauthenticated blocked /play
+  ---
+  duration_ms: 1.15698
+  type: 'test'
+  ...
+# Subtest: navigation to private HTML redirects only to local login
+ok 22 - navigation to private HTML redirects only to local login
+  ---
+  duration_ms: 3.423879
+  type: 'test'
+  ...
+# Subtest: access page has no wallet or browser auth script
+ok 23 - access page has no wallet or browser auth script
+  ---
+  duration_ms: 1.435789
+  type: 'test'
+  ...
+# Subtest: correct login makes private host-only HttpOnly cookie
+ok 24 - correct login makes private host-only HttpOnly cookie
+  ---
+  duration_ms: 12.431532
+  type: 'test'
+  ...
+# Subtest: session permits private file but disables caches
+ok 25 - session permits private file but disables caches
+  ---
+  duration_ms: 3.043781
+  type: 'test'
+  ...
+# Subtest: tampered signature rejected
+ok 26 - tampered signature rejected
+  ---
+  duration_ms: 2.584148
+  type: 'test'
+  ...
+# Subtest: session cannot be replayed on another host
+ok 27 - session cannot be replayed on another host
+  ---
+  duration_ms: 1.968609
+  type: 'test'
+  ...
+# Subtest: duplicate cookies rejected
+ok 28 - duplicate cookies rejected
+  ---
+  duration_ms: 1.340017
+  type: 'test'
+  ...
+# Subtest: malformed cookie rejected
+ok 29 - malformed cookie rejected
+  ---
+  duration_ms: 0.46513
+  type: 'test'
+  ...
+# Subtest: expired session rejected
+ok 30 - expired session rejected
+  ---
+  duration_ms: 2.233669
+  type: 'test'
+  ...
+# Subtest: password rotation revokes previous cookies
+ok 31 - password rotation revokes previous cookies
+  ---
+  duration_ms: 2.075905
+  type: 'test'
+  ...
+# Subtest: wrong password does not create session
+ok 32 - wrong password does not create session
+  ---
+  duration_ms: 1.330997
+  type: 'test'
+  ...
+# Subtest: cross-origin login rejected
+ok 33 - cross-origin login rejected
+  ---
+  duration_ms: 0.660901
+  type: 'test'
+  ...
+# Subtest: missing origin login rejected
+ok 34 - missing origin login rejected
+  ---
+  duration_ms: 0.377602
+  type: 'test'
+  ...
+# Subtest: large streamed request rejected
+ok 35 - large streamed request rejected
+  ---
+  duration_ms: 0.840101
+  type: 'test'
+  ...
+# Subtest: duplicate password parameters rejected
+ok 36 - duplicate password parameters rejected
+  ---
+  duration_ms: 0.571647
+  type: 'test'
+  ...
+# Subtest: JSON login rejected
+ok 37 - JSON login rejected
+  ---
+  duration_ms: 0.751181
+  type: 'test'
+  ...
+# Subtest: missing secrets fail closed while public page works
+ok 38 - missing secrets fail closed while public page works
+  ---
+  duration_ms: 0.742186
+  type: 'test'
+  ...
+# Subtest: weak password cannot activate gate
+ok 39 - weak password cannot activate gate
+  ---
+  duration_ms: 0.21504
+  type: 'test'
+  ...
+# Subtest: logout expires session cookie
+ok 40 - logout expires session cookie
+  ---
+  duration_ms: 0.275363
+  type: 'test'
+  ...
+# Subtest: GET cannot log out
+ok 41 - GET cannot log out
+  ---
+  duration_ms: 0.296085
+  type: 'test'
+  ...
+# Subtest: HTML headers returned for HEAD without body
+ok 42 - HTML headers returned for HEAD without body
+  ---
+  duration_ms: 0.509239
+  type: 'test'
+  ...
+# Subtest: unexpected origin error fails closed
+ok 43 - unexpected origin error fails closed
+  ---
+  duration_ms: 5.509573
+  type: 'test'
+  ...
+# Subtest: ambiguous path rejected /prelaunch%2fsite.css
+ok 44 - ambiguous path rejected /prelaunch%2fsite.css
+  ---
+  duration_ms: 0.248582
+  type: 'test'
+  ...
+# Subtest: ambiguous path rejected /prelaunch//site.css
+ok 45 - ambiguous path rejected /prelaunch//site.css
+  ---
+  duration_ms: 0.238334
+  type: 'test'
+  ...
+# Subtest: ambiguous path rejected /%67ame.html
+ok 46 - ambiguous path rejected /%67ame.html
+  ---
+  duration_ms: 0.336086
+  type: 'test'
+  ...
+# Subtest: public POST disallowed
+ok 47 - public POST disallowed
+  ---
+  duration_ms: 0.239845
+  type: 'test'
+  ...
+1..47
+# tests 47
+# suites 0
+# pass 47
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 174.444767

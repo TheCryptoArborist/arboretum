@@ -1,0 +1,19 @@
+{
+  "verifiedAt": "2026-11-07T03:57:17.969881+00:00",
+  "sourceCommit": "05c0a9d9799ba6bc096051650320099db3def8a8",
+  "deployId": "6aeea0b254e028ece344267c",
+  "enteredUrl": "https://www.treegrow.xyz/tester-access?next=claim-test",
+  "observedFinalUrl": "https://www.treegrow.xyz/admin/claim-test/",
+  "observedTitle": "Your Season 1 reward | Arboretum",
+  "testerCodeEntered": false,
+  "testerFormPresentAfterReload": false,
+  "walletConnected": false,
+  "walletControlsRemainDisabledWhileDisconnected": true,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "screenshot": "tester-access-release/verification/treegrow-code-free-access.jpg",
+  "screenshotSha256": "11d35c8ba737a2d65c6a3eb927c5887fe7931ce8eec9fc23ed85ead921bbbf93",
+  "limits": [
+    "Screenshot captures the application while its automatic public mainnet read is pending; reward amounts and chain outcome were not assessed in this access-code change."
+  ]
+}

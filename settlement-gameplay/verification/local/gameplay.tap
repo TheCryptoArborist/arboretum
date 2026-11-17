@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: connection, explicit account and explicit NFT choice are required before one-Seed review
+ok 1 - connection, explicit account and explicit NFT choice are required before one-Seed review
+  ---
+  duration_ms: 323.39121
+  type: 'test'
+  ...
+# Subtest: wrong administrator cannot load inventory, simulate or open Slush
+ok 2 - wrong administrator cannot load inventory, simulate or open Slush
+  ---
+  duration_ms: 113.65009
+  type: 'test'
+  ...
+# Subtest: loading NFTrees never chooses the first NFT automatically
+ok 3 - loading NFTrees never chooses the first NFT automatically
+  ---
+  duration_ms: 159.582573
+  type: 'test'
+  ...
+# Subtest: changing the NFTree invalidates the acknowledged review
+ok 4 - changing the NFTree invalidates the acknowledged review
+  ---
+  duration_ms: 280.282568
+  type: 'test'
+  ...
+# Subtest: changed NFT reference after selection stops before simulation
+ok 5 - changed NFT reference after selection stops before simulation
+  ---
+  duration_ms: 192.943743
+  type: 'test'
+  ...
+# Subtest: account change during final simulation invalidates review before wallet handoff
+ok 6 - account change during final simulation invalidates review before wallet handoff
+  ---
+  duration_ms: 301.688538
+  type: 'test'
+  ...
+# Subtest: same-address replacement provider cannot inherit a planting review
+ok 7 - same-address replacement provider cannot inherit a planting review
+  ---
+  duration_ms: 263.367581
+  type: 'test'
+  ...
+# Subtest: network change during final simulation blocks wallet handoff
+ok 8 - network change during final simulation blocks wallet handoff
+  ---
+  duration_ms: 331.307888
+  type: 'test'
+  ...
+# Subtest: duplicate clicks create one request; explicit rejection clears only the matching request
+ok 9 - duplicate clicks create one request; explicit rejection clears only the matching request
+  ---
+  duration_ms: 367.538878
+  type: 'test'
+  ...
+# Subtest: unknown wallet error survives reload and prevents a second paid request
+ok 10 - unknown wallet error survives reload and prevents a second paid request
+  ---
+  duration_ms: 526.21647
+  type: 'test'
+  ...
+# Subtest: a read failure in another tab cannot change the in-flight planting journal
+ok 11 - a read failure in another tab cannot change the in-flight planting journal
+  ---
+  duration_ms: 462.895518
+  type: 'test'
+  ...
+# Subtest: journal binds the selected NFTree and kind and rejects unrelated clearing
+ok 12 - journal binds the selected NFTree and kind and rejects unrelated clearing
+  ---
+  duration_ms: 0.852982
+  type: 'test'
+  ...
+# Subtest: only typed explicit rejection codes count as cancellation
+ok 13 - only typed explicit rejection codes count as cancellation
+  ---
+  duration_ms: 0.098508
+  type: 'test'
+  ...
+# Subtest: current Seed check works without wallet, NFT selection or simulation
+ok 14 - current Seed check works without wallet, NFT selection or simulation
+  ---
+  duration_ms: 150.87844
+  type: 'test'
+  ...
+# Subtest: existing Seed without receipt candidate persistently blocks another first plant
+ok 15 - existing Seed without receipt candidate persistently blocks another first plant
+  ---
+  duration_ms: 273.013914
+  type: 'test'
+  ...
+# Subtest: wrong discovery candidate stays replaceable and the exact receipt recovers without wallet
+ok 16 - wrong discovery candidate stays replaceable and the exact receipt recovers without wallet
+  ---
+  duration_ms: 254.000316
+  type: 'test'
+  ...
+# Subtest: incomplete NFT inventory prevents selection and simulation
+ok 17 - incomplete NFT inventory prevents selection and simulation
+  ---
+  duration_ms: 108.728311
+  type: 'test'
+  ...
+# Subtest: changed fee requires fresh acknowledgement before a wallet request
+ok 18 - changed fee requires fresh acknowledgement before a wallet request
+  ---
+  duration_ms: 456.652897
+  type: 'test'
+  ...
+# Subtest: verified receipt shows the new Seed, payment and exact next-water time and prevents replanting
+ok 19 - verified receipt shows the new Seed, payment and exact next-water time and prevents replanting
+  ---
+  duration_ms: 397.920144
+  type: 'test'
+  ...
+# Subtest: wrong receipt cannot clear or replace the digest returned by Slush
+ok 20 - wrong receipt cannot clear or replace the digest returned by Slush
+  ---
+  duration_ms: 413.791652
+  type: 'test'
+  ...
+# Subtest: storage failure disables paid planting but keeps read-only recovery
+ok 21 - storage failure disables paid planting but keeps read-only recovery
+  ---
+  duration_ms: 144.173925
+  type: 'test'
+  ...
+# Subtest: complete NFT pagination keeps the checkpoint and allows explicit selection from a later page
+ok 22 - complete NFT pagination keeps the checkpoint and allows explicit selection from a later page
+  ---
+  duration_ms: 233.226611
+  type: 'test'
+  ...
+# Subtest: account change during paginated NFT loading prevents selection and simulation
+ok 23 - account change during paginated NFT loading prevents selection and simulation
+  ---
+  duration_ms: 104.656798
+  type: 'test'
+  ...
+# Subtest: only canonical origin and explicit administrator/mainnet can review the planting
+ok 24 - only canonical origin and explicit administrator/mainnet can review the planting
+  ---
+  duration_ms: 0.218429
+  type: 'test'
+  ...
+# Subtest: the captured immutable first-start proof and complete 1077-NFT inventory establish ready state
+ok 25 - the captured immutable first-start proof and complete 1077-NFT inventory establish ready state
+  ---
+  duration_ms: 169.837076
+  type: 'test'
+  ...
+# Subtest: one explicit NFT creates exactly splitCoins and planting with wallet gas and expiration unset
+ok 26 - one explicit NFT creates exactly splitCoins and planting with wallet gas and expiration unset
+  ---
+  duration_ms: 143.574384
+  type: 'test'
+  ...
+# Subtest: extra commands, app-selected gas, changed NFT and changed packet hash are rejected before handoff
+ok 27 - extra commands, app-selected gas, changed NFT and changed packet hash are rejected before handoff
+  ---
+  duration_ms: 436.996202
+  type: 'test'
+  ...
+# Subtest: incomplete, duplicate, foreign-type or foreign-owner inventories fail closed
+ok 28 - incomplete, duplicate, foreign-type or foreign-owner inventories fail closed
+  ---
+  duration_ms: 777.273381
+  type: 'test'
+  ...
+# Subtest: stale observations, altered immutable start proof and nonempty financial state cannot authorize planting
+ok 29 - stale observations, altered immutable start proof and nonempty financial state cannot authorize planting
+  ---
+  duration_ms: 504.039055
+  type: 'test'
+  ...
+# Subtest: first-Seed discovery blocks duplicate planting and supplies only a receipt candidate
+ok 30 - first-Seed discovery blocks duplicate planting and supplies only a receipt candidate
+  ---
+  duration_ms: 199.743071
+  type: 'test'
+  ...
+# Subtest: the empty first-season view closes exactly at cutoff
+ok 31 - the empty first-season view closes exactly at cutoff
+  ---
+  duration_ms: 208.447318
+  type: 'test'
+  ...
+# Subtest: NFT pagination pins the initial checkpoint and rejects duplicate, missing and repeating pages
+ok 32 - NFT pagination pins the initial checkpoint and rejects duplicate, missing and repeating pages
+  ---
+  duration_ms: 111.809483
+  type: 'test'
+  ...
+# Subtest: captured checked simulation proves gross price, automatic pool routing, initial care and first water time
+ok 33 - captured checked simulation proves gross price, automatic pool routing, initial care and first water time
+  ---
+  duration_ms: 214.530008
+  type: 'test'
+  ...
+# Subtest: simulation refuses changed live NFT references and changed transaction proposal
+ok 34 - simulation refuses changed live NFT references and changed transaction proposal
+  ---
+  duration_ms: 591.699264
+  type: 'test'
+  ...
+# Subtest: simulation rejects wrong sender, extra command and final transaction-kind mutation
+ok 35 - simulation rejects wrong sender, extra command and final transaction-kind mutation
+  ---
+  duration_ms: 400.620171
+  type: 'test'
+  ...
+# Subtest: virtual address-balance gas reservations require owner, mainnet, epoch, magic and positive amount
+ok 36 - virtual address-balance gas reservations require owner, mainnet, epoch, magic and positive amount
+  ---
+  duration_ms: 958.650117
+  type: 'test'
+  ...
+# Subtest: a version-zero reservation cannot appear as an ordinary coin change or second reservation
+ok 37 - a version-zero reservation cannot appear as an ordinary coin change or second reservation
+  ---
+  duration_ms: 427.052434
+  type: 'test'
+  ...
+# Subtest: ordinary gas inputs must match exact references, own SUI type and account
+ok 38 - ordinary gas inputs must match exact references, own SUI type and account
+  ---
+  duration_ms: 607.918261
+  type: 'test'
+  ...
+# Subtest: Seed, NFT and Registry output fields are checked rather than trusting the event
+ok 39 - Seed, NFT and Registry output fields are checked rather than trusting the event
+  ---
+  duration_ms: 804.597474
+  type: 'test'
+  ...
+# Subtest: table parents, keys, values and deterministic dynamic-field addresses must all match
+ok 40 - table parents, keys, values and deterministic dynamic-field addresses must all match
+  ---
+  duration_ms: 629.400816
+  type: 'test'
+  ...
+# Subtest: object-change identity and Lamport output versions cannot diverge
+ok 41 - object-change identity and Lamport output versions cannot diverge
+  ---
+  duration_ms: 603.192986
+  type: 'test'
+  ...
+# Subtest: gross paid amount and both payment destinations are checked including same-address developer return
+ok 42 - gross paid amount and both payment destinations are checked including same-address developer return
+  ---
+  duration_ms: 769.83723
+  type: 'test'
+  ...
+# Subtest: extra events, incomplete effects and execution exactly at cutoff are rejected
+ok 43 - extra events, incomplete effects and execution exactly at cutoff are rejected
+  ---
+  duration_ms: 587.106284
+  type: 'test'
+  ...
+# Subtest: synthetic actual receipt recomputes digest and verifies all effects without treating prediction as confirmation
+ok 44 - synthetic actual receipt recomputes digest and verifies all effects without treating prediction as confirmation
+  ---
+  duration_ms: 155.556819
+  type: 'test'
+  ...
+# Subtest: confirmation rejects wrong digest, modified bytes, simulated labels and ambiguous wrappers
+ok 45 - confirmation rejects wrong digest, modified bytes, simulated labels and ambiguous wrappers
+  ---
+  duration_ms: 446.867837
+  type: 'test'
+  ...
+# Subtest: same-version live state must contain the actual created Seed and exact contents
+ok 46 - same-version live state must contain the actual created Seed and exact contents
+  ---
+  duration_ms: 438.625242
+  type: 'test'
+  ...
+# Subtest: historical first-plant recovery survives later legitimate care without treating its candidate as a second plant
+ok 47 - historical first-plant recovery survives later legitimate care without treating its candidate as a second plant
+  ---
+  duration_ms: 190.857872
+  type: 'test'
+  ...
+# Subtest: historical receipt survives later abandonment with nonempty history while first-plant replay stays blocked
+ok 48 - historical receipt survives later abandonment with nonempty history while first-plant replay stays blocked
+  ---
+  duration_ms: 186.28752
+  type: 'test'
+  ...
+# Subtest: historical receipt remains recoverable after cutoff with fresh observation and unchanged real start proof
+ok 49 - historical receipt remains recoverable after cutoff with fresh observation and unchanged real start proof
+  ---
+  duration_ms: 143.637554
+  type: 'test'
+  ...
+# Subtest: queries retain checked simulation, fixed owner/type and the observed server field/fragment budget
+ok 50 - queries retain checked simulation, fixed owner/type and the observed server field/fragment budget
+  ---
+  duration_ms: 7.963053
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16913.998433

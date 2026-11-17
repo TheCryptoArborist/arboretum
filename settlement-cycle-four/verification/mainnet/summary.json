@@ -1,0 +1,79 @@
+{
+  "verifiedAt": "2026-11-17T19:56:10.326Z",
+  "checkpoint": {
+    "sequenceNumber": 346319422,
+    "timestamp": "2026-11-17T19:56:08.987Z",
+    "digest": "6pjnCb15MD2CGPdwRYXhtoXaaUzJt9KhXEttoZj25dVk"
+  },
+  "status": "rollover-ready",
+  "claim": {
+    "status": "confirmed",
+    "action": "claim",
+    "digest": "7MLWVofmU1wnoNjqVwYEm3WxRpjMF8AddqojX48YYFKL",
+    "checkpoint": {
+      "sequenceNumber": 345941355,
+      "timestamp": "2026-11-16T18:32:17.540Z"
+    },
+    "seasonId": "3",
+    "seedId": "0x949d45fc9e2861ec3c75d46ff2e6b277c9692470ab5b929fc76d6dffe5b9ed1b",
+    "rewardMist": "7000000",
+    "eligibleGrowthPoints": "10",
+    "rewardProcessed": true,
+    "claimedAtMs": "1794853937372",
+    "gasEstimateMist": "1575051",
+    "gasEstimateSui": "0.001575051",
+    "netReceiveMist": "5424949",
+    "netReceiveSui": "0.005424949",
+    "virtualGasReservations": 0,
+    "gasAboveReviewCeiling": false
+  },
+  "registry": {
+    "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "version": "1",
+    "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "current_season_id": "3",
+    "season_start_ms": "1792011931137",
+    "reward_pool": "0",
+    "treasury": "0",
+    "total_seeds": "1",
+    "total_growth_points": "10",
+    "eligible_growth_points": "10",
+    "settlement": {
+      "season_id": "3",
+      "season_end_ms": "1794603931137",
+      "claim_deadline_ms": "1795208731137",
+      "pool_mist": "7000000",
+      "eligible_growth_points": "10",
+      "paid_mist": "7000000",
+      "processed_growth_points": "10",
+      "processed_seeds": "1"
+    },
+    "paused": false,
+    "seeds_by_owner": {
+      "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+      "size": "1"
+    },
+    "referrers": {
+      "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+      "size": "0"
+    },
+    "referral_earnings": {
+      "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+      "size": "0"
+    },
+    "player_growth": {
+      "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+      "size": "1"
+    },
+    "player_growth_season": {
+      "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+      "size": "1"
+    },
+    "planted_saplings": {
+      "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+      "size": "1"
+    }
+  },
+  "signatures": 0,
+  "submittedTransactions": 0
+}

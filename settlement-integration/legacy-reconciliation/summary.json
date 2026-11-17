@@ -1,0 +1,1285 @@
+{
+  "status": "LEGACY_SEASON_3_RECONCILED_FOR_REVIEW",
+  "network": "mainnet",
+  "chainIdentifier": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+  "registryId": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+  "seasonId": 3,
+  "anchor": {
+    "sequenceNumber": 335949688,
+    "digest": "45VhpiT1QrSSSDdH5MdyBqyyzmqL2FHxkhF8t6sj4ugE",
+    "timestamp": "2026-10-20T01:32:27.619Z"
+  },
+  "cutoff": {
+    "cutoffMs": 1790812806247,
+    "atOrBefore": {
+      "sequenceNumber": 328848276,
+      "digest": "CWdYgJ2XCPZxuPK8BGxVGui8eG8RBSahKzY3spN4dMND",
+      "timestamp": "2026-10-01T00:00:06.086Z"
+    },
+    "immediatelyAfter": {
+      "sequenceNumber": 328848277,
+      "digest": "EgiX354FTTR6NvetGpweAf3hMHxiWMLJGiRcofmroJ3Q",
+      "timestamp": "2026-10-01T00:00:06.299Z"
+    },
+    "lookupCount": 28
+  },
+  "registryVersion": 995549548,
+  "registryDigest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+  "rewardPoolMist": "209720000",
+  "recordedGrowthPoints": "2498",
+  "seedCount": 20,
+  "ownerCount": 7,
+  "confirmedLegacySeason3PoolPayoutMist": "0",
+  "approvedCompensationMist": null,
+  "registryMutationChainComplete": true,
+  "registryMutationCount": 62,
+  "registryTransactionsAfterCutoff": 0,
+  "grossPoolIncreasesMist": "209720000",
+  "grossPoolDecreasesMist": "0",
+  "allSeason3SeedsUnchangedSinceCutoff": true,
+  "sampleSeed": {
+    "objectId": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+    "version": 995549547,
+    "digest": "3R8AifzywfyG1f1kxWm6K3woT7FqPuCRhWkSg49KhWWE",
+    "growthPoints": "188",
+    "storedState": 0,
+    "reported188GPLossWasSimulationOnly": true
+  },
+  "draftPolicyScenario": {
+    "status": "UNAPPROVED_ILLUSTRATION_NOT_AN_ENTITLEMENT_OR_PAYMENT_INSTRUCTION",
+    "policySource": "contract-payout/legacy-transition.md and contract-payout settlement candidate #15",
+    "cutoffEligibleGP": "1848",
+    "excludedGP": "650",
+    "eligibleSeeds": 10,
+    "excludedSeeds": 10,
+    "allocationsTotalMist": "209719994",
+    "roundingResidueMist": "6",
+    "legacyCodePaysThisScenario": false
+  },
+  "owners": {
+    "0x0de00c55730739622b2f7acc92ca571d3c344b219e7c0d63a3660d58774c83f1": {
+      "seedCount": 1,
+      "growthPoints": 22,
+      "draftEligibleGP": 0,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 0
+    },
+    "0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6": {
+      "seedCount": 2,
+      "growthPoints": 344,
+      "draftEligibleGP": 344,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 39038786
+    },
+    "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4": {
+      "seedCount": 8,
+      "growthPoints": 1504,
+      "draftEligibleGP": 1504,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 170681208
+    },
+    "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016": {
+      "seedCount": 3,
+      "growthPoints": 464,
+      "draftEligibleGP": 0,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 0
+    },
+    "0x956624f2fbbdf16bb5e334b550efd975ff7677e34bbd4e18cb6f485756af6c08": {
+      "seedCount": 2,
+      "growthPoints": 44,
+      "draftEligibleGP": 0,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 0
+    },
+    "0xc0242d8a62364aec26a2b533dc80995ba6cd80df1a2ae9cba19737349cdf98fe": {
+      "seedCount": 2,
+      "growthPoints": 20,
+      "draftEligibleGP": 0,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 0
+    },
+    "0xd27e48a5973c33e70504393e97fe1a935780c8f780dfb8dcd1b12f7a0a8a6946": {
+      "seedCount": 2,
+      "growthPoints": 100,
+      "draftEligibleGP": 0,
+      "confirmedLegacyPayoutMist": "0",
+      "unapprovedScenarioMist": 0
+    }
+  },
+  "seeds": [
+    {
+      "seedId": "0x0055f786810a6094e0d4231968d4b546f3c5e3177d2e71253ef38f8e6ea2dffc",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "3R8AifzywfyG1f1kxWm6K3woT7FqPuCRhWkSg49KhWWE",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0x01a2d0f6dce66b166640f2a9702259f3e4db1eee498c4b5f11018a324c5e2fb4",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "9f3hpEd176zvinpWqBYz3Pr2xQ2Lot4hXZ1KgzvfA7s3",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0x30d15930647f31b2922b093ca88bb0a2b6ce23fb3356c14bb094eb669c945ff5",
+      "owner": "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016",
+      "seasonId": 3,
+      "versionAtCutoff": "995549542",
+      "digestAtCutoff": "9gfPatz7ry8GMv7t4y264UvhfLNSVA6SUJqAxoASfFeJ",
+      "creationTransaction": "4zP3b3jG7gAgnao2i9i8Hz2A9vheBGvT5pXkQ7gL2bjU",
+      "growthPointsAtCutoff": "126",
+      "rawStoredState": 0,
+      "lastWateredMs": "1789490291346",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 15,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0x40555d5215a01b4fc1b2bb197b5e8a2fe1bef9858a84d1e91868b7b3773193cd",
+      "owner": "0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6",
+      "seasonId": 3,
+      "versionAtCutoff": "995549548",
+      "digestAtCutoff": "AyRHRK8gxegoJjNmjnesrobTCFg5SeTcXBtNRAJ2Dv5v",
+      "creationTransaction": "6fpLeyxt8DPgxPE9BZtZXUybdbs5en9i6Zuh4P6YWArk",
+      "growthPointsAtCutoff": "172",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790652464985",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 1,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "172",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "19519393"
+    },
+    {
+      "seedId": "0x40f18026283a227359d4db98b361330743b06284ab344573f59d26aaf9acb7e1",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "Ajg37HWvYEfdY3XbAwuUA7QSKeqR7Zvg4TjhhiuwpgvJ",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0x442f07bde8422ccbe4ba65153b1cb5456f9e48535f8a8a88e73fb70405425d72",
+      "owner": "0x956624f2fbbdf16bb5e334b550efd975ff7677e34bbd4e18cb6f485756af6c08",
+      "seasonId": 3,
+      "versionAtCutoff": "993988265",
+      "digestAtCutoff": "8FUygYT1WBa8UZ7Ywuxs7LPiRcUYSpEVCjzajWmkrFcQ",
+      "creationTransaction": "HxA5fqWZfowR5dLbbPDR6ZKY2DrZc4xTcjBJX7WvAdZ6",
+      "growthPointsAtCutoff": "22",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788883396948",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 22,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0x4b42bfedff5a75a1e751cb2a7137c5dcd5ec20eff1768983bf6e3392141fc4cd",
+      "owner": "0x0de00c55730739622b2f7acc92ca571d3c344b219e7c0d63a3660d58774c83f1",
+      "seasonId": 3,
+      "versionAtCutoff": "993988264",
+      "digestAtCutoff": "BZYEneAsh1FxtptdpbjhHAxLuNPX9mEQJMpy1XFGst39",
+      "creationTransaction": "atusWZuYnR25PioZDuQU4oosqRnnYUFdWhiA1erABs5",
+      "growthPointsAtCutoff": "22",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788883367194",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 22,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0x5c7cad3a5c34059c0234d9be558af1c2fc36041c928d7ff0e4463b422a07d388",
+      "owner": "0xc0242d8a62364aec26a2b533dc80995ba6cd80df1a2ae9cba19737349cdf98fe",
+      "seasonId": 3,
+      "versionAtCutoff": "986499491",
+      "digestAtCutoff": "4HihnjaXcVsxSJBAUgUDRMvh1B89UhCkq9Fh7jkjwvro",
+      "creationTransaction": "BBcHzgKctiQrQTNct59uTSjJqxML6fzRbqkUCbGT7UMe",
+      "growthPointsAtCutoff": "10",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788473448723",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 27,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0x5f17c781e0cbc5b06ad8844fb07528908207df4e9e760256f97f15b9b9b1266b",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "55DZWizpbFsqDP4QwAYb1gPagDCJH7hxfM4CdRhZtWu2",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0x7e67e3839cace2178e41b2a66d9f6fdd4736d36fc125b7fa60551011e0d3c728",
+      "owner": "0xd27e48a5973c33e70504393e97fe1a935780c8f780dfb8dcd1b12f7a0a8a6946",
+      "seasonId": 3,
+      "versionAtCutoff": "990522282",
+      "digestAtCutoff": "5ynfTEDGptWURMpmVRBQCPCipUhrUd75UhpW1Wpx4JzX",
+      "creationTransaction": "B7Fs7AstMyRXKjApQnQxqDmgkTmQubwpsawPZMieoYiF",
+      "growthPointsAtCutoff": "60",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788727102499",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 24,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xb2af7294191688db6fb55238541ef60395240148ae224d9a101b49f60bc123e6",
+      "owner": "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016",
+      "seasonId": 3,
+      "versionAtCutoff": "995549542",
+      "digestAtCutoff": "2e8tMsWTy4mQSozgePNhp7o8YgXJD9ZTPPfjyBRYhnPa",
+      "creationTransaction": "4zP3b3jG7gAgnao2i9i8Hz2A9vheBGvT5pXkQ7gL2bjU",
+      "growthPointsAtCutoff": "238",
+      "rawStoredState": 0,
+      "lastWateredMs": "1789490291346",
+      "protectionExpiryMs": "1789477054966",
+      "completeDryDaysAtCutoff": 15,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xb4b5ec4b9fe75a775f8d69fa8f2d69f8b2157c19966a7fc85bb74a5290c430c1",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "CGHmLqTXC7tzN67WajmfjJJxYDDQMdgHfFoy1GyvkgJf",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0xba8a6c4bbf0dc06ba44f60b96104643ffe24930192d308fd88e3589be266d4aa",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "9ngpVAayAbJRiWPiZeefrigieatEbiUVfaJr4itgEdV2",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0xc6f2a6c6db626aeae0490e831be6437c39c71c78db55bbb85d26d077cb948797",
+      "owner": "0xd27e48a5973c33e70504393e97fe1a935780c8f780dfb8dcd1b12f7a0a8a6946",
+      "seasonId": 3,
+      "versionAtCutoff": "990522282",
+      "digestAtCutoff": "EEyCmVEmLpAQpuxARUiLPhX8mzxWSzTpaJ5GkHKoiuj1",
+      "creationTransaction": "B7Fs7AstMyRXKjApQnQxqDmgkTmQubwpsawPZMieoYiF",
+      "growthPointsAtCutoff": "40",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788727102499",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 24,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xcacaad51dad86792582b523fb03d541c1ad4d9997befc8c179fa20d393fc16a2",
+      "owner": "0x8a5270527fe5ea46e883934758636c51a13636c87066f597bfbe50b527f16016",
+      "seasonId": 3,
+      "versionAtCutoff": "995549542",
+      "digestAtCutoff": "CE51JuWvmaxQ9oRs23tHuuUhBxEdU4FqCWr49CAU7riC",
+      "creationTransaction": "4zP3b3jG7gAgnao2i9i8Hz2A9vheBGvT5pXkQ7gL2bjU",
+      "growthPointsAtCutoff": "100",
+      "rawStoredState": 0,
+      "lastWateredMs": "1789490291346",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 15,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xdcc5811fd2698f09fda09c9943c5941722af9917dcc70669690ee811698cb869",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "JUPfKLrqGUB6yY15AnnBNevdhtnJeYXqpG8f8wiwpCz",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0xef0b828e79fd15245f4cc8e25c2754294cba374147823d9a90014b7d7cb9a1f9",
+      "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "seasonId": 3,
+      "versionAtCutoff": "995549547",
+      "digestAtCutoff": "5yYfZ9u5AsxTjwhMMc5GxDxrwd8bjpp8SdzNtM5ehT5S",
+      "creationTransaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "growthPointsAtCutoff": "188",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790548022735",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 3,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "188",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "21335151"
+    },
+    {
+      "seedId": "0xf0843b32a8af8117795dda8d69378b84f65e4423f6b96fab4fe31654a5252afc",
+      "owner": "0x956624f2fbbdf16bb5e334b550efd975ff7677e34bbd4e18cb6f485756af6c08",
+      "seasonId": 3,
+      "versionAtCutoff": "993988265",
+      "digestAtCutoff": "E74fhoxfoo9PcMsxgrgJoRM9M3qkH6XuYVCRpKTyPpf3",
+      "creationTransaction": "HxA5fqWZfowR5dLbbPDR6ZKY2DrZc4xTcjBJX7WvAdZ6",
+      "growthPointsAtCutoff": "22",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788883396948",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 22,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xf11953b658237df7c1651cbca599023a21670b7f22bfc7febf6611dd195542d3",
+      "owner": "0xc0242d8a62364aec26a2b533dc80995ba6cd80df1a2ae9cba19737349cdf98fe",
+      "seasonId": 3,
+      "versionAtCutoff": "986499491",
+      "digestAtCutoff": "CxB2gY1R9CRjBpwBxyqgP9yQai6AuYkGpqeVA3dPEnbe",
+      "creationTransaction": "BBcHzgKctiQrQTNct59uTSjJqxML6fzRbqkUCbGT7UMe",
+      "growthPointsAtCutoff": "10",
+      "rawStoredState": 0,
+      "lastWateredMs": "1788473448723",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 27,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "0",
+      "draftPolicyReason": "ten_complete_dry_days_at_cutoff",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "0"
+    },
+    {
+      "seedId": "0xf515d865a8880b741b7e06add0be08f2620cc1f1f5b768ae1e5097c7adc4c028",
+      "owner": "0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6",
+      "seasonId": 3,
+      "versionAtCutoff": "995549548",
+      "digestAtCutoff": "e5vRsrvE2818W8dwCvxhemaLF8AbLTTwYJ7g6QTBs1k",
+      "creationTransaction": "6fpLeyxt8DPgxPE9BZtZXUybdbs5en9i6Zuh4P6YWArk",
+      "growthPointsAtCutoff": "172",
+      "rawStoredState": 0,
+      "lastWateredMs": "1790652464985",
+      "protectionExpiryMs": "0",
+      "completeDryDaysAtCutoff": 1,
+      "protectedAtCutoff": false,
+      "draftPolicyEligibleGrowthPoints": "172",
+      "draftPolicyReason": "eligible_under_draft_cutoff_rule",
+      "confirmedLegacyPayoutMist": "0",
+      "approvedCompensationMist": null,
+      "unchangedSinceCutoff": true,
+      "unapprovedScenarioAllocationMist": "19519393"
+    }
+  ],
+  "mutationChain": [
+    {
+      "transaction": "5CVNRZN9AP6c6x8FP4BTTpaFeL68KBFL31LhDx6tE7L2",
+      "checkpoint": {
+        "sequenceNumber": 318013167,
+        "timestamp": "2026-09-02T21:13:09.893Z"
+      },
+      "inputVersion": 986499446,
+      "inputDigest": "7qit8xYrtyd5EzCqZkyvHq5jtk3YkmG1aG4UEEMPkNDx",
+      "outputVersion": 986499447,
+      "outputDigest": "4uGrfdcQnR7RsTXQ1UTeT6XfojrjfVhcB31i2TSY2Z5A",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+      "checkpoint": {
+        "sequenceNumber": 318014683,
+        "timestamp": "2026-09-02T21:19:01.558Z"
+      },
+      "inputVersion": 986499447,
+      "inputDigest": "4uGrfdcQnR7RsTXQ1UTeT6XfojrjfVhcB31i2TSY2Z5A",
+      "outputVersion": 986499448,
+      "outputDigest": "6hH8piLRyRE56oqYGU8SDef4mV6RY2YhfShW6FQCtSeS",
+      "rewardPoolDeltaMist": "56000000"
+    },
+    {
+      "transaction": "6fpLeyxt8DPgxPE9BZtZXUybdbs5en9i6Zuh4P6YWArk",
+      "checkpoint": {
+        "sequenceNumber": 318016176,
+        "timestamp": "2026-09-02T21:24:42.637Z"
+      },
+      "inputVersion": 986499448,
+      "inputDigest": "6hH8piLRyRE56oqYGU8SDef4mV6RY2YhfShW6FQCtSeS",
+      "outputVersion": 986499449,
+      "outputDigest": "9EM6a5V9GtmP8yESVDoQVKzAX9WwJX1YvsmcV2p3Q4s1",
+      "rewardPoolDeltaMist": "14000000"
+    },
+    {
+      "transaction": "4NNPLDcXyg27hw11xuiLahoib8YGGiU7qJx2VKEjckYE",
+      "checkpoint": {
+        "sequenceNumber": 318016379,
+        "timestamp": "2026-09-02T21:25:27.884Z"
+      },
+      "inputVersion": 986499449,
+      "inputDigest": "9EM6a5V9GtmP8yESVDoQVKzAX9WwJX1YvsmcV2p3Q4s1",
+      "outputVersion": 986499450,
+      "outputDigest": "HB3QphbozGPDfiw7oiqzXe2BL6QB4xw3KpZ5Y7z3kw4W",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "Ajh2dUj3k7eM67gkdxQVGdTQHEnmqKzJVmLBoojGeATV",
+      "checkpoint": {
+        "sequenceNumber": 318016515,
+        "timestamp": "2026-09-02T21:25:59.426Z"
+      },
+      "inputVersion": 986499450,
+      "inputDigest": "HB3QphbozGPDfiw7oiqzXe2BL6QB4xw3KpZ5Y7z3kw4W",
+      "outputVersion": 986499451,
+      "outputDigest": "HwkZjjePACToLTYq2rNf3Qz8M33743cHWnnubJ1nt3u1",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "4zP3b3jG7gAgnao2i9i8Hz2A9vheBGvT5pXkQ7gL2bjU",
+      "checkpoint": {
+        "sequenceNumber": 318021409,
+        "timestamp": "2026-09-02T21:43:56.590Z"
+      },
+      "inputVersion": 986499451,
+      "inputDigest": "HwkZjjePACToLTYq2rNf3Qz8M33743cHWnnubJ1nt3u1",
+      "outputVersion": 986499452,
+      "outputDigest": "J4N4Wsd6Ltuz9hvPTTwe3NuJMjtdcFs9L8bXrHZpo9Ft",
+      "rewardPoolDeltaMist": "21000000"
+    },
+    {
+      "transaction": "Dq7e9tnZ3X5HkXNPP8joGGRZkNBSjYitH9sKHaDiQLLz",
+      "checkpoint": {
+        "sequenceNumber": 318021583,
+        "timestamp": "2026-09-02T21:44:35.318Z"
+      },
+      "inputVersion": 986499452,
+      "inputDigest": "J4N4Wsd6Ltuz9hvPTTwe3NuJMjtdcFs9L8bXrHZpo9Ft",
+      "outputVersion": 986499453,
+      "outputDigest": "5U4fUmwhkJAckm6ozrNYJeXm5M3hxf7THjF6psVuUoYM",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "7yhcCBYKAaaE63tTSU9h4oPeU9Dr5v5xTVciV8d6Sap5",
+      "checkpoint": {
+        "sequenceNumber": 318021708,
+        "timestamp": "2026-09-02T21:45:03.045Z"
+      },
+      "inputVersion": 986499453,
+      "inputDigest": "5U4fUmwhkJAckm6ozrNYJeXm5M3hxf7THjF6psVuUoYM",
+      "outputVersion": 986499454,
+      "outputDigest": "3hxjozdYcYMtSnuRUarYrTKWjjVTmQtwtxLgbSoiRLyR",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "tUwhX2xPbqbprJEAFLXDxt8aNzYzGjnwa25jvDJVNjL",
+      "checkpoint": {
+        "sequenceNumber": 318022062,
+        "timestamp": "2026-09-02T21:46:21.593Z"
+      },
+      "inputVersion": 986499454,
+      "inputDigest": "3hxjozdYcYMtSnuRUarYrTKWjjVTmQtwtxLgbSoiRLyR",
+      "outputVersion": 986499455,
+      "outputDigest": "HDoi6PfUQJq2Fd3gxvS9QcZ1Z8n2y1kffzDVVpm1Xpbu",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "EFXRuk9tuSGWmquSBfnHitvH2F5x9nKJeGEwxavSaohU",
+      "checkpoint": {
+        "sequenceNumber": 318278890,
+        "timestamp": "2026-09-03T13:46:07.353Z"
+      },
+      "inputVersion": 986499455,
+      "inputDigest": "HDoi6PfUQJq2Fd3gxvS9QcZ1Z8n2y1kffzDVVpm1Xpbu",
+      "outputVersion": 986499456,
+      "outputDigest": "FjKrsLegQHxCEncGoN9wLaxjufPGq3B3iT3q3px7SYW2",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "7kkZ48b1M99Vvzh5bZKAhgQoe9t1gCJYRsDjTzbqrayu",
+      "checkpoint": {
+        "sequenceNumber": 318279047,
+        "timestamp": "2026-09-03T13:46:42.435Z"
+      },
+      "inputVersion": 986499456,
+      "inputDigest": "FjKrsLegQHxCEncGoN9wLaxjufPGq3B3iT3q3px7SYW2",
+      "outputVersion": 986499457,
+      "outputDigest": "8E3W5tYNB8z6P8GsbGG6PuwEyGZV6H8nvHRCjYXEqTfU",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "B7Fs7AstMyRXKjApQnQxqDmgkTmQubwpsawPZMieoYiF",
+      "checkpoint": {
+        "sequenceNumber": 318354959,
+        "timestamp": "2026-09-03T18:28:14.956Z"
+      },
+      "inputVersion": 986499457,
+      "inputDigest": "8E3W5tYNB8z6P8GsbGG6PuwEyGZV6H8nvHRCjYXEqTfU",
+      "outputVersion": 986499470,
+      "outputDigest": "2ob3XiS9Cf7Kr7GoUWevCViys2rw17aMunq2PTx7J655",
+      "rewardPoolDeltaMist": "14000000"
+    },
+    {
+      "transaction": "3CERzXAFvvFoFA2th5h8DZ9HoUNZ1wep3AaqKuNjjzz6",
+      "checkpoint": {
+        "sequenceNumber": 318370895,
+        "timestamp": "2026-09-03T19:27:07.784Z"
+      },
+      "inputVersion": 986499470,
+      "inputDigest": "2ob3XiS9Cf7Kr7GoUWevCViys2rw17aMunq2PTx7J655",
+      "outputVersion": 986499471,
+      "outputDigest": "77oMhQWqxVNuVxu5R8k5oNyUoWV3pm9p75YU1znzEFzj",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "BBcHzgKctiQrQTNct59uTSjJqxML6fzRbqkUCbGT7UMe",
+      "checkpoint": {
+        "sequenceNumber": 318415344,
+        "timestamp": "2026-09-03T22:10:48.867Z"
+      },
+      "inputVersion": 986499471,
+      "inputDigest": "77oMhQWqxVNuVxu5R8k5oNyUoWV3pm9p75YU1znzEFzj",
+      "outputVersion": 986499491,
+      "outputDigest": "5Qjiw57qCqbJn8zXsiTg9ebhSCsKjj9Hbf5z14QJU1qb",
+      "rewardPoolDeltaMist": "14000000"
+    },
+    {
+      "transaction": "9T6fHM9voUH6rcvE49Hm7sDSx6vyCyiLaNf5bqYYTBZY",
+      "checkpoint": {
+        "sequenceNumber": 318675387,
+        "timestamp": "2026-09-04T14:23:20.650Z"
+      },
+      "inputVersion": 986499491,
+      "inputDigest": "5Qjiw57qCqbJn8zXsiTg9ebhSCsKjj9Hbf5z14QJU1qb",
+      "outputVersion": 986499492,
+      "outputDigest": "6Rk5funV88m3agmSnYr3WQ4dAngJ7LEr96R514trrX4b",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "Ctb3YmPSbh6MBofVviaZrfCgxDm4VwA4ybcVDUhMLzRA",
+      "checkpoint": {
+        "sequenceNumber": 318675573,
+        "timestamp": "2026-09-04T14:24:01.471Z"
+      },
+      "inputVersion": 986499492,
+      "inputDigest": "6Rk5funV88m3agmSnYr3WQ4dAngJ7LEr96R514trrX4b",
+      "outputVersion": 989191904,
+      "outputDigest": "CGyHYMgMfgv4JRzPWNaAsAvzpmaiLXZwKngCVMAAUgNY",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "HxA5fqWZfowR5dLbbPDR6ZKY2DrZc4xTcjBJX7WvAdZ6",
+      "checkpoint": {
+        "sequenceNumber": 318675721,
+        "timestamp": "2026-09-04T14:24:34.556Z"
+      },
+      "inputVersion": 989191904,
+      "inputDigest": "CGyHYMgMfgv4JRzPWNaAsAvzpmaiLXZwKngCVMAAUgNY",
+      "outputVersion": 989191905,
+      "outputDigest": "4TneBC4GGncjBBVPEET4yYWRixK8AzmNNf8FRcKn9h67",
+      "rewardPoolDeltaMist": "14000000"
+    },
+    {
+      "transaction": "BxD361phidhiwDwePVckWYQVi2mYgMyZFUxU2HBtJsbH",
+      "checkpoint": {
+        "sequenceNumber": 318848291,
+        "timestamp": "2026-09-05T00:56:42.698Z"
+      },
+      "inputVersion": 989191905,
+      "inputDigest": "4TneBC4GGncjBBVPEET4yYWRixK8AzmNNf8FRcKn9h67",
+      "outputVersion": 989191906,
+      "outputDigest": "3sqD2tAWjBQxGYmmLYWjcpZhF3nKHsefN1tXehfwMT3w",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "6cqD71EhqF9SYUTn63AU3kKabSRVAhoDcQDoZm4MUebG",
+      "checkpoint": {
+        "sequenceNumber": 318848678,
+        "timestamp": "2026-09-05T00:58:09.264Z"
+      },
+      "inputVersion": 989191906,
+      "inputDigest": "3sqD2tAWjBQxGYmmLYWjcpZhF3nKHsefN1tXehfwMT3w",
+      "outputVersion": 989191907,
+      "outputDigest": "Dnpv2avp9tSZMFaDFJqsgcWLqy9aJ3X31r8ynJTx56mC",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "3KTTKf5BcwLnMHC8vCHdL5gkZer7cLCXD4XXkgbQeY9Y",
+      "checkpoint": {
+        "sequenceNumber": 319060124,
+        "timestamp": "2026-09-05T13:55:13.653Z"
+      },
+      "inputVersion": 989191907,
+      "inputDigest": "Dnpv2avp9tSZMFaDFJqsgcWLqy9aJ3X31r8ynJTx56mC",
+      "outputVersion": 989191908,
+      "outputDigest": "9Bi15CAnBfehvVVfAoK7XQKAzSxTSkwXtv8wr1m2vDA9",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "SEZgAUJAh77k8VTkfvNjpvP6sFDVjmr7LFH8nV4z98x",
+      "checkpoint": {
+        "sequenceNumber": 319060248,
+        "timestamp": "2026-09-05T13:55:41.695Z"
+      },
+      "inputVersion": 989191908,
+      "inputDigest": "9Bi15CAnBfehvVVfAoK7XQKAzSxTSkwXtv8wr1m2vDA9",
+      "outputVersion": 989191909,
+      "outputDigest": "AvoZxULn8NhG2XmLMFmkCHQqPytWaCirfCeH5jPmHPiB",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "BufPciL5xx25oE9Uy7zZ6jk7MCGXC5zaFmjD1ih2sHdE",
+      "checkpoint": {
+        "sequenceNumber": 319060403,
+        "timestamp": "2026-09-05T13:56:17.801Z"
+      },
+      "inputVersion": 989191909,
+      "inputDigest": "AvoZxULn8NhG2XmLMFmkCHQqPytWaCirfCeH5jPmHPiB",
+      "outputVersion": 989191910,
+      "outputDigest": "GoGzPFC32bk5D1FMx6cPEZUCg38Uxkb9mWoNfhcNJPvv",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "JCnQeQiMVwmfnSrNwZVzegPLqpE1VcMRzx1WJykgbUDG",
+      "checkpoint": {
+        "sequenceNumber": 319099900,
+        "timestamp": "2026-09-05T16:24:38.307Z"
+      },
+      "inputVersion": 989191910,
+      "inputDigest": "GoGzPFC32bk5D1FMx6cPEZUCg38Uxkb9mWoNfhcNJPvv",
+      "outputVersion": 990522275,
+      "outputDigest": "77vpoN37Kop4jk8PVYfHs3oYHb3aePfTFCLXLwxoeEam",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "4gufecuhFhvfwhrdAWGoMweUg3wv4nDECYVsC1yjyZc1",
+      "checkpoint": {
+        "sequenceNumber": 319100014,
+        "timestamp": "2026-09-05T16:25:03.413Z"
+      },
+      "inputVersion": 990522275,
+      "inputDigest": "77vpoN37Kop4jk8PVYfHs3oYHb3aePfTFCLXLwxoeEam",
+      "outputVersion": 990522276,
+      "outputDigest": "6N9w2FirjzzD1Eck4CumNmNZSPLSvPC9XXXperyPBWuP",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "atusWZuYnR25PioZDuQU4oosqRnnYUFdWhiA1erABs5",
+      "checkpoint": {
+        "sequenceNumber": 319184548,
+        "timestamp": "2026-09-05T21:35:55.101Z"
+      },
+      "inputVersion": 990522276,
+      "inputDigest": "6N9w2FirjzzD1Eck4CumNmNZSPLSvPC9XXXperyPBWuP",
+      "outputVersion": 990522279,
+      "outputDigest": "J7X9vSbramdn7FVvkZj3HVwiP19GNv4qyou2QcYSCXYE",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "EGHhAud34BkijUEVcpZ7MqvHGesfZuL7t4Q1GXVWHaYL",
+      "checkpoint": {
+        "sequenceNumber": 319198439,
+        "timestamp": "2026-09-05T22:26:49.749Z"
+      },
+      "inputVersion": 990522279,
+      "inputDigest": "J7X9vSbramdn7FVvkZj3HVwiP19GNv4qyou2QcYSCXYE",
+      "outputVersion": 990522280,
+      "outputDigest": "7ZcXweV2kvE12Xuja27naP2FRmrLyDDEh4WcdSNR3xHu",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "8mmBCebPLzaTwXn6KFHc8Fid9WNAK2W8EZkaJVFGnfLN",
+      "checkpoint": {
+        "sequenceNumber": 319454996,
+        "timestamp": "2026-09-06T14:19:56.588Z"
+      },
+      "inputVersion": 990522280,
+      "inputDigest": "7ZcXweV2kvE12Xuja27naP2FRmrLyDDEh4WcdSNR3xHu",
+      "outputVersion": 990522281,
+      "outputDigest": "5CbbdAuY2W7zrtrj6mEamMxRXY1cPncFgWs8pR9bfj3K",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "6bJBrwspSuTEchUApgY7UMbopQNqfYh9AputsG2DLBNX",
+      "checkpoint": {
+        "sequenceNumber": 319558528,
+        "timestamp": "2026-09-06T20:38:22.499Z"
+      },
+      "inputVersion": 990522281,
+      "inputDigest": "5CbbdAuY2W7zrtrj6mEamMxRXY1cPncFgWs8pR9bfj3K",
+      "outputVersion": 990522282,
+      "outputDigest": "7k2bVjpzVg61WngkgwyZuLXPHSj5STsq7gNnRvcH8SHR",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "GPXAb93pyvhRtSCQn6cRB1YcxR2hGp8iqmYQNyPVhNNB",
+      "checkpoint": {
+        "sequenceNumber": 319586398,
+        "timestamp": "2026-09-06T22:20:12.959Z"
+      },
+      "inputVersion": 990522282,
+      "inputDigest": "7k2bVjpzVg61WngkgwyZuLXPHSj5STsq7gNnRvcH8SHR",
+      "outputVersion": 990522283,
+      "outputDigest": "DwNtw4NvD9Lff37eZJpKpMds6gEzj2GtDafH5NWZhPtp",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "3FwJa3hCxxSkGvX7iTookHAvfwhqqjoGg3tPqZjAgWcr",
+      "checkpoint": {
+        "sequenceNumber": 319586878,
+        "timestamp": "2026-09-06T22:21:58.149Z"
+      },
+      "inputVersion": 990522283,
+      "inputDigest": "DwNtw4NvD9Lff37eZJpKpMds6gEzj2GtDafH5NWZhPtp",
+      "outputVersion": 990522284,
+      "outputDigest": "HAP84SmZqBuxPVfzKMQouCAvJbZr9EuztLx6rEvy3EoC",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "25vkBvDUxcC3Lva8V3ZpgqiuF8NUfsCHoK6M4P3sDohq",
+      "checkpoint": {
+        "sequenceNumber": 319586936,
+        "timestamp": "2026-09-06T22:22:10.875Z"
+      },
+      "inputVersion": 990522284,
+      "inputDigest": "HAP84SmZqBuxPVfzKMQouCAvJbZr9EuztLx6rEvy3EoC",
+      "outputVersion": 990522285,
+      "outputDigest": "7dyT1u13sezkdVbrjH8EByKQWyFybpTTSfn2Sd6hGgsB",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "6UprzyHpF1tS5akf1a9Tct7Gf9nx7U2BgQugBEXJXuxR",
+      "checkpoint": {
+        "sequenceNumber": 319586995,
+        "timestamp": "2026-09-06T22:22:23.669Z"
+      },
+      "inputVersion": 990522285,
+      "inputDigest": "7dyT1u13sezkdVbrjH8EByKQWyFybpTTSfn2Sd6hGgsB",
+      "outputVersion": 990522286,
+      "outputDigest": "CBo48gyxYbN8rJYSrAkADkFbNzpP1UxwUiJKm36RefyR",
+      "rewardPoolDeltaMist": "7000000"
+    },
+    {
+      "transaction": "BChvdjaj9cAMZoVueRwdWUrKEBf51AtipJCQAFmsKeVG",
+      "checkpoint": {
+        "sequenceNumber": 319591708,
+        "timestamp": "2026-09-06T22:39:40.906Z"
+      },
+      "inputVersion": 990522286,
+      "inputDigest": "CBo48gyxYbN8rJYSrAkADkFbNzpP1UxwUiJKm36RefyR",
+      "outputVersion": 990522288,
+      "outputDigest": "AwFdScQgvNunyg32XQiyZ2PNExUwVzUAGYTktRTGTSur",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "E3sLnHSp9Spev46BPuAw9Lo9nxiPWCHDRUFw2WekoRXt",
+      "checkpoint": {
+        "sequenceNumber": 320250774,
+        "timestamp": "2026-09-08T16:01:59.145Z"
+      },
+      "inputVersion": 990522288,
+      "inputDigest": "AwFdScQgvNunyg32XQiyZ2PNExUwVzUAGYTktRTGTSur",
+      "outputVersion": 993988263,
+      "outputDigest": "5HSqu2SSSnkCgwf83hhfinrxTHMsPmMrKE6qTSwi7ujV",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "HLBL9YkUHenbzijXUN9V6xuSzZGxVeMGvDjiRJ8fLgZa",
+      "checkpoint": {
+        "sequenceNumber": 320250989,
+        "timestamp": "2026-09-08T16:02:47.345Z"
+      },
+      "inputVersion": 993988263,
+      "inputDigest": "5HSqu2SSSnkCgwf83hhfinrxTHMsPmMrKE6qTSwi7ujV",
+      "outputVersion": 993988264,
+      "outputDigest": "G1A7bPeqUQCFBpfGTRzBi62EeqgSxEZ2wu8gYr2PwRfT",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "J3Nbmkbqku92hQW3bDdHvFaMsYxTXkJ15hajUo392FbA",
+      "checkpoint": {
+        "sequenceNumber": 320251122,
+        "timestamp": "2026-09-08T16:03:17.013Z"
+      },
+      "inputVersion": 993988264,
+      "inputDigest": "G1A7bPeqUQCFBpfGTRzBi62EeqgSxEZ2wu8gYr2PwRfT",
+      "outputVersion": 993988265,
+      "outputDigest": "9eJhGJrViq3KWhhfsuFtt1rpBrzj1fQXmSSdKcfAWGNU",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "EKy5tN71BjfWvHv7KYYNH7wbn41fq5zwCsGHwcEiUCZb",
+      "checkpoint": {
+        "sequenceNumber": 320251298,
+        "timestamp": "2026-09-08T16:03:56.530Z"
+      },
+      "inputVersion": 993988265,
+      "inputDigest": "9eJhGJrViq3KWhhfsuFtt1rpBrzj1fQXmSSdKcfAWGNU",
+      "outputVersion": 994023340,
+      "outputDigest": "72viT5Z2sC2FiZavEU3oqLtRAkXYRBJkpAEDWf9Xn1XL",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "8Mjsw89mC49fDr8ny9vVXNBQS39xYv6fyD2wYJqtjfPg",
+      "checkpoint": {
+        "sequenceNumber": 320286558,
+        "timestamp": "2026-09-08T18:12:57.117Z"
+      },
+      "inputVersion": 994023340,
+      "inputDigest": "72viT5Z2sC2FiZavEU3oqLtRAkXYRBJkpAEDWf9Xn1XL",
+      "outputVersion": 994023341,
+      "outputDigest": "AK6Ro1anK2QrSgmTGFbmpLZN9QZ2nJZ8v5CVPVaJkH2v",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "9uYJ4B2kMZ6PrjyJooupPKYv7w1sKJVTArWs7GxJcfmU",
+      "checkpoint": {
+        "sequenceNumber": 320438759,
+        "timestamp": "2026-09-09T03:32:49.834Z"
+      },
+      "inputVersion": 994023341,
+      "inputDigest": "AK6Ro1anK2QrSgmTGFbmpLZN9QZ2nJZ8v5CVPVaJkH2v",
+      "outputVersion": 994749855,
+      "outputDigest": "55tLhi5UakySciV9sexravf92xg2BZuBoT1hrrQp7SPY",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "f1UxojeiMWRicAbSMmoR9bTcncd7RafgSSjz7Eivo2s",
+      "checkpoint": {
+        "sequenceNumber": 320438856,
+        "timestamp": "2026-09-09T03:33:11.883Z"
+      },
+      "inputVersion": 994749855,
+      "inputDigest": "55tLhi5UakySciV9sexravf92xg2BZuBoT1hrrQp7SPY",
+      "outputVersion": 994749856,
+      "outputDigest": "CkF73C5mDkCXpAqrMp6Lg8LoUe7zqaazjubdNPiR8ZNj",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "2fFekqzH5YSJNFhULrL5JaKEnFPvqvwFp1usb33ygTWK",
+      "checkpoint": {
+        "sequenceNumber": 320582240,
+        "timestamp": "2026-09-09T12:27:22.452Z"
+      },
+      "inputVersion": 994749856,
+      "inputDigest": "CkF73C5mDkCXpAqrMp6Lg8LoUe7zqaazjubdNPiR8ZNj",
+      "outputVersion": 994749857,
+      "outputDigest": "7GbYt2SFZvZZva7g3fkpKMt8BLkyQkyQzp2VHoUGAe5b",
+      "rewardPoolDeltaMist": "6930000"
+    },
+    {
+      "transaction": "FQfv1o3TaeMLh17XwqELkZw3TDn1DAbcqDRg7mQ8ZfT7",
+      "checkpoint": {
+        "sequenceNumber": 320582300,
+        "timestamp": "2026-09-09T12:27:35.353Z"
+      },
+      "inputVersion": 994749857,
+      "inputDigest": "7GbYt2SFZvZZva7g3fkpKMt8BLkyQkyQzp2VHoUGAe5b",
+      "outputVersion": 994749858,
+      "outputDigest": "9zVxYeftRPVwfiNgjH3fYZkEhL5Up52A5We4vsc7cr3j",
+      "rewardPoolDeltaMist": "6930000"
+    },
+    {
+      "transaction": "7prAAhFVDQQHkoJNhKQz7pKaejx5pUYeLwYQE3kC9W4F",
+      "checkpoint": {
+        "sequenceNumber": 320582362,
+        "timestamp": "2026-09-09T12:27:49.232Z"
+      },
+      "inputVersion": 994749858,
+      "inputDigest": "9zVxYeftRPVwfiNgjH3fYZkEhL5Up52A5We4vsc7cr3j",
+      "outputVersion": 994749859,
+      "outputDigest": "FgoeeFyp1kBvPKEn4nFiRRNgEeF8daSbF6XKkEU2Z29z",
+      "rewardPoolDeltaMist": "6930000"
+    },
+    {
+      "transaction": "82NtzHRXu4SFHhAhFxea24FdxDpxKTqGERvqsG4XBH5C",
+      "checkpoint": {
+        "sequenceNumber": 320729449,
+        "timestamp": "2026-09-09T21:30:52.230Z"
+      },
+      "inputVersion": 994749859,
+      "inputDigest": "FgoeeFyp1kBvPKEn4nFiRRNgEeF8daSbF6XKkEU2Z29z",
+      "outputVersion": 995549529,
+      "outputDigest": "3J9kaMf38RFrFfadRa1TtHAJVyctgtb2NcRkZ9Xa7eJd",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "3UpmGJFxVBUXntgCfWg5TGXHf1WvDBR8NjmFN7MVxSBY",
+      "checkpoint": {
+        "sequenceNumber": 320927404,
+        "timestamp": "2026-09-10T09:39:47.065Z"
+      },
+      "inputVersion": 995549529,
+      "inputDigest": "3J9kaMf38RFrFfadRa1TtHAJVyctgtb2NcRkZ9Xa7eJd",
+      "outputVersion": 995549531,
+      "outputDigest": "H8dLgXK7jqr8wreS5cousgaN6TCdBEfWXNJoQtXj8EAQ",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "4ePjhJ74DFXGe86f9vk1znaNNjDsARBhEFv7q7pXntgV",
+      "checkpoint": {
+        "sequenceNumber": 320927498,
+        "timestamp": "2026-09-10T09:40:08.884Z"
+      },
+      "inputVersion": 995549531,
+      "inputDigest": "H8dLgXK7jqr8wreS5cousgaN6TCdBEfWXNJoQtXj8EAQ",
+      "outputVersion": 995549532,
+      "outputDigest": "Ffj9QjTSsAXNwEBRdud3RoTYhv5F4V1Fn3SGYG7z6F1R",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "3Y5m64j43CGZB5vcoQFegg2dTAecFziuVtmdMTEWiKCe",
+      "checkpoint": {
+        "sequenceNumber": 320927930,
+        "timestamp": "2026-09-10T09:41:46.445Z"
+      },
+      "inputVersion": 995549532,
+      "inputDigest": "Ffj9QjTSsAXNwEBRdud3RoTYhv5F4V1Fn3SGYG7z6F1R",
+      "outputVersion": 995549533,
+      "outputDigest": "8zX8pvzhpoKDV14rRj8UzdB64aUAUhHfJPk6BhfnmSGb",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "BJqQWGMAQgfMBDamuff8U3DaVrQMcPtjgxNMgj8mPxjH",
+      "checkpoint": {
+        "sequenceNumber": 320989270,
+        "timestamp": "2026-09-10T13:31:55.158Z"
+      },
+      "inputVersion": 995549533,
+      "inputDigest": "8zX8pvzhpoKDV14rRj8UzdB64aUAUhHfJPk6BhfnmSGb",
+      "outputVersion": 995549534,
+      "outputDigest": "BBaA7rFEyV2PaPZeC35eeKA9SaAM1HU7VoxT7pcSEBEc",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "4ciS3HakSsaugiWfDTi8CjEiRhSyHfJuiz2PgeyZosJH",
+      "checkpoint": {
+        "sequenceNumber": 321633354,
+        "timestamp": "2026-09-12T05:08:44.831Z"
+      },
+      "inputVersion": 995549534,
+      "inputDigest": "BBaA7rFEyV2PaPZeC35eeKA9SaAM1HU7VoxT7pcSEBEc",
+      "outputVersion": 995549535,
+      "outputDigest": "Dd98AjVaGbbV1wft5A34LmH1JkCS45PvMBtvkW1uKs1A",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "CN5VG99hUcmKVZoEEbKcVE4DP8kWcqKRNTsqv22zyhw",
+      "checkpoint": {
+        "sequenceNumber": 321760338,
+        "timestamp": "2026-09-12T12:56:08.198Z"
+      },
+      "inputVersion": 995549535,
+      "inputDigest": "Dd98AjVaGbbV1wft5A34LmH1JkCS45PvMBtvkW1uKs1A",
+      "outputVersion": 995549536,
+      "outputDigest": "7fxwHL8cb8q5ZToL8cpJqki68hnNNFuLudSDg2Ektwhc",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "UprFNcXwzxFNYhomvj1qHmRgBXBmRvyLCdL4iHMzxf6",
+      "checkpoint": {
+        "sequenceNumber": 321760497,
+        "timestamp": "2026-09-12T12:56:42.629Z"
+      },
+      "inputVersion": 995549536,
+      "inputDigest": "7fxwHL8cb8q5ZToL8cpJqki68hnNNFuLudSDg2Ektwhc",
+      "outputVersion": 995549537,
+      "outputDigest": "5PopL41zUjUhHb5skH9kjpw18ponamwZ5x9MMit297P3",
+      "rewardPoolDeltaMist": "6930000"
+    },
+    {
+      "transaction": "7UUVpit3id9wE4uecSZLJP23vSDzza8jVKKmmgHFFT8L",
+      "checkpoint": {
+        "sequenceNumber": 321760730,
+        "timestamp": "2026-09-12T12:57:35.101Z"
+      },
+      "inputVersion": 995549537,
+      "inputDigest": "5PopL41zUjUhHb5skH9kjpw18ponamwZ5x9MMit297P3",
+      "outputVersion": 995549538,
+      "outputDigest": "E8VQjb2i2M37mDbr3YdxCtgE7f9PQH4zusNp8tvRrVcX",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "DvmFepYg5ipvfaxTKUq8d75Jpd42FGuJiGhY4N6rivnV",
+      "checkpoint": {
+        "sequenceNumber": 322209733,
+        "timestamp": "2026-09-13T16:28:55.482Z"
+      },
+      "inputVersion": 995549538,
+      "inputDigest": "E8VQjb2i2M37mDbr3YdxCtgE7f9PQH4zusNp8tvRrVcX",
+      "outputVersion": 995549539,
+      "outputDigest": "HFZEkdemVwHERMWgcynQyfzV4dwrDhYKAXFq61FMe3wD",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "4GeCTY4qigRS42hbBVkffJuJy4KBWaz4WWoxCASduu2Q",
+      "checkpoint": {
+        "sequenceNumber": 322342578,
+        "timestamp": "2026-09-14T00:33:55.877Z"
+      },
+      "inputVersion": 995549539,
+      "inputDigest": "HFZEkdemVwHERMWgcynQyfzV4dwrDhYKAXFq61FMe3wD",
+      "outputVersion": 995549540,
+      "outputDigest": "7QyfrySseD7uo18xnJF2aDt5N29q78DZdzVCrdu13b6W",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "43VSgf1YFHeK9fXMytzxzDpe5CGk9sdyzpt3ZVHYnztx",
+      "checkpoint": {
+        "sequenceNumber": 322342771,
+        "timestamp": "2026-09-14T00:34:37.639Z"
+      },
+      "inputVersion": 995549540,
+      "inputDigest": "7QyfrySseD7uo18xnJF2aDt5N29q78DZdzVCrdu13b6W",
+      "outputVersion": 995549541,
+      "outputDigest": "477d1Nqnc2ZqpKywgbsrufnkLKaUgTbx8dmwoapZV9T7",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "26WSYRn9CZNKgErhebUYDHDTqeBokwwm2QmrbihKduMn",
+      "checkpoint": {
+        "sequenceNumber": 322991346,
+        "timestamp": "2026-09-15T16:38:11.421Z"
+      },
+      "inputVersion": 995549541,
+      "inputDigest": "477d1Nqnc2ZqpKywgbsrufnkLKaUgTbx8dmwoapZV9T7",
+      "outputVersion": 995549542,
+      "outputDigest": "43VWNpwgrtvkfSqzNP6r9WtPsBEc1WNrsZytPHUn2p2w",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "5ZXvEJcDuWFfmMF3WeoNAQAWyrdPVDnh8awB99Kgnb5d",
+      "checkpoint": {
+        "sequenceNumber": 324607612,
+        "timestamp": "2026-09-19T22:04:18.916Z"
+      },
+      "inputVersion": 995549542,
+      "inputDigest": "43VWNpwgrtvkfSqzNP6r9WtPsBEc1WNrsZytPHUn2p2w",
+      "outputVersion": 995549543,
+      "outputDigest": "Bs6J5DfaKBrP4puUs39r6Y1xa58hctyZPZtVZAQdBLph",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "7J9xzjV6LXi7VQSJwkGLjTfhc9W8YUX1wxZMWDV6RH4",
+      "checkpoint": {
+        "sequenceNumber": 324607745,
+        "timestamp": "2026-09-19T22:04:47.852Z"
+      },
+      "inputVersion": 995549543,
+      "inputDigest": "Bs6J5DfaKBrP4puUs39r6Y1xa58hctyZPZtVZAQdBLph",
+      "outputVersion": 995549544,
+      "outputDigest": "EiZGeA1cpuoDLNZ7NifZ6c9o4zfjqiNyo6ANhxfuLnDw",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "D1mpHDyLVATFN3JLkibcGAyddasgiCDVDVBxsoLkMnNb",
+      "checkpoint": {
+        "sequenceNumber": 327157852,
+        "timestamp": "2026-09-26T14:39:49.090Z"
+      },
+      "inputVersion": 995549544,
+      "inputDigest": "EiZGeA1cpuoDLNZ7NifZ6c9o4zfjqiNyo6ANhxfuLnDw",
+      "outputVersion": 995549545,
+      "outputDigest": "GEtNnVVhysppAhGYrvm4q85ord3nrzVLGR5SBr1eEPGR",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "2NQFnwM4A6vdQtCRLSvdnn86iL3aZ6cR7QYdjJujp6Xi",
+      "checkpoint": {
+        "sequenceNumber": 327529102,
+        "timestamp": "2026-09-27T13:45:38.613Z"
+      },
+      "inputVersion": 995549545,
+      "inputDigest": "GEtNnVVhysppAhGYrvm4q85ord3nrzVLGR5SBr1eEPGR",
+      "outputVersion": 995549546,
+      "outputDigest": "FcRC6PhQy2Gbb91Wxue6dzRAkMtYdzRLCVudrw6xM77i",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "8ViayYnKzbySyRo3JmrayYjQ5hubamQiVDVSGNC36vBg",
+      "checkpoint": {
+        "sequenceNumber": 327669285,
+        "timestamp": "2026-09-27T22:27:02.809Z"
+      },
+      "inputVersion": 995549546,
+      "inputDigest": "FcRC6PhQy2Gbb91Wxue6dzRAkMtYdzRLCVudrw6xM77i",
+      "outputVersion": 995549547,
+      "outputDigest": "Gn2u7FoTdtt2mMHiLcRCYcxTTTreEf1dRPo311CoLM9B",
+      "rewardPoolDeltaMist": "0"
+    },
+    {
+      "transaction": "Bwu4YX4eBEBsHoMTMS15rDCdhYHkYnfvCq9H3aF24k2d",
+      "checkpoint": {
+        "sequenceNumber": 328132170,
+        "timestamp": "2026-09-29T03:27:45.115Z"
+      },
+      "inputVersion": 995549547,
+      "inputDigest": "Gn2u7FoTdtt2mMHiLcRCYcxTTTreEf1dRPo311CoLM9B",
+      "outputVersion": 995549548,
+      "outputDigest": "K2JR2TKipKopbuExH9tUScW2rYN7xa2WcRK8jiQHybf",
+      "rewardPoolDeltaMist": "0"
+    }
+  ],
+  "currentNativeInventoryCounts": {
+    "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::AdminCap": 1,
+    "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Crate": 3,
+    "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Registry": 1,
+    "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Seed": 45,
+    "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::Tool": 109,
+    "0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum::SeasonArchive": 1
+  },
+  "existingArchives": [
+    {
+      "objectId": "0x46836041fba4d740d76e740443846775204f9936d2ab0ff6692d7ffffb5a9e5d",
+      "id": "0x46836041fba4d740d76e740443846775204f9936d2ab0ff6692d7ffffb5a9e5d",
+      "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+      "season_id": "2",
+      "season_start_ms": "1787672028082",
+      "season_end_ms": "1790264028082",
+      "finalized_at_ms": "1788383314671",
+      "claim_deadline_ms": "1788988114671",
+      "total_growth_points": "698",
+      "total_seeds": "13",
+      "reward_pool": "145950000",
+      "swept": false
+    }
+  ],
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0
+}

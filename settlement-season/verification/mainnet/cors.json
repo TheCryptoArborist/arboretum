@@ -1,0 +1,22 @@
+{
+  "requestedAt": "2026-10-31T06:02:37.074Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "method": "OPTIONS",
+  "credentials": "omit",
+  "redirect": "error",
+  "headers": {
+    "Origin": "https://www.treegrow.xyz",
+    "Access-Control-Request-Method": "POST",
+    "Access-Control-Request-Headers": "content-type"
+  },
+  "capturedAt": "2026-10-31T06:02:37.156Z",
+  "httpStatus": 200,
+  "responseHeaders": {
+    "content-type": null,
+    "date": "Sat, 31 Oct 2026 06:02:37 GMT",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "POST",
+    "access-control-allow-headers": "*"
+  },
+  "response": null
+}

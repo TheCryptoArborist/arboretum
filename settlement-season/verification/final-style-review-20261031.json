@@ -1,0 +1,17 @@
+{
+  "recordedAt": "2026-10-31T06:07:35.523477+00:00",
+  "reason": "Correct connected-wallet status margin discovered during visual inspection.",
+  "scope": [
+    "settlement-season/admin.css"
+  ],
+  "runtimeJavascriptUnchanged": true,
+  "finalCompiledSha256": {
+    "index.html": "e28d6323b9216f7c8ebda118199ddaba9cd283d184b8b4c000041d9a9dab5e2c",
+    "admin.css": "3a2032ab33dca1000edf6de0e18ae164b50bd34b99ee9eab692367655d097f75",
+    "admin.mjs": "64cabbfe879aa08319aa83ca3b320cbfd03cea7f2331072ca91aa85dba2f89f3",
+    "start-kind.b64": "304dc5b0560667f64ce843ccb603e7d58c1b7154b95a88ebb09fe394d5d49c49"
+  },
+  "finalBrowserChecks": 68,
+  "finalBrowserContexts": 20,
+  "sourceRun": "/tmp/arboretum-season-browser-review/run-20261031T060608169025Z"
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Your Season 1 reward | Arboretum</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/claim-test/admin.css">
+  <script type="module" src="/admin/claim-test/admin.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#claim-status">Skip to your reward</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home"><img src="/prelaunch/mark.png" width="46" height="46" alt=""><span>ARBORETUM<small>THE NEXT CHAPTER</small></span></a>
+    <a class="back-link" href="/settlement-game.html">Back to garden <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · SEASON 1 · OWNER TEST</p>
+        <h1 id="page-title">Your season.<br><span>Your reward.</span></h1>
+        <p class="lead">Season 1 is finished. Review the reward earned by your test Seed, then approve one claim in Slush.</p>
+        <a class="text-link" href="/admin/gameplay-test/">View your planting record <span aria-hidden="true">↗</span></a>
+      </div>
+      <img class="hero-character" src="/prelaunch/hero.png" alt="The purple, green and gold TREE guardian" width="773" height="963" fetchpriority="high">
+    </section>
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required to read the live reward and review your claim. Enable it and reload this page.</div></noscript>
+    <div class="claim-layout">
+      <div class="garden-column">
+        <section id="claim-status" class="card countdown-card" aria-labelledby="reward-heading">
+          <div class="card-top"><p id="reward-heading" class="eyebrow">YOUR SEASON 1 REWARD</p><span id="chain-status" class="pill">Checking mainnet</span></div>
+          <p id="reward-share" class="reward-amount">—</p>
+          <p class="reward-caption">Reward before network gas. Read your status without connecting a wallet.</p>
+          <div class="seed-stats" aria-label="Verified Seed status">
+            <div><p class="stat-label">Recorded GP</p><p class="stat-value"><span id="current-gp">—</span><span class="stat-unit"> GP</span></p></div>
+            <div><p class="stat-label">Reward pool</p><p id="pool-balance" class="state-value">—</p></div>
+            <div><p class="stat-label">Reward status</p><p id="seed-state" class="state-value">Reading Seed</p></div>
+          </div>
+          <div class="claim-window"><p id="countdown-label" class="stat-label">CLAIM WINDOW</p><p id="countdown" class="countdown" role="timer" aria-live="off">—</p></div>
+          <p id="countdown-note" class="countdown-note">Reading your Seed and the Sui Clock.</p>
+          <div class="refresh-row"><p id="chain-checked" class="small-text">Waiting for a current mainnet read.</p><button id="refresh-state" class="text-button" type="button">Refresh status</button></div>
+        </section>
+        <section class="card growth-card" aria-labelledby="growth-heading">
+          <div class="card-top"><div><p class="eyebrow">EARNED AT THE CUTOFF</p><h2 id="growth-heading">Your growth counts.</h2></div><img src="/prelaunch/mark.png" class="growth-mark" width="55" height="55" alt=""></div>
+          <div class="reward-math" aria-label="Eligible Growth Points used for your reward"><div><p class="stat-label">YOUR CUTOFF GP</p><strong id="eligible-gp">—</strong></div><span class="math-divider" aria-hidden="true">÷</span><div><p class="stat-label">SEASON TOTAL GP</p><strong id="total-eligible-gp">—</strong></div></div>
+          <p class="small-text">Your share uses Growth Points eligible when the season ended. Later drying does not remove that earned share. The first claim finalizes the season’s reward calculation automatically.</p>
+          <div class="schedule">
+            <div><span class="schedule-dot" aria-hidden="true"></span><p class="stat-label">Season 1 growing ended</p><p id="season-cutoff" class="schedule-time">November 1, 2026 at 3:57:28 p.m. CST</p></div>
+            <div><span class="schedule-dot" aria-hidden="true"></span><p class="stat-label">Claiming opened</p><p id="claim-opens" class="schedule-time">November 1, 2026 at 3:57:28 p.m. CST</p></div>
+            <div><span class="schedule-dot gold" aria-hidden="true"></span><p class="stat-label">Claim deadline</p><p id="claim-deadline" class="schedule-time">November 8, 2026 at 3:57:28 p.m. CST</p></div>
+          </div>
+          <p class="timing-note">Approve your claim with time to spare before the deadline. All schedule times are <strong>Central Standard Time</strong>.</p>
+          <details class="technical-details"><summary>View this Seed’s identities</summary><dl><dt>Test Seed</dt><dd id="expected-seed"></dd><dt>Planting transaction</dt><dd id="expected-plant"></dd><dt>Required owner account</dt><dd id="expected-admin"></dd><dt>Rewards Registry</dt><dd id="expected-registry"></dd><dt>Package</dt><dd id="expected-package"></dd><dt>Reviewed claim fingerprint</dt><dd id="expected-kind">Available after checking the claim.</dd></dl></details>
+        </section>
+      </div>
+      <section class="card action-card" aria-labelledby="action-heading">
+        <div class="card-top"><div><p class="eyebrow">YOUR NEXT MOVE</p><h2 id="action-heading">Claim with Slush</h2></div><span class="version-chip">Test v1</span></div>
+        <p class="action-intro">One reward claim for your first test Seed. Review the payout and network fee before approving.</p>
+        <div class="flow-section"><h3><span class="step-number">1</span> Connect your wallet</h3><div id="wallet-list" class="wallet-list"><p class="small-text">Looking for the Slush browser extension…</p></div><p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p><div id="account-controls" hidden><label for="account-select">Choose the owner account ending 45c4</label><select id="account-select"><option value="">Select an account</option></select><button id="use-account" type="button" class="button secondary" disabled>Use selected account</button><p id="connected-address" class="address" hidden></p><button id="disconnect" type="button" class="text-button">Disconnect</button></div></div>
+        <div class="flow-section"><h3><span class="step-number">2</span> Check your claim</h3><button id="check-claim" type="button" class="button secondary" disabled>Check claim</button><p class="small-text">This verifies the current reward and simulates one claim. A check costs no gas and requests no signature.</p>
+          <div class="fee-box"><span id="gas-status" class="pill">Check when ready</span><dl class="estimate-table"><dt>Reward before gas</dt><dd id="reward-estimate">Not checked</dd><dt>Estimated network fee</dt><dd id="gas-estimate">Not estimated</dd><dt class="net-label">Estimated net received</dt><dd id="net-estimate" class="net-value">Not estimated</dd></dl><p id="gas-note" class="small-text">Slush will show the final gas review before approval. Actual gas can differ from this estimate.</p></div>
+          <div id="checks" class="checks" aria-live="polite" hidden><p>✓ Exact Seed, owner and season verified</p><p id="review-growth"></p><p>✓ Single reward claim · simulation successful</p><p id="checked-at" class="small-text"></p></div>
+        </div>
+        <div class="flow-section final-step"><h3><span class="step-number">3</span> Approve one claim</h3><label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I want to claim this version-1 Seed’s Season 1 reward once. I have reviewed the reward, network fee and estimated net amount.</span></label><button id="submit-claim" type="button" class="button primary" disabled>Review claim in Slush <span aria-hidden="true">↗</span></button><p class="small-text">Your wallet asks for approval. The receipt appears after the actual payment and completed reward are verified.</p></div>
+      </section>
+    </div>
+    <section id="status-panel" class="notice status-panel" role="status" aria-live="polite" hidden><h2 id="status-title"></h2><p id="status-message"></p></section>
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden><p class="eyebrow">CONFIRMED ON SUI MAINNET</p><h2 id="receipt-heading">Your Season 1 reward is confirmed.</h2><p id="receipt-message" class="receipt-message"></p><dl class="receipt-table"><dt>Reward paid</dt><dd id="receipt-reward"></dd><dt>Net balance change</dt><dd id="receipt-net"></dd><dt>Growth Points</dt><dd id="receipt-growth"></dd><dt>Transaction digest</dt><dd id="receipt-digest"></dd><dt>Seed object</dt><dd id="receipt-seed"></dd><dt>Confirmed network fee</dt><dd id="receipt-gas"></dd><dt>Confirmed claim time</dt><dd id="receipt-claimed"></dd><dt>Claim deadline</dt><dd id="receipt-deadline"></dd></dl><div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button><a href="/settlement-game.html" class="button secondary">Review the garden</a></div></section>
+    <section id="failure-panel" class="card recovery-card" aria-labelledby="failure-heading" hidden><p class="eyebrow">FAILED TRANSACTION VERIFIED</p><h2 id="failure-heading">Your reward was not claimed.</h2><p id="failure-message"></p><button id="retry-claim" type="button" class="button secondary" disabled>Retry after confirmed failure</button><p class="small-text">This button rechecks the failed receipt and current Seed. A fresh claim review and your approval are required before another wallet request.</p></section>
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading"><div class="recovery-heading"><h2 id="recovery-heading">Already claimed?</h2><span class="read-only-label">READ-ONLY CHECK</span></div><p id="recovery-message">Recover a claim receipt using its transaction digest from Slush. You do not need to connect a wallet for this check.</p><form id="verify-form"><label for="transaction-digest">Claim transaction digest</label><div class="recovery-input"><input id="transaction-digest" name="digest" type="text" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the claim transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form></section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · OWNER TEST</span><span>One Seed. One season reward. Your wallet approves the claim.</span></footer>
+</body>
+</html>

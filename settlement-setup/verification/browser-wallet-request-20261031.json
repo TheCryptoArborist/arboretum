@@ -1,0 +1,14 @@
+{
+  "account": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+  "chain": "sui:mainnet",
+  "kindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+  "commands": [
+    "MoveCall"
+  ],
+  "gasData": {
+    "budget": null,
+    "price": null,
+    "owner": null,
+    "payment": null
+  }
+}

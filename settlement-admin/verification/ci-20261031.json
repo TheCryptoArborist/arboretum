@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "reviewedAtUtc": "2026-10-31T02:52:42Z",
+  "repository": "TheCryptoArborist/arboretum",
+  "sourceCommit": "c20c181b5651c1818aa02e1cccbd3058cdcac4d6",
+  "generalCIstillred": true,
+  "noNewAdminRuntimeBlockerIdentified": true,
+  "assessment": "The scoped Settlement app integration review passed on both push and pull_request runs. Five other workflows remain failed on pre-existing baseline or scope guards. These failures do not identify a regression introduced by the administrator route commit.",
+  "successfulSettlementRuns": [
+    {
+      "runId": 41161724616,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724616",
+      "name": "Settlement app integration review",
+      "event": "pull_request",
+      "sourceCommit": "c20c181b5651c1818aa02e1cccbd3058cdcac4d6",
+      "conclusion": "success"
+    },
+    {
+      "runId": 41161722167,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161722167",
+      "name": "Settlement app integration review",
+      "event": "push",
+      "sourceCommit": "c20c181b5651c1818aa02e1cccbd3058cdcac4d6",
+      "conclusion": "success"
+    }
+  ],
+  "failedRuns": [
+    {
+      "runId": 41161724555,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724555",
+      "name": "Reward-first production release",
+      "jobId": 124420519480,
+      "conclusion": "failure",
+      "failure": "scripts/test-partner-preview.mjs:29: 'approved game and handbook baselines preserved; review build remains isolated' fails its byte-for-byte assertion for scripts/build-public-guide.py. Existing get_build_policy()['publicProduction'] differs from the older pinned CONTEXT == 'production' expression.",
+      "tests": {
+        "total": 117,
+        "passed": 116,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": {
+        "artifactId": 13027576184,
+        "reportPath": "release-results/baseline-tests.txt"
+      },
+      "classification": "pre-existing fixed-baseline assertion",
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41161724556,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724556",
+      "name": "Economy accounting review",
+      "jobId": 124420519244,
+      "conclusion": "failure",
+      "failure": "Before tests, the additive-only guard compares all branch changes against 84b08fdb4bc0ec0417ced7be21f29aae914939f7 and permits only added economy-review/ files or its own workflow. It raises 'AssertionError: A\\t.github/workflows/contract-payout.yml'. That rejected file and the guard both already existed in the source commit's parent.",
+      "evidence": {
+        "source": "GitHub job log",
+        "step": "Verify additive-only scope and offline regressions"
+      },
+      "classification": "pre-existing isolated-review scope guard",
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41161724564,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724564",
+      "name": "Reward-first preview",
+      "jobId": 124420519531,
+      "conclusion": "failure",
+      "failure": "scripts/test-partner-preview.mjs:29: 'approved game and handbook baselines preserved; review build remains isolated' fails its byte-for-byte assertion for scripts/build-public-guide.py. Existing get_build_policy()['publicProduction'] differs from the older pinned CONTEXT == 'production' expression.",
+      "tests": {
+        "total": 117,
+        "passed": 116,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": {
+        "artifactId": 13027710855,
+        "reportPath": "reward-results/baseline-tests.txt"
+      },
+      "classification": "pre-existing fixed-baseline assertion",
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41161724584,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724584",
+      "name": "Partner chest preview",
+      "jobId": 124420519175,
+      "conclusion": "failure",
+      "failure": "scripts/test-partner-preview.mjs:29: 'approved game and handbook baselines preserved; review build remains isolated' fails its byte-for-byte assertion for scripts/build-public-guide.py. Existing get_build_policy()['publicProduction'] differs from the older pinned CONTEXT == 'production' expression.",
+      "tests": {
+        "total": 127,
+        "passed": 126,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": {
+        "source": "GitHub job log",
+        "step": "Build and run retained plus partner preview tests"
+      },
+      "classification": "pre-existing fixed-baseline assertion",
+      "deploymentsAttempted": 0
+    },
+    {
+      "runId": 41161724600,
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41161724600",
+      "name": "Garden season status",
+      "jobId": 124420519363,
+      "conclusion": "failure",
+      "failure": "scripts/test-partner-preview.mjs:29: 'approved game and handbook baselines preserved; review build remains isolated' fails its byte-for-byte assertion for scripts/build-public-guide.py. Existing get_build_policy()['publicProduction'] differs from the older pinned CONTEXT == 'production' expression.",
+      "tests": {
+        "total": 117,
+        "passed": 116,
+        "failed": 1,
+        "skipped": 0
+      },
+      "evidence": {
+        "artifactId": 13027336751,
+        "reportPath": "season-status-results/base-tests.txt"
+      },
+      "classification": "pre-existing fixed-baseline assertion",
+      "deploymentsAttempted": 0
+    }
+  ],
+  "parentComparisonEvidence": {
+    "command": "git diff c20c181^ c20c181 -- scripts/build-public-guide.py scripts/test-partner-preview.mjs .github/workflows/economy-accounting-review.yml .github/workflows/contract-payout.yml",
+    "exitCode": 0,
+    "output": "",
+    "unchangedFiles": [
+      "scripts/build-public-guide.py",
+      "scripts/test-partner-preview.mjs",
+      ".github/workflows/economy-accounting-review.yml",
+      ".github/workflows/contract-payout.yml"
+    ],
+    "conclusion": "The failing assertions and the files they first reject are unchanged from the source commit's parent."
+  },
+  "limitations": [
+    "The five historical workflow runs remain red. This report does not claim that all repository CI is green.",
+    "Downstream browser and publish steps in these failed runs were skipped; those stages were not exercised by these runs.",
+    "This read-only triage changed no source or historical guards and triggered no deployments."
+  ],
+  "failedRunDeploymentsAttempted": 0,
+  "triageTransactionsSubmitted": 0,
+  "triageSignaturesProduced": 0
+}

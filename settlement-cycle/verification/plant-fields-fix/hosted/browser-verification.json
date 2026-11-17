@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-11-08T15:20:34.580204+00:00",
+  "url": "https://www.treegrow.xyz/admin/season-two/",
+  "deployId": "6af09274b50143d105dbb63a",
+  "sourceCommit": "1062f33c881939de53ca10529ef81b5d8dbabc89",
+  "freshPageRead": {
+    "status": "Mainnet verified",
+    "checkpoint": 343039538
+  },
+  "receiptRecovery": {
+    "action": "rollover",
+    "digest": "9SqBoBCyVA4A1mWfmBid7dGxny4ba2tzCgVPLiRS77z4",
+    "status": "Start Season 2 confirmed on mainnet",
+    "currentCheckpoint": 343039631,
+    "networkFeeSui": "0.002509802"
+  },
+  "nextAction": "Plant a Seed",
+  "gardenStatus": "Your new season is growing",
+  "nftOption": "Tree NFT #4704",
+  "growingCutoffDisplayed": "Nov 10, 2026, 8:45:27 AM CST",
+  "claimDeadlineDisplayed": "Nov 17, 2026, 8:45:27 AM CST",
+  "actualWalletConnections": 0,
+  "actualSignatures": 0,
+  "actualTransactionsSubmitted": 0,
+  "screenshot": {
+    "file": "live-receipt-recovery.png",
+    "sha256": "d099274dcaaf7bba339060a32977e7cb7592365a0ee85815a85178dd191435f6",
+    "bytes": 89286,
+    "width": 1348,
+    "height": 926
+  },
+  "limits": [
+    "The verification browser has no Slush extension; wallet readiness and signing were not exercised in this browser.",
+    "The successful planting readiness check is the separate unsigned live mainnet evidence under ../mainnet/.",
+    "Screenshot captures the recovered start receipt, not a new planting receipt.",
+    "Mobile visual inspection was not performed."
+  ]
+}

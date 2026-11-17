@@ -1,0 +1,59 @@
+PASS review-1440: one exact selected-NFT planting request, no other signing method
+PASS 1440px explicit account and NFT selection, payment review and responsive layout
+PASS review-390: one exact selected-NFT planting request, no other signing method
+PASS 390px explicit account and NFT selection, payment review and responsive layout
+PASS Read-only current Seed check works without wallet connection or simulation
+PASS Wrong account cannot load NFTrees or review planting
+PASS Changing NFT selection clears acknowledgement and prevents stale handoff
+PASS Final account change stops the handoff after rechecking
+PASS stale live input blocks review before simulation
+PASS incompleteInventory live input blocks review before simulation
+PASS Changed fee requires another acknowledgement before opening Slush
+PASS duplicate-request: one exact selected-NFT planting request, no other signing method
+PASS Duplicate clicks and second tab cannot open a second in-flight planting
+PASS uncertain-request: one exact selected-NFT planting request, no other signing method
+PASS Uncertain request survives reload and recovers the exact receipt without another wallet request
+PASS successful-plant: one exact selected-NFT planting request, no other signing method
+PASS Synthetic successful receipt confirms one Seed, 10 GP, payment and actual watering schedule
+PASS receiptMismatch: one exact selected-NFT planting request, no other signing method
+PASS receiptMismatch cannot confirm or replace a known wallet digest
+PASS simulationAsReceipt: one exact selected-NFT planting request, no other signing method
+PASS simulationAsReceipt cannot confirm or replace a known wallet digest
+PASS Already-planted discovery blocks a fresh browser without requesting a wallet
+PASS Unavailable storage blocks signing while preserving read-only checks
+PASS Noncanonical origin rejects wallet initialization
+PASS review-1440: no browser exception
+PASS review-1440: only isolated assets and exact read/simulation fixtures requested
+PASS review-390: no browser exception
+PASS review-390: only isolated assets and exact read/simulation fixtures requested
+PASS read-only: no browser exception
+PASS read-only: only isolated assets and exact read/simulation fixtures requested
+PASS wrong-account: no browser exception
+PASS wrong-account: only isolated assets and exact read/simulation fixtures requested
+PASS changed-nft: no browser exception
+PASS changed-nft: only isolated assets and exact read/simulation fixtures requested
+PASS changed-account: no browser exception
+PASS changed-account: only isolated assets and exact read/simulation fixtures requested
+PASS stale: no browser exception
+PASS stale: only isolated assets and exact read/simulation fixtures requested
+PASS incompleteInventory: no browser exception
+PASS incompleteInventory: only isolated assets and exact read/simulation fixtures requested
+PASS changed-fee: no browser exception
+PASS changed-fee: only isolated assets and exact read/simulation fixtures requested
+PASS duplicate-request: no browser exception
+PASS duplicate-request: only isolated assets and exact read/simulation fixtures requested
+PASS uncertain-request: no browser exception
+PASS uncertain-request: only isolated assets and exact read/simulation fixtures requested
+PASS successful-plant: no browser exception
+PASS successful-plant: only isolated assets and exact read/simulation fixtures requested
+PASS receiptMismatch: no browser exception
+PASS receiptMismatch: only isolated assets and exact read/simulation fixtures requested
+PASS simulationAsReceipt: no browser exception
+PASS simulationAsReceipt: only isolated assets and exact read/simulation fixtures requested
+PASS already-planted: no browser exception
+PASS already-planted: only isolated assets and exact read/simulation fixtures requested
+PASS no-storage: no browser exception
+PASS no-storage: only isolated assets and exact read/simulation fixtures requested
+PASS wrong-origin: no browser exception
+PASS wrong-origin: only isolated assets and exact read/simulation fixtures requested
+Evidence: /tmp/arboretum-gameplay-browser-review/run-20261031T221154350265Z

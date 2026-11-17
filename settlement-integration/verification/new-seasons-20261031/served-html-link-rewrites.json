@@ -1,0 +1,74 @@
+{
+  "sourceLines": 7963,
+  "servedLines": 7963,
+  "changes": [
+    {
+      "kind": "replace",
+      "sourceLine": 1876,
+      "servedLine": 1876,
+      "source": [
+        "    <a class=\"sr-route\" href=\"/game.html\">Existing garden <small>Default route</small></a>"
+      ],
+      "served": [
+        "    <a class='sr-route' href='/game'>Existing garden <small>Default route</small></a>"
+      ]
+    },
+    {
+      "kind": "replace",
+      "sourceLine": 1902,
+      "servedLine": 1902,
+      "source": [
+        "      <li><a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play \u2014 opens player guide in a new tab\">How to Play</a></li>"
+      ],
+      "served": [
+        "      <li><a aria-label='How to Play \u2014 opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play</a></li>"
+      ]
+    },
+    {
+      "kind": "replace",
+      "sourceLine": 1929,
+      "servedLine": 1929,
+      "source": [
+        "  <a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">How to Play \u2197</a>"
+      ],
+      "served": [
+        "  <a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play \u2197</a>"
+      ]
+    },
+    {
+      "kind": "replace",
+      "sourceLine": 2157,
+      "servedLine": 2157,
+      "source": [
+        "      <a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">Garden help \u2197</a>",
+        "      <a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">Tool guide \u2197</a>"
+      ],
+      "served": [
+        "      <a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>Garden help \u2197</a>",
+        "      <a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>Tool guide \u2197</a>"
+      ]
+    },
+    {
+      "kind": "replace",
+      "sourceLine": 2730,
+      "servedLine": 2730,
+      "source": [
+        "                <a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">Player Guide: crates &amp; chests \u2197</a>"
+      ],
+      "served": [
+        "                <a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>Player Guide: crates &amp; chests \u2197</a>"
+      ]
+    },
+    {
+      "kind": "replace",
+      "sourceLine": 3458,
+      "servedLine": 3458,
+      "source": [
+        "      <div class=\"adm-wide sr-partner-unavailable\" id=\"settlement-partner-report\">Partner accounting for new seasons is not configured. <a href=\"/game.html\">Open the existing garden</a> to review legacy partner receipts.</div>"
+      ],
+      "served": [
+        "      <div class=\"adm-wide sr-partner-unavailable\" id=\"settlement-partner-report\">Partner accounting for new seasons is not configured. <a href='/game'>Open the existing garden</a> to review legacy partner receipts.</div>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:34:46.752Z",
+  "status": "verified_disabled_application_binding",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "network": "sui:mainnet",
+  "genesisDigest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+  "checkpoint": {
+    "sequenceNumber": 340015724,
+    "timestamp": "2026-10-31T04:34:44.685Z",
+    "digest": "J569JhGfj73rT9cTqL9xNfdtybj23hBiXoZetV5QD3GF"
+  },
+  "networkClockMs": 1793421284685,
+  "networkClockTime": "2026-10-31T04:34:44.685Z",
+  "setupTransaction": "87FdmWtG7aGWzLaQ1deEdf39xwSasPZR8qKg6cRTnaGp",
+  "confirmedSetupCheckpoint": 340013815,
+  "runtimeConfigurationChanged": true,
+  "websiteDeploymentChanged": false,
+  "settlementRouteEnabled": false,
+  "reviewOnly": true,
+  "gameplayTransactionsEnabled": false,
+  "canopyChallengesEnabled": false,
+  "typeOriginCount": 39,
+  "boundConfiguration": {
+    "enabled": false,
+    "NETWORK": "mainnet",
+    "MODULE": "settlement",
+    "EXPECTED_VERSION": 1,
+    "PACKAGE_ID": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "TYPE_PACKAGE_ID": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "REGISTRY_ID": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "ADMIN_CAP_ID": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "TYPE_ORIGINS": {
+      "Registry": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "Sapling": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "Seed": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "Tool": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "Crate": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "AdminCap": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SettlementState": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeasonArchive": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeBook": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "CanopyChallenge": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeEntry": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeedPlanted": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeedWatered": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeedDied": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeedRevived": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeedAbandoned": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "CratePurchased": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "CrateOpened": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SupplyDropPurchased": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "RewardClaimed": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ReferralPaid": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SaplingMinted": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeasonStarted": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeasonReset": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SeasonArchived": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ArchivedRewardClaimed": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ArchivedRewardsSwept": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeBookCreated": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeOpened": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeEntered": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeFinalized": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeCanceled": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "ChallengeEntryRefunded": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SettlementRegistryCreated": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "RewardSettlementFinalized": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "RewardEntitlementProcessed": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "GameplayPauseChanged": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "SettlementAdminTransferred": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+      "PoolFunded": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a"
+    },
+    "SUPPORTS_CANOPY_CHALLENGES": false
+  },
+  "runtimeSettlementRouteAvailable": false,
+  "temporaryValidationRouteOnly": true,
+  "dedicatedPreviewPolicyAccepted": true,
+  "currentRegistry": {
+    "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "version": "986499448",
+    "digest": "HBYh2nG8pkJZhy9SajjAsXpqfKYKs74enK7bURRqKFxk",
+    "type": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+    "owner": {
+      "__typename": "Shared",
+      "initialSharedVersion": 986499448
+    },
+    "content": {
+      "dataType": "moveObject",
+      "type": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry",
+      "fields": {
+        "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "version": "1",
+        "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+        "current_season_id": "0",
+        "season_start_ms": "0",
+        "reward_pool": "0",
+        "treasury": "0",
+        "total_seeds": "0",
+        "total_growth_points": "0",
+        "eligible_growth_points": "0",
+        "settlement": null,
+        "paused": false,
+        "seeds_by_owner": {
+          "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+          "size": "0"
+        },
+        "referrers": {
+          "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+          "size": "0"
+        },
+        "referral_earnings": {
+          "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+          "size": "0"
+        },
+        "player_growth": {
+          "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+          "size": "0"
+        },
+        "player_growth_season": {
+          "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+          "size": "0"
+        },
+        "planted_saplings": {
+          "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+          "size": "0"
+        }
+      }
+    },
+    "display": {
+      "data": {}
+    }
+  },
+  "currentAdminCap": {
+    "objectId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "version": "986499448",
+    "digest": "HDZcd13jb51WBb59PwTCW4oYk7rtchGYDtV6a5sajDUg",
+    "type": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap",
+    "owner": {
+      "__typename": "AddressOwner",
+      "address": {
+        "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+      }
+    },
+    "content": {
+      "dataType": "moveObject",
+      "type": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::AdminCap",
+      "fields": {
+        "id": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "version": "1",
+        "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9"
+      }
+    },
+    "display": {
+      "data": {}
+    }
+  },
+  "normalizedState": {
+    "objectId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "seasonId": "0",
+    "seasonStartMs": "0",
+    "seasonEndMs": "0",
+    "claimDeadlineMs": "0",
+    "nowMs": "1793421284685",
+    "poolMist": "0",
+    "remainingPoolMist": "0",
+    "paidMist": "0",
+    "eligibleGP": "0",
+    "totalGP": "0",
+    "processedGP": "0",
+    "processedSeeds": "0",
+    "finalized": false,
+    "frozen": false,
+    "active": false,
+    "claimWindowOpen": false,
+    "paused": false,
+    "swept": false,
+    "archive": false
+  },
+  "requests": [
+    {
+      "operation": "BindingNetwork",
+      "variables": {}
+    },
+    {
+      "operation": "IntegrationState",
+      "variables": {
+        "registry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "cp": 340015724
+      }
+    },
+    {
+      "operation": "IntegrationObject",
+      "variables": {
+        "id": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+        "cp": 340015724
+      }
+    },
+    {
+      "operation": "BindingPackage",
+      "variables": {
+        "package": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+        "registry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "cp": 340015724
+      }
+    }
+  ],
+  "sourceSha256": {
+    "settlement-integration/deployment-config.mjs": "384a587565403f8b2a0a9fa9955b152d240636fbe9ba17b41d8dbbcb85ea838b",
+    "settlement-integration/release/confirmed-deployment.json": "466e06af534376913770e2d16143ed3e93b2d5c9e7ea3ee7e196cd07a02262c5",
+    "settlement-integration/model.mjs": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+    "settlement-integration/reader.mjs": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+    "scripts/build-policy.mjs": "dc44f0065bdbd24ee7322d05df1f11cb738837eb368b539fecd4bd4bb3db9711",
+    "settlement-integration/model.test.mjs": "2abf118c0cc2239e36397f5e696c858e18ce6a6971e1da7ba5f9579c78bfc25e",
+    "scripts/build-policy.test.mjs": "48bdeb779d332ac05de8dbfc4ad05b9b7c962a2b493e3f8ecd7aa2db28fbbfe7",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "settlement-integration/release/evidence/20261031-confirmed-setup/verify-bindings.mjs": "3d97ed46895a882c512623e9ee84eeb7e736a17aec162ce283541a5b6afe873d"
+  },
+  "signaturesRequested": 0,
+  "simulationsRequested": 0,
+  "transactionsSubmitted": 0
+}

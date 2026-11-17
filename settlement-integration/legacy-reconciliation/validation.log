@@ -1,0 +1,19 @@
+test_altered_aggregate_fails_raw_evidence_binding (test_reconciliation.ReconciliationTests.test_altered_aggregate_fails_raw_evidence_binding) ... ok
+test_captured_evidence_hashes_and_aggregate_binding (test_reconciliation.ReconciliationTests.test_captured_evidence_hashes_and_aggregate_binding) ... ok
+test_changed_snapshot_seed_cannot_reuse_reconciliation (test_reconciliation.ReconciliationTests.test_changed_snapshot_seed_cannot_reuse_reconciliation) ... ok
+test_frozen_ledger_and_unapproved_integer_allocation (test_reconciliation.ReconciliationTests.test_frozen_ledger_and_unapproved_integer_allocation) ... ok
+test_future_historical_watering_is_rejected (test_reconciliation.ReconciliationTests.test_future_historical_watering_is_rejected) ... ok
+test_incomplete_receipt_is_never_a_clean_result (test_reconciliation.ReconciliationTests.test_incomplete_receipt_is_never_a_clean_result) ... ok
+test_missing_cursor_cannot_produce_complete_history (test_reconciliation.ReconciliationTests.test_missing_cursor_cannot_produce_complete_history) ... ok
+test_missing_field_and_owner_mismatch_never_infer_entitlement (test_reconciliation.ReconciliationTests.test_missing_field_and_owner_mismatch_never_infer_entitlement) ... ok
+test_mutation_and_simulation_queries_are_rejected_before_network (test_reconciliation.ReconciliationTests.test_mutation_and_simulation_queries_are_rejected_before_network) ... ok
+test_nine_dry_days_eligible_ten_days_excluded (test_reconciliation.ReconciliationTests.test_nine_dry_days_eligible_ten_days_excluded) ... ok
+test_protection_equality_counts_but_expired_protection_does_not (test_reconciliation.ReconciliationTests.test_protection_equality_counts_but_expired_protection_does_not) ... ok
+test_removed_receipt_breaks_continuity (test_reconciliation.ReconciliationTests.test_removed_receipt_breaks_continuity) ... ok
+test_repeated_cursor_cannot_produce_complete_history (test_reconciliation.ReconciliationTests.test_repeated_cursor_cannot_produce_complete_history) ... ok
+test_stored_dead_seed_stays_excluded_even_with_protection (test_reconciliation.ReconciliationTests.test_stored_dead_seed_stays_excluded_even_with_protection) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.298s
+
+OK

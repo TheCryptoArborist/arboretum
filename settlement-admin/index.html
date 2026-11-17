@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Settlement upgrade | Arboretum administration</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/settlement-upgrade/admin.css">
+  <script type="module" src="/admin/settlement-upgrade/admin.mjs"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home">
+      <img src="/prelaunch/mark.png" width="44" height="44" alt="">
+      <span>ARBORETUM<small>ADMINISTRATION</small></span>
+    </a>
+    <a class="back-link" href="/game.html">Return to garden <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · CONTRACT RELEASE</p>
+      <h1 id="page-title">Publish the <br><span>settlement upgrade.</span></h1>
+      <p class="lead">Add the reviewed reward-settlement module to Arboretum. Your existing game code and garden assets are preserved.</p>
+    </section>
+
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required for the wallet review. Enable it in your browser and reload this page.</div></noscript>
+
+    <div class="release-layout">
+      <section class="card release-card" aria-labelledby="release-heading">
+        <div class="card-heading"><div><p class="eyebrow">THE APPROVED RELEASE</p><h2 id="release-heading">Arboretum settlement</h2></div><span class="version-chip">v11 <span aria-hidden="true">→</span> v12</span></div>
+        <div class="preservation-strip"><span class="check-icon" aria-hidden="true">✓</span><p>Existing game code preserved<br><small>32 legacy asset types retained · 39 settlement types added</small></p></div>
+
+        <h3>One transaction, three steps</h3>
+        <ol class="command-list">
+          <li><span class="step-number">1</span><div><strong>Authorize the upgrade</strong><p>Use your existing administrator upgrade capability.</p></div></li>
+          <li><span class="step-number">2</span><div><strong>Publish version 12</strong><p>Include the existing game module and the reviewed settlement module.</p></div></li>
+          <li><span class="step-number">3</span><div><strong>Commit the new version</strong><p>Keep upgrade ownership and policy with the same administrator.</p></div></li>
+        </ol>
+
+        <div class="fee-box">
+          <div><p class="eyebrow">ESTIMATED NETWORK FEE</p><p id="gas-estimate" class="fee">≈0.338 <span>SUI</span></p></div>
+          <span id="gas-status" class="pill">Refresh required</span>
+          <p id="gas-note" class="fee-note">The fresh check calculates the current estimate. Slush shows the final transaction fee before approval.</p>
+        </div>
+        <p class="scope-note">This release adds the contract implementation. Creating the empty settlement registry and activating a season are later steps.</p>
+
+        <details class="technical-details">
+          <summary>View package and administrator details</summary>
+          <dl>
+            <dt>Required administrator</dt>
+            <dd id="expected-admin">0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4</dd>
+            <dt>Current package</dt>
+            <dd id="expected-package">0xdfcde7bc9271a7952dcb1c4ddd199c7d526bb286e09c6d1f528fec8e1ecf6724</dd>
+            <dt>Reviewed transaction fingerprint</dt>
+            <dd id="expected-kind">1b62257103c3a67c36607a7471180cee64159115274b774149282da1d7b443e0</dd>
+            <dt>Upgrade policy</dt><dd>Compatible · remains unchanged</dd>
+          </dl>
+          <a class="text-link" href="https://github.com/TheCryptoArborist/arboretum/blob/b0914a6adfcc583f62d6e352039e6bdebb821772/settlement-integration/release/evidence/20261031-review/REVIEW.md" target="_blank" rel="noopener noreferrer">Read the complete release review <span aria-hidden="true">↗</span></a>
+        </details>
+      </section>
+
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="eyebrow">ADMINISTRATOR ACTION</p>
+        <h2 id="action-heading">Review with Slush</h2>
+        <p class="action-intro">Connect the wallet that owns Arboretum’s upgrade capability.</p>
+
+        <div class="flow-section">
+          <h3><span class="step-number">1</span> Connect your wallet</h3>
+          <div id="wallet-list" class="wallet-list"><p class="muted">Looking for the Slush browser extension…</p></div>
+          <p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p>
+          <div id="account-controls" hidden>
+            <label for="account-select">Choose the administrator account</label>
+            <select id="account-select"><option value="">Select an account</option></select>
+            <button id="use-account" type="button" class="button secondary" disabled>Use selected account</button>
+            <p id="connected-address" class="address" hidden></p>
+            <button id="disconnect" type="button" class="text-button">Disconnect</button>
+          </div>
+        </div>
+
+        <div class="flow-section">
+          <h3><span class="step-number">2</span> Check the release</h3>
+          <p class="small-text">Verify the administrator, live package, exact transaction, and current network fee.</p>
+          <button id="check-release" type="button" class="button secondary" disabled>Check upgrade readiness</button>
+          <div id="checks" class="checks" aria-live="polite" hidden>
+            <p><span aria-hidden="true">✓</span> Exact reviewed transaction</p>
+            <p><span aria-hidden="true">✓</span> Administrator and mainnet verified</p>
+            <p><span aria-hidden="true">✓</span> Current simulation successful</p>
+            <p id="checked-at" class="small-text"></p>
+          </div>
+        </div>
+
+        <div class="flow-section final-step">
+          <h3><span class="step-number">3</span> Approve in your wallet</h3>
+          <label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I have reviewed version 12 and the network fee shown above.</span></label>
+          <button id="submit-upgrade" type="button" class="button primary" disabled>Review upgrade in Slush <span aria-hidden="true">↗</span></button>
+          <p class="small-text">Slush asks for your final approval. This page never needs your recovery phrase or private key.</p>
+        </div>
+      </section>
+    </div>
+
+    <section id="status-panel" class="notice status-panel" aria-live="polite" hidden>
+      <h2 id="status-title"></h2><p id="status-message"></p>
+    </section>
+
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden>
+      <p class="eyebrow">CONFIRMED ON SUI MAINNET</p>
+      <h2 id="receipt-heading">Version 12 is published.</h2>
+      <p>The confirmed transaction matches the reviewed upgrade. The next step creates the empty rewards Registry through a separate wallet approval.</p>
+      <dl><dt>Transaction digest</dt><dd id="receipt-digest"></dd><dt>New package</dt><dd id="receipt-package"></dd></dl>
+      <div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button></div>
+      <p><a class="button primary" href="/admin/settlement-setup/">Continue to setup review <span aria-hidden="true">→</span></a></p>
+    </section>
+
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading" hidden>
+      <h2 id="recovery-heading">Check a wallet request</h2>
+      <p id="recovery-message">If Slush submitted a transaction, copy its digest from your wallet’s activity and verify it here. A verification check does not submit another transaction.</p>
+      <form id="verify-form"><label for="transaction-digest">Transaction digest from Slush</label><div class="recovery-input"><input id="transaction-digest" name="digest" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form>
+      <button id="check-existing" type="button" class="text-button">Check the current upgrade capability</button>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · ADMINISTRATION</span><span>One reviewed upgrade. Your wallet gives the final approval.</span></footer>
+</body>
+</html>

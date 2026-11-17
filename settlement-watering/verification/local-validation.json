@@ -1,0 +1,223 @@
+{
+  "checkedAt": "2026-10-31T23:12:31Z",
+  "allPassed": true,
+  "checks": [
+    {
+      "check": "syntax",
+      "command": [
+        "npm",
+        "run",
+        "lint"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.205
+    },
+    {
+      "check": "model",
+      "command": [
+        "node",
+        "settlement-integration/model.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.058
+    },
+    {
+      "check": "reader-wallet-release",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "settlement-integration/reader.test.mjs",
+        "settlement-integration/wallet.test.mjs",
+        "settlement-integration/release/release-packet.test.mjs",
+        "settlement-integration/release/verify-setup.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 2.58
+    },
+    {
+      "check": "wallet-confirmation",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-wallet-transactions.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.178
+    },
+    {
+      "check": "release-inputs",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/release",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.178
+    },
+    {
+      "check": "reconciliation",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "settlement-integration/legacy-reconciliation",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.215
+    },
+    {
+      "check": "administrator-upgrade",
+      "command": [
+        "node",
+        "--test",
+        "settlement-admin/admin.test.mjs",
+        "settlement-admin/upgrade-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.61
+    },
+    {
+      "check": "administrator-setup",
+      "command": [
+        "node",
+        "--test",
+        "settlement-setup/admin.test.mjs",
+        "settlement-setup/setup-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 1.144
+    },
+    {
+      "check": "administrator-season",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-season/admin.test.mjs",
+        "settlement-season/start-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 3.057
+    },
+    {
+      "check": "owner-planting",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-gameplay/admin.test.mjs",
+        "settlement-gameplay/plant-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 16.908
+    },
+    {
+      "check": "owner-watering",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-watering/admin.test.mjs",
+        "settlement-watering/water-core.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.742
+    },
+    {
+      "check": "tester-return",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/test-tester-return.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.207
+    },
+    {
+      "check": "read-only-view",
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "--test-reporter=tap",
+        "scripts/build-policy.test.mjs",
+        "settlement-integration/ui/panel.test.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.476
+    },
+    {
+      "check": "protected-build",
+      "command": [
+        "node",
+        "settlement-integration/build-review.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 1.539
+    },
+    {
+      "check": "preserved-core",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "acc1e9d587b8c185bbd2b3c3be88b2f06e0a7760",
+        "--",
+        "index.html",
+        "wallet.js",
+        "garden.js",
+        "sui-sdk.bundle.js",
+        "netlify/functions",
+        "netlify/edge-functions/public-player-guide.ts",
+        "contract",
+        "contract-payout",
+        "package.json",
+        "package-lock.json",
+        "netlify.toml",
+        "settlement-integration/deployment-config.mjs"
+      ],
+      "exitCode": 0,
+      "durationSeconds": 0.003
+    }
+  ],
+  "finalChecksAfterRecoveryLockFix": [
+    {
+      "check": "final-watering",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "--test",
+        "--test-isolation=none",
+        "settlement-watering/water-core.test.mjs",
+        "settlement-watering/admin.test.mjs"
+      ]
+    },
+    {
+      "check": "final-build",
+      "exitCode": 0,
+      "command": [
+        "node",
+        "settlement-integration/build-review.mjs"
+      ]
+    }
+  ],
+  "wateringTestsPassed": 42,
+  "finalCheckedAt": "2026-10-31T23:13:00Z"
+}

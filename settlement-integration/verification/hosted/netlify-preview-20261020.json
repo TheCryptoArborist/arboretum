@@ -1,0 +1,1836 @@
+{
+  "schemaVersion": 1,
+  "reviewSourceCommit": "1dc540414d0e4060343ee68a005cecb16e404991",
+  "previewUrl": "https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app",
+  "testerAccessUrl": "https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access",
+  "sourceUpload": {
+    "buildId": "6ad6eb2abca3f4d4579e6520",
+    "deployId": "6ad6eb2abca3f4d4579e6522",
+    "siteId": "a344fb31-10b4-4eea-9562-067d90a39607",
+    "branch": "feature/settlement-app-integration-20261020",
+    "requestedAt": "2026-10-20T04:16:42.762Z",
+    "archiveSha256": "73af37a4d5c590ff7e8023743b3b19d8301c57c0aeee7c54266b8188f902a31c",
+    "downloadedSourceZipMatches": true
+  },
+  "deployment": {
+    "id": "6ad6eb2abca3f4d4579e6522",
+    "state": "ready",
+    "context": "branch-deploy",
+    "branch": "feature/settlement-app-integration-20261020",
+    "published_at": null
+  },
+  "production": {
+    "id": "6abe81174b61a8e3dd53b333",
+    "state": "ready",
+    "context": "production",
+    "published_at": "2026-10-01T15:49:58.908Z",
+    "domain": "treegrow.xyz"
+  },
+  "anonymousAndPublicChecks": {
+    "observed_at": "2026-10-20T04:20:33.188Z",
+    "deploy_id": "6ad6eb2abca3f4d4579e6522",
+    "origin": "https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app",
+    "passed": 30,
+    "total": 30,
+    "results": [
+      {
+        "path": "/",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 13362,
+        "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+        "headers": {
+          "content-type": "text/html; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "expected_sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+        "hash_matches": true,
+        "has_scripts": false
+      },
+      {
+        "path": "/.netlify/functions/calendar-reminder",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/economy-review/partner-panel.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/game.html",
+        "kind": "html_redirect",
+        "accept": "text/html",
+        "status": 303,
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "headers": {
+          "content-type": null,
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": "https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/tester-access",
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/game.html",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/garden.js",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/guide/guide.css",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/guide/player-guide.css",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 48829,
+        "sha256": "05212d2a69feeb56f4e848cf847973c97022d2d18fe1d11e65018bd2a6900adc",
+        "headers": {
+          "content-type": "text/css; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "same-origin",
+          "x-robots-tag": "noindex, nofollow, noindex",
+          "vary": "Accept-Encoding",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/guide/player-guide.js",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 3045,
+        "sha256": "4ff383b88bcf7fa7a74bcba4f3e5bf31decf4abfcf6f4487167a86132dea88b9",
+        "headers": {
+          "content-type": "application/javascript; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "same-origin",
+          "x-robots-tag": "noindex, nofollow, noindex",
+          "vary": "Accept-Encoding",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/index.html",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 13362,
+        "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+        "headers": {
+          "content-type": "text/html; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "expected_sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+        "hash_matches": true,
+        "has_scripts": false
+      },
+      {
+        "path": "/player-guide",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 35657,
+        "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+        "headers": {
+          "content-type": "text/html; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "same-origin",
+          "x-robots-tag": "noindex, nofollow, noindex",
+          "vary": "Accept-Encoding",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "expected_sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+        "hash_matches": true
+      },
+      {
+        "path": "/player-guide.html",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 35657,
+        "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+        "headers": {
+          "content-type": "text/html; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "same-origin",
+          "x-robots-tag": "noindex, nofollow, noindex",
+          "vary": "Accept-Encoding",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; script-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "expected_sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+        "hash_matches": true
+      },
+      {
+        "path": "/player-guide/",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 308,
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "headers": {
+          "content-type": null,
+          "cache-control": null,
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": null,
+          "location": "https://6ad6eb2abca3f4d4579e6522--arboretum-sui-forest.netlify.app/player-guide",
+          "x-content-type-options": null,
+          "x-frame-options": null,
+          "referrer-policy": null,
+          "x-robots-tag": "noindex",
+          "vary": null,
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/player-guide/private",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/prelaunch/hero.png",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 634915,
+        "sha256": "090c890cdc60de682501735fc76739de2fc1c441bb50badb47cc74a3600728dd",
+        "headers": {
+          "content-type": "image/png",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/prelaunch/mark.png",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 1817978,
+        "sha256": "9e0e5f54c623f7bf25f8710fff7de04f9298282a359166443f078b669c4a2dff",
+        "headers": {
+          "content-type": "image/png",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/prelaunch/site.css",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 39019,
+        "sha256": "1afc9c80f0639f65d9bfdbd4274c23dc7dc8d4e0fa1056dd22c43dd3c5bedb95",
+        "headers": {
+          "content-type": "text/css; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/robots.txt",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 26,
+        "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1",
+        "headers": {
+          "content-type": "text/plain; charset=UTF-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "disallows_all": true
+      },
+      {
+        "path": "/season-status/garden-status.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-game.html",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-integration/deployment-config.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-integration/model.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-integration/reader.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-panel.css",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-panel.mjs",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/settlement-sdk.bundle.js",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/sui-sdk.bundle.js",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/tester-access",
+        "kind": "public",
+        "accept": "application/octet-stream",
+        "status": 200,
+        "bytes": 1660,
+        "sha256": "0ddf664f7853ba2f4f338a9e5210155326abba088719bdfbef81616d6c021d8b",
+        "headers": {
+          "content-type": "text/html; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "same-origin",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": "default-src 'none'; img-src 'self'; style-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
+        },
+        "set_cookie_present": false,
+        "passed": true,
+        "password_form": true,
+        "has_scripts": false
+      },
+      {
+        "path": "/tester-guide.html",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      },
+      {
+        "path": "/wallet.js",
+        "kind": "protected",
+        "accept": "application/octet-stream",
+        "status": 401,
+        "bytes": 29,
+        "sha256": "b9b4b156ea2f8ad35c23a5e9e257f536cf60a1738971df685dd1238672e5ccff",
+        "headers": {
+          "content-type": "text/plain; charset=utf-8",
+          "cache-control": "private, no-store, max-age=0",
+          "netlify-cdn-cache-control": null,
+          "cdn-cache-control": "no-store",
+          "location": null,
+          "x-content-type-options": "nosniff",
+          "x-frame-options": "DENY",
+          "referrer-policy": "no-referrer",
+          "x-robots-tag": "noindex, nofollow, noarchive, noindex",
+          "vary": "Accept-Encoding, Cookie",
+          "etag": null,
+          "last-modified": null,
+          "content-security-policy": null
+        },
+        "set_cookie_present": false,
+        "passed": true
+      }
+    ]
+  },
+  "rawAssetVerification": [
+    {
+      "file": "index.html",
+      "status": 200,
+      "bytes": 13362,
+      "sha1": "5b877381838492b003e196496e47ee99aa6795ca",
+      "sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "28353104b94f161b05a5454af84a12fd805b4932f1c74530ec3d35ff5a7a981c",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "player-guide.html",
+      "status": 200,
+      "bytes": 35657,
+      "sha1": "414be1bd853c757a8b09c9f951610a0376dd1633",
+      "sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "b8b0278dc9682773f8237f940722ff43087d0c37320a8a25572aa9f473337108",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "game.html",
+      "status": 200,
+      "bytes": 581148,
+      "sha1": "ea830639ce0aa5fe6844a760eca802637c8c1df8",
+      "sha256": "4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "4db760c6bb5500a17f6d1a6ba0c702367894bd9d706000ad3d7952e72c236e78",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-game.html",
+      "status": 200,
+      "bytes": 1091,
+      "sha1": "0b8f0e15540024e3f98bda93c97ba69de5544e78",
+      "sha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "3d7af3006fe3efd190d9943015fa357360bbb962df43bcf4a7a3f7c22dc04ebb",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-sdk.bundle.js",
+      "status": 200,
+      "bytes": 265139,
+      "sha1": "3f6dbcbaf0fabcd8fd5724ffea91b62f82cd6d66",
+      "sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "d9f43e82ecedf0e0f99cef3f6d19759450423d866f8ff17814487de5f1433a62",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "wallet.js",
+      "status": 200,
+      "bytes": 74763,
+      "sha1": "f964f484b2e255b31a241a58c8f47818953e7db7",
+      "sha256": "71a57477b8066a704396448d7279e56cf04d3e1f25b9f4e7aa4f13115b70ad80",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "71a57477b8066a704396448d7279e56cf04d3e1f25b9f4e7aa4f13115b70ad80",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-panel.css",
+      "status": 200,
+      "bytes": 8542,
+      "sha1": "17095c6b7666ebee64d9e0a10be070654a17813d",
+      "sha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "325fa2b38fdd35025acb3de1a5a1503c04751bc52e1d43531a57a8a987de0391",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-integration/reader.mjs",
+      "status": 200,
+      "bytes": 9588,
+      "sha1": "4c56cc6e89d4c46540630db5eea1a101a0a11c76",
+      "sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "0f641f281cf0734656cc2e76aa4ce78ea9ff70f38c0cf2bf3e873ba4fdc582dc",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-panel.mjs",
+      "status": 200,
+      "bytes": 17478,
+      "sha1": "2c692a4fa7588046632bd2a674b24467fb28afde",
+      "sha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "8954a0588148c0bf69ef1f90034cfe2dc7af425fa9108bccb147e8a75e0595a2",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-integration/model.mjs",
+      "status": 200,
+      "bytes": 21344,
+      "sha1": "37fa8ec14e998027b3758a864f96000c2166bb61",
+      "sha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "a47eb25befa7daa0f4d474f44acb7f896182217198bc50d218a6105b4938a04e",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": "settlement-integration/deployment-config.mjs",
+      "status": 200,
+      "bytes": 262,
+      "sha1": "7f96be2d3a871377ab6dfd106d2bef60ca0986bd",
+      "sha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": "e4dfd2bbea9f523e0b29f4006386cad1c772cd5b2ace092c79be5d01baedba39",
+      "review_hash_matches": true,
+      "passed": true
+    },
+    {
+      "file": ".netlify/internal/edge-functions/manifest.json",
+      "status": 200,
+      "bytes": 1425,
+      "sha1": "a0cd4fa7cad0b53497ac0277c0cc92c54bbd0bd2",
+      "sha256": "bf37f82b04f49f5ed45689447f8129291c6e28879b84a96d258d314bfc7acdf3",
+      "inventory_sha_matches": true,
+      "inventory_size_matches": true,
+      "expected_sha256": null,
+      "review_hash_matches": null,
+      "passed": true
+    }
+  ],
+  "deployedInventory": [
+    {
+      "id": "/.netlify/internal/edge-functions/12ea4f6952fbf742579f9b3213a9ada876a3896ef96f600289f833024c29fcfe.eszip",
+      "path": "/.netlify/internal/edge-functions/12ea4f6952fbf742579f9b3213a9ada876a3896ef96f600289f833024c29fcfe.eszip",
+      "sha": "5ea3ab5e3327f71e67f79590db8eaff8b036be2a",
+      "size": 38656,
+      "mime_type": "application/octet-stream",
+      "verification": "Netlify generated edge artifact"
+    },
+    {
+      "id": "/.netlify/internal/edge-functions/1c8c71e6b135f3046192c4da0085595f9f8bbf0e69232bc2ea3b46c46d4c48aa.tar.gz",
+      "path": "/.netlify/internal/edge-functions/1c8c71e6b135f3046192c4da0085595f9f8bbf0e69232bc2ea3b46c46d4c48aa.tar.gz",
+      "sha": "6309b3efdf9ed007c4fb34980c319b56b4d6959c",
+      "size": 8935,
+      "mime_type": "application/gzip",
+      "verification": "Netlify generated edge artifact"
+    },
+    {
+      "id": "/.netlify/internal/edge-functions/manifest.json",
+      "path": "/.netlify/internal/edge-functions/manifest.json",
+      "sha": "a0cd4fa7cad0b53497ac0277c0cc92c54bbd0bd2",
+      "size": 1425,
+      "mime_type": "application/json",
+      "verification": "Netlify generated edge artifact"
+    },
+    {
+      "id": "/arboretum-protocol-logo.png",
+      "path": "/arboretum-protocol-logo.png",
+      "sha": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "size": 1817978,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/ancient-oak-frame.png",
+      "path": "/assets/cosmetics/frames/ancient-oak-frame.png",
+      "sha": "150ff5d3172258d26e51e1c5a031f6998f50cac4",
+      "size": 251920,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/first-growth-ring-frame.png",
+      "path": "/assets/cosmetics/frames/first-growth-ring-frame.png",
+      "sha": "5fcf1596a3e6c679ea2a7090c4b6200a4dcb8aa5",
+      "size": 201969,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/frame-contact-sheet.png",
+      "path": "/assets/cosmetics/frames/frame-contact-sheet.png",
+      "sha": "a8a949c5e2b9762772774618ef3e435d918a644e",
+      "size": 225552,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/legendary-canopy-frame.png",
+      "path": "/assets/cosmetics/frames/legendary-canopy-frame.png",
+      "sha": "3c13e0b1e8f2c5c55b23058a1c479fa91b37104f",
+      "size": 363521,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/mythic-living-crown.png",
+      "path": "/assets/cosmetics/frames/mythic-living-crown.png",
+      "sha": "e9c05f0596ed1d18d1e260355be6d70eb0c8e473",
+      "size": 366663,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "path": "/assets/cosmetics/frames/one-of-one-crown-frame.png",
+      "sha": "5fb8a363d10c73ffc0a1f7aad4e6ac8f685c8ac8",
+      "size": 290825,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/cosmetics/frames/starter-emerald-nursery.png",
+      "path": "/assets/cosmetics/frames/starter-emerald-nursery.png",
+      "sha": "964157ebf0dad82bc474cc4696802f1b27da78ed",
+      "size": 241300,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/ancient-growth.png",
+      "path": "/assets/growth/ancient-growth.png",
+      "sha": "85381457a27f639b07a77b3e2a6f41e2a2956f9d",
+      "size": 199829,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/branching-out.png",
+      "path": "/assets/growth/branching-out.png",
+      "sha": "7ee87afd45f2c28bd5780faa6189aae695a1bc5b",
+      "size": 102765,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/canopy-rise.png",
+      "path": "/assets/growth/canopy-rise.png",
+      "sha": "a9e8623d26335bfe096a33e38007e4bbfd30d2c7",
+      "size": 133420,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/first-growth-ring.png",
+      "path": "/assets/growth/first-growth-ring.png",
+      "sha": "7c1485835ac2b63e2659efe1a7c17d5f26ae73f6",
+      "size": 188809,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/first-planting.png",
+      "path": "/assets/growth/first-planting.png",
+      "sha": "795084b4eaadae0c88a1a6d7f01fa6ae7aec0449",
+      "size": 29237,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/season-harvest.png",
+      "path": "/assets/growth/season-harvest.png",
+      "sha": "8e4b9ccf58bdcb6d5d09715ba1dfa3587c0a60d6",
+      "size": 131203,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/growth/taking-root.png",
+      "path": "/assets/growth/taking-root.png",
+      "sha": "b2ca8cce48ddd68f8bb9296c9ac0773745d9447c",
+      "size": 42920,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/ancient-crate.jpg",
+      "path": "/assets/shop/crates/ancient-crate.jpg",
+      "sha": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "size": 591531,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/boom-chest.png",
+      "path": "/assets/shop/crates/boom-chest.png",
+      "sha": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "size": 2716812,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/canopy-crate.jpg",
+      "path": "/assets/shop/crates/canopy-crate.jpg",
+      "sha": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "size": 444971,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/grove-crate.jpg",
+      "path": "/assets/shop/crates/grove-crate.jpg",
+      "sha": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "size": 474164,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/mythic-crate.jpg",
+      "path": "/assets/shop/crates/mythic-crate.jpg",
+      "sha": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "size": 535874,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/seedling-crate.jpg",
+      "path": "/assets/shop/crates/seedling-crate.jpg",
+      "sha": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "size": 389653,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/supply-drop.jpg",
+      "path": "/assets/shop/crates/supply-drop.jpg",
+      "sha": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "size": 409209,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/assets/shop/crates/victory-chest.png",
+      "path": "/assets/shop/crates/victory-chest.png",
+      "sha": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "size": 2505790,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/background.jpg",
+      "path": "/background.jpg",
+      "sha": "dbe94587737e82f5844397f47d32a81557527c03",
+      "size": 163001,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/background4.jpg",
+      "path": "/background4.jpg",
+      "sha": "b107c052150c2772c14ef6155a073a4c7104e183",
+      "size": 63275,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/background5.jpg",
+      "path": "/background5.jpg",
+      "sha": "a17f6f9093e29987959856286d065611db3b3373",
+      "size": 887261,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/background6.jpg",
+      "path": "/background6.jpg",
+      "sha": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "size": 157821,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/backgrounda.jpg",
+      "path": "/backgrounda.jpg",
+      "sha": "69f13c3a040232bb560513044db3e165c6594247",
+      "size": 855525,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution; inventory path casing differs from backgroundA.jpg",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/garden-ux-model.mjs",
+      "path": "/economy-review/garden-ux-model.mjs",
+      "sha": "ea54ed3dc838109c36757b28fec60a17110a8fa7",
+      "size": 7696,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/garden-ux.css",
+      "path": "/economy-review/garden-ux.css",
+      "sha": "c15dc7bf4ba23e70c0437b4b3ac31af3e9e8b51f",
+      "size": 10829,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/garden-ux.mjs",
+      "path": "/economy-review/garden-ux.mjs",
+      "sha": "e8f13e05a31c271e5a6e11c7a2caa61e30d222a8",
+      "size": 22379,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/ledger.mjs",
+      "path": "/economy-review/ledger.mjs",
+      "sha": "6d90ac8b52ca6fcaf43e652080322d3c82283a81",
+      "size": 12282,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/live-reader.mjs",
+      "path": "/economy-review/live-reader.mjs",
+      "sha": "24ef6d65e67f17c8423a2e6bfe65af59990b1f68",
+      "size": 19797,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/partner-panel.css",
+      "path": "/economy-review/partner-panel.css",
+      "sha": "b1a0897fbaa7d69db67035bd719bcbdb93fa89dd",
+      "size": 4143,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/partner-panel.mjs",
+      "path": "/economy-review/partner-panel.mjs",
+      "sha": "2fe1d2ed11efbc589dff1a15e884589074083bbf",
+      "size": 13345,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/partner-reconciliation-panel.mjs",
+      "path": "/economy-review/partner-reconciliation-panel.mjs",
+      "sha": "4147540161f78af262170a42f1e3a46de6629982",
+      "size": 2273,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/read-queries.mjs",
+      "path": "/economy-review/read-queries.mjs",
+      "sha": "e17213c0e0fe109ce50e1dfa79585f585ffdcf5a",
+      "size": 1455,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/economy-review/season-reader.mjs",
+      "path": "/economy-review/season-reader.mjs",
+      "sha": "df66d5fdaa9f7ddb35031c4dcd3893a56c42dbc6",
+      "size": 10926,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/game.html",
+      "path": "/game.html",
+      "sha": "ea830639ce0aa5fe6844a760eca802637c8c1df8",
+      "size": 581148,
+      "mime_type": "text/html",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/garden-battles-cosmetics-concept.png",
+      "path": "/garden-battles-cosmetics-concept.png",
+      "sha": "ed0ed2a430cc3dcf847a758a159b78a5c333064e",
+      "size": 2088628,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/garden.js",
+      "path": "/garden.js",
+      "sha": "7a45fb40201fdb9f72ab60a66fe73c69b8d6003b",
+      "size": 15258,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/garden.png",
+      "path": "/garden.png",
+      "sha": "f18c4f1ff42a1f3be19f8632c579de3faebbcdeb",
+      "size": 392706,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/guide/guide.css",
+      "path": "/guide/guide.css",
+      "sha": "d7b6abdd7c5b0bdcdd58cb83f9641b80db45f4c3",
+      "size": 14355,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/guide/player-guide.css",
+      "path": "/guide/player-guide.css",
+      "sha": "2eae9ec0aeee7ea33beb1abd2e9d86b364091299",
+      "size": 48829,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/guide/player-guide.js",
+      "path": "/guide/player-guide.js",
+      "sha": "bd664112639378f8e84542ca533f3a7a236decc3",
+      "size": 3045,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/hero.png",
+      "path": "/hero.png",
+      "sha": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "size": 634915,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/index.html",
+      "path": "/index.html",
+      "sha": "5b877381838492b003e196496e47ee99aa6795ca",
+      "size": 13362,
+      "mime_type": "text/html",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/mascot.png",
+      "path": "/mascot.png",
+      "sha": "9f5e5db66e2f6c3eee41d70b1800094fe014a473",
+      "size": 666831,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/netlify.toml",
+      "path": "/netlify.toml",
+      "sha": "663b471bba2f9c656fbfe21e9afcce73ba1cd2fe",
+      "size": 589,
+      "mime_type": "application/octet-stream",
+      "verification": "exact committed Netlify build configuration",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/player-guide.html",
+      "path": "/player-guide.html",
+      "sha": "414be1bd853c757a8b09c9f951610a0376dd1633",
+      "size": 35657,
+      "mime_type": "text/html",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/ancient.jpg",
+      "path": "/prelaunch/ancient.jpg",
+      "sha": "70fe3da0de55f9403bb30493d6be8278b33a5f72",
+      "size": 591531,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/boom-chest.png",
+      "path": "/prelaunch/boom-chest.png",
+      "sha": "523728e484afde2e74b2cd72af9cec9b43a16ea4",
+      "size": 2716812,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/canopy-crate.jpg",
+      "path": "/prelaunch/canopy-crate.jpg",
+      "sha": "e03324083b211e1d919048e0f0bc8349a8e488b3",
+      "size": 444971,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/forest.jpg",
+      "path": "/prelaunch/forest.jpg",
+      "sha": "cda1c03bd0acb85b0933b145611fdf84e61b3d36",
+      "size": 157821,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/garden-preview.avif",
+      "path": "/prelaunch/garden-preview.avif",
+      "sha": "e0704dd3a2825c591772568f87580a031c0ce0b2",
+      "size": 14439,
+      "mime_type": "image/avif",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/grove-crate.jpg",
+      "path": "/prelaunch/grove-crate.jpg",
+      "sha": "ae80bfe0bbda0589e280704459a661d75b572a32",
+      "size": 474164,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/hero.png",
+      "path": "/prelaunch/hero.png",
+      "sha": "15fa5856c63652fa6089010f683169d8b0c0dca5",
+      "size": 634915,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/mark.png",
+      "path": "/prelaunch/mark.png",
+      "sha": "ab73c795005982f1f79d5023fb3ae1f1666d543e",
+      "size": 1817978,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/mythic-crate.jpg",
+      "path": "/prelaunch/mythic-crate.jpg",
+      "sha": "9357fd3521b7a9050aaaa587f823e05c4f908e13",
+      "size": 535874,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/seedling-crate.jpg",
+      "path": "/prelaunch/seedling-crate.jpg",
+      "sha": "80397606cb4fde7447fad4cee7cc915d6f3e904a",
+      "size": 389653,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/shop-pool.css",
+      "path": "/prelaunch/shop-pool.css",
+      "sha": "72bad803daa2ded9e8f5d12a14dbae799b94d0b7",
+      "size": 7537,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/site.css",
+      "path": "/prelaunch/site.css",
+      "sha": "c8bfa58ea4d6788f8a311f441872acf9cf05862b",
+      "size": 39019,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/supply-drop.jpg",
+      "path": "/prelaunch/supply-drop.jpg",
+      "sha": "28495910f18dc71fe37ed36addf656e6de56a61a",
+      "size": 409209,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/prelaunch/victory-chest.png",
+      "path": "/prelaunch/victory-chest.png",
+      "sha": "121e8bb58dfb8e624af633dada77381623f1ba65",
+      "size": 2505790,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/robots.txt",
+      "path": "/robots.txt",
+      "sha": "63657cbb7d7086c56b0cd4e5c6999bb683664868",
+      "size": 26,
+      "mime_type": "text/plain",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/sdk-entry.js",
+      "path": "/sdk-entry.js",
+      "sha": "ab95bd4a4e0417444e648decf6880f713103561a",
+      "size": 317,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/season-status/garden-status.mjs",
+      "path": "/season-status/garden-status.mjs",
+      "sha": "65d22b6c52dc2101f2470578ee158421ba7842a9",
+      "size": 7397,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/season-status/model.mjs",
+      "path": "/season-status/model.mjs",
+      "sha": "c7187b1405032118191a95c30fa8f58d4549cc50",
+      "size": 4843,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/season-status/panel.css",
+      "path": "/season-status/panel.css",
+      "sha": "4a8489448ae29685c6b1a58e9eabd2ae361d18f8",
+      "size": 2227,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-game.html",
+      "path": "/settlement-game.html",
+      "sha": "0b8f0e15540024e3f98bda93c97ba69de5544e78",
+      "size": 1091,
+      "mime_type": "text/html",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-integration/deployment-config.mjs",
+      "path": "/settlement-integration/deployment-config.mjs",
+      "sha": "7f96be2d3a871377ab6dfd106d2bef60ca0986bd",
+      "size": 262,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-integration/model.mjs",
+      "path": "/settlement-integration/model.mjs",
+      "sha": "37fa8ec14e998027b3758a864f96000c2166bb61",
+      "size": 21344,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-integration/reader.mjs",
+      "path": "/settlement-integration/reader.mjs",
+      "sha": "4c56cc6e89d4c46540630db5eea1a101a0a11c76",
+      "size": 9588,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-panel.css",
+      "path": "/settlement-panel.css",
+      "sha": "17095c6b7666ebee64d9e0a10be070654a17813d",
+      "size": 8542,
+      "mime_type": "text/css",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-panel.mjs",
+      "path": "/settlement-panel.mjs",
+      "sha": "2c692a4fa7588046632bd2a674b24467fb28afde",
+      "size": 17478,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/settlement-sdk.bundle.js",
+      "path": "/settlement-sdk.bundle.js",
+      "sha": "3f6dbcbaf0fabcd8fd5724ffea91b62f82cd6d66",
+      "size": 265139,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/sitemap.xml",
+      "path": "/sitemap.xml",
+      "sha": "d58a642e0be10a910d2cded1240c152c0d4bdef4",
+      "size": 150,
+      "mime_type": "application/xml",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/sui-sdk.bundle.js",
+      "path": "/sui-sdk.bundle.js",
+      "sha": "853fd2da7f3e5e00688fd591c2a2f01a486c6c41",
+      "size": 152351,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/tester-guide.html",
+      "path": "/tester-guide.html",
+      "sha": "4fccae59ed56919548eed2c5e59a9662e8d508fb",
+      "size": 59488,
+      "mime_type": "text/html",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/thick.png",
+      "path": "/thick.png",
+      "sha": "ad280e7b551f15631f84ffe01bc5373746590da6",
+      "size": 1004336,
+      "mime_type": "image/png",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/tree.jpg",
+      "path": "/tree.jpg",
+      "sha": "5ca16c779edf1d559e5be5a02a6edd2e626d9c2f",
+      "size": 37233,
+      "mime_type": "image/jpeg",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    },
+    {
+      "id": "/wallet.js",
+      "path": "/wallet.js",
+      "sha": "f964f484b2e255b31a241a58c8f47818953e7db7",
+      "size": 74763,
+      "mime_type": "application/javascript",
+      "verification": "review distribution",
+      "matches_expected_bytes": true
+    }
+  ],
+  "sourceExclusions": [
+    {
+      "file": "settlement-wallet.js",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/build-review.mjs",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/wallet.test.mjs",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/verification/build.json",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/verification/model-wallet-reader.log",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/release/verify_inputs.py",
+      "absent": true
+    },
+    {
+      "file": "settlement-integration/legacy-reconciliation/test_reconciliation.py",
+      "absent": true
+    },
+    {
+      "file": "contract-payout/source/settlement.move",
+      "absent": true
+    },
+    {
+      "file": "contract/sources/arboretum.move",
+      "absent": true
+    },
+    {
+      "file": "economy-review/hosted-review.py",
+      "absent": true
+    }
+  ],
+  "edgeFunctions": {
+    "names": [
+      "public-player-guide",
+      "tester-gate"
+    ],
+    "routes": [
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide/?$",
+        "excluded_patterns": [],
+        "path": "/player-guide"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide\\.html/?$",
+        "excluded_patterns": [],
+        "path": "/player-guide.html"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/player-guide//?$",
+        "excluded_patterns": [],
+        "path": "/player-guide/"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/guide/player-guide\\.css/?$",
+        "excluded_patterns": [],
+        "path": "/guide/player-guide.css"
+      },
+      {
+        "function": "public-player-guide",
+        "pattern": "^/guide/player-guide\\.js/?$",
+        "excluded_patterns": [],
+        "path": "/guide/player-guide.js"
+      },
+      {
+        "function": "tester-gate",
+        "pattern": "^(?:/(.*))/?$",
+        "excluded_patterns": [
+          "^/player-guide/?$",
+          "^/player-guide\\.html/?$",
+          "^/player-guide//?$",
+          "^/guide/player-guide\\.css/?$",
+          "^/guide/player-guide\\.js/?$"
+        ],
+        "path": "/*"
+      }
+    ]
+  },
+  "serverlessFunctions": [
+    {
+      "name": "calendar-reminder",
+      "runtime": "nodejs24.x",
+      "packageDigest": "9ae57ab696df7f81834efec8b50ac46e2251c94394aebc5193640dce5bb4bb1b"
+    }
+  ],
+  "functionSchedules": [],
+  "reviewOnly": true,
+  "newSeasonsConfigured": false,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "verificationMethods": [
+    "Anonymous HTTP requests on the exact immutable deploy host, without cookies.",
+    "Authorized Netlify per-deploy file inventory and raw artifact reads; SHA-256 matched all 11 critical reviewed files.",
+    "All 82 non-internal inventory records accounted for: 81 review distribution files and the exact committed Netlify configuration.",
+    "Original source ZIP downloaded through Netlify admin API and hash-matched to the exact Git archive."
+  ],
+  "limits": [
+    "No genuine tester session was used; protected bytes were verified through the authorized Netlify admin file API.",
+    "No real connected wallet or interactive hosted gameplay was exercised. Existing offline browser evidence remains the visual/UI evidence.",
+    "The source-ZIP build has no Netlify commit_ref. Source provenance is established by the Git archive hash and matching downloaded source ZIP."
+  ],
+  "branchAliasNote": {
+    "reportedAlias": "https://feature-settlement-app-integration-20261020--arboretum-sui-forest.netlify.app",
+    "firstLabelLength": 65,
+    "observedResult": "HTTP503 from network proxy; all30 access probes passed at the immutable deploy URL instead.",
+    "useImmutableUrl": true
+  },
+  "apiReferences": [
+    "https://answers.netlify.com/t/error-during-download-deployment-zip/10990/40",
+    "https://answers.netlify.com/t/api-endpoint-deploys-deploy-id-files-path-randomly-gives-strange-results/22091/3"
+  ]
+}

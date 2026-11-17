@@ -1,5 +1,6 @@
 /** Additive gated-review transform; never changes the tracked game/wallet/contract sources. */
 import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {fileURLToPath} from 'node:url';
+import {assertReviewBuild} from '../scripts/build-policy.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const sha=x=>crypto.createHash('sha256').update(x).digest('hex');
 export const INPUT_GAME='1f927e9f3ac3ea79b43636f9fd3f455cdd34174adb902751cb28c89e7240a842';
@@ -34,7 +35,7 @@ export function transformSeason(original){
  .replace('  syncWaterButtons(view);\n}',"  syncWaterButtons(view);\n  document.dispatchEvent(new CustomEvent('arboretum:season-view'));\n}");
 }
 export function build(dist=path.join(root,'dist')){
- if(process.env.CONTEXT!=='branch-deploy')throw Error('Garden UX is branch-review only');
+ assertReviewBuild();
  const keep=['index.html','player-guide.html','wallet.js','garden.js','sui-sdk.bundle.js','economy-review/partner-panel.mjs','economy-review/partner-reconciliation-panel.mjs'];
  const hash=n=>sha(fs.readFileSync(path.join(dist,n)));
  const before=Object.fromEntries(keep.map(n=>[n,hash(n)]));

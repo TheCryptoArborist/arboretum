@@ -1,0 +1,53 @@
+{
+  "retrievedAt": "2026-10-20T01:31:12.327035+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query SchemaType($name: String!) {\n  __type(name:$name) {\n    name description\n    inputFields { name description type { kind name ofType { kind name } } }\n    fields { name description type { kind name ofType { kind name } }\n      args { name type { kind name ofType { kind name } } }\n    }\n  }\n}",
+    "variables": {
+      "name": "ObjectFilter"
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "__type": {
+        "name": "ObjectFilter",
+        "description": "A filter over the live object set, the filter can be one of:\n\n- A filter on type (all live objects whose type matches that filter).\n- Fetching all objects owned by an address or object, optionally filtered by type.\n- Fetching all shared or immutable objects, filtered by type.",
+        "inputFields": [
+          {
+            "name": "ownerKind",
+            "description": "Filter on whether the object is address-owned, object-owned, shared, or immutable.\n\n- If this field is set to \"ADDRESS\" or \"OBJECT\", then an owner filter must also be provided.\n- If this field is set to \"SHARED\" or \"IMMUTABLE\", then a type filter must also be provided.",
+            "type": {
+              "kind": "ENUM",
+              "name": "OwnerKind",
+              "ofType": null
+            }
+          },
+          {
+            "name": "owner",
+            "description": "Specifies the address of the owning address or object.\n\nThis field is required if `ownerKind` is \"ADDRESS\" or \"OBJECT\". If provided without `ownerKind`, `ownerKind` defaults to \"ADDRESS\".",
+            "type": {
+              "kind": "SCALAR",
+              "name": "SuiAddress",
+              "ofType": null
+            }
+          },
+          {
+            "name": "type",
+            "description": "Filter on the object's type.\n\nThe filter can be one of:\n\n- A package address: `0x2`,\n- A module: `0x2::coin`,\n- A fully-qualified name: `0x2::coin::Coin`,\n- A type instantiation: `0x2::coin::Coin<0x2::sui::SUI>`.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            }
+          }
+        ],
+        "fields": null
+      }
+    }
+  },
+  "responseSha256": "20af2ac444c205d25a1a718d0ead216eba9daa83b4e6a0873ebd1fff9c8b60c5"
+}

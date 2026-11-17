@@ -1,0 +1,25 @@
+{
+  "retrievedAt": "2026-10-31T03:34:35.488Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query ExistingSettlementRegistries($type: String!) {\n    checkpoint { sequenceNumber timestamp }\n    objects(first: 1, filter: {type: $type}) { nodes { address } pageInfo { hasNextPage endCursor } }\n  }",
+  "variables": {
+    "type": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+  },
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 340000887,
+        "timestamp": "2026-10-31T03:34:33.544Z"
+      },
+      "objects": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      }
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesProduced": 0
+}

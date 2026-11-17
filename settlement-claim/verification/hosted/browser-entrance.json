@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-11-05T03:30:19.929193+00:00",
+  "deployId": "6aebf7959ad6e90b6714ca15",
+  "sourceCommit": "c298d5a8bd0a47cd3e971ca3d89a428f1b888644",
+  "method": "cua_repl live browser navigation",
+  "requestedPath": "https://www.treegrow.xyz/admin/claim-test/",
+  "observedUrl": "https://www.treegrow.xyz/tester-access?next=claim-test",
+  "observedTitle": "Tester access | Arboretum",
+  "observedButton": "Continue to season reward",
+  "fixedDestinationPreserved": true,
+  "testerLoginAttempted": false,
+  "credentialsEntered": false,
+  "realWalletConnections": 0,
+  "realSignaturesRequested": 0,
+  "realTransactionsSubmitted": 0,
+  "limit": "This confirms the anonymous native-browser entrance; it does not establish an authenticated session or a Slush signing flow."
+}

@@ -1,0 +1,51 @@
+{
+  "verifiedAt": "2026-10-31T23:22:47.235709+00:00",
+  "origin": "https://www.treegrow.xyz",
+  "deployId": "6ae678179e4a049e68a01cae",
+  "checks": [
+    {
+      "path": "/admin/watering-test",
+      "httpStatus": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access?next=watering-test",
+      "passed": true
+    },
+    {
+      "path": "/admin/watering-test/",
+      "httpStatus": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access?next=watering-test",
+      "passed": true
+    },
+    {
+      "path": "/admin/watering-test/index.html",
+      "httpStatus": 303,
+      "redirect": "https://www.treegrow.xyz/tester-access?next=watering-test",
+      "passed": true
+    },
+    {
+      "path": "/admin/watering-test/admin.css",
+      "httpStatus": 401,
+      "redirect": null,
+      "passed": true
+    },
+    {
+      "path": "/admin/watering-test/admin.mjs",
+      "httpStatus": 401,
+      "redirect": null,
+      "passed": true
+    },
+    {
+      "path": "/tester-access?next=watering-test",
+      "httpStatus": 200,
+      "redirect": null,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "credentialsUsed": false,
+  "walletConnections": 0,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "Anonymous HTTP checks only; authenticated live browser and Slush execution were not exercised. Authenticated deployed bytes were verified through the authorized Netlify API."
+  ]
+}

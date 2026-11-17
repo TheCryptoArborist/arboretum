@@ -1,0 +1,17 @@
+{
+  "method": "Netlify connector get_deploy and get_project",
+  "verifiedAt": "2026-11-07T03:56:04.652Z",
+  "id": "6aeea0b254e028ece344267c",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6aeea0b254e028ece344267a",
+  "state": "ready",
+  "context": "production",
+  "title": "Remove dedicated-site tester access code \u00b7 05c0a9d9799b",
+  "created_at": "2026-11-07T03:53:22.795Z",
+  "published_at": "2026-11-07T03:53:39.280Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}

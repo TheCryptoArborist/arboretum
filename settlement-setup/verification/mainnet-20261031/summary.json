@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-10-31T04:12:47.224Z",
+  "canonicalOrigin": "https://www.treegrow.xyz",
+  "chain": "sui:mainnet",
+  "kindSha256": "2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b",
+  "preflight": {
+    "status": "ready",
+    "checkpoint": {
+      "sequenceNumber": 340010293,
+      "timestamp": "2026-10-31T04:12:44.548Z",
+      "digest": "FwuCs9fLXxsNjXpJovWZsrEQzDS69H1Gst3FitLSkjTS"
+    },
+    "sender": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "legacyAdminCap": {
+      "objectId": "0x74b2e28a362a148c1a0c0a8da8519966ba19c3cec82148028b3019d30829f3b3",
+      "version": "986499447",
+      "digest": "36Cg64NBM7Pa2NEageUkzgZ8MZydWD4BtKavLb3ZgqWN"
+    }
+  },
+  "simulation": {
+    "status": "simulated",
+    "checkpoint": {
+      "sequenceNumber": 340010293,
+      "timestamp": "2026-10-31T04:12:44.548Z",
+      "digest": "FwuCs9fLXxsNjXpJovWZsrEQzDS69H1Gst3FitLSkjTS"
+    },
+    "gasEstimateMist": "5632932",
+    "gasEstimateSui": "0.005632932",
+    "simulationOnly": {
+      "registryId": "0x7e0f443b6b99686fd81b7815991d9c6475e251dcaa1f00b7b91d69434c62fa6a",
+      "adminCapId": "0x7dcd28cc4a9fda36bd7379091179620d624dfe1fa8bf75e1d516d811679ba7d8"
+    }
+  },
+  "confirmationQueryControl": {
+    "digest": "GY23E3FJnMkg9VgZnqABEyWrKsTog35hfqAQx6mwBZKU",
+    "status": "SUCCESS",
+    "correctlyRejectedAsSetup": true,
+    "reason": "The known upgrade is a different transaction kind."
+  },
+  "cors": {
+    "status": 200,
+    "allowedOrigin": "*",
+    "allowedMethods": "POST",
+    "allowedHeaders": "*"
+  },
+  "postCors": [
+    {
+      "query": "tip",
+      "allowedOrigin": "*"
+    },
+    {
+      "query": "inputs",
+      "allowedOrigin": "*"
+    },
+    {
+      "query": "simulation",
+      "allowedOrigin": "*"
+    },
+    {
+      "query": "confirmation-schema-control",
+      "allowedOrigin": "*"
+    }
+  ],
+  "sourceSha256": {
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-setup/check-live.mjs": "ca3f512244d607845bf722523f9d0e09bc8a6167a4421b3a14133a11e8e068d8",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "settlement-admin/upgrade-constants.mjs": "dc1bb6e81a35e70514e1e6771bdb4b473388cbc88a8c376cb421d3a04c9cc23a",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  },
+  "newRegistryId": null,
+  "newAdminCapId": null,
+  "signaturesRequested": 0,
+  "transactionsSubmitted": 0,
+  "limits": [
+    "Simulation IDs are not deployment IDs.",
+    "The owner has not signed the setup through this check.",
+    "The browser repeats fresh authority, inventory and simulation checks before wallet handoff."
+  ]
+}

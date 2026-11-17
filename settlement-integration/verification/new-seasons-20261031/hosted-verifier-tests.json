@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "networkRequests": 0,
+  "credentialsUsed": false,
+  "browserUsed": false,
+  "harnessSha256": "4f03760bd58535c66f9b107f761d4233877abd6b4b5a3a5952a9b3559561541d",
+  "passed": true,
+  "checks": [
+    {
+      "check": "Captured served HTML passes exactly seven cardinality-one anchor rewrites with every other byte equal",
+      "passed": true
+    },
+    {
+      "check": "Unexpected script insertion is rejected",
+      "passed": true
+    },
+    {
+      "check": "Non-anchor whitespace mutation is rejected",
+      "passed": true
+    },
+    {
+      "check": "Duplicate frozen anchor is rejected",
+      "passed": true
+    },
+    {
+      "check": "Duplicate served anchor is rejected",
+      "passed": true
+    }
+  ],
+  "verification": {
+    "sourceSha256": "f22e57baff3ec614b2991348af38c3b2b530644a75ddc6ffbca5754fcb06651e",
+    "servedSha256": "604113521ca6bfff974cc6e0eb8020352d7fd84aaa538ae7e16a22bb82c60c36",
+    "sourceBytes": 580715,
+    "servedBytes": 580685,
+    "allOtherBytesEqual": true,
+    "transforms": [
+      {
+        "source": "<a class=\"sr-route\" href=\"/game.html\">Existing garden <small>Default route</small></a>",
+        "served": "<a class='sr-route' href='/game'>Existing garden <small>Default route</small></a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"player-guide.html\" class=\"nav-a home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"How to Play — opens player guide in a new tab\">How to Play</a>",
+        "served": "<a aria-label='How to Play — opens player guide in a new tab' class='nav-a home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"player-guide.html\" class=\"home-link player-guide-link\" target=\"_blank\" rel=\"noopener noreferrer\">How to Play ↗</a>",
+        "served": "<a class='home-link player-guide-link' href='/player-guide' rel='noopener noreferrer' target='_blank'>How to Play ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#watering\" target=\"_blank\" rel=\"noopener noreferrer\">Garden help ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#watering' rel='noopener noreferrer' target='_blank'>Garden help ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#tools\" target=\"_blank\" rel=\"noopener noreferrer\">Tool guide ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#tools' rel='noopener noreferrer' target='_blank'>Tool guide ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a class=\"gbtn guide-context-link\" href=\"player-guide.html#crates\" target=\"_blank\" rel=\"noopener noreferrer\">Player Guide: crates &amp; chests ↗</a>",
+        "served": "<a class='gbtn guide-context-link' href='/player-guide#crates' rel='noopener noreferrer' target='_blank'>Player Guide: crates &amp; chests ↗</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      },
+      {
+        "source": "<a href=\"/game.html\">Open the existing garden</a>",
+        "served": "<a href='/game'>Open the existing garden</a>",
+        "sourceOccurrences": 1,
+        "servedOccurrences": 1
+      }
+    ]
+  }
+}

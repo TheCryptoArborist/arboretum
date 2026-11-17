@@ -1,0 +1,15 @@
+{
+  "completedAt": "2026-10-31T22:21:37.594917+00:00",
+  "nickname": "Arboretum-owner-gameplay-runtime-CA-ab6933a8",
+  "browserDatabasePath": "/root/.local/share/pki/nssdb",
+  "onlyNamedCertificateAddedAndRemoved": true,
+  "normalTLSValidationUsed": true,
+  "priorTrustListingRestored": true,
+  "priorTrustListingSha256": "fea42a02c8de16ec8e1b3ed32f76ac777ea5f0196f02f30e9f5aad3b0a3316f9",
+  "finalTrustListingSha256": "fea42a02c8de16ec8e1b3ed32f76ac777ea5f0196f02f30e9f5aad3b0a3316f9",
+  "websiteOrSystemEnvironmentChangedForTrust": false,
+  "credentialsWritten": false,
+  "documentation": "https://chromium.googlesource.com/chromium/src/+/7cab636ebce4a3d375cf7df2dddb59ce6035f474/docs/linux/cert_management.md",
+  "caPemFileSha256": "ab6933a81e6f0d142e6d5f58ed465589d899a523c2752055761af11d4ee38f2b",
+  "caCertificateDerSha256": "c71b4d1e9d7775c538c688ab10cea9ce417d7312e89838f9d15ff73256cd7fc3"
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Rewards setup | Arboretum administration</title>
+  <link rel="icon" href="/prelaunch/mark.png">
+  <link rel="stylesheet" href="/admin/settlement-setup/admin.css">
+  <script type="module" src="/admin/settlement-setup/admin.mjs"></script>
+</head>
+<body>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="Arboretum home">
+      <img src="/prelaunch/mark.png" width="44" height="44" alt="">
+      <span>ARBORETUM<small>ADMINISTRATION</small></span>
+    </a>
+    <a class="back-link" href="/admin/settlement-upgrade/">Upgrade receipt <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow"><span class="network-dot" aria-hidden="true"></span> SUI MAINNET · EMPTY REGISTRY SETUP</p>
+      <h1 id="page-title">Set up the <br><span>rewards system.</span></h1>
+      <p class="lead">Create the empty rewards Registry for Arboretum’s confirmed version 12. Your administrator account will own its new capability.</p>
+    </section>
+
+    <div id="origin-warning" class="notice danger" role="alert" hidden></div>
+    <noscript><div class="notice danger">JavaScript is required for the wallet review. Enable it in your browser and reload this page.</div></noscript>
+
+    <div class="release-layout">
+      <section class="card release-card" aria-labelledby="setup-heading">
+        <div class="card-heading"><div><p class="eyebrow">THE APPROVED SETUP</p><h2 id="setup-heading">An empty starting point</h2></div><span class="version-chip">v12 ready</span></div>
+        <div class="preservation-strip"><span class="check-icon" aria-hidden="true">✓</span><p>Package upgrade confirmed<br><small>The reviewed settlement module is published on mainnet.</small></p></div>
+
+        <h3>One transaction</h3>
+        <ol class="command-list">
+          <li><span class="step-number" aria-hidden="true">1</span><div><strong>Create the rewards Registry</strong><p>A new shared record starts with no Seeds, Growth Points, reward funds, or treasury balance.</p></div></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span><div><strong>Keep control with your administrator</strong><p>A new administrator capability is bound to this Registry and delivered to your selected account.</p></div></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span><div><strong>Leave the season unstarted</strong><p>Season activation, funding, and any legacy compensation are separate decisions.</p></div></li>
+        </ol>
+
+        <div class="fee-box">
+          <div><p class="eyebrow">ESTIMATED NETWORK FEE</p><p id="gas-estimate" class="fee">≈0.005633 <span>SUI</span></p></div>
+          <span id="gas-status" class="pill">Refresh required</span>
+          <p id="gas-note" class="fee-note">The fresh check calculates the current estimate. Slush shows the final transaction fee before approval.</p>
+        </div>
+        <p class="scope-note">The only payment is the network fee. This setup leaves the existing garden, inventory, historical points, and claims as they are.</p>
+
+        <details class="technical-details">
+          <summary>View package and administrator details</summary>
+          <dl>
+            <dt>Required administrator</dt>
+            <dd id="expected-admin">0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4</dd>
+            <dt>Confirmed version 12 package</dt>
+            <dd id="expected-package">0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a</dd>
+            <dt>Single contract call</dt>
+            <dd>settlement::create_settlement_registry</dd>
+            <dt>Reviewed transaction fingerprint</dt>
+            <dd id="expected-kind">2295013a26ba1d4e3ed9cf130a97a8123dda75aa1df6fbce256656260bdd193b</dd>
+          </dl>
+          <a class="text-link" href="https://github.com/TheCryptoArborist/arboretum/blob/2e24a6c/settlement-integration/release/evidence/20261031-empty-registry-review/REVIEW.md" target="_blank" rel="noopener noreferrer">Read the complete setup review <span aria-hidden="true">↗</span></a>
+        </details>
+      </section>
+
+      <section class="card action-card" aria-labelledby="action-heading">
+        <p class="eyebrow">ADMINISTRATOR ACTION</p>
+        <h2 id="action-heading">Review with Slush</h2>
+        <p class="action-intro">Connect the wallet that holds Arboretum’s existing administrator capability.</p>
+
+        <div class="flow-section">
+          <h3><span class="step-number">1</span> Connect your wallet</h3>
+          <div id="wallet-list" class="wallet-list"><p class="muted">Looking for the Slush browser extension…</p></div>
+          <p id="wallet-status" class="small-text" aria-live="polite">Connecting only shares your account address.</p>
+          <div id="account-controls" hidden>
+            <label for="account-select">Choose the administrator account</label>
+            <select id="account-select"><option value="">Select an account</option></select>
+            <button id="use-account" type="button" class="button secondary" disabled>Use selected account</button>
+            <p id="connected-address" class="address" hidden></p>
+            <button id="disconnect" type="button" class="text-button">Disconnect</button>
+          </div>
+        </div>
+
+        <div class="flow-section">
+          <h3><span class="step-number">2</span> Check the empty setup</h3>
+          <p class="small-text">Verify the administrator and package, check that setup has not already happened, and simulate the exact transaction.</p>
+          <button id="check-setup" type="button" class="button secondary" disabled>Check setup readiness</button>
+          <div id="checks" class="checks" aria-live="polite" hidden>
+            <p><span aria-hidden="true">✓</span> Exact empty-Registry transaction</p>
+            <p><span aria-hidden="true">✓</span> Administrator, package, and mainnet verified</p>
+            <p><span aria-hidden="true">✓</span> No existing settlement Registry found</p>
+            <p><span aria-hidden="true">✓</span> Current simulation successful</p>
+            <p id="checked-at" class="small-text"></p>
+          </div>
+        </div>
+
+        <div class="flow-section final-step">
+          <h3><span class="step-number">3</span> Approve in your wallet</h3>
+          <label class="acknowledgement" for="acknowledge"><input id="acknowledge" type="checkbox" disabled><span>I am creating an empty rewards Registry, with no season start or funding, and have reviewed the network fee shown above.</span></label>
+          <button id="submit-setup" type="button" class="button primary" disabled>Review setup in Slush <span aria-hidden="true">↗</span></button>
+          <p class="small-text">Slush asks for your final approval. This page never needs your recovery phrase or private key.</p>
+        </div>
+      </section>
+    </div>
+
+    <section id="status-panel" class="notice status-panel" aria-live="polite" hidden>
+      <h2 id="status-title"></h2><p id="status-message"></p>
+    </section>
+
+    <section id="receipt-panel" class="card receipt-card" aria-labelledby="receipt-heading" hidden>
+      <p class="eyebrow">CONFIRMED ON SUI MAINNET</p>
+      <h2 id="receipt-heading">The empty Registry is created.</h2>
+      <p id="receipt-state-message">The actual transaction and new objects match the reviewed empty setup. This transaction started no season and deposited no reward funds. Save the confirmed IDs for the next separately reviewed step.</p>
+      <dl>
+        <dt>Transaction digest</dt><dd id="receipt-digest"></dd>
+        <dt>Rewards Registry</dt><dd id="receipt-registry"></dd>
+        <dt>Administrator capability</dt><dd id="receipt-admin-cap"></dd>
+        <dt>Package</dt><dd id="receipt-package"></dd>
+      </dl>
+      <div class="receipt-actions"><a id="receipt-link" class="button secondary" target="_blank" rel="noopener noreferrer">View transaction <span aria-hidden="true">↗</span></a><button id="copy-receipt" type="button" class="button secondary">Copy receipt</button></div>
+    </section>
+
+    <section id="recovery-panel" class="card recovery-card" aria-labelledby="recovery-heading" hidden>
+      <h2 id="recovery-heading">Check an existing setup</h2>
+      <p id="recovery-message">If Slush submitted a transaction, copy its digest from wallet activity and verify it here. Verification only reads mainnet; it does not create another Registry.</p>
+      <form id="verify-form"><label for="transaction-digest">Setup transaction digest from Slush</label><div class="recovery-input"><input id="transaction-digest" name="digest" autocomplete="off" spellcheck="false" maxlength="64" placeholder="Paste the transaction digest"><button id="verify-receipt" class="button secondary" type="submit">Verify transaction</button></div></form>
+      <button id="check-existing" type="button" class="text-button">Check for an existing rewards Registry</button>
+    </section>
+  </main>
+  <footer class="wrap site-footer"><span>ARBORETUM · ADMINISTRATION</span><span>Empty setup only. Your wallet gives the final approval.</span></footer>
+</body>
+</html>

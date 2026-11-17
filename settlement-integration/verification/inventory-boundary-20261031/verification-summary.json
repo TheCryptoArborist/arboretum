@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-31T05:49:30.116107+00:00",
+  "status": "INVENTORY_BOUNDARY_CANDIDATE_VERIFIED_NOT_PUBLISHED",
+  "sourceBaseCommit": "0bd1df83fc1edc831075fa5ad4e99767dc13b0ea",
+  "branch": "feature/settlement-app-integration-20261020",
+  "scope": "Separate production candidate, exact source/bytecode verification, Move tests, unsigned native mainnet compatibility rehearsal, offline evidence-validator tests and documentation",
+  "design": {
+    "testInventoryVersion": 1,
+    "productionInventoryVersion": 2,
+    "freshProductionRegistryRequired": true,
+    "productionPricesFromFirstPurchase": true,
+    "migrationOrConversionFunctionsAdded": 0,
+    "sameProductionVersionRegistrySharingPreserved": true
+  },
+  "changedConstants": [
+    {
+      "name": "VERSION",
+      "before": "1",
+      "after": "2"
+    },
+    {
+      "name": "GROWTH_DEPOSIT_MIST",
+      "before": "10000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "CRATE_PRICE_0",
+      "before": "10000000",
+      "after": "5000000000"
+    },
+    {
+      "name": "CRATE_PRICE_1",
+      "before": "10000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "CRATE_PRICE_2",
+      "before": "10000000",
+      "after": "25000000000"
+    },
+    {
+      "name": "CRATE_PRICE_3",
+      "before": "10000000",
+      "after": "50000000000"
+    },
+    {
+      "name": "CRATE_PRICE_4",
+      "before": "10000000",
+      "after": "100000000000"
+    },
+    {
+      "name": "CRATE_PRICE_5",
+      "before": "10000000",
+      "after": "30000000000"
+    },
+    {
+      "name": "CRATE_PRICE_6",
+      "before": "10000000",
+      "after": "30000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_WATERING_BOOST",
+      "before": "20000000",
+      "after": "2000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_MULCH",
+      "before": "25000000",
+      "after": "4000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_RAIN_BARREL",
+      "before": "30000000",
+      "after": "5000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_DROUGHT_SHIELD",
+      "before": "40000000",
+      "after": "10000000000"
+    },
+    {
+      "name": "SUPPLY_PRICE_REVIVAL_KIT",
+      "before": "50000000",
+      "after": "15000000000"
+    }
+  ],
+  "contractTests": {
+    "productionBoundary": 23,
+    "productionEconomy": 29,
+    "frozenOldImplementation": 15,
+    "total": 67,
+    "passed": 67,
+    "failed": 0
+  },
+  "validatorTests": {
+    "tests": 25,
+    "pass": 25,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "preservation": {
+    "legacyModuleByteIdentical": true,
+    "existingSettlementStructs": 39,
+    "existingPublicOrEntryAbis": 85,
+    "productionFunctions": 118,
+    "newStructs": 0,
+    "newFunctions": 0,
+    "sourceFunctionsTokenIdentical": 137,
+    "changedNumericLoadOperands": 61,
+    "allOtherSourceTokensUnchanged": true
+  },
+  "nativeCompatibility": {
+    "passed": true,
+    "packet": {
+      "kindSha256": "8fcee48655a164ab66fb7552179654ebb1af09190566b57f4d298c72122bf406",
+      "kindBytes": 40647,
+      "commands": 3,
+      "inputs": 3
+    },
+    "packageDigestHex": "1985543a00f6de289e170a0d16547b2a6cf709481ecb59bec7c85152393cfba9",
+    "predictedPackageVersion": 13,
+    "existingTypeOriginsPreserved": 71,
+    "predictedGasMist": "338227763",
+    "predictedGasSui": "0.338227763",
+    "record": "mainnet/summary.json"
+  },
+  "actualAfterRehearsal": {
+    "checkpoint": {
+      "sequenceNumber": 340033169,
+      "timestamp": "2026-10-31T05:45:21.513Z",
+      "digest": "GKKKX8w3xrgzAFv3WLLyZXV4LWpVfsE8Ugj5tZTQW3U8"
+    },
+    "actualPackageVersion": "12",
+    "actualRegistryVersion": "1",
+    "actualSeasonId": "0",
+    "actualSeasonStartMs": "0",
+    "actualRewardPoolMist": "0",
+    "actualTreasuryMist": "0",
+    "realProtocolObjectsUnchanged": true,
+    "simulatedPackageAbsentOnChain": true,
+    "observationAfterSimulationResponse": true,
+    "actualNewProductionRegistryId": null
+  },
+  "actualSignaturesRequested": 0,
+  "actualTransactionsSubmitted": 0,
+  "actualGasSpentMist": "0",
+  "actualFundsDepositedMist": "0",
+  "actualNewDeploymentPackageId": null,
+  "actualNewProductionRegistryId": null,
+  "frozenV12SourceChanged": false,
+  "applicationActivationPerformed": false,
+  "websiteDeploymentPerformed": false,
+  "unchangedPublishedSource": "20271661083263cc2e87bbaae2c9f5bf93973382",
+  "unchangedWebsiteDeployment": "6ae57602f4f0e531f67877e7",
+  "nextLiveTestStep": "Prepare the owner-wallet v1 test-season flow using the existing test Registry; production remains a separate future v2 upgrade/setup/frontend release.",
+  "independentReviews": [
+    "Exact candidate source and offline runner reviewed without a remaining blocker",
+    "Native raw simulation/state evidence and handoff reviewed without a remaining blocker",
+    "Unsigned upgrade core/driver reviewed and25offline mutation/acceptance tests passed"
+  ],
+  "fileHashScope": "All candidate source, binary modules, raw evidence and handoff files except this self-referential summary.",
+  "files": [
+    {
+      "path": "settlement-integration/README.md",
+      "bytes": 27442,
+      "sha256": "833f098be4806a3dcff854285a74349d880d7908b0120ef11fad9baf5eabe7ad"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/README.md",
+      "bytes": 5263,
+      "sha256": "76085452f9df33ccefe6b46534e6bca1ed428d6ae76910d65fa6ddbb3703fd8c"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/check-upgrade.mjs",
+      "bytes": 8157,
+      "sha256": "e9b4f239370aa8d5510294c5a650e2f3ce82b066f8acdd89e1f1ef596047d945"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/prepare-candidate.py",
+      "bytes": 7645,
+      "sha256": "f2c13d2f9df510743bfe70336d12a8b5acfc47f09cf2f4a44013338fab5a4d99"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/production/candidate.json",
+      "bytes": 3357,
+      "sha256": "e89a229c0479ee5e781b313d7df5bcbdb504dad2125bbc72828cfb18d7a84ce6"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/production/settlement.move",
+      "bytes": 108849,
+      "sha256": "091f774707d28a299bd85a0744d61187b16c9b7fe8997886c796c1db62b94df8"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/production/settlement.patch",
+      "bytes": 3790,
+      "sha256": "4f934854a3143c30b476c82e7c94e70ef64b8ada742b920ed94562c51547f33c"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/tests/legacy-admin-fixture.move.inc",
+      "bytes": 273,
+      "sha256": "d815ad826dd59b6978627a14f66b891f0118baf0afaa2423be2608cf148a6133"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/tests/old-package-rejection-v1.move.inc",
+      "bytes": 9616,
+      "sha256": "d8a1c0152760517fbe1135754f4851ff86b927f208f064a41f2e3edb0691b26a"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/tests/production-economy-v2.move.inc",
+      "bytes": 19773,
+      "sha256": "d931eb379e6fb7787021c216b11f4e14a6b4e9f4e8442b81b4b8fa9cc8e42bc9"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/tests/version-boundary-v2.move.inc",
+      "bytes": 21797,
+      "sha256": "b97ad40090e651be56d24d373e6c6cf555f4c54b304d7466dc184f52e348f82e"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/upgrade-rehearsal-core.mjs",
+      "bytes": 21447,
+      "sha256": "2abaf843617f409389e4a7bdbc708d497b22d1db6c5a0686711567b5d9620957"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/upgrade-rehearsal-core.test.mjs",
+      "bytes": 15179,
+      "sha256": "ccf798cd1c73c4f9221c89c9e2a4348dbf48600cacba066e554aa746d9ba4ba0"
+    },
+    {
+      "path": "settlement-integration/inventory-boundary/verify-candidate.py",
+      "bytes": 28270,
+      "sha256": "419243aa5a8bf039359fb9f1501ea7c72d7492e245cac477a635ab3fdd6add01"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/README.md",
+      "bytes": 15284,
+      "sha256": "faa7473dcfc1d2411c0d595bba7124eb3bb801ee13a8fd2e12eaa6743664f1d6"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/after-observation-1.json",
+      "bytes": 13191,
+      "sha256": "62dd8ac8045610c9472d17f9d342a61e1e5240af8c61f184923e0fcb328adf45"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/after-observation-2.json",
+      "bytes": 13191,
+      "sha256": "e050f8bcfd6014eaf9ff88272baa5f39c3a4376b863f2a1c4e57ef129f9ff07a"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/after-observation-3.json",
+      "bytes": 13190,
+      "sha256": "cd5f333a967c7e28ec50a5905c2dd50285757d7bca9239375c0e00c751305127"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/after.json",
+      "bytes": 13190,
+      "sha256": "cd5f333a967c7e28ec50a5905c2dd50285757d7bca9239375c0e00c751305127"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/confirmed-proof.json",
+      "bytes": 145352,
+      "sha256": "ff8528d56401e52f21ce78c5ced421e158818bb049712b00cea04ebc8ad683d1"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/inputs.json",
+      "bytes": 12973,
+      "sha256": "6ba9b7ad1c04a89c53c20d09ff8d731e6c9faee378afe994bb2f360e00d50457"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/simulation.json",
+      "bytes": 191438,
+      "sha256": "ad0ce06f65e5c7bc5724a581de20b8663e937799e29534ec4c850b24375c747d"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/summary.json",
+      "bytes": 8443,
+      "sha256": "0777a091f60185b8779a6458c7dcd2937e629228d8e652cfbc932387b4330f0c"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/unsigned-upgrade.json",
+      "bytes": 167455,
+      "sha256": "5c6c60bdaab4b94ad992e71971c1761688dbca666af67191387ee07858a2407b"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/mainnet/upgrade-kind.b64",
+      "bytes": 54197,
+      "sha256": "a117cda106080f9a64fabd27a65588f3809cc1b0d00de740c3deac7b23805b5e"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/baseline-build.log",
+      "bytes": 347,
+      "sha256": "285d818379634a50f7c739d0a43fb5b90f649c7d200334c03f7ae078a89c365c"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/bytecode-scope.json",
+      "bytes": 28726,
+      "sha256": "5cf19f68254b026be5cd04ae0cca18ce8879280cd0aa4256d864cb8577df4ac7"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/bytecode/arboretum.mv",
+      "bytes": 18034,
+      "sha256": "2ba0d52751229deb9af844ff28dfcc56bed069c7ce4a49d4e66091546fddd6f1"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/bytecode/settlement.mv",
+      "bytes": 22251,
+      "sha256": "05ee666e294f1e3229d36bcaf1c0841370b67868798d92d5a2907f4a296a097c"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/candidate-build.json",
+      "bytes": 88116,
+      "sha256": "2d5259e95d3f4fa1c2cd10f88445cdc7621fd442db3949616b1c75dd437a9fbb"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/production-build.log",
+      "bytes": 347,
+      "sha256": "285d818379634a50f7c739d0a43fb5b90f649c7d200334c03f7ae078a89c365c"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/source-scope.json",
+      "bytes": 1729,
+      "sha256": "b2fbc15275e8b094b6d838b18202a24f9f7732957afc12d67601a611f3a03b24"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/summary.json",
+      "bytes": 18665,
+      "sha256": "861b83ddeeea4a9a9cee2a74f37396a8048712cd710b4936bd44119d37e9dd83"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/v1-tests.json",
+      "bytes": 2561,
+      "sha256": "76dbf55d7889425f7adb3a0e6d87eec6b9eb57ed786e421773e7d822da14b9f8"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/v1-tests.log",
+      "bytes": 1691,
+      "sha256": "cea3c8ddc6042b8207dc8d9dbc4259fdc22854da66fb5c431dcbbccb514b7903"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/v2-tests.json",
+      "bytes": 7306,
+      "sha256": "caebec11e553eed7bb5f0ebfc15135659eb31e12b6959ac7001b8233143d8577"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/offline/v2-tests.log",
+      "bytes": 4949,
+      "sha256": "fac2353e37ef7d40f8c0e6585235548e0f5842acf7a0218f50a30698017b44d3"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/validators/node-tests.log",
+      "bytes": 5630,
+      "sha256": "42e2d0bc5ddfc863745946cca0660b06e35cb0e55e3599b44e8ce67319ca92be"
+    },
+    {
+      "path": "settlement-integration/verification/inventory-boundary-20261031/validators/summary.json",
+      "bytes": 3108,
+      "sha256": "e46f40c1605a46c86a99d31a17d871ee53b60b72554bd8fc50f0dfa5ad2ad585"
+    }
+  ]
+}

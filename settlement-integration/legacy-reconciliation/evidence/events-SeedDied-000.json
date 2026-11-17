@@ -1,0 +1,95 @@
+{
+  "retrievedAt": "2026-10-20T01:35:18.760631+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyClaimEvents($type: String!, $before: UInt53!, $cursor: String) {\n  events(first:50, after:$cursor, filter:{type:$type, beforeCheckpoint:$before}) {\n    nodes { sequenceNumber contents { type { repr } json }\n      transaction { digest effects { status checkpoint { sequenceNumber timestamp } } }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "type": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::SeedDied",
+      "before": 335949689,
+      "cursor": null
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "events": {
+        "nodes": [
+          {
+            "sequenceNumber": 0,
+            "contents": {
+              "type": {
+                "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::SeedDied"
+              },
+              "json": {
+                "seed_id": "0x147ec45bc131aada85800d8c851aead8ee37d7c05557db8adbb91581bec4e719",
+                "owner": "0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6"
+              }
+            },
+            "transaction": {
+              "digest": "DJbvUbaqptedXfv9rVPcSJjYhN9tc2uPrWAaKVK8HzRy",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 295159213,
+                  "timestamp": "2026-07-06T01:48:56.705Z"
+                }
+              }
+            }
+          },
+          {
+            "sequenceNumber": 0,
+            "contents": {
+              "type": {
+                "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::SeedDied"
+              },
+              "json": {
+                "seed_id": "0x563c17e301946901b3a6560b7ec4e1d67a5592546c8487ecad79b9b48491c034",
+                "owner": "0x18d72fc2a3df6d92d0806da3b04d92be056e2d6d35882a56c16ddb25f48d35d6"
+              }
+            },
+            "transaction": {
+              "digest": "39joMg2TDznGNBFcjXt9E8ARnvoVR7uKwxMGf6uaDz3t",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 295159281,
+                  "timestamp": "2026-07-06T01:49:11.748Z"
+                }
+              }
+            }
+          },
+          {
+            "sequenceNumber": 0,
+            "contents": {
+              "type": {
+                "repr": "0x6f13fefeb11114a97c3177b7d4a8cfdacd5b40174ab3f80b07420b456d469a2b::arboretum::SeedDied"
+              },
+              "json": {
+                "seed_id": "0x0f3ffe770ef8fa6a126069cfb47709b7d9616ab07d4eee62e08ddd4375f052e6",
+                "owner": "0x9729c9cd60eab100ebda4543bff3edb7b80384490038334a2e72cac73441bf21"
+              }
+            },
+            "transaction": {
+              "digest": "CTF5uF4NQQ5qM7npDPEvrcmUSc5MWqBXTTNi1LZzq1to",
+              "effects": {
+                "status": "SUCCESS",
+                "checkpoint": {
+                  "sequenceNumber": 312904042,
+                  "timestamp": "2026-08-20T15:58:06.759Z"
+                }
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": "KAJCDgj53pigARDf5920FxgA"
+        }
+      }
+    }
+  },
+  "responseSha256": "4122ac2e86294a34896c217906b2f0acfad35b2bdaddf2ae3a34c8983c33ea18"
+}

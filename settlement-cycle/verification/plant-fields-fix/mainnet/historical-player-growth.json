@@ -1,0 +1,36 @@
+{
+  "requestedAt": "2026-11-08T15:11:52.150Z",
+  "capturedAt": "2026-11-08T15:11:52.223Z",
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "playerGrowth": {
+        "address": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+        "version": 1021418439,
+        "digest": "h8fznU8RcPxQcE187UxEAA5h8QsJqvMn4nwnqo2sypr",
+        "owner": {
+          "__typename": "ObjectOwner",
+          "address": {
+            "address": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::dynamic_field::Field<address,u64>"
+            },
+            "json": {
+              "id": "0xb873c363d5473ab8e9d97383dc1f24e17fa37212d23115274eaff9a5010662df",
+              "name": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "value": "10"
+            }
+          }
+        }
+      }
+    }
+  }
+}

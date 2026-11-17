@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-31T22:00:37.422Z",
+  "verifiedAt": "2026-10-31T22:00:37.934Z",
+  "status": "FIRST_TEST_SEASON_ACTUAL_RECEIPT_VERIFIED",
+  "network": "sui:mainnet",
+  "digest": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
+  "confirmed": {
+    "status": "confirmed",
+    "checkpoint": {
+      "sequenceNumber": 340275291,
+      "timestamp": "2026-10-31T21:57:28.398Z"
+    },
+    "registryId": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "adminCapId": "0x2f5d88ef66be5701e33c4ddc076868845b2bc153bceb4ae3fc997e2b63b93835",
+    "predictedSeasonId": "1",
+    "proposedDurationMs": "86400000",
+    "actualStartMs": "1793483848277",
+    "storedStartMs": "1790978248277",
+    "cutoffMs": "1793570248277",
+    "claimDeadlineMs": "1794175048277",
+    "normalResetReadyMs": "1793656648277",
+    "gasEstimateMist": "100553",
+    "gasEstimateSui": "0.000100553",
+    "simulatedGasBudgetMist": "200553",
+    "simulatedGasPriceMist": "100",
+    "simulatedResolvedExpiration": {
+      "ValidDuring": {
+        "minEpoch": "1297",
+        "maxEpoch": "1298",
+        "minTimestamp": null,
+        "maxTimestamp": null,
+        "chain": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S",
+        "nonce": 1318117642
+      },
+      "$kind": "ValidDuring"
+    },
+    "resolvedGasPayments": 0,
+    "returnedGasObjectChanges": 0,
+    "protocolObjectChanges": 2,
+    "protocolObjectsCreated": 0,
+    "predictedRewardPoolMist": "0",
+    "predictedTreasuryMist": "0",
+    "predictedPlantedSeeds": "0",
+    "predictedGrowthPoints": "0",
+    "exactKindSha256": "6c89e6e0c74aa30a0b258194805566947469a3ed4fc1cfef97e4d9ecc71922f1",
+    "simulationClock": {
+      "objectId": "0x0000000000000000000000000000000000000000000000000000000000000006",
+      "version": "1013257000",
+      "digest": "HuZ5mjnqKiCLzcPSn7sMB1PkjXq95rjFoNSyXKpDyqsf"
+    },
+    "note": "The confirmed first-start receipt contains no funding or player purchase.",
+    "digest": "HEKxugzt8jjFK3bVxdxzBDkWaiRwefawMQb9PtuNy9uW",
+    "packageId": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "typeOrigin": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a",
+    "seasonId": "1",
+    "currentState": {
+      "seasonId": "1",
+      "storedStartMs": "1790978248277",
+      "rewardPoolMist": "0",
+      "treasuryMist": "0",
+      "totalSeeds": "0",
+      "growthPoints": "0",
+      "eligibleGrowthPoints": "0",
+      "paused": false
+    },
+    "hasAdvanced": false,
+    "gasAboveReviewCeiling": false
+  },
+  "actualGasMist": "100553",
+  "actualGasSui": "0.000100553",
+  "actualRewardFundingMist": "0",
+  "observedCheckpoint": {
+    "sequenceNumber": 340276061,
+    "timestamp": "2026-10-31T22:00:35.502Z",
+    "digest": "28EAcTTQbQixQ6JfLNv83ErSoQTgwKmkcKCj3naPDp42"
+  },
+  "requests": [
+    {
+      "name": "proof",
+      "requestedAt": "2026-10-31T22:00:37.422Z",
+      "capturedAt": "2026-10-31T22:00:37.638Z",
+      "httpStatus": 200
+    },
+    {
+      "name": "receipt",
+      "requestedAt": "2026-10-31T22:00:37.640Z",
+      "capturedAt": "2026-10-31T22:00:37.884Z",
+      "httpStatus": 200
+    }
+  ],
+  "verificationSignatures": 0,
+  "verificationSubmissions": 0,
+  "verificationSimulations": 0,
+  "sourceSha256": {
+    "settlement-season/start-core.mjs": "39dbcffd63322eb4eedcee54f7fb10373da78c56ae3bbd2cd779730b15ec1bfb",
+    "settlement-season/verify-confirmed.mjs": "bccd62c48508f323c996f3382859f6ee82f9e6ce49bc133952cc58e6d7c9dd90",
+    "settlement-setup/setup-core.mjs": "1350cb9eb4d45b1cdd928a9568a4086628beae98dc70f0d0ec730b351c52c4ae",
+    "settlement-admin/upgrade-core.mjs": "70d9d30e92eb6a304398f72c2fb285492d1c8085a4b8584c5272c9f6b35e69de",
+    "package-lock.json": "ccfa19eac136fae7871619589369821939ec40579fc0749302fc5972100d0caa"
+  }
+}

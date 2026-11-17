@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-11-05T03:22:16.343163+00:00",
+  "existingApplicationFilesPreserved": 98,
+  "changedApplicationFiles": [
+    "admin/gameplay-test/index.html",
+    "admin/watering-test/index.html"
+  ],
+  "navigationOnlyChangesVerified": true,
+  "addedRuntimeFiles": [
+    "admin/claim-test/index.html",
+    "admin/claim-test/admin.css",
+    "admin/claim-test/admin.mjs"
+  ],
+  "completeApplicationFileCount": 103
+}

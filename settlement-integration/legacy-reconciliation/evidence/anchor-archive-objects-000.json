@@ -1,0 +1,72 @@
+{
+  "retrievedAt": "2026-10-20T01:32:34.156440+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyObjectsAtCheckpoint($checkpoint: UInt53!, $type: String!, $cursor: String) {\n  checkpoint(sequenceNumber:$checkpoint) {\n    sequenceNumber\n    query { objects(first:50, after:$cursor, filter:{type:$type}) {\n      nodes { address version digest\n  owner { __typename ... on AddressOwner { address { address } }\n    ... on Shared { initialSharedVersion } }\n  previousTransaction { digest effects { checkpoint { sequenceNumber timestamp } } }\n  asMoveObject { contents { type { repr } json } }\n } pageInfo { hasNextPage endCursor }\n    } }\n  }\n}",
+    "variables": {
+      "checkpoint": 335949688,
+      "type": "0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum",
+      "cursor": null
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 335949688,
+        "query": {
+          "objects": {
+            "nodes": [
+              {
+                "address": "0x46836041fba4d740d76e740443846775204f9936d2ab0ff6692d7ffffb5a9e5d",
+                "version": 986499446,
+                "digest": "68XjtAq2aiPLTWy6LLRLAPVVSiJJDmA417s9dpnkJDzx",
+                "owner": {
+                  "__typename": "Shared",
+                  "initialSharedVersion": 986499446
+                },
+                "previousTransaction": {
+                  "digest": "57DWrN3oTTBxCJ2GhHcdgcjvHuZqDgB6o3a8ba6DNe87",
+                  "effects": {
+                    "checkpoint": {
+                      "sequenceNumber": 318011972,
+                      "timestamp": "2026-09-02T21:08:34.755Z"
+                    }
+                  }
+                },
+                "asMoveObject": {
+                  "contents": {
+                    "type": {
+                      "repr": "0x98377567410480b96dec45d1d22de11ac967c69425391f58c6099351fed0f940::arboretum::SeasonArchive"
+                    },
+                    "json": {
+                      "id": "0x46836041fba4d740d76e740443846775204f9936d2ab0ff6692d7ffffb5a9e5d",
+                      "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+                      "season_id": "2",
+                      "season_start_ms": "1787672028082",
+                      "season_end_ms": "1790264028082",
+                      "finalized_at_ms": "1788383314671",
+                      "claim_deadline_ms": "1788988114671",
+                      "total_growth_points": "698",
+                      "total_seeds": "13",
+                      "reward_pool": "145950000",
+                      "swept": false
+                    }
+                  }
+                }
+              }
+            ],
+            "pageInfo": {
+              "hasNextPage": false,
+              "endCursor": "eC8GFAAAAABumDd1Z0EEgLlt7EXR0i3hGslnxpQlOR9YxgmTUf7Q+UAAAAAAAAAACWFyYm9yZXR1bQAAAAAAAAANU2Vhc29uQXJjaGl2ZQAAAAAAAAAARoNgQfuk10DXbnQEQ4RndSBPmTbSqw/2aS1///tanl0="
+            }
+          }
+        }
+      }
+    }
+  },
+  "responseSha256": "df0ac782b03b68a3234de9fc350c1e567e534e17abf4fc1798b6669917915f27"
+}

@@ -1,0 +1,124 @@
+{
+  "sourceCommit": "7506a3778f35a74c4889e34a87dd0a547d886a0c",
+  "requiredWorkflow": "Settlement app integration review",
+  "runs": [
+    {
+      "id": 41252145713,
+      "name": "Reward-first production release",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145713",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145835,
+      "name": "Partner chest preview",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145835",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145685,
+      "name": "Reward-first preview",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145685",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145719,
+      "name": "Settlement app integration review",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145719",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145669,
+      "name": "Player guide checks",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145669",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145769,
+      "name": "Garden season status",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145769",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145657,
+      "name": "Item Shop and Growth Pool previews",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145657",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145753,
+      "name": "Economy accounting review",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145753",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145776,
+      "name": "Arboretum prelaunch preview",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145776",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145667,
+      "name": "Arboretum rewards-led redesign",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145667",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252145656,
+      "name": "Public Player Handbook",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252145656",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    },
+    {
+      "id": 41252140066,
+      "name": "Settlement app integration review",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/41252140066",
+      "headSha": "7506a3778f35a74c4889e34a87dd0a547d886a0c"
+    }
+  ],
+  "scope": "Exact source commit. Historical preview baseline failures are recorded separately; this record does not claim all repository workflows passed.",
+  "historicalFailureReview": {
+    "comparedPlantingSource": "05f67fc9a3c489bef4502be885d91e7cf0446522",
+    "unchangedFiles": "All five failed historical workflow definitions and their retained build/test scripts are byte-identical to the planting baseline.",
+    "economy": "Identical additive-scope failure: AssertionError: A\\t.github/workflows/contract-payout.yml.",
+    "partner": "Identical two named failures: authentication baseline comparison and approved game/handbook baseline preservation; both report fail 2.",
+    "otherThree": "Garden season status, Reward-first production release and Reward-first preview stop at the same retained-baseline stages as the planting baseline. Detailed redirected assertions were not individually compared.",
+    "limit": "The tester gate is intentionally changed in this release; unchanged historical test scripts do not establish that every test input is identical. No new substantive regression was identified in the observed failure patterns.",
+    "deploymentSteps": "Skipped in all five historical failed runs."
+  }
+}

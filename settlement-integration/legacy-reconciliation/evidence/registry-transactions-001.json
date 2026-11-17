@@ -1,0 +1,529 @@
+{
+  "retrievedAt": "2026-10-20T01:32:34.667937+00:00",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "request": {
+    "query": "query LegacyRegistryTransactions($registry: SuiAddress!, $before: UInt53!, $cursor: String) {\n  transactions(first:50, after:$cursor,\n    filter:{affectedObject:$registry, beforeCheckpoint:$before}) {\n    nodes { digest effects { status checkpoint { sequenceNumber timestamp } } }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+    "variables": {
+      "registry": "0x73672fd5f19137185a3933ea884aacad31eb7a9d41dab0494e628f3cb9b82d50",
+      "before": 335949689,
+      "cursor": "KAE6DAiFrtOVARD85/WzFQ=="
+    }
+  },
+  "transactionsSubmitted": 0,
+  "signaturesCreated": 0,
+  "simulations": 0,
+  "httpStatus": 200,
+  "response": {
+    "data": {
+      "transactions": {
+        "nodes": [
+          {
+            "digest": "CYFpLyHMrgdQYaKdM3W1tYA39KFfRpBpDPCb6haFpRPj",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 313841547,
+                "timestamp": "2026-08-23T01:53:35.936Z"
+              }
+            }
+          },
+          {
+            "digest": "5ma8e1TYR6LY8ibwcy6kLZRNttYXrefi5cY8KhJrMST8",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 313842600,
+                "timestamp": "2026-08-23T01:57:34.722Z"
+              }
+            }
+          },
+          {
+            "digest": "A2vQrWa2JynLYi7qLgon4DSruW55eAZHY7PSdEeiLVET",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 313845950,
+                "timestamp": "2026-08-23T02:10:07.727Z"
+              }
+            }
+          },
+          {
+            "digest": "4soXGzFK9CoBpf6x5fTkqkSTccunYrR5QXQmiyrWpq7r",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314547341,
+                "timestamp": "2026-08-24T21:27:27.977Z"
+              }
+            }
+          },
+          {
+            "digest": "BZhv7JkoqLYMywyMqfBtvint9NJYGPx3aTTTwcccpwBp",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314547460,
+                "timestamp": "2026-08-24T21:27:54.740Z"
+              }
+            }
+          },
+          {
+            "digest": "CL1wGHny2us5HypM2jMsi6kKfVHaaMmc1VRtGYuVPpZL",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314547665,
+                "timestamp": "2026-08-24T21:28:40.518Z"
+              }
+            }
+          },
+          {
+            "digest": "96SXrweJEmgvFyifo5gJe6DrTVR7Wki2jqSNwky75tkM",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314547776,
+                "timestamp": "2026-08-24T21:29:05.009Z"
+              }
+            }
+          },
+          {
+            "digest": "5bBawT1wwym5QvBxipH3JRhF7pCVrVKLD7ZkzaU8QdYE",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314547987,
+                "timestamp": "2026-08-24T21:29:51.963Z"
+              }
+            }
+          },
+          {
+            "digest": "5TFTkuVdVvjCius545nmCwBzbTic4EA4aSfzAwA9u1XD",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314548140,
+                "timestamp": "2026-08-24T21:30:25.668Z"
+              }
+            }
+          },
+          {
+            "digest": "QrjWGDJHoVFTZHPvqXtNjLFoc5tyguFykYDwJVftaWj",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314548331,
+                "timestamp": "2026-08-24T21:31:08.055Z"
+              }
+            }
+          },
+          {
+            "digest": "Dcmc2Kp2cn6wCz9fh8Wij3U3XpxjraDdy4K5YbnynnPm",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314548456,
+                "timestamp": "2026-08-24T21:31:36.328Z"
+              }
+            }
+          },
+          {
+            "digest": "C49iUNd7M7hxnu12J7GkgSSyBnT4zDgRdeVfF5SCg1cH",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314836263,
+                "timestamp": "2026-08-25T15:26:53.524Z"
+              }
+            }
+          },
+          {
+            "digest": "3KDAeqfbGJCAZ57MjVsC6dN4u2gCXyEUmpt151Gcs5o1",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314838127,
+                "timestamp": "2026-08-25T15:33:48.163Z"
+              }
+            }
+          },
+          {
+            "digest": "HEPXbdsUAB89EC2P1evJaor7uc1pw7F38M4PswNK6da2",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314960611,
+                "timestamp": "2026-08-25T23:05:37.367Z"
+              }
+            }
+          },
+          {
+            "digest": "4crDsyQqxECD7wPWFqiYDkRxMABdnqBWmkoEXtY3NNwF",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 314966291,
+                "timestamp": "2026-08-25T23:26:44.929Z"
+              }
+            }
+          },
+          {
+            "digest": "CrtUYYfM35TBCMkFDpzUz6pkTrGH96gJzAwJvZkm3ECD",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 315378720,
+                "timestamp": "2026-08-27T01:09:51.722Z"
+              }
+            }
+          },
+          {
+            "digest": "6dXTwUSkCL7MhRR1QVESgrbvoc7UqqYjvrNderyLgFWW",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 315625019,
+                "timestamp": "2026-08-27T16:34:27.685Z"
+              }
+            }
+          },
+          {
+            "digest": "ARoj1PzjjJSQf5PUUybq6uYJytAXXdMDndQQsUgJus2C",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 315727196,
+                "timestamp": "2026-08-27T22:49:56.670Z"
+              }
+            }
+          },
+          {
+            "digest": "DbMBnzcPxPbLZqJeN8YqVQNu3ihjo7yDyNMeQK8qZSPU",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 315727439,
+                "timestamp": "2026-08-27T22:50:49.954Z"
+              }
+            }
+          },
+          {
+            "digest": "hE6f87c3LnDS4KJF77Fc3CGQBRQDFJa6u2tcG36Zfuz",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 315727613,
+                "timestamp": "2026-08-27T22:51:27.924Z"
+              }
+            }
+          },
+          {
+            "digest": "JDB1E87McP6p5ytTQdVm9JRM196ruVwsSx4xwRpa2Rwf",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 316917823,
+                "timestamp": "2026-08-31T00:57:34.160Z"
+              }
+            }
+          },
+          {
+            "digest": "FAb5v6ehEus2VNjjaUeheXUNiVSZQY5GUK7XcEQVarTo",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 316956546,
+                "timestamp": "2026-08-31T03:24:41.615Z"
+              }
+            }
+          },
+          {
+            "digest": "FenTampuRsaMshjYVfxnWsRnTzrU7bsw9A9Y7tc4Wwo7",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 316970054,
+                "timestamp": "2026-08-31T04:15:59.995Z"
+              }
+            }
+          },
+          {
+            "digest": "HWgPGmcNkJEEMPabi14aw4RptWY1gukjgsHDijbNey1c",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317339941,
+                "timestamp": "2026-09-01T03:18:06.139Z"
+              }
+            }
+          },
+          {
+            "digest": "B7A1nJD3CU8maojQq5Z8k1iCH4jDKhgq8zXQ7mH11Zhp",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317347320,
+                "timestamp": "2026-09-01T03:46:13.699Z"
+              }
+            }
+          },
+          {
+            "digest": "ANosjozSccgkUJ92KjmKAD6wfVx6m6vp2pHEkzYMmdic",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317602297,
+                "timestamp": "2026-09-01T19:36:47.800Z"
+              }
+            }
+          },
+          {
+            "digest": "9dPWfWyR1YzjgzDMcc6mX2LCv2T3xWz14X57gNQtP9a1",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317609592,
+                "timestamp": "2026-09-01T20:03:13.208Z"
+              }
+            }
+          },
+          {
+            "digest": "ACrC6HE2ajzvH4CZ8AMx1soEgUocwe9oyz5wya6gZiEh",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317609641,
+                "timestamp": "2026-09-01T20:03:23.667Z"
+              }
+            }
+          },
+          {
+            "digest": "H3xnxhBGMroZFqNqyFVVQb7BuAa26ThonXjbTND7dKYJ",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317610399,
+                "timestamp": "2026-09-01T20:06:10.233Z"
+              }
+            }
+          },
+          {
+            "digest": "Dy731nHR9mrFfABVxFY8HGkC21ev6MgZPeAQmVHcSguw",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317610496,
+                "timestamp": "2026-09-01T20:06:31.183Z"
+              }
+            }
+          },
+          {
+            "digest": "3wD7UGR9fQh9JHDGX2iPVaiMU5iCiLhvtAw7TpNxm9Tt",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317610608,
+                "timestamp": "2026-09-01T20:06:55.258Z"
+              }
+            }
+          },
+          {
+            "digest": "HEYQgBGqCViSd8syr7hLigqy6CFPsYFX1Uff4MA6XP4v",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317610729,
+                "timestamp": "2026-09-01T20:07:21.281Z"
+              }
+            }
+          },
+          {
+            "digest": "By1zkzC52QNEcUZqkLYezoS6wFkxKCXCJzyoKEmaRFwF",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317610849,
+                "timestamp": "2026-09-01T20:07:47.242Z"
+              }
+            }
+          },
+          {
+            "digest": "DhB7d1VvjVR3ffUXHYwfjRaz8MKjnJ8tq3vu2yQEP8pH",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317694329,
+                "timestamp": "2026-09-02T01:18:23.931Z"
+              }
+            }
+          },
+          {
+            "digest": "CEpvN9EcHaJTim2jvKWRDcjFCHpXDsS5y1SLT2fq5uDg",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317711079,
+                "timestamp": "2026-09-02T02:21:31.853Z"
+              }
+            }
+          },
+          {
+            "digest": "24A9xdze5ouX3hydGe6rgEjY1awpQnPL1TxSSDbS5oDJ",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 317721520,
+                "timestamp": "2026-09-02T03:00:44.872Z"
+              }
+            }
+          },
+          {
+            "digest": "57DWrN3oTTBxCJ2GhHcdgcjvHuZqDgB6o3a8ba6DNe87",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318011972,
+                "timestamp": "2026-09-02T21:08:34.755Z"
+              }
+            }
+          },
+          {
+            "digest": "5CVNRZN9AP6c6x8FP4BTTpaFeL68KBFL31LhDx6tE7L2",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318013167,
+                "timestamp": "2026-09-02T21:13:09.893Z"
+              }
+            }
+          },
+          {
+            "digest": "E8yUeb63tHXg1edsTWRTk7u3G175ckETzaPCGANkxT7G",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318014683,
+                "timestamp": "2026-09-02T21:19:01.558Z"
+              }
+            }
+          },
+          {
+            "digest": "6fpLeyxt8DPgxPE9BZtZXUybdbs5en9i6Zuh4P6YWArk",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318016176,
+                "timestamp": "2026-09-02T21:24:42.637Z"
+              }
+            }
+          },
+          {
+            "digest": "4NNPLDcXyg27hw11xuiLahoib8YGGiU7qJx2VKEjckYE",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318016379,
+                "timestamp": "2026-09-02T21:25:27.884Z"
+              }
+            }
+          },
+          {
+            "digest": "Ajh2dUj3k7eM67gkdxQVGdTQHEnmqKzJVmLBoojGeATV",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318016515,
+                "timestamp": "2026-09-02T21:25:59.426Z"
+              }
+            }
+          },
+          {
+            "digest": "4zP3b3jG7gAgnao2i9i8Hz2A9vheBGvT5pXkQ7gL2bjU",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318021409,
+                "timestamp": "2026-09-02T21:43:56.590Z"
+              }
+            }
+          },
+          {
+            "digest": "Dq7e9tnZ3X5HkXNPP8joGGRZkNBSjYitH9sKHaDiQLLz",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318021583,
+                "timestamp": "2026-09-02T21:44:35.318Z"
+              }
+            }
+          },
+          {
+            "digest": "7yhcCBYKAaaE63tTSU9h4oPeU9Dr5v5xTVciV8d6Sap5",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318021708,
+                "timestamp": "2026-09-02T21:45:03.045Z"
+              }
+            }
+          },
+          {
+            "digest": "tUwhX2xPbqbprJEAFLXDxt8aNzYzGjnwa25jvDJVNjL",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318022062,
+                "timestamp": "2026-09-02T21:46:21.593Z"
+              }
+            }
+          },
+          {
+            "digest": "EFXRuk9tuSGWmquSBfnHitvH2F5x9nKJeGEwxavSaohU",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318278890,
+                "timestamp": "2026-09-03T13:46:07.353Z"
+              }
+            }
+          },
+          {
+            "digest": "7kkZ48b1M99Vvzh5bZKAhgQoe9t1gCJYRsDjTzbqrayu",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318279047,
+                "timestamp": "2026-09-03T13:46:42.435Z"
+              }
+            }
+          },
+          {
+            "digest": "B7Fs7AstMyRXKjApQnQxqDmgkTmQubwpsawPZMieoYiF",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318354959,
+                "timestamp": "2026-09-03T18:28:14.956Z"
+              }
+            }
+          },
+          {
+            "digest": "3CERzXAFvvFoFA2th5h8DZ9HoUNZ1wep3AaqKuNjjzz6",
+            "effects": {
+              "status": "SUCCESS",
+              "checkpoint": {
+                "sequenceNumber": 318370895,
+                "timestamp": "2026-09-03T19:27:07.784Z"
+              }
+            }
+          }
+        ],
+        "pageInfo": {
+          "hasNextPage": true,
+          "endCursor": "KAE6DAjP6OeXARDA+ZjeFQ=="
+        }
+      }
+    }
+  },
+  "responseSha256": "cc14be73268305d682881fef02ec1bafe6ad8275a1434e3c56b57182cb37a786"
+}

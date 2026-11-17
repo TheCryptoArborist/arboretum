@@ -1,0 +1,12 @@
+{
+  "existingApplicationFilesPreserved": 96,
+  "changedApplicationFiles": [
+    "admin/gameplay-test/index.html"
+  ],
+  "addedRuntimeFiles": [
+    "admin/watering-test/index.html",
+    "admin/watering-test/admin.css",
+    "admin/watering-test/admin.mjs"
+  ],
+  "completeApplicationFileCount": 100
+}

@@ -1,0 +1,139 @@
+{
+  "capturedAt": "2026-10-31T23:08:27.653Z",
+  "endpoint": "https://graphql.mainnet.sui.io/graphql",
+  "query": "query OwnerFirstWaterInputs($registry:SuiAddress!$seed:SuiAddress!){checkpoint{sequenceNumber timestamp}genesis:checkpoint(sequenceNumber:0){sequenceNumber digest}registry:object(address:$registry){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest}}seed:object(address:$seed){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}previousTransaction{digest}}clock:object(address:\"0x0000000000000000000000000000000000000000000000000000000000000006\"){address version digest owner{__typename ...on AddressOwner{address{address}}...on ObjectOwner{address{address}}...on Shared{initialSharedVersion}}asMoveObject{contents{type{repr}json}}}}",
+  "variables": {
+    "registry": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+    "seed": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d"
+  },
+  "response": {
+    "data": {
+      "checkpoint": {
+        "sequenceNumber": 340292767,
+        "timestamp": "2026-10-31T23:08:25.747Z"
+      },
+      "genesis": {
+        "sequenceNumber": 0,
+        "digest": "4btiuiMPvEENsttpZC7CZ53DruC3MAgfznDbASZ7DR6S"
+      },
+      "registry": {
+        "address": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+        "version": 1021418439,
+        "digest": "9Z5WiPp4TR2ucMQGuoNVJetkGgqvLtq9LXQ5ZeQndyAe",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 986499448
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Registry"
+            },
+            "json": {
+              "id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "version": "1",
+              "admin": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "current_season_id": "1",
+              "season_start_ms": "1790978248277",
+              "reward_pool": "7000000",
+              "treasury": "0",
+              "total_seeds": "1",
+              "total_growth_points": "10",
+              "eligible_growth_points": "10",
+              "settlement": null,
+              "paused": false,
+              "seeds_by_owner": {
+                "id": "0x3673f5b7888241d3702b07e8f39bd33931750582161a3cdbc3a30b3c4d36b89c",
+                "size": "1"
+              },
+              "referrers": {
+                "id": "0x3204b2eb86f9c46ed7a462c910f2ff10ece7f8d957edcd2b2af821aa7320244b",
+                "size": "0"
+              },
+              "referral_earnings": {
+                "id": "0x68c78c07080b15b8c074ba13bbaa0733309d029718521a79a3e3a8b50cf8d1a0",
+                "size": "0"
+              },
+              "player_growth": {
+                "id": "0xbf70908372b68eb412fa74d4ea165ef39906f8606c71993bba3bc35b958cbfae",
+                "size": "1"
+              },
+              "player_growth_season": {
+                "id": "0x46daf4a08dd974e14387cb9b8c0103ed450d131fca85fffc9fe48f3727178ff4",
+                "size": "1"
+              },
+              "planted_saplings": {
+                "id": "0xe1b77d1747967b896adaafc51dd16427de03e651fa419f1563ba7fb7ad04c689",
+                "size": "1"
+              }
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "seed": {
+        "address": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+        "version": 1021418439,
+        "digest": "EV5iFZPho62u3oeQQ6YF5JsZTRFpz1662SuxTw6xJSTs",
+        "owner": {
+          "__typename": "AddressOwner",
+          "address": {
+            "address": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4"
+          }
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0xfc6c6e5f6159d40052a8ff8083aa5ef6d270d15b72be8cc42cde27b643ca7b9a::settlement::Seed"
+            },
+            "json": {
+              "id": "0x2b06e3f3900d08eff3921f374137c2b2cb87f2f7bbf6cdb5ff7f1e3238a1046d",
+              "version": "1",
+              "registry_id": "0x2f8eb25c571d1f1e963f822265c32bc08ded86a16a5d6dbd4a417a318a6c8ab9",
+              "cutoff_growth_points": "10",
+              "reward_processed": false,
+              "sapling_id": "0x04a937cd60e0cbcfc315b15d2dd08187d3f180ebb925d588223303ea52afbcc7",
+              "season_id": "1",
+              "owner": "0x485953e2eadf4aa02af950cf8e914fbd2b67523385e73c36118341459d8d45c4",
+              "planted_at_ms": "1793486441252",
+              "last_watered_ms": "1793486441252",
+              "watering_streak": "1",
+              "growth_points": "10",
+              "state": 0,
+              "fertilizer_charges": 0,
+              "miracle_grow_applied": false,
+              "revival_charges": 0,
+              "bottomless_can_expiry_ms": "0",
+              "permanent_gp_bonus": "0"
+            }
+          }
+        },
+        "previousTransaction": {
+          "digest": "FM5QeE2Eb2tQwQeSsTKz8s4a81mZVqde5kF2HAEmyisB"
+        }
+      },
+      "clock": {
+        "address": "0x0000000000000000000000000000000000000000000000000000000000000006",
+        "version": 1013323782,
+        "digest": "9Xbgn6hmnmHXrcDjkqMqKoKchduceFUbwNZbkiSqFEVN",
+        "owner": {
+          "__typename": "Shared",
+          "initialSharedVersion": 1
+        },
+        "asMoveObject": {
+          "contents": {
+            "type": {
+              "repr": "0x0000000000000000000000000000000000000000000000000000000000000002::clock::Clock"
+            },
+            "json": {
+              "id": "0x0000000000000000000000000000000000000000000000000000000000000006",
+              "timestamp_ms": "1793488105747"
+            }
+          }
+        }
+      }
+    }
+  }
+}

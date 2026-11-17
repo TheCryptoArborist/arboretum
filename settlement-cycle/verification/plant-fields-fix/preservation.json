@@ -1,0 +1,10 @@
+{
+  "releaseMode": "plant-fields-hotfix",
+  "existingApplicationFilesPreserved": 105,
+  "changedApplicationFiles": [
+    "admin/season-two/admin.mjs"
+  ],
+  "addedRuntimeFiles": [],
+  "completeApplicationFileCount": 106,
+  "allOtherApplicationBytesUnchanged": true
+}

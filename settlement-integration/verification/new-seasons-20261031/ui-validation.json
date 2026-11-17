@@ -1,0 +1,41 @@
+{
+  "createdAt": "2026-10-31T04:51:14.379470+00:00",
+  "status": "PASS",
+  "command": "node --test --test-isolation=none --test-reporter=tap settlement-integration/ui/panel.test.mjs",
+  "tests": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0
+  },
+  "checksCovered": [
+    "Verified inactive Registry produces No active season and exact zero balances, with no Season 0 ended label.",
+    "Exact MIST precision; missing, malformed, stale, mismatched, or far-future data cannot render as zero.",
+    "Public status reads without wallet access; pending reads deduplicate and clear prior totals.",
+    "Read failure, timeout, stale display, configuration change, and Registry change discard results; later valid reads can recover.",
+    "Only the settlement route receives the Registry card and My Garden default; legacy route presentation remains unchanged.",
+    "Static economic dispatch is removed and emitted inline scripts parse for both routes.",
+    "Shared season helper uses the typed public reader for settlement and preserves both ended and inactive legacy wording."
+  ],
+  "additionalValidation": [
+    "Both Python transforms compiled.",
+    "git diff --check passed for settlement-integration/ui."
+  ],
+  "sourceSha256": {
+    "settlement-integration/ui/panel.mjs": "6b172aa2559ee2105c2994ca690f9e706338cb29597b6f81b42d68db07874631",
+    "settlement-integration/ui/panel.css": "bcc8165ce351dc818a9c13560b2cde8843c92f384b89b421ae21df988c9d430e",
+    "settlement-integration/ui/transform_game.py": "33ac67baecce5d13a66bf5ced1d24e75d3607639255c849e15b985c3533eb74a",
+    "settlement-integration/ui/transform_season.py": "f64f6b771ff37072694921d37f416dca7476d4ac214d66cb710034bca7632a0d",
+    "settlement-integration/ui/panel.test.mjs": "63a5c6777af852cfcb27fe0494af0ac060d666b668c8463c60ff77e1c5b796ac"
+  },
+  "rawTestOutput": {
+    "savedToFile": false,
+    "path": null,
+    "availability": "Raw TAP was returned in the session tool output; no standalone TAP log was saved."
+  },
+  "transactionsSubmitted": 0,
+  "realWalletInteractions": 0,
+  "siteBuildPerformedByThisAgent": false,
+  "note": "Validation covers the UI source and temporary transformed fixtures. The parent owns final site build and native browser validation."
+}

@@ -1,0 +1,18 @@
+{
+  "siteId": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "releaseMode": "plant-fields-hotfix",
+  "sourceCommit": "1062f33c881939de53ca10529ef81b5d8dbabc89",
+  "sourceTree": "84bf53034518c3e749411fb8a2fea948c3b4c8c3",
+  "candidateEvidenceSha256": "cc01f1c900a368f9a3eb369a69fc25cd582863d7f9121ba8f90443172a6c05fd",
+  "archiveSha256": "fabf115492dc5ee0726fa6a5bed956ed9f28488f4779a2ad47fbd85d2992848a",
+  "archiveBytes": 46061771,
+  "requestedAt": "2026-11-08T15:17:01.281530+00:00",
+  "previousPublishedDeployId": "6af08867e808541bad23b5b2",
+  "originalPublishedDeployId": "6abe81174b61a8e3dd53b333",
+  "submissionAttempted": true,
+  "responseReceived": true,
+  "ciEvidenceSha256": "8ddf32604099f4d323e539aeab156d3c451cb4b05d62a2a73c4a73809862f98e",
+  "responseHttpStatus": 200,
+  "deployId": "6af09274b50143d105dbb63a",
+  "buildId": "6af09273b50143d105dbb638"
+}

@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: the exact approved production build is accepted with both pinned module hashes
+ok 1 - the exact approved production build is accepted with both pinned module hashes
+  ---
+  duration_ms: 22.190448
+  type: 'test'
+  ...
+# Subtest: rebuilding current v12 authority produces the exact three-command unsigned upgrade
+ok 2 - rebuilding current v12 authority produces the exact three-command unsigned upgrade
+  ---
+  duration_ms: 116.031459
+  type: 'test'
+  ...
+# Subtest: the real checked simulation validates native compatibility and all 71 retained origins
+ok 3 - the real checked simulation validates native compatibility and all 71 retained origins
+  ---
+  duration_ms: 70.429836
+  type: 'test'
+  ...
+# Subtest: the final captured read keeps real v12 objects unchanged and the predicted package absent
+ok 4 - the final captured read keeps real v12 objects unchanged and the predicted package absent
+  ---
+  duration_ms: 86.802406
+  type: 'test'
+  ...
+# Subtest: changing candidate module bytes cannot retain the reviewed build identity
+ok 5 - changing candidate module bytes cannot retain the reviewed build identity
+  ---
+  duration_ms: 2.169177
+  type: 'test'
+  ...
+# Subtest: candidate dependencies and declared package digest must match the reviewed bytes
+ok 6 - candidate dependencies and declared package digest must match the reviewed bytes
+  ---
+  duration_ms: 5.285377
+  type: 'test'
+  ...
+# Subtest: the upgrade builder rejects foreign ownership or a different current capability version
+ok 7 - the upgrade builder rejects foreign ownership or a different current capability version
+  ---
+  duration_ms: 70.989736
+  type: 'test'
+  ...
+# Subtest: changed unsigned packet metadata or declared commands are rejected
+ok 8 - changed unsigned packet metadata or declared commands are rejected
+  ---
+  duration_ms: 95.429727
+  type: 'test'
+  ...
+# Subtest: resolved BCS cannot add a command or substitute the upgrade module bytes
+ok 9 - resolved BCS cannot add a command or substitute the upgrade module bytes
+  ---
+  duration_ms: 167.58087
+  type: 'test'
+  ...
+# Subtest: resolved sender cannot differ from the reviewed administrator
+ok 10 - resolved sender cannot differ from the reviewed administrator
+  ---
+  duration_ms: 73.18677
+  type: 'test'
+  ...
+# Subtest: resolved gas owner cannot be substituted
+ok 11 - resolved gas owner cannot be substituted
+  ---
+  duration_ms: 71.398516
+  type: 'test'
+  ...
+# Subtest: gas price must be positive and the resolved budget must cover the predicted debit
+ok 12 - gas price must be positive and the resolved budget must cover the predicted debit
+  ---
+  duration_ms: 172.009666
+  type: 'test'
+  ...
+# Subtest: address-balance gas requires the exact chain-bound current-epoch expiration
+ok 13 - address-balance gas requires the exact chain-bound current-epoch expiration
+  ---
+  duration_ms: 258.94967
+  type: 'test'
+  ...
+# Subtest: predicted published bytes must match the exact reviewed production modules
+ok 14 - predicted published bytes must match the exact reviewed production modules
+  ---
+  duration_ms: 63.271896
+  type: 'test'
+  ...
+# Subtest: neither candidate nor predicted package may alter an existing type origin
+ok 15 - neither candidate nor predicted package may alter an existing type origin
+  ---
+  duration_ms: 90.229604
+  type: 'test'
+  ...
+# Subtest: predicted dependency linkage must match the observed immutable framework
+ok 16 - predicted dependency linkage must match the observed immutable framework
+  ---
+  duration_ms: 58.08338
+  type: 'test'
+  ...
+# Subtest: the consumed UpgradeCap reference cannot differ from the verified current input
+ok 17 - the consumed UpgradeCap reference cannot differ from the verified current input
+  ---
+  duration_ms: 128.240274
+  type: 'test'
+  ...
+# Subtest: upgraded capability ownership policy and committed package are preserved exactly
+ok 18 - upgraded capability ownership policy and committed package are preserved exactly
+  ---
+  duration_ms: 201.28189
+  type: 'test'
+  ...
+# Subtest: the upgrade cannot mutate an unrelated object
+ok 19 - the upgrade cannot mutate an unrelated object
+  ---
+  duration_ms: 76.248355
+  type: 'test'
+  ...
+# Subtest: gameplay events or shared gameplay inputs are not permitted in the upgrade
+ok 20 - gameplay events or shared gameplay inputs are not permitted in the upgrade
+  ---
+  duration_ms: 153.020477
+  type: 'test'
+  ...
+# Subtest: only the exact predicted administrator gas debit is accepted
+ok 21 - only the exact predicted administrator gas debit is accepted
+  ---
+  duration_ms: 211.583218
+  type: 'test'
+  ...
+# Subtest: simulated effects cannot be relabeled as a confirmed transaction receipt
+ok 22 - simulated effects cannot be relabeled as a confirmed transaction receipt
+  ---
+  duration_ms: 69.620419
+  type: 'test'
+  ...
+# Subtest: simulation network identity and capture freshness are checked independently
+ok 23 - simulation network identity and capture freshness are checked independently
+  ---
+  duration_ms: 84.506652
+  type: 'test'
+  ...
+# Subtest: a predicted package found on-chain invalidates the unchanged-state conclusion
+ok 24 - a predicted package found on-chain invalidates the unchanged-state conclusion
+  ---
+  duration_ms: 66.426414
+  type: 'test'
+  ...
+# Subtest: post-read sequence timestamp and real object contents must all establish later unchanged state
+ok 25 - post-read sequence timestamp and real object contents must all establish later unchanged state
+  ---
+  duration_ms: 189.642461
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2857.50965

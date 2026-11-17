@@ -1,0 +1,53 @@
+{
+  "observedAt": "2026-11-08T14:39:48.278Z",
+  "url": "https://www.treegrow.xyz/admin/season-two/",
+  "deployId": "6af08867e808541bad23b5b2",
+  "metrics": {
+    "checkDisabled": true,
+    "heading": "A fresh season.Room to grow.",
+    "scrollHeight": 1637,
+    "scrollWidth": 1348,
+    "stage": "Ready for Season 2",
+    "submitDisabled": true,
+    "viewportHeight": 936,
+    "viewportWidth": 1348
+  },
+  "mainnetStatus": "Mainnet verified",
+  "stage": "Ready for Season 2",
+  "refresh": "Requested through the visible Refresh status button; returned to enabled with a newer verified checkpoint.",
+  "testerCodePrompt": false,
+  "slushPresent": false,
+  "walletTransactionsSubmitted": false,
+  "screenshot": "hosted-desktop.png",
+  "consoleLogs": [
+    {
+      "level": "error",
+      "message": "Error sending browser metadata to extension: Object",
+      "timestamp": "2026-11-08T14:35:57.241Z",
+      "url": "chrome-extension://kcdongibgcplmaagnmgpjhpjgmmaaaaa/content-script.bundle.js"
+    },
+    {
+      "level": "error",
+      "message": "Error sending browser metadata to extension: Object",
+      "timestamp": "2026-11-08T14:39:01.754Z",
+      "url": "chrome-extension://kcdongibgcplmaagnmgpjhpjgmmaaaaa/content-script.bundle.js"
+    },
+    {
+      "level": "error",
+      "message": "Error sending browser metadata to extension: Object",
+      "timestamp": "2026-11-08T14:39:29.643Z",
+      "url": "chrome-extension://kcdongibgcplmaagnmgpjhpjgmmaaaaa/content-script.bundle.js"
+    },
+    {
+      "level": "error",
+      "message": "Error sending browser metadata to extension: Object",
+      "timestamp": "2026-11-08T14:39:29.663Z",
+      "url": "chrome-extension://kcdongibgcplmaagnmgpjhpjgmmaaaaa/content-script.bundle.js"
+    }
+  ],
+  "applicationErrors": [],
+  "mobileVerification": {
+    "completed": false,
+    "reason": "Chrome DevTools is blocked by the browser organization policy. No attempt was made to bypass it; only the available 1348 CSS-pixel desktop viewport was inspected."
+  }
+}

@@ -1,0 +1,91 @@
+- link "Skip to your season":
+  - /url: "#cycle-status"
+- banner:
+  - link "Arboretum home":
+    - /url: /
+    - text: ARBORETUM
+    - generic: THE NEXT CHAPTER
+  - link "Review the garden":
+    - /url: /settlement-game
+    - text: Review the garden ↗
+- main:
+  - region "A fresh season. Room to grow.":
+    - paragraph: SUI MAINNET · SEASON 2 · OWNER TEST
+    - heading "A fresh season. Room to grow." [level=1]:
+      - text: A fresh season.
+      - text: Room to grow.
+    - paragraph: A 48-hour garden test. Start the season, plant one Seed, water it, then collect its reward—all from this page.
+    - link "View your Season 1 payment":
+      - /url: https://suivision.xyz/txblock/8PitEh5UEu5WeFKbZ2kZcr1QRixFZeq1NBXX7mxkSm9R
+      - text: View your Season 1 payment ↗
+    - img "The TREE guardian"
+  - list "Season 2 progress":
+    - generic: "1"
+    - strong: Start Season 2
+    - generic: Archive & start
+    - generic: "2"
+    - strong: Plant a Seed
+    - generic: 0.01 SUI
+    - generic: "3"
+    - strong: Give it water
+    - generic: 10 → 24 GP
+    - generic: "4"
+    - strong: Claim reward
+    - generic: After the cutoff
+  - region "YOUR NEXT SEASON":
+    - paragraph: YOUR NEXT SEASON
+    - generic: Mainnet verified
+    - heading "Ready for Season 2" [level=2]
+    - paragraph: Your Season 1 payment is complete. Start a fresh 48-hour test, then plant promptly.
+    - paragraph: Growth Points
+    - paragraph: — GP
+    - paragraph: Watering streak
+    - paragraph: —
+    - paragraph: Reward pool
+    - paragraph: 0 SUI
+    - paragraph: SEASON TIMER
+    - timer: —
+    - paragraph: The 48 hours begin when your season-start transaction succeeds.
+    - paragraph: Last verified 8:39:30 AM · checkpoint 343030116
+    - button "Refresh status"
+  - region "Plant now. Water tomorrow.":
+    - paragraph: MAKE THE MOST OF YOUR TEST
+    - heading "Plant now. Water tomorrow." [level=2]
+    - paragraph: Plant promptly after starting. The first watering opens 21 hours, 36 minutes after planting. Water once during this test, then return for the season reward.
+    - paragraph: Season 2 starts
+    - paragraph: After your Slush approval
+    - paragraph: First watering opens
+    - paragraph: Set by your planting time
+    - paragraph: Growing ends · reward opens
+    - paragraph: 48 hours after the season starts
+    - paragraph: Claim deadline
+    - paragraph: Seven days after the growing cutoff
+    - paragraph:
+      - text: All schedule times are shown in
+      - strong: America/Chicago
+      - text: . The timer is checked against Sui mainnet.
+    - generic "Season and wallet details"
+  - region "Start Season 2":
+    - paragraph: YOUR NEXT MOVE
+    - heading "Start Season 2" [level=2]
+    - generic: 48 hours
+    - paragraph: This approval archives Season 1 and starts Season 2 together. The new season begins when the transaction succeeds.
+    - heading "Connect your Slush wallet" [level=3]
+    - paragraph: Use a browser with the Slush extension for wallet approvals. Your status and receipts can be viewed without a wallet.
+    - paragraph: Connecting shares your address. It costs no gas.
+    - heading "Review before approving" [level=3]
+    - button "Check start season 2" [disabled]
+    - paragraph: A readiness check requests no signature and costs no gas.
+    - button "Start Season 2 in Slush ↗" [disabled]
+    - paragraph: Your wallet asks for approval. Each completed step is checked on mainnet before the next one opens.
+  - status:
+    - heading "Season status refreshed" [level=2]
+    - paragraph: The next step and its timing have been verified on mainnet.
+  - generic "Recover a previous test step"
+  - option "Start Season 2" [selected]
+  - option "Plant a Seed"
+  - option "First watering"
+  - option "Claim Season 2 reward"
+- contentinfo:
+  - generic: ARBORETUM · SEASON 2 OWNER TEST
+  - generic: One Seed. A little care. A season of growth.

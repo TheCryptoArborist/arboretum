@@ -1,0 +1,15 @@
+{
+  "id": "6af09274b50143d105dbb63a",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6af09273b50143d105dbb638",
+  "state": "ready",
+  "context": "production",
+  "title": "Fix Season 2 planting field review \u00b7 1062f33c8819",
+  "created_at": "2026-11-08T15:17:08.347Z",
+  "published_at": "2026-11-08T15:17:26.002Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}
