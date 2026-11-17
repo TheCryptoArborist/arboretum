@@ -2,7 +2,7 @@ name: Season 4 preparation
 on:
   push:
     branches: [feature/season-four-owner-test-20261117]
-    paths: ['.github/workflows/season-four-preparation.yml', 'settlement-cycle-four/**', 'settlement-cycle-next/**']
+    paths: ['.github/workflows/season-four-preparation.yml', 'settlement-cycle-four/**']
 permissions:
   contents: read
 concurrency:
@@ -19,53 +19,41 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
-      - name: Preserve exact tracked source for review
-        shell: bash
+      - name: Preserve exact tracked source
         run: |
-          set -euo pipefail
           mkdir -p season-four-results
           git rev-parse HEAD > season-four-results/source-sha.txt
           git archive --format=tar HEAD | gzip > season-four-results/source.tar.gz
-      - name: Install existing locked dependencies without lifecycle scripts
+      - name: Install locked dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Verify unchanged Season 3 baseline
+      - name: Generate isolated candidate without changing old code
+        run: python3 settlement-cycle-four/prepare.py
+      - name: Verify actual Season 3 predecessor and current state
+        run: node settlement-cycle-four/capture.mjs
+      - name: Run candidate transaction and controller regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --test --test-isolation=none settlement-cycle-four/*.test.mjs | tee season-four-results/season-four-tests.txt
+      - name: Verify retained Season 3 regressions
         shell: bash
         run: |
           set -euo pipefail
           node --test --test-isolation=none settlement-cycle-three/*.test.mjs | tee season-four-results/season-three-tests.txt
-      - name: Capture public mainnet state with read-only queries
+      - name: Build additive review candidate and check all 109 retained assets
+        env:
+          CONTEXT: branch-deploy
         shell: bash
         run: |
           set -euo pipefail
-          node --input-type=module <<'JS'
-          import assert from 'node:assert/strict';
-          import fs from 'node:fs';
-          import { parse } from 'graphql';
-          import { EXPECTED, PROOF_QUERY, PROOF_VARIABLES, INPUTS_QUERY, INPUT_VARIABLES, inspectState, contents } from './settlement-cycle-three/common.mjs';
-          const save = (name, value) => fs.writeFileSync('season-four-results/' + name + '.json', JSON.stringify(value, (_, v) => typeof v === 'bigint' ? v.toString() : v, 2) + '\n');
-          async function read(name, query, variables) {
-            const ast = parse(query);
-            assert(ast.definitions.filter(d => d.kind === 'OperationDefinition').every(d => d.operation === 'query'));
-            assert(!/\b(executeTransaction|simulateTransaction)\b/.test(query));
-            save(name + '-request', {query, variables});
-            const response = await fetch(EXPECTED.endpoint, {method: 'POST', headers: {'Content-Type': 'application/json', 'Cache-Control': 'no-store'}, body: JSON.stringify({query, variables}), signal: AbortSignal.timeout(45000)});
-            assert.equal(response.status, 200);
-            const result = await response.json();
-            save(name, {capturedAt: new Date().toISOString(), response: result});
-            assert(!result.errors?.length, JSON.stringify(result.errors));
-            return result;
-          }
-          const proof = await read('season-three-proof', PROOF_QUERY, PROOF_VARIABLES);
-          const inputs = await read('season-three-inputs', INPUTS_QUERY, INPUT_VARIABLES);
-          const now = Date.now();
-          const state = await inspectState(inputs, proof, {now, nowMs: now});
-          save('season-three-state', state);
-          console.log(JSON.stringify({readOnly: true, status: state.status, registry: contents(state.registry), ownedSeeds: state.ownedSeeds, submittedTransactions: 0}, (_, v) => typeof v === 'bigint' ? v.toString() : v, 2));
-          JS
-      - name: Preserve installed public packages for offline tests
+          node settlement-integration/build-review.mjs
+          node settlement-cycle-four/build.mjs
+          git diff --exit-code -- index.html wallet.js garden.js sui-sdk.bundle.js netlify netlify.toml package.json package-lock.json contract contract-payout settlement-cycle-three
+          tar -czf season-four-results/review-dist.tar.gz dist
+      - name: Preserve generated source and public evidence even on failure
         if: always()
-        shell: bash
         run: |
+          tar -czf season-four-results/generated-source.tar.gz settlement-cycle-four
           if test -d node_modules; then tar -czf season-four-results/dependencies.tar.gz node_modules; fi
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()

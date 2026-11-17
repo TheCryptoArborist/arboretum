@@ -1,0 +1,24 @@
+// Build additive Season 4 assets after the unchanged protected review build.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { build } from 'esbuild';
+import { assertReviewBuild } from '../scripts/build-policy.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
+const baseline=JSON.parse(fs.readFileSync(path.join(root,'settlement-cycle-three/verification/hosted/candidate.json')));
+assertReviewBuild();
+assert.equal(baseline.sourceCommit,'5d17306758518579bf523ab8a7f9e8cb198a9fe8');
+assert.equal(baseline.applicationFiles.length,109);
+for(const item of baseline.applicationFiles) assert.equal(sha(fs.readFileSync(path.join(root,'dist',item.path))),item.sha256,'Baseline changed: '+item.path);
+const output=path.join(root,'dist/admin/season-four');fs.mkdirSync(output,{recursive:true});
+for(const name of ['index.html','admin.css'])fs.copyFileSync(path.join(root,'settlement-cycle-four',name),path.join(output,name));
+await build({entryPoints:[path.join(root,'settlement-cycle-four/admin.mjs')],outfile:path.join(output,'admin.mjs'),bundle:true,format:'esm',platform:'browser',target:'es2022',minify:true,sourcemap:false,legalComments:'none',logOverride:{'import-is-undefined':'error'}});
+const files=[];function walk(dir,prefix=''){for(const entry of fs.readdirSync(dir,{withFileTypes:true})){const rel=prefix+entry.name;if(entry.isDirectory())walk(path.join(dir,entry.name),rel+'/');else{assert(entry.isFile());const bytes=fs.readFileSync(path.join(dir,entry.name));files.push({path:rel,bytes:bytes.length,sha256:sha(bytes)});}}}walk(path.join(root,'dist'));
+assert.deepEqual(files.map(x=>x.path).sort(),[...baseline.applicationFiles.map(x=>x.path),'admin/season-four/admin.css','admin/season-four/admin.mjs','admin/season-four/index.html'].sort());
+const report={route:'/admin/season-four/',existingAssetsPreserved:109,applicationFileCount:112,contractChanges:false,publicGameplayEnabled:false,hosted:false,applicationFiles:files};
+fs.mkdirSync(path.join(root,'season-four-results'),{recursive:true});
+fs.writeFileSync(path.join(root,'season-four-results/build.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({...report,applicationFiles:undefined},null,2));
