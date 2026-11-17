@@ -56,6 +56,7 @@ def generate():
             text=replace(text, 'Number(BigInt(EXPECTED.previousCutoffMs) + BigInt(EXPECTED.reviewWindowMs)) + 10000',
                 'Math.max(Number(BigInt(EXPECTED.previousCutoffMs) + BigInt(EXPECTED.reviewWindowMs)), Date.parse(dataOf(capturedInputs).checkpoint.timestamp)) + 10000')
         if name == 'admin.mjs':
+            text=replace(text, 'SEASON 3 START', 'SEASON 4 START')
             text=replace(text, "import * as care from './care-core.mjs';", "import * as care from './care-core.mjs';\nimport { createWateringCalendar as exportCalendar } from './watering-plan.mjs';")
             start=text.index('  const starts = wateringReminderTime(plant, cycle);',text.index('export function createWateringCalendar'))
             end=text.index('\n}\n',start)

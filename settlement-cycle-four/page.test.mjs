@@ -36,3 +36,9 @@ test('calendar copy states both reminders and does not promise phone delivery',(
   assert.ok(html.includes('Enable calendar notifications on your phone.'));
   assert.ok(!html.includes('Download the event, then import it into your calendar.'));
 });
+
+test('runtime countdown label names Season 4 rather than its predecessor',()=>{
+  const source=fs.readFileSync(new URL('./admin.mjs',import.meta.url),'utf8');
+  assert.ok(source.includes("el['countdown-label'].textContent = 'SEASON 4 START'"));
+  assert.ok(!source.includes('SEASON 3 START'));
+});
