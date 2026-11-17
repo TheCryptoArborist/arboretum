@@ -1,0 +1,15 @@
+{
+  "id": "6afcb3bc4af33f3c8870bb81",
+  "site_id": "d425445d-4980-49be-8ab2-12e7527ba281",
+  "build_id": "6afcb3bb4af33f3c8870bb7f",
+  "state": "ready",
+  "context": "production",
+  "title": "Add focused Season 4 owner watering test \u00b7 c80302c3d9ba",
+  "created_at": "2026-11-17T20:06:20.357Z",
+  "published_at": "2026-11-17T20:06:40.679Z",
+  "error_message": null,
+  "deploy_source": "api",
+  "has_source_zip": true,
+  "edge_functions_present": true,
+  "function_schedules": []
+}

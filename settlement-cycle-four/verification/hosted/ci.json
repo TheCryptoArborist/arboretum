@@ -1,0 +1,88 @@
+{
+  "requiredCI": [
+    {
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302880",
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "c80302c3d9bae8878686300d24e7d09e4d3e38bd",
+      "id": 44165302880,
+      "path": ".github/workflows/settlement-integration.yml",
+      "name": "Settlement app integration review"
+    },
+    {
+      "url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165283275",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "headSha": "c80302c3d9bae8878686300d24e7d09e4d3e38bd",
+      "id": 44165283275,
+      "path": ".github/workflows/settlement-integration.yml",
+      "name": "Settlement app integration review"
+    }
+  ],
+  "sourceTree": "cd140c54d3f058f0ebb8f724cb38f3105d7e49e1",
+  "sourceCommit": "c80302c3d9bae8878686300d24e7d09e4d3e38bd",
+  "otherRuns": [
+    {
+      "id": 44165302882,
+      "name": "Garden season status",
+      "conclusion": "failure",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302882"
+    },
+    {
+      "id": 44165302923,
+      "name": "Player guide checks",
+      "conclusion": "success",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302923"
+    },
+    {
+      "id": 44165302848,
+      "name": "Reward-first preview",
+      "conclusion": "failure",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302848"
+    },
+    {
+      "id": 44165302865,
+      "name": "Arboretum rewards-led redesign",
+      "conclusion": "success",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302865"
+    },
+    {
+      "id": 44165303315,
+      "name": "Partner chest preview",
+      "conclusion": "failure",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165303315"
+    },
+    {
+      "id": 44165302872,
+      "name": "Economy accounting review",
+      "conclusion": "failure",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302872"
+    },
+    {
+      "id": 44165303006,
+      "name": "Arboretum prelaunch preview",
+      "conclusion": "success",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165303006"
+    },
+    {
+      "id": 44165302906,
+      "name": "Reward-first production release",
+      "conclusion": "failure",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302906"
+    },
+    {
+      "id": 44165302821,
+      "name": "Item Shop and Growth Pool previews",
+      "conclusion": "success",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302821"
+    },
+    {
+      "id": 44165302801,
+      "name": "Public Player Handbook",
+      "conclusion": "success",
+      "html_url": "https://github.com/TheCryptoArborist/arboretum/actions/runs/44165302801"
+    }
+  ]
+}

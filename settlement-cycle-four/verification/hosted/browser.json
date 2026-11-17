@@ -1,0 +1,20 @@
+[
+  {
+    "width": 1440,
+    "mainnetVerified": true,
+    "refreshVerified": true,
+    "overflow": false,
+    "pageErrors": [],
+    "walletConnections": 0,
+    "transactions": 0
+  },
+  {
+    "width": 390,
+    "mainnetVerified": true,
+    "refreshVerified": true,
+    "overflow": false,
+    "pageErrors": [],
+    "walletConnections": 0,
+    "transactions": 0
+  }
+]
